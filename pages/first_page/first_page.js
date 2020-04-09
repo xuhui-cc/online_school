@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    grade:["初三","高三 文科","高三 理科"],
+    grade_index:0
   },
 
   /**
@@ -13,6 +14,24 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+
+  start:function(){
+    wx.switchTab({
+      url: '../../pages/index/index',
+    })
+  },
+
+  grade_picker:function(e){
+    let that = this
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    that.setData({
+      grade_index: e.detail.value
+    })
+    // wx.setStorageSync("grade", data)
+    wx.switchTab({
+      url: '../../pages/index/index',
+    })
   },
 
   /**

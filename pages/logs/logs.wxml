@@ -1,0 +1,36 @@
+<view class="container">
+  <!-- 标题栏 -->
+  <view class="nabigation_bar">
+    <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" >
+      <view class="grade_content">{{grade[grade_index]}}</view>
+    </picker>
+    <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" >
+      <image class="grade_img" src="../../images/xsj.png"></image>
+    </picker>
+    <view class="head">课程</view>
+  </view>
+  <!-- 标题栏结束 -->
+
+  <scroll-view  scroll-x="true" class="tab-h" >
+    <view wx:for="{{classify}}" wx:key="index" class="tab-item {{current_classify==index?'active':''}}" data-current="{{index}}"  bindtap="swichNav">{{item}}</view> 
+  </scroll-view> 
+
+  <view class="flex">
+    <view class="zt">专题：</view>
+    <scroll-view  scroll-x="true" class="tab-h1" >
+      <view wx:for="{{classify}}" wx:key="index" class="tab-item1 {{current_classify==index?'active':''}}"  bindtap="swichNav">{{item}}</view> 
+    </scroll-view> 
+  </view>
+
+  <view>
+    <view class="course_layout">
+      <view class="course_title">高三数学三角函数专题课</view>
+      <view class="course_intor">这里是数学能力测评表详情介绍，这里是数学能力测评表详情介绍这里是数学能力测评表详情介绍。</view>
+      <view class="flex">
+        <image class="avatar" src="../../images/avatar.png"></image>
+      </view>
+    </view>
+  </view>
+  
+
+</view>
