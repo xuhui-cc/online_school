@@ -3,6 +3,7 @@
     "pages/first_page/first_page",
     "pages/index/index",
     "pages/logs/logs",
+    "pages/course_detail/course_detail",
     "pages/my/my"
   ],
   "window": {

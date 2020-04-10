@@ -28,9 +28,20 @@
       <view class="course_intor">这里是数学能力测评表详情介绍，这里是数学能力测评表详情介绍这里是数学能力测评表详情介绍。</view>
       <view class="flex">
         <image class="avatar" src="../../images/avatar.png"></image>
+        <view class="tea_name">刘晴晴晴</view>
+        <view class="course_text"><text style="color:#03B683;">2830人</text>购买</view>
+        <view class="num_layout">
+          <view class="course_num">30课时</view>
+        </view>
+        <view class="course_price">
+          <view style="margin-right:8rpx;margin-top:5rpx;">¥</view>
+          <view style="font-weight:bold;font-size:42rpx;">9</view>
+        </view>
       </view>
     </view>
   </view>
+
+  <image class="gift" src="../../images/gift.png"></image>
   
 
 </view>

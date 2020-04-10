@@ -182,3 +182,69 @@ page{
   height:51rpx;
   border-radius: 50%；
 }
+.tea_name{
+  margin-left: 14rpx;
+  margin-top: 83rpx;
+  width:88rpx;
+  height:30rpx;
+  font-size:22rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:30rpx;
+  color:rgba(39,39,39,1);
+  opacity:1;
+}
+.course_text{
+  margin-left: 110rpx;
+  margin-top: 81rpx;
+  width:130rpx;
+  height:33rpx;
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:33rpx;
+  color:rgba(39,39,39,1);
+  opacity:1;
+}
+.num_layout{
+  margin-left: 21rpx;
+  margin-top: 78rpx;
+  width:92rpx;
+  height:39rpx;
+  line-height: 39rpx;
+  text-align: center;
+  border-radius:5rpx;
+  background:linear-gradient(180deg,rgba(2,220,159,1) 0%,rgba(20,203,162,1) 100%);
+  opacity:1;
+}
+.course_num{
+  width:92rpx;
+  height:30rpx;
+  font-size:22rpx;
+  font-family:PingFang SC;
+  line-height: 39rpx;
+  text-align: center;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  opacity:1;
+}
+.course_price{
+  display: flex;
+  margin-left: 23rpx;
+  margin-top: 68rpx;
+  width:30rpx;
+  height:59rpx;
+  font-size:26rpx;
+  font-family:PingFang SC;
+  line-height:59rpx;
+  text-align: center;
+  color:rgba(3,182,131,1);
+  opacity:1;
+}
+.gift{
+  position: fixed;
+  margin-left: 582rpx;
+  margin-top: 994rpx;
+  width:168rpx;
+  height:204rpx;
+}

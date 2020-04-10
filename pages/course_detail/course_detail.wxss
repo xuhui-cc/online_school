@@ -1,0 +1,33 @@
+.head{
+  margin-left: 30rpx;
+  margin-top: 25rpx;
+  width:396rpx;
+  height:50rpx;
+  font-size:36rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:50rpx;
+  color:rgba(39,39,39,1);
+  opacity:1;
+}
+.flex{
+  display: flex;
+}
+.share{
+  margin-left: 250rpx;
+  margin-top: 32rpx;
+  width:30rpx;
+  height:35rpx;
+}
+.intro{
+  margin-left: 30rpx;
+  margin-top: 21rpx;
+  width:690rpx;
+  height:73rpx;
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:33rpx;
+  color:rgba(130,130,130,1);
+  opacity:1;
+}
