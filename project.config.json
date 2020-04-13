@@ -57,6 +57,20 @@
 					"id": -1,
 					"name": "pages/course_detail/course_detail",
 					"pathName": "pages/course_detail/course_detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/homework/homework",
+					"pathName": "pages/homework/homework",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/homework_report/homework_report",
+					"pathName": "pages/homework_report/homework_report",
 					"scene": null
 				}
 			]

@@ -1,12 +1,11 @@
-// pages/course_detail/course_detail.js
+// pages/homework_report/homework_report.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    currentData: 1,
-    
+
   },
 
   /**
@@ -14,17 +13,6 @@ Page({
    */
   onLoad: function (options) {
 
-  },
-
-  checkCurrent: function (e) {
-    const that = this
-    if (that.data.currentData === e.target.dataset.current) {
-      return false;
-    } else {
-      that.setData({
-        currentData: e.target.dataset.current
-      })
-    }
   },
 
   /**

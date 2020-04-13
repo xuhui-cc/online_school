@@ -4,6 +4,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/course_detail/course_detail",
+    "pages/homework/homework",
+    "pages/homework_report/homework_report",
     "pages/my/my"
   ],
   "window": {
@@ -41,4 +43,6 @@
       }
     ]
   }
+
+ 
 }

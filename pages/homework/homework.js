@@ -1,12 +1,13 @@
-// pages/course_detail/course_detail.js
+// pages/homework/homework.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    currentData: 1,
-    
+    cs: ["初三", "高三 文科", "高三 理科"],
+    currentTab: 0,
+    clientHeight:1000,
   },
 
   /**
@@ -16,16 +17,29 @@ Page({
 
   },
 
-  checkCurrent: function (e) {
-    const that = this
-    if (that.data.currentData === e.target.dataset.current) {
-      return false;
-    } else {
-      that.setData({
-        currentData: e.target.dataset.current
-      })
-    }
+  //手动滑页
+  swiperchange: function (e) {
+    var that = this
+    var current = Number(e.detail.current)  // 当前的
+    var currentTab = Number(this.data.currentTab); //上一个
+    console.log(current)
+    console.log(currentTab)
+    //获取试题
+    // var sl_list = this.data.sl_list;
+    // var length = sl_list.length;
+    
+    that.setData({
+      currentTab: current
+    })
+    
+    // if (current < currentTab) {
+    //   current = current - 1
+      
+    // }
+
+   
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

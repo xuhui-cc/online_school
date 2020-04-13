@@ -1,0 +1,32 @@
+<view class="container">
+  <swiper bindanimationfinish ="swiperchange" current="{{currentTab}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+    <swiper-item wx:for="{{cs}}" wx:key="index">
+      <scroll-view scroll-y="true">
+        <view>{{item}}</view>
+      </scroll-view>
+      
+    </swiper-item>
+  </swiper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- container -->
+</view>

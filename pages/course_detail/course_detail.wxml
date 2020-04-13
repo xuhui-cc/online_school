@@ -6,7 +6,74 @@
 
   <view class="intro">这里是数学能力测评表详情介绍，这里是数学能力测评表详情介绍这里是数学能力测评表详情介绍。</view>
 
+  <view class="flex">
+    <view class="buy_num">2830人</view>
+    <view class="buy">购买</view>
+    <view class="course_num">30课时</view>
+  </view>
 
+  
+  <view class='main_sel'>
+    <view class='tab  {{currentData == 0 ? "tabBorer" : ""}}'  data-current = "0" bindtap='checkCurrent'>课程介绍</view>
+    <view class='tab  {{currentData == 1 ? "tabBorer" : ""}}'  data-current = "1" bindtap='checkCurrent'>课程目录</view>
+  </view>
+  <view class="heng1"></view>
+
+
+  <view wx:if="{{currentData == 0}}" class="course_intro">
+    <image class="course_intro_img" src="../../images/intro.png" mode="widthFix"></image>
+    <!-- <rich-text nodes="{{}}"></rich-text> -->
+  </view>
+
+  <view wx:if="{{currentData == 1}}" class="course_intro">
+    <view>
+      <view class="flex">
+        <view class="course_order">01</view>
+        <image class="record_img" src="../../images/record.png"></image>
+        <view class="course_title">三角函数课程系列总结</view>
+        <view class="study_button" >继续学习</view>
+      </view>
+      <view>
+        <view class="study_rate" >未学习</view>
+        <image class="xu" src="../../images/xu.png" ></image>
+        <view class="flex">
+          <image class="file-img1" src="../../images/file1.png"></image>
+          <view class="file" style="color:rgba(32,32,32,1);">讲义资料</view>
+          <view class="file_num">2份</view>
+          <image class="next" src="../../images/next.png"></image>
+        </view>
+        <view class="flex">
+          <image class="file-img1" src="../../images/work1.png"></image>
+          <view class="file" style="color:rgba(32,32,32,1);">课后作业</view>
+          <view class="work_finish">待完成</view>
+          <image class="next" src="../../images/next.png"></image>
+        </view>
+        <view class="heng3"></view>
+      </view>
+
+
+      <view class="flex" hidden="true">
+        <image class="file_img" src="../../images/file.png"></image>
+        <view class="file">讲义资料</view>
+        <view class="shu"></view>
+        <image class="work_img" src="../../images/work.png"></image>
+        <view class="file">课后作业</view>
+      </view>
+      <view class="heng2" hidden="true"></view>
+    </view>
+
+    <view class="end_test">
+      <view class="btn_end_test">去考试</view>
+      <view class="end_title">结课考试</view>
+      <view class="end_intro">巩固知识点，全面掌握考点学习方法。</view>
+    </view>
+  </view>
+
+  <view class="course_buy">
+    <view class="yuan">¥</view>
+    <view class="price">499</view>
+    <view class="button_buy" >立即购买</view>
+  </view>
   
 
 
