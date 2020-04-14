@@ -1,6 +1,43 @@
 <view class="container">
   <swiper bindanimationfinish ="swiperchange" current="{{currentTab}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
     <swiper-item wx:for="{{cs}}" wx:key="index">
+      <view class="layout">
+        <!-- <image class="clock" src="../../images/clock.png"></image>
+        <view class="time">45:59</view> -->
+        <view class="current">7</view>
+        <view class="sum">/10</view>
+        <image class="card_img" src="../../images/card.png"></image>
+        <view class="dtk" bindtap="dtk">答题卡</view>
+      </view>
+      <view class="dtk_layout" wx:if="{{dtk}}">
+
+        <view class="ques_title">一、选择题</view>
+        <view class="for">
+          <view class="warp">
+            <view class="r-a-w" style="background:rgba(3,182,131,1);">10</view>
+            <view class="r-a-w" style="background:rgba(235,235,235,1);">10</view>
+          </view>
+        </view>
+
+        <view class="ques_title">二、填空题</view>
+        <view class="for">
+          <view class="warp">
+            <view class="r-a-w" style="background:rgba(3,182,131,1);">1</view>
+            <view class="r-a-w" style="background:rgba(235,235,235,1);">10</view>
+          </view>
+        </view>
+
+        <view class="ques_title">三、非主观题</view>
+        <view class="for">
+          <view class="warp">
+            <view class="r-a-w" style="background:rgba(3,182,131,1);">10</view>
+            <view class="r-a-w" style="background:rgba(235,235,235,1);">10</view>
+          </view>
+        </view>
+
+        <view class="submit">交卷</view>
+
+      </view>
       <scroll-view scroll-y="true">
         <view>{{item}}</view>
       </scroll-view>

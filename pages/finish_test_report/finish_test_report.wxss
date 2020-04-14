@@ -1,9 +1,13 @@
-page{
-  background:rgba(245,245,245,1);
+.bg_img{
+  width: 750rpx;
+  height: 1624rpx;
+  z-index: -5;
 }
+
 .layout{
+  position: absolute;
   margin-left: 30rpx;
-  margin-top: 22rpx;
+  margin-top: 193rpx;
   width:690rpx;
   /* height:1209rpx; */
   background:rgba(255,255,255,1);
@@ -153,4 +157,28 @@ page{
 }
 .margin{
   margin-bottom: 100rpx;
+}
+.flex_head{
+  position: absolute;
+  display: flex;
+}
+.back{
+  
+  margin-left: 10rpx;
+  margin-top: 102rpx;
+  width:58rpx;
+  height:58rpx;
+}
+.head{
+  margin-left: 230rpx;
+  margin-top: 102rpx;
+  width:136rpx;
+  height:48rpx;
+  font-size:34rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:48rpx;
+  text-align: center;
+  color:rgba(255,255,255,1);
+  opacity:1;
 }

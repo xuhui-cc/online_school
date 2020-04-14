@@ -6,6 +6,7 @@
     "pages/course_detail/course_detail",
     "pages/homework/homework",
     "pages/homework_report/homework_report",
+    "pages/finish_test_report/finish_test_report",
     "pages/my/my"
   ],
   "window": {

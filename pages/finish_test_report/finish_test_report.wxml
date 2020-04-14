@@ -1,6 +1,12 @@
 <view class="container">
 
-  <view class="layout">
+<image class="bg_img" src="../../images/bg2.png"></image>
+<view class="flex_head">
+  <image class="back" src="../../images/w_back.png"></image>
+  <view class="head">考试报告</view>
+</view>
+
+<view class="layout">
     <view class="homework_title">课后作业名</view>
 
     <view class="flex">
@@ -56,11 +62,4 @@
 
 
 
-
-
-
-
-
-
-<!-- container -->
 </view>

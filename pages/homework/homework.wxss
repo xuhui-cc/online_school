@@ -1,1 +1,122 @@
 /* pages/homework/homework.wxss */
+.layout{
+  display: flex;
+  width:750rpx;
+  height:90rpx;
+  /* background:rgba(255,255,255,1); */
+  opacity:1;
+}
+.clock{
+  margin-left: 35rpx;
+  margin-top: 30rpx;
+  width:25rpx;
+  height:29rpx;
+}
+.time{
+  margin-left: 15rpx;
+  margin-top: 21rpx;
+  width:91rpx;
+  height:48rpx;
+  font-size:34rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:48rpx;
+  color:rgba(48,48,48,1);
+  opacity:1;
+}
+.current{
+  margin-left: 330rpx;
+  margin-top: 25rpx;
+  width:24rpx;
+  height:56rpx;
+  font-size:40rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:41rpx;
+  color:rgba(48,48,48,1);
+  opacity:1;
+}
+.sum{
+  
+  margin-top: 20rpx;
+  width:58rpx;
+  height:48rpx;
+  font-size:34rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:48rpx;
+  color:rgba(164,164,164,1);
+  opacity:1;
+}
+.card_img{
+  margin-left: 177rpx;
+  margin-top: 33rpx;
+  width:34rpx;
+  height:28rpx;
+}
+.dtk{
+  margin-left: 9rpx;
+  margin-top: 27rpx;
+  width:84rpx;
+  height:40rpx;
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:40rpx;
+  color:rgba(0,0,0,1);
+  opacity:1;
+}
+.dtk_layout{
+  position: absolute;
+  width: 750rpx;
+  /* height: 1126rpx; */
+  background: rgba(255,255,255,1);
+  z-index: 10;
+}
+.ques_title{
+  padding-left: 30rpx;
+  width:750rpx;
+  height:80rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:80rpx;
+  color:rgba(0,0,0,1);
+  background:rgba(248,249,252,1);
+  opacity:1;
+}
+.warp{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 30rpx;
+}
+.r-a-w{
+  margin-left: 35rpx;
+  margin-top: 38rpx;
+  width:80rpx;
+  height:80rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:80rpx;
+  text-align: center;
+  color:rgba(255,255,255,1);
+  
+  border-radius:50%;
+  opacity:1;
+}
+.submit{
+  margin-left: 30rpx;
+  margin-top: 200rpx;
+  width:690rpx;
+  height:78rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:78rpx;
+  text-align: center;
+  color:rgba(255,255,255,1);
+  background:rgba(2,220,159,1);
+  opacity:1;
+  border-radius:44rpx;
+}

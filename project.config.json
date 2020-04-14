@@ -71,6 +71,13 @@
 					"id": -1,
 					"name": "pages/homework_report/homework_report",
 					"pathName": "pages/homework_report/homework_report",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/finish_test_report/finish_test_report",
+					"pathName": "pages/finish_test_report/finish_test_report",
 					"scene": null
 				}
 			]
