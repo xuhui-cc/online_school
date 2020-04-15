@@ -1,0 +1,9 @@
+page{
+  background:rgba(245,245,245,1);
+}
+.adr_layout{
+  width:750rrpx;
+  height:105rpx;
+  background:rgba(255,255,255,1);
+  opacity:1;
+}

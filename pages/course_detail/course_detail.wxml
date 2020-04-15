@@ -1,4 +1,7 @@
 <view class="container">
+
+  <image class="report_img" src="../../images/report.png"></image>
+
   <view class="flex">
     <view class="head">高三数学三角函数专题课</view>
     <image class="share" src="../../images/share.png"></image>

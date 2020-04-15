@@ -1,0 +1,4 @@
+<view class="container">
+  <view class="layout" bindtap="tap"></view>
+
+</view>

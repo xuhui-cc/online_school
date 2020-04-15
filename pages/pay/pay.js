@@ -1,15 +1,11 @@
-// pages/homework/homework.js
+// pages/pay/pay.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    cs: ["初三", "高三 文科", "高三 理科"],
-    currentTab: 0,
-    clientHeight:1000,
-    dtk:false,
-    cs_index:0,
+
   },
 
   /**
@@ -18,39 +14,6 @@ Page({
   onLoad: function (options) {
 
   },
-
-  //答题卡显示收起
-  dtk:function(){
-    let that = this 
-    that.setData({
-      dtk:!that.data.dtk
-    })
-  },
-
-  //手动滑页
-  swiperchange: function (e) {
-    var that = this
-    var current = Number(e.detail.current)  // 当前的
-    var currentTab = Number(this.data.currentTab); //上一个
-    console.log(current)
-    console.log(currentTab)
-    //获取试题
-    // var sl_list = this.data.sl_list;
-    // var length = sl_list.length;
-    
-    that.setData({
-      currentTab: current,
-      cs_index:that.data.cs_index +1
-    })
-    
-    // if (current < currentTab) {
-    //   current = current - 1
-      
-    // }
-
-   
-  },
-
 
   /**
    * 生命周期函数--监听页面初次渲染完成

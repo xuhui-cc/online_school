@@ -354,3 +354,7 @@
   color:rgba(130,130,130,1);
   opacity:1;
 }
+.report_img{
+  width:750rpx;
+  height:237rpx;
+}
