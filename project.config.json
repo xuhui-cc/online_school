@@ -100,6 +100,13 @@
 					"id": -1,
 					"name": "pages/pay/pay",
 					"pathName": "pages/pay/pay",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/add_adress/add_adress",
+					"pathName": "pages/add_adress/add_adress",
 					"scene": null
 				}
 			]

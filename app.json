@@ -8,6 +8,7 @@
     "pages/homework_report/homework_report",
     "pages/zbcs/zbcs",
     "pages/pay/pay",
+    "pages/add_adress/add_adress",
     "pages/finish_test_report/finish_test_report",
     "pages/my/my"
   ],

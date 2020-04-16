@@ -1,4 +1,5 @@
 // pages/course_detail/course_detail.js
+const app = getApp()
 Page({
 
   /**
@@ -13,7 +14,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this
+    var login = wx.getStorageSync("login")
+    if(login){
+      that.setData({
+        login: true
+      })
+    }else{
+      that.setData({
+        login: false
+      })
+    }
+    
   },
 
   checkCurrent: function (e) {
@@ -25,6 +37,59 @@ Page({
         currentData: e.target.dataset.current
       })
     }
+  },
+
+  //获取微信绑定手机号登录
+  getPhoneNumber: function (e) {
+    var that = this
+    wx.login({
+      success: res => {
+
+        if (e.detail.errMsg == "getPhoneNumber:ok") {
+          wx.showLoading({
+            title: '登录中...',
+          })
+          wx.login({
+            success(res) {
+              console.log("cccs.code" + res.code)
+
+              let iv = encodeURIComponent(e.detail.iv);
+              let encryptedData = encodeURIComponent(e.detail.encryptedData);
+              let code = res.code
+              var params = {
+                "code": code,
+                "iv": iv,
+                "encryptedData": encryptedData
+              }
+              console.log(params)
+              app.ols.login(params).then(d => {
+
+                if (d.data.code == 0 ) {
+                  console.log("登陆成功")
+                  wx.hideLoading()
+                  that.onLoad()
+                  wx.setStorageSync("login", true)
+
+
+                } else {
+                  wx.showToast({
+                    title: "登陆失败",
+                    icon: 'none',
+                    duration: 1000
+                  })
+                  console.log(d.data.msg)
+                  // that.setData({
+                  //   login: false
+                  // })
+
+                  wx.hideLoading()
+                }
+              })
+            }
+          })
+        }
+      }
+    })
   },
 
   /**

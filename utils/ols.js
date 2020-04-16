@@ -7,7 +7,7 @@ const fetch = require('./fetch')
 
 //登录
 function login(params) {
-  return fetch.olsfetchpost(URI, 'login/tologin', params)
+  return fetch.olsfetchpost(URI, 'login/phonelogin', params)
 }
 
 

@@ -1,0 +1,53 @@
+.layout{
+  display: flex;
+  width:750rpx;
+  height:120rpx;
+  background:rgba(255,255,255,1);
+  opacity:1;
+}
+.heng{
+  margin-left: 30rpx;
+  width:720rpx;
+  height:0rpx;
+  border:1rpx solid rgba(241,241,241,1);
+  opacity:1;
+}
+.title{
+  margin-left: 34rpx;
+  margin-top: 39rpx;
+  width:120rpx;
+  height:42rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:42rpx;
+  color:rgba(39,39,39,1);
+  opacity:1;
+}
+.input{
+  margin-left: 28rpx;
+  margin-top: 35rpx;
+  width:500rpx;
+  height:40rpx;
+  font-size:28rpx;
+  font-family:PingFang SC;
+  line-height:40rpx;
+  
+  opacity:1;
+}
+.save{
+  margin-left: 30rpx;
+  position: fixed;
+  bottom: 50rpx;
+  width:688rpx;
+  height:75rpx;
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:75rpx;
+  text-align: center;
+  color:rgba(255,255,255,1);
+  background:rgba(2,220,159,1);
+  opacity:1;
+  border-radius:38rpx;
+}

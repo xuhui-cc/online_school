@@ -1,3 +1,15 @@
+.login_read{
+  position: absolute;
+  margin-top: 15rpx;
+  margin-left: 428rpx;
+  width: 287rpx;
+  height: 75rpx;
+  background-color: rgba(58,58,58,1);
+  /* background: transparent; */
+}
+.login_read::after {
+  border: none;
+}
 .head{
   margin-left: 30rpx;
   margin-top: 25rpx;

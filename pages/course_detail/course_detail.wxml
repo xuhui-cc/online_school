@@ -75,7 +75,8 @@
   <view class="course_buy">
     <view class="yuan">¥</view>
     <view class="price">499</view>
-    <view class="button_buy" >立即购买</view>
+    <view class="button_buy" wx:if="{{login}}">立即购买</view>
+    <button wx:if="{{!login}}" class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
   </view>
   
 
