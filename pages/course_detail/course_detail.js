@@ -28,6 +28,20 @@ Page({
     
   },
 
+  to_end_report:function(){
+    let that = this
+    wx.navigateTo({
+      url: '../../pages/end_report/end_report',
+    })
+  },
+
+  to_course_file:function(){
+    let that = this
+    wx.navigateTo({
+      url: '../../pages/course_file/course_file',
+    })
+  },
+
   checkCurrent: function (e) {
     const that = this
     if (that.data.currentData === e.target.dataset.current) {
@@ -75,7 +89,7 @@ Page({
                   wx.showToast({
                     title: "登陆失败",
                     icon: 'none',
-                    duration: 1000
+                    duration: 2000
                   })
                   console.log(d.data.msg)
                   // that.setData({

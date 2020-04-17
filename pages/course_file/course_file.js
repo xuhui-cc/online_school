@@ -1,38 +1,18 @@
-// pages/first_page/first_page.js
+// pages/course_file/course_file.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    grade:["初三","高三 文科","高三 理科"],
-    grade_index:0
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let that = this
-    var grade = wx.getStorageSync("grade")
-    if(grade){
-      wx.switchTab({
-        url: '../../pages/logs/logs',
-      })
-    }
-  },
 
-  grade_picker:function(e){
-    let that = this
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    that.setData({
-      grade_index: e.detail.value
-    })
-    console.log(that.data.grade[that.data.grade_index])
-    wx.setStorageSync("grade", that.data.grade_index)
-    wx.switchTab({
-      url: '../../pages/logs/logs',
-    })
   },
 
   /**

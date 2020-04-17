@@ -8,7 +8,9 @@
     "pages/homework_report/homework_report",
     "pages/zbcs/zbcs",
     "pages/pay/pay",
+    "pages/course_file/course_file",
     "pages/add_adress/add_adress",
+    "pages/end_report/end_report",
     "pages/finish_test_report/finish_test_report",
     "pages/my/my"
   ],

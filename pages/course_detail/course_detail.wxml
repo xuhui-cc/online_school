@@ -1,6 +1,6 @@
 <view class="container">
 
-  <image class="report_img" src="../../images/report.png"></image>
+  <image class="report_img" src="../../images/report.png" bindtap="to_end_report"></image>
 
   <view class="flex">
     <view class="head">高三数学三角函数专题课</view>
@@ -39,10 +39,10 @@
       <view>
         <view class="study_rate" >未学习</view>
         <image class="xu" src="../../images/xu.png" ></image>
-        <view class="flex">
+        <view class="flex" bindtap="to_course_file">
           <image class="file-img1" src="../../images/file1.png"></image>
           <view class="file" style="color:rgba(32,32,32,1);">讲义资料</view>
-          <view class="file_num">2份</view>
+          <view class="file_num">查看</view>
           <image class="next" src="../../images/next.png"></image>
         </view>
         <view class="flex">
