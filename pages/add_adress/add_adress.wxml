@@ -1,13 +1,13 @@
 <view class="container">
   <view class="layout">
     <view class="title">收货人</view>
-    <input class="input" placeholder="请输入收货人姓名" bindinput="name"></input>
+    <input class="input" placeholder="请输入收货人姓名" bindinput="name" value="{{name}}"></input>
   </view>
   <view class="heng"></view>
 
   <view class="layout">
     <view class="title">手机号</view>
-    <input class="input" placeholder="请输入收货人手机号" bindinput="phone"></input>
+    <input class="input" placeholder="请输入收货人手机号" bindinput="phone" value="{{phone}}"></input>
   </view>
   <view class="heng"></view>
 
@@ -23,14 +23,14 @@
 
   <view class="layout">
     <view class="title">街道地址</view>
-    <input class="input" placeholder="街道、楼牌号等" bindinput="detail_adress"></input>
+    <input class="input" placeholder="街道、楼牌号等" bindinput="detail_adress" value="{{detail_adress}}"></input>
   </view>
   <view class="heng"></view>
 
 
 
 
-  <view class="save">保存</view>
+  <view class="save" bindtap="save">保存</view>
 
   
 

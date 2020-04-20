@@ -1,2 +1,13 @@
-<!--pages/course_file/course_file.wxml-->
-<text>pages/course_file/course_file.wxml</text>
+<view class="container">
+  <view class="for">
+    <view class="layout">
+      <image class="icon" src="../../images/doc.png"></image>
+      <view class="title">三角函数知识点脑图.png</view>
+      <image class="next" src="../../images/next.png"></image>
+    </view>
+    <view class="heng"></view>
+  </view>
+
+
+
+</view>

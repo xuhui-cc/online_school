@@ -10,6 +10,18 @@
 .login_read::after {
   border: none;
 }
+.share_btn{
+  position: absolute;
+  margin-top: 15rpx;
+  margin-left:630rpx;
+  width: 100rpx;
+  height: 75rpx;
+  /* background-color: rgba(58,58,58,1); */
+  background: transparent;
+}
+.share_btn::after {
+  border: none;
+}
 .head{
   margin-left: 30rpx;
   margin-top: 25rpx;

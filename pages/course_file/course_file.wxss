@@ -1,1 +1,40 @@
 /* pages/course_file/course_file.wxss */
+.layout{
+  display: flex;
+  width:750rpx;
+  height:148rpx;
+  background:rgba(255,255,255,1);
+  opacity:1;
+}
+.icon{
+  margin-left: 43rpx;
+  margin-top: 45rpx;
+  width: 60rpx;
+  height: 60rpx;
+}
+.title{
+  margin-left: 35rpx;
+  margin-top: 55rpx;
+  width:500rpx;
+  height:40rpx;
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:40rpx;
+  /* background: rgba(39,39,39,1); */
+  color:rgba(39,39,39,1);
+  opacity:1;
+}
+.next{
+  margin-left: 35rpx;
+  margin-top: 60rpx;
+  width:44rpx;
+  height:44rpx;
+}
+.heng{
+  margin-left: 138rpx;
+  width:612rpx;
+  height:0rpx;
+  border:1rpx solid rgba(241,241,241,1);
+  opacity:1;
+}

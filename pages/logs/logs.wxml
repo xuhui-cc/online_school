@@ -1,10 +1,10 @@
 <view class="container">
   <!-- 标题栏 -->
   <view class="nabigation_bar">
-    <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" >
-      <view class="grade_content">{{grade[grade_index]}}</view>
+    <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}">
+      <view class="grade_content">{{grade[grade_index].title}}</view>
     </picker>
-    <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" >
+    <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}">
       <image class="grade_img" src="../../images/xsj.png"></image>
     </picker>
     <view class="head">课程</view>

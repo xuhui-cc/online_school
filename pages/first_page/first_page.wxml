@@ -1,7 +1,7 @@
 <view class="container">
   <image class="firstPage_bg" src="../../images/first_bg.png"></image>
   <view class="tip">已有 <text  style="color:#02DC9F;font-weight:bold;">6880人</text> 参与测评，离高分更近一步！</view>
-  <picker class="button_start" bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" >
+  <picker class="button_start" bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}">
     <image class="start_img" src="../../images/start_img.png"></image>
     <text class="start_text">开始测评</text>
   </picker>

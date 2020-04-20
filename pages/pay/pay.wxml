@@ -3,21 +3,21 @@
   <view class="adr_layout">
     <image class="adr_img" src="../../images/adress.png"></image>
 
-    <view class="flex" hidden="true">
+    <view class="flex" bindtap="to_add_adress" data-type="1" wx:if="{{!have_adr}}">
       <view class="adr_tip" >地址信息</view>
       <view class="add_tip" >点击填写</view>
       <image class="next_img" src="../../images/next.png" ></image>
     </view>
 
-    <view>
+    <view wx:if="{{have_adr}}">
       <view class="flex">
-        <view class="name">哈哈哈哈</view>
-        <view class="phone">12345678910</view>
+        <view class="name">{{name}}</view>
+        <view class="phone">{{phone}}</view>
       </view>
-      <view class="adress_content">收货地址：陕西省西安市雁塔区大雁塔街道西影路96号附近领军学院店  </view>
+      <view class="adress_content">收货地址：{{adress}}</view>
     </view>
 
-    <image class="edit" src="../../images/edit.png"></image>
+    <image wx:if="{{have_adr}}" class="edit" src="../../images/edit.png" bindtap="to_add_adress" data-type="2"></image>
   </view>
 
   <view class="course_layout">

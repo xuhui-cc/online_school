@@ -16,7 +16,32 @@ function getclassroom(params) {
   return fetch.olsfetchpost(URI, 'classroom/getclassroom', params)
 }
 
+// 添加地址
+function add_adress(params) {
+  return fetch.olsfetchpost(URI, 'address/addinfo', params)
+}
+
+// 获取地址
+function getdefault(params) {
+  return fetch.olsfetchpost(URI, 'address/getdefault', params)
+}
+
+// 更新地址
+function setinfo(params) {
+  return fetch.olsfetchpost(URI, 'address/setinfo', params)
+}
+
+// 首页年级选择
+function getlist(params) {
+  return fetch.olsfetchpost(URI, 'grade/getlist', params)
+}
+
+// 获取学科
+function discipline(params) {
+  return fetch.olsfetchpost(URI, 'discipline/getlist', params)
+}
 
 
 
-module.exports = { login, getclassroom }
+
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline}

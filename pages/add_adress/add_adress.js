@@ -1,4 +1,5 @@
 // pages/add_adress/add_adress.js
+const app = getApp()
 Page({
 
   /**
@@ -14,7 +15,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this
+    var type = options.type
+    that.setData({
+      type :type
+    })
+    if(type == 2){
+      var params = {
+        "token": wx.getStorageSync("token"),
+      }
+      app.ols.getdefault(params).then(d => {
+        console.log(d)
+        if (d.data.code == 0) {
+          var cs0 = "region[0]"
+          var cs1 = "region[1]"
+          var cs2 = "region[2]"
+          that.setData({
+            id:d.data.data.id,
+            name : d.data.data.name,
+            phone: d.data.data.phone,
+            detail_adress: d.data.data.title,
+            [cs0]: d.data.data.prov,
+            [cs1]: d.data.data.city,
+            [cs2]: d.data.data.area
+          })
+        } 
+      })
+    }
   },
 
   name:function(e){
@@ -43,6 +70,60 @@ Page({
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       region: e.detail.value
+    })
+  },
+
+  save:function(){
+    let that = this
+    if(that.data.type == 1){
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "prov": that.data.region[0],
+        "city": that.data.region[1],
+        "area": that.data.region[2],
+        "name": that.data.name,
+        "title": that.data.detail_adress,
+        "phone": that.data.phone,
+        "active": 1,
+      }
+      app.ols.add_adress(params).then(d => {
+        console.log(d)
+        if (d.data.code == 0) {
+          // var adress = that.data.region[0] + that.data.region[1] + that.data.region[2] + that.data.detail_adress
+          // wx.showToast({
+          //   title: '保存成功',
+          //   duration:2000
+          // })
+          wx.navigateBack({
+            delta: 1
+          })
+        }
+      })
+    }else if(that.data.type == 2)
+      var params = {
+        "id":that.data.id,
+        "token": wx.getStorageSync("token"),
+        "prov": that.data.region[0],
+        "city": that.data.region[1],
+        "area": that.data.region[2],
+        "name": that.data.name,
+        "title": that.data.detail_adress,
+        "phone": that.data.phone,
+        "active": 1,
+      }
+    app.ols.setinfo(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        
+        // var adress = that.data.region[0] + that.data.region[1] + that.data.region[2] + that.data.detail_adress
+        // wx.showToast({
+        //   title: '保存成功',
+        //   duration:2000
+        // })
+        // wx.navigateBack({
+        //   delta: 1
+        // })
+      }
     })
   },
 

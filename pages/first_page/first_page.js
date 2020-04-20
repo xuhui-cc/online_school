@@ -1,11 +1,12 @@
 // pages/first_page/first_page.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    grade:["初三","高三 文科","高三 理科"],
+    // grade:["初三","高三 文科","高三 理科"],
     grade_index:0
   },
 
@@ -18,6 +19,26 @@ Page({
     if(grade){
       wx.switchTab({
         url: '../../pages/logs/logs',
+      })
+    }else{
+      var params = {
+        
+      }
+      app.ols.getlist(params).then(d => {
+        console.log(d)
+        if (d.data.code == 200) {
+          console.log(d.data.data)
+          let arr1 = [];
+          for (let i in d.data.data) {
+            //var o={};
+            //o[i]=d.data.data[i];
+            arr1.push(d.data.data[i]);
+          }
+          console.log(arr1)
+          that.setData({
+            grade: arr1
+          })
+        }
       })
     }
   },

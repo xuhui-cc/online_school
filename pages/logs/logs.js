@@ -1,16 +1,46 @@
 
-
+const app = getApp()
 Page({
   data: {
-    grade: ["初三", "高三 文科", "高三 理科"],
+    // grade: ["初三", "高三 文科", "高三 理科"],
     // grade_index: 1,
     classify: ["推荐", "语文", "数学", "英语", "政治", "历史", "地理"],
     current_classify:0,
   },
   onLoad: function () {
     let that = this
+    var params = {
+
+    }
+    app.ols.getlist(params).then(d => {
+      console.log(d)
+      if (d.data.code == 200) {
+        console.log(d.data.data)
+        let arr1 = [];
+        for (let i in d.data.data) {
+          //var o={};
+          //o[i]=d.data.data[i];
+          arr1.push(d.data.data[i]);
+        }
+        console.log(arr1)
+        that.setData({
+          grade: arr1
+        })
+      }
+    })
     that.setData({
       grade_index: wx.getStorageSync("grade")
+    })
+
+    var params = {
+
+    }
+    app.ols.discipline(params).then(d => {
+      console.log(d)
+      if (d.data.code == 200) {
+        console.log(d.data.data)
+        
+      }
     })
     // var grade = wx.getStorageSync("grade")
 
