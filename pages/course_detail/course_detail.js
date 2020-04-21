@@ -35,6 +35,20 @@ Page({
     })
   },
 
+  to_homework: function () {
+    let that = this
+    wx.navigateTo({
+      url: '../../pages/homework/homework',
+    })
+  },
+
+  to_pay:function(){
+    let that = this
+    wx.navigateTo({
+      url: '../../pages/pay/pay',
+    })
+  },
+
   to_course_file:function(){
     let that = this
     wx.navigateTo({
@@ -81,8 +95,10 @@ Page({
                 if (d.data.code == 0 ) {
                   console.log("登陆成功")
                   wx.hideLoading()
-                  that.onLoad()
+                  
                   wx.setStorageSync("login", true)
+                  wx.setStorageSync("token", d.data.data.token)
+                  that.onLoad()
 
 
                 } else {

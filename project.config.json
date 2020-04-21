@@ -107,6 +107,13 @@
 					"id": -1,
 					"name": "pages/add_adress/add_adress",
 					"pathName": "pages/add_adress/add_adress",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/course_file/course_file",
+					"pathName": "pages/course_file/course_file",
 					"scene": null
 				}
 			]
