@@ -1,4 +1,4 @@
-// pages/my/my.js
+// pages/my_about/my_about.js
 Page({
 
   /**
@@ -62,30 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  // 跳转到关于我们
-  gourlabout: function () {
-    wx.navigateTo({
-      url: '../my_about/my_about',
-    })   
-  },
-
-  // 跳转我的课程
-  gourlCourse: function () {
-    wx.navigateTo({
-      url: '../my_course/my_course',
-    })
-  },
-  // 跳转我的错题本
-  gourlError: function () {
-    wx.navigateTo({
-      url: '../my_wrongbook/my_wrongbook',
-    })
-  },
-  // 跳转我的订单
-  gourlOrder: function () {
-    wx.navigateTo({
-      url: '../my_order/my_order',
-    })
-  },
+  }
 })

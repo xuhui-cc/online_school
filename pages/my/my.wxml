@@ -1,2 +1,41 @@
 <!--pages/my/my.wxml-->
-<text>pages/my/my.wxml</text>
+<view class="container">
+<!-- 头像 -->
+  <view class="userinfo">
+       <view class="userinfo-avatar" >
+          <open-data type="userAvatarUrl"></open-data> 
+       </view>
+       <view class="userinfo-nickname">
+          15210687311
+       </view>
+  </view>
+  <!-- 课程 -->
+  <view class="course-ul">
+      <view class="course-li" bindtap="gourlCourse">
+          <text class="course-li-title">我的课程</text>
+          <image  src="/images/my_course.png"  class="course-li-img"  mode="aspectFit"></image>
+      </view>
+      <view class="course-li" bindtap="gourlError">
+          <text class="course-li-title">错题本</text>
+          <image  src="/images/my_error.png"  class="course-li-imgzhong" mode="aspectFit"></image>
+         
+      </view>
+      <view class="course-li" bindtap="gourlOrder">
+           <text class="course-li-title">我的订单</text>
+          <image  src="/images/my_order.png" class="course-li-img"  mode="aspectFit"></image>
+      </view>
+  </view>
+  <!-- 列表 -->
+  <view class="list">
+     <view class="list-li" bindtap="cepingUrl">
+        <image  src="/images/my_about.png" class="item-img" mode="aspectFit"></image>
+        <view class="item" bindtap="gourlabout">
+           <text class="item-text">关于我们</text>
+           <view class="right-img"></view>
+        </view>
+     </view>
+
+  </view>
+</view>
+
+

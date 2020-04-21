@@ -1,5 +1,10 @@
 {
   "pages": [
+    "pages/my/my",
+    "pages/my_course/my_course",
+    "pages/my_wrongbook/my_wrongbook",
+    "pages/my_order/my_order",
+    "pages/my_about/my_about",
     "pages/first_page/first_page",
     "pages/index/index",
     "pages/logs/logs",
@@ -11,8 +16,8 @@
     "pages/course_file/course_file",
     "pages/add_adress/add_adress",
     "pages/end_report/end_report",
-    "pages/finish_test_report/finish_test_report",
-    "pages/my/my"
+    "pages/finish_test_report/finish_test_report"
+   
   ],
   "window": {
     "backgroundTextStyle": "light",

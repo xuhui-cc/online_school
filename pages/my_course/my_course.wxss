@@ -1,0 +1,76 @@
+/* pages/my_course/my_course.wxss */
+page{
+  background-color: #F5F5F5;
+}
+.course{
+  background: #ffff;
+  margin: 25rpx 30rpx;
+  padding: 32rpx 41rpx 46rpx;
+  border-radius: 10rpx;
+}
+
+.title{
+  font-size:36rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:50rpx;
+  color: #272727;
+}
+
+.decribe{
+  font-size:24rpx;
+font-family:PingFang SC;
+font-weight:400;
+line-height:35rpx;
+color:#828282;
+margin-top: 17rpx;
+}
+
+.course-content{
+  margin-top: 62rpx;
+  display: flex;
+  justify-content: space-between;
+  height: 51rpx;
+  align-items: center;
+}
+.content-left{
+  display: flex;
+   height: 51rpx;
+   align-items: center;
+}
+.l-img{
+  width: 51rpx;
+  height: 51rpx;
+  border-radius: 50%;
+}
+.l-name{
+  font-size:22rpx;
+  color: #272727;
+padding: 0 35rpx 0 14rpx;
+}
+.l-keshi{
+  /* width: 92rpx;
+  height:39rpx; */
+  line-height: 39rpx; 
+  text-align: center;
+  font-size:22rpx;
+  font-family:PingFang SC;
+  color: #fff;
+  background:linear-gradient(180deg,rgba(2,220,159,1) 0%,rgba(20,203,162,1) 100%);
+  border-radius: 6rpx;
+  padding: 1rpx 11rpx;
+
+}
+.lear{
+  font-size:22rpx;
+color:rgba(3,182,131,1);
+padding-left: 17rpx;
+}
+.content-right{
+  display: flex;
+  height: 51rpx;
+  align-items: center;
+}
+.r-view{
+  width: 137rpx;
+}
