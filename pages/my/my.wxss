@@ -1,1 +1,107 @@
 /* pages/my/my.wxss */
+/* pages/user/user.wxss */
+page{
+  background-color: #F5F5F5;
+}
+/**index.wxss**/
+.container{
+
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+   padding: 61rpx 0 0;
+}
+
+.userinfo-avatar {
+  width: 105rpx;
+  height: 105rpx;
+  border-radius: 50%;
+ overflow:hidden;
+}
+
+.userinfo-nickname {
+  color: #272727;
+  font-size:34rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+   margin-top: 31rpx;
+   line-height:48rpx;
+}
+
+
+
+.list{
+  background-color: #fff;
+  margin-top: 20rpx;
+}
+.list .list-li{
+   display: flex;
+   line-height: 105rpx;
+   align-items: center;
+   padding-left: 45rpx;
+   justify-content: flex-start;
+}
+.list .list-li .item-img{
+  width: 39rpx;
+  height: 39rpx;
+  flex-grow:0;
+}
+.item{
+  display: flex;
+  margin-left:23rpx;
+  justify-content: space-between;
+  flex-grow:1;
+  align-items: center;
+   box-sizing: border-box;
+   padding-right:34rpx; 
+}
+.item .right-img{
+width: 14rpx;
+height: 14rpx;
+border-top: 3rpx solid #DEDEDE;
+border-right: 3rpx solid #DEDEDE;
+transform: rotate(45deg);
+}
+.item-text{
+  font-size:26rpx;
+  color: #272727;
+}
+
+.list-li:last-child .item{
+  border-bottom:none;
+}
+/* 课程 */
+.course-ul{
+  padding-top: 72rpx;
+  padding-bottom: 66rpx;
+  background: #fff;
+  display: flex;
+  justify-content:  space-around;
+}
+.course-li{
+  display: flex;
+  flex-direction:  column-reverse;
+  text-align: center;
+  width: 104rpx;
+  height: 109rpx;
+  align-items: center;
+  
+}
+.course-li-title{
+  font-size:26rpx;
+font-family:PingFang SC;
+line-height:37rpx;
+color:#010101;
+margin-top: 12rpx;
+}
+.course-li-img{
+  width: 52rpx;
+  height: 51rpx;
+}
+.course-li-imgzhong{
+  width: 46rpx;
+  height: 59rpx;
+}

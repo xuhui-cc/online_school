@@ -1,0 +1,85 @@
+/* pages/my_wrongbook/my_wrongbook.wxss */
+page{
+  background: #F5F5F5;
+}
+.head{
+  display: flex;
+  height: 90rpx;
+  align-items: center;
+  border-bottom: 2rpx solid #F1F1F1;
+  background-color: #fff;
+}
+.content-ul{
+  background-color: #fff;
+}
+
+.head-li{
+  margin: 0 30rpx;
+  font-size:28rpx;
+  color:#202020;
+  line-height: 90rpx;
+
+}
+
+.head-hover{
+  font-weight:bold;
+  font-size:32rpx;
+  position: relative;
+}
+.head-hover::after{
+  width:36rpx;
+  height:6rpx;
+  background:rgba(20,203,162,1);
+  opacity:1;
+  border-radius:3rpx; 
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -18rpx;
+}
+
+.content-li{
+  height: 105rpx;
+  align-items: center;
+  display: flex;
+}
+.content-li:last-child .li-right{
+  border-bottom:none;
+}
+.li-img{
+  width: 31rpx;
+  margin: 0 30rpx 0 33rpx;
+  vertical-align: middle;
+}
+.li-img image{
+  width: 31rpx;
+  height: 31rpx;
+  border-radius:50%; 
+}
+
+.li-right{
+  flex-grow: 1;
+  display: flex;
+  justify-content:  space-between;
+  align-items: center;
+  height: 105rpx;
+  box-sizing:border-box;
+  border-bottom: 2rpx solid #F1F1F1;
+  padding-right: 35rpx;
+}
+.li-right .title{
+  font-size:28rpx;
+  color:#272727;
+  flex-grow: 1;
+}
+.li-right .title .num{
+  color: #B8B8B8;
+}
+.li-right-r{
+width: 15rpx;
+height: 15rpx;
+border-top: 3rpx solid #DEDEDE;
+border-right: 3rpx solid #DEDEDE;
+transform: rotate(45deg);
+}

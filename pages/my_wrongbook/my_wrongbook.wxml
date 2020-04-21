@@ -1,0 +1,50 @@
+<!--pages/my_wrongbook/my_wrongbook.wxml-->
+<view class="container">
+   <view class="head">
+       <view class="head-li head-hover">
+        数学
+       </view>
+        <view class="head-li">
+        语文
+       </view>
+        <view class="head-li">
+        英语
+       </view>
+       <view class="head-li">
+        物理
+       </view>
+       <view class="head-li">
+        化学
+       </view>
+   </view>
+   
+   <view class="content-ul">
+        <view class="content-li">
+              <view class="li-img">
+                <image src="/images/icon_jia.png"></image>
+              </view>
+              <view class="li-right">
+                 <view class="title">函数概念与基本初等函数（Ⅰ） <text class="num">4</text> </view>
+                 <view class="li-right-r"></view>
+              </view>
+        </view>
+        <view class="content-li">
+              <view class="li-img">
+                <image src="/images/icon_jia.png"></image>
+              </view>
+              <view class="li-right">
+                 <view class="title">函数概念与基本初等函数（Ⅰ） <text class="num">4</text> </view>
+                 <view class="li-right-r"></view>
+              </view>
+        </view>
+        <view class="content-li">
+              <view class="li-img">
+                <image src="/images/icon_jia.png"></image>
+              </view>
+              <view class="li-right">
+                 <view class="title">函数概念与基本初等函数（Ⅰ） <text class="num">4</text> </view>
+                 <view class="li-right-r"></view>
+              </view>
+        </view>
+   </view>
+</view>
