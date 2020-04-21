@@ -12,13 +12,13 @@
   <!-- 标题栏结束 -->
 
   <scroll-view  scroll-x="true" class="tab-h" >
-    <view wx:for="{{classify}}" wx:key="index" class="tab-item {{current_classify==index?'active':''}}" data-current="{{index}}"  bindtap="swichNav">{{item}}</view> 
+    <view wx:for="{{subject}}" wx:key="index" class="tab-item {{current_subject==index?'active':''}}" data-current="{{index}}"  bindtap="swichNav_subject">{{item.title}}</view> 
   </scroll-view> 
 
-  <view class="flex" wx:if="{{current_classify != 0}}">
+  <view class="flex" >
     <view class="zt">专题：</view>
     <scroll-view  scroll-x="true" class="tab-h1" >
-      <view wx:for="{{classify}}" wx:key="index" class="tab-item1 {{current_classify==index?'active':''}}"  bindtap="swichNav">{{item}}</view> 
+      <view wx:for="{{special}}" wx:key="index" class="tab-item1 {{current_special==index?'active':''}}"  bindtap="swichNav_special" data-current="{{index}}">{{item.title}}</view> 
     </scroll-view> 
   </view>
 

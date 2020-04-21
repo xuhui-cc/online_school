@@ -41,7 +41,12 @@ function discipline(params) {
   return fetch.olsfetchpost(URI, 'discipline/getlist', params)
 }
 
+// 获取专题
+function gettoplist(params) {
+  return fetch.olsfetchpost(URI, 'category/gettoplist', params)
+}
 
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline}
+
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist}
