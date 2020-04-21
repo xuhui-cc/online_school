@@ -5,13 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    finish: 0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+  },
+
+  finish_select: function (e) {
+    let that = this
+    var finish = e.currentTarget.dataset.finish
+    that.setData({
+      finish: finish
+    })
 
   },
 

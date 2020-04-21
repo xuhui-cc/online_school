@@ -1,1 +1,50 @@
-/* pages/my_order/my_order.wxss */
+page{
+  background-color: #F5F5F5;
+}
+.record-bar{
+  position: fixed;
+  /* margin-top: 176rpx; */
+  display: flex;
+  width:750rpx;
+  height:80rpx;
+  background:rgba(255,255,255,1);
+}
+.aud{
+  margin-left: 50rpx;
+  margin-right: 30rpx;
+  margin-top: 23rpx;
+  width:100rpx;
+  height:45rpx;
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:45rpx;
+  text-align: center;
+  color:rgba(32,32,32,1);
+  opacity:1;
+}
+.aud.active{
+  position: relative;
+  margin-left: 50rpx;
+  margin-right: 30rpx;
+  margin-top: 20rpx;
+  width:100rpx;
+  height:45rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:45rpx;
+  text-align: center;
+  color:#14CBA2;
+  opacity:1;
+}
+.aud.active::after{
+  content: ""; 
+  display: block; 
+  height: 4rpx; 
+  width: 30%; 
+  background: #14CBA2;
+  position: absolute;  
+  top:57rpx;
+  left: 36rpx; 
+}

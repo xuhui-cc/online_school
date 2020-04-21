@@ -1,2 +1,30 @@
-<!--pages/my_order/my_order.wxml-->
-<text>pages/my_order/my_order.wxml</text>
+<view class="container">
+
+  <view class="record-bar">
+    <text class="aud {{finish == 0 ? 'active': ''}}" bindtap="finish_select" data-finish="{{0}}">全部</text>
+    <text class="aud {{finish == 1 ? 'active': ''}}" bindtap="finish_select" data-finish="{{1}}">待支付</text>
+    <text class="aud {{finish == 2 ? 'active': ''}}" bindtap="finish_select" data-finish="{{2}}">已支付</text>
+    <text class="aud {{finish == 3 ? 'active': ''}}" bindtap="finish_select" data-finish="{{3}}">已关闭</text>
+  </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</view>

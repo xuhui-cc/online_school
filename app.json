@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/first_page/first_page",
     "pages/my/my",
     "pages/my_course/my_course",
     "pages/my_wrongbook/my_wrongbook",
     "pages/my_order/my_order",
     "pages/my_about/my_about",
-    "pages/first_page/first_page",
     "pages/index/index",
     "pages/logs/logs",
     "pages/course_detail/course_detail",
