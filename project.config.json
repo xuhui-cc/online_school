@@ -121,6 +121,13 @@
 					"id": -1,
 					"name": "pages/my_order/my_order",
 					"pathName": "pages/my_order/my_order",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order_detail/order_detail",
+					"pathName": "pages/order_detail/order_detail",
 					"scene": null
 				}
 			]

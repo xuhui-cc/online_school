@@ -5,6 +5,7 @@
     "pages/my_course/my_course",
     "pages/my_wrongbook/my_wrongbook",
     "pages/my_order/my_order",
+    "pages/order_detail/order_detail",
     "pages/my_about/my_about",
     "pages/index/index",
     "pages/logs/logs",

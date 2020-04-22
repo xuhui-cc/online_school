@@ -1,11 +1,11 @@
-// pages/my_order/my_order.js
+// pages/order_detail/order_detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    finish: 0,
+
   },
 
   /**
@@ -15,20 +15,11 @@ Page({
 
   },
 
-  finish_select: function (e) {
-    let that = this
-    var finish = e.currentTarget.dataset.finish
-    that.setData({
-      finish: finish
-    })
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
 
-  },
-
-  to_order_detail: function () {
-    let that = this
-    wx.navigateTo({
-      url: '../../pages/order_detail/order_detail',
-    })
   },
 
   to_pay: function () {
@@ -37,19 +28,33 @@ Page({
       url: '../../pages/pay/pay',
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
+  
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+    }
+    app.ols.getdefault(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        var adress = d.data.data.prov + d.data.data.city + d.data.data.area + d.data.data.title
+        that.setData({
+          have_adr: true
+        })
+        that.setData({
+          name: d.data.data.name,
+          phone: d.data.data.phone,
+          adress: adress
+        })
+      } else {
+        that.setData({
+          have_adr: false
+        })
+      }
+    })
   },
 
   /**

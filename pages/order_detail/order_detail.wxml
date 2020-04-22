@@ -1,0 +1,61 @@
+<view class="container">
+  <image class="icon_order" src="../../images/green_order.png"></image>
+  <view class="waiting">等待支付</view>
+  <view class="timing_tip">26分30秒后订单自动关闭</view>
+
+  <view class="adr_layout">
+    <image class="adr_img" src="../../images/adress.png"></image>
+    <view>
+      <view class="flex">
+        <view class="name">hhh</view>
+        <view class="phone">hhh</view>
+      </view>
+      <view class="adress_content">收货地址：hhh</view>
+    </view>
+  </view>
+
+  <view class="course_layout">
+    <view class="course_title">高三数学三角函数专题课</view>
+      <view class="course_intor">这里是数学能力测评表详情介绍，这里是数学能力测评表详情介绍这里是数学能力测评表详情介绍。</view>
+    <view class="flex">
+      <image class="avatar" src="../../images/avatar.png"></image>
+      <view class="tea_name">刘晴晴晴</view>
+      
+      <view class="num_layout">
+        <view class="course_num">30课时</view>
+      </view>
+      <view class="course_price">
+        <view style="margin-right:8rpx;margin-top:5rpx;">¥</view>
+        <view style="font-weight:bold;font-size:42rpx;">49</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="order_layout">
+
+    <view class="flex">
+      <view class="shu"></view>
+      <view class="sfje">实付金额</view>
+      <view class="course_price" style="margin-top: 25rpx;margin-left: 480rpx;">
+        <view style="margin-right:8rpx;color:rgba(233,73,23,1);">¥</view>
+        <view style="font-weight:bold;font-size:36rpx;color:rgba(233,73,23,1);">49</view>
+      </view>
+    </view>
+
+    <view class="heng"></view>
+    <view class="flex">
+      <view class="shu"></view>
+      <view class="sfje">订单信息</view>
+    </view>
+    <view class="orderID">订单编号：20190721132564318954</view>
+    <view class="orderID">订单创建时间：2019-06-23  20:24:50</view>
+  </view>
+
+
+  <view class="to_pay" bindtap="to_pay">去支付</view>
+
+
+
+
+
+</view>

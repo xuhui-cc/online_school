@@ -7,6 +7,24 @@
     <text class="aud {{finish == 3 ? 'active': ''}}" bindtap="finish_select" data-finish="{{3}}">已关闭</text>
   </view>
 
+ <view class="margin"> 
+  <view class="layout" bindtap="to_order_detail">
+    <view class="flex">
+      <view class="title">高三数学三角函数专题课</view>
+      <view class="state">待支付</view>
+    </view>
+    <view class="intro">这里是数学能力测评表详情介绍，这里是数学能力测评表详情介绍这里是数学能力测评表详情介绍是数学能力。</view>
+    <view class="flex">
+      <view class="price">实付款：</view>
+      <view class="yuan">¥</view>
+      <view class="yuan" style="font-size:36rpx;margin-top: 39rpx;font-weight:bold;">999</view>
+      <view  class="to_pay" bindtap="to_pay">去支付</view>
+    </view>
+  </view>
+ 
+ 
+ </view>
+
 
 
 
