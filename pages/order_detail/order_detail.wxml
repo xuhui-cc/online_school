@@ -1,7 +1,9 @@
 <view class="container">
-  <image class="icon_order" src="../../images/green_order.png"></image>
-  <view class="waiting">等待支付</view>
-  <view class="timing_tip">26分30秒后订单自动关闭</view>
+  <image hidden="true" class="icon_order" src="../../images/green_order.png"></image>
+  <image class="icon_order" src="../../images/close_order.png"></image>
+  <view hidden="true" class="waiting">等待支付</view>
+  <view  class="waiting" style="margin-top: 70rpx;">已关闭</view>
+  <view hidden="true" class="timing_tip">26分30秒后订单自动关闭</view>
 
   <view class="adr_layout">
     <image class="adr_img" src="../../images/adress.png"></image>
