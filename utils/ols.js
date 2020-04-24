@@ -46,7 +46,22 @@ function gettoplist(params) {
   return fetch.olsfetchpost(URI, 'category/gettoplist', params)
 }
 
+// 获取全部订单
+function order_all(params) {
+  return fetch.olsfetchpost(URI, 'order/getlist', params)
+}
+
+// 获取全部错题
+function wrong(params) {
+  return fetch.olsfetchpost(URI, 'wrong/getlist', params)
+}
+
+// 获取全部课程
+function my_course_all(params) {
+  return fetch.olsfetchpost(URI, 'order/getLessonlist', params)
+}
 
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist}
+
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all}

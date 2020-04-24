@@ -1,4 +1,5 @@
 // pages/order_detail/order_detail.js
+const app = getApp()
 Page({
 
   /**
@@ -12,7 +13,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+    }
+    app.ols.getdefault(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        var adress = d.data.data.prov + d.data.data.city + d.data.data.area + d.data.data.title
+        
+        that.setData({
+          name: d.data.data.name,
+          phone: d.data.data.phone,
+          adress: adress
+        })
+      }
+    })
   },
 
   /**
@@ -28,7 +44,7 @@ Page({
       url: '../../pages/pay/pay',
     })
   },
-  
+
   /**
    * 生命周期函数--监听页面显示
    */

@@ -138,3 +138,21 @@ page{
   opacity:1;
   border-radius:29rpx;
 }
+.no_order{
+  margin-left: 267rpx;
+  margin-top: 447rpx;
+  width:200rpx;
+  height:257rpx;
+}
+.tip{
+  margin-left: 315rpx;
+  margin-top: 52rpx;
+  width:120rpx;
+  height:42rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:42rpx;
+  color:rgba(199,197,197,1);
+  opacity:1;
+}

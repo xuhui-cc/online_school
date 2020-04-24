@@ -1,50 +1,47 @@
 <!--pages/my_wrongbook/my_wrongbook.wxml-->
 <view class="container">
    <view class="head">
-       <view class="head-li head-hover">
-        数学
-       </view>
-        <view class="head-li">
-        语文
-       </view>
-        <view class="head-li">
-        英语
-       </view>
-       <view class="head-li">
-        物理
-       </view>
-       <view class="head-li">
-        化学
-       </view>
+    <scroll-view  scroll-x="true" class="tab-h" >
+    <view wx:for="{{subject}}" wx:key="index" class="tab-item {{current_subject==index?'active':''}}" data-current="{{index}}"  bindtap="swichNav_subject">{{item}}</view> 
+  </scroll-view> 
+    
    </view>
-   
-   <view class="content-ul">
-        <view class="content-li">
-              <view class="li-img">
-                <image src="/images/icon_jia.png"></image>
-              </view>
-              <view class="li-right">
-                 <view class="title">函数概念与基本初等函数（Ⅰ） <text class="num">4</text> </view>
-                 <view class="li-right-r"></view>
-              </view>
+  
+  
+  <view class="content-ul">
+    <view wx:for="{{wrong}}" wx:key="index">
+
+      <!-- 第一层循环 -->
+      <view class="content-li">
+        <view class="li-img" >
+          <image src="/images/icon_jia.png" wx:if="{{item.fold1 == false}}" data-xb1="{{index}}" bindtap="fold1"></image>
+          <image src="/images/icon_jian.png" wx:if="{{item.fold1 == true}}" data-xb1="{{index}}" bindtap="fold1"></image>
         </view>
-        <view class="content-li">
-              <view class="li-img">
-                <image src="/images/icon_jia.png"></image>
-              </view>
-              <view class="li-right">
-                 <view class="title">函数概念与基本初等函数（Ⅰ） <text class="num">4</text> </view>
-                 <view class="li-right-r"></view>
-              </view>
+        <view class="li-right">
+          <view class="title">{{item.name}} <text class="num">[{{item.count}}]</text> </view>
+          <view wx:if="{{item.children == ''}}" class="li-right-r"></view>
         </view>
+      </view>
+      <!-- 第二次循环 -->
+      <view wx:for="{{item.children}}" wx:key="children1_index" wx:for-item="children1" wx:for-index="children1_index" wx:if="{{item.fold1}}">
         <view class="content-li">
-              <view class="li-img">
-                <image src="/images/icon_jia.png"></image>
-              </view>
-              <view class="li-right">
-                 <view class="title">函数概念与基本初等函数（Ⅰ） <text class="num">4</text> </view>
-                 <view class="li-right-r"></view>
-              </view>
+        <view class="li-img" >
+          <!-- <image src="/images/icon_jia.png" wx:if="{{item.fold1}}"></image> -->
         </view>
-   </view>
+        <view class="li-right">
+          <view class="title">{{children1.name}} <text class="num">[{{children1.count}}]</text> </view>
+          <view wx:if="{{children1.children == ''}}" class="li-right-r"></view>
+        </view>
+      </view>
+      
+      
+      
+      </view>
+
+    </view>
+  </view>
+
+
+
+
 </view>

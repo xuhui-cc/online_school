@@ -1,4 +1,5 @@
 // pages/my_order/my_order.js
+const app = getApp()
 Page({
 
   /**
@@ -13,6 +14,29 @@ Page({
    */
   onLoad: function (options) {
 
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+    }
+    app.ols.order_all(params).then(d => {
+      
+      if (d.data.code == 0) {
+        console.log(d.data.msg)
+        that.setData({
+          order:d.data.data
+        })
+      }
+      else if (d.data.code == 5){
+        console.log(d.data.msg)
+      
+          that.setData({
+            order: ''
+          })
+        
+      }else {
+        console.log(d.data.code, "code", d.data.msg)
+      }
+    })
   },
 
   finish_select: function (e) {

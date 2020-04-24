@@ -7,7 +7,13 @@
     <text class="aud {{finish == 3 ? 'active': ''}}" bindtap="finish_select" data-finish="{{3}}">已关闭</text>
   </view>
 
- <view class="margin"> 
+  <view wx:if="{{order == ''}}">
+    <image class="no_order" src="../../images/order_null.png"></image>
+    <view class="tip">暂无订单</view>
+  
+  </view>
+
+ <view class="margin" wx:if="{{order != ''}}"> 
   <view class="layout" bindtap="to_order_detail">
     <view class="flex">
       <view class="title">高三数学三角函数专题课</view>

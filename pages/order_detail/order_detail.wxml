@@ -9,10 +9,10 @@
     <image class="adr_img" src="../../images/adress.png"></image>
     <view>
       <view class="flex">
-        <view class="name">hhh</view>
-        <view class="phone">hhh</view>
+        <view class="name">{{name}}</view>
+        <view class="phone">{{phone}}</view>
       </view>
-      <view class="adress_content">收货地址：hhh</view>
+      <view class="adress_content">收货地址：{{adress}}</view>
     </view>
   </view>
 
