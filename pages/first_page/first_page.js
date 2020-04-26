@@ -51,8 +51,64 @@ Page({
     })
     console.log(that.data.grade[that.data.grade_index])
     wx.setStorageSync("grade", that.data.grade_index)
+    wx.setStorageSync("grade_id", that.data.grade[that.data.grade_index].id)
     wx.switchTab({
       url: '../../pages/logs/logs',
+    })
+  },
+
+  //获取微信绑定手机号登录
+  getPhoneNumber: function (e) {
+    var that = this
+    wx.login({
+      success: res => {
+
+        if (e.detail.errMsg == "getPhoneNumber:ok") {
+          wx.showLoading({
+            title: '登录中...',
+          })
+          wx.login({
+            success(res) {
+              console.log("cccs.code" + res.code)
+
+              let iv = encodeURIComponent(e.detail.iv);
+              let encryptedData = encodeURIComponent(e.detail.encryptedData);
+              let code = res.code
+              var params = {
+                "code": code,
+                "iv": iv,
+                "encryptedData": encryptedData
+              }
+              console.log(params)
+              app.ols.login(params).then(d => {
+
+                if (d.data.code == 0) {
+                  console.log("登陆成功")
+                  wx.hideLoading()
+
+                  wx.setStorageSync("login", true)
+                  wx.setStorageSync("token", d.data.data.token)
+                  that.onLoad()
+
+
+                } else {
+                  wx.showToast({
+                    title: "登陆失败",
+                    icon: 'none',
+                    duration: 2000
+                  })
+                  console.log(d.data.msg)
+                  // that.setData({
+                  //   login: false
+                  // })
+
+                  wx.hideLoading()
+                }
+              })
+            }
+          })
+        }
+      }
     })
   },
 

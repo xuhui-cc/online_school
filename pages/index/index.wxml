@@ -1,0 +1,45 @@
+<view class="container">
+
+ <!-- 标题栏 -->
+  <view class="nabigation_bar">
+    <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}">
+      <view class="grade_content">{{grade[grade_index].title}}</view>
+    </picker>
+    <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}">
+      <image class="grade_img" src="../../images/xsj.png"></image>
+    </picker>
+    <view class="head">领军网校</view>
+  </view>
+  <!-- 标题栏结束 -->
+
+  <view class="test_margin">
+    <view class="for">
+      <view class="test_layout">
+        <view class="title">2020高三数学能力测评</view>
+        <view class="intro">这里是数学能力测评表详情介绍，这里是数学能力测评表详情介绍这里是数学能力测评表详情介绍。</view>
+        <view class="btn">
+          <image class="btn_img" src="../../images/cp_btn.png"></image>
+          <view class="test_word">开始测评</view>
+        </view>
+    
+    </view>
+    
+    
+    </view>
+  
+  
+  </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</view>

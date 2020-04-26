@@ -30,7 +30,7 @@ Page({
       }else{
         console.log(d.data.code, "code", d.data.msg)
         wx.showToast({
-          title: 'd.data.msg',
+          title: d.data.msg,
           icon:"none",
           duration:2000
         })

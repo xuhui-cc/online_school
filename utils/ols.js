@@ -56,12 +56,23 @@ function wrong(params) {
   return fetch.olsfetchpost(URI, 'wrong/getlist', params)
 }
 
-// 获取全部课程
+// 获取我的全部课程
 function my_course_all(params) {
   return fetch.olsfetchpost(URI, 'order/getLessonlist', params)
+}
+
+// 获取测评试题
+function test_ques(params) {
+  return fetch.olsfetchpost(URI, 'paper/gettestlist', params)
+}
+
+// 获取课程页课程
+function grade_course(params) {
+  return fetch.olsfetchpost(URI, 'lesson/getlist', params)
 }
 
 
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all}
+
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course}

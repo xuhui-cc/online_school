@@ -31,16 +31,17 @@ Page({
       }
     })
     that.setData({
-      grade_index: wx.getStorageSync("grade")
+      grade_index: wx.getStorageSync("grade"),
+      grade_id: wx.getStorageSync("grade_id")
     })
 
     //获取科目
     var params = {
-
+      "gid":that.data.grade_id
     }
     app.ols.discipline(params).then(d => {
       console.log(d)
-      if (d.data.code == 200) {
+      if (d.data.code == 0) {
         console.log(d.data.data)
         let arr2 = [];
         for (let i in d.data.data) {
@@ -88,7 +89,41 @@ Page({
     var cur = e.target.dataset.current;
 
     that.setData({
-      current_subject: cur
+      current_subject: cur,
+      did: that.data.subject[cur].id
+    })
+
+    //获取专题
+    var params = {
+      "gid":that.data.grade_id,
+      "did":that.data.did
+    }
+    app.ols.gettoplist(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        that.setData({
+          special: d.data.data
+        })
+      }
+    })
+
+    //获取课程
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "gid": that.data.grade_id,
+      "did": that.data.did,
+      "num":12,
+      "page":1
+    }
+    app.ols.grade_course(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        that.setData({
+          course: d.data.data
+        })
+      }
     })
 
   },
