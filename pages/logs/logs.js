@@ -11,7 +11,9 @@ Page({
   },
   onLoad: function () {
     let that = this
-
+    that.setData({
+      gid: wx.getStorageSync("gid")
+    })
     //获取年级
     var params = {
 
@@ -28,16 +30,21 @@ Page({
         that.setData({
           grade: arr1
         })
+
+        for (var i = 0; i < that.data.grade.length; i++) {
+          if (that.data.gid == that.data.grade[i].id) {
+            that.setData({
+              grade_index: i
+            })
+          }
+        }
       }
     })
-    that.setData({
-      grade_index: wx.getStorageSync("grade"),
-      grade_id: wx.getStorageSync("grade_id")
-    })
+    
 
     //获取科目
     var params = {
-      "gid":that.data.grade_id
+      "gid":that.data.gid
     }
     app.ols.discipline(params).then(d => {
       console.log(d)
@@ -95,7 +102,7 @@ Page({
 
     //获取专题
     var params = {
-      "gid":that.data.grade_id,
+      "gid":that.data.gid,
       "did":that.data.did
     }
     app.ols.gettoplist(params).then(d => {
@@ -111,7 +118,7 @@ Page({
     //获取课程
     var params = {
       "token": wx.getStorageSync("token"),
-      "gid": that.data.grade_id,
+      "gid": that.data.gid,
       "did": that.data.did,
       "num":12,
       "page":1
@@ -128,22 +135,26 @@ Page({
 
   },
 
-  to_course_detail:function(){
+  to_course_detail:function(e){
     let that = this
+    var xb = e.currentTarget.dataset.xb
+    console.log(xb)
     wx.navigateTo({
-      url: '../../pages/course_detail/course_detail',
+      url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
     })
   },
 
+  //年级切换
   grade_picker: function (e) {
     let that = this
     console.log('picker发送选择改变，携带值为', e.detail.value)
     that.setData({
-      grade_index: e.detail.value
+      grade_index: e.detail.value,
+      gid: that.data.grade[e.detail.value].id
     })
     // console.log(that.data.grade[that.data.grade_index])
-    wx.setStorageSync("grade", that.data.grade_index)
-    
+    wx.setStorageSync("gid", that.data.grade[that.data.grade_index].id)
+
   },
 
   

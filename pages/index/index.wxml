@@ -13,10 +13,10 @@
   <!-- 标题栏结束 -->
 
   <view class="test_margin">
-    <view class="for">
+    <view  wx:for="{{test_list.lists}}" wx:key="index">
       <view class="test_layout">
-        <view class="title">2020高三数学能力测评</view>
-        <view class="intro">这里是数学能力测评表详情介绍，这里是数学能力测评表详情介绍这里是数学能力测评表详情介绍。</view>
+        <view class="title">{{item.title}}</view>
+        <view class="intro">{{item.remark}}</view>
         <view class="btn">
           <image class="btn_img" src="../../images/cp_btn.png"></image>
           <view class="test_word">开始测评</view>

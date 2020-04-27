@@ -15,47 +15,82 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    var grade = wx.getStorageSync("grade")
-    if(grade){
-      wx.switchTab({
-        url: '../../pages/logs/logs',
-      })
-    }else{
-      var params = {
-        
+    var login = wx.getStorageSync("login")
+    var gid = wx.getStorageSync("gid")
+    that.setData({
+      login:login,
+      gid:gid
+    })
+    if(login){
+      if (gid == null) {
+        that.get_grade()
       }
-      app.ols.getlist(params).then(d => {
-        console.log(d)
-        if (d.data.code == 200) {
-          console.log(d.data.data)
-          let arr1 = [];
-          for (let i in d.data.data) {
-            //var o={};
-            //o[i]=d.data.data[i];
-            arr1.push(d.data.data[i]);
-          }
-          console.log(arr1)
-          that.setData({
-            grade: arr1
-          })
-        }
-      })
+      else{
+        wx.switchTab({
+          url: '../../pages/logs/logs',
+        })
+        console.log("我登录了，我选班级了")
+      }
     }
+    else{
+      console.log("我没登录")
+    }
+  
+    
+    
   },
 
-  grade_picker:function(e){
+  del:function(){
     let that = this
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     that.setData({
-      grade_index: e.detail.value
-    })
-    console.log(that.data.grade[that.data.grade_index])
-    wx.setStorageSync("grade", that.data.grade_index)
-    wx.setStorageSync("grade_id", that.data.grade[that.data.grade_index].id)
-    wx.switchTab({
-      url: '../../pages/logs/logs',
+      grade_select: false
     })
   },
+
+  grade_select:function(){
+    let that = this
+    
+    that.setData({
+      grade_select: true
+    })
+  },
+
+  subject_sel:function(e){
+    let that = this
+    var xb = e.currentTarget.dataset.xb
+    console.log(xb)
+    
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "gid":that.data.grade[xb].id
+    }
+    app.ols.grade_update(params).then(d => {
+      console.log(d)
+      console.log("更新接口存班级")
+      if (d.data.code == 200) {
+        // wx.setStorageSync('grade', xb)
+        wx.setStorageSync('gid', that.data.grade[xb].id)
+        wx.switchTab({
+          url: '../../pages/logs/logs',
+        })
+        
+      }
+    })
+  },
+
+  // grade_picker:function(e){
+  //   let that = this
+  //   console.log('picker发送选择改变，携带值为', e.detail.value)
+  //   that.setData({
+  //     grade_index: e.detail.value
+  //   })
+  //   console.log(that.data.grade[that.data.grade_index])
+  //   wx.setStorageSync("grade", that.data.grade_index)
+  //   wx.setStorageSync("grade_id", that.data.grade[that.data.grade_index].id)
+  //   wx.switchTab({
+  //     url: '../../pages/logs/logs',
+  //   })
+  // },
 
   //获取微信绑定手机号登录
   getPhoneNumber: function (e) {
@@ -85,10 +120,27 @@ Page({
                 if (d.data.code == 0) {
                   console.log("登陆成功")
                   wx.hideLoading()
-
+                  that.setData({
+                    login:true
+                  })
                   wx.setStorageSync("login", true)
                   wx.setStorageSync("token", d.data.data.token)
-                  that.onLoad()
+                  that.get_grade()
+                  if (d.data.data.gid != null){
+                    that.setData({
+                      grade_select:false
+                    })
+                    wx.setStorageSync("gid", d.data.data.gid)
+                    wx.switchTab({
+                      url: '../../pages/logs/logs',
+                    })
+                  }else{
+                    
+                    that.setData({
+                      grade_select: true
+                    })
+                  }
+                  
 
 
                 } else {
@@ -108,6 +160,29 @@ Page({
             }
           })
         }
+      }
+    })
+  },
+
+  //获取年级
+  get_grade:function(){
+    let that = this
+    var params = {
+    }
+    app.ols.getlist(params).then(d => {
+      console.log(d)
+      if (d.data.code == 200) {
+        console.log(d.data.data)
+        let arr1 = [];
+        for (let i in d.data.data) {
+          //var o={};
+          //o[i]=d.data.data[i];
+          arr1.push(d.data.data[i]);
+        }
+        console.log(arr1)
+        that.setData({
+          grade: arr1
+        })
       }
     })
   },

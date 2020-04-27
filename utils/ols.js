@@ -71,8 +71,23 @@ function grade_course(params) {
   return fetch.olsfetchpost(URI, 'lesson/getlist', params)
 }
 
+// 获取课程详情介绍
+function course_info(params) {
+  return fetch.olsfetchpost(URI, 'lesson/getinfo', params)
+}
+
+//传年级
+function grade_update(params) {
+  return fetch.olsfetchpost(URI, 'member/update', params)
+}
+
+//获取课程目录
+function course_cata(params) {
+  return fetch.olsfetchpost(URI, 'lesson/getOption', params)
+}
 
 
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course}
+
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata}

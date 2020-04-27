@@ -3,10 +3,16 @@ page{
 }
 .nabigation_bar{
   display: flex;
+  position: fixed;
   width:750rpx;
   height:176rpx;
   background:rgba(255,255,255,1);
   opacity:1;
+}
+
+.test_margin{
+  margin-top: 176rpx;
+  margin-bottom: 100rpx;
 }
 .grade_content{
   margin-top: 111rpx;

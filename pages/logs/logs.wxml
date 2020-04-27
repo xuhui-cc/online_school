@@ -24,7 +24,7 @@
 
   <view>
     <view wx:for="{{course.lists}}" wx:key="index">
-      <view class="course_layout" bindtap="to_course_detail">
+      <view class="course_layout" bindtap="to_course_detail" data-xb="{{index}}">
         <view class="course_title">{{item.title}}</view>
         <view class="course_intor">{{item.intro}}</view>
         <view class="flex">

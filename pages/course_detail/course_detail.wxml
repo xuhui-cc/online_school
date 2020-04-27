@@ -3,17 +3,17 @@
   <image class="report_img" src="../../images/report.png" bindtap="to_end_report"></image>
 
   <view class="flex">
-    <view class="head">高三数学三角函数专题课</view>
+    <view class="head">{{course_info.title}}</view>
     <button class="share_btn"  open-type="share"></button>
     <image class="share" src="../../images/share.png"></image>
   </view>
 
-  <view class="intro">这里是数学能力测评表详情介绍，这里是数学能力测评表详情介绍这里是数学能力测评表详情介绍。</view>
+  <view class="intro">{{course_info.intro}}</view>
 
   <view class="flex">
-    <view class="buy_num">2830人</view>
+    <view class="buy_num">{{course_info.order_num}}人</view>
     <view class="buy">购买</view>
-    <view class="course_num">30课时</view>
+    <view class="course_num">{{class_hour}}课时</view>
   </view>
 
   
@@ -25,16 +25,16 @@
 
 
   <view wx:if="{{currentData == 0}}" class="course_intro">
-    <image class="course_intro_img" src="../../images/intro.png" mode="widthFix"></image>
-    <!-- <rich-text nodes="{{}}"></rich-text> -->
+    <!-- <image class="course_intro_img" src="../../images/intro.png" mode="widthFix"></image> -->
+    <rich-text nodes="{{course_info.content}}"></rich-text>
   </view>
 
   <view wx:if="{{currentData == 1}}" class="course_intro">
-    <view>
+    <view wx:for="{{course_cata.lists}}" wx:key="index">
       <view class="flex">
-        <view class="course_order">01</view>
+        <view class="course_order">0{{index + 1}}</view>
         <image class="record_img" src="../../images/record.png"></image>
-        <view class="course_title">三角函数课程系列总结</view>
+        <view class="course_title">{{item.name}}</view>
         <view class="study_button" >继续学习</view>
       </view>
       <view>
@@ -75,7 +75,7 @@
 
   <view class="course_buy">
     <view class="yuan">¥</view>
-    <view class="price">499</view>
+    <view class="price">{{course_info.price}}</view>
     <view class="button_buy" wx:if="{{login}}" bindtap="to_pay">立即购买</view>
     <button wx:if="{{!login}}" class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
   </view>

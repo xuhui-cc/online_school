@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentData: 1,
+    currentData: 0,
     
   },
 
@@ -25,6 +25,29 @@ Page({
         login: false
       })
     }
+    
+    var kid = options.kid
+    that.setData({
+      kid:kid
+    })
+
+    //课程详情介绍接口
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "kid":kid
+    }
+    app.ols.course_info(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        that.setData({
+          course_info: d.data.data
+        })
+      }else{
+        console.log("课程详情介绍接口==============" + d.data.msg)
+      }
+    })
+
     
   },
 
@@ -64,6 +87,26 @@ Page({
       that.setData({
         currentData: e.target.dataset.current
       })
+    }
+    if (e.target.dataset.current == 1){
+      //课程详情介绍接口
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "kid": that.data.kid
+      }
+      app.ols.course_cata(params).then(d => {
+        console.log(d)
+        if (d.data.code == 0) {
+          console.log(d.data.data)
+          that.setData({
+            course_cata: d.data.data
+          })
+          console.log("课程目录接口调取成功")
+        } else {
+          console.log("课程目录==============" + d.data.msg)
+        }
+      })
+
     }
   },
 

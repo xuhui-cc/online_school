@@ -10,36 +10,12 @@ Page({
   
   onLoad: function () {
     let that = this
-
-    //获取年级
-    var params = {
-
-    }
-    app.ols.getlist(params).then(d => {
-      console.log(d)
-      if (d.data.code == 200) {
-        // console.log(d.data.data)
-        let arr1 = [];
-        for (let i in d.data.data) {
-          arr1.push(d.data.data[i]);
-        }
-        console.log(arr1)
-        that.setData({
-          grade: arr1
-        })
-      }
-    })
     that.setData({
-      grade_index: wx.getStorageSync("grade"),
-      grade_id: wx.getStorageSync("grade_id")
+      gid: wx.getStorageSync("gid")
     })
-
+    
     //获取年级
     var params = {
-      // "token":
-      // "gid":
-      "num":10,
-      "page":1
 
     }
     app.ols.getlist(params).then(d => {
@@ -54,14 +30,65 @@ Page({
         that.setData({
           grade: arr1
         })
+
+        for (var i = 0; i < that.data.grade.length; i++) {
+          if (that.data.gid == that.data.grade[i].id) {
+            that.setData({
+              grade_index: i
+            })
+          }
+        }
       }
     })
 
+    that.test_list()  //获取测评列表
+
+
+    
 
 
 
 
 
+
+
+  },
+
+
+  //获取测评列表
+  test_list:function(){
+    let that = this
+    //获取测评内容
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "gid": that.data.gid,
+      "num": 10,
+      "page": 1
+
+    }
+    app.ols.test_ques(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log("获取测评列表接口成功")
+        that.setData({
+          test_list: d.data.data
+        })
+      }
+    })
+  },
+
+
+  //年级切换
+  grade_picker: function (e) {
+    let that = this
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    that.setData({
+      grade_index: e.detail.value,
+      gid: that.data.grade[e.detail.value].id
+    })
+    that.test_list()
+    // console.log(that.data.grade[that.data.grade_index])
+    wx.setStorageSync("gid", that.data.grade[that.data.grade_index].id)
 
   },
   
