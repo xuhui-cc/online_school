@@ -249,3 +249,24 @@ page{
   width:168rpx;
   height:204rpx;
 }
+.course_null{
+  margin-left: 259rpx;
+  margin-top: 465rpx;
+  width:202rpx;
+  height:233rpx;
+}
+.course_intro{
+  width: 750rpx;
+}
+.course_nulltip{
+  margin-left: 311rpx;
+  margin-top: 50rpx;
+  width:120rpx;
+  height:42rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:42rpx;
+  color:rgba(199,197,197,1);
+  opacity:1;
+}

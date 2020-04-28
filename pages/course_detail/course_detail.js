@@ -43,6 +43,10 @@ Page({
         that.setData({
           course_info: d.data.data
         })
+        var cs = "course_info.content"
+        that.setData({
+          [cs]: that.data.course_info.content.replace(/<img/gi, '<img style="max-width:375px;height:auto;display:block"')
+        })
       }else{
         console.log("课程详情介绍接口==============" + d.data.msg)
       }

@@ -1,4 +1,4 @@
-.login_read{
+course_order.login_read{
   position: absolute;
   margin-top: 15rpx;
   margin-left: 428rpx;
@@ -64,6 +64,7 @@
   font-family:PingFang SC;
   font-weight:400;
   line-height:33rpx;
+  text-align: right;
   color:#03B683;
   opacity:1;
 }
@@ -191,6 +192,7 @@
   font-family:PingFang SC;
   font-weight:400;
   line-height:42rpx;
+  text-align: right;
   color:rgba(32,32,32,1);
   opacity:1;
 }
@@ -226,6 +228,18 @@
   border:2rpx solid rgba(3,182,131,1);
   opacity:1;
   border-radius:24rpx;
+}
+.study{
+  position: absolute;
+  width:151rpx;
+  height:48rpx;
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:48rpx;
+  text-align: center;
+  color:#FFFFFF;
+  z-index: 10;
 }
 .study_rate{
   margin-left: 85rpx;

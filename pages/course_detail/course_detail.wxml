@@ -33,12 +33,19 @@
     <view wx:for="{{course_cata.lists}}" wx:key="index">
       <view class="flex">
         <view class="course_order">0{{index + 1}}</view>
-        <image class="record_img" src="../../images/record.png"></image>
+        <image class="record_img" src="{{item.cateid == 0?'../../images/record.png':'../../images/live.png'}}"></image>
+        
         <view class="course_title">{{item.name}}</view>
-        <view class="study_button" >继续学习</view>
+        <view wx:if="{{item.percent == null}}" class="study_button" style="background:rgba(3,182,131,1);">
+          <view class="study">去学习</view>
+        </view>
+        <view wx:elif="{{item.percent < 100}}" class="study_button" >继续学习</view>
+        <view wx:else="{{item.percent == 100}}" class="study_button" style="border:rgba(164,164,164,1);color:rgba(164,164,164,1);">去复习</view>
       </view>
       <view>
-        <view class="study_rate" >未学习</view>
+        <view wx:if="{{item.percent == null}}" class="study_rate" >未学习</view>
+        <view wx:elif="{{item.percent < 100}}" class="study_rate" >已学习{{item.percent}}%</view>
+        <view wx:else="{{item.percent == 100}}" class="study_rate" style="color:#A4A4A4;">已学完</view>
         <image class="xu" src="../../images/xu.png" ></image>
         <view class="flex" bindtap="to_course_file">
           <image class="file-img1" src="../../images/file1.png"></image>
