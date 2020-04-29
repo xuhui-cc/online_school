@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    //course_info.pay_status : 1 未购买；2已购买
     currentData: 0,
     
   },
@@ -55,6 +56,18 @@ Page({
     
   },
 
+  //看视频
+  to_video:function(e){
+    let that = this
+    var xb = e.currentTarget.dataset.xb
+    console.log(xb)
+    var id = that.data.course_cata.lists[xb].id
+    wx.navigateTo({
+      url: '../../pages/video/video?id=' + id,
+    })
+  },
+
+  //查看报告
   to_end_report:function(){
     let that = this
     wx.navigateTo({
@@ -62,6 +75,8 @@ Page({
     })
   },
 
+
+  //课后作业
   to_homework: function () {
     let that = this
     wx.navigateTo({
@@ -69,6 +84,7 @@ Page({
     })
   },
 
+  //去支付
   to_pay:function(){
     let that = this
     wx.navigateTo({
@@ -76,10 +92,16 @@ Page({
     })
   },
 
-  to_course_file:function(){
+
+  //课程讲义跳转
+  to_course_file:function(e){
     let that = this
+    var xb = e.currentTarget.dataset.xb
+    console.log(xb)
+    // console.log(that.data.course_cata.lists[xb].id)
+    var id = that.data.course_cata.lists[xb].id
     wx.navigateTo({
-      url: '../../pages/course_file/course_file',
+      url: '../../pages/course_file/course_file?id=' + id,
     })
   },
 

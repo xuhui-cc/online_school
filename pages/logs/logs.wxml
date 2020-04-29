@@ -44,7 +44,7 @@
   </view>
 
   <image wx:if="{{course == ''}}" class="course_null" src="../../images/course_null.png"></image>
-  <text class="course_nulltip">暂无课程</text>
+  <text wx:if="{{course == ''}}" class="course_nulltip">暂无课程</text>
   
 
 </view>

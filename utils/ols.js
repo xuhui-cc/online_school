@@ -86,8 +86,23 @@ function course_cata(params) {
   return fetch.olsfetchpost(URI, 'lesson/getOption', params)
 }
 
+//获取课程讲义列表
+function handout(params) {
+  return fetch.olsfetchpost(URI, 'lesson/getannex', params)
+}
+
+//获取课程视频链接
+function getvideo(params) {
+  return fetch.olsfetchpost(URI, 'lesson/getvideo', params)
+}
+
+//获取课程视频断点时间
+function getvideo_info(params) {
+  return fetch.olsfetchpost(URI, 'lesson/getvideoline', params)
+}
 
 
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata}
+
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info}

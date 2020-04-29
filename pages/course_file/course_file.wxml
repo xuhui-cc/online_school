@@ -1,9 +1,13 @@
 <view class="container">
-  <view class="for">
-    <view class="layout">
-      <image class="icon" src="../../images/doc.png"></image>
-      <view class="title">三角函数知识点脑图.png</view>
-      <image class="next" src="../../images/next.png"></image>
+  <view class="for" wx:for="{{handout}}" wx:key="index">
+    <view class="layout" data-xb="{{index}}" bindtap="open_file">
+      <image wx:if="{{item.suffix == 'doc'}}" class="icon" src="../../images/doc.png"></image>
+      <image wx:if="{{item.suffix == 'pdf'}}" class="icon" src="../../images/pdf.png"></image>
+      <image wx:if="{{item.suffix == 'img'}}" class="icon" src="../../images/img.png"></image>
+      <image wx:if="{{item.suffix == 'ppt'}}" class="icon" src="../../images/ppt.png"></image>
+      <image wx:if="{{item.suffix == 'xls'}}" class="icon" src="../../images/xls.png"></image>
+      <view class="title">{{item.name}}</view>
+      <image  class="next" src="../../images/next.png"></image>
     </view>
     <view class="heng"></view>
   </view>
