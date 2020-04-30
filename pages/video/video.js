@@ -57,6 +57,14 @@ Page({
     })
   },
 
+  
+  //获取视频播放进度、总时长（初）
+  bindtimeupdate(res) {
+    console.log('bindtimeupdate', parseInt(res.detail.currentTime), '时间总时长-->', parseInt(res.detail.duration));
+  },
+
+
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

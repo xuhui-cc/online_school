@@ -14,6 +14,10 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    var kid = options.kid
+    that.setData({
+      kid:kid
+    })
     var params = {
       "token": wx.getStorageSync("token"),
     }
@@ -33,6 +37,66 @@ Page({
         that.setData({
           have_adr: false
         })
+      }
+    })
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "kid": kid
+    }
+    app.ols.course_info(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        that.setData({
+          course_info: d.data.data
+        })
+      } else {
+        console.log("课程详情介绍接口==============" + d.data.msg)
+      }
+    })
+
+  },
+
+  buy:function(){
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "kid":that.data.kid
+    }
+    app.ols.preorder(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        var ob = JSON.parse(d.data.data.paystr)
+        console.log(ob)
+        var timeStamp = ob.timeStamp
+        var nonceStr = ob.nonceStr
+        var pack = ob.package
+        var paySign = ob.paySign
+        that.laqizhifu(timeStamp, nonceStr, pack, paySign)
+        console.log("预支付接口成功")
+      } else {
+        console.log("预支付接口失败")
+      }
+    })
+  },
+
+  //拉起微信支付
+  laqizhifu: function (timeStamp, nonceStr, pack, paySign) {
+    wx.requestPayment({
+      timeStamp: timeStamp,
+      nonceStr: nonceStr,
+      package: pack,
+      signType: 'MD5',
+      paySign: paySign,
+      success(res) {
+        console.log("支付成功")
+        wx.showToast({
+          title: '支付成功',
+          duration:3000
+        })
+      },
+      fail(res) {
+        console.log("失败")
       }
     })
   },

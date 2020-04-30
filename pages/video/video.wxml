@@ -1,5 +1,5 @@
 <view class="container">
-  <video class="video" src="{{getvideo.video}}" autoplay="true" initial-time="{{getvideo_info}}"></video>
+  <video class="video" src="{{getvideo.video}}" autoplay="true" initial-time="{{getvideo_info}}" bindtimeupdate="bindtimeupdate"></video>
 
 
 

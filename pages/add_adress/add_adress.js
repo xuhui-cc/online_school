@@ -120,9 +120,9 @@ Page({
         //   title: '保存成功',
         //   duration:2000
         // })
-        // wx.navigateBack({
-        //   delta: 1
-        // })
+        wx.navigateBack({
+          delta: 1
+        })
       }
     })
   },

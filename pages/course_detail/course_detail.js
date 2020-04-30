@@ -46,7 +46,7 @@ Page({
         })
         var cs = "course_info.content"
         that.setData({
-          [cs]: that.data.course_info.content.replace(/<img/gi, '<img style="max-width:375px;height:auto;display:block"')
+          [cs]: that.data.course_info.content.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block"')
         })
       }else{
         console.log("课程详情介绍接口==============" + d.data.msg)
@@ -85,10 +85,13 @@ Page({
   },
 
   //去支付
-  to_pay:function(){
+  to_pay:function(e){
+  
     let that = this
+    var kid = e.currentTarget.dataset.kid
+    console.log(kid)
     wx.navigateTo({
-      url: '../../pages/pay/pay',
+      url: '../../pages/pay/pay?kid=' + kid,
     })
   },
 
@@ -115,7 +118,7 @@ Page({
       })
     }
     if (e.target.dataset.current == 1){
-      //课程详情介绍接口
+      //课程目录接口
       var params = {
         "token": wx.getStorageSync("token"),
         "kid": that.data.kid

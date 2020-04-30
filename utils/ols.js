@@ -101,8 +101,13 @@ function getvideo_info(params) {
   return fetch.olsfetchpost(URI, 'lesson/getvideoline', params)
 }
 
+//课程预支付
+function preorder(params) {
+  return fetch.olsfetchpost(URI, 'wepay/preorder', params)
+}
 
 
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info}
+
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder}

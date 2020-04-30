@@ -21,26 +21,27 @@
   </view>
 
   <view class="course_layout">
-    <view class="course_title">高三数学三角函数专题课</view>
-      <view class="course_intor">这里是数学能力测评表详情介绍，这里是数学能力测评表详情介绍这里是数学能力测评表详情介绍。</view>
+    <view class="course_title">{{course_info.title}}</view>
+      <view class="course_intor">{{course_info.intro}}</view>
     <view class="flex">
-      <image class="avatar" src="../../images/avatar.png"></image>
-      <view class="tea_name">刘晴晴晴</view>
-      <view class="course_text"><text style="color:#03B683;">2830人</text>购买</view>
+      <!-- <image class="avatar" src="../../images/avatar.png"></image> -->
+      <image class="avatar" src="{{course_info.avatar}}"></image>
+      <view class="tea_name">{{course_info.nick}}</view>
+      <view class="course_text"><text style="color:#03B683;">{{course_info.order_num}}人</text>购买</view>
       <view class="num_layout">
-        <view class="course_num">30课时</view>
+        <view class="course_num">{{class_hour}}课时</view>
       </view>
       <view class="course_price">
         <view style="margin-right:8rpx;margin-top:5rpx;">¥</view>
-        <view style="font-weight:bold;font-size:42rpx;">49</view>
+        <view style="font-weight:bold;font-size:42rpx;">{{course_info.price}}</view>
       </view>
     </view>
   </view>
 
-  <view class="price_layout">
+  <view class="price_layout" bindtap="buy">
     <view class="total">合计：</view>
     <view class="yuan">¥</view>
-    <view class="price">49</view>
+    <view class="price">{{course_info.price}}</view>
     <view class="buy_button">确认支付</view>
   
   </view>
