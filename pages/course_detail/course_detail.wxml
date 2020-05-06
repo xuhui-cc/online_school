@@ -5,6 +5,7 @@
   <view class="flex">
     <view class="head">{{course_info.title}}</view>
     <button class="share_btn"  open-type="share"></button>
+    <!-- <button open-type="share"></button> -->
     <image class="share" src="../../images/share.png"></image>
   </view>
 
@@ -88,12 +89,13 @@
     </view>
   </view>
 
-  <view class="course_buy"  wx:if="{{course_info.pay_status == null || course_info.pay_status == 1}}">   
+
+  <view class="course_buy"  wx:if="{{course_info.pay_status <= 1}}">   
     <!-- course_info.pay_status :  1 未购买；2已购买 -->
     <view class="yuan">¥</view>
     <view class="price">{{course_info.price}}</view>
-    <view class="button_buy" wx:if="{{login}}" bindtap="to_pay" data-kid="{{course_info.kid}}">立即购买</view>
-    <button wx:if="{{!login}}" class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+    <view class="button_buy"  bindtap="to_pay" data-kid="{{course_info.kid}}">立即购买</view>
+    <!-- <button wx:if="{{!login}}" class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button> -->
   </view>
   
 

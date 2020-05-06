@@ -1,34 +1,37 @@
 <view class="container">
-  <image hidden="true" class="icon_order" src="../../images/green_order.png"></image>
-  <image class="icon_order" src="../../images/close_order.png"></image>
-  <view hidden="true" class="waiting">等待支付</view>
-  <view  class="waiting" style="margin-top: 70rpx;">已关闭</view>
-  <view hidden="true" class="timing_tip">26分30秒后订单自动关闭</view>
+  <image wx:if="{{order.active <= 1 && timer != 0}}" class="icon_order" src="../../images/green_order.png"></image>
+  <image wx:elif="{{order.active  == 2}}" class="icon_order" src="../../images/green_order.png"></image>
+  <image wx:else="" class="icon_order" src="../../images/close_order.png"></image>
+  
+  <view wx:if="{{order.active <= 1 && timer != 0}}" class="waiting">等待支付</view>
+  <view wx:if="{{order.active <= 1 && timer == 0}}" class="waiting" style="margin-top: 70rpx;">已关闭</view>
+  <view wx:if="{{order.active  == 2}}" class="waiting" style="margin-top: 70rpx;">已付款</view>
+  <view wx:if="{{order.active <= 1 && timer != 0}}" class="timing_tip">{{timer}}后订单自动关闭</view>
 
   <view class="adr_layout">
     <image class="adr_img" src="../../images/adress.png"></image>
     <view>
       <view class="flex">
-        <view class="name">{{name}}</view>
-        <view class="phone">{{phone}}</view>
+        <view class="name">{{order.name}}</view>
+        <view class="phone">{{order.phone}}</view>
       </view>
-      <view class="adress_content">收货地址：{{adress}}</view>
+      <view class="adress_content">收货地址：{{order.address}}</view>
     </view>
   </view>
 
   <view class="course_layout">
-    <view class="course_title">高三数学三角函数专题课</view>
-      <view class="course_intor">这里是数学能力测评表详情介绍，这里是数学能力测评表详情介绍这里是数学能力测评表详情介绍。</view>
+    <view class="course_title">{{order.title}}</view>
+      <view class="course_intor">{{order.intro}}</view>
     <view class="flex">
       <image class="avatar" src="../../images/avatar.png"></image>
-      <view class="tea_name">刘晴晴晴</view>
+      <view class="tea_name">{{order.nick}}</view>
       
       <view class="num_layout">
-        <view class="course_num">30课时</view>
+        <view class="course_num">{{order.study_hour}}课时</view>
       </view>
       <view class="course_price">
         <view style="margin-right:8rpx;margin-top:5rpx;">¥</view>
-        <view style="font-weight:bold;font-size:42rpx;">49</view>
+        <view style="font-weight:bold;font-size:42rpx;">{{order.sum_money}}</view>
       </view>
     </view>
   </view>
@@ -40,7 +43,7 @@
       <view class="sfje">实付金额</view>
       <view class="course_price" style="margin-top: 25rpx;margin-left: 480rpx;">
         <view style="margin-right:8rpx;color:rgba(233,73,23,1);">¥</view>
-        <view style="font-weight:bold;font-size:36rpx;color:rgba(233,73,23,1);">49</view>
+        <view style="font-weight:bold;font-size:36rpx;color:rgba(233,73,23,1);">{{order.sum_money}}</view>
       </view>
     </view>
 
@@ -49,12 +52,12 @@
       <view class="shu"></view>
       <view class="sfje">订单信息</view>
     </view>
-    <view class="orderID">订单编号：20190721132564318954</view>
-    <view class="orderID">订单创建时间：2019-06-23  20:24:50</view>
+    <view class="orderID">订单编号：{{order.oid}}</view>
+    <view class="orderID">订单创建时间：{{order.dateline}}</view>
   </view>
 
 
-  <view class="to_pay" bindtap="to_pay">去支付</view>
+  <view class="to_pay" bindtap="to_pay" data-kid="{{order.kid}}" wx:if="{{order.active <= 1 && timer != 0}}">去支付</view>
 
 
 

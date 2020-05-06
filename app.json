@@ -18,8 +18,8 @@
     "pages/add_adress/add_adress",
     "pages/end_report/end_report",
     "pages/video/video",
-    "pages/finish_test_report/finish_test_report"
-   
+    "pages/finish_test_report/finish_test_report",
+    "pages/cs/cs"
   ],
   "window": {
     "backgroundTextStyle": "light",

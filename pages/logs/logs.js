@@ -94,6 +94,8 @@ Page({
     // console.log(that.data.grade[that.data.grade_index])
     wx.setStorageSync("gid", that.data.grade[that.data.grade_index].id)
     that.getcourse()    //获取课程
+    that.getspecial()      //获取专题
+    
 
   },
 

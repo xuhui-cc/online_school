@@ -13,18 +13,22 @@
   
   </view>
 
- <view class="margin" wx:if="{{order != ''}}"> 
-  <view class="layout" bindtap="to_order_detail">
-    <view class="flex">
-      <view class="title">高三数学三角函数专题课</view>
-      <view class="state">待支付</view>
-    </view>
-    <view class="intro">这里是数学能力测评表详情介绍，这里是数学能力测评表详情介绍这里是数学能力测评表详情介绍是数学能力。</view>
-    <view class="flex">
-      <view class="price">实付款：</view>
-      <view class="yuan">¥</view>
-      <view class="yuan" style="font-size:36rpx;margin-top: 39rpx;font-weight:bold;">999</view>
-      <view  class="to_pay" bindtap="to_pay">去支付</view>
+ <view class="margin" wx:if="{{order != ''}}" > 
+  <view wx:for="{{order}}" wx:key="index">
+    <view class="layout" bindtap="to_order_detail" data-id="{{item.id}}">
+      <view class="flex">
+        <view class="title">{{item.title}}</view>
+        <view wx:if="{{item.active == 2}}" class="state">已支付</view>
+        <view wx:if="{{item.active == 1 && item.close == 0}}" class="state">待支付</view>
+        <view wx:if="{{item.active == 1 && item.close == 1}}" class="state" style="color:rgba(203,203,203,1);">已关闭</view>
+      </view>
+      <view class="intro">{{item.intro}}</view>
+      <view class="flex">
+        <view class="price" style="{{item.active == 1 && item.close == 0 ?'':'margin-left: 455rpx;'}}">实付款：</view>
+        <view class="yuan" style="{{item.active == 1 && item.close == 0 ?'':'color:rgba(32,32,32,1);'}}">¥</view>
+        <view class="yuan" style="{{item.active == 1 && item.close == 0 ?'font-size:36rpx;margin-top: 39rpx;font-weight:bold;':'font-size:36rpx;margin-top: 39rpx;font-weight:bold;color:rgba(32,32,32,1);'}}">{{item.sum_money}}</view>
+        <view wx:if="{{item.active == 1 && item.close == 0}}"  class="to_pay" bindtap="to_pay">去支付</view>
+      </view>
     </view>
   </view>
  

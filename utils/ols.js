@@ -51,6 +51,21 @@ function order_all(params) {
   return fetch.olsfetchpost(URI, 'order/getlist', params)
 }
 
+//待支付
+function order_wait(params) {
+  return fetch.olsfetchpost(URI, 'order/getwaitlist', params)
+}
+
+//已支付
+function order_ed(params) {
+  return fetch.olsfetchpost(URI, 'order/getpaylist', params)
+}
+
+//已关闭
+function order_close(params) {
+  return fetch.olsfetchpost(URI, 'order/getcloselist', params)
+}
+
 // 获取全部错题
 function wrong(params) {
   return fetch.olsfetchpost(URI, 'wrong/getlist', params)
@@ -106,8 +121,13 @@ function preorder(params) {
   return fetch.olsfetchpost(URI, 'wepay/preorder', params)
 }
 
+//订单详情
+function order_detail(params) {
+  return fetch.olsfetchpost(URI, 'order/getinfo', params)
+}
 
 
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder}
+
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed,order_close}

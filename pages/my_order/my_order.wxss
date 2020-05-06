@@ -50,6 +50,7 @@ page{
 }
 .margin{
   margin-top: 94rpx;
+  margin-bottom: 100rpx;
 }
 .layout{
   margin-left: 30rpx;

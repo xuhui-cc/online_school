@@ -94,9 +94,19 @@ Page({
           title: '支付成功',
           duration:3000
         })
+        wx.navigateBack({
+          delta: 1  // 返回上一级页面。
+        })
       },
       fail(res) {
+        wx.showToast({
+          title: '支付失败',
+          duration: 3000
+        })
         console.log("失败")
+        wx.navigateBack({
+          delta: 1  // 返回上一级页面。
+        })
       }
     })
   },

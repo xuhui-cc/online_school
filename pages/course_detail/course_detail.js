@@ -2,6 +2,35 @@
 const app = getApp()
 Page({
 
+  onShareAppMessage: function () {
+    let that = this;
+    return {
+      title: '简直走别拐弯', // 转发后 所显示的title
+      path: '/pages/first_page/first_page', // 相对的路径
+      imageUrl: '../../images/first_bg.png',  //用户分享出去的自定义图片大小为5:4,
+      success: (res) => {    // 成功后要做的事情
+        console.log("成功")
+        // console.log
+
+        // wx.getShareInfo({
+        //   shareTicket: res.shareTickets[0],
+        //   success: (res) => {
+        //     that.setData({
+        //       isShow: true
+        //     })
+        //     console.log(that.setData.isShow)
+        //   },
+        //   fail: function (res) { console.log(res) },
+        //   complete: function (res) { console.log(res) }
+        // })
+      },
+      fail: function (res) {
+        // 分享失败
+        console.log(res)
+      }
+    }
+  },
+
   /**
    * 页面的初始数据
    */
@@ -11,31 +40,42 @@ Page({
     
   },
 
+  
+  
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     let that = this
-    var login = wx.getStorageSync("login")
-    if(login){
-      that.setData({
-        login: true
-      })
-    }else{
-      that.setData({
-        login: false
-      })
-    }
+    // var login = wx.getStorageSync("login")
+    // if(login){
+    //   that.setData({
+    //     login: true
+    //   })
+    // }else{
+    //   that.setData({
+    //     login: false
+    //   })
+    // }
     
     var kid = options.kid
     that.setData({
       kid:kid
     })
 
+    that.course_detail()
+    
+  },
+
+
+  // 获取课程详情
+  course_detail:function(){
+    let that = this
     //课程详情介绍接口
     var params = {
       "token": wx.getStorageSync("token"),
-      "kid":kid
+      "kid": that.data.kid
     }
     app.ols.course_info(params).then(d => {
       console.log(d)
@@ -48,12 +88,11 @@ Page({
         that.setData({
           [cs]: that.data.course_info.content.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block"')
         })
-      }else{
+      } else {
         console.log("课程详情介绍接口==============" + d.data.msg)
       }
     })
 
-    
   },
 
   //看视频
@@ -205,7 +244,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    that.course_detail()
   },
 
   /**
