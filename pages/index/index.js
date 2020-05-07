@@ -54,6 +54,17 @@ Page({
 
   },
 
+  //测评试卷跳转
+  to_cp_test:function(e){
+    let that = this
+    var xb = e.currentTarget.dataset.xb
+    var id = that.data.test_list.lists[xb].id
+    console.log(xb)
+    wx.navigateTo({
+      url: '../../pages/cp_test/cp_test?id=' + id,
+    })
+  },
+
 
   //获取测评列表
   test_list:function(){

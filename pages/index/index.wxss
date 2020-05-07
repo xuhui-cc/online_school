@@ -62,6 +62,12 @@ page{
   font-family:PingFang SC;
   font-weight:bold;
   line-height:50rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
   color:rgba(39,39,39,1);
   opacity:1;
 }

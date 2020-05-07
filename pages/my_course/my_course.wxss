@@ -4,8 +4,10 @@ page{
 }
 .course{
   background: #ffff;
-  margin: 25rpx 30rpx;
-  padding: 32rpx 41rpx 46rpx;
+  margin-left: 30rpx;
+  margin-top: 25rpx;
+  margin-right: 30rpx;
+  padding: 32rpx 41rpx ;
   border-radius: 10rpx;
 }
 

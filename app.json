@@ -19,6 +19,7 @@
     "pages/end_report/end_report",
     "pages/video/video",
     "pages/finish_test_report/finish_test_report",
+    "pages/cp_test/cp_test",
     "pages/cs/cs"
   ],
   "window": {

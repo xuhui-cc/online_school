@@ -1,26 +1,24 @@
 <!--pages/my_course/my_course.wxml-->
 <view class="container">
 
-  <view class="course">
-     <view class="title">
-         高三数学三角函数专题课
-     </view>
-     <view class="decribe">
-     这里是数学能力测评表详情介绍，这里是数学能力测评表详情介绍这里是数学能力测评表详情介绍。
-     </view>
-     <view class="course-content">
-        <view class="content-left">
-            <image src="/images/avatar.png" class="l-img"></image>
-            <text class="l-name">刘青青</text>
-            <text class="l-keshi">30课时</text>
-        </view>
-        <view class="content-right">
-            <view class="r-view">
-              <progress percent="60"  border-radius="2.5" stroke-width="5" color="#fff" active="{{true}}" activeColor="#02DC9F" />
-            </view>
-            <text class="lear">已学习60%</text>
-        </view>
-     </view>
+  <view wx:for="{{course}}" wx:key="index">
+    <view class="course" data-xb="{{index}}" bindtap="to_course_detail">
+      <view class="title">{{item.title}}</view>
+      <view class="decribe">{{item.intro}}</view>
+      <view class="course-content">
+          <view class="content-left">
+              <image src="/images/avatar.png" class="l-img"></image>
+              <text class="l-name">{{item.nick}}</text>
+              <text class="l-keshi">{{item.class_hour}}课时</text>
+          </view>
+          <view class="content-right">
+              <view class="r-view">
+                <progress percent="{{item.pro}}"  border-radius="2.5" stroke-width="5" color="#fff" active="{{true}}" activeColor="#02DC9F" />
+              </view>
+              <text class="lear">已学习{{item.pro}}%</text>
+          </view>
+      </view>
+    </view>
   </view>
 
 </view>

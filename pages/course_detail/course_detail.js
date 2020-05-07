@@ -101,8 +101,9 @@ Page({
     var xb = e.currentTarget.dataset.xb
     console.log(xb)
     var id = that.data.course_cata.lists[xb].id
+    var kid = that.data.course_cata.lists[xb].kid
     wx.navigateTo({
-      url: '../../pages/video/video?id=' + id,
+      url: '../../pages/video/video?id=' + id + '&kid=' + kid,
     })
   },
 
@@ -142,8 +143,9 @@ Page({
     console.log(xb)
     // console.log(that.data.course_cata.lists[xb].id)
     var id = that.data.course_cata.lists[xb].id
+    
     wx.navigateTo({
-      url: '../../pages/course_file/course_file?id=' + id,
+      url: '../../pages/course_file/course_file?id=' + id ,
     })
   },
 
@@ -245,7 +247,28 @@ Page({
    */
   onShow: function () {
     let that = this
-    that.course_detail()
+    if (that.data.currentData == 0){
+      that.course_detail()   //获取课程简介
+    } else if (that.data.currentData == 1){
+      //课程目录接口
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "kid": that.data.kid
+      }
+      app.ols.course_cata(params).then(d => {
+        console.log(d)
+        if (d.data.code == 0) {
+          console.log(d.data.data)
+          that.setData({
+            course_cata: d.data.data
+          })
+          console.log("课程目录接口调取成功")
+        } else {
+          console.log("课程目录==============" + d.data.msg)
+        }
+      })
+    }
+    
   },
 
   /**

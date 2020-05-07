@@ -126,8 +126,23 @@ function order_detail(params) {
   return fetch.olsfetchpost(URI, 'order/getinfo', params)
 }
 
+//订单详情
+function study_pro(params) {
+  return fetch.olsfetchpost(URI, 'lesson/setloginfo', params)
+}
+
+//测评试题id
+function test_id(params) {
+  return fetch.olsfetchpost(URI, 'paper/getidlist', params)
+}
+
+//测评答题状态初始化
+function setmark(params) {
+  return fetch.olsfetchpost(URI, 'mark/setmark', params)
+}
 
 
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed,order_close}
+
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, study_pro, test_id, setmark}

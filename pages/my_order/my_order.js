@@ -187,7 +187,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    if (that.data.finish == 0) {
+      that.order_all()                                  //全部订单
+    } else if (that.data.finish == 1) {
+      that.order_wait()                               //待支付
+    } else if (that.data.finish == 2) {
+      that.order_ed()                                  //已支付
+    } else if (that.data.finish == 3) {
+      that.order_close()                              //已关闭
+    }
   },
 
   /**

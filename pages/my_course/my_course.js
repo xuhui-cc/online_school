@@ -23,6 +23,13 @@ Page({
         that.setData({
           course: d.data.data
         })
+        for(var i=0;i<that.data.course.length;i++){
+          var pro = (that.data.course[i].study_hour / that.data.course[i].class_hour) * 100
+          var cs = "course[" + i + "].pro"
+          that.setData({
+            [cs] :pro
+          })
+        }
       } else if (d.data.code == 5){
         that.setData({
           course: ''
@@ -37,6 +44,17 @@ Page({
       }
     })
   },
+
+  //课程详情跳转
+  to_course_detail: function (e) {
+    let that = this
+    var xb = e.currentTarget.dataset.xb
+    console.log(xb)
+    wx.navigateTo({
+      url: '../../pages/course_detail/course_detail?kid=' + that.data.course[xb].kid,
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

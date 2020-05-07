@@ -17,7 +17,7 @@
       <view class="test_layout">
         <view class="title">{{item.title}}</view>
         <view class="intro">{{item.remark}}</view>
-        <view class="btn">
+        <view class="btn" bindtap="to_cp_test" data-xb="{{index}}">
           <image class="btn_img" src="../../images/cp_btn.png"></image>
           <view class="test_word">开始测评</view>
         </view>
