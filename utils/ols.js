@@ -141,8 +141,23 @@ function setmark(params) {
   return fetch.olsfetchpost(URI, 'mark/setmark', params)
 }
 
+//测评试卷概要
+function test_explain(params) {
+  return fetch.olsfetchpost(URI, 'paper/getinfo', params)
+}
+
+//测评试卷单个试题详情
+function ques_detail(params) {
+  return fetch.olsfetchpost(URI, 'paper/getquestion', params)
+}
+
+//测评试卷基本信息
+function ques_info(params) {
+  return fetch.olsfetchpost(URI, 'paper/getpaper', params)
+}
 
 
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, study_pro, test_id, setmark}
+
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, study_pro, test_id, setmark, test_explain, ques_detail, ques_info}

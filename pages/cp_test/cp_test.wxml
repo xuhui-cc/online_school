@@ -1,14 +1,48 @@
 <view class="container">
+
+  <!-- 试卷说明 -->
+  <view class="test_explain" wx:if="{{!start_ans}}">
+    <view class="title">{{test_explain.title}}</view>
+    <view class="title" style="margin-top: 20rpx;">试卷说明</view>
+    <view class="explain">本题分数 <text style="color:#03B683">{{test_explain.all_sum}}分</text> ，答题时长 <text style="color:#03B683;">{{test_explain.timeline}}分钟</text>。</view>
+
+    <view wx:for="{{test_explain.option}}" wx:key="index">
+      <view class="flex">
+        <view wx:if="{{item.type == 1}}" class="explain_title">一、单选题</view>
+        <view wx:if="{{item.type == 2}}" class="explain_title">二、多选题</view>
+        <view wx:if="{{item.type == 3}}" class="explain_title">三、判断题</view>
+        <view wx:if="{{item.type == 4}}" class="explain_title">四、填空题</view>
+        <view wx:if="{{item.type == 5}}" class="explain_title">五、简答题</view>
+        <view class="ques_num">{{item.min_count}}道</view>
+        <view class="score_num">{{item.min_sum}}分</view>
+      </view>
+    
+    
+    </view>
+
+  <view class="start_btn" bindtap="start_ans">开始答题</view>
+  
+  
+  
+  
+  
+  </view>
+
+
+  <!-- 试卷菜单栏 -->
   <view class="layout">
         <!-- <image class="clock" src="../../images/clock.png"></image>
         <view class="time">45:59</view> -->
-        <view class="current">7</view>
-        <view class="sum">/10</view>
+        <view class="current">{{currentTab + 1}}</view>
+        <view class="sum">/{{ques_info.num}}</view>
         <image class="card_img" src="../../images/card.png"></image>
         <view class="dtk" bindtap="dtk">答题卡</view>
       </view>
-      <view class="dtk_layout" wx:if="{{dtk}}">
 
+
+
+      <!-- 答题卡 -->
+      <view class="dtk_layout" wx:if="{{dtk}}">
         <view class="ques_title">一、单选题</view>
         <view class="warp">
           <view class="for" wx:for="{{id_list}}" wx:key="index">
@@ -53,17 +87,86 @@
         <view class="submit">交卷</view>
 
       </view>
-  <swiper bindanimationfinish ="swiperchange" current="{{currentTab}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+  <!-- <view bindanimationfinish ="swiperchange"  data-current="{{currentTab}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}"> -->
+
+   <view class="body" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd' style='{{moveLeft}}'>
+
+  <!-- bindanimationfinish ="swiperchange"  -->
   
-    <swiper-item >
+    <!-- <swiper-item > -->
     <!-- wx:for="{{cs}}" wx:key="index" -->
       
       <scroll-view scroll-y="true">
-        <view>{{cs[currentTab]}}</view>
+        <!-- <view>{{question.title}}</view> -->
+        <view class="ques_content">
+          <rich-text nodes="{{question.title}}"></rich-text>
+        </view>
+        
+        <view class="select" wx:if="{{question.a != null}}" data-hh="1" bindtap="hhh">
+          <view class="unsel_A">A</view>
+          <!-- <view class="sel_content"> -->
+            <rich-text nodes="{{question.a}}" class="cs"></rich-text>
+          <!-- </view> -->
+          
+          <!-- <view class="sel_content">{{question.a}}</view> -->
+        </view>
+        <view class="select" wx:if="{{question.b != null}}">
+          <view class="unsel_A">B</view>
+          <!-- <view class="sel_content"> -->
+            <rich-text nodes="{{question.b}}" class="cs"></rich-text>
+          <!-- </view> -->
+          
+          <!-- <view class="sel_content">{{question.b}}</view> -->
+        </view>
+        <view class="select" wx:if="{{question.c != null}}">
+          <view class="unsel_A">C</view>
+          <!-- <view class="sel_content"> -->
+            <rich-text nodes="{{question.c}}" class="cs"></rich-text>
+          <!-- </view> -->
+          
+          <!-- <view class="sel_content">{{question.c}}</view> -->
+        </view>
+        <view class="select" wx:if="{{question.d != null}}">
+          <view class="unsel_A">D</view>
+          <!-- <view class="sel_content"> -->
+            <rich-text nodes="{{question.d}}" class="cs"></rich-text>
+          <!-- </view> -->
+          
+          <!-- <view class="sel_content">{{question.d}}</view> -->
+        </view>
+        <view class="select" wx:if="{{question.e != null}}">
+          <view class="unsel_A">E</view>
+          <rich-text nodes="{{question.e}}"></rich-text>
+          <!-- <view class="sel_content">{{question.e}}</view> -->
+        </view>
+        <view class="select" wx:if="{{question.f != null}}">
+          <view class="unsel_A">F</view>
+          <rich-text nodes="{{question.f}}"></rich-text>
+          <!-- <view class="sel_content">{{question.f}}</view> -->
+        </view>
+        <view class="select" wx:if="{{question.g != null}}">
+          <view class="unsel_A">G</view>
+          <rich-text nodes="{{question.g}}"></rich-text>
+          <!-- <view class="sel_content">{{question.g}}</view> -->
+        </view>
+        <view class="select" wx:if="{{question.h != null}}">
+          <view class="unsel_A">H</view>
+          <rich-text nodes="{{question.h}}"></rich-text>
+          <!-- <view class="sel_content">{{question.h}}</view> -->
+        </view>
+        <!-- <view wx:if="{{question.a != ''}}">A.{{question.a}}</view> -->
+        <!-- <view wx:if="{{question.b != ''}}">B.{{question.b}}</view>
+        <view wx:if="{{question.c != ''}}">C.{{question.c}}</view>
+        <view wx:if="{{question.d != ''}}">D.{{question.d}}</view>
+        <view wx:if="{{question.e != ''}}">E.{{question.e}}</view>
+        <view wx:if="{{question.f != ''}}">F.{{question.f}}</view>
+        <view wx:if="{{question.g != ''}}">G.{{question.g}}</view>
+        <view wx:if="{{question.h != ''}}">H.{{question.h}}</view> -->
+        
       </scroll-view>
       
-    </swiper-item>
-  </swiper>
+    <!-- </swiper-item> -->
+  </view>
 
 
 

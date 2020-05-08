@@ -40,8 +40,16 @@ Page({
     
   },
 
-  
-  
+  // //为http修饰
+  // edithttp: function (url) {
+  //   var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+  //   var objExp = new RegExp(Expression);
+  //   if (objExp.test(url) == true) {
+  //     return '<img style="max-width:100%;" src="' + url + '"></img>';
+  //   } else {
+  //     return url;
+  //   }
+  // },
 
   /**
    * 生命周期函数--监听页面加载
