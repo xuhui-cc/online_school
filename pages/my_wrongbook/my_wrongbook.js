@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    subject: ["语文", "语文", "语文", "语文", "语文", "语文", "语文", "语文", "语文"],
+    // subject: ["语文", "语文", "语文", "语文", "语文", "语文", "语文", "语文", "语文"],
     current_subject:0
   },
 
@@ -15,10 +15,17 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+   
+    that.setData({
+      gid: wx.getStorageSync("gid")
+    })
+
+    that.getsubject()   //获取科目
+
     var params = {
       "token": wx.getStorageSync("token"),
-      "gid":7,
-      "did":10
+      "gid":10,
+      "did":2
     }
     app.ols.wrong(params).then(d => {
       console.log(d)
@@ -33,8 +40,36 @@ Page({
             that.setData({
               [cs1]: false
             })
+
+          //   for (var j = 0; j < that.data.wrong[i].children.length; j++)
           }
         }
+      }
+    })
+  },
+
+  //获取科目接口
+  getsubject: function () {
+    let that = this
+    //获取科目
+    var params = {
+      "gid": that.data.gid
+    }
+    app.ols.discipline(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        let arr2 = [];
+        for (let i in d.data.data) {
+          arr2.push(d.data.data[i]);
+        }
+        console.log(arr2)
+        that.setData({
+          subject: arr2
+        })
+        console.log("获取科目成功")
+      } else {
+        console.log(d.data.msg, "获取科目失败")
       }
     })
   },

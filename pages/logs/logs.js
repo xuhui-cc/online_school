@@ -18,7 +18,8 @@ Page({
     that.getgrade()    //获取年级 
     that.getsubject()   //获取学科
     
-    that.getcourse()         //获取课程
+    
+    // that.getcourse()         //获取课程
     
     
 
@@ -52,7 +53,7 @@ Page({
     })
     
 
-    that.getsubject()    //获取科目
+    that.getspecial()  //获取专题
     that.getcourse()     //获取课程
 
     // //获取专题
@@ -89,12 +90,28 @@ Page({
     console.log('picker发送选择改变，携带值为', e.detail.value)
     that.setData({
       grade_index: e.detail.value,
-      gid: that.data.grade[e.detail.value].id
+      gid: that.data.grade[e.detail.value].id,
+      current_subject:0
+    })
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "gid": that.data.grade[e.detail.value].id
+    }
+    app.ols.grade_update(params).then(d => {
+      console.log(d)
+      console.log("更新接口存班级")
+      if (d.data.code == 200) {
+        // wx.setStorageSync('grade', xb)
+        wx.setStorageSync('gid', that.data.grade[e.detail.value].id)
+        that.getsubject()   //获取科目
+        that.getcourse()    //获取课程
+        that.getspecial()      //获取专题
+
+      }
     })
     // console.log(that.data.grade[that.data.grade_index])
-    wx.setStorageSync("gid", that.data.grade[that.data.grade_index].id)
-    that.getcourse()    //获取课程
-    that.getspecial()      //获取专题
+    // wx.setStorageSync("gid", that.data.grade[that.data.grade_index].id)
+    
     
 
   },
@@ -160,8 +177,11 @@ Page({
         that.setData({
           subject: arr2
         })
+        that.setData({
+          did: that.data.subject[0].id
+        })
         that.getspecial()      //获取专题
-        // that.getcourse()    //获取课程
+        that.getcourse()    //获取课程
       } else {
         console.log(d.data.msg, "获取科目失败")
       }
@@ -193,11 +213,10 @@ Page({
             that.setData({
               grade_index: i
             })
-            // that.getcourse()   //获取课程
-            // that.getsubject()
+            
           }
         }
-
+        
       } else {
         console.log(d.data.msg, "获取年级失败")
       }

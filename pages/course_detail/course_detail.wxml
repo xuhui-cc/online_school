@@ -67,14 +67,14 @@
       </view>
 
 
-      <view class="flex" wx:if="{{course_info.pay_status == 1}}">
+      <view class="flex" wx:if="{{course_info.pay_status <= 1}}">
         <image class="file_img" src="../../images/file.png"></image>
         <view class="file">讲义资料</view>
         <view class="shu"></view>
         <image class="work_img" src="../../images/work.png"></image>
         <view class="file">课后作业</view>
       </view>
-      <view class="heng2" wx:if="{{course_info.pay_status == 1}}"></view>
+      <view class="heng2" wx:if="{{course_info.pay_status <= 1}}"></view>
     </view>
 
     <view class="end_test" wx:if="{{course_info.study == 0 }}">

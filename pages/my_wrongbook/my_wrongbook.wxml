@@ -2,7 +2,7 @@
 <view class="container">
    <view class="head">
     <scroll-view  scroll-x="true" class="tab-h" >
-    <view wx:for="{{subject}}" wx:key="index" class="tab-item {{current_subject==index?'active':''}}" data-current="{{index}}"  bindtap="swichNav_subject">{{item}}</view> 
+    <view wx:for="{{subject}}" wx:key="index" class="tab-item {{current_subject==index?'active':''}}" data-current="{{index}}"  bindtap="swichNav_subject">{{item.title}}</view> 
   </scroll-view> 
     
    </view>

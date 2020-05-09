@@ -156,8 +156,13 @@ function ques_info(params) {
   return fetch.olsfetchpost(URI, 'paper/getpaper', params)
 }
 
+//测评试卷答案提交
+function cp_ans_submit(params) {
+  return fetch.olsfetchpost(URI, 'mark/submittestquestion', params)
+}
 
 
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, study_pro, test_id, setmark, test_explain, ques_detail, ques_info}
+
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, study_pro, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit}

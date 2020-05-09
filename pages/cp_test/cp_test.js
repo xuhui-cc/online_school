@@ -15,7 +15,8 @@ Page({
     lastX: 0,
     lastY: 0,
     text: "没有滑动",
-
+    ques_num:0,
+    finish_all:true
   },
 
   /**
@@ -112,6 +113,33 @@ Page({
         that.setData({
           id_list:d.data.data
         })
+        for(var i=0;i<that.data.id_list.length;i++){
+          var cs = "id_list[" + i + "].ans"
+          that.setData({
+            [cs]:-1
+          })
+          if (that.data.id_list[i].type == 1){
+            that.setData({
+              ques_type:1
+            })
+          } else if (that.data.id_list[i].type == 2) {
+            that.setData({
+              ques_type: 2
+            })
+          } else if (that.data.id_list[i].type == 3) {
+            that.setData({
+              ques_type: 3
+            })
+          } else if (that.data.id_list[i].type == 4) {
+            that.setData({
+              ques_type: 4
+            })
+          } else if (that.data.id_list[i].type == 5) {
+            that.setData({
+              ques_type: 5
+            })
+          }
+        }
         console.log("测评试题id接口调取成功")
       } else {
         console.log("测评试题id接口==============" + d.data.msg)
@@ -173,9 +201,64 @@ Page({
     }
   },
 
-  hhh:function(e){
+  dtk_submit:function(){
     let that = this
-    console.log(e.currentTarget.dataset.hh)
+    console.log("答题卡")
+    for(var i=0;i<that.data.id_list.length;i++){
+      if(that.data.id_list[i].ans == -1){
+        that.setData({
+          finish_all:false
+        })
+      }
+    }
+    console.log(that.data.finish_all,"finish_all")
+  },
+
+  submit_ans:function(e){
+    let that = this
+    var ans = e.currentTarget.dataset.ans
+    var id = e.currentTarget.dataset.id
+    console.log(ans,id)
+    that.cp_ans_submit(ans)   //测评答案提交接口
+    // var cs = "question.myans"
+    // that.setData({
+    //   [cs]:ans
+    // })
+  },
+
+  //测评答案提交接口
+  cp_ans_submit:function(ans){
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "mid": that.data.mid,
+      "eid":that.data.id,
+      "qid":that.data.question.id,
+      "submit":ans,
+      "sactive":0
+    }
+    app.ols.cp_ans_submit(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+
+        var cs = "id_list[" + that.data.currentTab + "].ans"
+        that.setData({
+          [cs]:ans
+        })
+        var cscs = "question.myans"
+        that.setData({
+          [cscs]: ans
+        })
+        
+        console.log("测评试题答案提交接口调取成功")
+      } else {
+        console.log("测评试题答案提交接口==============" + d.data.msg)
+      }
+    })
+    // that.setData({
+    //   start_ans: true
+    // })
   },
 
   //手动滑页
@@ -189,33 +272,38 @@ Page({
     
 
     
-    // var params = {
-    //   "token": wx.getStorageSync("token"),
-    //   "id": that.data.id_list[(current + 1)].pid
-    // }
-    // app.ols.ques_detail(params).then(d => {
-    //   console.log(d)
-    //   if (d.data.code == 0) {
-    //     console.log(d.data.data)
-    //     var cs1 = "question.a"
-    //     var cs2 = "question.b"
-    //     var cs3 = "question.c"
-    //     var cs4 = "question.d"
-    //     that.setData({
-    //       question: d.data.data,
-    //       currentTab: current + 1
-    //     })
-    //     that.setData({
-    //       [cs1]: that.data.question.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-    //       [cs2]: that.data.question.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-    //       [cs3]: that.data.question.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-    //       [cs4]: that.data.question.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
-    //     })
-    //     console.log("测评第" + (current + 2) + "一题接口调取成功")
-    //   } else {
-    //     console.log("测评第" + (current + 2) + "一题接口==============" + d.data.msg)
-    //   }
-    // })
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "id": that.data.id_list[(current + 1)].pid
+    }
+    app.ols.ques_detail(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        var cs1 = "question.a"
+        var cs2 = "question.b"
+        var cs3 = "question.c"
+        var cs4 = "question.d"
+        that.setData({
+          question: d.data.data,
+          currentTab: current + 1
+        })
+        var cs = "question.myans"
+        that.setData({
+          [cs]: -1
+        })
+        that.setData({
+          [cs1]: that.data.question.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+          [cs2]: that.data.question.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+          [cs3]: that.data.question.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+          [cs4]: that.data.question.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+
+        })
+        console.log("测评第" + (current + 2) + "一题接口调取成功")
+      } else {
+        console.log("测评第" + (current + 2) + "一题接口==============" + d.data.msg)
+      }
+    })
     
 
   },
@@ -234,6 +322,21 @@ Page({
         console.log(d.data.data)
         that.setData({
           question: d.data.data
+        })
+        var cs1 = "question.a"
+        var cs2 = "question.b"
+        var cs3 = "question.c"
+        var cs4 = "question.d"
+        var cs = "question.myans"
+        that.setData({
+          [cs]: -1
+        })
+        that.setData({
+          [cs1]: that.data.question.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+          [cs2]: that.data.question.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+          [cs3]: that.data.question.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+          [cs4]: that.data.question.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+
         })
         console.log("测评第一题接口调取成功")
       } else {
