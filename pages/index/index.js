@@ -65,6 +65,16 @@ Page({
     })
   },
 
+  to_cp_report:function(e){
+    let that = this
+    var xb = e.currentTarget.dataset.xb
+    var mid = that.data.test_list.lists[xb].mid
+    console.log(xb)
+    wx.navigateTo({
+      url: '../../pages/cp_report/cp_report?mid=' + mid,
+    })
+  },
+
 
   //获取测评列表
   test_list:function(){
@@ -83,6 +93,10 @@ Page({
         console.log("获取测评列表接口成功")
         that.setData({
           test_list: d.data.data
+        })
+      }else{
+        that.setData({
+          test_list: ''
         })
       }
     })

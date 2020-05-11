@@ -11,7 +11,7 @@ page{
 }
 
 .test_margin{
-  margin-top: 176rpx;
+  margin-top: 195rpx;
   margin-bottom: 100rpx;
 }
 .grade_content{

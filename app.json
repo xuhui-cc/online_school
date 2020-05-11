@@ -20,6 +20,7 @@
     "pages/video/video",
     "pages/finish_test_report/finish_test_report",
     "pages/cp_test/cp_test",
+    "pages/cp_report/cp_report",
     "pages/cs/cs"
   ],
   "window": {

@@ -16,7 +16,8 @@ Page({
     lastY: 0,
     text: "没有滑动",
     ques_num:0,
-    finish_all:true
+    finish_all:true,
+    diffX:0
   },
 
   /**
@@ -167,37 +168,129 @@ Page({
   },
   touchMove: function (e) {
     let that = this
-    console.log('touchMove')
+    var diffX
+    console.log(e.touches.length,'e.touches.length')
     if (e.touches.length == 1) {
       var moveX = e.touches[0].clientX;
-      console.log(moveX,'moveX')
-      var diffX = that.data.startX - moveX;
-      console.log(diffX, 'diffX')
+      // console.log(moveX,'moveX')
+      diffX = that.data.startX - moveX;
+      // console.log(diffX, 'diffX')
       var moveLeft = '';
       if (diffX < 0) { //向右
         moveLeft = 'left:' + -(diffX < -90 ? -90 : diffX) + 'px;';
-        console.log("右")
+        // console.log("右")
       } else if (diffX > 0) { //向左
         moveLeft = 'left:-' + (diffX > 90 ? 90 : diffX) + 'px;';
-        console.log("左")
+        // console.log("左")
       } else {
         moveLeft = 'left:0px;';
 
       }
-      console.log(diffX,"diffX")
+      // console.log(diffX,"diffX")
+      // console.log(currentTab, "currentTab")
+      
       that.setData({
+        // diffX:diffX,
         moveLeft: moveLeft
       });
     }
+    console.log(that.data.diffX,"that.data.diffX")
   },
   touchEnd: function (e) {
+    let that =this
     if (e.changedTouches.length == 1) {
       var endX = e.changedTouches[0].clientX;
       var diffX = this.data.startX - endX;
+      console.log(diffX,"diffxxx")
       var moveLeft = 'left:0px;';
       this.setData({
         moveLeft: moveLeft
       });
+      if(diffX>2){
+        if (that.data.currentTab == (that.data.ques_info.num -1)){
+          wx.showToast({
+            title: '已经是最后一道咯~',
+            icon:"none",
+            duration:2500
+          })
+        }else{
+          var params = {
+            "token": wx.getStorageSync("token"),
+            "id": that.data.id_list[(that.data.currentTab + 1)].pid
+          }
+          app.ols.ques_detail(params).then(d => {
+            console.log(d)
+            if (d.data.code == 0) {
+              console.log(d.data.data)
+              var cs1 = "question.a"
+              var cs2 = "question.b"
+              var cs3 = "question.c"
+              var cs4 = "question.d"
+              that.setData({
+                question: d.data.data,
+                currentTab: that.data.currentTab + 1
+              })
+              var cs = "question.myans"
+              that.setData({
+                [cs]: that.data.id_list[that.data.currentTab].ans
+              })
+              that.setData({
+                [cs1]: that.data.question.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+                [cs2]: that.data.question.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+                [cs3]: that.data.question.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+                [cs4]: that.data.question.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+
+              })
+              console.log("测评第" + (that.data.currentTab + 1) + "一题接口调取成功")
+            } else {
+              console.log("测评第" + (that.data.currentTab + 1) + "一题接口==============" + d.data.msg)
+            }
+          })
+        }
+        
+      }else if(diffX < 0){
+        if(that.data.currentTab == 0){
+          wx.showToast({
+            title: '已经是第一题咯~',
+            icon:"none",
+            duration:2500
+          })
+        }else{
+          var params = {
+            "token": wx.getStorageSync("token"),
+            "id": that.data.id_list[(that.data.currentTab - 1)].pid
+          }
+          app.ols.ques_detail(params).then(d => {
+            console.log(d)
+            if (d.data.code == 0) {
+              console.log(d.data.data)
+              var cs1 = "question.a"
+              var cs2 = "question.b"
+              var cs3 = "question.c"
+              var cs4 = "question.d"
+              that.setData({
+                question: d.data.data,
+                currentTab: that.data.currentTab - 1
+              })
+              var cs = "question.myans"
+              that.setData({
+                [cs]: that.data.id_list[that.data.currentTab].ans
+              })
+              that.setData({
+                [cs1]: that.data.question.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+                [cs2]: that.data.question.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+                [cs3]: that.data.question.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+                [cs4]: that.data.question.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+
+              })
+              console.log("测评第" + (that.data.currentTab + 1) + "一题接口调取成功")
+            } else {
+              console.log("测评第" + (that.data.currentTab + 1) + "一题接口==============" + d.data.msg)
+            }
+          })
+        }
+        
+      }
     }
   },
 
@@ -212,6 +305,21 @@ Page({
       }
     }
     console.log(that.data.finish_all,"finish_all")
+    // var params = {
+    //   "token": wx.getStorageSync("token"),
+    //   "mid": that.data.mid,
+    //   "answerline": 1200
+    // }
+    // app.ols.update_cpsubmit(params).then(d => {
+    //   console.log(d)
+    //   if (d.data.code == 0) {
+    //     console.log(d.data.data)
+
+    //     console.log("更新测评状态接口调取成功")
+    //   } else {
+    //     console.log("更新测评状态接口==============" + d.data.msg)
+    //   }
+    // })
   },
 
   submit_ans:function(e){
@@ -370,11 +478,20 @@ Page({
 
   },
 
+  //返回上一层
+  back:function(){
+    let that = this
+    that.setData({
+      back: true
+    })
+    console.log(that.data.back, "back")
+  },
+
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    
   },
 
   /**

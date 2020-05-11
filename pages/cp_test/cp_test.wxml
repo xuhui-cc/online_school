@@ -1,5 +1,12 @@
 <view class="container">
 
+ <!-- 标题栏 -->
+  <view class="nabigation_bar">
+    <image class="back" src="../../images/back.png" bindtap="back"></image>
+    <view class="head">测评</view>
+  </view>
+  <!-- 标题栏结束 -->
+
   <!-- 试卷说明 -->
   <view class="test_explain" wx:if="{{!start_ans}}">
     <view class="title">{{test_explain.title}}</view>
@@ -35,7 +42,8 @@
 
 
   <!-- 答题卡 -->
-  <view class="dtk_layout" wx:if="{{dtk}}">
+  <!-- wx:if="{{dtk}}" -->
+  <view class="dtk_layout" >
     <view class="ques_title" wx:if="{{ques_type == 1}}">一、单选题</view>
     <view class="warp">
       <view class="for" wx:for="{{id_list}}" wx:key="index">
@@ -75,14 +83,15 @@
 
   </view>
 
+  <!-- 试卷详情 -->
 
-  <swiper bindanimationfinish ="swiperchange"  data-current="{{currentTab}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+  <!-- <swiper bindanimationfinish ="swiperchange"  data-current="{{currentTab}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}"> -->
 
-   <!-- <view class="body" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd' style='{{moveLeft}}'> -->
+   <view class="body" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd'  style='{{moveLeft}}'>
 
-  <!-- bindanimationfinish ="swiperchange"  -->
+    <!-- bindanimationfinish ="swiperchange"  -->
   
-    <swiper-item >
+    <!-- <swiper-item > -->
     <!-- wx:for="{{cs}}" wx:key="index" -->
       
       <scroll-view scroll-y="true">
@@ -138,9 +147,44 @@
         
       </scroll-view>
       
-    </swiper-item>
-  <!-- </view> -->
-  </swiper>
+    <!-- </swiper-item> -->
+  </view>
+  <!-- </swiper> -->
+
+
+  <!-- 交卷提示 -->
+  <view class="mask" wx:if="{{!finish_all}}"></view>
+  <view class="unfinish_layout" wx:if="{{!finish_all}}">
+    <view class="tip1">您还有题目没有做完是否现在交卷？</view>
+    <view class="tip2">* 提交后不能再次答卷哦~</view>
+  
+    <view class="heng"></view>
+    <view class="flex">
+      <view class="yes">是，我要交卷</view>
+      <view class="shu"></view>
+      <view class="yes" style="color:#03B683;">否，继续做题</view>
+    </view>
+    
+  
+  
+  </view>
+
+  <!-- 返回提示 -->
+  <view class="mask" wx:if="{{back}}"></view>
+  <view class="unfinish_layout" wx:if="{{back}}">
+    <view class="tip1" style="width:350rpx;margin-left: 80rpx;">退出后将不会保留做题记录,是否确认退出？</view>
+    
+  
+    <view class="heng" style="margin-top:40rpx;"></view>
+    <view class="flex">
+      <view class="yes">是，我要退出</view>
+      <view class="shu"></view>
+      <view class="yes" style="color:#03B683;">否，继续做题</view>
+    </view>
+    
+  
+  
+  </view>
 
 
 

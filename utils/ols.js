@@ -161,8 +161,18 @@ function cp_ans_submit(params) {
   return fetch.olsfetchpost(URI, 'mark/submittestquestion', params)
 }
 
+//更新测评试卷状态
+function update_cpsubmit(params) {
+  return fetch.olsfetchpost(URI, 'mark/submittestmark', params)
+}
+
+//测评报告
+function cp_report(params) {
+  return fetch.olsfetchpost(URI, 'report/gettestchart', params)
+}
 
 
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, study_pro, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit}
+
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, study_pro, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report}
