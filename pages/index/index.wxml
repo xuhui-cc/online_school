@@ -34,6 +34,11 @@
     </view>
   </view>
 
+  <view wx:if="{{test_list == ''}}">
+    <image class="null_img" src="../../images/cp_null.png"></image>
+    <view class="null_tip">暂无测评</view>
+  </view>
+
 
 
 

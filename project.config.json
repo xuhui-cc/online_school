@@ -142,6 +142,13 @@
 					"id": -1,
 					"name": "pages/cs/cs",
 					"pathName": "pages/cs/cs",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/cp_analysis/cp_analysis",
+					"pathName": "pages/cp_analysis/cp_analysis",
 					"scene": null
 				}
 			]

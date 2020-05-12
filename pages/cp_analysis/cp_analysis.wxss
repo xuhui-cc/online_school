@@ -1,85 +1,4 @@
 /* pages/homework/homework.wxss */
-.nabigation_bar{
-  display: flex;
-  position: fixed;
-  width:750rpx;
-  height:176rpx;
-  background:rgba(255,255,255,1);
-  opacity:1;
-}
-.head{
-  margin-left: 280rpx;
-  margin-top: 107rpx;
-  width:140rpx;
-  height:48rpx;
-  font-size:34rpx;
-  font-family:PingFang SC;
-  font-weight:bold;
-  line-height:48rpx;
-  color:#000000;
-  opacity:1;
-}
-.test_explain{
-  position: absolute;
-  margin-top: 176rpx;
-  width:750rpx;
-  height:1624rpx;
-  background:rgba(255,255,255,1);
-  opacity:1;
-  z-index: 20;
-}
-.title{
-  margin-left: 30rpx;
-  margin-top: 123rpx;
-  width:690rpx;
-  height:53rpx;
-  font-size:38rpx;
-  font-family:PingFang SC;
-  font-weight:bold;
-  line-height:53rpx;
-  text-align: center;
-  color:rgba(39,39,39,1);
-  opacity:1;
-}
-.explain{
-  margin-left: 30rpx;
-  margin-top: 115rpx;
-  margin-bottom: 75rpx;
-  width:690rpx;
-  height:42rpx;
-  font-size:30rpx;
-  font-family:PingFang SC;
-  font-weight:400;
-  line-height:64rpx;
-  text-align: center;
-  color:rgba(113,113,113,1);
-  opacity:1;
-}
-.layout{
-  margin-top: 176rpx;
-  display: flex;
-  width:750rpx;
-  height:90rpx;
-  /* background:rgba(255,255,255,1); */
-  opacity:1;
-}
-.start_btn{
-  margin-left: 30rpx;
-  margin-top: 400rpx;
-  width:690rpx;
-  height:75rpx;
-  
-  font-size:28rpx;
-  font-family:PingFang SC;
-  font-weight:400;
-  line-height:75rpx;
-  text-align-last: center;
-  color:rgba(255,255,255,1);
-
-  background:rgba(2,220,159,1);
-  opacity:1;
-  border-radius:38rpx;
-}
 .flex{
   display: flex;
   /* margin-top: 78rpx; */
@@ -94,6 +13,14 @@
   font-weight:400;
   line-height:64rpx;
   color:rgba(0,0,0,1);
+  opacity:1;
+}
+.layout{
+  
+  display: flex;
+  width:750rpx;
+  height:90rpx;
+  /* background:rgba(255,255,255,1); */
   opacity:1;
 }
 .ques_num{
@@ -182,7 +109,7 @@
 }
 .dtk_layout{
   position: absolute;
-  margin-top:271rpx;
+  margin-top:95rpx;
   width: 750rpx;
   /* height: 1126rpx; */
   background: rgba(255,255,255,1);
@@ -298,76 +225,48 @@
   line-height:64rpx;
   vertical-align:top;
 }
-.mask{
-  position: fixed;
-  width:750rpx;
-  height:1624rpx;
-  background:rgba(0,0,0,1);
-  opacity:0.54;
-  z-index: 15;
-}
-.unfinish_layout{
-  position: fixed;
-  margin-top: 500rpx;
-  margin-left: 125rpx;
-  width:499rpx;
-  /* height:304rpx; */
-  background:rgba(255,255,255,1);
+.shu{
+  margin-left: 30rpx;
+  margin-top: 61rpx;
+  width:8rpx;
+  height:21rpx;
+  background:rgba(2,220,159,1);
   opacity:1;
-  z-index: 16;
-  border-radius: 15rpx;
+  border-radius:350rpx;
 }
-.tip1{
-  margin-left: 97rpx;
-  margin-top: 40rpx;
-  width:306rpx;
-  height:96rpx;
+.right{
+  margin-left: 13rpx;
+  margin-top: 45rpx;
+  width:170rpx;
+  height:48rpx;
   font-size:34rpx;
   font-family:PingFang SC;
-  font-weight:400;
-  line-height:50rpx;
-  text-align: center;
+  font-weight:bold;
+  line-height:48rpx;
   color:rgba(0,0,0,1);
   opacity:1;
 }
-.tip2{
-  margin-left: 114rpx;
-  margin-top: 23rpx;
-  width:255rpx;
-  height:30rpx;
-  font-size:22rpx;
+.right_ans{
+  margin-left: 9rpx;
+  margin-top: 45rpx;
+  width:24rpx;
+  height:48rpx;
+  font-size:34rpx;
   font-family:PingFang SC;
-  font-weight:400;
-  line-height:30rpx;
-  color:rgba(248,107,107,1);
+  font-weight:bold;
+  line-height:48rpx;
+  color:rgba(3,182,131,1);
   opacity:1;
 }
-.heng{
-  margin-top: 20rpx;
-  width:498rpx;
-  height:0rpx;
-  border:1rpx solid rgba(0,0,0,1);
-  opacity:0.12;
-}
-.yes{
-  width:250rpx;
-  height:96rpx;
+.your{
+  margin-left: 49rpx;
+  margin-top: 45rpx;
+  /* width:159rpx; */
+  height:40rpx;
   font-size:28rpx;
   font-family:PingFang SC;
   font-weight:400;
-  line-height:96rpx;
-  text-align: center;
-  color:rgba(181,181,181,1);
+  line-height:50rpx;
+  color:rgba(0,0,0,1);
   opacity:1;
-}
-.shu{
-  width:0rpx;
-  height:97rpx;
-  border:1rpx solid rgba(0,0,0,1);
-  opacity:0.12;
-}
-.back{
-  margin-top: 107rpx;
-  width:60rpx;
-  height:60rpx;
 }

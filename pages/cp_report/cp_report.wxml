@@ -1,5 +1,41 @@
 <view class="container">
 
+  <view class="layout1">
+    <view class="flex">
+      <view class="shu"></view>
+      <view class="your_score">您的得分：</view>
+      <view class="num" wx:if="{{report.chart.get_score == null}}">0</view>
+      <view class="num" wx:if="{{report.chart.get_score != null}}">{{report.chart.get_score}}</view>
+      <view class="fen">分</view>
+    </view>
+
+    <view class="flex">
+      <view class="all_num">共 <text style="font-size:46rpx;"> {{report.chart.all_num}} </text> 题</view>
+      <view class="shu2"></view>
+      <view class="right">答对：<text style="font-size:46rpx;color:#14CBA2;"> {{report.chart.right_num}} </text></view>
+      <view class="right">答错：<text style="font-size:46rpx;color:#F86B6B;"> {{report.chart.worry_num}} </text></view>
+      <view class="right">未做：<text style="font-size:46rpx;color:#BABABA;"> {{report.chart.miss_num}} </text></view>
+    </view>
+
+    <view class="wrap">
+      <view wx:for="{{report.option}}" wx:key="index">
+        <view wx:if="{{item.status == 1}}" class="r-a-w" style="background:#03B683;" data-index="{{index}}" bindtap="to_cp_analysis">{{index + 1}}</view>
+        <view wx:if="{{item.status == 3}}" class="r-a-w" style="background:#F86B6B;" data-index="{{index}}" bindtap="to_cp_analysis">{{index + 1}}</view>
+        <view wx:if="{{item.status == 0}}" class="r-a-w" style="background:#EBEBEB;" data-index="{{index}}" bindtap="to_cp_analysis">{{index + 1}}</view>
+      </view>
+    </view>
+
+    <view class="heng"></view>
+
+    <view class="flex">
+      <view class="shu"></view>
+      <view class="your_score">名师点评</view>
+    </view>
+
+  
+  
+  
+  </view>
 
 
 

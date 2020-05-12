@@ -116,5 +116,10 @@ Page({
     wx.setStorageSync("gid", that.data.grade[that.data.grade_index].id)
 
   },
+
+  onShow: function () {
+    let that = this
+    that.test_list()       //获取测评试卷列表
+  }
   
 })

@@ -111,3 +111,21 @@ page{
   color:rgba(255,255,255,1);
   opacity:1;
 }
+.null_img{
+  margin-left: 273rpx;
+  margin-top: 623rpx;
+  width:200rpx;
+  height:257rpx;
+}
+.null_tip{
+  margin-left: 320rpx;
+  margin-top: 45rpx;
+  width:120rpx;
+  height:42rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:42rpx;
+  color:rgba(199,197,197,1);
+  opacity:1;
+}
