@@ -22,6 +22,7 @@
     "pages/cp_test/cp_test",
     "pages/cp_report/cp_report",
     "pages/cp_analysis/cp_analysis",
+    "pages/wrong/wrong",
     "pages/cs/cs"
   ],
   "window": {

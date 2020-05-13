@@ -8,37 +8,57 @@
    </view>
   
   
-  <view class="content-ul">
-    <view wx:for="{{wrong}}" wx:key="index">
+  <view class="content-ul" wx:if="{{wrong != ''}}">
+    <view wx:for="{{wrong}}" wx:key="index" wx:for-index="item_index">
 
       <!-- 第一层循环 -->
-      <view class="content-li">
+      <view class="content-li" wx:if="{{item.count != 0}}">
         <view class="li-img" >
-          <image src="/images/icon_jia.png" wx:if="{{item.fold1 == false}}" data-xb1="{{index}}" bindtap="fold1"></image>
-          <image src="/images/icon_jian.png" wx:if="{{item.fold1 == true}}" data-xb1="{{index}}" bindtap="fold1"></image>
+          <image src="/images/icon_jia.png" wx:if="{{item.fold1 == false}}" data-xb1="{{item_index}}" bindtap="fold1"></image>
+          <image src="/images/icon_jian.png" wx:if="{{item.fold1 == true}}" data-xb1="{{item_index}}" bindtap="fold1"></image>
         </view>
         <view class="li-right">
           <view class="title">{{item.name}} <text class="num">[{{item.count}}]</text> </view>
           <view wx:if="{{item.children == ''}}" class="li-right-r"></view>
         </view>
       </view>
+
       <!-- 第二次循环 -->
       <view wx:for="{{item.children}}" wx:key="children1_index" wx:for-item="children1" wx:for-index="children1_index" wx:if="{{item.fold1}}">
+      <view class="flex">
         <view class="content-li">
-        <view class="li-img" >
-          <!-- <image src="/images/icon_jia.png" wx:if="{{item.fold1}}"></image> -->
+          <image class="img_fold2" src="/images/icon_jia.png"  wx:if="{{children1.fold2 == false}}" data-xb1="{{item_index}}" data-xb2="{{children1_index}}" bindtap="fold2"></image>
+          <image class="img_fold2" src="/images/icon_jian.png" wx:if="{{children1.fold2 == true}}" data-xb1="{{item_index}}" data-xb2="{{children1_index}}" bindtap="fold2"></image>
+          <!-- <image src="/images/icon_jia.png" wx:if="{{children1.fold1}}"></image> -->
         </view>
         <view class="li-right">
           <view class="title">{{children1.name}} <text class="num">[{{children1.count}}]</text> </view>
           <view wx:if="{{children1.children == ''}}" class="li-right-r"></view>
         </view>
       </view>
-      
-      
-      
+        <!-- 第三次循环 -->
+        <view wx:for="{{children1.children}}" wx:key="children1_index" wx:for-item="children2" wx:for-index="children2_index" wx:if="{{children1.fold2}}">
+        <view class="flex">
+          <view class="li-right">
+            <view class="title" style="margin-left:1200rpx;">{{children2.name}} <text class="num">[{{children2.count}}]</text> </view>
+            <view wx:if="{{children1.children == ''}}" class="li-right-r"></view>
+          </view>
+        </view>
+        </view>
       </view>
 
+      
+
+      
+
+      
+
     </view>
+  </view>
+
+  <view wx:if="{{wrong == ''}}">
+    <image class="null_img" src="../../images/null_wrong.png"></image>
+    <view class="null_tip">暂无错题</view>
   </view>
 
 

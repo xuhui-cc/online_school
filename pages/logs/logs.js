@@ -39,6 +39,29 @@ Page({
     that.setData({
       current_special: cur
     })
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "gid": that.data.gid,
+      "did": that.data.did,
+      "cid": that.data.special[cur].id,
+      "num": 12,
+      "page": 1
+    }
+    app.ols.grade_course(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        that.setData({
+          course: d.data.data
+        })
+        console.log(that.data.course, "专题获取课程")
+      } else {
+        console.log(d.data.msg, "专题获取课程msg，失败")
+        that.setData({
+          course: ''
+        })
+      }
+    })
       
   },
 

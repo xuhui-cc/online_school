@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentTab:0,
+    currentTab: 0,
     clientHeight: 1000,
     dtk: false,
     start_ans: false,
@@ -28,33 +28,33 @@ Page({
     var id = options.id
     var eid = options.eid
     var mid = options.mid
-    console.log(index,id,eid,mid)
+    console.log(index, id, eid, mid)
     that.setData({
-      currentTab:Number(index),
-      eid:eid,
-      mid:mid
+      currentTab: Number(index),
+      eid: eid,
+      mid: mid
     })
-    
-    that.get_cp_analysis(id,eid)
+
+    that.get_cp_analysis(id, eid)
     that.cp_ans_id()          //试题ID列表
   },
 
   //答题卡试题解析题目跳转
-  dtk_jump:function(e){
+  dtk_jump: function (e) {
     let that = this
     var index = e.currentTarget.dataset.index
     console.log(index)
     that.setData({
-      currentTab:index
+      currentTab: index
     })
     that.get_cp_analysis(that.data.id_list[1][(that.data.currentTab)].pid, that.data.eid)
     that.setData({
       dtk: false
     })
   },
-  
+
   //获取试题
-  get_cp_analysis:function(id,eid){
+  get_cp_analysis: function (id, eid) {
     let that = this
     var params = {
       "token": wx.getStorageSync("token"),
@@ -100,7 +100,7 @@ Page({
     })
 
   },
-  
+
 
   //测评试题ID列表
   cp_ans_id: function () {
@@ -118,7 +118,7 @@ Page({
         })
         var length = that.data.id_list[1].length
         that.setData({
-          all_num:length
+          all_num: length
         })
         // console.log(length,"length")
         for (var i = 0; i < that.data.id_list.length; i++) {
@@ -203,7 +203,7 @@ Page({
           that.setData({
             currentTab: that.data.currentTab + 1
           })
-          that.get_cp_analysis(that.data.id_list[1][(that.data.currentTab)].pid,that.data.eid)
+          that.get_cp_analysis(that.data.id_list[1][(that.data.currentTab)].pid, that.data.eid)
         }
 
       } else if (diffX < -35) {
@@ -224,10 +224,10 @@ Page({
     }
   },
 
-  
-  
 
-  
+
+
+
   //手动滑页
   swiperchange: function (e) {
     var that = this
@@ -271,11 +271,11 @@ Page({
 
   },
 
-  
 
-  
 
-  
+
+
+
 
 
   /**
@@ -299,7 +299,7 @@ Page({
 
   },
 
-  
+
 
   /**
    * 生命周期函数--监听页面卸载

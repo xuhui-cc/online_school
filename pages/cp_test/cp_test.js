@@ -37,6 +37,57 @@ Page({
     
   },
 
+  //获取试题
+  get_cp_test:function(id){
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "id": id
+    }
+    app.ols.ques_detail(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        var cs1 = "question.a"
+        var cs2 = "question.b"
+        var cs3 = "question.c"
+        var cs4 = "question.d"
+        that.setData({
+          question: d.data.data,
+          // currentTab: that.data.currentTab + 1
+        })
+        var cs = "question.myans"
+        that.setData({
+          [cs]: that.data.id_list[that.data.currentTab].ans
+        })
+        if (that.data.question.a != null) {
+          that.setData({
+            [cs1]: that.data.question.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+          })
+        }
+        if (that.data.question.b != null) {
+          that.setData({
+            [cs2]: that.data.question.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+          })
+        }
+        if (that.data.question.c != null) {
+          that.setData({
+            [cs3]: that.data.question.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+          })
+        }
+        if (that.data.question.d != null) {
+          that.setData({
+            [cs4]: that.data.question.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+          })
+        }
+        console.log("测评题接口调取成功")
+        
+      } else {
+        console.log("测评题接口==============" + d.data.msg)
+      }
+    })
+  },
+
   //获取试卷概要
   test_explain:function(){
     let that = this
@@ -119,27 +170,6 @@ Page({
           that.setData({
             [cs]:-1
           })
-          if (that.data.id_list[i].type == 1){
-            that.setData({
-              ques_type:1
-            })
-          } else if (that.data.id_list[i].type == 2) {
-            that.setData({
-              ques_type: 2
-            })
-          } else if (that.data.id_list[i].type == 3) {
-            that.setData({
-              ques_type: 3
-            })
-          } else if (that.data.id_list[i].type == 4) {
-            that.setData({
-              ques_type: 4
-            })
-          } else if (that.data.id_list[i].type == 5) {
-            that.setData({
-              ques_type: 5
-            })
-          }
         }
         console.log("测评试题id接口调取成功")
       } else {
@@ -153,6 +183,20 @@ Page({
     let that = this
     that.setData({
       dtk: !that.data.dtk
+    })
+  },
+
+  //答题卡题号跳转
+  dtk_jump:function(e){
+    let that = this
+    var index = e.currentTarget.dataset.index
+    console.log(index,"index")
+    that.setData({
+      currentTab:index
+    })
+    that.get_cp_test(that.data.id_list[index].pid)
+    that.setData({
+      dtk: false
     })
   },
 
@@ -176,10 +220,10 @@ Page({
       diffX = that.data.startX - moveX;
       // console.log(diffX, 'diffX')
       var moveLeft = '';
-      if (diffX < 0) { //向右
+      if (diffX < -35) { //向右
         moveLeft = 'left:' + -(diffX < -90 ? -90 : diffX) + 'px;';
         // console.log("右")
-      } else if (diffX > 0) { //向左
+      } else if (diffX > 35) { //向左
         moveLeft = 'left:-' + (diffX > 90 ? 90 : diffX) + 'px;';
         // console.log("左")
       } else {
@@ -206,49 +250,24 @@ Page({
       this.setData({
         moveLeft: moveLeft
       });
-      if(diffX>2){
+      if(diffX > 35){
         if (that.data.currentTab == (that.data.ques_info.num -1)){
           wx.showToast({
             title: '已经是最后一道咯~',
             icon:"none",
             duration:2500
           })
-        }else{
-          var params = {
-            "token": wx.getStorageSync("token"),
-            "id": that.data.id_list[(that.data.currentTab + 1)].pid
-          }
-          app.ols.ques_detail(params).then(d => {
-            console.log(d)
-            if (d.data.code == 0) {
-              console.log(d.data.data)
-              var cs1 = "question.a"
-              var cs2 = "question.b"
-              var cs3 = "question.c"
-              var cs4 = "question.d"
-              that.setData({
-                question: d.data.data,
-                currentTab: that.data.currentTab + 1
-              })
-              var cs = "question.myans"
-              that.setData({
-                [cs]: that.data.id_list[that.data.currentTab].ans
-              })
-              that.setData({
-                [cs1]: that.data.question.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-                [cs2]: that.data.question.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-                [cs3]: that.data.question.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-                [cs4]: that.data.question.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
-
-              })
-              console.log("测评第" + (that.data.currentTab + 1) + "一题接口调取成功")
-            } else {
-              console.log("测评第" + (that.data.currentTab + 1) + "一题接口==============" + d.data.msg)
-            }
+          that.setData({
+            dtk:true
           })
+        }else{
+          that.setData({
+            currentTab: that.data.currentTab + 1
+          })
+          that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
         }
         
-      }else if(diffX < 0){
+      }else if(diffX < -35){
         if(that.data.currentTab == 0){
           wx.showToast({
             title: '已经是第一题咯~',
@@ -256,38 +275,10 @@ Page({
             duration:2500
           })
         }else{
-          var params = {
-            "token": wx.getStorageSync("token"),
-            "id": that.data.id_list[(that.data.currentTab - 1)].pid
-          }
-          app.ols.ques_detail(params).then(d => {
-            console.log(d)
-            if (d.data.code == 0) {
-              console.log(d.data.data)
-              var cs1 = "question.a"
-              var cs2 = "question.b"
-              var cs3 = "question.c"
-              var cs4 = "question.d"
-              that.setData({
-                question: d.data.data,
-                currentTab: that.data.currentTab - 1
-              })
-              var cs = "question.myans"
-              that.setData({
-                [cs]: that.data.id_list[that.data.currentTab].ans
-              })
-              that.setData({
-                [cs1]: that.data.question.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-                [cs2]: that.data.question.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-                [cs3]: that.data.question.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-                [cs4]: that.data.question.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
-
-              })
-              console.log("测评第" + (that.data.currentTab + 1) + "一题接口调取成功")
-            } else {
-              console.log("测评第" + (that.data.currentTab + 1) + "一题接口==============" + d.data.msg)
-            }
+          that.setData({
+            currentTab: that.data.currentTab - 1
           })
+          that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
         }
         
       }
@@ -383,42 +374,13 @@ Page({
     var index = e.detail.current;//当前所在页面的 index
     console.log(index)
     console.log(current + 1)
-
-    
-
-    
-    var params = {
-      "token": wx.getStorageSync("token"),
-      "id": that.data.id_list[(current + 1)].pid
-    }
-    app.ols.ques_detail(params).then(d => {
-      console.log(d)
-      if (d.data.code == 0) {
-        console.log(d.data.data)
-        var cs1 = "question.a"
-        var cs2 = "question.b"
-        var cs3 = "question.c"
-        var cs4 = "question.d"
-        that.setData({
-          question: d.data.data,
-          currentTab: current + 1
-        })
-        var cs = "question.myans"
-        that.setData({
-          [cs]: -1
-        })
-        that.setData({
-          [cs1]: that.data.question.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          [cs2]: that.data.question.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          [cs3]: that.data.question.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          [cs4]: that.data.question.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
-
-        })
-        console.log("测评第" + (current + 2) + "一题接口调取成功")
-      } else {
-        console.log("测评第" + (current + 2) + "一题接口==============" + d.data.msg)
-      }
+    that.setData({
+      currentTab: current + 1
     })
+    that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
+
+    
+    
     
 
   },
@@ -427,37 +389,7 @@ Page({
   start_ans:function(){
     let that = this
     
-    var params = {
-      "token": wx.getStorageSync("token"),
-      "id": that.data.id_list[0].pid
-    }
-    app.ols.ques_detail(params).then(d => {
-      console.log(d)
-      if (d.data.code == 0) {
-        console.log(d.data.data)
-        that.setData({
-          question: d.data.data
-        })
-        var cs1 = "question.a"
-        var cs2 = "question.b"
-        var cs3 = "question.c"
-        var cs4 = "question.d"
-        var cs = "question.myans"
-        that.setData({
-          [cs]: -1
-        })
-        that.setData({
-          [cs1]: that.data.question.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          [cs2]: that.data.question.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          [cs3]: that.data.question.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          [cs4]: that.data.question.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
-
-        })
-        console.log("测评第一题接口调取成功")
-      } else {
-        console.log("测评第一题接口==============" + d.data.msg)
-      }
-    })
+    that.get_cp_test(that.data.id_list[0].pid)      //获取试题
     that.setData({
       start_ans : true
     })
@@ -498,6 +430,9 @@ Page({
           console.log(d.data.data)
 
           console.log("更新测评状态接口调取成功")
+          wx.navigateBack({
+            delta: 1  // 返回上一级页面。
+          })
         } else {
           console.log("更新测评状态接口==============" + d.data.msg)
         }

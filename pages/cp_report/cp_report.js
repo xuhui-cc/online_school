@@ -42,7 +42,7 @@ Page({
     var index = e.currentTarget.dataset.index
     console.log(index)
     wx.navigateTo({
-      url: '../../pages/cp_analysis/cp_analysis?index=' + index + "&id=" + that.data.report.option[index].pid + "&eid=" + that.data.report.eid,
+      url: '../../pages/cp_analysis/cp_analysis?index=' + index + "&id=" + that.data.report.option[index].pid + "&eid=" + that.data.report.eid + "&mid=" + that.data.mid,
     })
   },
 

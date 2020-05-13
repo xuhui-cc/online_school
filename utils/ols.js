@@ -176,8 +176,14 @@ function cp_analysis(params) {
   return fetch.olsfetchpost(URI, 'report/getquestion', params)
 }
 
+//某个测评试卷答题卡数据列表
+function cp_ans_id(params) {
+  return fetch.olsfetchpost(URI, 'report/getmarkcard', params)
+}
 
 
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, study_pro, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis}
+
+
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, study_pro, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id}

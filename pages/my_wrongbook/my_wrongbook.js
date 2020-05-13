@@ -21,29 +21,45 @@ Page({
     })
 
     that.getsubject()   //获取科目
+    
+    
+  },
 
+  //获取错题
+  get_wrong:function(did){
+    let that = this
     var params = {
       "token": wx.getStorageSync("token"),
-      "gid":10,
-      "did":2
+      "gid": wx.getStorageSync("gid"),
+      "did": did
     }
     app.ols.wrong(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
         that.setData({
-          wrong:d.data.data
+          wrong: d.data.data
         })
 
-        for(var i=0;i<that.data.wrong.length;i++){
-          if(that.data.wrong[i].children != ''){
+        for (var i = 0; i < that.data.wrong.length; i++) {
+          if (that.data.wrong[i].children != '') {
             var cs1 = "wrong[" + i + "].fold1"
             that.setData({
               [cs1]: false
             })
-
-          //   for (var j = 0; j < that.data.wrong[i].children.length; j++)
+            if (that.data.wrong[i].children != ''){
+              for (var j = 0; j < that.data.wrong[i].children.length; j++){
+                var cs2 = "wrong[" + i + "].children[" + j + "].fold2"
+                that.setData({
+                  [cs2]: false
+                })
+              }
+            }
           }
         }
+      }else{
+        that.setData({
+          wrong: ''
+        })
       }
     })
   },
@@ -67,6 +83,7 @@ Page({
         that.setData({
           subject: arr2
         })
+        that.get_wrong(that.data.subject[that.data.current_subject].id)   //初始化获取试题
         console.log("获取科目成功")
       } else {
         console.log(d.data.msg, "获取科目失败")
@@ -90,6 +107,27 @@ Page({
     }
   },
 
+  //第二层折叠
+  fold2: function (e) {
+    let that = this
+    var xb1 = e.currentTarget.dataset.xb1
+    var xb2 = e.currentTarget.dataset.xb2
+    console.log(xb1,xb2)
+    for (var i = 0; i < that.data.wrong.length; i++) {
+      if (xb1 == i) {
+        for(var j=0;j<that.data.wrong[i].children.length;j++){
+          if(xb2 == j){
+            var cs2 = "wrong[" + i + "].children[" + j + "].fold2"
+            that.setData({
+              [cs2]: true
+            })
+          }
+        }
+       
+      }
+    }
+  },
+
   swichNav_subject: function (e) {
     var that = this
 
@@ -98,7 +136,7 @@ Page({
     that.setData({
       current_subject: cur
     })
-
+    that.get_wrong(that.data.subject[cur].id)
   },
 
   /**

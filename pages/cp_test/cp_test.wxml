@@ -47,37 +47,37 @@
     <view class="ques_title" wx:if="{{ques_type == 1}}">一、单选题</view>
     <view class="warp">
       <view class="for" wx:for="{{id_list}}" wx:key="index">
-        <view wx:if="{{item.type == 1}}" class="r-a-w" style="{{item.ans<0?'background:rgba(235,235,235,1);':'background:rgba(3,182,131,1);'}}">{{index + 1}}</view>
+        <view wx:if="{{item.type == 1}}" class="r-a-w" style="{{item.ans<0?'background:rgba(235,235,235,1);':'background:rgba(3,182,131,1);'}}" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
       </view>
     </view>
 
-    <view class="ques_title" wx:if="{{ques_type == 2}}">二、多选题</view>
+    <!-- <view class="ques_title" wx:if="{{ques_type == 2}}">二、多选题</view>
     <view class="warp">
       <view class="for" wx:for="{{id_list}}" wx:key="index">
-        <view wx:if="{{item.type == 2}}" class="r-a-w" style="{{item.ans<0?'background:rgba(235,235,235,1);':'background:rgba(3,182,131,1);'}}">{{index + 1}}</view>
+        <view wx:if="{{item.type == 2}}" class="r-a-w" style="{{item.ans<0?'background:rgba(235,235,235,1);':'background:rgba(3,182,131,1);'}}" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
       </view>
     </view>
 
     <view class="ques_title" wx:if="{{ques_type == 3}}">三、判断题</view>
     <view class="warp">
       <view class="for" wx:for="{{id_list}}" wx:key="index">
-        <view wx:if="{{item.type == 3}}" class="r-a-w" style="{{item.ans<0?'background:rgba(235,235,235,1);':'background:rgba(3,182,131,1);'}}">{{index + 1}}</view>
+        <view wx:if="{{item.type == 3}}" class="r-a-w" style="{{item.ans<0?'background:rgba(235,235,235,1);':'background:rgba(3,182,131,1);'}}" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
       </view>
     </view>
 
     <view class="ques_title" wx:if="{{ques_type == 4}}">四、简答题</view>
     <view class="warp">
       <view class="for" wx:for="{{id_list}}" wx:key="index">
-        <view wx:if="{{item.type == 4}}" class="r-a-w" style="{{item.ans<0?'background:rgba(235,235,235,1);':'background:rgba(3,182,131,1);'}}">{{index + 1}}</view>
+        <view wx:if="{{item.type == 4}}" class="r-a-w" style="{{item.ans<0?'background:rgba(235,235,235,1);':'background:rgba(3,182,131,1);'}}" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
       </view>
     </view>
 
     <view class="ques_title" wx:if="{{ques_type == 5}}">五、组合题</view>
     <view class="warp">
       <view class="for" wx:for="{{id_list}}" wx:key="index">
-        <view wx:if="{{item.type == 5}}" class="r-a-w" style="{{item.ans<0?'background:rgba(235,235,235,1);':'background:rgba(3,182,131,1);'}}">{{index + 1}}</view>
+        <view wx:if="{{item.type == 5}}" class="r-a-w" style="{{item.ans<0?'background:rgba(235,235,235,1);':'background:rgba(3,182,131,1);'}}" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
       </view>
-    </view>
+    </view> -->
 
     <view class="submit" bindtap="dtk_submit">交卷</view>
 

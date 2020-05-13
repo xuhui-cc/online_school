@@ -83,7 +83,9 @@ page{
   left: 50%;
   margin-left: -18rpx;
 }
-
+.flex{
+  display: flex;
+}
 .content-li{
   height: 105rpx;
   align-items: center;
@@ -102,7 +104,14 @@ page{
   height: 31rpx;
   border-radius:50%; 
 }
-
+.img_fold2{
+  margin-top: 10rpx;
+  margin-left: 70rpx;
+  margin-right: 30rpx;
+  width: 31rpx;
+  height: 31rpx;
+  border-radius:50%; 
+}
 .li-right{
   flex-grow: 1;
   display: flex;
@@ -127,4 +136,22 @@ height: 15rpx;
 border-top: 3rpx solid #DEDEDE;
 border-right: 3rpx solid #DEDEDE;
 transform: rotate(45deg);
+}
+.null_img{
+  margin-left: 286rpx;
+  margin-top: 447rpx;
+  width: 178rpx;
+  height: 257rpx;
+}
+.null_tip{
+  margin-left: 326rpx;
+  margin-top: 20rpx;
+  width:120rpx;
+  height:42rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:42rpx;
+  color:rgba(199,197,197,1);
+  opacity:1;
 }
