@@ -112,6 +112,27 @@ page{
   height: 31rpx;
   border-radius:50%; 
 }
+.layout_children2{
+  display: flex;
+  height: 105rpx;
+}
+.title1{
+  margin-left:120rpx;
+  margin-top: 31rpx;
+  width: 550rpx;
+  font-size:28rpx;
+  color:#272727;
+}
+.num2{
+  color: #B8B8B8;
+}
+.heng{
+  margin-left: 120rpx;
+  width:662rpx;
+  height:0rpx;
+  border:1rpx solid rgba(241,241,241,1);
+  opacity:1;
+}
 .li-right{
   flex-grow: 1;
   display: flex;

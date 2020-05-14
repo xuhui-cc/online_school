@@ -24,7 +24,7 @@ Page({
           course: d.data.data
         })
         for(var i=0;i<that.data.course.length;i++){
-          var pro = (that.data.course[i].study_hour / that.data.course[i].class_hour) * 100
+          var pro = Math.ceil((that.data.course[i].study_hour / that.data.course[i].class_hour) * 100)
           var cs = "course[" + i + "].pro"
           that.setData({
             [cs] :pro

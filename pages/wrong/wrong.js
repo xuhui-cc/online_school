@@ -24,19 +24,15 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    var index = options.index
+    
     var id = options.id
-    var eid = options.eid
-    var mid = options.mid
-    console.log(index, id, eid, mid)
+    console.log(id)
     that.setData({
-      currentTab: Number(index),
-      eid: eid,
-      mid: mid
+      id:id
     })
 
-    that.get_cp_analysis(id, eid)
-    that.cp_ans_id()          //试题ID列表
+    // that.get_cp_analysis(id, eid)
+    that.wrong_id()          //错题ID列表
   },
 
   //答题卡试题解析题目跳转
@@ -47,89 +43,148 @@ Page({
     that.setData({
       currentTab: index
     })
-    that.get_cp_analysis(that.data.id_list[1][(that.data.currentTab)].pid, that.data.eid)
+    that.get_wrong_detail(that.data.id_list[(that.data.currentTab)].id, )
     that.setData({
       dtk: false
     })
   },
 
   //获取试题
-  get_cp_analysis: function (id, eid) {
+  get_wrong_detail: function (qid) {
     let that = this
     var params = {
       "token": wx.getStorageSync("token"),
-      "id": id,
-      "eid": eid
-      //  "id": '8778',
-      // "eid": '18'
+      "qid":qid,
     }
-    app.ols.cp_analysis(params).then(d => {
+    app.ols.wrong_detail(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
-        var cs1 = "analysis.a"
-        var cs2 = "analysis.b"
-        var cs3 = "analysis.c"
-        var cs4 = "analysis.d"
+        if (d.data.data.a != null){
+          d.data.data.a = d.data.data.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+        }
+        if (d.data.data.b != null) {
+          d.data.data.b = d.data.data.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+        }
+        if (d.data.data.c != null) {
+          d.data.data.c = d.data.data.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+        }
+        if (d.data.data.d != null) {
+          d.data.data.d = d.data.data.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+        }
+        
         that.setData({
-          analysis: d.data.data
+          analysis: d.data.data,
         })
-        if (that.data.analysis.a != null) {
-          that.setData({
-            [cs1]: that.data.analysis.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          })
+
+        if(that.data.analysis.type == 2){
+          var submit = that.data.analysis.submit.split(",")
+          if (d.data.data.a != null) {
+            var cs1 = "analysis.a[1]"
+            that.setData({
+              [cs1]: false,
+            })
+          }
+          if (d.data.data.b != null) {
+            var cs1 = "analysis.b[1]"
+            that.setData({
+              [cs1]: false,
+            })
+          }
+          if (d.data.data.c != null) {
+            var cs1 = "analysis.c[1]"
+            that.setData({
+              [cs1]: false,
+            })
+          }
+          if (d.data.data.d != null) {
+            var cs1 = "analysis.d[1]"
+            that.setData({
+              [cs1]: false,
+            })
+          }
+
+          console.log(submit)
+          for(var i=0;i<submit.length;i++){
+            if(submit[i] == "A"){
+              var cs = "analysis.a[1]"
+              that.setData({
+                [cs]: true
+              })
+            } else if (submit[i] == "B"){
+              var cs = "analysis.b[1]"
+              that.setData({
+                [cs]: true
+              })
+            } else if (submit[i] == "C") {
+              var cs = "analysis.c[1]"
+              that.setData({
+                [cs]: true
+              })
+            } else if (submit[i] == "D") {
+              var cs = "analysis.d[1]"
+              that.setData({
+                [cs]: true
+              })
+            }
+          }
         }
-        if (that.data.analysis.b != null) {
-          that.setData({
-            [cs2]: that.data.analysis.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          })
-        }
-        if (that.data.analysis.c != null) {
-          that.setData({
-            [cs3]: that.data.analysis.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          })
-        }
-        if (that.data.analysis.d != null) {
-          that.setData({
-            [cs3]: that.data.analysis.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          })
-        }
-        console.log("测评单一试题接口调取成功")
+        
+        
+        // var cs1 = "analysis.a"
+        // var cs2 = "analysis.b"
+        // var cs3 = "analysis.c"
+        // var cs4 = "analysis.d"
+        // that.setData({
+        //   analysis: d.data.data
+        // })
+        // if (that.data.analysis.a != null) {
+        //   that.setData({
+        //     [cs1]: that.data.analysis.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+        //   })
+        // }
+        // if (that.data.analysis.b != null) {
+        //   that.setData({
+        //     [cs2]: that.data.analysis.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+        //   })
+        // }
+        // if (that.data.analysis.c != null) {
+        //   that.setData({
+        //     [cs3]: that.data.analysis.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+        //   })
+        // }
+        // if (that.data.analysis.d != null) {
+        //   that.setData({
+        //     [cs3]: that.data.analysis.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+        //   })
+        // }
+        console.log("某一错题详情接口调取成功")
       } else {
-        console.log("测评单一试题接口==============" + d.data.msg)
+        console.log("某一错题详情接口==============" + d.data.msg)
       }
     })
 
   },
 
 
-  //测评试题ID列表
-  cp_ans_id: function () {
+  //错题ID列表
+  wrong_id: function () {
     let that = this
     var params = {
       "token": wx.getStorageSync("token"),
-      "mid": that.data.mid
+      "cid": that.data.id
     }
-    app.ols.cp_ans_id(params).then(d => {
+    app.ols.wrong_id(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
         that.setData({
-          id_list: d.data.data
+          id_list: d.data.data,
+          sum: d.data.data.length
         })
-        var length = that.data.id_list[1].length
-        that.setData({
-          all_num: length
-        })
-        // console.log(length,"length")
-        for (var i = 0; i < that.data.id_list.length; i++) {
-          var cs = "id_list[" + i + "].ans"
-          that.setData({
-            [cs]: -1
-          })
-        }
-        console.log("测评试题id接口调取成功")
+        that.get_wrong_detail(that.data.id_list[0].id)
+        console.log("错题id接口调取成功")
       } else {
-        console.log("测评试题id接口==============" + d.data.msg)
+        console.log("错题id接口==============" + d.data.msg)
       }
     })
   },
@@ -158,29 +213,25 @@ Page({
     console.log(e.touches.length, 'e.touches.length')
     if (e.touches.length == 1) {
       var moveX = e.touches[0].clientX;
-      // console.log(moveX,'moveX')
+      
       diffX = that.data.startX - moveX;
-      // console.log(diffX, 'diffX')
+      
       var moveLeft = '';
       if (diffX < -35) { //向右
         moveLeft = 'left:' + -(diffX < -90 ? -90 : diffX) + 'px;';
-        // console.log("右")
+        
       } else if (diffX > 35) { //向左
         moveLeft = 'left:-' + (diffX > 90 ? 90 : diffX) + 'px;';
-        // console.log("左")
+       
       } else {
         moveLeft = 'left:0px;';
 
       }
-      // console.log(diffX,"diffX")
-      // console.log(currentTab, "currentTab")
-
       that.setData({
-        // diffX:diffX,
         moveLeft: moveLeft
       });
     }
-    // console.log(that.data.diffX, "that.data.diffX")
+    
   },
   touchEnd: function (e) {
     let that = this
@@ -193,7 +244,7 @@ Page({
         moveLeft: moveLeft
       });
       if (diffX > 35) {
-        if (that.data.currentTab == (that.data.id_list[1].length - 1)) {
+        if (that.data.currentTab == (that.data.id_list.length - 1)) {
           wx.showToast({
             title: '已经是最后一道咯~',
             icon: "none",
@@ -203,7 +254,7 @@ Page({
           that.setData({
             currentTab: that.data.currentTab + 1
           })
-          that.get_cp_analysis(that.data.id_list[1][(that.data.currentTab)].pid, that.data.eid)
+          that.get_wrong_detail(that.data.id_list[(that.data.currentTab)].id)
         }
 
       } else if (diffX < -35) {
@@ -217,7 +268,7 @@ Page({
           that.setData({
             currentTab: that.data.currentTab - 1
           })
-          that.get_cp_analysis(that.data.id_list[1][(that.data.currentTab)].pid, that.data.eid)
+          that.get_wrong_detail(that.data.id_list[(that.data.currentTab)].id)
         }
 
       }

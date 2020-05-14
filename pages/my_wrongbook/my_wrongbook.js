@@ -119,11 +119,37 @@ Page({
           if(xb2 == j){
             var cs2 = "wrong[" + i + "].children[" + j + "].fold2"
             that.setData({
-              [cs2]: true
+              [cs2]: !that.data.wrong[i].children[j].fold2
             })
           }
         }
        
+      }
+    }
+  },
+
+  //错题详情跳转
+  to_wrong:function(e){
+    let that = this 
+    var xb1 = e.currentTarget.dataset.xb1
+    var xb2 = e.currentTarget.dataset.xb2
+    var xb3 = e.currentTarget.dataset.xb3
+    console.log(xb1, xb2,xb3)
+    for (var i = 0; i < that.data.wrong.length; i++) {
+      if (xb1 == i) {
+        for (var j = 0; j < that.data.wrong[i].children.length; j++) {
+          if (xb2 == j) {
+            // for(var k=0;k<that.data.wrong[i].children[j].children.length;k++){
+            //   if
+            // }
+            var id = that.data.wrong[i].children[j].children[xb3].id
+            console.log(id)
+            wx.navigateTo({
+              url: '../../pages/wrong/wrong?id=' + id,
+            })
+          }
+        }
+
       }
     }
   },

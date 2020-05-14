@@ -70,29 +70,28 @@ Page({
         var cs2 = "analysis.b"
         var cs3 = "analysis.c"
         var cs4 = "analysis.d"
+
+        if (d.data.data.a != null) {
+          d.data.data.a = d.data.data.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+        }
+        
+        if (d.data.data.b != null) {
+          d.data.data.b = d.data.data.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+        }
+        
+        if (d.data.data.c != null) {
+          d.data.data.c = d.data.data.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+          
+        }
+        if (d.data.data.d != null) {
+          d.data.data.d = d.data.data.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+          
+        }
+
         that.setData({
           analysis: d.data.data
         })
-        if (that.data.analysis.a != null) {
-          that.setData({
-            [cs1]: that.data.analysis.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          })
-        }
-        if (that.data.analysis.b != null) {
-          that.setData({
-            [cs2]: that.data.analysis.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          })
-        }
-        if (that.data.analysis.c != null) {
-          that.setData({
-            [cs3]: that.data.analysis.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          })
-        }
-        if (that.data.analysis.d != null) {
-          that.setData({
-            [cs3]: that.data.analysis.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          })
-        }
+        
         console.log("测评单一试题接口调取成功")
       } else {
         console.log("测评单一试题接口==============" + d.data.msg)
