@@ -72,6 +72,7 @@ Page({
 
     that.setData({
       current_subject: cur,
+      current_special:-1,
       did: that.data.subject[cur].id
     })
     
@@ -79,22 +80,6 @@ Page({
     that.getspecial()  //获取专题
     that.getcourse()     //获取课程
 
-    // //获取专题
-    // var params = {
-    //   "gid":that.data.gid,
-    //   "did":that.data.did
-    // }
-    // app.ols.gettoplist(params).then(d => {
-    //   console.log(d)
-    //   if (d.data.code == 0) {
-    //     console.log(d.data.data)
-    //     that.setData({
-    //       special: d.data.data
-    //     })
-    //   }
-    // })
-
-    
 
   },
 

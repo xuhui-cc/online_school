@@ -71,6 +71,8 @@ Page({
         var cs3 = "analysis.c"
         var cs4 = "analysis.d"
 
+        d.data.data.title = d.data.data.title.replace(/<img/gi, '<img style="max-width:95%;height:auto;display:block"')
+
         if (d.data.data.a != null) {
           d.data.data.a = d.data.data.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
         }

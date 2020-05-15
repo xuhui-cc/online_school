@@ -23,6 +23,7 @@
     "pages/cp_report/cp_report",
     "pages/cp_analysis/cp_analysis",
     "pages/wrong/wrong",
+    "pages/live/live",
     "pages/cs/cs"
   ],
   "window": {

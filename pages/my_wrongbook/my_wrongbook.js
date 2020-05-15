@@ -36,30 +36,49 @@ Page({
     app.ols.wrong(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
-        that.setData({
-          wrong: d.data.data
-        })
+        // that.setData({
+        //   wrong: d.data.data
+        // })
 
-        for (var i = 0; i < that.data.wrong.length; i++) {
-          if (that.data.wrong[i].children != '') {
-            var cs1 = "wrong[" + i + "].fold1"
-            that.setData({
-              [cs1]: false
-            })
-            if (that.data.wrong[i].children != ''){
-              for (var j = 0; j < that.data.wrong[i].children.length; j++){
-                var cs2 = "wrong[" + i + "].children[" + j + "].fold2"
-                that.setData({
-                  [cs2]: false
-                })
+        // for (var i = 0; i < that.data.wrong.length; i++) {
+        //   if (that.data.wrong[i].children != '') {
+        //     var cs1 = "wrong[" + i + "].fold1"
+        //     that.setData({
+        //       [cs1]: false
+        //     })
+        //     if (that.data.wrong[i].children != ''){
+        //       for (var j = 0; j < that.data.wrong[i].children.length; j++){
+        //         var cs2 = "wrong[" + i + "].children[" + j + "].fold2"
+        //         that.setData({
+        //           [cs2]: false
+        //         })
+        //       }
+        //     }
+        //   }
+        // }
+
+
+
+        for (var i = 0; i < d.data.data.length; i++) {
+          if (d.data.data[i].children != '') {
+            d.data.data[i].fold1 = false
+              for (var j = 0; j < d.data.data[i].children.length; j++) {
+                if (d.data.data[i].children[j].children != '') {
+                d.data.data[i].children[j].fold2 = false
               }
             }
           }
+          
         }
+        console.log("获取试题成功")
+        that.setData({
+          wrong: d.data.data
+        })
       }else{
         that.setData({
           wrong: ''
         })
+        console.log("获取试题失败")
       }
     })
   },
@@ -128,6 +147,29 @@ Page({
     }
   },
 
+  rank1_dump:function(e){
+    let that = this
+    var xb1 = e.currentTarget.dataset.xb1
+    console.log(xb1)
+    var id = that.data.wrong[xb1].id
+    console.log(id)
+    wx.navigateTo({
+      url: '../../pages/wrong/wrong?id=' + id,
+    })
+  },
+
+  rank2_dump: function (e) {
+    let that = this
+    var xb1 = e.currentTarget.dataset.xb1
+    var xb2 = e.currentTarget.dataset.xb2
+    console.log(xb1,xb2)
+    var id = that.data.wrong[xb1].children[xb2].id
+    console.log(id)
+    wx.navigateTo({
+      url: '../../pages/wrong/wrong?id=' + id,
+    })
+  },
+
   //错题详情跳转
   to_wrong:function(e){
     let that = this 
@@ -135,23 +177,13 @@ Page({
     var xb2 = e.currentTarget.dataset.xb2
     var xb3 = e.currentTarget.dataset.xb3
     console.log(xb1, xb2,xb3)
-    for (var i = 0; i < that.data.wrong.length; i++) {
-      if (xb1 == i) {
-        for (var j = 0; j < that.data.wrong[i].children.length; j++) {
-          if (xb2 == j) {
-            // for(var k=0;k<that.data.wrong[i].children[j].children.length;k++){
-            //   if
-            // }
-            var id = that.data.wrong[i].children[j].children[xb3].id
-            console.log(id)
-            wx.navigateTo({
-              url: '../../pages/wrong/wrong?id=' + id,
-            })
-          }
-        }
-
-      }
-    }
+    
+    var id = that.data.wrong[xb1].children[xb2].children[xb3].id
+    console.log(id)
+    wx.navigateTo({
+      url: '../../pages/wrong/wrong?id=' + id,
+    })
+          
   },
 
   swichNav_subject: function (e) {

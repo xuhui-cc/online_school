@@ -43,7 +43,7 @@ Page({
     that.setData({
       currentTab: index
     })
-    that.get_wrong_detail(that.data.id_list[(that.data.currentTab)].id, )
+    that.get_wrong_detail(that.data.id_list[(that.data.currentTab)].qid, )
     that.setData({
       dtk: false
     })
@@ -181,7 +181,7 @@ Page({
           id_list: d.data.data,
           sum: d.data.data.length
         })
-        that.get_wrong_detail(that.data.id_list[0].id)
+        that.get_wrong_detail(that.data.id_list[0].qid)
         console.log("错题id接口调取成功")
       } else {
         console.log("错题id接口==============" + d.data.msg)

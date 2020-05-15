@@ -308,7 +308,7 @@ Page({
         if (d.data.code == 0) {
           console.log(d.data.data)
           wx.navigateTo({
-            url: '../../pages/cp_report/cp_report',
+            url: '../../pages/cp_report/cp_report?mid=' + that.data.mid,
           })
 
           console.log("更新测评状态接口调取成功")

@@ -56,17 +56,6 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    // var login = wx.getStorageSync("login")
-    // if(login){
-    //   that.setData({
-    //     login: true
-    //   })
-    // }else{
-    //   that.setData({
-    //     login: false
-    //   })
-    // }
-    
     var kid = options.kid
     that.setData({
       kid:kid
@@ -110,9 +99,16 @@ Page({
     console.log(xb)
     var id = that.data.course_cata.lists[xb].id
     var kid = that.data.course_cata.lists[xb].kid
-    wx.navigateTo({
-      url: '../../pages/video/video?id=' + id + '&kid=' + kid,
-    })
+    if (that.data.course_cata.lists[xb].cateid == 1) {
+      wx.navigateTo({
+        url: '../../pages/live/live?id=' + id,
+      })
+    } else {
+      wx.navigateTo({
+        url: '../../pages/video/video?id=' + id + '&kid=' + kid,
+      })
+    }
+    
   },
 
   //查看报告
@@ -258,6 +254,7 @@ Page({
     if (that.data.currentData == 0){
       that.course_detail()   //获取课程简介
     } else if (that.data.currentData == 1){
+      
       //课程目录接口
       var params = {
         "token": wx.getStorageSync("token"),
