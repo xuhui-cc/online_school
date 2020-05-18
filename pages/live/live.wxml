@@ -1,2 +1,1 @@
-<!--pages/live/live.wxml-->
-<text>pages/live/live.wxml</text>
+<web-view src="{{get_live}}"></web-view>

@@ -121,10 +121,12 @@ Page({
 
 
   //课后作业
-  to_homework: function () {
+  to_homework: function (e) {
     let that = this
+    var eid = e.currentTarget.dataset.eid
+    console.log(eid)
     wx.navigateTo({
-      url: '../../pages/homework/homework',
+      url: '../../pages/homework/homework?eid=' +  eid,
     })
   },
 
@@ -254,7 +256,7 @@ Page({
     if (that.data.currentData == 0){
       that.course_detail()   //获取课程简介
     } else if (that.data.currentData == 1){
-      
+      that.course_detail()   //获取课程简介
       //课程目录接口
       var params = {
         "token": wx.getStorageSync("token"),

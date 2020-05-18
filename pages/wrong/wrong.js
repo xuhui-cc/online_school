@@ -59,6 +59,7 @@ Page({
     app.ols.wrong_detail(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
+        d.data.data.title = d.data.data.title.replace(/<img/gi, '<img style="max-width:95%;height:auto;display:block"')
         if (d.data.data.a != null){
           d.data.data.a = d.data.data.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
         }
@@ -130,33 +131,7 @@ Page({
         }
         
         
-        // var cs1 = "analysis.a"
-        // var cs2 = "analysis.b"
-        // var cs3 = "analysis.c"
-        // var cs4 = "analysis.d"
-        // that.setData({
-        //   analysis: d.data.data
-        // })
-        // if (that.data.analysis.a != null) {
-        //   that.setData({
-        //     [cs1]: that.data.analysis.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-        //   })
-        // }
-        // if (that.data.analysis.b != null) {
-        //   that.setData({
-        //     [cs2]: that.data.analysis.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-        //   })
-        // }
-        // if (that.data.analysis.c != null) {
-        //   that.setData({
-        //     [cs3]: that.data.analysis.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-        //   })
-        // }
-        // if (that.data.analysis.d != null) {
-        //   that.setData({
-        //     [cs3]: that.data.analysis.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-        //   })
-        // }
+        
         console.log("某一错题详情接口调取成功")
       } else {
         console.log("某一错题详情接口==============" + d.data.msg)
@@ -254,7 +229,7 @@ Page({
           that.setData({
             currentTab: that.data.currentTab + 1
           })
-          that.get_wrong_detail(that.data.id_list[(that.data.currentTab)].id)
+          that.get_wrong_detail(that.data.id_list[(that.data.currentTab)].qid)
         }
 
       } else if (diffX < -35) {
@@ -268,7 +243,7 @@ Page({
           that.setData({
             currentTab: that.data.currentTab - 1
           })
-          that.get_wrong_detail(that.data.id_list[(that.data.currentTab)].id)
+          that.get_wrong_detail(that.data.id_list[(that.data.currentTab)].qid)
         }
 
       }
@@ -294,10 +269,21 @@ Page({
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
-        var cs1 = "question.a"
-        var cs2 = "question.b"
-        var cs3 = "question.c"
-        var cs4 = "question.d"
+        
+        
+        d.data.data.title = d.data.data.title.replace(/<img/gi, '<img style="max-width:95%;height:auto;display:block"')
+        if (d.data.data.a != null) {
+          d.data.data.a = d.data.data.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+        }
+        if (d.data.data.b != null) {
+          d.data.data.b = d.data.data.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+        }
+        if (d.data.data.c != null) {
+          d.data.data.c = d.data.data.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+        }
+        if (d.data.data.d != null) {
+          d.data.data.d = d.data.data.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+        }
         that.setData({
           question: d.data.data,
           currentTab: current + 1
@@ -305,13 +291,6 @@ Page({
         var cs = "question.myans"
         that.setData({
           [cs]: -1
-        })
-        that.setData({
-          [cs1]: that.data.question.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          [cs2]: that.data.question.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          [cs3]: that.data.question.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          [cs4]: that.data.question.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
-
         })
         console.log("测评第" + (current + 2) + "一题接口调取成功")
       } else {

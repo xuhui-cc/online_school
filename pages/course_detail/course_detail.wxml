@@ -57,7 +57,7 @@
           <view class="file_num">查看</view>
           <image class="next" src="../../images/next.png"></image>
         </view>
-        <view class="flex" bindtap="to_homework">
+        <view class="flex" bindtap="to_homework" data-eid="{{item.eid}}">
           <image class="file-img1" src="../../images/work1.png"></image>
           <view class="file" style="color:rgba(32,32,32,1);">课后作业</view>
           <view class="work_finish">待完成</view>
@@ -77,12 +77,12 @@
       <view class="heng2" wx:if="{{course_info.pay_status <= 1}}"></view>
     </view>
 
-    <view class="end_test" wx:if="{{course_info.study == 0 }}">
+    <view class="end_test" wx:if="{{course_cata.study == 0 }}">
       <view class="btn_end_test" >去考试</view>
       <view class="end_title">结课考试</view>
       <view class="end_intro">巩固知识点，全面掌握考点学习方法。</view>
     </view>
-    <view class="end_test" wx:if="{{course_cata.buy == 0 }}">
+    <view class="end_test" wx:if="{{course_cata.buy <= 1 }}">
       
       <view class="end_title">结课考试</view>
       <view class="end_intro">巩固知识点，全面掌握考点学习方法。</view>

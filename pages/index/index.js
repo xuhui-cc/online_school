@@ -111,14 +111,35 @@ Page({
       grade_index: e.detail.value,
       gid: that.data.grade[e.detail.value].id
     })
-    that.test_list()
-    // console.log(that.data.grade[that.data.grade_index])
-    wx.setStorageSync("gid", that.data.grade[that.data.grade_index].id)
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "gid": that.data.grade[e.detail.value].id
+    }
+    app.ols.grade_update(params).then(d => {
+      console.log(d)
+
+      if (d.data.code == 200) {
+        that.test_list()
+        wx.setStorageSync("gid", that.data.grade[that.data.grade_index].id)
+      }
+    })
+    
 
   },
 
   onShow: function () {
+    
     let that = this
+    that.setData({
+      gid: wx.getStorageSync("gid")
+    })
+    for (var i = -0; i < that.data.grade.length; i++) {
+      if (that.data.gid == that.data.grade[i].id) {
+        that.setData({
+          grade_index: i
+        })
+      }
+    }
     that.test_list()       //获取测评试卷列表
   }
   

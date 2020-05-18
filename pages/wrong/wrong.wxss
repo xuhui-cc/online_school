@@ -238,7 +238,7 @@
 .cs{
   display:inline-block;
   /* margin-bottom: 25rpx; */
-  width:86%;
+  width:80%;
   line-height:64rpx;
   vertical-align:top;
 }

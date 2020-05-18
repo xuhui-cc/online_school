@@ -47,15 +47,27 @@ Page({
   bindtimeupdate(res) {
     let that = this
     console.log('bindtimeupdate', parseInt(res.detail.currentTime), '时间总时长-->', parseInt(res.detail.duration));
-    that.setData({
-      timeline1: parseInt(res.detail.currentTime),
-      percent: Math.ceil((res.detail.currentTime / res.detail.duration) * 100),
-    })
+    if(that.data.percent == 100){
+      that.setData({
+        timeline1: parseInt(res.detail.currentTime),
+        percent: 100
+      })
+    }else{
+      that.setData({
+        timeline1: parseInt(res.detail.currentTime),
+        percent: Math.ceil((res.detail.currentTime / res.detail.duration) * 100),
+      })
+    }
+    
   },
 
   update_study:function(btn,timeline,precent){
     let that = this
+    // var percent1
     //更新学习状态
+    // if(percent == 100){
+    //   percent1 
+    // }
     var params = {
       "token": wx.getStorageSync("token"),
       "id": that.data.id,
@@ -68,15 +80,15 @@ Page({
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
-        // that.setData({
-        //   getvideo_info: d.data.data
-        // })
+        that.setData({
+          getvideo_info: d.data.data
+        })
 
-        // } else if (d.data.code == 5) {
-        //   that.setData({
-        //     getvideo_info: 0
-        //   })
-        //   console.log("课程视频未学习")
+        } else if (d.data.code == 5) {
+          that.setData({
+            getvideo_info: 0
+          })
+          console.log("课程视频未学习")
       } else {
         console.log("更新视频状态接口==============" + d.data.msg)
       }
@@ -106,11 +118,15 @@ Page({
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
-        that.setData({
-          timeline: d.data.data.timeline,
-          percent: d.data.data.percent,
-          status: d.data.data.status,
-        })
+        
+       
+          that.setData({
+            timeline: d.data.data.timeline,
+            percent: d.data.data.percent,
+            status: d.data.data.status,
+          })
+        
+        
         that.update_study(1, that.data.timeline, that.data.percent)
       } else if (d.data.code == 5) {
         that.setData({

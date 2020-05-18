@@ -107,14 +107,14 @@ Page({
     }
     app.ols.grade_update(params).then(d => {
       console.log(d)
-      console.log("更新接口存班级")
+      
       if (d.data.code == 200) {
         // wx.setStorageSync('grade', xb)
         wx.setStorageSync('gid', that.data.grade[e.detail.value].id)
         that.getsubject()   //获取科目
         that.getcourse()    //获取课程
         that.getspecial()      //获取专题
-
+        console.log("更新接口存班级")
       }
     })
     // console.log(that.data.grade[that.data.grade_index])
@@ -252,5 +252,28 @@ Page({
       }
     })
   },
+
+  onShow: function () {
+    
+    let that = this
+    that.setData({
+      gid: wx.getStorageSync("gid")
+    })
+    if(that.data.grade){
+      for (var i = -0; i < that.data.grade.length; i++) {
+        if (that.data.gid == that.data.grade[i].id) {
+          that.setData({
+            grade_index: i
+          })
+        }
+      }
+    }
+    
+    console.log(that.data.gid,"onshow")
+    // that.getsubject()   //获取科目
+    // that.getspecial()      //获取专题
+    // that.getcourse()    //获取课程
+    
+  }
     
 })
