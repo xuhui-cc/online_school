@@ -17,7 +17,8 @@ Page({
     text: "没有滑动",
     ques_num: 0,
     finish_all: true,
-    diffX: 0
+    diffX: 0,
+    ans_2:[false,false,false,false]
   },
 
   /**
@@ -166,30 +167,40 @@ Page({
         })
         for (var i = 0; i < that.data.id_list.length; i++) {
           if (that.data.id_list[i].type == 1){
+            var cs = "id_list[" + i + "].ans"
             that.setData({
-              ques_type1:1
+              ques_type1:1,
+              [cs]: -1
             })
           } else if (that.data.id_list[i].type == 2) {
+            var cs = "id_list[" + i + "].ans"
             that.setData({
-              ques_type2: 2
+              ques_type2: 2,
+              [cs]: that.data.ans_2
             })
           } else if (that.data.id_list[i].type == 3) {
+            var cs = "id_list[" + i + "].ans"
             that.setData({
-              ques_type3: 3
+              ques_type3: 3,
+              [cs]: ''
             })
           } else if (that.data.id_list[i].type == 4) {
+            var cs = "id_list[" + i + "].ans"
             that.setData({
-              ques_type4: 4
+              ques_type4: 4,
+              [cs]: ''
             })
           } else if (that.data.id_list[i].type == 5) {
+            var cs = "id_list[" + i + "].ans"
             that.setData({
-              ques_type5: 5
+              ques_type5: 5,
+              [cs]: ''
             })
           }
-          var cs = "id_list[" + i + "].ans"
-          that.setData({
-            [cs]: -1
-          })
+          // var cs = "id_list[" + i + "].ans"
+          // that.setData({
+          //   [cs]: -1
+          // })
         }
         console.log("测评试题id接口调取成功")
       } else {
@@ -345,11 +356,14 @@ Page({
     var ans = e.currentTarget.dataset.ans
     var id = e.currentTarget.dataset.id
     console.log(ans, id)
+    var cs = "id_list[" + that.data.currentTab + "].ans"
+    var cscs = "question.myans"
+    that.setData({
+      [cs]: ans,
+      [cscs]: ans
+    })
+    
     that.work_submit(ans)   //测评答案提交接口
-    // var cs = "question.myans"
-    // that.setData({
-    //   [cs]:ans
-    // })
   },
 
   //测评答案提交接口
@@ -367,15 +381,6 @@ Page({
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
-
-        var cs = "id_list[" + that.data.currentTab + "].ans"
-        that.setData({
-          [cs]: ans
-        })
-        var cscs = "question.myans"
-        that.setData({
-          [cscs]: ans
-        })
 
         console.log("测评试题答案提交接口调取成功")
       } else {

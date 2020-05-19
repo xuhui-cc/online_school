@@ -32,6 +32,33 @@
       <view class="your_score">名师点评</view>
     </view>
 
+    <view>
+        <view wx:for="{{comment}}" wx:key="index">
+          <view class="point">考点{{index}}：{{item.title}}</view>
+          <view class="flex">
+            <view class="rank" wx:if="{{item.grade ==  1}}">{{item.start}}%—{{item.end}}%  优秀：</view>
+            <view class="rank" wx:if="{{item.grade ==  2}}">{{item.start}}%—{{item.end}}%  中等：</view>
+            <view class="rank" wx:if="{{item.grade ==  3}}">{{item.start}}%—{{item.end}}%  较差：</view>
+            <image class="xu-img" src="../../images/xu.png"></image>
+            <image class="xsj-img" src="../../images/xsj2.png"></image>
+          </view>
+          <view class="first_comment">{{item.remark}}</view>
+          <view>
+            <view wx:for="{{item.second}}" wx:key="second_index" wx:for-item="second" wx:for-index="second_index">
+              <view class="flex" style="margin-top:15rpx;">
+                <view class="second_img"></view>
+                <view class="second_comment">{{second.remark}}</view>
+              </view>
+            </view>
+          </view>
+          
+        
+        
+        
+        
+        </view>
+      </view>
+
   
   
   

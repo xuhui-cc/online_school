@@ -133,13 +133,16 @@ Page({
     that.setData({
       gid: wx.getStorageSync("gid")
     })
-    for (var i = -0; i < that.data.grade.length; i++) {
-      if (that.data.gid == that.data.grade[i].id) {
-        that.setData({
-          grade_index: i
-        })
+    if (that.data.grade){
+      for (var i = -0; i < that.data.grade.length; i++) {
+        if (that.data.gid == that.data.grade[i].id) {
+          that.setData({
+            grade_index: i
+          })
+        }
       }
     }
+    
     that.test_list()       //获取测评试卷列表
   }
   

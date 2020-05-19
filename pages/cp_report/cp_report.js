@@ -29,6 +29,22 @@ Page({
         that.setData({
           report:d.data.data
         })
+        var params = {
+          "token": wx.getStorageSync("token"),
+          "eid": d.data.data.eid,
+          "percent": Math.ceil((d.data.data.chart.right_num / d.data.data.chart.all_num) * 100),
+        }
+        app.ols.cp_comment(params).then(d => {
+          console.log(d)
+          if (d.data.code == 0) {
+            that.setData({
+              comment: d.data.data
+            })
+            console.log("名师点评接口调取成功")
+          } else {
+            console.log("名师点评接口==============" + d.data.msg)
+          }
+        })
         console.log("测评报告接口调取成功")
       } else {
         console.log("测评报告接口==============" + d.data.msg)
