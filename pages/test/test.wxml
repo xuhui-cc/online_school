@@ -192,19 +192,19 @@
                   <rich-text nodes="{{item.title}}" class="cs1"></rich-text>
                 </view>
                 <view class="flex" wx:if="{{item.a != null}}" style="margin-left:30rpx;">
-                  <view style="margin-top:5rpx;">A.</view>
+                  <view>A.</view>
                   <rich-text  nodes="{{item.a}}" class="cs1"></rich-text>
                 </view>
                 <view class="flex" wx:if="{{item.b != null}}" style="margin-left:30rpx;">
-                  <view style="margin-top:5rpx;">B.</view>
+                  <view>B.</view>
                   <rich-text  nodes="{{item.b}}" class="cs1"></rich-text>
                 </view>
                 <view class="flex" wx:if="{{item.c != null}}" style="margin-left:30rpx;">
-                  <view style="margin-top:5rpx;">C.</view>
+                  <view>C.</view>
                   <rich-text  nodes="{{item.c}}" class="cs1"></rich-text>
                 </view>
                 <view class="flex" wx:if="{{item.d != null}}" style="margin-left:30rpx;">
-                  <view style="margin-top:5rpx;">D.</view>
+                  <view>D.</view>
                   <rich-text  nodes="{{item.d}}" class="cs1"></rich-text>
                 </view>                                 
               </view>

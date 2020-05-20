@@ -18,7 +18,7 @@ Page({
     ques_num: 0,
     finish_all: true,
     diffX: 0,
-    ans_2:[-1,-1,-1,-1]
+    ans_2: [-1, -1, -1, -1]
   },
 
   /**
@@ -79,7 +79,7 @@ Page({
         that.setData({
           [cs]: that.data.id_list[that.data.currentTab].ans
         })
-        
+
         console.log("作业题接口调取成功")
 
       } else {
@@ -166,10 +166,10 @@ Page({
           id_list: d.data.data
         })
         for (var i = 0; i < that.data.id_list.length; i++) {
-          if (that.data.id_list[i].type == 1){
+          if (that.data.id_list[i].type == 1) {
             var cs = "id_list[" + i + "].ans"
             that.setData({
-              ques_type1:1,
+              ques_type1: 1,
               [cs]: -1
             })
           } else if (that.data.id_list[i].type == 2) {
@@ -363,7 +363,7 @@ Page({
       [cs]: ans,
       [cscs]: ans
     })
-    
+
     // that.work_submit(ans)   //作业答案提交接口
   },
 
@@ -373,7 +373,7 @@ Page({
     var ans = e.currentTarget.dataset.ans
     var id = e.currentTarget.dataset.id
     console.log(ans, id)
-    var cs = "id_list[" + that.data.currentTab + "].ans[" + ans +"]"
+    var cs = "id_list[" + that.data.currentTab + "].ans[" + ans + "]"
     var cscs = "question.myans[" + ans + "]"
     that.setData({
       [cs]: ans,
@@ -488,70 +488,36 @@ Page({
 
   chooseImg() {
     let that = this;
-    
-      wx.chooseImage({
-        count: 1,
-        success: (res) => {
-          let tempFilePaths = res.tempFilePaths;
-          console.log(tempFilePaths)
 
-          wx.uploadFile({
-            url: 'http://os.lingjun.net/api.php/annex/upload',
-            filePath: tempFilePaths[0],
-            name: 'file',
-            method: 'POST',
-            formData: {
-              'file': tempFilePaths[0],
-              "token": wx.getStorageSync("token"),
-            },
-            success(r) {
-              // console.log("成功")
-              // console.log(r.data)
-              let hhh = JSON.parse(r.data);
-              if (hhh.code == 1) {
-                // imgs.unshift(hhh.data.src)
-                // that.data.img = 
-                // that.setData({
-                //   img: imgs
-                // })
-                console.log(hhh.data.file)
-
-                
-
-              } else {
-               
-                console.log('失败')
-               
-              }
-
-
-
-            
-            }
-          })
-
-          // var params = {
-          //   "token": wx.getStorageSync("token"),
-          //   "file": tempFilePaths[0]
-          // }
-          // app.ols.upload_img(params).then(d => {
-          //   console.log(d)
-          //   if (d.data.code == 0) {
-          //     console.log(d.data.data)
-          //     console.log("上传图片接口调取成功")
-          //   } else {
-          //     console.log("上传图片接口==============" + d.data.msg)
-          //   }
-          // })
-            
-
-             
-
-          
+    wx.chooseImage({
+      count: 1,
+      success: (res) => {
+        let tempFilePaths = res.tempFilePaths;
+        console.log(tempFilePaths)
+        var params = {
+          "token": wx.getStorageSync("token"),
+          "file": tempFilePaths
         }
-        
-      })
-    
+        app.ols.upload_img(params).then(d => {
+          console.log(d)
+          if (d.data.code == 0) {
+            console.log(d.data.data)
+
+            console.log("上传图片接口调取成功")
+
+          } else {
+            console.log("上传图片接口==============" + d.data.msg)
+          }
+        })
+
+
+
+
+
+      }
+
+    })
+
 
   },
 

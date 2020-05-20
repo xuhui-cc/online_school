@@ -24,6 +24,7 @@
     "pages/cp_analysis/cp_analysis",
     "pages/wrong/wrong",
     "pages/live/live",
+    "pages/test/test",
     "pages/cs/cs"
   ],
   "window": {

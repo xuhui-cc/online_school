@@ -31,5 +31,18 @@ function olsfetchpost(api, path, params) {
   })
 }
 
+// function olsfetchpostimg(api, path, params) {
+//   return new Promise((resolve, reject) => {
+//     wx.request({
+//       url: `${api}${path}`,
+//       data: Object.assign({}, params),
+//       method: 'POST',
+//       header: { 'content-type': 'multipart/form-data' },
+//       success: resolve,
+//       fail: reject
+//     })
+//   })
+// }
 
-module.exports = { olsfetch, olsfetchpost }
+
+module.exports = { olsfetch, olsfetchpost}

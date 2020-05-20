@@ -248,7 +248,7 @@
 .body{ width: 100%; min-height: 100vh; position: relative;}
 .unsel_A{
   margin-left: 30rpx;
-  margin-top: 5rpx;
+  /* margin-top: 40rpx; */
   margin-right: 20rpx;
   width:55rpx;
   height:55rpx;
@@ -265,7 +265,7 @@
 }
 .sel_A{
   margin-left: 30rpx;
-  margin-top: 5rpx;
+  /* margin-top: 40rpx; */
   margin-right: 20rpx;
   width:55rpx;
   height:55rpx;
