@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    cs: [{}, {}, {}],
+    // cs: [{}, {}, {}],
     currentTab: 0,
     clientHeight: 1000,
     dtk: false,
@@ -18,7 +18,9 @@ Page({
     ques_num: 0,
     finish_all: true,
     diffX: 0,
-    ans_2:[-1,-1,-1,-1]
+    img: [],
+    imgs: []
+    // ans_2:[{"-1"},{"-1"},{"-1"},{"-1"}]
   },
 
   /**
@@ -49,10 +51,6 @@ Page({
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
-        // var cs1 = "question.a"
-        // var cs2 = "question.b"
-        // var cs3 = "question.c"
-        // var cs4 = "question.d"
         d.data.data.title = d.data.data.title.replace(/<img/gi, '<img style="max-width:95%;height:auto;display:block"')
 
         if (d.data.data.a != null) {
@@ -73,8 +71,9 @@ Page({
         }
         that.setData({
           question: d.data.data,
-          // currentTab: that.data.currentTab + 1
+          
         })
+        
         var cs = "question.myans"
         that.setData({
           [cs]: that.data.id_list[that.data.currentTab].ans
@@ -176,7 +175,7 @@ Page({
             var cs = "id_list[" + i + "].ans"
             that.setData({
               ques_type2: 2,
-              [cs]: that.data.ans_2
+              [cs]: ''
             })
           } else if (that.data.id_list[i].type == 3) {
             var cs = "id_list[" + i + "].ans"
@@ -355,8 +354,6 @@ Page({
     let that = this
     console.log("单选题")
     var ans = e.currentTarget.dataset.ans
-    var id = e.currentTarget.dataset.id
-    console.log(ans, id)
     var cs = "id_list[" + that.data.currentTab + "].ans"
     var cscs = "question.myans"
     that.setData({
@@ -364,23 +361,68 @@ Page({
       [cscs]: ans
     })
     
-    // that.work_submit(ans)   //作业答案提交接口
+    that.work_submit(ans)   //作业答案提交接口
   },
+
+  // mul_select:function(e){
+  //   let that = this
+  //   var ans = e.currentTarget.dataset.ans
+  //   console.log(that.data.currentTab,ans)
+  //   // debugger;
+  //   var cs = "id_list[" + that.data.currentTab + "]
+  //   that.setData({
+  //     [cs]:ans
+  //   })
+  //   // that.data.id_list[that.data.currentTab].ans[ans] = ans
+
+
+  // },
 
   submit_ans1: function (e) {
     let that = this
+    var ans_arr = []
+    var ans
     console.log("多选题")
     var ans = e.currentTarget.dataset.ans
     var id = e.currentTarget.dataset.id
     console.log(ans, id)
-    var cs = "id_list[" + that.data.currentTab + "].ans[" + ans +"]"
-    var cscs = "question.myans[" + ans + "]"
+    if (that.data.question.myans != ''){
+      if (that.data.question.myans[ans] == ans) {
+        var cscs = "question.myans[" + ans + "]"
+        that.setData({
+          [cscs]: -1
+        })
+      } else {
+        var cscs = "question.myans[" + ans + "]"
+        that.setData({
+          [cscs]: ans
+        })
+      }
+    }else{
+      var cscs = "question.myans[" + ans + "]"
+      that.setData({
+        [cscs]: ans
+      })
+    }
+    var cs = "id_list[" + that.data.currentTab + "].ans"
     that.setData({
-      [cs]: ans,
-      [cscs]: ans
+      [cs]: that.data.question.myans
     })
-
-    // that.work_submit(ans)   //作业答案提交接口
+    
+    console.log(that.data.id_list[that.data.currentTab])
+    
+    
+   
+    for(var i=0;i < that.data.question.myans.length;i++){
+      console.log(i,"i")
+      if (that.data.question.myans[i] != -1 && that.data.question.myans[i] != null){
+        ans_arr.push(i)
+      }
+    }
+    console.log(ans_arr)
+    ans = ans_arr.join(",");
+    console.log(ans)
+    that.work_submit(ans)   //作业答案提交接口
   },
 
   //作业答案提交接口
@@ -490,11 +532,11 @@ Page({
     let that = this;
     
       wx.chooseImage({
-        count: 1,
+        count: 3,
         success: (res) => {
           let tempFilePaths = res.tempFilePaths;
           console.log(tempFilePaths)
-
+          // let imgs = [];
           wx.uploadFile({
             url: 'http://os.lingjun.net/api.php/annex/upload',
             filePath: tempFilePaths[0],
@@ -505,15 +547,17 @@ Page({
               "token": wx.getStorageSync("token"),
             },
             success(r) {
-              // console.log("成功")
-              // console.log(r.data)
+              
               let hhh = JSON.parse(r.data);
               if (hhh.code == 1) {
+                console.log("成功")
+              // console.log(r.data)
                 // imgs.unshift(hhh.data.src)
                 // that.data.img = 
-                // that.setData({
-                //   img: imgs
-                // })
+                that.data.img.unshift(hhh.data.file)
+                that.setData({
+                  imgs: that.data.img
+                })
                 console.log(hhh.data.file)
 
                 

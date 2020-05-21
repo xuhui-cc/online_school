@@ -174,7 +174,7 @@
         <view wx:if="{{question.type == 4}}">
           <view class="fgx"></view>
           <view class="tips">*请在纸上作答拍照上传清晰照片，老师将尽快为你批改</view>
-          <view class="img_btn">
+          <view class="img_btn" bindtap='chooseImg'>
             <image class="camera_img" src="../../images/camera.png"></image>
             <view class="btn">拍照上传</view>
           </view>
