@@ -12,6 +12,8 @@
     "pages/course_detail/course_detail",
     "pages/homework/homework",
     "pages/homework_report/homework_report",
+    "pages/test_report/test_report",
+    "pages/endcourse_report/endcourse_report",
     "pages/zbcs/zbcs",
     "pages/pay/pay",
     "pages/course_file/course_file",

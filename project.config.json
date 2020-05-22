@@ -149,6 +149,13 @@
 					"id": -1,
 					"name": "pages/cp_analysis/cp_analysis",
 					"pathName": "pages/cp_analysis/cp_analysis",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/endcourse_report/endcourse_report",
+					"pathName": "pages/endcourse_report/endcourse_report",
 					"scene": null
 				}
 			]

@@ -1,0 +1,48 @@
+/**index.wxss**/
+.scroll-fullpage{
+  height: 100vh;
+  position: relative;
+}
+.section{
+  height: 100vh;
+  background-size: 750rpx 100%;
+  position: relative;
+}
+.section image{
+  width: 750rpx;
+  height: 100vh;
+}
+.scroll{
+  position: absolute;
+  top: 0;
+  width: 750rpx;
+}
+.videoDetail{
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+.myimg{
+  width: 750rpx;
+  height: 100%;
+}
+.cp{
+  position: fixed;
+  margin-left: 472rpx;
+  margin-top: 831rpx;
+  right: -30rpx;
+  z-index: 500;
+  width: 278rpx;
+  height: 161rpx;
+}
+.tip{
+  position: fixed;
+  margin-left: 530rpx;
+  margin-top: 80rpx;
+  
+  z-index: 500;
+  width: 197rpx;
+  height: 33rpx;
+}
+
+

@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="scroll-fullpage">
+    <view class="videoDetail" style="">
+      <image id="myVideo"  style="transform:translateY(-{{scrollTop*100}}%)"  autoplay='{{true}}' class="myimg"  src="../../images/first_bg.png" bindtouchstart="onTouchStart" bindtouchend="onTouchEnd" />
+      
+    </view>
+  </view>
+  <!--因为我右侧有需要操作的图标，所以我款低没有设置100%，留下了右侧操作位置-->
+  <canvas disable-scroll="true" style="width: 750rpx;height:95%;position:absolute;top:0;"  bindtouchstart="onTouchStart" bindtouchend="onTouchEnd" canvas-id="videoCover" >
+   
+      
+  </canvas>
+ 
+  
+</view>
