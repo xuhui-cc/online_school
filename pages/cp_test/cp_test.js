@@ -1,5 +1,10 @@
 // pages/homework/homework.js
 const app = getApp()
+
+var total_micro_second = 1 * 60 * 60 * 1000;
+// var total_micro_second = 600000; //测试倒计时
+var t
+
 Page({
 
   /**
@@ -17,7 +22,10 @@ Page({
     text: "没有滑动",
     ques_num:0,
     finish_all:true,
-    diffX:0
+    diffX:0,
+    fixtotal_micro_second: 3600000,
+    //  fixtotal_micro_second:600000,
+    clock: 0,//倒计时时间
   },
 
   /**
@@ -30,11 +38,64 @@ Page({
     that.setData({
       id:id
     })
+
+    total_micro_second = 3600000
+    this.count_down(this);
+
+
     that.test_explain()   //试卷概要
     that.setmark()   //试卷状态初始化
     that.test_id()     //获取试题ID列表
     that.ques_info()      //试卷基本信息
     
+  },
+
+  //小程序倒计时功能
+  count_down: function (that) {
+    that.setData({
+      clock: that.dateformat(total_micro_second),
+      cur_uni: total_micro_second
+    });
+    if (total_micro_second <= 0) {
+      that.setData({
+        clock: "已经截止"
+      });
+      that.show()
+      return;
+    }
+    t = setTimeout(function () {
+      total_micro_second -= 1000;
+      that.count_down(that)
+    }, 1000)
+  },
+  //时间格式整理
+  dateformat: function (micro_second) {
+    // 秒数
+    var second = Math.floor(micro_second / 1000);
+    // 小时位
+    var hr = this.fill_zero_prefix(Math.floor(second / 3600));
+    // 分钟位
+    var min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
+    // 秒位
+    var sec = this.fill_zero_prefix((second - hr * 3600 - min * 60));// equal to => var sec = second % 60;
+    // return hr + ":" + min + ":" + sec;
+    return min + ":" + sec;
+  },
+  dateformatforreport: function (micro_second) {
+    // 秒数
+    var second = Math.floor(micro_second / 1000);
+    // 小时位
+    var hr = this.fill_zero_prefix(Math.floor(second / 3600));
+    // 分钟位
+    var min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
+    // 秒位
+    var sec = this.fill_zero_prefix((second - hr * 3600 - min * 60));// equal to => var sec = second % 60;
+    return hr + "时" + min + "分" + sec + "秒";
+  },
+
+  //位数不足补零
+  fill_zero_prefix: function (num) {
+    return num < 10 ? "0" + num : num
   },
 
   //获取试题

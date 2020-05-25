@@ -76,3 +76,21 @@ padding-left: 17rpx;
 .r-view{
   width: 137rpx;
 }
+.null_img{
+  margin-left: 259rpx;
+  margin-top: 550rpx;
+  width: 202rpx;
+  height: 233rpx;
+}
+.null{
+  margin-left: 311rpx;
+  margin-top: 40rpx;
+  width:120rpx;
+  height:42rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:42rpx;
+  color:rgba(199,197,197,1);
+  opacity:1;
+}

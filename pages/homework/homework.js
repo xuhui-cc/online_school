@@ -319,7 +319,7 @@ Page({
     let that = this
     console.log("答题卡")
     for (var i = 0; i < that.data.id_list.length; i++) {
-      if (that.data.id_list[i].ans == -1) {
+      if (that.data.id_list[i].ans == -1 || that.data.id_list[i].ans == '') {
         that.setData({
           finish_all: false
         })
@@ -333,12 +333,12 @@ Page({
         "mid": that.data.mid,
         "answerline": 1200
       }
-      app.ols.update_cpsubmit(params).then(d => {
+      app.ols.update_testsubmit(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
           console.log(d.data.data)
-          wx.navigateTo({
-            url: '../../pages/cp_report/cp_report?mid=' + that.data.mid,
+          wx.navigateBack({
+            delta: 1  // 返回上一级页面。
           })
 
           console.log("更新作业状态接口调取成功")
@@ -428,13 +428,19 @@ Page({
   //作业答案提交接口
   work_submit: function (ans) {
     let that = this
+    var sactive
+    if(that.data.question.type <= 3){
+      sactive = 0
+    }else{
+      sactive = 1
+    }
     var params = {
       "token": wx.getStorageSync("token"),
       "mid": that.data.mid,
       "eid": that.data.eid,
       "qid": that.data.question.id,
       "submit": ans,
-      "sactive": 0
+      "sactive": sactive
     }
     app.ols.work_submit(params).then(d => {
       console.log(d)
@@ -508,7 +514,7 @@ Page({
         "mid": that.data.mid,
         "answerline": 1200
       }
-      app.ols.update_cpsubmit(params).then(d => {
+      app.ols.update_testsubmit(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
           console.log(d.data.data)
@@ -528,6 +534,27 @@ Page({
     }
   },
 
+  //删除图片
+  del_img:function(e){
+    let that = this
+    var xb = e.currentTarget.dataset.xb
+    console.log(xb)
+    that.data.imgs.splice(xb, 1);
+    var cs1 = "id_list[" + that.data.currentTab + "].ans"
+    var cs2 = "question.myans"
+    that.setData({
+      imgs: that.data.img,
+      [cs1]: that.data.img,
+      [cs2]: that.data.img,
+    })
+    
+    var ans = that.data.question.myans.join("@@");
+    console.log(ans, "img")
+    that.work_submit(ans)   //作业答案提交接口
+  },
+
+
+  //上传图片
   chooseImg() {
     let that = this;
     
@@ -555,11 +582,17 @@ Page({
                 // imgs.unshift(hhh.data.src)
                 // that.data.img = 
                 that.data.img.unshift(hhh.data.file)
+                var cs1 = "id_list[" + that.data.currentTab + "].ans"
+                var cs2 = "question.myans"
                 that.setData({
-                  imgs: that.data.img
+                  imgs: that.data.img,
+                  [cs1]: that.data.img,
+                  [cs2]: that.data.img,
                 })
-                console.log(hhh.data.file)
-
+                // console.log(hhh.data.file)
+                var ans = that.data.question.myans.join("@@");
+                console.log(ans,"img")
+                that.work_submit(ans)   //作业答案提交接口
                 
 
               } else {
@@ -574,24 +607,6 @@ Page({
             }
           })
 
-          // var params = {
-          //   "token": wx.getStorageSync("token"),
-          //   "file": tempFilePaths[0]
-          // }
-          // app.ols.upload_img(params).then(d => {
-          //   console.log(d)
-          //   if (d.data.code == 0) {
-          //     console.log(d.data.data)
-          //     console.log("上传图片接口调取成功")
-          //   } else {
-          //     console.log("上传图片接口==============" + d.data.msg)
-          //   }
-          // })
-            
-
-             
-
-          
         }
         
       })

@@ -21,4 +21,10 @@
     </view>
   </view>
 
+
+  <view wx:if="{{course == ''}}">
+    <image class="null_img" src="../../images/course_null.png"></image>
+    <view class="null">暂无课程</view>
+  </view>
+
 </view>

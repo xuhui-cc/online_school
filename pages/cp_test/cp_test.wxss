@@ -139,7 +139,7 @@
   opacity:1;
 }
 .current{
-  margin-left: 330rpx;
+  margin-left: 170rpx;
   margin-top: 25rpx;
   /* width:24rpx; */
   height:56rpx;

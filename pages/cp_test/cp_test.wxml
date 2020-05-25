@@ -31,8 +31,8 @@
 
   <!-- 试卷菜单栏 -->
   <view class="layout">
-    <!-- <image class="clock" src="../../images/clock.png"></image>
-    <view class="time">45:59</view> -->
+    <image class="clock" src="../../images/clock.png"></image>
+    <view class="time">{{clock}}</view>
     <view class="current">{{currentTab + 1}}</view>
     <view class="sum">/{{ques_info.num}}</view>
     <image class="card_img" src="../../images/card.png"></image>

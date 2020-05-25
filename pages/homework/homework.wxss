@@ -425,3 +425,20 @@
   width:37rpx;
   height:31rpx;
 }
+.ans_img{
+  margin-right: 40rpx;
+  margin-top: 36rpx;
+  width:162rpx;
+  height:174rpx;
+}
+.del_img{
+  margin-left: 140rpx;
+  margin-top: 20rpx;
+  position: absolute;
+  width:37rpx;
+  height:37rpx;
+}
+.img_layout{
+  margin-left: 40rpx;
+  display: flex;
+}
