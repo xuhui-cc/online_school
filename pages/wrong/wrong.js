@@ -16,7 +16,8 @@ Page({
     text: "没有滑动",
     ques_num: 0,
     finish_all: true,
-    diffX: 0
+    diffX: 0,
+    jx:false
   },
 
   /**
@@ -33,6 +34,15 @@ Page({
 
     // that.get_cp_analysis(id, eid)
     that.wrong_id()          //错题ID列表
+  },
+
+  //查看解析
+  jx:function(e){
+    let that = this
+    that.setData({
+      jx:!that.data.jx
+    })
+    console.log(that.data.jx)
   },
 
   //答题卡试题解析题目跳转
@@ -128,6 +138,12 @@ Page({
               })
             }
           }
+        }
+        if (that.data.analysis.type >2){
+          var cs = "analysis.submit"
+          that.setData({
+            [cs]: that.data.analysis.submit.split(",")
+          })
         }
         
         

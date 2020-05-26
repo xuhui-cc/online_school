@@ -25,7 +25,7 @@ course_order.login_read{
 .head{
   margin-left: 30rpx;
   margin-top: 25rpx;
-  width:396rpx;
+  width:450rpx;
   height:50rpx;
   font-size:36rpx;
   font-family:PingFang SC;
@@ -38,7 +38,7 @@ course_order.login_read{
   display: flex;
 }
 .share{
-  margin-left: 250rpx;
+  margin-left: 200rpx;
   margin-top: 32rpx;
   width:30rpx;
   height:35rpx;
@@ -340,9 +340,9 @@ course_order.login_read{
 }
 
 .work_finish{
-  margin-left: 390rpx;
+  margin-left: 350rpx;
   margin-top: 35rpx;
-  width:80rpx;
+  width:120rpx;
   height:37rpx;
   font-size:26rpx;
   font-family:PingFang SC;

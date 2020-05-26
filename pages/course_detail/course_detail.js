@@ -241,6 +241,20 @@ Page({
     })
   },
 
+  //查看课后作业报告
+  to_homework_report:function(e){
+    let that = this
+
+  },
+
+  //结课考试
+  to_test:function(e){
+    let that = this
+    wx.navigateTo({
+      url: '../../pages/test/test?eid=' + that.data.course_cata.eid,
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

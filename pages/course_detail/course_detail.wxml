@@ -1,6 +1,6 @@
 <view class="container">
 
-  <image class="report_img" src="../../images/report.png" bindtap="to_end_report"></image>
+  <image class="report_img" src="../../images/report.png" bindtap="to_end_report" wx:if="{{course_cata.study == 0 && course_cata.mark_status == 2 }}"></image>
 
   <view class="flex">
     <view class="head">{{course_info.title}}</view>
@@ -62,7 +62,7 @@
           <view class="file" style="color:rgba(32,32,32,1);">课后作业</view>
           <view class="work_finish" wx:if="{{item.mark_status == 0 || item.mark_status == null}}" bindtap="to_homework" data-eid="{{item.eid}}">待完成</view>
           <view class="work_finish" wx:elif="{{item.mark_status == 1}}" style="color:rgba(164,164,164,1);">批改中</view>
-          <view class="work_finish" wx:else="{{item.mark_status == 2}}" style="color:rgba(77,151,246,1);">查看报告</view>
+          <view class="work_finish" wx:else="{{item.mark_status == 2}}" style="color:rgba(77,151,246,1);" bindtap="to_homework_report">查看报告</view>
           <image class="next" src="../../images/next.png"></image>
         </view>
         <view class="heng3"></view>
@@ -80,15 +80,13 @@
     </view>
 
     <view class="end_test" wx:if="{{course_cata.buy <= 1 }}">
-      <view class="btn_end_test" wx:if="{{course_cata.study == 0 }}">去考试</view>
+      <view class="btn_end_test" wx:if="{{course_cata.study == 0 && course_cata.mark_status == 0 }}" bindtap="to_test">去考试</view>
+      <view class="btn_end_test" wx:if="{{course_cata.study == 0 && course_cata.mark_status == 1 }}" bindtap="to_test" style="background:rgba(204,204,204,1);">批改中</view>
+      <view class="btn_end_test" wx:if="{{course_cata.study == 0 && course_cata.mark_status == 2 }}" bindtap="to_test" style="background:rgba(77,151,246,1);">查看报告</view>
       <view class="end_title">结课考试</view>
       <view class="end_intro">巩固知识点，全面掌握考点学习方法。</view>
     </view>
-    <!-- <view class="end_test" >
-      
-      <view class="end_title">结课考试</view>
-      <view class="end_intro">巩固知识点，全面掌握考点学习方法。</view>
-    </view> -->
+    
   </view>
 
 

@@ -3,7 +3,7 @@
  <!-- 标题栏 -->
   <view class="nabigation_bar">
     <image class="back" src="../../images/back.png" bindtap="back"></image>
-    <view class="head">课后作业</view>
+    <view class="head">结课考试</view>
   </view>
   <!-- 标题栏结束 -->
 
@@ -174,9 +174,16 @@
         <view wx:if="{{question.type == 4}}">
           <view class="fgx"></view>
           <view class="tips">*请在纸上作答拍照上传清晰照片，老师将尽快为你批改</view>
-          <view class="img_btn">
+          <view class="img_btn" bindtap='chooseImg'>
             <image class="camera_img" src="../../images/camera.png"></image>
             <view class="btn">拍照上传</view>
+          </view>
+
+          <view class="img_layout">
+            <view wx:for="{{question.myans}}" wx:key="index">
+              <image class="del_img" src="../../images/del1.png" data-xb="{{index}}" bindtap="del_img"></image>
+              <image class="ans_img" src="{{item}}"></image>
+            </view>
           </view>
           
           
@@ -192,19 +199,19 @@
                   <rich-text nodes="{{item.title}}" class="cs1"></rich-text>
                 </view>
                 <view class="flex" wx:if="{{item.a != null}}" style="margin-left:30rpx;">
-                  <view>A.</view>
+                  <view style="margin-top:5rpx;">A.</view>
                   <rich-text  nodes="{{item.a}}" class="cs1"></rich-text>
                 </view>
                 <view class="flex" wx:if="{{item.b != null}}" style="margin-left:30rpx;">
-                  <view>B.</view>
+                  <view style="margin-top:5rpx;">B.</view>
                   <rich-text  nodes="{{item.b}}" class="cs1"></rich-text>
                 </view>
                 <view class="flex" wx:if="{{item.c != null}}" style="margin-left:30rpx;">
-                  <view>C.</view>
+                  <view style="margin-top:5rpx;">C.</view>
                   <rich-text  nodes="{{item.c}}" class="cs1"></rich-text>
                 </view>
                 <view class="flex" wx:if="{{item.d != null}}" style="margin-left:30rpx;">
-                  <view>D.</view>
+                  <view style="margin-top:5rpx;">D.</view>
                   <rich-text  nodes="{{item.d}}" class="cs1"></rich-text>
                 </view>                                 
               </view>

@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    cs: [{}, {}, {}],
+    // cs: [{}, {}, {}],
     currentTab: 0,
     clientHeight: 1000,
     dtk: false,
@@ -18,7 +18,9 @@ Page({
     ques_num: 0,
     finish_all: true,
     diffX: 0,
-    ans_2: [-1, -1, -1, -1]
+    img: [],
+    imgs: []
+    // ans_2:[{"-1"},{"-1"},{"-1"},{"-1"}]
   },
 
   /**
@@ -49,10 +51,6 @@ Page({
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
-        // var cs1 = "question.a"
-        // var cs2 = "question.b"
-        // var cs3 = "question.c"
-        // var cs4 = "question.d"
         d.data.data.title = d.data.data.title.replace(/<img/gi, '<img style="max-width:95%;height:auto;display:block"')
 
         if (d.data.data.a != null) {
@@ -73,8 +71,9 @@ Page({
         }
         that.setData({
           question: d.data.data,
-          // currentTab: that.data.currentTab + 1
+
         })
+
         var cs = "question.myans"
         that.setData({
           [cs]: that.data.id_list[that.data.currentTab].ans
@@ -176,7 +175,7 @@ Page({
             var cs = "id_list[" + i + "].ans"
             that.setData({
               ques_type2: 2,
-              [cs]: that.data.ans_2
+              [cs]: ''
             })
           } else if (that.data.id_list[i].type == 3) {
             var cs = "id_list[" + i + "].ans"
@@ -320,7 +319,7 @@ Page({
     let that = this
     console.log("答题卡")
     for (var i = 0; i < that.data.id_list.length; i++) {
-      if (that.data.id_list[i].ans == -1) {
+      if (that.data.id_list[i].ans == -1 || that.data.id_list[i].ans == '') {
         that.setData({
           finish_all: false
         })
@@ -334,12 +333,12 @@ Page({
         "mid": that.data.mid,
         "answerline": 1200
       }
-      app.ols.update_cpsubmit(params).then(d => {
+      app.ols.update_testsubmit(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
           console.log(d.data.data)
-          wx.navigateTo({
-            url: '../../pages/cp_report/cp_report?mid=' + that.data.mid,
+          wx.navigateBack({
+            delta: 1  // 返回上一级页面。
           })
 
           console.log("更新作业状态接口调取成功")
@@ -355,8 +354,6 @@ Page({
     let that = this
     console.log("单选题")
     var ans = e.currentTarget.dataset.ans
-    var id = e.currentTarget.dataset.id
-    console.log(ans, id)
     var cs = "id_list[" + that.data.currentTab + "].ans"
     var cscs = "question.myans"
     that.setData({
@@ -364,35 +361,86 @@ Page({
       [cscs]: ans
     })
 
-    // that.work_submit(ans)   //作业答案提交接口
+    that.work_submit(ans)   //作业答案提交接口
   },
+
+  // mul_select:function(e){
+  //   let that = this
+  //   var ans = e.currentTarget.dataset.ans
+  //   console.log(that.data.currentTab,ans)
+  //   // debugger;
+  //   var cs = "id_list[" + that.data.currentTab + "]
+  //   that.setData({
+  //     [cs]:ans
+  //   })
+  //   // that.data.id_list[that.data.currentTab].ans[ans] = ans
+
+
+  // },
 
   submit_ans1: function (e) {
     let that = this
+    var ans_arr = []
+    var ans
     console.log("多选题")
     var ans = e.currentTarget.dataset.ans
     var id = e.currentTarget.dataset.id
     console.log(ans, id)
-    var cs = "id_list[" + that.data.currentTab + "].ans[" + ans + "]"
-    var cscs = "question.myans[" + ans + "]"
+    if (that.data.question.myans != '') {
+      if (that.data.question.myans[ans] == ans) {
+        var cscs = "question.myans[" + ans + "]"
+        that.setData({
+          [cscs]: -1
+        })
+      } else {
+        var cscs = "question.myans[" + ans + "]"
+        that.setData({
+          [cscs]: ans
+        })
+      }
+    } else {
+      var cscs = "question.myans[" + ans + "]"
+      that.setData({
+        [cscs]: ans
+      })
+    }
+    var cs = "id_list[" + that.data.currentTab + "].ans"
     that.setData({
-      [cs]: ans,
-      [cscs]: ans
+      [cs]: that.data.question.myans
     })
 
-    // that.work_submit(ans)   //作业答案提交接口
+    console.log(that.data.id_list[that.data.currentTab])
+
+
+
+    for (var i = 0; i < that.data.question.myans.length; i++) {
+      console.log(i, "i")
+      if (that.data.question.myans[i] != -1 && that.data.question.myans[i] != null) {
+        ans_arr.push(i)
+      }
+    }
+    console.log(ans_arr)
+    ans = ans_arr.join(",");
+    console.log(ans)
+    that.work_submit(ans)   //作业答案提交接口
   },
 
   //作业答案提交接口
   work_submit: function (ans) {
     let that = this
+    var sactive
+    if (that.data.question.type <= 3) {
+      sactive = 0
+    } else {
+      sactive = 1
+    }
     var params = {
       "token": wx.getStorageSync("token"),
       "mid": that.data.mid,
       "eid": that.data.eid,
       "qid": that.data.question.id,
       "submit": ans,
-      "sactive": 0
+      "sactive": sactive
     }
     app.ols.work_submit(params).then(d => {
       console.log(d)
@@ -466,7 +514,7 @@ Page({
         "mid": that.data.mid,
         "answerline": 1200
       }
-      app.ols.update_cpsubmit(params).then(d => {
+      app.ols.update_testsubmit(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
           console.log(d.data.data)
@@ -486,33 +534,78 @@ Page({
     }
   },
 
+  //删除图片
+  del_img: function (e) {
+    let that = this
+    var xb = e.currentTarget.dataset.xb
+    console.log(xb)
+    that.data.imgs.splice(xb, 1);
+    var cs1 = "id_list[" + that.data.currentTab + "].ans"
+    var cs2 = "question.myans"
+    that.setData({
+      imgs: that.data.img,
+      [cs1]: that.data.img,
+      [cs2]: that.data.img,
+    })
+
+    var ans = that.data.question.myans.join("@@");
+    console.log(ans, "img")
+    that.work_submit(ans)   //作业答案提交接口
+  },
+
+
+  //上传图片
   chooseImg() {
     let that = this;
 
     wx.chooseImage({
-      count: 1,
+      count: 3,
       success: (res) => {
         let tempFilePaths = res.tempFilePaths;
         console.log(tempFilePaths)
-        var params = {
-          "token": wx.getStorageSync("token"),
-          "file": tempFilePaths
-        }
-        app.ols.upload_img(params).then(d => {
-          console.log(d)
-          if (d.data.code == 0) {
-            console.log(d.data.data)
+        // let imgs = [];
+        wx.uploadFile({
+          url: 'http://os.lingjun.net/api.php/annex/upload',
+          filePath: tempFilePaths[0],
+          name: 'file',
+          method: 'POST',
+          formData: {
+            'file': tempFilePaths[0],
+            "token": wx.getStorageSync("token"),
+          },
+          success(r) {
 
-            console.log("上传图片接口调取成功")
+            let hhh = JSON.parse(r.data);
+            if (hhh.code == 1) {
+              console.log("成功")
+              // console.log(r.data)
+              // imgs.unshift(hhh.data.src)
+              // that.data.img = 
+              that.data.img.unshift(hhh.data.file)
+              var cs1 = "id_list[" + that.data.currentTab + "].ans"
+              var cs2 = "question.myans"
+              that.setData({
+                imgs: that.data.img,
+                [cs1]: that.data.img,
+                [cs2]: that.data.img,
+              })
+              // console.log(hhh.data.file)
+              var ans = that.data.question.myans.join("@@");
+              console.log(ans, "img")
+              that.work_submit(ans)   //作业答案提交接口
 
-          } else {
-            console.log("上传图片接口==============" + d.data.msg)
+
+            } else {
+
+              console.log('失败')
+
+            }
+
+
+
+
           }
         })
-
-
-
-
 
       }
 

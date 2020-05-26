@@ -8,7 +8,7 @@
   opacity:1;
 }
 .head{
-  margin-left: 280rpx;
+  margin-left: 250rpx;
   margin-top: 107rpx;
   width:140rpx;
   height:48rpx;
