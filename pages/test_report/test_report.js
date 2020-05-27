@@ -1,4 +1,5 @@
 // pages/test_report/test_report.js
+const app = getApp()
 Page({
 
   /**
@@ -12,7 +13,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this
+    var mid = options.mid
+    console.log(mid)
+    that.get_report(mid)
+  },
 
+  //获取结课考试报告
+  get_report:function(mid){
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "mid": mid,
+    }
+    app.ols.test_report(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+
+        console.log("结课考试报告接口调取成功")
+      } else {
+        console.log("结课考试报告接口==============" + d.data.msg)
+      }
+    })
   },
 
   /**

@@ -181,19 +181,19 @@ Page({
             var cs = "id_list[" + i + "].ans"
             that.setData({
               ques_type3: 3,
-              [cs]: ''
+              [cs]: []
             })
           } else if (that.data.id_list[i].type == 4) {
             var cs = "id_list[" + i + "].ans"
             that.setData({
               ques_type4: 4,
-              [cs]: ''
+              [cs]: []
             })
           } else if (that.data.id_list[i].type == 5) {
             var cs = "id_list[" + i + "].ans"
             that.setData({
               ques_type5: 5,
-              [cs]: ''
+              [cs]: []
             })
           }
           // var cs = "id_list[" + i + "].ans"
@@ -292,6 +292,8 @@ Page({
           })
         } else {
           that.setData({
+            img: [],
+            imgs: [],
             currentTab: that.data.currentTab + 1
           })
           that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
@@ -306,6 +308,8 @@ Page({
           })
         } else {
           that.setData({
+            img:[],
+            imgs:[],
             currentTab: that.data.currentTab - 1
           })
           that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
@@ -364,19 +368,6 @@ Page({
     that.work_submit(ans)   //作业答案提交接口
   },
 
-  // mul_select:function(e){
-  //   let that = this
-  //   var ans = e.currentTarget.dataset.ans
-  //   console.log(that.data.currentTab,ans)
-  //   // debugger;
-  //   var cs = "id_list[" + that.data.currentTab + "]
-  //   that.setData({
-  //     [cs]:ans
-  //   })
-  //   // that.data.id_list[that.data.currentTab].ans[ans] = ans
-
-
-  // },
 
   submit_ans1: function (e) {
     let that = this
@@ -458,22 +449,22 @@ Page({
   },
 
   //手动滑页
-  swiperchange: function (e) {
-    var that = this
-    var current = Number(e.currentTarget.dataset.current)  // 当前的
-    var index = e.detail.current;//当前所在页面的 index
-    console.log(index)
-    console.log(current + 1)
-    that.setData({
-      currentTab: current + 1
-    })
-    that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
+  // swiperchange: function (e) {
+  //   var that = this
+  //   var current = Number(e.currentTarget.dataset.current)  // 当前的
+  //   var index = e.detail.current;//当前所在页面的 index
+  //   console.log(index)
+  //   console.log(current + 1)
+  //   that.setData({
+  //     currentTab: current + 1
+  //   })
+  //   that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
 
 
 
 
 
-  },
+  // },
 
   //开始答题按钮
   start_ans: function () {
@@ -578,12 +569,15 @@ Page({
               let hhh = JSON.parse(r.data);
               if (hhh.code == 1) {
                 console.log("成功")
-              // console.log(r.data)
-                // imgs.unshift(hhh.data.src)
-                // that.data.img = 
+             
                 that.data.img.unshift(hhh.data.file)
                 var cs1 = "id_list[" + that.data.currentTab + "].ans"
                 var cs2 = "question.myans"
+                // that.data.id_list[that.data.currentTab].ans.push(hhh.data.file)
+                // that.data.question.myans.push(hhh.data.file)
+                // that.setData({
+                //   id_list: that.data.id_list
+                // })
                 that.setData({
                   imgs: that.data.img,
                   [cs1]: that.data.img,

@@ -212,13 +212,38 @@ function get_live(params) {
 }
 
 
-//上传图片
-function upload_img(params) {
-  return fetch.olsfetchpostimg(URI, 'annex/upload', params)
+// //上传图片
+// function upload_img(params) {
+//   return fetch.olsfetchpostimg(URI, 'annex/upload', params)
+// }
+
+//（课后作业、结课考试）报告
+function test_report(params) {
+  return fetch.olsfetchpost(URI, 'report/getchart', params)
+}
+
+//结课报告1
+function end_report1(params) {
+  return fetch.olsfetchpost(URI, 'report/getstudyday', params)
+}
+
+//结课报告2
+function end_report2(params) {
+  return fetch.olsfetchpost(URI, 'report/getstudyearlynight', params)
+}
+
+//结课报告3
+function end_report3(params) {
+  return fetch.olsfetchpost(URI, 'report/getstudyinfo', params)
+}
+
+
+//结课报告4
+function end_report4(params) {
+  return fetch.olsfetchpost(URI, 'report/getstudyresult', params)
 }
 
 
 
 
-
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, study_pro, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, upload_img, update_testsubmit}
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, study_pro, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4}

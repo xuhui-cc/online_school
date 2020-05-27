@@ -115,7 +115,7 @@ Page({
   to_end_report:function(){
     let that = this
     wx.navigateTo({
-      url: '../../pages/end_report/end_report',
+      url: '../../pages/endcourse_report/endcourse_report?kid=' + that.data.kid,
     })
   },
 
@@ -252,6 +252,14 @@ Page({
     let that = this
     wx.navigateTo({
       url: '../../pages/test/test?eid=' + that.data.course_cata.eid,
+    })
+  },
+
+  //结课考试报告
+  to_test: function (e) {
+    let that = this
+    wx.navigateTo({
+      url: '../../pages/test_report/test_report?mid=' + that.data.course_cata.mid,
     })
   },
 

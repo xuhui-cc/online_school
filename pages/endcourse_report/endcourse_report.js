@@ -4,6 +4,7 @@ const app = getApp()
 
 Page({
   data: {
+    current:0,
     page: 1,//无限下拉分页
     videoData: [],
     videoSrc: '', //当前视频的地址
@@ -23,11 +24,15 @@ Page({
     kslx_select: "请选择考场类型",
     date: '请选择测评日期',
     cptime: ['08:00 - 09:00', '09:00 -10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 13:00', '13:00 - 14:00', '14:00 - 15:00', '15:00 - 16:00', '16:00 - 17:00', '17:00 - 18:00', '18:00 - 19:00', '19:00 - 20:00', '20:00 - 21:00', '21:00 - 22:00'],
-    cp_time: "请选择测评时间"
+    cp_time: "请选择测评时间",
+    url:"https://onlineschool-1256006778.cos.ap-beijing.myqcloud.com/wxmin/1.png"
   },
 
   onLoad: function (options) {
     const that = this;
+    that.setData({
+      kid:options.kid
+    })
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -146,27 +151,172 @@ Page({
         scrollTop: 0, //更改这个值为了隐藏video显示image，开始动画
       })
       idx += 1;
-      // if (idx >= that.data.videoData.length) { //当滑到倒数第二个视频时，开始请求数据
-      //   wx.showToast({
-      //     title: '没有更多了哦',
-      //     icon: 'none',
-      //     duration: 2000
-      //   })
-      //   idx -= 1;
-      //   // that.setData({
-      //   //   page: page + 1,
-      //   //   totalNum: totalNum + totalNum,
-      //   //   videoData: videoData.concat(videoData) //此时可以调用请求视频列表的方法，例如that.getVideoList(),y由于没有接口支持，模拟无限加载的效果
-      //   // })
+      var current = that.data.current + 1
+      if(current == 1){
 
+        var params = {
+          "token": wx.getStorageSync("token"),
+          "kid": that.data.kid
+        }
+        app.ols.end_report1(params).then(d => {
+          console.log(d)
+          if (d.data.code == 0) {
+            console.log(d.data.data)
+            that.setData({
+              report: d.data.data,
+              current: current,
+              url: "https://onlineschool-1256006778.cos.ap-beijing.myqcloud.com/wxmin/2.png"
+            })
+        
+            console.log("结课报告1接口调取成功")
+          } else {
+            console.log("结课报告1==============" + d.data.msg)
+          }
+        })
+        
+      } else if (current == 2){
+        var params = {
+          "token": wx.getStorageSync("token"),
+          "kid": that.data.kid
+        }
+        app.ols.end_report2(params).then(d => {
+          console.log(d)
+          if (d.data.code == 0) {
+            console.log(d.data.data)
+            that.setData({
+              report: d.data.data,
+              current: current,
+              url: "https://onlineschool-1256006778.cos.ap-beijing.myqcloud.com/wxmin/3.png"
+            })
 
-      // }
+            console.log("结课报告2接口调取成功")
+          } else {
+            console.log("结课报告2==============" + d.data.msg)
+          }
+        })
+      }
+      else if (current == 3) {
+        var params = {
+          "token": wx.getStorageSync("token"),
+          "kid": that.data.kid
+        }
+        app.ols.end_report3(params).then(d => {
+          console.log(d)
+          if (d.data.code == 0) {
+            console.log(d.data.data)
+            that.setData({
+              report: d.data.data,
+              current: current,
+              url: "https://onlineschool-1256006778.cos.ap-beijing.myqcloud.com/wxmin/4.png"
+            })
+
+            console.log("结课报告3接口调取成功")
+          } else {
+            console.log("结课报告3==============" + d.data.msg)
+          }
+        })
+      } else if (current == 4) {
+        var params = {
+          "token": wx.getStorageSync("token"),
+          "kid": that.data.kid
+        }
+        app.ols.end_report4(params).then(d => {
+          console.log(d)
+          if (d.data.code == 0) {
+            console.log(d.data.data)
+            that.setData({
+              report: d.data.data,
+              current: current,
+              url: "https://onlineschool-1256006778.cos.ap-beijing.myqcloud.com/wxmin/5.png"
+            })
+
+            console.log("结课报告3接口调取成功")
+          } else {
+            console.log("结课报告3==============" + d.data.msg)
+          }
+        })
+      }
+     
+      console.log(that.data.current,"current")
+
+    
       console.log("下滑")
       console.log(idx)
       that.animation.translateY(-idx * that.data.height).step(); //创建动画
-      // that.video.play(); //停止当前视频
+    
     } else if (tp.y - ty > 100 && idx > 0) { //向上滚动的判断，要区分是否将滚到第一个视频，添加不同动画
       idx -= 1;
+      var current = that.data.current - 1
+      if (current == 1) {
+
+        var params = {
+          "token": wx.getStorageSync("token"),
+          "kid": that.data.kid
+        }
+        app.ols.end_report1(params).then(d => {
+          console.log(d)
+          if (d.data.code == 0) {
+            console.log(d.data.data)
+            that.setData({
+              report: d.data.data,
+              current: current,
+              url: "https://onlineschool-1256006778.cos.ap-beijing.myqcloud.com/wxmin/2.png"
+            })
+
+            console.log("结课报告1接口调取成功")
+          } else {
+            console.log("结课报告1==============" + d.data.msg)
+          }
+        })
+
+      } else if (current == 2) {
+        var params = {
+          "token": wx.getStorageSync("token"),
+          "kid": that.data.kid
+        }
+        app.ols.end_report2(params).then(d => {
+          console.log(d)
+          if (d.data.code == 0) {
+            console.log(d.data.data)
+            that.setData({
+              report: d.data.data,
+              current: current,
+              url: "https://onlineschool-1256006778.cos.ap-beijing.myqcloud.com/wxmin/3.png"
+            })
+
+            console.log("结课报告2接口调取成功")
+          } else {
+            console.log("结课报告2==============" + d.data.msg)
+          }
+        })
+      }
+      else if (current == 3) {
+        var params = {
+          "token": wx.getStorageSync("token"),
+          "kid": that.data.kid
+        }
+        app.ols.end_report3(params).then(d => {
+          console.log(d)
+          if (d.data.code == 0) {
+            console.log(d.data.data)
+            that.setData({
+              report: d.data.data,
+              current: current,
+              url: "https://onlineschool-1256006778.cos.ap-beijing.myqcloud.com/wxmin/4.png"
+            })
+
+            console.log("结课报告3接口调取成功")
+          } else {
+            console.log("结课报告3==============" + d.data.msg)
+          }
+        })
+      } else if (current == 0) {
+            that.setData({
+              current: current,
+              url: "https://onlineschool-1256006778.cos.ap-beijing.myqcloud.com/wxmin/1.png"
+            })
+
+      }
       console.log("上一个")
       // that.setData({
       //   scrollTop: 1,
