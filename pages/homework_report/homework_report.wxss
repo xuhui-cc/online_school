@@ -4,6 +4,7 @@ page{
 .layout{
   margin-left: 30rpx;
   margin-top: 22rpx;
+  padding-bottom: 50rpx;
   width:690rpx;
   /* height:1209rpx; */
   background:rgba(255,255,255,1);
@@ -142,6 +143,7 @@ page{
   font-family:PingFang SC;
   font-weight:bold;
   line-height:42rpx;
+  text-align: center;
   color:rgba(255,255,255,1);
   opacity:1;
 }

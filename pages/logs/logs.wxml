@@ -25,6 +25,7 @@
   <view>
     <view wx:for="{{course.lists}}" wx:key="index">
       <view class="course_layout" bindtap="to_course_detail" data-xb="{{index}}">
+        <image wx:if="{{item.is_buy == 1}}" class="isbuy" src="../../images/is_buy.png"></image>
         <view class="course_title">{{item.title}}</view>
         <view class="course_intor">{{item.intro}}</view>
         <view class="flex">

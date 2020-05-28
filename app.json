@@ -20,14 +20,14 @@
     "pages/add_adress/add_adress",
     "pages/end_report/end_report",
     "pages/video/video",
-    "pages/finish_test_report/finish_test_report",
     "pages/cp_test/cp_test",
     "pages/cp_report/cp_report",
     "pages/cp_analysis/cp_analysis",
     "pages/wrong/wrong",
     "pages/live/live",
     "pages/test/test",
-    "pages/cs/cs"
+    "pages/cs/cs",
+    "pages/analysis/analysis"
   ],
   "window": {
     "backgroundTextStyle": "light",

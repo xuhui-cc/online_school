@@ -1,4 +1,4 @@
-// pages/finish_test_report/finish_test_report.js
+// pages/analysis/analysis.js
 Page({
 
   /**

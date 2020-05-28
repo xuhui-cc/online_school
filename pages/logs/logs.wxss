@@ -270,3 +270,9 @@ page{
   color:rgba(199,197,197,1);
   opacity:1;
 }
+.isbuy{
+  position: absolute;
+  margin-left: 601rpx;
+  width:89rpx;
+  height:89rpx;
+}

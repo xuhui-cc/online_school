@@ -2,34 +2,9 @@
 const app = getApp()
 Page({
 
-  onShareAppMessage: function () {
-    let that = this;
-    return {
-      title: '简直走别拐弯', // 转发后 所显示的title
-      path: '/pages/first_page/first_page', // 相对的路径
-      imageUrl: '../../images/first_bg.png',  //用户分享出去的自定义图片大小为5:4,
-      success: (res) => {    // 成功后要做的事情
-        console.log("成功")
-        // console.log
-
-        // wx.getShareInfo({
-        //   shareTicket: res.shareTickets[0],
-        //   success: (res) => {
-        //     that.setData({
-        //       isShow: true
-        //     })
-        //     console.log(that.setData.isShow)
-        //   },
-        //   fail: function (res) { console.log(res) },
-        //   complete: function (res) { console.log(res) }
-        // })
-      },
-      fail: function (res) {
-        // 分享失败
-        console.log(res)
-      }
-    }
-  },
+  // onShareAppMessage: function () {
+    
+  // },
 
   /**
    * 页面的初始数据
@@ -141,6 +116,30 @@ Page({
     })
   },
 
+  //免费课领取
+  to_free:function(e){
+    let that = this
+    var kid = e.currentTarget.dataset.kid
+    console.log(kid)
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "kid": that.data.kid
+    }
+    app.ols.get_free(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        that.onShow()     //刷新页面
+        // that.setData({
+        //   course_cata: d.data.data
+        // })
+        console.log("获取免费课程接口调取成功")
+      } else {
+        console.log("获取免费课程==============" + d.data.msg)
+      }
+    })
+  },
+
 
   //课程讲义跳转
   to_course_file:function(e){
@@ -244,7 +243,10 @@ Page({
   //查看课后作业报告
   to_homework_report:function(e){
     let that = this
-
+    var mid = e.currentTarget.dataset.mid
+    wx.navigateTo({
+      url: '../../pages/homework_report/homework_report?mid=' + mid
+    })
   },
 
   //结课考试
@@ -256,7 +258,7 @@ Page({
   },
 
   //结课考试报告
-  to_test: function (e) {
+  to_test_report: function (e) {
     let that = this
     wx.navigateTo({
       url: '../../pages/test_report/test_report?mid=' + that.data.course_cata.mid,
@@ -332,6 +334,31 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    let that = this;
+    return {
+      title: '简直走别拐弯', // 转发后 所显示的title
+      path: '/pages/first_page/first_page', // 相对的路径
+      imageUrl: '../../images/first_bg.png',  //用户分享出去的自定义图片大小为5:4,
+      success: (res) => {    // 成功后要做的事情
+        console.log("成功")
+        // console.log
 
+        // wx.getShareInfo({
+        //   shareTicket: res.shareTickets[0],
+        //   success: (res) => {
+        //     that.setData({
+        //       isShow: true
+        //     })
+        //     console.log(that.setData.isShow)
+        //   },
+        //   fail: function (res) { console.log(res) },
+        //   complete: function (res) { console.log(res) }
+        // })
+      },
+      fail: function (res) {
+        // 分享失败
+        console.log(res)
+      }
+    }
   }
 })

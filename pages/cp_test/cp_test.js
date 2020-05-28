@@ -50,6 +50,22 @@ Page({
     
   },
 
+  //出现
+  show: function () {
+    var that = this;
+    that.setData({ flag: false });
+    countDown(that, 8);
+  },
+  //消失
+  hide: function () {
+    this.setData({
+      flag: true,
+      disabled: true,
+      opacity: 0.7
+    })
+  },
+
+  
   //小程序倒计时功能
   count_down: function (that) {
     that.setData({
@@ -60,7 +76,7 @@ Page({
       that.setData({
         clock: "已经截止"
       });
-      that.show()
+      // that.show()
       return;
     }
     t = setTimeout(function () {
@@ -548,9 +564,16 @@ Page({
   //返回上一层
   back:function(){
     let that = this
-    that.setData({
-      back: true
-    })
+    if(!that.data.start_ans){
+      wx.navigateBack({
+        delta: 1  // 返回上一级页面。
+      })
+    }else{
+      that.setData({
+        back: true
+      })
+    }
+    
     console.log(that.data.back, "back")
   },
 

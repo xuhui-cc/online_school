@@ -639,9 +639,16 @@ Page({
   //返回上一层
   back: function () {
     let that = this
-    that.setData({
-      back: true
-    })
+    if(!that.data.start_ans){
+      wx.navigateBack({
+        delta: 1  // 返回上一级页面。
+      })
+    }else{
+      that.setData({
+        back: true
+      })
+    }
+    
     console.log(that.data.back, "back")
   },
 
