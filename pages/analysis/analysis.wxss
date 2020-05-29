@@ -15,6 +15,12 @@
   color:rgba(0,0,0,1);
   opacity:1;
 }
+.r-a-w_img{
+  margin-left: 35rpx;
+  margin-top: 38rpx;
+  width:80rpx;
+  height:80rpx;
+}
 .layout{
   position: fixed;
   display: flex;
@@ -25,15 +31,17 @@
   z-index: 20;
 }
 .ques_num{
-  margin-left: 150rpx;
-  width:80rpx;
+  margin-left: 55rpx;
+  margin-top: 57rpx;
+  position: absolute;
+  width:36rpx;
   height:42rpx;
   font-size:30rpx;
   font-family:PingFang SC;
-  font-weight:400;
-  line-height:64rpx;
+  font-weight:bold;
+  line-height:42rpx;
   text-align: center;
-  color:rgba(0,0,0,1);
+  color:rgba(255,255,255,1);
   opacity:1;
 }
 .score_num{
@@ -305,4 +313,11 @@
   /* background: rgba(10,184,135,1); */
   color:rgba(10,184,135,1);
   opacity:1;
+}
+.ans_img{
+  margin-left: 30rpx;
+  margin-top: 15rpx;
+  margin-right: 15rpx;
+  width:174rpx;
+  height:174rpx;
 }

@@ -36,29 +36,7 @@ Page({
     app.ols.wrong(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
-        // that.setData({
-        //   wrong: d.data.data
-        // })
-
-        // for (var i = 0; i < that.data.wrong.length; i++) {
-        //   if (that.data.wrong[i].children != '') {
-        //     var cs1 = "wrong[" + i + "].fold1"
-        //     that.setData({
-        //       [cs1]: false
-        //     })
-        //     if (that.data.wrong[i].children != ''){
-        //       for (var j = 0; j < that.data.wrong[i].children.length; j++){
-        //         var cs2 = "wrong[" + i + "].children[" + j + "].fold2"
-        //         that.setData({
-        //           [cs2]: false
-        //         })
-        //       }
-        //     }
-        //   }
-        // }
-
-
-
+        
         for (var i = 0; i < d.data.data.length; i++) {
           if (d.data.data[i].children != '') {
             d.data.data[i].fold1 = false

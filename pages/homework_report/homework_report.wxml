@@ -24,8 +24,9 @@
     <view class="warp" >
       <view class="for" wx:for="{{report.option}}" wx:key="index">
         <view wx:if="{{item.type == 1}}">
-          <view class="r-a-w" wx:if="{{item.status == 1  }}" style="background:rgba(3,182,131,1);">{{index +1}}</view>
-          <view class="r-a-w" wx:if="{{item.status == 3  }}" style="background:rgba(248,107,107,1);">{{index +1}}</view>
+        <view class="r-a-w" wx:if="{{item.status == 0  }}" style="background:rgba(235,235,235,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 1  }}" style="background:rgba(3,182,131,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 3  }}" style="background:rgba(248,107,107,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
         </view>
       </view>
     </view>
@@ -35,9 +36,10 @@
     <view class="warp" >
       <view class="for" wx:for="{{report.option}}" wx:key="index">
         <view wx:if="{{item.type == 3}}">
-          <view class="r-a-w" wx:if="{{item.status == 1}}" style="background:rgba(3,182,131,1);">{{index +1}}</view>
-          <view class="r-a-w" wx:if="{{item.status == 3}}" style="background:rgba(248,107,107,1);">{{index +1}}</view>
-          <view wx:if="{{item.status == 2}}">
+        <view class="r-a-w" wx:if="{{item.status == 0  }}" style="background:rgba(235,235,235,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 1}}" style="background:rgba(3,182,131,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 3}}" style="background:rgba(248,107,107,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view wx:if="{{item.status == 2}}" data-index="{{index}}" bindtap="to_analysis">
             <view class="ques_num">{{index +1}}</view>
             <image class="r-a-w_img" src="../../images/r-a-w.png"></image>
           </view>
@@ -49,8 +51,9 @@
     <view class="warp" >
       <view class="for" wx:for="{{report.option}}" wx:key="index">
         <view wx:if="{{item.type == 3}}">
-          <view class="r-a-w" wx:if="{{item.status == 1  }}" style="background:rgba(3,182,131,1);">{{index +1}}</view>
-          <view class="r-a-w" wx:if="{{item.status == 3  }}" style="background:rgba(248,107,107,1);">{{index +1}}</view>
+        <view class="r-a-w" wx:if="{{item.status == 0  }}" style="background:rgba(235,235,235,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 1  }}" style="background:rgba(3,182,131,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 3  }}" style="background:rgba(248,107,107,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
         </view>
       </view>
     </view>
@@ -59,8 +62,9 @@
     <view class="warp" >
       <view class="for" wx:for="{{report.option}}" wx:key="index">
         <view wx:if="{{item.type == 4}}">
-          <view class="r-a-w" wx:if="{{item.status == 1}}" style="background:rgba(3,182,131,1);">{{index +1}}</view>
-          <view class="r-a-w" wx:if="{{item.status == 3}}" style="background:rgba(248,107,107,1);">{{index +1}}</view>
+        <view class="r-a-w" wx:if="{{item.status == 0  }}" style="background:rgba(235,235,235,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 1}}" style="background:rgba(3,182,131,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 3}}" style="background:rgba(248,107,107,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
           <view wx:if="{{item.status == 2}}">
             <view class="ques_num">{{index +1}}</view>
             <image class="r-a-w_img" src="../../images/r-a-w.png"></image>
@@ -73,8 +77,9 @@
     <view class="warp" >
       <view class="for" wx:for="{{report.option}}" wx:key="index">
         <view wx:if="{{item.type == 5}}">
-          <view class="r-a-w" wx:if="{{item.status == 1}}" style="background:rgba(3,182,131,1);">{{index +1}}</view>
-          <view class="r-a-w" wx:if="{{item.status == 3}}" style="background:rgba(248,107,107,1);">{{index +1}}</view>
+        <view class="r-a-w" wx:if="{{item.status == 0  }}" style="background:rgba(235,235,235,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 1}}" style="background:rgba(3,182,131,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 3}}" style="background:rgba(248,107,107,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
           <view wx:if="{{item.status == 2}}">
             <view class="ques_num">{{index +1}}</view>
             <image class="r-a-w_img" src="../../images/r-a-w.png"></image>

@@ -122,4 +122,28 @@
   color:rgba(32,32,32,1);
   opacity:1;
 }
-
+.cscs{
+  width: 300rpx;
+  height: 50rpx;
+  background:rgba(23,161,104,1);
+}
+.share_btn{
+  position: absolute;
+  margin-top: 130rpx;
+  margin-left:97rpx;
+  width: 555rpx;
+  height: 113rpx;
+  /* background-color: rgb(165, 33, 33); */
+  background: transparent;
+}
+.share_btn::after {
+  border: none;
+}
+.share{
+  margin-top: 130rpx;
+  margin-left:97rpx;
+  width: 555rpx;
+  height: 113rpx;
+  
+  
+}

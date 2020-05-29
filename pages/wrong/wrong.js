@@ -142,7 +142,7 @@ Page({
         if (that.data.analysis.type >2){
           var cs = "analysis.submit"
           that.setData({
-            [cs]: that.data.analysis.submit.split(",")
+            [cs]: that.data.analysis.submit.split("@@")
           })
         }
         

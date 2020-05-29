@@ -383,6 +383,10 @@ Page({
   dtk_submit:function(){
     let that = this
     console.log("答题卡")
+    var timestamp = (Date.parse(new Date())) / 1000
+    console.log(timestamp, "timestamp")
+    var answerline = timestamp - that.data.start_time
+    console.log(answerline, "answerline")
     for(var i=0;i<that.data.id_list.length;i++){
       if(that.data.id_list[i].ans == -1){
         that.setData({
@@ -396,7 +400,7 @@ Page({
       var params = {
         "token": wx.getStorageSync("token"),
         "mid": that.data.mid,
-        "answerline": 1200
+        "answerline": answerline
       }
       app.ols.update_cpsubmit(params).then(d => {
         console.log(d)
@@ -483,10 +487,12 @@ Page({
   //开始答题按钮
   start_ans:function(){
     let that = this
-    
+    var timestamp = (Date.parse(new Date()))/1000
+    console.log(timestamp,"timestamp")
     that.get_cp_test(that.data.id_list[0].pid)      //获取试题
     that.setData({
-      start_ans : true
+      start_ans : true,
+      start_time: timestamp
     })
   },
 
@@ -509,6 +515,10 @@ Page({
   //答题卡按钮延伸弹框
   dtk_submit_btn: function (e) {
     let that = this
+    var timestamp = (Date.parse(new Date())) / 1000
+    console.log(timestamp, "timestamp")
+    var answerline = timestamp - that.data.start_time
+    console.log(answerline,"answerline")
     var type = e.currentTarget.dataset.type
     console.log(type)
     if (type == 1) {
@@ -517,7 +527,7 @@ Page({
       var params = {
         "token": wx.getStorageSync("token"),
         "mid": that.data.mid,
-        "answerline": 1200
+        "answerline": answerline
       }
       app.ols.update_cpsubmit(params).then(d => {
         console.log(d)

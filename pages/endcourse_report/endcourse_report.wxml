@@ -41,8 +41,15 @@
       <view class="content5" >于<text class="name1">{{report.res.start_time}} </text> 日，认真并优秀地学习了 <text class="name1">《{{report.res.lesson_title}}》。</text></view>
       <view class="content5">特授此证书，祝成绩更进一步！</view>
       <view class="content5" style="margin-top: 76rpx;margin-left: 513rpx;">课程老师</view>
-      <view class="content5" style="margin-left: 520rpx;margin-top: 10rpx；color:rgba(23,161,104,1);font-weight:bold;">{{report.res.teacher}}</view>
+      <view class="content5" style="margin-left: 520rpx;margin-top: 1rpx;color:rgba(23,161,104,1);font-weight:bold;">{{report.res.teacher}}</view>
+
+    <button class="share_btn"  open-type="share"></button>
+    <!-- <button open-type="share"></button> -->
+    <image class="share" src="../../images/share_report.png"></image>
+
     </view>
+
+    
     
   </canvas>
  

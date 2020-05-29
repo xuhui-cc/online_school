@@ -28,6 +28,13 @@ Page({
     url:"https://onlineschool-1256006778.cos.ap-beijing.myqcloud.com/wxmin/1.png"
   },
 
+
+  cscs:function(e){
+    let that = this
+    var cscs = e.currentTarget.dataset.cs
+    console.log(cscs,"cscs")
+  },
+
   onLoad: function (options) {
     const that = this;
     that.setData({

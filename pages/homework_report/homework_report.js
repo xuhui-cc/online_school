@@ -71,6 +71,15 @@ Page({
     
   },
 
+  to_analysis: function (e) {
+    let that = this
+    var index = e.currentTarget.dataset.index
+    console.log(index)
+    wx.navigateTo({
+      url: '../../pages/analysis/analysis?index=' + index + "&id=" + that.data.report.option[index].pid + "&eid=" + that.data.report.eid + "&mid=" + that.data.mid,
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

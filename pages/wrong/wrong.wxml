@@ -16,7 +16,7 @@
   <!-- 答题卡 -->
   <!-- wx:if="{{dtk}}" -->
   <view class="dtk_layout" wx:if="{{dtk}}">
-    <view class="ques_title" >一、单选题</view>
+    
     <view class="warp">
       <view class="for" wx:for="{{id_list}}" wx:key="index">
         <view class="r-a-w" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
@@ -24,6 +24,8 @@
     </view>
 
   </view>
+
+  
 
   <!-- 试卷详情 -->
 
