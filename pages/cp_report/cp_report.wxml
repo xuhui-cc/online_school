@@ -43,9 +43,9 @@
             <image class="xsj-img" src="../../images/xsj2.png"></image>
           </view>
           <view class="first_comment">{{item.remark}}</view>
-          <view>
+          <view style="margin-top:30rpx;padding-bottom:50rpx;">
             <view wx:for="{{item.second}}" wx:key="second_index" wx:for-item="second" wx:for-index="second_index">
-              <view class="flex" style="margin-top:15rpx;">
+              <view class="flex" style="margin-bottom:15rpx;">
                 <view class="second_img"></view>
                 <view class="second_comment">{{second.remark}}</view>
               </view>
@@ -59,11 +59,42 @@
         </view>
       </view>
 
+
+      
+
   
   
   
   </view>
 
+  <view class="pushlist" wx:if="{{course.res}}">推荐课程</view>
+  <view style="margin-bottom:30rpx;">
+    <view wx:for="{{course.res}}" wx:key="index" >
+    
+      <view class="course_layout" bindtap="to_course_detail" data-xb="{{index}}">
+        
+        <view class="course_title">{{item.title}}</view>
+        <view class="course_intor">{{item.intro}}</view>
+        <view class="flex">
+          <view>
+            <image class="avatar" src="{{item.avatar}}"></image>
+            <view class="tea_name">{{item.nick}}</view>
+          </view>
+          
+          <view class="course_text"><text style="color:#03B683;">{{item.order_num}}人</text>购买</view>
+          <view class="num_layout">
+            <view class="course_num">{{item.class_hour}}课时</view>
+          </view>
+          <view class="course_price">
+            <view style="margin-right:8rpx;margin-top:5rpx;">¥</view>
+            <view style="font-weight:bold;font-size:42rpx;">{{item.price}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  
+  
+  </view>
 
 
 

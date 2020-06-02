@@ -29,6 +29,26 @@ Page({
         that.setData({
           report:d.data.data
         })
+
+        //获取推荐课
+        var params = {
+          "token": wx.getStorageSync("token"),
+          "eid": d.data.data.eid,
+        }
+        app.ols.getpushlist(params).then(d => {
+          console.log(d)
+          if (d.data.code == 0) {
+            that.setData({
+              course: d.data.data
+            })
+            console.log("推荐课获取成功")
+          }else{
+            console.log("推荐课获取失败" + d.data.msg)
+          }
+
+        })
+
+        //获取点评
         var params = {
           "token": wx.getStorageSync("token"),
           "eid": d.data.data.eid,
@@ -52,6 +72,14 @@ Page({
     })
   },
 
+  to_course_detail: function (e) {
+    let that = this
+    var xb = e.currentTarget.dataset.xb
+    console.log(xb)
+    wx.navigateTo({
+      url: '../../pages/course_detail/course_detail?kid=' + that.data.course.res[xb].kid,
+    })
+  },
 
   to_cp_analysis:function(e){
     let that = this

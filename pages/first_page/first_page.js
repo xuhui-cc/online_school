@@ -15,26 +15,43 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    var login = wx.getStorageSync("login")
-    var gid = wx.getStorageSync("gid")
+    // var login = 
+    // var gid = 
     that.setData({
-      login:login,
-      gid:gid
+      login: wx.getStorageSync("login"),
+        gid: wx.getStorageSync("gid")
     })
-    if(login){
-      if (gid == null) {
-        that.get_grade()
-      }
-      else{
-        wx.switchTab({
-          url: '../../pages/logs/logs',
+    that.get_grade()
+    var params = {
+    
+    }
+    app.ols.user_number(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        that.setData({
+          num: d.data.data.res,
         })
-        console.log("我登录了，我选班级了")
+        if (that.data.login) {
+          
+            wx.switchTab({
+              url: '../../pages/logs/logs',
+            })
+            console.log("我登录了，我选班级了")
+          
+        }
+        else {
+          console.log("我没登录")
+        }
+        console.log("人数成功")
+      } else {
+        console.log(d.data.msg, "人数失败")
       }
-    }
-    else{
-      console.log("我没登录")
-    }
+    })
+    // that.setData({
+      
+    // })
+    
   
     
     
@@ -78,20 +95,7 @@ Page({
     })
   },
 
-  // grade_picker:function(e){
-  //   let that = this
-  //   console.log('picker发送选择改变，携带值为', e.detail.value)
-  //   that.setData({
-  //     grade_index: e.detail.value
-  //   })
-  //   console.log(that.data.grade[that.data.grade_index])
-  //   wx.setStorageSync("grade", that.data.grade_index)
-  //   wx.setStorageSync("grade_id", that.data.grade[that.data.grade_index].id)
-  //   wx.switchTab({
-  //     url: '../../pages/logs/logs',
-  //   })
-  // },
-
+  
   //获取微信绑定手机号登录
   getPhoneNumber: function (e) {
     var that = this
@@ -125,7 +129,6 @@ Page({
                   })
                   wx.setStorageSync("login", true)
                   wx.setStorageSync("token", d.data.data.token)
-                  that.get_grade()
                   if (d.data.data.gid != null){
                     that.setData({
                       grade_select:false
@@ -135,7 +138,6 @@ Page({
                       url: '../../pages/logs/logs',
                     })
                   }else{
-                    
                     that.setData({
                       grade_select: true
                     })

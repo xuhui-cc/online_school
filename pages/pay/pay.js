@@ -59,25 +59,36 @@ Page({
 
   buy:function(){
     let that = this
-    var params = {
-      "token": wx.getStorageSync("token"),
-      "kid":that.data.kid
-    }
-    app.ols.preorder(params).then(d => {
-      console.log(d)
-      if (d.data.code == 0) {
-        var ob = JSON.parse(d.data.data.paystr)
-        console.log(ob)
-        var timeStamp = ob.timeStamp
-        var nonceStr = ob.nonceStr
-        var pack = ob.package
-        var paySign = ob.paySign
-        that.laqizhifu(timeStamp, nonceStr, pack, paySign)
-        console.log("预支付接口成功")
-      } else {
-        console.log("预支付接口失败")
+    console.log(that.data.have_adr)
+    if (that.data.have_adr){
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "kid": that.data.kid
       }
-    })
+      app.ols.preorder(params).then(d => {
+        console.log(d)
+        if (d.data.code == 0) {
+          var ob = JSON.parse(d.data.data.paystr)
+          console.log(ob)
+          var timeStamp = ob.timeStamp
+          var nonceStr = ob.nonceStr
+          var pack = ob.package
+          var paySign = ob.paySign
+          that.laqizhifu(timeStamp, nonceStr, pack, paySign)
+          console.log("预支付接口成功")
+        } else {
+          console.log("预支付接口失败")
+        }
+      })
+    }else{
+      wx.showToast({
+        title: '请先完善地址信息',
+        icon:"none",
+        duration:3000
+      })
+      
+    }
+    
   },
 
   //拉起微信支付
@@ -99,10 +110,10 @@ Page({
         })
       },
       fail(res) {
-        wx.showToast({
-          title: '支付失败',
-          duration: 3000
-        })
+        // wx.showToast({
+        //   title: '支付失败',
+        //   duration: 3000
+        // })
         console.log("失败")
         wx.navigateBack({
           delta: 1  // 返回上一级页面。

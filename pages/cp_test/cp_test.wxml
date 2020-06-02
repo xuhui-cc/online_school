@@ -10,7 +10,7 @@
   <!-- 试卷说明 -->
   <view class="test_explain" wx:if="{{!start_ans}}">
     <view class="title">{{test_explain.title}}</view>
-    <view class="title" style="margin-top: 20rpx;">试卷说明</view>
+    <view class="title_fu" style="margin-top: 20rpx;">{{ques_info.remark}}</view>
     <view class="explain">本题分数 <text style="color:#03B683">{{test_explain.all_sum}}分</text> ，答题时长 <text style="color:#03B683;">{{test_explain.timeline}}分钟</text>。</view>
 
     <view wx:for="{{test_explain.option}}" wx:key="index">
@@ -30,7 +30,7 @@
 
 
   <!-- 试卷菜单栏 -->
-  <view class="layout">
+  <view class="layout" wx:if="{{start_ans}}">
     <image class="clock" src="../../images/clock.png"></image>
     <view class="time">{{clock}}</view>
     <view class="current">{{currentTab + 1}}</view>

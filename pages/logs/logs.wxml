@@ -29,7 +29,7 @@
         <view class="course_title">{{item.title}}</view>
         <view class="course_intor">{{item.intro}}</view>
         <view class="flex">
-          <image class="avatar" src="../../images/avatar.png"></image>
+          <image class="avatar" src="{{item.avatar}}"></image>
           <view class="tea_name">{{item.nick}}</view>
           <view class="course_text"><text style="color:#03B683;">{{item.order_num}}人</text>购买</view>
           <view class="num_layout">

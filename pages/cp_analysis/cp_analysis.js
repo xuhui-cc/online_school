@@ -47,7 +47,7 @@ Page({
     that.setData({
       currentTab:index
     })
-    that.get_cp_analysis(that.data.id_list[1][(that.data.currentTab)].pid, that.data.eid)
+    that.get_cp_analysis(that.data.id_list[(that.data.currentTab)].pid, that.data.eid)
     that.setData({
       dtk: false
     })
@@ -117,7 +117,7 @@ Page({
         that.setData({
           id_list: d.data.data
         })
-        var length = that.data.id_list[1].length
+        var length = that.data.id_list.length
         that.setData({
           all_num:length
         })
@@ -194,7 +194,7 @@ Page({
         moveLeft: moveLeft
       });
       if (diffX > 35) {
-        if (that.data.currentTab == (that.data.id_list[1].length - 1)) {
+        if (that.data.currentTab == (that.data.id_list.length - 1)) {
           wx.showToast({
             title: '已经是最后一道咯~',
             icon: "none",
@@ -204,7 +204,7 @@ Page({
           that.setData({
             currentTab: that.data.currentTab + 1
           })
-          that.get_cp_analysis(that.data.id_list[1][(that.data.currentTab)].pid,that.data.eid)
+          that.get_cp_analysis(that.data.id_list[(that.data.currentTab)].pid,that.data.eid)
         }
 
       } else if (diffX < -35) {
@@ -218,7 +218,7 @@ Page({
           that.setData({
             currentTab: that.data.currentTab - 1
           })
-          that.get_cp_analysis(that.data.id_list[1][(that.data.currentTab)].pid, that.data.eid)
+          that.get_cp_analysis(that.data.id_list[(that.data.currentTab)].pid, that.data.eid)
         }
 
       }

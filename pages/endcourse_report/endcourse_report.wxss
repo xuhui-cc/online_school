@@ -26,24 +26,6 @@
   width: 750rpx;
   height: 100%;
 }
-.cp{
-  position: fixed;
-  margin-left: 472rpx;
-  margin-top: 831rpx;
-  right: -30rpx;
-  z-index: 500;
-  width: 278rpx;
-  height: 161rpx;
-}
-.tip{
-  position: fixed;
-  margin-left: 530rpx;
-  margin-top: 80rpx;
-  
-  z-index: 500;
-  width: 197rpx;
-  height: 33rpx;
-}
 .name{
   /* width:126rpx; */
   height:59rpx;
@@ -66,7 +48,7 @@
 }
 .content1{
   margin-left: 81rpx;
-  margin-top: 300rpx;
+  margin-top: 120rpx;
   height:45rpx;
   font-size:32rpx;
   font-family:PingFang SC;
@@ -128,11 +110,12 @@
   background:rgba(23,161,104,1);
 }
 .share_btn{
-  position: absolute;
-  margin-top: 130rpx;
+  position: fixed;
+  margin-top: 1300rpx;
   margin-left:97rpx;
   width: 555rpx;
   height: 113rpx;
+  z-index: 1001;
   /* background-color: rgb(165, 33, 33); */
   background: transparent;
 }
@@ -140,10 +123,11 @@
   border: none;
 }
 .share{
-  margin-top: 130rpx;
+  position: fixed;
+  margin-top: 1300rpx;
   margin-left:97rpx;
   width: 555rpx;
   height: 113rpx;
-  
+  z-index: 1000;
   
 }

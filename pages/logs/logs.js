@@ -270,9 +270,9 @@ Page({
     }
     
     console.log(that.data.gid,"onshow")
-    that.getgrade()    //获取年级 
-    that.getsubject()   //获取学科
-    
+    // that.getgrade()    //获取年级 
+    // that.getsubject()   //获取学科
+    that.getcourse()    //获取课程
   }
     
 })

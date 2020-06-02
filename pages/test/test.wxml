@@ -10,7 +10,7 @@
   <!-- 试卷说明 -->
   <view class="test_explain" wx:if="{{!start_ans}}">
     <view class="title">{{test_explain.title}}</view>
-    <view class="title" style="margin-top: 20rpx;">作业说明</view>
+    <view class="title_fu" style="margin-top: 20rpx;">{{ques_info.remark}}</view>
     <view class="explain">本卷分数 <text style="color:#03B683">{{test_explain.all_sum}}分</text> 。</view>
 
     <view wx:for="{{test_explain.option}}" wx:key="index">

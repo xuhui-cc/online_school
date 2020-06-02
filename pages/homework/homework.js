@@ -29,9 +29,13 @@ Page({
   onLoad: function (options) {
     let that = this
     var eid = options.eid
+    var kid = options.kid
+    var oid = options.oid
     console.log(eid)
     that.setData({
-      eid: eid
+      eid: eid,
+      kid: kid,
+      oid: oid
     })
     that.test_explain()   //试卷概要
     that.setmark()   //试卷状态初始化
@@ -134,7 +138,9 @@ Page({
     let that = this
     var params = {
       "token": wx.getStorageSync("token"),
-      "eid": that.data.eid
+      "eid": that.data.eid,
+      "kid": that.data.kid,
+      "oid": that.data.oid,
     }
     app.ols.setmark(params).then(d => {
       console.log(d)
@@ -643,9 +649,15 @@ Page({
   //返回上一层
   back: function () {
     let that = this
-    that.setData({
-      back: true
-    })
+    if (!that.data.start_ans) {
+      wx.navigateBack({
+        delta: 1  // 返回上一级页面。
+      })
+    } else {
+      that.setData({
+        back: true
+      })
+    }
     console.log(that.data.back, "back")
   },
 

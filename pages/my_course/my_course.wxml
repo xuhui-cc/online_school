@@ -7,7 +7,7 @@
       <view class="decribe">{{item.intro}}</view>
       <view class="course-content">
           <view class="content-left">
-              <image src="/images/avatar.png" class="l-img"></image>
+              <image src="{{item.avatar}}" class="l-img"></image>
               <text class="l-name">{{item.nick}}</text>
               <text class="l-keshi">{{item.class_hour}}课时</text>
           </view>

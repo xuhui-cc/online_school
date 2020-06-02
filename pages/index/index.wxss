@@ -75,11 +75,17 @@ page{
   margin-left: 40rpx;
   margin-top: 14rpx;
   width:609rpx;
-  height:71rpx;
+  height:66rpx;
   font-size:24rpx;
   font-family:PingFang SC;
   font-weight:400;
   line-height:33rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   color:rgba(130,130,130,1);
   opacity:1;
 }

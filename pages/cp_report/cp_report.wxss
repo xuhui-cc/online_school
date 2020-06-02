@@ -5,6 +5,7 @@ page{
 .layout1{
   margin-left: 30rpx;
   margin-top: 55rpx;
+  margin-bottom: 30rpx;
   width:690rpx;
   /* height:2840px; */
   background:rgba(255,255,255,1);
@@ -179,12 +180,123 @@ page{
 }
 .second_comment{
   margin-left: 10rpx;
-  width:578rpx;
-
+  width:590rpx;
   font-size:28rpx;
   font-family:PingFang SC;
   font-weight:400;
-  line-height:50rpx;
+  line-height:48rpx;
   color:rgba(117,117,117,1);
+  opacity:1;
+}
+.pushlist{
+  margin-left: 40rpx;
+  margin-top: 50rpx;
+  width:136rpx;
+  height:48rpx;
+  font-size:34rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:48rpx;
+  color:rgba(255,255,255,1);
+  opacity:1;
+}
+.course_layout{
+  margin-left: 30rpx;
+  margin-top: 22rpx;
+  width:690rpx;
+  height:329rpx;
+  background:rgba(255,255,255,1);
+  opacity:1;
+  border-radius:14rpx;
+}
+.course_title{
+  margin-left: 40rpx;
+  padding-top: 31rpx;
+  width:450rpx;
+  height:50rpx;
+  font-size:36rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:50rpx;
+  color:rgba(39,39,39,1);
+  opacity:1;
+}
+.course_intor{
+  margin-left: 40rpx;
+  margin-top: 17rpx;
+  width:609rpx;
+  height:71rpx;
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:33rpx;
+  color:rgba(130,130,130,1);
+  opacity:1;
+}
+.avatar{
+  margin-left: 50rpx;
+  margin-top: 30rpx;
+  width:51rpx;
+  height:51rpx;
+  border-radius: 50%;
+}
+.tea_name{
+  margin-left: 50rpx;
+  /* margin-top: 83rpx; */
+  width:88rpx;
+  height:30rpx;
+  font-size:22rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:30rpx;
+  color:rgba(39,39,39,1);
+  opacity:1;
+}
+.course_text{
+  margin-left: 150rpx;
+  margin-top: 81rpx;
+  width:130rpx;
+  height:33rpx;
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:33rpx;
+  text-align: right;
+  color:rgba(39,39,39,1);
+  opacity:1;
+}
+.num_layout{
+  margin-left: 21rpx;
+  margin-top: 78rpx;
+  width:92rpx;
+  height:39rpx;
+  line-height: 39rpx;
+  text-align: center;
+  border-radius:5rpx;
+  background:linear-gradient(180deg,rgba(2,220,159,1) 0%,rgba(20,203,162,1) 100%);
+  opacity:1;
+}
+.course_num{
+  width:92rpx;
+  height:30rpx;
+  font-size:22rpx;
+  font-family:PingFang SC;
+  line-height: 39rpx;
+  text-align: center;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  opacity:1;
+}
+.course_price{
+  display: flex;
+  margin-left: 23rpx;
+  margin-top: 68rpx;
+  width:30rpx;
+  height:59rpx;
+  font-size:26rpx;
+  font-family:PingFang SC;
+  line-height:59rpx;
+  text-align: center;
+  color:rgba(3,182,131,1);
   opacity:1;
 }

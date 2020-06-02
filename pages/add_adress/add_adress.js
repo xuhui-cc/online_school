@@ -75,56 +75,56 @@ Page({
 
   save:function(){
     let that = this
-    if(that.data.type == 1){
-      var params = {
-        "token": wx.getStorageSync("token"),
-        "prov": that.data.region[0],
-        "city": that.data.region[1],
-        "area": that.data.region[2],
-        "name": that.data.name,
-        "title": that.data.detail_adress,
-        "phone": that.data.phone,
-        "active": 1,
-      }
-      app.ols.add_adress(params).then(d => {
-        console.log(d)
-        if (d.data.code == 0) {
-          // var adress = that.data.region[0] + that.data.region[1] + that.data.region[2] + that.data.detail_adress
-          // wx.showToast({
-          //   title: '保存成功',
-          //   duration:2000
-          // })
-          wx.navigateBack({
-            delta: 1
-          })
+    if (that.data.region != '' && that.data.name != '' && that.data.detail_adress != '' && that.data.phone != ''){
+      if (that.data.type == 1) {
+        var params = {
+          "token": wx.getStorageSync("token"),
+          "prov": that.data.region[0],
+          "city": that.data.region[1],
+          "area": that.data.region[2],
+          "name": that.data.name,
+          "title": that.data.detail_adress,
+          "phone": that.data.phone,
+          "active": 1,
         }
-      })
-    }else if(that.data.type == 2)
-      var params = {
-        "id":that.data.id,
-        "token": wx.getStorageSync("token"),
-        "prov": that.data.region[0],
-        "city": that.data.region[1],
-        "area": that.data.region[2],
-        "name": that.data.name,
-        "title": that.data.detail_adress,
-        "phone": that.data.phone,
-        "active": 1,
-      }
-    app.ols.setinfo(params).then(d => {
-      console.log(d)
-      if (d.data.code == 0) {
-        
-        // var adress = that.data.region[0] + that.data.region[1] + that.data.region[2] + that.data.detail_adress
-        // wx.showToast({
-        //   title: '保存成功',
-        //   duration:2000
-        // })
-        wx.navigateBack({
-          delta: 1
+        app.ols.add_adress(params).then(d => {
+          console.log(d)
+          if (d.data.code == 0) {
+            wx.navigateBack({
+              delta: 1
+            })
+          }
+        })
+      } else if (that.data.type == 2) {
+        var params = {
+          "id": that.data.id,
+          "token": wx.getStorageSync("token"),
+          "prov": that.data.region[0],
+          "city": that.data.region[1],
+          "area": that.data.region[2],
+          "name": that.data.name,
+          "title": that.data.detail_adress,
+          "phone": that.data.phone,
+          "active": 1,
+        }
+        app.ols.setinfo(params).then(d => {
+          console.log(d)
+          if (d.data.code == 0) {
+            wx.navigateBack({
+              delta: 1
+            })
+          }
         })
       }
-    })
+    }else{
+      wx.showToast({
+        title: '信息完善后才能提交哦~',
+        icon:"none",
+        duration:300,
+      })
+    }
+    
+      
   },
 
   /**

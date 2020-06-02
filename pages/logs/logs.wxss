@@ -27,14 +27,16 @@ page{
   height:20rpx;
 }
 .head{
-  margin-left: 160rpx;
+  /* margin-left: 100rpx; */
   margin-top: 107rpx;
-  width:68rpx;
+  width:410rpx;
   height:48rpx;
   font-size:34rpx;
   font-family:PingFang SC;
   font-weight:bold;
   line-height:48rpx;
+  text-align: center;
+  /* background: rgba(182, 62, 62, 0.521);  */
   color:rgba(0,0,0,1);
   opacity:1;
 }
@@ -180,7 +182,7 @@ page{
   margin-top: 72rpx;
   width:51rpx;
   height:51rpx;
-  border-radius: 50%；
+  border-radius: 50%;
 }
 .tea_name{
   margin-left: 14rpx;

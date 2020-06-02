@@ -5,9 +5,12 @@
       <image id="myVideo"  style="transform:translateY(-{{scrollTop*100}}%)"  autoplay='{{true}}' class="myimg"  src="{{url}}" bindtouchstart="onTouchStart" bindtouchend="onTouchEnd" />
       
     </view>
+
   </view>
+
+    
   <!--因为我右侧有需要操作的图标，所以我款低没有设置100%，留下了右侧操作位置-->
-  <canvas disable-scroll="true" style="width: 750rpx;height:95%;position:absolute;top:0;"  bindtouchstart="onTouchStart" bindtouchend="onTouchEnd" canvas-id="videoCover" >
+  <canvas disable-scroll="true" style="width: 750rpx;height:90%;position:absolute;top:0;"  bindtouchstart="onTouchStart" bindtouchend="onTouchEnd" canvas-id="videoCover" >
    
     <view wx:if="{{current == 1}}">
       <view class="content1"><text class="name">{{report.res.name}} </text> 同学：</view>
@@ -32,20 +35,18 @@
     </view>
 
     <view wx:if="{{current == 4}}">
-      <view class="content4" style="margin-top: 165rpx;">恭喜你获得：</view>
+      <view class="content4" style="margin-top: 100rpx;">恭喜你获得：</view>
       <view class="content4" ><text class="name">《{{report.res.lesson_title}}》</text></view>
       <view class="content4" >的结课证书，</view>
       <view class="content4" >学习还未结束，我们将一直陪伴~</view>
 
-      <view class="content5" style="margin-top: 430rpx;"><text class="name1">{{report.res.name}} </text> 同学：</view>
+      <view class="content5" style="margin-top: 390rpx;"><text class="name1">{{report.res.name}} </text> 同学：</view>
       <view class="content5" >于<text class="name1">{{report.res.start_time}} </text> 日，认真并优秀地学习了 <text class="name1">《{{report.res.lesson_title}}》。</text></view>
       <view class="content5">特授此证书，祝成绩更进一步！</view>
       <view class="content5" style="margin-top: 76rpx;margin-left: 513rpx;">课程老师</view>
       <view class="content5" style="margin-left: 520rpx;margin-top: 1rpx;color:rgba(23,161,104,1);font-weight:bold;">{{report.res.teacher}}</view>
 
-    <button class="share_btn"  open-type="share"></button>
-    <!-- <button open-type="share"></button> -->
-    <image class="share" src="../../images/share_report.png"></image>
+     
 
     </view>
 
@@ -53,5 +54,10 @@
     
   </canvas>
  
+ 
+    <button wx:if="{{current == 4}}" class="share_btn"  open-type="share"></button>
+    <!-- <button open-type="share"></button> -->
+    <image wx:if="{{current == 4}}" class="share" src="../../images/share_report.png"></image>
+    
   
 </view>

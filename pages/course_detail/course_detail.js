@@ -98,10 +98,13 @@ Page({
   //课后作业
   to_homework: function (e) {
     let that = this
-    var eid = e.currentTarget.dataset.eid
+    var xb = e.currentTarget.dataset.xb
+    var eid = that.data.course_cata.lists[xb].eid
+    var kid = that.data.course_cata.lists[xb].kid
+    var oid = that.data.course_cata.lists[xb].id
     console.log(eid)
     wx.navigateTo({
-      url: '../../pages/homework/homework?eid=' +  eid,
+      url: '../../pages/homework/homework?eid=' + eid + "&kid=" + kid + "&oid=" + oid,
     })
   },
 
@@ -253,7 +256,7 @@ Page({
   to_test:function(e){
     let that = this
     wx.navigateTo({
-      url: '../../pages/test/test?eid=' + that.data.course_cata.eid,
+      url: '../../pages/test/test?eid=' + that.data.course_cata.eid + "&kid=" + that.data.kid,
     })
   },
 

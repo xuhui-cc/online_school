@@ -29,9 +29,11 @@ Page({
   onLoad: function (options) {
     let that = this
     var eid = options.eid
+    var kid = options.kid
     console.log(eid)
     that.setData({
-      eid: eid
+      eid: eid,
+      kid: kid
     })
     that.test_explain()   //试卷概要
     that.setmark()   //试卷状态初始化
@@ -134,7 +136,9 @@ Page({
     let that = this
     var params = {
       "token": wx.getStorageSync("token"),
-      "eid": that.data.eid
+      "eid": that.data.eid,
+      "kid":that.data.kid,
+      "oid":0
     }
     app.ols.setmark(params).then(d => {
       console.log(d)
