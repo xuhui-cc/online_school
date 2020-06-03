@@ -169,10 +169,11 @@ Page({
     })
   },
 
-  to_pay: function () {
+  to_pay: function (e) {
     let that = this
+    var kid = e.currentTarget.dataset.kid
     wx.navigateTo({
-      url: '../../pages/pay/pay',
+      url: '../../pages/pay/pay?kid=' + kid,
     })
   },
 

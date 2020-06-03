@@ -84,7 +84,7 @@ page{
   margin-top: 72rpx;
   width:51rpx;
   height:51rpx;
-  border-radius: 50%；
+  border-radius: 50%;
 }
 .tea_name{
   margin-left: 14rpx;

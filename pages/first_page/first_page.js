@@ -33,11 +33,24 @@ Page({
           num: d.data.data.res,
         })
         if (that.data.login) {
-          
+          console.log(that.data.login,"that.data.login")
+          console.log(that.data.gid, "that.data.gid")
+          if (that.data.gid != null && that.data.gid != 0) {
+            
             wx.switchTab({
               url: '../../pages/logs/logs',
             })
             console.log("我登录了，我选班级了")
+          } else {
+            that.setData({
+              grade_select: true
+            })
+            console.log("我登录了我没选班级")
+          }
+            // wx.switchTab({
+            //   url: '../../pages/logs/logs',
+            // })
+            
           
         }
         else {
@@ -129,10 +142,11 @@ Page({
                   })
                   wx.setStorageSync("login", true)
                   wx.setStorageSync("token", d.data.data.token)
-                  if (d.data.data.gid != null){
+                  if (d.data.data.gid != null && d.data.data.gid != 0){
                     that.setData({
                       grade_select:false
                     })
+                    console.log(d.data.data.gid,"d.data.data.gid")
                     wx.setStorageSync("gid", d.data.data.gid)
                     wx.switchTab({
                       url: '../../pages/logs/logs',

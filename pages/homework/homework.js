@@ -151,6 +151,7 @@ Page({
         })
         console.log("作业状态初始化接口调取成功")
       } else {
+        
         console.log("作业状态初始化接口==============" + d.data.msg)
       }
     })

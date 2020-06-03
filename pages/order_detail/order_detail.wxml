@@ -23,7 +23,7 @@
     <view class="course_title">{{order.title}}</view>
       <view class="course_intor">{{order.intro}}</view>
     <view class="flex">
-      <image class="avatar" src="../../images/avatar.png"></image>
+      <image class="avatar" src="{{order.avatar}}"></image>
       <view class="tea_name">{{order.nick}}</view>
       
       <view class="num_layout">

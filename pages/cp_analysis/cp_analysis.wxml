@@ -18,7 +18,7 @@
   <view class="dtk_layout" wx:if="{{dtk}}">
     <view class="ques_title" >一、单选题</view>
     <view class="warp">
-      <view class="for" wx:for="{{id_list[1]}}" wx:key="index">
+      <view class="for" wx:for="{{id_list}}" wx:key="index">
         <view wx:if="{{item.status == 1}}" class="r-a-w" style="background:#03B683;" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
         <view wx:if="{{item.status == 3}}" class="r-a-w" style="background:#F86B6B;" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
         <view wx:if="{{item.status == 0}}" class="r-a-w" style="background:#EBEBEB;" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
