@@ -47,17 +47,10 @@ Page({
   bindtimeupdate(res) {
     let that = this
     console.log('bindtimeupdate', parseInt(res.detail.currentTime), '时间总时长-->', parseInt(res.detail.duration));
-    if(that.data.percent == 100){
-      that.setData({
-        timeline1: parseInt(res.detail.currentTime),
-        percent: 100
-      })
-    }else{
-      that.setData({
-        timeline1: parseInt(res.detail.currentTime),
-        percent: Math.ceil((res.detail.currentTime / res.detail.duration) * 100),
-      })
-    }
+    that.setData({
+      currentTime: parseInt(res.detail.currentTime),
+      duration: parseInt(res.detail.duration)
+    })
     
   },
 
@@ -144,11 +137,39 @@ Page({
     
   },
 
+
+  //播放进度数据判断
+  comp:function(){
+    let that = this
+    if (that.data.percent == 100) {
+      that.setData({
+        timeline1: that.data.currentTime,
+        percent: 100
+      })
+    } else {
+      if (Math.ceil((that.data.currentTime / that.data.duration) * 100) > that.data.percent) {
+        that.setData({
+          timeline1: that.data.currentTime,
+          percent: Math.ceil((that.data.currentTime / that.data.duration) * 100),
+        })
+      } else {
+        that.setData({
+          timeline1: that.data.currentTime,
+          percent: that.data.percent,
+        })
+      }
+
+    }
+  },
+
+
+
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
     let that = this
+    that.comp()
     //更新学习状态
     that.update_study(2, that.data.timeline1, that.data.percent)
   },
@@ -158,6 +179,7 @@ Page({
    */
   onUnload: function () {
     let that = this
+    that.comp()
     //更新学习状态
     that.update_study(2, that.data.timeline1, that.data.percent)
   },

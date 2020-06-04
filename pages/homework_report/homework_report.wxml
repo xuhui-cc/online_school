@@ -1,7 +1,7 @@
 <view class="container">
 
   <view class="layout">
-    <view class="homework_title">课后作业名</view>
+    <view class="homework_title">{{report.title}}</view>
 
     <view class="flex">
       <view class="shu1"></view>
@@ -13,7 +13,7 @@
     
     <view class="flex">
       <view class="shu2"></view>
-      <view class="submit_time">交卷时间：2020-03-08 20:22</view>
+      <view class="submit_time">交卷时间：{{report.dateline}}</view>
       <view class="shu2"></view>
       <view class="submit_time">用时：15分35秒</view>
     </view>
@@ -65,7 +65,7 @@
         <view class="r-a-w" wx:if="{{item.status == 0  }}" style="background:rgba(235,235,235,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
           <view class="r-a-w" wx:if="{{item.status == 1}}" style="background:rgba(3,182,131,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
           <view class="r-a-w" wx:if="{{item.status == 3}}" style="background:rgba(248,107,107,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
-          <view wx:if="{{item.status == 2}}">
+          <view wx:if="{{item.status == 2}}" data-index="{{index}}" bindtap="to_analysis">
             <view class="ques_num">{{index +1}}</view>
             <image class="r-a-w_img" src="../../images/r-a-w.png"></image>
           </view>
@@ -80,7 +80,7 @@
         <view class="r-a-w" wx:if="{{item.status == 0  }}" style="background:rgba(235,235,235,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
           <view class="r-a-w" wx:if="{{item.status == 1}}" style="background:rgba(3,182,131,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
           <view class="r-a-w" wx:if="{{item.status == 3}}" style="background:rgba(248,107,107,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
-          <view wx:if="{{item.status == 2}}">
+          <view wx:if="{{item.status == 2}}" data-index="{{index}}" bindtap="to_analysis">
             <view class="ques_num">{{index +1}}</view>
             <image class="r-a-w_img" src="../../images/r-a-w.png"></image>
           </view>

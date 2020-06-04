@@ -24,11 +24,6 @@ Page({
           course: d.data.data
         })
         for(var i=0;i<that.data.course.length;i++){
-          var pro = Math.ceil((that.data.course[i].study_hour / that.data.course[i].class_hour) * 100)
-          var cs = "course[" + i + "].pro"
-          that.setData({
-            [cs] :pro
-          })
         }
       } else if (d.data.code == 5){
         that.setData({

@@ -9,6 +9,18 @@ Page({
 
   },
 
+  //时间戳转换为标准时间
+  timestampToTime: function (timestamp) {
+    var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+    var Y = date.getFullYear() + '-';
+    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+    var D = date.getDate() + ' ';
+    var h = (date.getHours() < 10 ? '0' + (date.getHours()) : date.getHours()) + ':';
+    var m = (date.getMinutes() < 10 ? '0' + (date.getMinutes()) : date.getMinutes());
+    var s = date.getSeconds();
+    return Y + M + D + h + m;
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -28,6 +40,7 @@ Page({
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
+        d.data.data.dateline = that.timestampToTime(d.data.data.dateline)
         that.setData({
           report: d.data.data
         })

@@ -22,7 +22,7 @@
     
     <view class="flex">
       <view class="shu2"></view>
-      <view class="submit_time">交卷时间：2020-03-08 20:22</view>
+      <view class="submit_time">交卷时间：{{report.dateline}}</view>
       <view class="shu2"></view>
       <view class="submit_time">用时：15分35秒</view>
     </view>

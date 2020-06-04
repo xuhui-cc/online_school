@@ -339,28 +339,16 @@ Page({
   onShareAppMessage: function () {
     let that = this;
     return {
-      title: '上领军上好大学，我们不做第二名！', // 转发后 所显示的title
+      title: '领军网校', // 转发后 所显示的title
       path: '/pages/first_page/first_page', // 相对的路径
-      imageUrl: '../../images/first_bg.png',  //用户分享出去的自定义图片大小为5:4,
+      imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
       success: (res) => {    // 成功后要做的事情
         console.log("成功")
-        // console.log
-
-        // wx.getShareInfo({
-        //   shareTicket: res.shareTickets[0],
-        //   success: (res) => {
-        //     that.setData({
-        //       isShow: true
-        //     })
-        //     console.log(that.setData.isShow)
-        //   },
-        //   fail: function (res) { console.log(res) },
-        //   complete: function (res) { console.log(res) }
-        // })
+      
       },
       fail: function (res) {
         // 分享失败
-        console.log(res)
+        console.log(res, "分享失败")
       }
     }
   }

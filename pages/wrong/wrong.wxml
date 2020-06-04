@@ -117,7 +117,7 @@
 
         <view class="flex" wx:if="{{analysis.type > 2 }}">
           <view wx:for="{{analysis.submit}}" wx:key="{{index}}">
-            <image class="ans_img" src="{{item}}"></image>
+            <image class="ans_img" src="{{item}}" data-xb='{{index}}' bindtap='previewImg'></image>
           </view>
         </view>
 

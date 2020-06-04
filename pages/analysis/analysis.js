@@ -365,6 +365,18 @@ Page({
 
   },
 
+  //查看大图
+  previewImg: function (e) {
+    let that = this
+    var xb = e.currentTarget.dataset.xb
+    console.log(xb)
+    var imgs = that.data.analysis.submit
+    wx.previewImage({
+      current: that.data.analysis.submit[xb],
+      urls: imgs
+    })
+  },
+
 
 
 

@@ -144,7 +144,7 @@
   line-height:80rpx;
   text-align: center;
   color:rgba(255,255,255,1);
-  background:rgba(235,235,235,1);
+  background:#4D97F6;
   border-radius:50%;
   opacity:1;
 }
