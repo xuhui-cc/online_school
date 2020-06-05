@@ -4,6 +4,7 @@ const app = getApp()
 var total_micro_second
 // var total_micro_second = 600000; //测试倒计时
 var t
+// var qqq = 3000
 
 Page({
 
@@ -71,9 +72,18 @@ Page({
     });
     if (total_micro_second <= 0) {
       that.setData({
-        clock: "已经截止"
+        clock: "00:00:00"
       });
-      // that.show()
+      wx.showToast({
+        title: '3秒后将自动交卷',
+        icon:"none",
+        duration:2950
+      })
+      setTimeout(function () {
+        that.update_cpsubmit()    //达到规定时间自动交卷
+       console.log("交卷")
+      }, 3000)
+      
       return;
     }
     t = setTimeout(function () {
@@ -91,8 +101,14 @@ Page({
     var min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
     // 秒位
     var sec = this.fill_zero_prefix((second - hr * 3600 - min * 60));// equal to => var sec = second % 60;
-    // return hr + ":" + min + ":" + sec;
-    return min + ":" + sec;
+    // if(hr > 0){
+    //   return hr + ":" + min + ":" + sec;
+    // }else{
+    //   return min + ":" + sec;
+    // }
+    // return min + ":" + sec;
+    return hr + ":" + min + ":" + sec;
+    
   },
   dateformatforreport: function (micro_second) {
     // 秒数
@@ -186,6 +202,7 @@ Page({
       "token": wx.getStorageSync("token"),
       "id": that.data.id
     }
+    console.log(params + "测评试卷基本信息接口params")
     app.ols.ques_info(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
@@ -369,27 +386,7 @@ Page({
     console.log(that.data.finish_all,"finish_all")
     if (that.data.finish_all){
       console.log("我做完了")
-      var params = {
-        "token": wx.getStorageSync("token"),
-        "mid": that.data.mid,
-        "answerline": answerline
-      }
-      app.ols.update_cpsubmit(params).then(d => {
-        console.log(d)
-        if (d.data.code == 0) {
-          console.log(d.data.data)
-          wx.redirectTo({
-            url: '../../pages/cp_report/cp_report?mid=' + that.data.mid,
-          })
-          // wx.navigateTo({
-          //   url: '../../pages/cp_report/cp_report?mid=' + that.data.mid,
-          // })
-
-          console.log("更新测评状态接口调取成功")
-        } else {
-          console.log("更新测评状态接口==============" + d.data.msg)
-        }
-      })
+      that.update_cpsubmit()
     }
     
   },
@@ -471,6 +468,8 @@ Page({
 
   },
 
+  
+
   //开始答题按钮
   start_ans:function(){
     let that = this
@@ -504,38 +503,48 @@ Page({
   //答题卡按钮延伸弹框
   dtk_submit_btn: function (e) {
     let that = this
-    var timestamp = (Date.parse(new Date())) / 1000
-    console.log(timestamp, "timestamp")
-    var answerline = timestamp - that.data.start_time
-    console.log(answerline,"answerline")
     var type = e.currentTarget.dataset.type
     console.log(type)
     if (type == 1) {
       console.log("我要交卷")
-
-      var params = {
-        "token": wx.getStorageSync("token"),
-        "mid": that.data.mid,
-        "answerline": answerline
-      }
-      app.ols.update_cpsubmit(params).then(d => {
-        console.log(d)
-        if (d.data.code == 0) {
-          console.log(d.data.data)
-
-          console.log("更新测评状态接口调取成功")
-          wx.navigateBack({
-            delta: 1  // 返回上一级页面。
-          })
-        } else {
-          console.log("更新测评状态接口==============" + d.data.msg)
-        }
-      })
+      that.update_cpsubmit()
     } else if (type == 2) {
       that.setData({
         finish_all: true
       })
     }
+  },
+
+  //交卷更新测评状态
+  update_cpsubmit:function(){
+    let that = this
+    var timestamp = (Date.parse(new Date())) / 1000
+    console.log(timestamp, "timestamp")
+    var answerline = timestamp - that.data.start_time
+    console.log(answerline, "answerline")
+    var settime = 60 * that.data.test_explain.timeline
+    if (answerline > settime){
+      answerline = settime
+    }else{
+      answerline = answerline
+    }
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "mid": that.data.mid,
+      "answerline": answerline
+    }
+    app.ols.update_cpsubmit(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        console.log("更新测评状态接口调取成功")
+        wx.redirectTo({
+          url: '../../pages/cp_report/cp_report?mid=' + that.data.mid,
+        })
+      } else {
+        console.log("更新测评状态接口==============" + d.data.msg)
+      }
+    })
   },
 
 

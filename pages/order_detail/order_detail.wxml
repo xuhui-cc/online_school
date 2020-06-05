@@ -8,10 +8,10 @@
   <view wx:if="{{order.active  == 2}}" class="waiting" style="margin-top: 70rpx;">已付款</view>
   <view wx:if="{{order.active <= 1 && timer != 0}}" class="timing_tip">{{timer}}后订单自动关闭</view>
 
-  <view class="adr_layout">
+  <view class="adr_layout" wx:if="{{order.sum_money != 0}}">
     <image class="adr_img" src="../../images/adress.png"></image>
     <view>
-      <view class="flex">
+      <view class="flex" >
         <view class="name">{{order.name}}</view>
         <view class="phone">{{order.phone}}</view>
       </view>

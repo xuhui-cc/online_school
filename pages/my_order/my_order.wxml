@@ -19,15 +19,15 @@
       <view class="flex">
         <view class="title">{{item.title}}</view>
         <view wx:if="{{item.active == 2}}" class="state">已支付</view>
-        <view wx:if="{{item.active == 1 && item.close == 0}}" class="state">待支付</view>
-        <view wx:if="{{item.active == 1 && item.close == 1}}" class="state" style="color:rgba(203,203,203,1);">已关闭</view>
+        <view wx:if="{{item.active == 1 }}" class="state">待支付</view>
+        <view wx:if="{{item.active == 5}}" class="state" style="color:rgba(203,203,203,1);">已关闭</view>
       </view>
       <view class="intro">{{item.intro}}</view>
       <view class="flex">
-        <view class="price" style="{{item.active == 1 && item.close == 0 ?'':'margin-left: 455rpx;'}}">实付款：</view>
-        <view class="yuan" style="{{item.active == 1 && item.close == 0 ?'':'color:rgba(32,32,32,1);'}}">¥</view>
-        <view class="yuan" style="{{item.active == 1 && item.close == 0 ?'font-size:36rpx;margin-top: 39rpx;font-weight:bold;':'font-size:36rpx;margin-top: 39rpx;font-weight:bold;color:rgba(32,32,32,1);'}}">{{item.sum_money}}</view>
-        <view wx:if="{{item.active == 1 && item.close == 0}}"  class="to_pay" bindtap="to_pay" data-kid="{{item.kid}}">去支付</view>
+        <view class="price" style="{{item.active == 1  ?'':'margin-left: 455rpx;'}}">实付款：</view>
+        <view class="yuan" style="{{item.active == 1  ?'':'color:rgba(32,32,32,1);'}}">¥</view>
+        <view class="yuan" style="{{item.active == 1  ?'font-size:36rpx;margin-top: 39rpx;font-weight:bold;':'font-size:36rpx;margin-top: 39rpx;font-weight:bold;color:rgba(32,32,32,1);'}}">{{item.sum_money}}</view>
+        <view wx:if="{{item.active == 1 }}"  class="to_pay" bindtap="to_pay" data-kid="{{item.kid}}">去支付</view>
       </view>
     </view>
   </view>
