@@ -27,7 +27,7 @@
       <view class="tea_name">{{order.nick}}</view>
       
       <view class="num_layout">
-        <view class="course_num">{{order.study_hour}}课时</view>
+        <view class="course_num">{{order.class_hour}}课时</view>
       </view>
       <view class="course_price">
         <view style="margin-right:8rpx;margin-top:5rpx;">¥</view>

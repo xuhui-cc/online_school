@@ -15,11 +15,12 @@
 
     <view wx:for="{{test_explain.option}}" wx:key="index">
       <view class="flex">
-        <view wx:if="{{item.type == 1}}" class="explain_title">一、单选题</view>
-        <view wx:if="{{item.type == 2}}" class="explain_title">二、多选题</view>
+        <view wx:if="{{item.type == 1}}" class="explain_title">单选题</view>
+        <!-- <view wx:if="{{item.type == 2}}" class="explain_title">二、多选题</view>
         <view wx:if="{{item.type == 3}}" class="explain_title">三、判断题</view>
-        <view wx:if="{{item.type == 4}}" class="explain_title">四、填空题</view>
-        <view wx:if="{{item.type == 5}}" class="explain_title">五、简答题</view>
+        <view wx:if="{{item.type == 4}}" class="explain_title">四、简答题</view>
+        <view wx:if="{{item.type == 5}}" class="explain_title">五、组合题</view>
+        <view wx:if="{{item.type == 6}}" class="explain_title">、组合题</view> -->
         <view class="ques_num">{{item.min_count}}道</view>
         <view class="score_num">{{item.min_sum}}分</view>
       </view>
@@ -38,10 +39,9 @@
     <image class="card_img" src="../../images/card.png"></image>
     <view class="dtk" bindtap="dtk">答题卡</view>
   </view>
-
-
-
   <!-- 答题卡 -->
+
+  
   <!-- wx:if="{{dtk}}" -->
   <view class="dtk_layout" wx:if="{{dtk}}">
     <view class="ques_title" wx:if="{{ques_type == 1}}">一、单选题</view>

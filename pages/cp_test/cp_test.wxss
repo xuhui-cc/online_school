@@ -248,7 +248,7 @@
   background:rgba(255,255,255,1);
   opacity:1;
 }
-.body{ width: 100%; min-height: 100vh; position: relative;margin-top: 266rpx;}
+.body{ width: 750rpx; min-height: 800rpx; position: fixed;margin-top: 266rpx;}
 .unsel_A{
   margin-left: 30rpx;
   /* margin-top: 40rpx; */
@@ -377,7 +377,7 @@
 .title_fu{
   margin-left: 50rpx;
   width:650rpx;
-  height:120rpx;
+  /* height:120rpx; */
   font-size:24rpx;
   font-family:PingFang SC;
   font-weight:400;

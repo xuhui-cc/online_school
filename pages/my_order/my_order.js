@@ -125,6 +125,7 @@ Page({
     app.ols.order_close(params).then(d => {
 
       if (d.data.code == 0) {
+        console.log(d.data.data)
         console.log(d.data.msg)
         that.setData({
           order: d.data.data

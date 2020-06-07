@@ -60,6 +60,14 @@ Page({
             that.setData({
               comment: d.data.data
             })
+            for(var i=0;i<that.data.comment.length;i++){
+              if (that.data.comment[i].second){
+                var cs = "comment[" + i + "].fold"
+                that.setData({
+                  [cs]:true
+                })
+              }
+            }
             console.log("名师点评接口调取成功")
           } else {
             console.log("名师点评接口==============" + d.data.msg)
@@ -87,6 +95,16 @@ Page({
     console.log(index)
     wx.navigateTo({
       url: '../../pages/cp_analysis/cp_analysis?index=' + index + "&id=" + that.data.report.option[index].pid + "&eid=" + that.data.report.eid + "&mid=" + that.data.mid,
+    })
+  },
+
+  fold:function(e){
+    let that = this
+    var xb = e.currentTarget.dataset.xb
+    console.log(xb)
+    var cs = "comment[" + xb + "].fold"
+    that.setData({
+      [cs] : !that.data.comment[xb].fold
     })
   },
 

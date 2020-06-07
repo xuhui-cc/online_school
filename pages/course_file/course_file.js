@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    fileName: "你应该叫这个名字.pdf"
   },
 
   /**
@@ -62,11 +62,6 @@ Page({
     })
   },
 
-  // open_file:function(e){
-  //   let that = this
-  //   var xb = e.currentTarget.dataset.xb
-  //   console.log(xb)
-  // },
 
   //打开文档
   open_file: function (e) {
@@ -86,18 +81,22 @@ Page({
       wx.downloadFile({
         
         url: that.data.handout[xb].annex, //仅为示例，并非真实的资源
+        filePath: wx.env.USER_DATA_PATH + "/" + that.data.fileName,
         success(res) {
           // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
 
 
-          var filePath = res.tempFilePath
-          console.log(filePath)
+          // var filePath = res.tempFilePath
+          // console.log(filePath)
           
+          // const filePath = res.tempFilePath
+          // let newPath = wx.env.USER_DATA_PATH + '/'+ that.data.fileName
+          // wx.getFileSystemManager().renameSync(filePath, newPath)
 
           wx.openDocument({
 
-            filePath: filePath,
-
+            // filePath: filePath,
+            filePath: res.filePath,
             success: function (res) {
 
               console.log('打开文档成功')

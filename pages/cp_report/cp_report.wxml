@@ -10,11 +10,11 @@
     </view>
 
     <view class="flex">
-      <view class="all_num">共 <text style="font-size:46rpx;"> {{report.chart.all_num}} </text> 题</view>
+      <view class="all_num">共 <text style="font-size:45rpx;"> {{report.chart.all_num}} </text> 题</view>
       <view class="shu2"></view>
-      <view class="right">答对：<text style="font-size:46rpx;color:#14CBA2;"> {{report.chart.right_num}} </text></view>
-      <view class="right">答错：<text style="font-size:46rpx;color:#F86B6B;"> {{report.chart.worry_num}} </text></view>
-      <view class="right">未做：<text style="font-size:46rpx;color:#BABABA;"> {{report.chart.miss_num}} </text></view>
+      <view class="right">答对：<text style="font-size:45rpx;color:#14CBA2;"> {{report.chart.right_num}} </text></view>
+      <view class="right">答错：<text style="font-size:45rpx;color:#F86B6B;"> {{report.chart.worry_num}} </text></view>
+      <view class="right">未做：<text style="font-size:45rpx;color:#BABABA;"> {{report.chart.miss_num}} </text></view>
     </view>
 
     <view class="wrap">
@@ -34,16 +34,17 @@
 
     <view>
         <view wx:for="{{comment}}" wx:key="index">
-          <view class="point">考点{{index}}：{{item.title}}</view>
+          <view class="point">考点{{item.cid}}：{{item.title}}</view>
           <view class="flex">
-            <view class="rank" wx:if="{{item.grade ==  1}}">{{item.start}}%—{{item.end}}%  优秀：</view>
-            <view class="rank" wx:if="{{item.grade ==  2}}">{{item.start}}%—{{item.end}}%  中等：</view>
-            <view class="rank" wx:if="{{item.grade ==  3}}">{{item.start}}%—{{item.end}}%  较差：</view>
-            <image class="xu-img" src="../../images/xu.png"></image>
-            <image class="xsj-img" src="../../images/xsj2.png"></image>
+            <view class="rank" wx:if="{{item.grade ==  1}}">{{item.percent}}% 优秀：</view>
+            <view class="rank" wx:if="{{item.grade ==  2}}">{{item.percent}}% 中等：</view>
+            <view class="rank" wx:if="{{item.grade ==  3}}">{{item.percent}}% 较差：</view>
+            <image wx:if="{{item.fold}}" class="xu-img" src="../../images/xu.png"></image>
+            <image wx:if="{{item.fold == true}}" class="xsj-img" src="../../images/xsj2.png" bindtap="fold" data-xb="{{index}}"></image>
+            <image wx:if="{{item.fold == false}}" class="xsj-img" src="../../images/ssj2.png" bindtap="fold" data-xb="{{index}}"></image>
           </view>
           <view class="first_comment">{{item.remark}}</view>
-          <view style="margin-top:30rpx;padding-bottom:50rpx;">
+          <view style="margin-top:30rpx;padding-bottom:50rpx;" wx:if="{{item.fold == false}}">
             <view wx:for="{{item.second}}" wx:key="second_index" wx:for-item="second" wx:for-index="second_index">
               <view class="flex" style="margin-bottom:15rpx;">
                 <view class="second_img"></view>

@@ -151,7 +151,7 @@ Page({
         })
         console.log("作业状态初始化接口调取成功")
       } else {
-        
+
         console.log("作业状态初始化接口==============" + d.data.msg)
       }
     })
@@ -253,25 +253,17 @@ Page({
     console.log(e.touches.length, 'e.touches.length')
     if (e.touches.length == 1) {
       var moveX = e.touches[0].clientX;
-      // console.log(moveX,'moveX')
       diffX = that.data.startX - moveX;
-      // console.log(diffX, 'diffX')
       var moveLeft = '';
       if (diffX < -35) { //向右
         moveLeft = 'left:' + -(diffX < -90 ? -90 : diffX) + 'px;';
-        // console.log("右")
       } else if (diffX > 35) { //向左
         moveLeft = 'left:-' + (diffX > 90 ? 90 : diffX) + 'px;';
-        // console.log("左")
       } else {
         moveLeft = 'left:0px;';
-
       }
-      // console.log(diffX,"diffX")
-      // console.log(currentTab, "currentTab")
-
+      
       that.setData({
-        // diffX:diffX,
         moveLeft: moveLeft
       });
     }

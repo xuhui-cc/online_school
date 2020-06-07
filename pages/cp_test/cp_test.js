@@ -1,9 +1,9 @@
 // pages/homework/homework.js
 const app = getApp()
 
-var total_micro_second
-// var total_micro_second = 600000; //测试倒计时
-var t
+// var total_micro_second
+
+// var t
 // var qqq = 3000
 
 Page({
@@ -24,6 +24,8 @@ Page({
     ques_num:0,
     finish_all:true,
     diffX:0,
+    total_micro_second:0,
+    t:0,
     clock: 0,//倒计时时间
   },
 
@@ -38,9 +40,6 @@ Page({
       id:id
     })
 
-    
-
-
     that.test_explain()   //试卷概要
     that.setmark()   //试卷状态初始化
     that.test_id()     //获取试题ID列表
@@ -48,29 +47,13 @@ Page({
     
   },
 
-  // //出现
-  // show: function () {
-  //   var that = this;
-  //   that.setData({ flag: false });
-  //   countDown(that, 8);
-  // },
-  // //消失
-  // hide: function () {
-  //   this.setData({
-  //     flag: true,
-  //     disabled: true,
-  //     opacity: 0.7
-  //   })
-  // },
-
-  
   //小程序倒计时功能
   count_down: function (that) {
     that.setData({
-      clock: that.dateformat(total_micro_second),
-      cur_uni: total_micro_second
+      clock: that.dateformat(that.data.total_micro_second),
+      cur_uni: that.data.total_micro_second
     });
-    if (total_micro_second <= 0) {
+    if (that.data.total_micro_second == 0) {
       that.setData({
         clock: "00:00:00"
       });
@@ -86,10 +69,19 @@ Page({
       
       return;
     }
-    t = setTimeout(function () {
-      total_micro_second -= 1000;
+    var cs_t = setTimeout(function () {
+      var cs_total_micro_second = that.data.total_micro_second
+      cs_total_micro_second -= 1000;
+      that.setData({
+        total_micro_second: cs_total_micro_second
+      })
       that.count_down(that)
     }, 1000)
+    
+    that.setData({
+      t:cs_t
+    })
+    console.log(that.data.t)
   },
   //时间格式整理
   dateformat: function (micro_second) {
@@ -202,7 +194,8 @@ Page({
       "token": wx.getStorageSync("token"),
       "id": that.data.id
     }
-    console.log(params + "测评试卷基本信息接口params")
+    console.log(params)
+    console.log("测评试卷基本信息接口params")
     app.ols.ques_info(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
@@ -299,6 +292,7 @@ Page({
       console.log(that.data.startX)
     }
   },
+
   touchMove: function (e) {
     let that = this
     var diffX
@@ -480,7 +474,10 @@ Page({
       start_ans : true,
       start_time: timestamp
     })
-    total_micro_second = 60000 * that.data.test_explain.timeline
+    var cs_total_micro_second = 60000 * that.data.test_explain.timeline
+    that.setData({
+      total_micro_second: cs_total_micro_second
+    })
     this.count_down(this);
   },
 
@@ -589,7 +586,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+    let that = this
+    clearInterval(that.data.t)
   },
 
   /**

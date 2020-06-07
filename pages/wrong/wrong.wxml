@@ -40,6 +40,42 @@
       <view class="ques_content">
         <rich-text nodes="{{analysis.title}}"></rich-text>
       </view>
+      
+      <view style="margin-left:30rpx;">
+        <view wx:for="{{analysis.option}}" wx:key="index">
+
+          <view wx:if="{{item.type == 1 || item.type == 2}}">
+            <view class="flex">
+              <view>{{index + 1}}、</view>
+              <rich-text nodes="{{item.title}}" class="cs1"></rich-text>
+            </view>
+            <view class="flex" wx:if="{{item.a != null}}" style="margin-left:30rpx;">
+              <view style="margin-top:5rpx;">A.</view>
+              <rich-text  nodes="{{item.a}}" class="cs1"></rich-text>
+            </view>
+            <view class="flex" wx:if="{{item.b != null}}" style="margin-left:30rpx;">
+              <view style="margin-top:5rpx;">B.</view>
+              <rich-text  nodes="{{item.b}}" class="cs1"></rich-text>
+            </view>
+            <view class="flex" wx:if="{{item.c != null}}" style="margin-left:30rpx;">
+              <view style="margin-top:5rpx;">C.</view>
+              <rich-text  nodes="{{item.c}}" class="cs1"></rich-text>
+            </view>
+            <view class="flex" wx:if="{{item.d != null}}" style="margin-left:30rpx;">
+              <view style="margin-top:5rpx;">D.</view>
+              <rich-text  nodes="{{item.d}}" class="cs1"></rich-text>
+            </view>                                 
+          </view>
+
+          <view wx:if="{{item.type == 4}}">
+            <view class="flex">
+              <view>{{index + 1}}、</view>
+              <rich-text nodes="{{item.title}}" class="cs1"></rich-text>
+            </view>
+          </view>
+
+        </view>
+      </view >
 
 
       <!-- 单选 -->
@@ -82,17 +118,13 @@
         </view>
       </view>
 
-      
-
-      
       <view class="xf" bindtap="jx">查看解析</view>
 
-       
       <view  wx:if="{{jx}}">
         <view class="flex">
           <view class="shu"></view>
-          <view class="right" wx:if="{{analysis.type != 4}}">正确答案：</view>
-          <view class="right" wx:else="{{analysis.type == 4}}">您的答案：</view>
+          <view class="right" wx:if="{{analysis.type < 4}}">正确答案：</view>
+          <view class="right" wx:else="{{analysis.type > 3}}">您的答案：</view>
 
 
           <view wx:if="{{analysis.type <= 2}}" class="flex">
@@ -117,20 +149,37 @@
 
         <view class="flex" wx:if="{{analysis.type > 2 }}">
           <view wx:for="{{analysis.submit}}" wx:key="{{index}}">
-            <image class="ans_img" src="{{item}}" data-xb='{{index}}' bindtap='previewImg'></image>
+            <image class="ans_img" src="{{item}}" data-xb='{{index}}'  bindtap='previewImg'></image>
+          </view>
+        </view>
+
+        <view class="flex" wx:if="{{analysis.type > 3}}">
+          <view class="shu"></view>
+          <view class="right">答案</view>
+        </view>
+
+        <view class="analysis_content" wx:if="{{analysis.type != 5}}">
+          <rich-text nodes="{{analysis.note}}"></rich-text>
+        </view>
+
+        <view class="analysis_content" wx:if="{{analysis.type == 5}}">
+          <view wx:for="{{analysis.option}}" wx:key="index">
+            <rich-text nodes="{{item.answer}}"></rich-text>
           </view>
         </view>
 
         <view class="flex">
           <view class="shu"></view>
-          <view class="right">答案解析</view>
+          <view class="right">解析</view>
         </view>
 
-        <!-- <view class="analysis_content" wx:if="{{analysis.type <= 2}}">
-          <rich-text nodes="{{analysis.content}}"></rich-text>
-        </view> -->
-        <view class="analysis_content" >
+        <view class="analysis_content" wx:if="{{analysis.type != 5}}">
           <rich-text nodes="{{analysis.note}}"></rich-text>
+        </view>
+        <view class="analysis_content" wx:if="{{analysis.type == 5}}">
+          <view wx:for="{{analysis.option}}" wx:key="index">
+            <rich-text nodes="{{item.note}}"></rich-text>
+          </view>
         </view>
         
 

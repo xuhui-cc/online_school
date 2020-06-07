@@ -6,6 +6,7 @@
   height:176rpx;
   background:rgba(255,255,255,1);
   opacity:1;
+  z-index: 200;
 }
 .head{
   margin-left: 250rpx;
@@ -18,6 +19,16 @@
   line-height:48rpx;
   color:#000000;
   opacity:1;
+}
+.layout{
+  position: fixed;
+  margin-top: 176rpx;
+  display: flex;
+  width:750rpx;
+  height:90rpx;
+  background:rgba(255,255,255,1);
+  opacity:1;
+  z-index: 200;
 }
 .test_explain{
   position: absolute;
@@ -120,12 +131,12 @@
   color:rgba(0,0,0,1);
   opacity:1;
 }
-.clock{
+/* .clock{
   margin-left: 35rpx;
   margin-top: 30rpx;
   width:25rpx;
   height:29rpx;
-}
+} */
 .time{
   margin-left: 15rpx;
   margin-top: 21rpx;
@@ -139,7 +150,7 @@
   opacity:1;
 }
 .current{
-  margin-left: 330rpx;
+  margin-left: 170rpx;
   margin-top: 25rpx;
   /* width:24rpx; */
   height:56rpx;
@@ -223,7 +234,7 @@
 .submit{
   margin-left: 30rpx;
   margin-top: 200rpx;
-  margin-bottom: 500rpx;
+  margin-bottom: 800rpx;
   width:690rpx;
   height:78rpx;
   font-size:30rpx;
@@ -245,7 +256,7 @@
   background:rgba(255,255,255,1);
   opacity:1;
 }
-.body{ width: 100%; min-height: 100vh; position: relative;}
+.body{ width: 750rpx; min-height: 800rpx; position: fixed;margin-top: 266rpx;}
 .unsel_A{
   margin-left: 30rpx;
   /* margin-top: 40rpx; */
@@ -437,3 +448,34 @@
   color:rgba(113,113,113,1);
   opacity:1;
 }
+.clock{
+  margin-left: 35rpx;
+  margin-top: 30rpx;
+  width:25rpx;
+  height:29rpx;
+}
+.ans_img{
+  margin-right: 40rpx;
+  margin-top: 36rpx;
+  width:162rpx;
+  height:174rpx;
+}
+.del_img{
+  margin-left: 140rpx;
+  margin-top: 20rpx;
+  position: absolute;
+  width:37rpx;
+  height:37rpx;
+}
+/* .time{
+  margin-left: 15rpx;
+  margin-top: 21rpx;
+  width:91rpx;
+  height:48rpx;
+  font-size:34rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:48rpx;
+  color:rgba(48,48,48,1);
+  opacity:1;
+} */

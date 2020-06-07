@@ -1,5 +1,12 @@
 // pages/homework/homework.js
 const app = getApp()
+
+
+// var total_micro_second
+// var t
+
+
+
 Page({
 
   /**
@@ -19,7 +26,10 @@ Page({
     finish_all: true,
     diffX: 0,
     img: [],
-    imgs: []
+    imgs: [],
+    total_micro_second: 0,
+    t: 0,
+    clock: 0,//倒计时时间
     // ans_2:[{"-1"},{"-1"},{"-1"},{"-1"}]
   },
 
@@ -40,6 +50,112 @@ Page({
     that.test_id()     //获取试题ID列表
     that.ques_info()      //试卷基本信息
 
+  },
+
+  //更新结课考试状态
+  update_testsubmit:function(){
+    let that = this
+   
+    var timestamp = (Date.parse(new Date())) / 1000
+    console.log(timestamp, "timestamp")
+    var answerline = timestamp - that.data.start_time
+    console.log(answerline, "answerline")
+    var settime = 60 * that.data.test_explain.timeline
+    if (answerline > settime) {
+      answerline = settime
+    } else {
+      answerline = answerline
+    }
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "mid": that.data.mid,
+      "answerline": answerline
+    }
+    app.ols.update_testsubmit(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        wx.navigateBack({
+          delta: 1  // 返回上一级页面。
+        })
+
+        console.log("更新届课考试接口调取成功")
+      } else {
+        console.log("更新届课考试接口==============" + d.data.msg)
+      }
+    })
+  },
+
+  //小程序倒计时功能
+  count_down: function (that) {
+    that.setData({
+      clock: that.dateformat(that.data.total_micro_second),
+      cur_uni: that.data.total_micro_second
+    });
+    if (that.data.total_micro_second == 0) {
+      that.setData({
+        clock: "00:00:00"
+      });
+      wx.showToast({
+        title: '3秒后将自动交卷',
+        icon: "none",
+        duration: 2950
+      })
+      setTimeout(function () {
+        that.update_cpsubmit()    //达到规定时间自动交卷
+        console.log("交卷")
+      }, 3000)
+
+      return;
+    }
+    var cs_t = setTimeout(function () {
+      var cs_total_micro_second = that.data.total_micro_second
+      cs_total_micro_second -= 1000;
+      that.setData({
+        total_micro_second: cs_total_micro_second
+      })
+      that.count_down(that)
+    }, 1000)
+
+    that.setData({
+      t: cs_t
+    })
+    console.log(that.data.t)
+  },
+  //时间格式整理
+  dateformat: function (micro_second) {
+    // 秒数
+    var second = Math.floor(micro_second / 1000);
+    // 小时位
+    var hr = this.fill_zero_prefix(Math.floor(second / 3600));
+    // 分钟位
+    var min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
+    // 秒位
+    var sec = this.fill_zero_prefix((second - hr * 3600 - min * 60));// equal to => var sec = second % 60;
+    // if(hr > 0){
+    //   return hr + ":" + min + ":" + sec;
+    // }else{
+    //   return min + ":" + sec;
+    // }
+    // return min + ":" + sec;
+    return hr + ":" + min + ":" + sec;
+
+  },
+  dateformatforreport: function (micro_second) {
+    // 秒数
+    var second = Math.floor(micro_second / 1000);
+    // 小时位
+    var hr = this.fill_zero_prefix(Math.floor(second / 3600));
+    // 分钟位
+    var min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
+    // 秒位
+    var sec = this.fill_zero_prefix((second - hr * 3600 - min * 60));// equal to => var sec = second % 60;
+    return hr + "时" + min + "分" + sec + "秒";
+  },
+
+  //位数不足补零
+  fill_zero_prefix: function (num) {
+    return num < 10 ? "0" + num : num
   },
 
   //获取试题
@@ -199,11 +315,14 @@ Page({
               ques_type5: 5,
               [cs]: ''
             })
+          } else if (that.data.id_list[i].type == 6) {
+            var cs = "id_list[" + i + "].ans"
+            that.setData({
+              ques_type6: 6,
+              [cs]: ''
+            })
           }
-          // var cs = "id_list[" + i + "].ans"
-          // that.setData({
-          //   [cs]: -1
-          // })
+         
         }
         console.log("作业id接口调取成功")
       } else {
@@ -250,25 +369,18 @@ Page({
     console.log(e.touches.length, 'e.touches.length')
     if (e.touches.length == 1) {
       var moveX = e.touches[0].clientX;
-      // console.log(moveX,'moveX')
       diffX = that.data.startX - moveX;
-      // console.log(diffX, 'diffX')
       var moveLeft = '';
       if (diffX < -35) { //向右
         moveLeft = 'left:' + -(diffX < -90 ? -90 : diffX) + 'px;';
-        // console.log("右")
       } else if (diffX > 35) { //向左
         moveLeft = 'left:-' + (diffX > 90 ? 90 : diffX) + 'px;';
-        // console.log("左")
       } else {
         moveLeft = 'left:0px;';
-
       }
-      // console.log(diffX,"diffX")
-      // console.log(currentTab, "currentTab")
+     
 
       that.setData({
-        // diffX:diffX,
         moveLeft: moveLeft
       });
     }
@@ -322,10 +434,7 @@ Page({
   dtk_submit: function () {
     let that = this
     console.log("答题卡")
-    var timestamp = (Date.parse(new Date())) / 1000
-    console.log(timestamp, "timestamp")
-    var answerline = timestamp - that.data.start_time
-    console.log(answerline, "answerline")
+    
     for (var i = 0; i < that.data.id_list.length; i++) {
       if (that.data.id_list[i].ans == -1 || that.data.id_list[i].ans == '') {
         that.setData({
@@ -336,24 +445,7 @@ Page({
     console.log(that.data.finish_all, "finish_all")
     if (that.data.finish_all) {
       console.log("我做完了")
-      var params = {
-        "token": wx.getStorageSync("token"),
-        "mid": that.data.mid,
-        "answerline": answerline
-      }
-      app.ols.update_testsubmit(params).then(d => {
-        console.log(d)
-        if (d.data.code == 0) {
-          console.log(d.data.data)
-          wx.navigateBack({
-            delta: 1  // 返回上一级页面。
-          })
-
-          console.log("更新作业状态接口调取成功")
-        } else {
-          console.log("更新作业状态接口==============" + d.data.msg)
-        }
-      })
+      that.update_testsubmit()
     }
 
   },
@@ -371,20 +463,6 @@ Page({
 
     that.work_submit(ans)   //作业答案提交接口
   },
-
-  // mul_select:function(e){
-  //   let that = this
-  //   var ans = e.currentTarget.dataset.ans
-  //   console.log(that.data.currentTab,ans)
-  //   // debugger;
-  //   var cs = "id_list[" + that.data.currentTab + "]
-  //   that.setData({
-  //     [cs]:ans
-  //   })
-  //   // that.data.id_list[that.data.currentTab].ans[ans] = ans
-
-
-  // },
 
   submit_ans1: function (e) {
     let that = this
@@ -460,9 +538,6 @@ Page({
         console.log("作业答案提交接口==============" + d.data.msg)
       }
     })
-    // that.setData({
-    //   start_ans: true
-    // })
   },
 
   //手动滑页
@@ -476,11 +551,6 @@ Page({
       currentTab: current + 1
     })
     that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
-
-
-
-
-
   },
 
   //开始答题按钮
@@ -493,6 +563,11 @@ Page({
       start_ans: true,
       start_time: timestamp
     })
+    var cs_total_micro_second = 60000 * that.data.test_explain.timeline
+    that.setData({
+      total_micro_second: cs_total_micro_second
+    })
+    this.count_down(this);
   },
 
   //返回按钮延伸弹框
@@ -513,34 +588,13 @@ Page({
 
   //答题卡按钮延伸弹框
   dtk_submit_btn: function (e) {
-    let that = this
-    var timestamp = (Date.parse(new Date())) / 1000
-    console.log(timestamp, "timestamp")
-    var answerline = timestamp - that.data.start_time
-    console.log(answerline, "answerline")
+    
     var type = e.currentTarget.dataset.type
     console.log(type)
     if (type == 1) {
       console.log("我要交卷")
-
-      var params = {
-        "token": wx.getStorageSync("token"),
-        "mid": that.data.mid,
-        "answerline": answerline
-      }
-      app.ols.update_testsubmit(params).then(d => {
-        console.log(d)
-        if (d.data.code == 0) {
-          console.log(d.data.data)
-
-          console.log("更新作业状态接口调取成功")
-          wx.navigateBack({
-            delta: 1  // 返回上一级页面。
-          })
-        } else {
-          console.log("更新作业状态接口==============" + d.data.msg)
-        }
-      })
+      that.update_testsubmit()
+      
     } else if (type == 2) {
       that.setData({
         finish_all: true
@@ -592,9 +646,6 @@ Page({
             let hhh = JSON.parse(r.data);
             if (hhh.code == 1) {
               console.log("成功")
-              // console.log(r.data)
-              // imgs.unshift(hhh.data.src)
-              // that.data.img = 
               that.data.img.unshift(hhh.data.file)
               var cs1 = "id_list[" + that.data.currentTab + "].ans"
               var cs2 = "question.myans"
@@ -603,21 +654,12 @@ Page({
                 [cs1]: that.data.img,
                 [cs2]: that.data.img,
               })
-              // console.log(hhh.data.file)
               var ans = that.data.question.myans.join("@@");
               console.log(ans, "img")
               that.work_submit(ans)   //作业答案提交接口
-
-
             } else {
-
               console.log('失败')
-
             }
-
-
-
-
           }
         })
 
@@ -670,7 +712,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    let that = this
+    clearInterval(that.data.t)
   },
 
   /**

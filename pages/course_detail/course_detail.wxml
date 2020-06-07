@@ -103,7 +103,7 @@
         <view wx:if="{{course_info.pay_status == 2}}">
           <view wx:if="{{item.percent == 0}}" class="study_rate" >未学习</view>
           <view wx:elif="{{item.percent < 100 && item.percent > 0}}" class="study_rate" >已学习{{item.percent}}%</view>
-          <view wx:else="{{item.percent == 100}}" class="study_rate" style="color:#A4A4A4;">已学完</view>
+          <view wx:else="{{item.percent == 100}}" class="study_rate" style="color:#A4A4A4;">已学习{{item.percent}}%</view>
           <image class="xu" src="../../images/xu.png" ></image>
           <view class="flex" bindtap="to_course_file" data-xb="{{index}}" wx:if="{{item.annex_num > 0}}">
             <image class="file-img1" src="../../images/file1.png"></image>
@@ -134,10 +134,10 @@
       </view>
     </view>
 
-    <view class="end_test" wx:if="{{course_cata.buy <= 1 }}">
-      <view class="btn_end_test" wx:if="{{course_cata.mark_status == 0 }}" bindtap="to_test">去考试</view>
-      <view class="btn_end_test" wx:if="{{course_cata.mark_status == 1 }}" bindtap="to_test" style="background:rgba(204,204,204,1);">批改中</view>
-      <view class="btn_end_test" wx:if="{{course_cata.mark_status == 2 }}" bindtap="to_test_report" style="background:rgba(77,151,246,1);">查看报告</view>
+    <view class="end_test">
+      <view class="btn_end_test" wx:if="{{course_cata.mark_status == 0 && course_cata.buy == 1}}" bindtap="to_test">去考试</view>
+      <view class="btn_end_test" wx:if="{{course_cata.mark_status == 1 && course_cata.buy == 1 }}" bindtap="to_test" style="background:rgba(204,204,204,1);">批改中</view>
+      <view class="btn_end_test" wx:if="{{course_cata.mark_status == 2 && course_cata.buy == 1 }}" bindtap="to_test_report" style="background:rgba(77,151,246,1);">查看报告</view>
       <view class="end_title">结课考试</view>
       <view class="end_intro">巩固知识点，全面掌握考点学习方法。</view>
     </view>
@@ -145,7 +145,7 @@
   </view>
 
 
-  <view class="course_buy"  wx:if="{{course_info.pay_status == 1 || course_info.pay_status == 5 }}">   
+  <view class="course_buy"  wx:if="{{course_info.pay_status == 1 || course_info.pay_status == 5 ||course_info.pay_status == 0 || course_info.pay_status == 6}}">   
     <!-- course_info.pay_status :  1 未购买；2已购买 -->
     <view class="yuan">¥</view>
     <view class="price">{{course_info.price}}</view>

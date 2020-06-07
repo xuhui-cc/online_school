@@ -389,7 +389,7 @@
 .tips{
   margin-left: 30rpx;
   margin-top: 20rpx;
-  width:588rpx;
+  width:690rpx;
   height:33rpx;
   font-size:24rpx;
   font-family:PingFang SC;
@@ -400,7 +400,7 @@
 }
 .img_btn{
   margin-left: 30rpx;
-  margin-top: 20rpx;
+  margin-top: 30rpx;
   display: flex;
   width:217rpx;
   height:73rpx;
