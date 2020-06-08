@@ -151,8 +151,9 @@ page{
 .first_comment{
   margin-left: 30rpx;
   margin-top: 10rpx;
+  margin-bottom: 15rpx;
   width:623rpx;
-  height:146rpx;
+  /* height:146rpx; */
   font-size:28rpx;
   font-family:PingFang SC;
   font-weight:400;

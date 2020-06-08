@@ -66,6 +66,11 @@ Page({
                 that.setData({
                   [cs]:true
                 })
+              }else{
+                var cs = "comment[" + i + "].fold"
+                that.setData({
+                  [cs]: null
+                })
               }
             }
             console.log("名师点评接口调取成功")

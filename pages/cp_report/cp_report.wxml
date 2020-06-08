@@ -39,7 +39,7 @@
             <view class="rank" wx:if="{{item.grade ==  1}}">{{item.percent}}% 优秀：</view>
             <view class="rank" wx:if="{{item.grade ==  2}}">{{item.percent}}% 中等：</view>
             <view class="rank" wx:if="{{item.grade ==  3}}">{{item.percent}}% 较差：</view>
-            <image wx:if="{{item.fold}}" class="xu-img" src="../../images/xu.png"></image>
+            <image wx:if="{{item.fold != null}}" class="xu-img" src="../../images/xu.png"></image>
             <image wx:if="{{item.fold == true}}" class="xsj-img" src="../../images/xsj2.png" bindtap="fold" data-xb="{{index}}"></image>
             <image wx:if="{{item.fold == false}}" class="xsj-img" src="../../images/ssj2.png" bindtap="fold" data-xb="{{index}}"></image>
           </view>
