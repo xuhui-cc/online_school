@@ -1,6 +1,6 @@
 <view class="container">
 
-  <view class="adr_layout">
+  <view class="adr_layout" wx:if="{{course_info.hasbook > 0}}">
     <image class="adr_img" src="../../images/adress.png"></image>
 
     <view class="flex" bindtap="to_add_adress" data-type="1" wx:if="{{!have_adr}}">

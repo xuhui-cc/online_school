@@ -2,3 +2,9 @@
 .video{
   width: 750rpx;
 }
+.show{
+  display:show;
+}
+.hide{
+  display:none;
+}

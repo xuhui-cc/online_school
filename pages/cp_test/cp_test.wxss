@@ -30,10 +30,10 @@
   z-index: 20;
 }
 .title{
-  margin-left: 30rpx;
+  margin-left: 117rpx;
   margin-top: 123rpx;
-  width:690rpx;
-  height:53rpx;
+  width:516rpx;
+  /* height:53rpx; */
   font-size:38rpx;
   font-family:PingFang SC;
   font-weight:bold;
@@ -248,7 +248,7 @@
   background:rgba(255,255,255,1);
   opacity:1;
 }
-.body{ width: 750rpx; min-height: 800rpx; position: fixed;margin-top: 266rpx;}
+.body{ width: 750rpx; min-height: 800rpx; position: relative;margin-top: 266rpx;}
 .unsel_A{
   margin-left: 30rpx;
   /* margin-top: 40rpx; */
@@ -324,7 +324,7 @@
   margin-left: 97rpx;
   margin-top: 40rpx;
   width:306rpx;
-  height:96rpx;
+  height:100rpx;
   font-size:34rpx;
   font-family:PingFang SC;
   font-weight:400;
@@ -378,11 +378,11 @@
   margin-left: 50rpx;
   width:650rpx;
   /* height:120rpx; */
-  font-size:24rpx;
+  font-size:26rpx;
   font-family:PingFang SC;
   font-weight:400;
   line-height:43rpx;
-  text-align: center;
+  /* text-align: center; */
   color:rgba(113,113,113,1);
   opacity:1;
 }

@@ -233,6 +233,7 @@ Page({
       "token": wx.getStorageSync("token"),
       "id": that.data.eid
     }
+    console.log(params, "结课基本信息接口参数")
     app.ols.ques_info(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
@@ -240,9 +241,9 @@ Page({
         that.setData({
           ques_info: d.data.data
         })
-        console.log("作业基本信息接口调取成功")
+        console.log("结课基本信息接口调取成功")
       } else {
-        console.log("作业基本信息接口==============" + d.data.msg)
+        console.log("结课基本信息接口==============" + d.data.msg)
       }
     })
   },
@@ -398,11 +399,6 @@ Page({
       });
       if (diffX > 35) {
         if (that.data.currentTab == (that.data.ques_info.num - 1)) {
-          wx.showToast({
-            title: '已经是最后一道咯~',
-            icon: "none",
-            duration: 2500
-          })
           that.setData({
             dtk: true
           })

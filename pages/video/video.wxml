@@ -1,5 +1,7 @@
 <view class="container">
   <video class="video" src="{{getvideo.video}}"  initial-time="{{timeline}}" bindtimeupdate="bindtimeupdate"></video>
+
+  <!-- <video id='myvideo' class='{{fullScreen?"show":"hide"}}'   src="{{getvideo.video}}"  initial-time="{{timeline}}"  autoplay="true" bindfullscreenchange="fullScreen"  bindended="closeVideo"  controls></video> -->
   <!-- autoplay="false" -->
 
 

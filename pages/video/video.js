@@ -8,6 +8,20 @@ Page({
   data: {
     // getvideo_info:[]
   },
+  /**关闭视屏 */
+  closeVideo() {
+    //执行退出全屏方法
+    var videoContext = wx.createVideoContext('myvideo', this);
+    videoContext.exitFullScreen();
+  },
+  /**视屏进入、退出全屏 */
+  fullScreen(e) {
+    var isFull = e.detail.fullScreen;
+    //视屏全屏时显示加载video，非全屏时，不显示加载video
+    this.setData({
+      fullScreen: isFull
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -119,7 +133,12 @@ Page({
             status: d.data.data.status,
           })
         
-        
+        // //执行全屏方法  
+        // var videoContext = wx.createVideoContext('myvideo', this);
+        // videoContext.requestFullScreen();
+        // this.setData({
+        //   fullScreen: true
+        // })
         that.update_study(1, that.data.timeline, that.data.percent)
       } else if (d.data.code == 5) {
         that.setData({

@@ -8,7 +8,7 @@
       <view class="v1">您的得分：</view>
       <view class="score">{{report.chart.get_score}}</view>
       <view style="font-size:26rpx;color:rgba(32,32,32,1);margin-left: 22rpx;margin-top: 69rpx;">分</view>
-      <view class="sum">总分：100分</view>
+      <view class="sum">总分：{{report.paper_score}}分</view>
     </view>
     
     <view class="flex">

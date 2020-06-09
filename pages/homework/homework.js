@@ -119,6 +119,7 @@ Page({
       "token": wx.getStorageSync("token"),
       "id": that.data.eid
     }
+    console.log(params,"作业基本信息接口参数")
     app.ols.ques_info(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
@@ -203,6 +204,13 @@ Page({
               [cs]: []
             })
           }
+          else if (that.data.id_list[i].type == 6) {
+            var cs = "id_list[" + i + "].ans"
+            that.setData({
+              ques_type6: 6,
+              [cs]: []
+            })
+          }
           // var cs = "id_list[" + i + "].ans"
           // that.setData({
           //   [cs]: -1
@@ -281,11 +289,6 @@ Page({
       });
       if (diffX > 35) {
         if (that.data.currentTab == (that.data.ques_info.num - 1)) {
-          wx.showToast({
-            title: '已经是最后一道咯~',
-            icon: "none",
-            duration: 2500
-          })
           that.setData({
             dtk: true
           })

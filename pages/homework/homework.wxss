@@ -6,6 +6,7 @@
   height:176rpx;
   background:rgba(255,255,255,1);
   opacity:1;
+  z-index: 300;
 }
 .head{
   /* margin-left: 280rpx; */
@@ -31,10 +32,10 @@
   z-index: 20;
 }
 .title{
-  margin-left: 30rpx;
+  margin-left: 117rpx;
   margin-top: 123rpx;
-  width:690rpx;
-  height:53rpx;
+  width:516rpx;
+  /* height:53rpx; */
   font-size:38rpx;
   font-family:PingFang SC;
   font-weight:bold;
@@ -58,12 +59,14 @@
   opacity:1;
 }
 .layout{
+  position: fixed;
   margin-top: 176rpx;
   display: flex;
   width:750rpx;
   height:90rpx;
-  /* background:rgba(255,255,255,1); */
+  background:rgba(255,255,255,1);
   opacity:1;
+  z-index: 300;
 }
 .start_btn{
   margin-left: 30rpx;
@@ -182,12 +185,12 @@
   opacity:1;
 }
 .dtk_layout{
-  position: absolute;
-  margin-top:271rpx;
+  position: fixed;
+  margin-top:266rpx;
   width: 750rpx;
   /* height: 1126rpx; */
   background: rgba(255,255,255,1);
-  z-index: 10;
+  z-index: 300;
 }
 .ques_title{
   padding-left: 30rpx;
@@ -224,7 +227,7 @@
 .submit{
   margin-left: 30rpx;
   margin-top: 200rpx;
-  margin-bottom: 500rpx;
+  margin-bottom: 1000rpx;
   width:690rpx;
   height:78rpx;
   font-size:30rpx;
@@ -246,7 +249,7 @@
   background:rgba(255,255,255,1);
   opacity:1;
 }
-.body{ width: 100%; min-height: 100vh; position: relative;}
+.body{ width: 100%; min-height: 100vh; position: relative;margin-top: 266rpx;}
 .unsel_A{
   margin-left: 30rpx;
   margin-top: 5rpx;
@@ -401,6 +404,7 @@
 .img_btn{
   margin-left: 30rpx;
   margin-top: 30rpx;
+  /* margin-bottom: 25rpx; */
   display: flex;
   width:217rpx;
   height:73rpx;
@@ -441,17 +445,18 @@
 }
 .img_layout{
   margin-left: 40rpx;
+  margin-bottom: 50rpx;
   display: flex;
 }
 .title_fu{
   margin-left: 50rpx;
   width:650rpx;
   height:120rpx;
-  font-size:24rpx;
+  font-size:26rpx;
   font-family:PingFang SC;
   font-weight:400;
   line-height:43rpx;
-  text-align: center;
+  /* text-align: center; */
   color:rgba(113,113,113,1);
   opacity:1;
 }

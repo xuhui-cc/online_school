@@ -156,6 +156,11 @@ function ques_info(params) {
   return fetch.olsfetchpost(URI, 'paper/getpaper', params)
 }
 
+//试卷基本信息（测评、课后作业、结课考试通用）
+function testques_info(params) {
+  return fetch.olsfetchpost(URI, 'paper/gettestpaper', params)
+}
+
 //测评试卷答案提交
 function cp_ans_submit(params) {
   return fetch.olsfetchpost(URI, 'mark/submittestquestion', params)
@@ -260,4 +265,4 @@ function getpushlist(params) {
 
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, study_pro, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist}
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, study_pro, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info}

@@ -27,14 +27,14 @@
 
     <view class="heng"></view>
 
-    <view class="flex">
+    <view class="flex" wx:if="{{comment}}">
       <view class="shu"></view>
       <view class="your_score">名师点评</view>
     </view>
 
     <view>
         <view wx:for="{{comment}}" wx:key="index">
-          <view class="point">考点{{item.cid}}：{{item.title}}</view>
+          <view class="point">考点：{{item.title}}</view>
           <view class="flex">
             <view class="rank" wx:if="{{item.grade ==  1}}">{{item.percent}}% 优秀：</view>
             <view class="rank" wx:if="{{item.grade ==  2}}">{{item.percent}}% 中等：</view>

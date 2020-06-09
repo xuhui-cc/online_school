@@ -196,7 +196,7 @@ Page({
     }
     console.log(params)
     console.log("测评试卷基本信息接口params")
-    app.ols.ques_info(params).then(d => {
+    app.ols.testques_info(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)

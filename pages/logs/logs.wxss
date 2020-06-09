@@ -85,10 +85,15 @@ page{
   bottom: 0;
   left: 20rpx; 
 } 
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
 .zt{
   margin-left: 30rpx;
   margin-top: 30rpx;
-  width:84rpx;
+  width:100rpx;
   height:40rpx;
   font-size:28rpx;
   font-family:PingFang SC;
@@ -101,8 +106,9 @@ page{
   display: flex;
 }
 .tab-h1{ 
-  width: 630rpx;
+  /* width: 630rpx; */
   height: 80rpx;
+  padding-right: 30rpx;
   box-sizing: border-box; 
   overflow: hidden; 
   line-height:90rpx;
@@ -148,7 +154,7 @@ page{
   margin-left: 30rpx;
   margin-top: 22rpx;
   width:690rpx;
-  height:329rpx;
+  /* height:329rpx; */
   background:rgba(255,255,255,1);
   opacity:1;
   border-radius:14rpx;
@@ -157,7 +163,7 @@ page{
   margin-left: 40rpx;
   padding-top: 31rpx;
   width:600rpx;
-  height:50rpx;
+  /* height:50rpx; */
   font-size:36rpx;
   font-family:PingFang SC;
   font-weight:bold;
@@ -212,6 +218,7 @@ page{
 .num_layout{
   margin-left: 21rpx;
   margin-top: 78rpx;
+  margin-bottom: 20rpx;
   width:92rpx;
   height:39rpx;
   line-height: 39rpx;

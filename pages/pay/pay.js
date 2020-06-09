@@ -60,11 +60,12 @@ Page({
   buy:function(){
     let that = this
     console.log(that.data.have_adr)
-    if (that.data.have_adr){
+    
       var params = {
         "token": wx.getStorageSync("token"),
         "kid": that.data.kid
       }
+    console.log(params,"预支付接口")
       app.ols.preorder(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
@@ -77,17 +78,10 @@ Page({
           that.laqizhifu(timeStamp, nonceStr, pack, paySign)
           console.log("预支付接口成功")
         } else {
-          console.log("预支付接口失败")
+          console.log("预支付接口失败", d)
         }
       })
-    }else{
-      wx.showToast({
-        title: '请先完善地址信息',
-        icon:"none",
-        duration:3000
-      })
-      
-    }
+    
     
   },
 
