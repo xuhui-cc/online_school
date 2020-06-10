@@ -205,7 +205,7 @@ Page({
     }
     app.ols.getlist(params).then(d => {
       console.log(d)
-      if (d.data.code == 200) {
+      if (d.data.code == 0) {
         // console.log(d.data.data)
         let arr1 = [];
         for (let i in d.data.data) {

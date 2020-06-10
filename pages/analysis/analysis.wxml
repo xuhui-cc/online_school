@@ -203,16 +203,17 @@
           <rich-text nodes="{{analysis.note}}"></rich-text>
         </view>
 
-        <view class="flex">
+        <view class="flex" wx:if="{{analysis.category}}">
           <view class="shu"></view>
           <view class="right">考点</view>
         </view>
 
+        <view class="kd_layout" wx:if="{{analysis.category}}">
         <view wx:for="{{analysis.category}}" wx:key="index">
           <view class="point">{{item.title}}</view>
-          
-          
         </view>
+        
+      </view>
       <!-- </view> -->
       
 

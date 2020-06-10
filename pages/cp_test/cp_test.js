@@ -47,6 +47,8 @@ Page({
     
   },
 
+  
+
   //小程序倒计时功能
   count_down: function (that) {
     that.setData({
@@ -265,6 +267,14 @@ Page({
     let that = this
     that.setData({
       dtk: !that.data.dtk
+    })
+  },
+
+  //答题卡返回试题
+  dtk_back: function () {
+    let that = this
+    that.setData({
+      dtk: false
     })
   },
 

@@ -230,6 +230,13 @@ Page({
       dtk: !that.data.dtk
     })
   },
+  //答题卡返回试题
+  dtk_back: function () {
+    let that = this
+    that.setData({
+      dtk: false
+    })
+  },
 
   //答题卡题号跳转
   dtk_jump: function (e) {

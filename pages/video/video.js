@@ -34,7 +34,9 @@ Page({
     console.log(kid)
     that.setData({
       id:id,
-      kid:kid
+      kid:kid,
+      eid: options.eid,
+      mid:options.mid
     })
     //课程视频接口
     var params = {
@@ -53,9 +55,64 @@ Page({
         console.log("课程视频接口==============" + d.data.msg)
       }
     })
+
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "id": id
+    }
+    app.ols.getplaypushlist(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        that.setData({
+          course: d.data.data
+        })
+
+      } else {
+        console.log("课程视频接口==============" + d.data.msg)
+      }
+    })
     
   },
 
+  //课后作业
+  to_homework: function () {
+    let that = this
+    
+    console.log(eid)
+    wx.navigateTo({
+      url: '../../pages/homework/homework?eid=' + that.data.eid + "&kid=" + that.data.kid + "&oid=" + that.data.id,
+    })
+  },
+
+  //查看课后作业报告
+  to_homework_report: function (e) {
+    let that = this
+    
+    wx.navigateTo({
+      url: '../../pages/homework_report/homework_report?mid=' + that.data.mid
+    })
+  },
+
+  //课程讲义跳转
+  to_course_file: function () {
+    let that = this
+    
+
+    wx.navigateTo({
+      url: '../../pages/course_file/course_file?id=' + that.data.id,
+    })
+  },
+
+
+  to_course_detail: function (e) {
+    let that = this
+    var xb = e.currentTarget.dataset.xb
+    console.log(xb)
+    wx.navigateTo({
+      url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
+    })
+  },
   
   //获取视频播放进度、总时长（初）
   bindtimeupdate(res) {

@@ -296,15 +296,21 @@
 .point{
   margin-left: 30rpx;
   margin-top: 15rpx;
-  width:500rpx;
-  height:60rpx;
-  font-size:30rpx;
+  padding-left: 19rpx;
+  padding-right: 19rpx;
+  height:56rpx;
+  font-size:24rpx;
   font-family:PingFang SC;
-  font-weight:400;
-  line-height:60rpx;
-  /* background: rgba(10,184,135,1); */
-  color:rgba(10,184,135,1);
+  color:rgba(255,255,255,1);
+  background:rgba(10,184,135,1);
+  line-height: 56rpx;
+  text-align: center;
   opacity:1;
+  border-radius:40rpx;
+}
+.kd_layout{
+  display: flex;
+  flex-wrap: wrap;
 }
 .xf{
   /* position: fixed; */
