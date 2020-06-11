@@ -88,8 +88,8 @@ page{
 .course_title{
   margin-left: 40rpx;
   padding-top: 31rpx;
-  width:396rpx;
-  height:50rpx;
+  width:650rpx;
+  /* height:50rpx; */
   font-size:36rpx;
   font-family:PingFang SC;
   font-weight:bold;
@@ -112,7 +112,7 @@ page{
 .course_layout{
   margin-top: 16rpx;
   width:750rpx;
-  height:329rpx;
+  /* height:329rpx; */
   background:rgba(255,255,255,1);
   opacity:1;
 }
@@ -137,8 +137,9 @@ page{
 }
 
 .num_layout{
-  margin-left: 330rpx;
+  margin-left: 300rpx;
   margin-top: 80rpx;
+  margin-bottom: 30rpx;
   width:92rpx;
   height:39rpx;
   line-height: 39rpx;
@@ -160,7 +161,7 @@ page{
 }
 .course_price{
   display: flex;
-  margin-left: 23rpx;
+  /* margin-left: 23rpx; */
   margin-top: 68rpx;
   width:30rpx;
   height:59rpx;

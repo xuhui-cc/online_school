@@ -15,8 +15,10 @@ Page({
   onLoad: function (options) {
     let that = this
     var kid = options.kid
+
     that.setData({
-      kid:kid
+      kid:kid,
+      nick:wx.getStorageSync("nick")
     })
     var params = {
       "token": wx.getStorageSync("token"),
@@ -159,6 +161,69 @@ Page({
         })
       }
     })
+  },
+
+  getuserinfo: function (e) {
+    let that = this
+    // wx.getSetting({
+      // success(res) {
+        // if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function (res) {
+              console.log(res)
+              var nickName = res.userInfo.nickName
+              var avatarUrl = res.userInfo.avatarUrl
+              wx.login({
+                success(login) {
+                  console.log("login.code" + login.code)
+                  var code = login.code
+
+                  var params = {
+                    "token": wx.getStorageSync("token"),
+                    "nick": nickName,
+                    "avatar": avatarUrl
+                  }
+                  console.log(params)
+                  app.ols.avatar_update(params).then(d => {
+                    if (d.data.code == 0) {
+                      console.log(d.data.data)
+                      wx.setStorageSync("nick", true)
+                      var params = {
+                        "token": wx.getStorageSync("token"),
+                        "kid": that.data.kid
+                      }
+                      console.log(params, "预支付接口")
+                      app.ols.preorder(params).then(d => {
+                        console.log(d)
+                        if (d.data.code == 0) {
+                          var ob = JSON.parse(d.data.data.paystr)
+                          console.log(ob)
+                          var timeStamp = ob.timeStamp
+                          var nonceStr = ob.nonceStr
+                          var pack = ob.package
+                          var paySign = ob.paySign
+                          that.laqizhifu(timeStamp, nonceStr, pack, paySign)
+                          console.log("预支付接口成功")
+                        } else {
+                          console.log("预支付接口失败", d)
+                        }
+                      })
+                    } else {
+                      console.log(d.data.code)
+                      console.log(d.data.msg)
+                    }
+                  })
+                  // wx.hideLoading()
+                }
+              })
+
+            }
+          })
+        // }
+      // }
+    // })
+
   },
 
   /**

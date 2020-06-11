@@ -339,6 +339,10 @@
 
 
 
+  <view class="dump" >
+    <view class="last" bindtap="last">上一题</view>
+    <view class="next" bindtap="next">下一题</view>
+  </view>
 
 
 <!-- container -->

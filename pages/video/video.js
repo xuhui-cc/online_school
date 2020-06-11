@@ -79,7 +79,7 @@ Page({
   to_homework: function () {
     let that = this
     
-    console.log(eid)
+    // console.log(eid)
     wx.navigateTo({
       url: '../../pages/homework/homework?eid=' + that.data.eid + "&kid=" + that.data.kid + "&oid=" + that.data.id,
     })
@@ -96,14 +96,120 @@ Page({
 
   //课程讲义跳转
   to_course_file: function () {
+  
     let that = this
-    
+    if (that.data.course.annex_num > 1) {
 
-    wx.navigateTo({
-      url: '../../pages/course_file/course_file?id=' + that.data.id,
-    })
+      wx.navigateTo({
+        url: '../../pages/course_file/course_file?id=' + that.data.id,
+      })
+    } else {
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "id": that.data.id
+      }
+      app.ols.handout(params).then(d => {
+        console.log(d)
+        if (d.data.code == 0) {
+          console.log(d.data.data)
+          that.setData({
+            handout: d.data.data
+          })
+          // for (var i = 0; i < that.data.handout.length; i++) {
+          var suffix = "handout[0].suffix"
+          if (that.data.handout[0].annex.indexOf(".pdf") != -1) {
+            that.setData({
+              [suffix]: "pdf"
+            })
+          } else if (that.data.handout[0].annex.indexOf(".doc") != -1) {
+            that.setData({
+              [suffix]: "doc"
+            })
+          }
+          else if (that.data.handout[0].annex.indexOf(".ppt") != -1) {
+            that.setData({
+              [suffix]: "ppt"
+            })
+          }
+          else if (that.data.handout[0].annex.indexOf(".xls") != -1) {
+            that.setData({
+              [suffix]: "xls"
+            })
+          }
+          else if (that.data.handout[0].annex.indexOf(".png") != -1 || that.data.handout[i].annex.indexOf(".jpg") != -1) {
+            that.setData({
+              [suffix]: "img"
+            })
+          }
+        
+
+          if (that.data.handout[0].annex.indexOf(".png") != -1 || that.data.handout[0].annex.indexOf(".jpg") != -1) {
+            that.previewImage()
+            console.log("图")
+          } else {
+            wx.showLoading({
+              title: '资料打开中...',
+            })
+
+            var fileName = that.data.handout[0].name + "." + that.data.handout[0].suffix
+            that.setData({
+              fileName: fileName
+            })
+            wx.downloadFile({
+              url: that.data.handout[0].annex,
+              filePath: wx.env.USER_DATA_PATH + "/" + that.data.fileName,
+              success(res) {
+                console.log("下载文档成功 =>", res);
+                if (res.statusCode === 200) {
+                  wx.hideLoading();
+
+                  wx.openDocument({
+                    filePath: res.filePath,
+                    showMenu: true,
+                    success(e) {
+                      console.log("打开文档成功 =>", e);
+                    },
+                    fail(e) {
+                      console.log("打开文档失败 =>", e);
+                      wx.showToast({
+                        title: "打开文档失败，请重试！",
+                        icon: "none"
+                      });
+                    }
+                  });
+                }
+              },
+              fail(err) {
+                console.log("打开文档失败 =>", err);
+                wx.showToast({
+                  title: "打开文档失败，请重试！",
+                  icon: "none"
+                });
+              }
+            });
+          }
+          console.log("课程讲义接口调取成功")
+        } else {
+          console.log("课程讲义==============" + d.data.msg)
+        }
+      })
+    }
+
   },
+    
+  //打开图片
+  previewImage: function () {
+    let that = this
 
+    var image = []
+
+    image.push(that.data.handout[0].annex)
+    wx.previewImage({
+      current: image[0],
+      urls: image
+    })
+
+  },
 
   to_course_detail: function (e) {
     let that = this

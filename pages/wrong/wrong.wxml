@@ -143,9 +143,9 @@
           
         </view>
         
-        <view class="ques_content" wx:if="{{analysis.type > 2 && analysis.type != 4 }}">
+        <!-- <view class="ques_content" wx:if="{{analysis.type > 2 && analysis.type != 4 }}">
           <rich-text nodes="{{analysis.answer}}"></rich-text>
-        </view>
+        </view> -->
 
         <view class="flex" wx:if="{{analysis.type > 2 }}">
           <view wx:for="{{analysis.submit}}" wx:key="{{index}}">
@@ -158,7 +158,7 @@
           <view class="right">答案</view>
         </view>
 
-        <view class="analysis_content" wx:if="{{analysis.type != 5}}">
+        <view class="analysis_content" wx:if="{{analysis.type > 4 && analysis.type != 5 }}">
           <rich-text nodes="{{analysis.note}}"></rich-text>
         </view>
 

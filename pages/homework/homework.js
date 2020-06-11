@@ -353,10 +353,28 @@ Page({
       app.ols.update_testsubmit(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
+          for (var i = 0; i < that.data.id_list.length;i++){
+            if (that.data.id_list[i].type != 1){
+              that.setData({
+                danxuan:false
+              })
+            }else{
+              that.setData({
+                danxuan: true
+              })
+            }
+          }
+          if (that.data.danxuan){
+            wx.redirectTo({
+              url: '../../pages/homework_report/homework_report?mid=' + that.data.mid
+            })
+          }else{
+            wx.navigateBack({
+              delta: 1  // 返回上一级页面。
+            })
+          }
           console.log(d.data.data)
-          wx.navigateBack({
-            delta: 1  // 返回上一级页面。
-          })
+          
 
           console.log("更新作业状态接口调取成功")
         } else {
@@ -451,6 +469,20 @@ Page({
       if (d.data.code == 0) {
         console.log(d.data.data)
 
+        if (that.data.id_list[that.data.currentTab].type == 1){
+          //下一题跳转
+          if (that.data.currentTab == (that.data.ques_info.num - 1)) {
+            that.setData({
+              dtk: true
+            })
+          } else {
+            that.setData({
+              currentTab: that.data.currentTab + 1
+            })
+            that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
+          }
+        }
+        
         console.log("作业答案提交接口调取成功")
       } else {
         console.log("作业答案提交接口==============" + d.data.msg)
@@ -530,9 +562,26 @@ Page({
           console.log(d.data.data)
 
           console.log("更新作业状态接口调取成功")
-          wx.navigateBack({
-            delta: 1  // 返回上一级页面。
-          })
+          for (var i = 0; i < that.data.id_list.length; i++) {
+            if (that.data.id_list[i].type != 1) {
+              that.setData({
+                danxuan: false
+              })
+            } else {
+              that.setData({
+                danxuan: true
+              })
+            }
+          }
+          if (that.data.danxuan) {
+            wx.redirectTo({
+              url: '../../pages/homework_report/homework_report?mid=' + that.data.mid
+            })
+          } else {
+            wx.navigateBack({
+              delta: 1  // 返回上一级页面。
+            })
+          }
         } else {
           console.log("更新作业状态接口==============" + d.data.msg)
         }
@@ -593,11 +642,6 @@ Page({
                 that.data.img.unshift(hhh.data.file)
                 var cs1 = "id_list[" + that.data.currentTab + "].ans"
                 var cs2 = "question.myans"
-                // that.data.id_list[that.data.currentTab].ans.push(hhh.data.file)
-                // that.data.question.myans.push(hhh.data.file)
-                // that.setData({
-                //   id_list: that.data.id_list
-                // })
                 that.setData({
                   imgs: that.data.img,
                   [cs1]: that.data.img,
@@ -625,6 +669,39 @@ Page({
         
       })
     
+
+  },
+
+  //上一题
+  last: function () {
+    let that = this
+    if (that.data.currentTab == 0) {
+      wx.showToast({
+        title: '已经是第一题咯~',
+        icon: "none",
+        duration: 2500
+      })
+    } else {
+      that.setData({
+        currentTab: that.data.currentTab - 1
+      })
+      that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
+    }
+  },
+
+  //下一题
+  next: function () {
+    let that = this
+    if (that.data.currentTab == (that.data.ques_info.num - 1)) {
+      that.setData({
+        dtk: true
+      })
+    } else {
+      that.setData({
+        currentTab: that.data.currentTab + 1
+      })
+      that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
+    }
 
   },
 

@@ -38,11 +38,12 @@
     </view>
   </view>
 
-  <view class="price_layout" bindtap="buy">
+  <view class="price_layout">
     <view class="total">合计：</view>
     <view class="yuan">¥</view>
     <view class="price">{{course_info.price}}</view>
-    <view class="buy_button">确认支付</view>
+    <button class="login_read"  open-type="getUserInfo" bindgetuserinfo="getuserinfo" wx:if="{{!nick}}"></button>
+    <view class="buy_button" bindtap="buy">确认支付</view>
   
   </view>
 

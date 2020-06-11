@@ -46,6 +46,11 @@
           <view class="first_comment">{{item.remark}}</view>
           <view style="margin-top:30rpx;padding-bottom:50rpx;" wx:if="{{item.fold == false}}">
             <view wx:for="{{item.second}}" wx:key="second_index" wx:for-item="second" wx:for-index="second_index">
+              <view class="flex">
+                <image class="ling" src="../../images/ling.png"></image>
+                
+                <view class="second_title">{{second.question}}考点:{{second.title}}</view>
+              </view>
               <view class="flex" style="margin-bottom:15rpx;">
                 <view class="second_img"></view>
                 <view class="second_comment">{{second.remark}}</view>

@@ -25,10 +25,7 @@
       </view>
     </view>
 
-   
-
-    
-
+  
   </view>
 
   <!-- 试卷详情 -->
@@ -176,7 +173,7 @@
 
 
       <view class="analysis_content">
-        <rich-text nodes="{{analysis.content}}"></rich-text>
+        <rich-text nodes="{{analysis.note}}"></rich-text>
       </view>
 
       <view class="flex" wx:if="{{analysis.category}}">

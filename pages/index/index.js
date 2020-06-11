@@ -54,6 +54,15 @@ Page({
 
   },
 
+  //年级弹框
+  grade_select: function () {
+    let that = this
+
+    that.setData({
+      grade_select: true
+    })
+  },
+
   //测评试卷跳转
   to_cp_test:function(e){
     let that = this
@@ -102,18 +111,24 @@ Page({
     })
   },
 
-
-  //年级切换
-  grade_picker: function (e) {
+  del: function () {
     let that = this
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     that.setData({
-      grade_index: e.detail.value,
-      gid: that.data.grade[e.detail.value].id
+      grade_select: false
+    })
+  },
+  //年级切换
+  subject_sel: function (e) {
+    let that = this
+    var xb = e.currentTarget.dataset.xb
+    console.log('picker发送选择改变，携带值为', xb)
+    that.setData({
+      grade_index: xb,
+      gid: that.data.grade[xb].id
     })
     var params = {
       "token": wx.getStorageSync("token"),
-      "gid": that.data.grade[e.detail.value].id
+      "gid": that.data.grade[xb].id
     }
     app.ols.grade_update(params).then(d => {
       console.log(d)
@@ -121,6 +136,15 @@ Page({
       if (d.data.code == 200) {
         that.test_list()
         wx.setStorageSync("gid", that.data.grade[that.data.grade_index].id)
+        that.setData({
+          grade_select: false
+        })
+      } else {
+        wx.showToast({
+          title: '现在就是这个年级哦~',
+          icon: "none",
+          duration: 2000
+        })
       }
     })
     

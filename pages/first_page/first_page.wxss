@@ -8,7 +8,8 @@
   
   width:486rpx;
   height:88rpx;
-  background-color: rgba(58,58,58,1);
+  background: transparent;
+  /* background-color: rgba(58,58,58,1); */
 }
 .login_read::after {
   border: none;

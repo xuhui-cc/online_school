@@ -8,9 +8,9 @@
   <!-- 标题栏结束 -->
 
   <!-- 试卷说明 -->
-  <view class="mask" style="z-index:301;" wx:if="{{!start_ans}}"></view>
+  <view class="mask" style="z-index:301;" wx:if="{{!start_ans}}" bindtap="start_ans"></view>
   <image class="test_tip" src="../../images/test_tip.png" wx:if="{{!start_ans}}"></image>
-  <view class="test_explain" wx:if="{{!start_ans}}">
+  <!-- <view class="test_explain" wx:if="{{!start_ans}}">
     <view class="flex">
       <image class="title_img" style="margin-left: 190rpx;" src="../../images/dot1.png"></image>
       <view class="explain_head" >试卷说明</view>
@@ -49,7 +49,7 @@
     </view>
 
     <view class="start_btn" bindtap="start_ans">我知道了，开始答题</view>
-  </view>
+  </view> -->
 
 
   <!-- 试卷菜单栏 -->
@@ -85,15 +85,21 @@
       </view>
     </view>
     <view class="ques_title" wx:if="{{ques_type4 == 4}}">简答题</view>
-    <view class="warp">
+    <view class="warp" wx:if="{{ques_type4 == 4}}">
       <view class="for" wx:for="{{id_list}}" wx:key="index">
         <view wx:if="{{item.type == 4}}" class="r-a-w" style="{{item.ans == ''?'background:rgba(235,235,235,1);':'background:rgba(3,182,131,1);'}}" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
       </view>
     </view>
     <view class="ques_title" wx:if="{{ques_type5 == 5}}">组合题</view>
-    <view class="warp" wx:if="{{ques_type4 == 4}}">
+    <view class="warp" wx:if="{{ques_type5 == 5}}">
       <view class="for" wx:for="{{id_list}}" wx:key="index">
         <view wx:if="{{item.type == 5}}" class="r-a-w" style="{{item.ans == ''?'background:rgba(235,235,235,1);':'background:rgba(3,182,131,1);'}}" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
+      </view>
+    </view>
+    <view class="ques_title" wx:if="{{ques_type6 == 6}}">填空题</view>
+    <view class="warp" wx:if="{{ques_type6 == 6}}">
+      <view class="for" wx:for="{{id_list}}" wx:key="index">
+        <view wx:if="{{item.type == 6}}" class="r-a-w" style="{{item.ans == ''?'background:rgba(235,235,235,1);':'background:rgba(3,182,131,1);'}}" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
       </view>
     </view>
 
@@ -197,7 +203,7 @@
           
         </view>
 
-        <view wx:if="{{question.type == 4}}">
+        <view wx:if="{{question.type == 4 || question.type == 6}}">
           <view class="fgx"></view>
           <view class="tips">*请在纸上作答拍照上传清晰照片，老师将尽快为你批改</view>
           <view class="img_btn" bindtap='chooseImg'>
@@ -330,7 +336,10 @@
 
 
 
-
+  <view class="dump" >
+    <view class="last" bindtap="last">上一题</view>
+    <view class="next" bindtap="next">下一题</view>
+  </view>
 
 
 <!-- container -->

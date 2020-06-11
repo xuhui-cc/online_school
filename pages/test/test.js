@@ -379,9 +379,9 @@ Page({
       var moveX = e.touches[0].clientX;
       diffX = that.data.startX - moveX;
       var moveLeft = '';
-      if (diffX < -35) { //向右
+      if (diffX < -80) { //向右
         moveLeft = 'left:' + -(diffX < -90 ? -90 : diffX) + 'px;';
-      } else if (diffX > 35) { //向左
+      } else if (diffX > 80) { //向左
         moveLeft = 'left:-' + (diffX > 90 ? 90 : diffX) + 'px;';
       } else {
         moveLeft = 'left:0px;';
@@ -411,12 +411,15 @@ Page({
           })
         } else {
           that.setData({
+            
+            img: [],
+            imgs: [],
             currentTab: that.data.currentTab + 1
           })
           that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
         }
 
-      } else if (diffX < -35) {
+      } else if (diffX < -80) {
         if (that.data.currentTab == 0) {
           wx.showToast({
             title: '已经是第一题咯~',
@@ -425,6 +428,8 @@ Page({
           })
         } else {
           that.setData({
+            img: [],
+            imgs: [],
             currentTab: that.data.currentTab - 1
           })
           that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
@@ -535,7 +540,19 @@ Page({
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
-
+        if (that.data.id_list[that.data.currentTab].type == 1 || that.data.id_list[that.data.currentTab].type == 3) {
+          //下一题跳转
+          if (that.data.currentTab == (that.data.ques_info.num - 1)) {
+            that.setData({
+              dtk: true
+            })
+          } else {
+            that.setData({
+              currentTab: that.data.currentTab + 1
+            })
+            that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
+          }
+        }
         console.log("作业答案提交接口调取成功")
       } else {
         console.log("作业答案提交接口==============" + d.data.msg)
@@ -591,7 +608,7 @@ Page({
 
   //答题卡按钮延伸弹框
   dtk_submit_btn: function (e) {
-    
+    let that = this
     var type = e.currentTarget.dataset.type
     console.log(type)
     if (type == 1) {
@@ -710,6 +727,39 @@ Page({
     }
     
     console.log(that.data.back, "back")
+  },
+
+  //上一题
+  last:function(){
+    let that = this
+    if (that.data.currentTab == 0) {
+      wx.showToast({
+        title: '已经是第一题咯~',
+        icon: "none",
+        duration: 2500
+      })
+    } else {
+      that.setData({
+        currentTab: that.data.currentTab - 1
+      })
+      that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
+    }
+  },
+
+  //下一题
+  next: function () {
+    let that = this
+    if (that.data.currentTab == (that.data.ques_info.num - 1)) {
+      that.setData({
+        dtk: true
+      })
+    } else {
+      that.setData({
+        currentTab: that.data.currentTab + 1
+      })
+      that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
+    }
+
   },
 
   /**

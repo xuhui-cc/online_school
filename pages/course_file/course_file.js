@@ -54,6 +54,7 @@ Page({
               [suffix]: "img"
             })
           }
+          
         }
         console.log("课程讲义接口调取成功")
       } else {

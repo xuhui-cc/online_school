@@ -14,7 +14,7 @@ page{
 .homework_title{
   margin-left: 29rpx;
   margin-top: 46rpx;
-  width:550rpx;
+  width:650rpx;
   /* height:50rpx; */
   font-size:36rpx;
   font-family:PingFang SC;

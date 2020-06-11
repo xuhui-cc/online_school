@@ -15,13 +15,30 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    // var login = 
-    // var gid = 
     that.setData({
       login: wx.getStorageSync("login"),
         gid: wx.getStorageSync("gid")
     })
     that.get_grade()
+    if (that.data.login) {
+      console.log(that.data.login, "that.data.login")
+      console.log(that.data.gid, "that.data.gid")
+      if (that.data.gid != null && that.data.gid != 0) {
+
+        wx.switchTab({
+          url: '../../pages/logs/logs',
+        })
+        console.log("我登录了，我选班级了")
+      } else {
+        that.setData({
+          grade_select: true
+        })
+        console.log("我登录了我没选班级")
+      }
+    }
+    else {
+      console.log("我没登录")
+    }
     var params = {
     
     }
@@ -32,30 +49,7 @@ Page({
         that.setData({
           num: d.data.data.res,
         })
-        if (that.data.login) {
-          console.log(that.data.login,"that.data.login")
-          console.log(that.data.gid, "that.data.gid")
-          if (that.data.gid != null && that.data.gid != 0) {
-            
-            wx.switchTab({
-              url: '../../pages/logs/logs',
-            })
-            console.log("我登录了，我选班级了")
-          } else {
-            that.setData({
-              grade_select: true
-            })
-            console.log("我登录了我没选班级")
-          }
-            // wx.switchTab({
-            //   url: '../../pages/logs/logs',
-            // })
-            
-          
-        }
-        else {
-          console.log("我没登录")
-        }
+        
         console.log("人数成功")
       } else {
         console.log(d.data.msg, "人数失败")

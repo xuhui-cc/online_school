@@ -8,7 +8,7 @@
   <view wx:if="{{order.active  == 2}}" class="waiting" style="margin-top: 70rpx;">已付款</view>
   <view wx:if="{{order.active <= 1 && timer != 0}}" class="timing_tip">{{timer}}后订单自动关闭</view>
 
-  <view class="adr_layout" wx:if="{{order.sum_money != 0}}">
+  <view class="adr_layout" wx:if="{{order.sum_money != 0 && order.hasbook > 0 }}">
     <image class="adr_img" src="../../images/adress.png"></image>
     <view>
       <view class="flex" >
@@ -41,7 +41,7 @@
     <view class="flex">
       <view class="shu"></view>
       <view class="sfje">实付金额</view>
-      <view class="course_price" style="margin-top: 25rpx;margin-left: 480rpx;">
+      <view class="course_price" style="margin-top: 25rpx;margin-left: 450rpx;">
         <view style="margin-right:8rpx;color:rgba(233,73,23,1);">¥</view>
         <view style="font-weight:bold;font-size:36rpx;color:rgba(233,73,23,1);">{{order.sum_money}}</view>
       </view>

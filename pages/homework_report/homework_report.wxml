@@ -15,7 +15,7 @@
       <view class="shu2"></view>
       <view class="submit_time">交卷时间：{{report.dateline}}</view>
       <view class="shu2"></view>
-      <view class="submit_time">用时：15分35秒</view>
+      <view class="submit_time">用时：{{report.answerline}}秒</view>
     </view>
 
     <view class="heng"></view>

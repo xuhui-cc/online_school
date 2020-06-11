@@ -1,6 +1,18 @@
 page{
   background:rgba(245,245,245,1);
 }
+.login_read{
+  position: absolute;
+   margin-left: 430rpx;
+  margin-top: 22rpx;
+  width:287rpx;
+  height:75rpx;
+  background: transparent;
+  /* background-color: rgba(58,58,58,1); */
+}
+.login_read::after {
+  border: none;
+}
 .adr_layout{
   display: flex;
   width:750rrpx;
@@ -48,15 +60,15 @@ page{
 .course_layout{
   margin-top: 16rpx;
   width:750rpx;
-  height:329rpx;
+  /* height:329rpx; */
   background:rgba(255,255,255,1);
   opacity:1;
 }
 .course_title{
   margin-left: 40rpx;
   padding-top: 31rpx;
-  width:450rpx;
-  height:50rpx;
+  width:620rpx;
+  /* height:50rpx; */
   font-size:36rpx;
   font-family:PingFang SC;
   font-weight:bold;
@@ -114,6 +126,7 @@ page{
 .num_layout{
   margin-left: 21rpx;
   margin-top: 78rpx;
+  margin-bottom: 30rpx;
   width:92rpx;
   height:39rpx;
   line-height: 39rpx;
@@ -137,6 +150,7 @@ page{
   display: flex;
   margin-left: 23rpx;
   margin-top: 68rpx;
+  
   width:30rpx;
   height:59rpx;
   font-size:26rpx;

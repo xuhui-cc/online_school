@@ -9,6 +9,7 @@ Page({
     // current_special:0,
     current_subject: 0,
   },
+
   onLoad: function () {
     let that = this
     that.setData({
@@ -21,14 +22,19 @@ Page({
     
     // that.getcourse()         //获取课程
     
-    
-
-    
-
-    
-   
-
   },
+
+  //年级弹框
+  grade_select: function () {
+    let that = this
+
+    that.setData({
+      grade_select: true
+    })
+  },
+
+
+ 
 
   //专题切换
   swichNav_special: function (e) {
@@ -93,28 +99,37 @@ Page({
   },
 
   //年级切换
-  grade_picker: function (e) {
+  subject_sel: function (e) {
     let that = this
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    var xb = e.currentTarget.dataset.xb
     that.setData({
-      grade_index: e.detail.value,
-      gid: that.data.grade[e.detail.value].id,
+      grade_index: xb,
+      gid: that.data.grade[xb].id,
       current_subject:0
     })
     var params = {
       "token": wx.getStorageSync("token"),
-      "gid": that.data.grade[e.detail.value].id
+      "gid": that.data.grade[xb].id
     }
     app.ols.grade_update(params).then(d => {
       console.log(d)
       
       if (d.data.code == 200) {
-        // wx.setStorageSync('grade', xb)
-        wx.setStorageSync('gid', that.data.grade[e.detail.value].id)
+        
+        wx.setStorageSync('gid', that.data.grade[xb].id)
         that.getsubject()   //获取科目
         that.getcourse()    //获取课程
         that.getspecial()      //获取专题
+        that.setData({
+          grade_select: false
+        })
         console.log("更新接口存班级")
+      }else{
+        wx.showToast({
+          title: '现在就是这个年级哦~',
+          icon:"none",
+          duration:2000
+        })
       }
     })
     // console.log(that.data.grade[that.data.grade_index])
@@ -186,7 +201,7 @@ Page({
           subject: arr2
         })
         that.setData({
-          did: that.data.subject[0].id
+          did: that.data.subject[that.data.current_subject].id
         })
         that.getspecial()      //获取专题
         that.getcourse()    //获取课程
@@ -253,6 +268,13 @@ Page({
     })
   },
 
+  del: function () {
+    let that = this
+    that.setData({
+      grade_select: false
+    })
+  },
+
   onShow: function () {
     
     let that = this
@@ -271,7 +293,7 @@ Page({
     
     console.log(that.data.gid,"onshow")
     // that.getgrade()    //获取年级 
-    // that.getsubject()   //获取学科
+    that.getsubject()   //获取学科
     that.getcourse()    //获取课程
   }
     

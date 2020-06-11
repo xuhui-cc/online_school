@@ -2,14 +2,33 @@
 
  <!-- 标题栏 -->
   <view class="nabigation_bar">
-    <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}">
-      <view class="grade_content">{{grade[grade_index].title}}</view>
-    </picker>
-    <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}">
-      <image class="grade_img" src="../../images/xsj.png"></image>
-    </picker>
+    <!-- <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}"> -->
+      <view class="grade_content" bindtap="grade_select">{{grade[grade_index].title}}</view>
+    <!-- </picker> -->
+    <!-- <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}"> -->
+      <image class="grade_img" src="../../images/xsj.png" bindtap="grade_select"></image>
+    <!-- </picker> -->
     <view class="head">领军网校</view>
   </view>
+
+  <!-- 年级选择 -->
+  <view class="mask" wx:if="{{grade_select}}"></view>
+
+  <view class="select" wx:if="{{grade_select}}">
+    <view class="flex">
+      <view class="title1">年级选择</view>
+      <image class="del_img" src="../../images/del.png" bindtap="del"></image>
+    </view>
+    <view class="heng"></view>
+    <scroll-view class="selec_layout"  scroll-y="true">
+      <view wx:for="{{grade}}" wx:key="index">
+        <view class="sel_item" data-xb="{{index}}" bindtap="subject_sel">{{item.title}}</view>
+        <view class="heng"></view>
+      </view>
+    </scroll-view>
+    <!-- <view class="yes">确定</view> -->
+  </view>
+
   <!-- 标题栏结束 -->
 
   <view wx:if="{{test_list != ''}}">
