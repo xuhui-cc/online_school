@@ -26,7 +26,7 @@ Page({
       if (that.data.gid != null && that.data.gid != 0) {
 
         wx.switchTab({
-          url: '../../pages/logs/logs',
+          url: '../../pages/index/index',
         })
         console.log("我登录了，我选班级了")
       } else {

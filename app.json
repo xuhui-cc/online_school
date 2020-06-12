@@ -26,6 +26,7 @@
     "pages/live/live",
     "pages/test/test",
     "pages/cs/cs",
+    "pages/file_scan/file_scan",
     "pages/analysis/analysis"
   ],
   "window": {

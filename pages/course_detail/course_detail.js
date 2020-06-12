@@ -216,46 +216,74 @@ Page({
             that.previewImage()
             console.log("图")
           } else {
+            
+            
+
             wx.showLoading({
               title: '资料打开中...',
             })
 
-            var fileName = that.data.handout[0].name + "." + that.data.handout[0].suffix
-            that.setData({
-              fileName: fileName
-            })
             wx.downloadFile({
+              // 示例 url，并非真实存在
               url: that.data.handout[0].annex,
-              filePath: wx.env.USER_DATA_PATH + "/" + that.data.fileName,
-              success(res) {
-                console.log("下载文档成功 =>", res);
-                if (res.statusCode === 200) {
-                  wx.hideLoading();
-
-                  wx.openDocument({
-                    filePath: res.filePath,
-                    showMenu: true,
-                    success(e) {
-                      console.log("打开文档成功 =>", e);
-                    },
-                    fail(e) {
-                      console.log("打开文档失败 =>", e);
-                      wx.showToast({
-                        title: "打开文档失败，请重试！",
-                        icon: "none"
-                      });
-                    }
-                  });
-                }
+              success: function (res) {
+                const filePath = res.tempFilePath
+                wx.openDocument({
+                  filePath: filePath,
+                  success: function (res) {
+                    wx.hideLoading();
+                    console.log('打开文档成功')
+                  }
+                })
               },
-              fail(err) {
+                fail(err) {
+                  wx.hideLoading();
                 console.log("打开文档失败 =>", err);
                 wx.showToast({
                   title: "打开文档失败，请重试！",
                   icon: "none"
                 });
               }
-            });
+            })
+
+
+
+            // var fileName = that.data.handout[0].name + "." + that.data.handout[0].suffix
+            // that.setData({
+            //   fileName: fileName
+            // })
+            // wx.downloadFile({
+            //   url: that.data.handout[0].annex,
+            //   filePath: wx.env.USER_DATA_PATH + "/" + that.data.fileName,
+            //   success(res) {
+            //     console.log("下载文档成功 =>", res);
+            //     if (res.statusCode === 200) {
+            //       wx.hideLoading();
+
+            //       wx.openDocument({
+            //         filePath: res.filePath,
+            //         showMenu: true,
+            //         success(e) {
+            //           console.log("打开文档成功 =>", e);
+            //         },
+            //         fail(e) {
+            //           console.log("打开文档失败 =>", e);
+            //           wx.showToast({
+            //             title: "打开文档失败，请重试！",
+            //             icon: "none"
+            //           });
+            //         }
+            //       });
+            //     }
+            //   },
+            //   fail(err) {
+            //     console.log("打开文档失败 =>", err);
+            //     wx.showToast({
+            //       title: "打开文档失败，请重试！",
+            //       icon: "none"
+            //     });
+            //   }
+            // });
           }
           console.log("课程讲义接口调取成功")
         } else {

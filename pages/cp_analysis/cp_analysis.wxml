@@ -166,7 +166,7 @@
         <view wx:if="{{analysis.mark.submit == 3}}" class="your">您的答案: D</view>
       </view>
 
-      <view class="flex">
+      <view class="flex" wx:if="{{analysis.note != ''}}">
         <view class="shu"></view>
         <view class="right">答案解析</view>
       </view>

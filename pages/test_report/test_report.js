@@ -6,8 +6,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    iknow: false
   },
+
+  //我知道了
+  iknow: function () {
+    let that = this
+    that.setData({
+      iknow: true
+    })
+  },
+  
 
   //时间戳转换为标准时间
   timestampToTime: function (timestamp) {

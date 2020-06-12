@@ -28,7 +28,7 @@
     </view>
 
     <view wx:if="{{current == 3}}">
-      <view class="content3" style="margin-top: 1000rpx;">此次课程，</view>
+      <view class="content3" style="margin-top: 850rpx;">此次课程，</view>
       <view class="content3" >在 <text class="name">{{report.res.hours}}</text> 小时 <text class="name">{{report.res.minute}}</text> 分钟里，</view>
       <view class="content3" >你一共完成了 <text class="name">{{report.res.class_hour}}</text> 节课程的学习，</view>
       <view class="content3" ><text class="name">{{report.res.study_times}}</text> 次课后作业的提交。</view>

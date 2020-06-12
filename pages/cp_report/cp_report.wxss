@@ -2,6 +2,31 @@
 page{
   background:rgba(2,220,159,1);
 }
+.mask{
+  position: fixed;
+  width:750rpx;
+  height:1624rpx;
+  background:rgba(0,0,0,1);
+  opacity:0.54;
+  z-index: 15;
+}
+.test_tip{
+  position: absolute;
+  margin-left: 50rpx;
+  margin-top: 200rpx;
+  width:642rpx;
+  height:1007rpx;
+  z-index: 20;
+}
+.hhh{
+  position: absolute;
+  margin-left: 180rpx;
+  margin-top: 1117rpx;
+  width:385rpx;
+  height:90rpx;
+  /* background:rgba(0,0,0,1); */
+  z-index: 21;
+}
 .layout1{
   margin-left: 30rpx;
   margin-top: 55rpx;
@@ -124,8 +149,8 @@ page{
 .point{
   margin-left: 30rpx;
   margin-top: 10rpx;
-  width:500rpx;
-  height:48rpx;
+  width:600rpx;
+  /* height:48rpx; */
   font-size:34rpx;
   font-family:PingFang SC;
   font-weight:bold;

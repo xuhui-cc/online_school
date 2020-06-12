@@ -1,6 +1,31 @@
 page{
   background:rgba(245,245,245,1);
 }
+.mask{
+  position: fixed;
+  width:750rpx;
+  height:1624rpx;
+  background:rgba(0,0,0,1);
+  opacity:0.54;
+  z-index: 15;
+}
+.test_tip{
+  position: absolute;
+  margin-left: 50rpx;
+  margin-top: 200rpx;
+  width:642rpx;
+  height:1007rpx;
+  z-index: 20;
+}
+.hhh{
+  position: absolute;
+  margin-left: 180rpx;
+  margin-top: 1117rpx;
+  width:385rpx;
+  height:90rpx;
+  /* background:rgba(0,0,0,1); */
+  z-index: 21;
+}
 .layout{
   margin-left: 30rpx;
   margin-top: 22rpx;

@@ -2,18 +2,19 @@
   <video class="video" src="{{getvideo.video}}"  initial-time="{{timeline}}" bindtimeupdate="bindtimeupdate"></video>
 
   <view class="flex">
-    <image class="v_img" src="../../images/v-img1.png" bindtap="to_course_file"></image>
-    <image class="v_img" src="../../images/v_img2.png" wx:if="{{course.mark_status == 0}}" bindtap="to_homework"></image>
-    <image class="v_img" src="../../images/v_img2.png" wx:if="{{course.mark_status == 2}}" bindtap="to_homework_report"></image>
-  </view>
-
-  <view class="status" style="margin-left:45rpx;">{{course.annex_num}}份</view>
-  
+    <view class="status" style="margin-left:45rpx;">{{course.annex_num}}份</view>
   <view class="status" wx:if="{{course.mark_status == 0}}" style="margin-left:400rpx;">未完成</view>
   <view class="status" wx:if="{{course.mark_status == 1}}" style="margin-left:400rpx;">批改中</view>
   <view class="status" wx:if="{{course.mark_status == 2}}" style="margin-left:400rpx;">看报告</view>
+    <image class="v_img" src="../../images/v-img1.png" bindtap="to_course_file"></image>
+    <image class="v_img" src="../../images/v_img2.png" wx:if="{{course.mark_status == 0}}" bindtap="to_homework"></image>
+    <image class="v_img" src="../../images/v_img2.png" wx:if="{{course.mark_status == 1}}" ></image>
+    <image class="v_img" src="../../images/v_img2.png" wx:if="{{course.mark_status == 2}}" bindtap="to_homework_report"></image>
+  </view>
 
-  <view class="flex">
+  
+
+  <view class="flex" wx:if="{{course.lists != ''}}">
     <view class="shu"></view>
     <view class="head">推荐课程</view>
   </view>
@@ -29,10 +30,7 @@
               <image class="avatar" src="{{item.avatar}}"></image>
               <view class="name">{{item.nick}}</view>
             </view>
-            <!-- <view>
-              <image class="avatar" src="../../images/my_head.png"></image>
-              <view class="name">哈哈哈哈</view>
-            </view> -->
+         
           </view>
 
           <view class="buy_num">{{item.order_num}}人已购买</view>

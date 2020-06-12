@@ -200,7 +200,7 @@
 }
 .unsel_A{
   margin-left: 30rpx;
-  /* margin-top: 40rpx; */
+ 
   margin-right: 20rpx;
   width:55rpx;
   height:55rpx;
@@ -262,7 +262,7 @@
 .right{
   margin-left: 13rpx;
   margin-top: 45rpx;
-  width:170rpx;
+  /* width:170rpx; */
   height:48rpx;
   font-size:34rpx;
   font-family:PingFang SC;

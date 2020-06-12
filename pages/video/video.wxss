@@ -19,7 +19,7 @@
 }
 .status{
   position: absolute;
-  margin-top: 490rpx;
+  margin-top: 43rpx;
   width:80rpx;
   height:30rpx;
   font-size:22rpx;

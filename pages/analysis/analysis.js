@@ -58,7 +58,9 @@ Page({
         var cs4 = "analysis.d"
 
         d.data.data.title = d.data.data.title.replace(/<img/gi, '<img style="max-width:95%;height:auto;display:block"')
-
+        if (d.data.data.mark.nark != null){
+          d.data.data.mark.mark = d.data.data.mark.mark.replace(/<img/gi, '<img style="max-width:95%;height:auto;display:block"')
+        }
         if (d.data.data.a != null) {
           d.data.data.a = d.data.data.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
         }
@@ -203,6 +205,13 @@ Page({
 
             that.setData({
               ques_type5: 5,
+
+            })
+          }
+          else if (that.data.id_list[i].type == 6) {
+
+            that.setData({
+              ques_type6: 6,
 
             })
           }
@@ -368,8 +377,6 @@ Page({
         console.log("测评第" + (current + 2) + "一题接口==============" + d.data.msg)
       }
     })
-
-
   },
 
   //查看大图
@@ -383,13 +390,6 @@ Page({
       urls: imgs
     })
   },
-
-
-
-
-
-
-
 
   /**
    * 生命周期函数--监听页面初次渲染完成

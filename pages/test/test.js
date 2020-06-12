@@ -740,6 +740,8 @@ Page({
       })
     } else {
       that.setData({
+        img: [],
+        imgs: [],
         currentTab: that.data.currentTab - 1
       })
       that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
@@ -755,6 +757,8 @@ Page({
       })
     } else {
       that.setData({
+        img: [],
+        imgs: [],
         currentTab: that.data.currentTab + 1
       })
       that.get_cp_test(that.data.id_list[that.data.currentTab].pid)

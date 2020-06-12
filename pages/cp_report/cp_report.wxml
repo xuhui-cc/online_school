@@ -1,5 +1,9 @@
 <view class="container">
 
+  <view class="mask" wx:if="{{!iknow}}"></view>
+  <image class="test_tip" src="../../images/report_tip.png" wx:if="{{!iknow}}"></image>
+  <view class="hhh" bindtap="iknow" wx:if="{{!iknow}}"></view>
+
   <view class="layout1">
     <view class="flex">
       <view class="shu"></view>
@@ -48,8 +52,8 @@
             <view wx:for="{{item.second}}" wx:key="second_index" wx:for-item="second" wx:for-index="second_index">
               <view class="flex">
                 <image class="ling" src="../../images/ling.png"></image>
-                
-                <view class="second_title">{{second.question}}考点:{{second.title}}</view>
+                <view class="second_title">{{second.question}}</view>
+                <view class="second_title">考点:{{second.title}}</view>
               </view>
               <view class="flex" style="margin-bottom:15rpx;">
                 <view class="second_img"></view>

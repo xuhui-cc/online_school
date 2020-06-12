@@ -49,7 +49,7 @@
 .content1{
   margin-left: 81rpx;
   margin-top: 120rpx;
-  height:45rpx;
+  /* height:45rpx; */
   font-size:32rpx;
   font-family:PingFang SC;
   font-weight:300;
@@ -61,7 +61,7 @@
 .content2{
   margin-left: 171rpx;
   margin-top: 30rpx;
-  height:45rpx;
+  /* height:45rpx; */
   font-size:32rpx;
   font-family:PingFang SC;
   font-weight:300;
@@ -73,7 +73,7 @@
 .content3{
   margin-left: 92rpx;
   margin-top: 30rpx;
-  height:45rpx;
+  /* height:45rpx; */
   font-size:32rpx;
   font-family:PingFang SC;
   font-weight:300;
@@ -84,7 +84,7 @@
 .content4{
   margin-left: 100rpx;
   margin-top: 30rpx;
-  height:45rpx;
+  /* height:45rpx; */
   font-size:32rpx;
   font-family:PingFang SC;
   font-weight:300;
@@ -106,7 +106,7 @@
 }
 .cscs{
   width: 300rpx;
-  height: 50rpx;
+  /* height: 50rpx; */
   background:rgba(23,161,104,1);
 }
 .share_btn{

@@ -6,7 +6,7 @@ Page({
     // grade_index: 1,
     // classify: ["推荐", "语文", "数学", "英语", "政治", "历史", "地理"],
     
-    // current_special:0,
+    current_special:-1,
     current_subject: 0,
   },
 
@@ -204,7 +204,34 @@ Page({
           did: that.data.subject[that.data.current_subject].id
         })
         that.getspecial()      //获取专题
-        that.getcourse()    //获取课程
+        if (that.data.current_special != -1) {
+          var params = {
+            "token": wx.getStorageSync("token"),
+            "gid": that.data.gid,
+            "did": that.data.did,
+            "cid": that.data.special[that.data.current_special].id,
+            "num": 12,
+            "page": 1
+          }
+          app.ols.grade_course(params).then(d => {
+            console.log(d)
+            if (d.data.code == 0) {
+              console.log(d.data.data)
+              that.setData({
+                course: d.data.data
+              })
+              console.log(that.data.course, "专题获取课程")
+            } else {
+              console.log(d.data.msg, "专题获取课程msg，失败")
+              that.setData({
+                course: ''
+              })
+            }
+          })
+        }else{
+          that.getcourse()    //获取课程
+        }
+        
       } else {
         console.log(d.data.msg, "获取科目失败")
       }
@@ -294,7 +321,10 @@ Page({
     console.log(that.data.gid,"onshow")
     // that.getgrade()    //获取年级 
     that.getsubject()   //获取学科
-    that.getcourse()    //获取课程
+    
+      that.getcourse()    //获取课程
+    
+    
   }
     
 })
