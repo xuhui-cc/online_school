@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    iknow: false
+    // iknow: false
   },
 
   //我知道了
@@ -46,6 +46,12 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    var iknow = wx.getStorageSync("iknow")
+    if (iknow) {
+      that.setData({
+        iknow: true
+      })
+    }
     // var mid = options.mid
     that.setData({
       mid: options.mid

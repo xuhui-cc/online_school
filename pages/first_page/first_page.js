@@ -88,6 +88,7 @@ Page({
       "token": wx.getStorageSync("token"),
       "gid":that.data.grade[xb].id
     }
+    console.log(params, "params")
     app.ols.grade_update(params).then(d => {
       console.log(d)
       console.log("更新接口存班级")
@@ -125,7 +126,7 @@ Page({
                 "iv": iv,
                 "encryptedData": encryptedData
               }
-              console.log(params)
+              console.log(params, "params")
               app.ols.login(params).then(d => {
 
                 if (d.data.code == 0) {
@@ -154,6 +155,7 @@ Page({
 
 
                 } else {
+                  console.log(d,"登录失败")
                   wx.showToast({
                     title: "登陆失败",
                     icon: 'none',
@@ -179,6 +181,7 @@ Page({
     let that = this
     var params = {
     }
+    console.log(params, "params")
     app.ols.getlist(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {

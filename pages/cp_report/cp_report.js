@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    iknow:false
+    // iknow:false
   },
 
   //我知道了
@@ -15,6 +15,7 @@ Page({
     that.setData({
       iknow:true
     })
+    wx.setStorageSync("iknow", true)
   },
 
   /**
@@ -23,6 +24,12 @@ Page({
   onLoad: function (options) {
     let that = this
     var mid = options.mid
+    var iknow = wx.getStorageSync("iknow")
+    if (iknow){
+      that.setData({
+        iknow: true
+      })
+    }
     that.setData({
       mid:mid
     })
@@ -31,6 +38,7 @@ Page({
       "token": wx.getStorageSync("token"),
       "mid": that.data.mid
     }
+    console.log(params,"params")
     app.ols.cp_report(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
@@ -43,6 +51,7 @@ Page({
           "token": wx.getStorageSync("token"),
           "eid": d.data.data.eid,
         }
+        console.log(params, "params")
         app.ols.getpushlist(params).then(d => {
           console.log(d)
           if (d.data.code == 0) {
@@ -62,6 +71,7 @@ Page({
           "eid": d.data.data.eid,
           "percent": Math.ceil((d.data.data.chart.right_num / d.data.data.chart.all_num) * 100),
         }
+        console.log(params, "params")
         app.ols.cp_comment(params).then(d => {
           console.log(d)
           if (d.data.code == 0) {

@@ -332,11 +332,24 @@ page{
   width:19rpx;
   height:19rpx;
 }
+.second_title222{
+  margin-left: 10rpx;
+  margin-top: 15rpx;
+  margin-bottom: 10rpx;
+  /* width:650rpx; */
+  /* height:42rpx; */
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:42rpx;
+  color:rgba(3,182,131,1);
+  opacity:1;
+}
 .second_title{
   margin-left: 10rpx;
   margin-top: 15rpx;
   margin-bottom: 10rpx;
-  width:650rpx;
+  /* width:600rpx; */
   /* height:42rpx; */
   font-size:30rpx;
   font-family:PingFang SC;

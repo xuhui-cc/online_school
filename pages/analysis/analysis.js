@@ -58,7 +58,7 @@ Page({
         var cs4 = "analysis.d"
 
         d.data.data.title = d.data.data.title.replace(/<img/gi, '<img style="max-width:95%;height:auto;display:block"')
-        if (d.data.data.mark.nark != null){
+        if (d.data.data.mark.mark != null){
           d.data.data.mark.mark = d.data.data.mark.mark.replace(/<img/gi, '<img style="max-width:95%;height:auto;display:block"')
         }
         if (d.data.data.a != null) {

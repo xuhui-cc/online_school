@@ -136,7 +136,7 @@ Page({
               [suffix]: "xls"
             })
           }
-          else if (that.data.handout[0].annex.indexOf(".png") != -1 || that.data.handout[i].annex.indexOf(".jpg") != -1) {
+          else if (that.data.handout[0].annex.indexOf(".png") != -1 || that.data.handout[0].annex.indexOf(".jpg") != -1) {
             that.setData({
               [suffix]: "img"
             })

@@ -53,6 +53,7 @@ Page({
       "num": 12,
       "page": 1
     }
+    console.log(params, "params")
     app.ols.grade_course(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
@@ -111,6 +112,7 @@ Page({
       "token": wx.getStorageSync("token"),
       "gid": that.data.grade[xb].id
     }
+    console.log(params, "params")
     app.ols.grade_update(params).then(d => {
       console.log(d)
       
@@ -164,6 +166,7 @@ Page({
       "num": 12,
       "page": 1
     }
+    console.log(params, "params")
     app.ols.grade_course(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
@@ -188,6 +191,7 @@ Page({
     var params = {
       "gid": that.data.gid
     }
+    console.log(params, "params")
     app.ols.discipline(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
@@ -281,6 +285,7 @@ Page({
       "gid":that.data.gid,
       "did":that.data.did
     }
+    console.log(params, "params")
     app.ols.gettoplist(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {

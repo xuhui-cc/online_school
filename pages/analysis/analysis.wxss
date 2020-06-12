@@ -327,3 +327,37 @@
   width:174rpx;
   height:174rpx;
 }
+.right{
+  margin-left: 13rpx;
+  margin-top: 45rpx;
+  /* width:170rpx; */
+  height:48rpx;
+  font-size:34rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:48rpx;
+  color:rgba(0,0,0,1);
+  opacity:1;
+}
+.scord{
+  margin-top: 15rpx;
+  /* width:36rpx;
+  height:84rpx; */
+  font-size:60rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:84rpx;
+  color:rgba(20,203,162,1);
+  opacity:1;
+}
+.sum_scord{
+  margin-top: 50rpx;
+  /* width:124rpx; */
+  /* height:33rpx; */
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:33rpx;
+  color:rgba(0,0,0,1);
+  opacity:1;
+}

@@ -167,6 +167,15 @@
 
        
       <!-- <view  wx:if="{{jx}}"> -->
+
+        <view class="flex" wx:if="{{analysis.type >3 && analysis.mark.mark== '' }}">
+          <view class="shu"></view>
+          <view class="right" >得分：</view>
+          <view class="scord">{{analysis.mark.score}}</view>
+          <view class="sum_scord">分</view>
+          <!-- <view class="sum_scord" style="margin-left:30rpx;">总分：{{analysis.mark.score}}分</view> -->
+        </view>
+
         <view class="flex">
           <view class="shu"></view>
           <view class="right" wx:if="{{analysis.type != 4 && analysis.type != 6}}">正确答案：</view>
