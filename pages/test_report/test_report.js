@@ -15,6 +15,7 @@ Page({
     that.setData({
       iknow: true
     })
+    wx.setStorageSync("iknow", true)
   },
   
 

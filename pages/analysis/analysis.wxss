@@ -250,6 +250,13 @@
   line-height:64rpx;
   vertical-align:top;
 }
+.cs1{
+  display:inline-block;
+  /* margin-bottom: 25rpx; */
+  width:95%;
+  line-height:64rpx;
+  vertical-align:top;
+}
 .shu{
   margin-left: 30rpx;
   margin-top: 61rpx;

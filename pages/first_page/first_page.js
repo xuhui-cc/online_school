@@ -96,7 +96,7 @@ Page({
         // wx.setStorageSync('grade', xb)
         wx.setStorageSync('gid', that.data.grade[xb].id)
         wx.switchTab({
-          url: '../../pages/logs/logs',
+          url: '../../pages/index/index',
         })
         
       }
@@ -144,7 +144,7 @@ Page({
                     console.log(d.data.data.gid,"d.data.data.gid")
                     wx.setStorageSync("gid", d.data.data.gid)
                     wx.switchTab({
-                      url: '../../pages/logs/logs',
+                      url: '../../pages/index/index',
                     })
                   }else{
                     that.setData({

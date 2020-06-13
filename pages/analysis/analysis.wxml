@@ -168,21 +168,21 @@
        
       <!-- <view  wx:if="{{jx}}"> -->
 
-        <view class="flex" wx:if="{{analysis.type >3 && analysis.mark.mark== '' }}">
+        <view class="flex" wx:if="{{analysis.type >3}}">
           <view class="shu"></view>
           <view class="right" >得分：</view>
           <view class="scord">{{analysis.mark.score}}</view>
           <view class="sum_scord">分</view>
-          <!-- <view class="sum_scord" style="margin-left:30rpx;">总分：{{analysis.mark.score}}分</view> -->
+          <view class="sum_scord" style="margin-left:30rpx;">总分：{{analysis.question_score}}分</view>
         </view>
 
         <view class="flex">
           <view class="shu"></view>
-          <view class="right" wx:if="{{analysis.type != 4 && analysis.type != 6}}">正确答案：</view>
-          <view class="right" wx:elif="{{analysis.type == 4 && analysis.mark.mark== ''}}">您的答案：未做</view>
-          <view class="right" wx:elif="{{analysis.type == 4}}">您的答案：</view>
-          <view class="right" wx:elif="{{analysis.type == 6 && analysis.mark.mark== ''}}">您的答案：未做</view>
-          <view class="right" wx:else="{{analysis.type == 6}}">您的答案：</view>
+          <view class="right" wx:if="{{analysis.type < 4}}">正确答案：</view>
+          <view class="right" wx:elif="{{analysis.type >3 && analysis.submit == ''}}">您的答案：未做</view>
+          <view class="right" wx:else="{{analysis.type >3}}">您的答案：</view>
+          <!-- <view class="right" wx:elif="{{analysis.type == 6 && analysis.mark.mark== ''}}">您的答案：未做</view> -->
+          <!-- <view class="right" wx:else="{{analysis.type == 6}}">您的答案：</view> -->
 
 
           <view wx:if="{{analysis.type <= 2}}" class="flex">
@@ -205,7 +205,7 @@
           <rich-text nodes="{{analysis.answer}}"></rich-text>
         </view>
 
-        <view class="flex" wx:if="{{analysis.type > 2 }}">
+        <view class="flex" wx:if="{{analysis.type > 3 }}">
           <view wx:for="{{analysis.submit}}" wx:key="{{index}}">
             <image class="ans_img" src="{{item}}" data-xb='{{index}}' bindtap='previewImg'></image>
           </view>
@@ -235,7 +235,7 @@
         </view>
 
         <view class="analysis_content">
-          <rich-text nodes="{{analysis.note}}"></rich-text>
+          <rich-text nodes="{{analysis.note}}" ></rich-text>
         </view>
 
         <view class="flex" wx:if="{{analysis.category != ''}}">

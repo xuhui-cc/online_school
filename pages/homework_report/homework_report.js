@@ -15,6 +15,7 @@ Page({
     that.setData({
       iknow: true
     })
+    wx.setStorageSync("iknow", true)
   },
 
   //时间戳转换为标准时间
