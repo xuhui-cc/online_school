@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    
+    current_subject: 0,
   },
   //事件处理函数
   
@@ -18,10 +18,10 @@ Page({
     var params = {
 
     }
+    console.log("获取年级无传参")
     app.ols.getlist(params).then(d => {
-      console.log(d)
+      console.log(d,"获取年级数据")
       if (d.data.code == 0) {
-        // console.log(d.data.data)
         let arr1 = [];
         for (let i in d.data.data) {
           arr1.push(d.data.data[i]);
@@ -40,24 +40,57 @@ Page({
         }
       }
     })
-
+    that.getsubject()   //获取学科
     that.test_list()  //获取测评列表
 
+  },
 
-    
+  //学科切换
+  swichNav_subject: function (e) {
+    var that = this
+    var cur = e.target.dataset.current;
 
-
-
-
-
-
+    that.setData({
+      current_subject: cur,
+      did: that.data.subject[cur].id
+    })
 
   },
+
+  //获取学科接口
+  getsubject: function () {
+    let that = this
+    //获取学科
+    var params = {
+      "gid": that.data.gid
+    }
+    console.log(params, "params")
+    app.ols.discipline(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        let arr2 = [];
+        for (let i in d.data.data) {
+          arr2.push(d.data.data[i]);
+        }
+        console.log(arr2)
+        that.setData({
+          subject: arr2
+        })
+        that.setData({
+          did: that.data.subject[that.data.current_subject].id
+        })
+
+      } else {
+        console.log(d.data.msg, "获取学科失败")
+      }
+    })
+  },
+
 
   //年级弹框
   grade_select: function () {
     let that = this
-
     that.setData({
       grade_select: true
     })

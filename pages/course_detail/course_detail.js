@@ -1,30 +1,14 @@
 // pages/course_detail/course_detail.js
 const app = getApp()
 Page({
-
-  // onShareAppMessage: function () {
-    
-  // },
-
+  // 打开的文件路径 在onShow中删除文件
+  openFilePath: '',
   /**
    * 页面的初始数据
    */
   data: {
-    //course_info.pay_status : 1 未购买；2已购买
     currentData: 0,
-    
   },
-
-  // //为http修饰
-  // edithttp: function (url) {
-  //   var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
-  //   var objExp = new RegExp(Expression);
-  //   if (objExp.test(url) == true) {
-  //     return '<img style="max-width:100%;" src="' + url + '"></img>';
-  //   } else {
-  //     return url;
-  //   }
-  // },
 
   /**
    * 生命周期函数--监听页面加载
@@ -36,10 +20,8 @@ Page({
       kid:kid
     })
 
-    that.course_detail()
-    
+    that.course_detail()  //获取课程详情
   },
-
 
   // 获取课程详情
   course_detail:function(){
@@ -49,8 +31,9 @@ Page({
       "token": wx.getStorageSync("token"),
       "kid": that.data.kid
     }
+    console.log(params,"课程详情接口参数")
     app.ols.course_info(params).then(d => {
-      console.log(d)
+      console.log(d,"课程详情接口数据")
       if (d.data.code == 0) {
         console.log(d.data.data)
         that.setData({
@@ -60,6 +43,12 @@ Page({
         that.setData({
           [cs]: that.data.course_info.content.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block"')
         })
+        if (that.data.course_info.pay_status > 1 && that.data.course_info.pay_status < 5) {
+          that.setData({
+            currentData: 1
+          })
+          that.getcourse_cata()  //获取课程目录
+        }
       } else {
         console.log("课程详情介绍接口==============" + d.data.msg)
       }
@@ -78,11 +67,11 @@ Page({
     var mid = that.data.course_cata.lists[xb].mid
     if (that.data.course_cata.lists[xb].cateid == 1) {
       wx.navigateTo({
-        url: '../../pages/live/live?id=' + id,
+        url: '../../pages/live/live?id=' + id,    //直播
       })
     } else {
       wx.navigateTo({
-        url: '../../pages/video/video?id=' + id + '&kid=' + kid + '&eid=' + eid + '&mid=' + mid,
+        url: '../../pages/video/video?id=' + id + '&kid=' + kid + '&eid=' + eid + '&mid=' + mid,  //看视频
       })
     }
     
@@ -92,10 +81,9 @@ Page({
   to_end_report:function(){
     let that = this
     wx.navigateTo({
-      url: '../../pages/endcourse_report/endcourse_report?kid=' + that.data.kid,
+      url: '../../pages/endcourse_report/endcourse_report?kid=' + that.data.kid,     //结课报告
     })
   },
-
 
   //课后作业
   to_homework: function (e) {
@@ -106,33 +94,29 @@ Page({
     var oid = that.data.course_cata.lists[xb].id
     console.log(eid)
     wx.navigateTo({
-      url: '../../pages/homework/homework?eid=' + eid + "&kid=" + kid + "&oid=" + oid,
+      url: '../../pages/homework/homework?eid=' + eid + "&kid=" + kid + "&oid=" + oid,   //课后作业
     })
   },
 
   //去支付
   to_pay:function(e){
-  
     let that = this
     var kid = e.currentTarget.dataset.kid
     console.log(kid)
     wx.navigateTo({
-      url: '../../pages/pay/pay?kid=' + kid,
+      url: '../../pages/pay/pay?kid=' + kid,     //去支付
     })
   },
 
-  //打开图片
+  //打开图片显示大图
   previewImage: function () {
     let that = this
-
     var image = []
-
     image.push(that.data.handout[0].annex)
     wx.previewImage({
       current: image[0],
       urls: image
     })
-
   },
 
   //免费课领取
@@ -149,9 +133,6 @@ Page({
       if (d.data.code == 0) {
         console.log(d.data.data)
         that.onShow()     //刷新页面
-        // that.setData({
-        //   course_cata: d.data.data
-        // })
         console.log("获取免费课程接口调取成功")
       } else {
         console.log("获取免费课程==============" + d.data.msg)
@@ -167,8 +148,6 @@ Page({
     console.log(xb)
     var id = that.data.course_cata.lists[xb].id
     if (that.data.course_cata.lists[xb].annex_num > 1){
-      
-
       wx.navigateTo({
         url: '../../pages/course_file/course_file?id=' + id,
       })
@@ -217,37 +196,99 @@ Page({
             console.log("图")
           } else {
             
-            
-
             wx.showLoading({
               title: '资料打开中...',
             })
 
+            // wx.downloadFile({
+            //   // 示例 url，并非真实存在
+            //   url: that.data.handout[0].annex,
+            //   success: function (res) {
+            //     const filePath = res.tempFilePath
+            //     wx.openDocument({
+            //       filePath: filePath,
+            //       success: function (res) {
+            //         wx.hideLoading();
+            //         console.log('打开文档成功')
+            //       }
+            //     })
+            //   },
+            //     fail(err) {
+            //       wx.hideLoading();
+            //     console.log("打开文档失败 =>", err);
+            //     wx.showToast({
+            //       title: "打开文档失败，请重试！",
+            //       icon: "none"
+            //     });
+            //   }
+            // })
+
+            var fileName = that.data.handout[0].name + "." + that.data.handout[0].suffix
+            that.setData({
+              fileName: fileName
+            })
+            let customFilePath = wx.env.USER_DATA_PATH + "/" + that.data.fileName
+            console.log('得到自定义路径：')
+            console.log(customFilePath)
+
             wx.downloadFile({
-              // 示例 url，并非真实存在
-              url: that.data.handout[0].annex,
-              success: function (res) {
-                const filePath = res.tempFilePath
+              url: that.data.handout[0].annex, //仅为示例，并非真实的资源
+              filePath: customFilePath,
+              success(res) {
+                // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+
+                console.log(res)
+                var filePath = res.filePath
+                console.log('返回自定义路径：')
+                console.log(filePath)
+
+                that.openFilePath = filePath
                 wx.openDocument({
+                  showMenu: true,
                   filePath: filePath,
                   success: function (res) {
-                    wx.hideLoading();
                     console.log('打开文档成功')
+                    wx.hideLoading()
+                    // that.loading = false
+                  },
+
+                  fail: function (res) {
+                    console.log("打开文档失败");
+                    console.log(res)
+                    wx.hideLoading({
+                      complete: (res) => {
+                        wx.showToast({
+                          title: '文件打开失败',
+                          icon: 'none'
+                        })
+                      },
+                    })
+                    // that.loading = false
+                  },
+                  complete: function (res) {
+                    console.log("complete");
+                    console.log(res)
                   }
+
+
                 })
               },
-                fail(err) {
-                  wx.hideLoading();
-                console.log("打开文档失败 =>", err);
-                wx.showToast({
-                  title: "打开文档失败，请重试！",
-                  icon: "none"
-                });
+              fail: function (res) {
+                console.log('文件下载失败')
+                console.log(res)
+                wx.hideLoading({
+                  complete: (res) => {
+                    wx.showToast({
+                      title: '文件下载失败',
+                      icon: 'none'
+                    })
+                  },
+                })
+                
               }
             })
 
-
-
+            
             // var fileName = that.data.handout[0].name + "." + that.data.handout[0].suffix
             // that.setData({
             //   fileName: fileName
@@ -294,6 +335,30 @@ Page({
     
   },
 
+  //获取课程目录接口
+  getcourse_cata:function(){
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "kid": that.data.kid
+    }
+    console.log(params,"获取课程目录参数")
+    app.ols.course_cata(params).then(d => {
+      console.log(d, "获取课程目录接口数据")
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        that.setData({
+          course_cata: d.data.data
+        })
+        console.log("课程目录接口调取成功")
+      } else {
+        console.log("课程目录==============" + d.data.msg)
+      }
+    })
+  },
+
+
+  //课程介绍、目录切换
   checkCurrent: function (e) {
     const that = this
     if (that.data.currentData === e.target.dataset.current) {
@@ -305,23 +370,7 @@ Page({
     }
     if (e.target.dataset.current == 1){
       //课程目录接口
-      var params = {
-        "token": wx.getStorageSync("token"),
-        "kid": that.data.kid
-      }
-      app.ols.course_cata(params).then(d => {
-        console.log(d)
-        if (d.data.code == 0) {
-          console.log(d.data.data)
-          that.setData({
-            course_cata: d.data.data
-          })
-          console.log("课程目录接口调取成功")
-        } else {
-          console.log("课程目录==============" + d.data.msg)
-        }
-      })
-
+      that.getcourse_cata()
     }
   },
 
@@ -338,7 +387,6 @@ Page({
           wx.login({
             success(res) {
               console.log("cccs.code" + res.code)
-
               let iv = encodeURIComponent(e.detail.iv);
               let encryptedData = encodeURIComponent(e.detail.encryptedData);
               let code = res.code
@@ -385,7 +433,7 @@ Page({
     let that = this
     var mid = e.currentTarget.dataset.mid
     wx.navigateTo({
-      url: '../../pages/homework_report/homework_report?mid=' + mid
+      url: '../../pages/homework_report/homework_report?mid=' + mid   //课后作业报告
     })
   },
 
@@ -393,7 +441,7 @@ Page({
   to_test:function(e){
     let that = this
     wx.navigateTo({
-      url: '../../pages/test/test?eid=' + that.data.course_cata.eid + "&kid=" + that.data.kid,
+      url: '../../pages/test/test?eid=' + that.data.course_cata.eid + "&kid=" + that.data.kid,  //结课考试
     })
   },
 
@@ -401,7 +449,7 @@ Page({
   to_test_report: function (e) {
     let that = this
     wx.navigateTo({
-      url: '../../pages/test_report/test_report?mid=' + that.data.course_cata.mid,
+      url: '../../pages/test_report/test_report?mid=' + that.data.course_cata.mid,  //考试报告
     })
   },
 
@@ -417,27 +465,13 @@ Page({
    */
   onShow: function () {
     let that = this
+    this.clearLocalFile()
     if (that.data.currentData == 0){
       that.course_detail()   //获取课程简介
     } else if (that.data.currentData == 1){
       that.course_detail()   //获取课程简介
       //课程目录接口
-      var params = {
-        "token": wx.getStorageSync("token"),
-        "kid": that.data.kid
-      }
-      app.ols.course_cata(params).then(d => {
-        console.log(d)
-        if (d.data.code == 0) {
-          console.log(d.data.data)
-          that.setData({
-            course_cata: d.data.data
-          })
-          console.log("课程目录接口调取成功")
-        } else {
-          console.log("课程目录==============" + d.data.msg)
-        }
-      })
+      that.getcourse_cata()
     }
     
   },
@@ -468,6 +502,31 @@ Page({
    */
   onReachBottom: function () {
 
+  },
+
+  /**
+   * 清除本地保存的文件
+  */
+  clearLocalFile: function () {
+    let that = this
+
+    if (this.openFilePath == '') {
+      return
+    }
+
+    let fs = wx.getFileSystemManager()
+    let filePath = this.openFilePath
+    fs.unlink({
+      filePath: filePath,
+      success(res) {
+        console.log("文件删除成功" + filePath)
+        that.openFilePath = ''
+      },
+      fail(res) {
+        console.log("文件删除失败" + filePath)
+        console.log(res)
+      }
+    })
   },
 
   /**

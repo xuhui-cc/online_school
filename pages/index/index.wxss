@@ -9,9 +9,60 @@ page{
   background:rgba(255,255,255,1);
   opacity:1;
 }
+.tab-h{ 
+  margin-top: 176rpx;
+  padding-left: 10rpx;
+  width: 750rpx;
+  height: 90rpx;
+  box-sizing: border-box; 
+  overflow: hidden; 
+  line-height:90rpx;
+  background: rgba(255,255,255,1); 
+  white-space: nowrap;  
+} 
+.tab-item{ 
+  padding-bottom: 10rpx;
+  width:75rpx;
+  height:55rpx;
+  margin:0 20rpx; 
+  display: inline-block; 
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:45rpx;
+  color:rgba(136,136,136,1);
+  opacity:1;
+} 
+.tab-item.active{ 
+  padding-bottom: 10rpx;
+  position: relative; 
+  width:75rpx;
+  height:55rpx;
+  font-size:32rpx;
+  font-weight:bold;
+  font-family:PingFang SC;
+  line-height:45rpx;
+  color:rgba(20,203,162,1);
+  opacity:1;
+} 
+.tab-item.active:after{
+  content: ""; 
+  display: block; 
+  height: 5rpx; 
+  width: 35%; 
+  background: rgba(12,205,163,1);
+  position: absolute;  
+  bottom: 0;
+  left: 20rpx; 
+} 
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
 
 .test_margin{
-  margin-top: 195rpx;
+  margin-top: 20rpx;
   margin-bottom: 100rpx;
 }
 .grade_content{

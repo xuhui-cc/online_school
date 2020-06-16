@@ -31,6 +31,10 @@
 
   <!-- 标题栏结束 -->
 
+  <scroll-view  scroll-x="true" class="tab-h" >
+    <view wx:for="{{subject}}" wx:key="index" class="tab-item {{current_subject==index?'active':''}}" data-current="{{index}}"  bindtap="swichNav_subject">{{item.title}}</view> 
+  </scroll-view> 
+
   <view wx:if="{{test_list != ''}}">
     <view class="test_margin">
       <view  wx:for="{{test_list.lists}}" wx:key="index">

@@ -28,12 +28,12 @@ Page({
         wx.switchTab({
           url: '../../pages/index/index',
         })
-        console.log("我登录了，我选班级了")
+        console.log("我登录了，我选年级了")
       } else {
         that.setData({
           grade_select: true
         })
-        console.log("我登录了我没选班级")
+        console.log("我登录了我没选年级")
       }
     }
     else {
@@ -55,15 +55,11 @@ Page({
         console.log(d.data.msg, "人数失败")
       }
     })
-    // that.setData({
-      
-    // })
-    
   
-    
     
   },
 
+  //关闭弹框
   del:function(){
     let that = this
     that.setData({
@@ -71,14 +67,17 @@ Page({
     })
   },
 
+
+  //年级选择弹框
   grade_select:function(){
     let that = this
-    
     that.setData({
       grade_select: true
     })
   },
 
+
+  //年级选择 
   subject_sel:function(e){
     let that = this
     var xb = e.currentTarget.dataset.xb
@@ -88,15 +87,15 @@ Page({
       "token": wx.getStorageSync("token"),
       "gid":that.data.grade[xb].id
     }
-    console.log(params, "params")
+    console.log(params, "更新年级参数")
+    //更新选择年级接口
     app.ols.grade_update(params).then(d => {
-      console.log(d)
+      console.log(d,"更新班级数据")
       console.log("更新接口存班级")
       if (d.data.code == 200) {
-        // wx.setStorageSync('grade', xb)
         wx.setStorageSync('gid', that.data.grade[xb].id)
         wx.switchTab({
-          url: '../../pages/index/index',
+          url: '../../pages/index/index',   //更新年级后跳转测评页
         })
         
       }
@@ -117,7 +116,6 @@ Page({
           wx.login({
             success(res) {
               console.log("cccs.code" + res.code)
-
               let iv = encodeURIComponent(e.detail.iv);
               let encryptedData = encodeURIComponent(e.detail.encryptedData);
               let code = res.code
@@ -126,9 +124,9 @@ Page({
                 "iv": iv,
                 "encryptedData": encryptedData
               }
-              console.log(params, "params")
+              console.log(params, "登录参数")
               app.ols.login(params).then(d => {
-
+                console.log(d,"登录接口")
                 if (d.data.code == 0) {
                   console.log("登陆成功")
                   wx.hideLoading()
@@ -144,11 +142,11 @@ Page({
                     console.log(d.data.data.gid,"d.data.data.gid")
                     wx.setStorageSync("gid", d.data.data.gid)
                     wx.switchTab({
-                      url: '../../pages/index/index',
+                      url: '../../pages/index/index',   //测评页跳转
                     })
                   }else{
                     that.setData({
-                      grade_select: true
+                      grade_select: true    //选择年级弹框
                     })
                   }
                   
@@ -161,10 +159,8 @@ Page({
                     icon: 'none',
                     duration: 2000
                   })
-                  console.log(d.data.msg)
-                  // that.setData({
-                  //   login: false
-                  // })
+                  console.log(d.data.msg,"登录失败提示")
+                  
 
                   wx.hideLoading()
                 }
@@ -181,11 +177,11 @@ Page({
     let that = this
     var params = {
     }
-    console.log(params, "params")
+    // console.log(params, "获取年级参数")
     app.ols.getlist(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
-        console.log(d.data.data)
+        console.log(d,"获取年级接口数据")
         let arr1 = [];
         for (let i in d.data.data) {
           //var o={};
@@ -196,6 +192,7 @@ Page({
         that.setData({
           grade: arr1
         })
+        console.log("获取年级成功")
       }
     })
   },

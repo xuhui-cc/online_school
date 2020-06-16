@@ -163,10 +163,10 @@ Page({
       diffX = that.data.startX - moveX;
       // console.log(diffX, 'diffX')
       var moveLeft = '';
-      if (diffX < -35) { //向右
+      if (diffX < -80) { //向右
         moveLeft = 'left:' + -(diffX < -90 ? -90 : diffX) + 'px;';
         // console.log("右")
-      } else if (diffX > 35) { //向左
+      } else if (diffX > 80) { //向左
         moveLeft = 'left:-' + (diffX > 90 ? 90 : diffX) + 'px;';
         // console.log("左")
       } else {
@@ -193,7 +193,7 @@ Page({
       this.setData({
         moveLeft: moveLeft
       });
-      if (diffX > 35) {
+      if (diffX > 80) {
         if (that.data.currentTab == (that.data.id_list.length - 1)) {
           wx.showToast({
             title: '已经是最后一道咯~',
@@ -207,7 +207,7 @@ Page({
           that.get_cp_analysis(that.data.id_list[(that.data.currentTab)].pid,that.data.eid)
         }
 
-      } else if (diffX < -35) {
+      } else if (diffX < -80) {
         if (that.data.currentTab == 0) {
           wx.showToast({
             title: '已经是第一题咯~',
