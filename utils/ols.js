@@ -110,10 +110,15 @@ function getvideo(params) {
   return fetch.olsfetchpost(URI, 'lesson/getvideo', params)
 }
 
-//获取课程视频断点时间
+//获取课程视频断点时间——1.2
 function getvideo_info(params) {
-  return fetch.olsfetchpost(URI, 'lesson/getvideoline', params)
+  return fetch.olsfetchpost(URI, 'study/getvideoline', params)
 }
+
+//获取课程视频断点时间 ——1.1
+// function getvideo_info(params) {
+//   return fetch.olsfetchpost(URI, 'lesson/getvideoline', params)
+// }
 
 //课程预支付
 function preorder(params) {
@@ -125,9 +130,19 @@ function order_detail(params) {
   return fetch.olsfetchpost(URI, 'order/getinfo', params)
 }
 
-//更新视频观看状态
-function study_pro(params) {
-  return fetch.olsfetchpost(URI, 'lesson/setloginfo', params)
+// //更新视频观看状态——1.1
+// function study_pro(params) {
+//   return fetch.olsfetchpost(URI, 'lesson/setloginfo', params)
+// }
+
+//视频结束更新状态——1.2
+function video_end(params) {
+  return fetch.olsfetchpost(URI, 'study/setfinishvideoline', params)
+}
+
+//视频开始更新状态——1.2
+function video_start(params) {
+  return fetch.olsfetchpost(URI, 'study/setbeginvideoline', params)
 }
 
 //测评试题id
@@ -274,4 +289,4 @@ function avatar_update(params) {
 
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, study_pro, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist,avatar_update}
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start}
