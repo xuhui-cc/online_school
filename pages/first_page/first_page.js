@@ -82,7 +82,6 @@ Page({
     let that = this
     var xb = e.currentTarget.dataset.xb
     console.log(xb)
-    
     var params = {
       "token": wx.getStorageSync("token"),
       "gid":that.data.grade[xb].id
@@ -91,8 +90,7 @@ Page({
     //更新选择年级接口
     app.ols.grade_update(params).then(d => {
       console.log(d,"更新班级数据")
-      console.log("更新接口存班级")
-      if (d.data.code == 200) {
+      if (d.data.code == 0) {
         wx.setStorageSync('gid', that.data.grade[xb].id)
         wx.switchTab({
           url: '../../pages/index/index',   //更新年级后跳转测评页

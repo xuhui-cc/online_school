@@ -66,6 +66,7 @@ Page({
     } else {
       answerline = answerline
     }
+    that.test_end(answerline)   //测评结束记录
     var params = {
       "token": wx.getStorageSync("token"),
       "mid": that.data.mid,
@@ -589,6 +590,7 @@ Page({
     that.setData({
       total_micro_second: cs_total_micro_second
     })
+    that.test_start()   //测评开始记录
     this.count_down(this);
   },
 
@@ -766,6 +768,54 @@ Page({
       that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
     }
 
+  },
+
+  //试卷开始记录
+  test_start: function () {
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "kid": that.data.kid,
+      "oid": 0,
+      "eid": that.data.eid,
+      "type": 5,
+    }
+    console.log(params, "结课考试开始记录参数")
+    app.ols.test_start(params).then(d => {
+      console.log(d, "结课考试开始记录数据")
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        that.setData({
+          hid: d.data.data.hid
+        })
+        console.log("结课考试试卷开始记录接口调取成功")
+      } else {
+        console.log("结课考试试卷开始记录接口==============" + d.data.msg)
+      }
+    })
+  },
+
+  //试卷结束记录
+  test_end: function (duration) {
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "hid": that.data.hid,
+      "duration": duration,
+    }
+    console.log(params, "结课考试结束记录参数")
+    app.ols.test_end(params).then(d => {
+      console.log(d, "结课考试结束记录数据")
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        that.setData({
+          hid: d.data.data.hid
+        })
+        console.log("结课考试试卷结束记录接口调取成功")
+      } else {
+        console.log("结课考试试卷结束记录接口==============" + d.data.msg)
+      }
+    })
   },
 
   /**

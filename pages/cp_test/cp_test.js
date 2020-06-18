@@ -1,18 +1,11 @@
 // pages/homework/homework.js
 const app = getApp()
 
-// var total_micro_second
-
-// var t
-// var qqq = 3000
-
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    cs: [{},{} ,{} ],
     currentTab: 0,
     clientHeight: 1000,
     dtk: false,
@@ -44,7 +37,6 @@ Page({
     that.setmark()   //试卷状态初始化
     that.test_id()     //获取试题ID列表
     that.ques_info()      //试卷基本信息
-    
   },
 
   
@@ -68,7 +60,6 @@ Page({
         that.update_cpsubmit()    //达到规定时间自动交卷
        console.log("交卷")
       }, 3000)
-      
       return;
     }
     var cs_t = setTimeout(function () {
@@ -85,6 +76,7 @@ Page({
     })
     console.log(that.data.t)
   },
+
   //时间格式整理
   dateformat: function (micro_second) {
     // 秒数
@@ -95,14 +87,7 @@ Page({
     var min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
     // 秒位
     var sec = this.fill_zero_prefix((second - hr * 3600 - min * 60));// equal to => var sec = second % 60;
-    // if(hr > 0){
-    //   return hr + ":" + min + ":" + sec;
-    // }else{
-    //   return min + ":" + sec;
-    // }
-    // return min + ":" + sec;
     return hr + ":" + min + ":" + sec;
-    
   },
   dateformatforreport: function (micro_second) {
     // 秒数
@@ -115,7 +100,6 @@ Page({
     var sec = this.fill_zero_prefix((second - hr * 3600 - min * 60));// equal to => var sec = second % 60;
     return hr + "时" + min + "分" + sec + "秒";
   },
-
   //位数不足补零
   fill_zero_prefix: function (num) {
     return num < 10 ? "0" + num : num
@@ -132,36 +116,28 @@ Page({
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
-        
+    
         d.data.data.title = d.data.data.title.replace(/<img/gi, '<img style="max-width:95%;height:auto;display:block"')
-
         if (d.data.data.a != null) {
           d.data.data.a = d.data.data.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
         }
-
         if (d.data.data.b != null) {
           d.data.data.b = d.data.data.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
         }
-
         if (d.data.data.c != null) {
           d.data.data.c = d.data.data.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
-
         }
         if (d.data.data.d != null) {
           d.data.data.d = d.data.data.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
-
         }
         that.setData({
-          question: d.data.data,
-          
+          question: d.data.data, 
         })
         var cs = "question.myans"
         that.setData({
           [cs]: that.data.id_list[that.data.currentTab].ans
-        })
-        
-        console.log("测评题接口调取成功")
-        
+        })  
+        console.log("测评题接口调取成功") 
       } else {
         console.log("测评题接口==============" + d.data.msg)
       }
@@ -185,6 +161,54 @@ Page({
         console.log("测评状概要接口调取成功")
       } else {
         console.log("测评状概要接口==============" + d.data.msg)
+      }
+    })
+  },
+
+  //试卷开始记录
+  test_start: function () {
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "kid": 0,
+      "oid": 0,
+      "eid": that.data.id,
+      "type": 1,
+    }
+    console.log(params,"测评开始记录参数")
+    app.ols.test_start(params).then(d => {
+      console.log(d, "测评开始记录数据")
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        that.setData({
+          hid: d.data.data.hid
+        })
+        console.log("测评试卷开始记录接口调取成功")
+      } else {
+        console.log("测评试卷开始记录接口==============" + d.data.msg)
+      }
+    })
+  },
+
+  //试卷结束记录
+  test_end: function (duration) {
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "hid": that.data.hid,
+      "duration": duration,
+    }
+    console.log(params, "测评结束记录参数")
+    app.ols.test_end(params).then(d => {
+      console.log(d, "测评结束记录数据")
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        that.setData({
+          hid: d.data.data.hid
+        })
+        console.log("测评试卷结束记录接口调取成功")
+      } else {
+        console.log("测评试卷结束记录接口==============" + d.data.msg)
       }
     })
   },
@@ -309,25 +333,17 @@ Page({
     console.log(e.touches.length,'e.touches.length')
     if (e.touches.length == 1) {
       var moveX = e.touches[0].clientX;
-      // console.log(moveX,'moveX')
       diffX = that.data.startX - moveX;
-      // console.log(diffX, 'diffX')
       var moveLeft = '';
       if (diffX < -80) { //向右
         moveLeft = 'left:' + -(diffX < -90 ? -90 : diffX) + 'px;';
-        // console.log("右")
       } else if (diffX > 80) { //向左
-        moveLeft = 'left:-' + (diffX > 90 ? 90 : diffX) + 'px;';
-        // console.log("左")
+        moveLeft = 'left:-' + (diffX > 90 ? 90 : diffX) + 'px;'; 
       } else {
         moveLeft = 'left:0px;';
 
       }
-      // console.log(diffX,"diffX")
-      // console.log(currentTab, "currentTab")
-      
       that.setData({
-        // diffX:diffX,
         moveLeft: moveLeft
       });
     }
@@ -376,10 +392,6 @@ Page({
   dtk_submit:function(){
     let that = this
     console.log("答题卡")
-    var timestamp = (Date.parse(new Date())) / 1000
-    console.log(timestamp, "timestamp")
-    var answerline = timestamp - that.data.start_time
-    console.log(answerline, "answerline")
     for(var i=0;i<that.data.id_list.length;i++){
       if(that.data.id_list[i].ans == -1){
         that.setData({
@@ -392,7 +404,6 @@ Page({
       console.log("我做完了")
       that.update_cpsubmit()
     }
-    
   },
 
   submit_ans:function(e){
@@ -401,10 +412,6 @@ Page({
     var id = e.currentTarget.dataset.id
     console.log(ans,id)
     that.cp_ans_submit(ans)   //测评答案提交接口
-    // var cs = "question.myans"
-    // that.setData({
-    //   [cs]:ans
-    // })
   },
 
   //测评答案提交接口
@@ -422,7 +429,6 @@ Page({
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
-
         var cs = "id_list[" + that.data.currentTab + "].ans"
         that.setData({
           [cs]:ans
@@ -430,8 +436,7 @@ Page({
         var cscs = "question.myans"
         that.setData({
           [cscs]: ans
-        })
-        
+        })  
         //下一题跳转
         if (that.data.currentTab == (that.data.ques_info.num - 1)) {
           that.setData({
@@ -443,36 +448,14 @@ Page({
           })
           that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
         }
-
         console.log("测评试题答案提交接口调取成功")
       } else {
         console.log("测评试题答案提交接口==============" + d.data.msg)
       }
     })
-    // that.setData({
-    //   start_ans: true
-    // })
   },
 
-  //手动滑页
-  swiperchange: function (e) {
-    var that = this
-    var current = Number(e.currentTarget.dataset.current)  // 当前的
-    var index = e.detail.current;//当前所在页面的 index
-    console.log(index)
-    console.log(current + 1)
-    that.setData({
-      currentTab: current + 1
-    })
-    that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
-
-    
-    
-    
-
-  },
-
-  
+ 
 
   //开始答题按钮
   start_ans:function(){
@@ -484,6 +467,7 @@ Page({
       start_ans : true,
       start_time: timestamp
     })
+    that.test_start()   //测评开始记录
     var cs_total_micro_second = 60000 * that.data.test_explain.timeline
     that.setData({
       total_micro_second: cs_total_micro_second
@@ -535,6 +519,7 @@ Page({
     }else{
       answerline = answerline
     }
+    that.test_end(answerline)   //测评结束记录
     var params = {
       "token": wx.getStorageSync("token"),
       "mid": that.data.mid,
@@ -620,4 +605,17 @@ Page({
   onShareAppMessage: function () {
 
   }
+
+   //手动滑页
+  // swiperchange: function (e) {
+  //   var that = this
+  //   var current = Number(e.currentTarget.dataset.current)  // 当前的
+  //   var index = e.detail.current;//当前所在页面的 index
+  //   console.log(index)
+  //   console.log(current + 1)
+  //   that.setData({
+  //     currentTab: current + 1
+  //   })
+  //   that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
+  // },
 })

@@ -345,6 +345,7 @@ Page({
     console.log(that.data.finish_all, "finish_all")
     if (that.data.finish_all) {
       console.log("我做完了")
+      that.test_end(answerline)   //测评结束记录
       var params = {
         "token": wx.getStorageSync("token"),
         "mid": that.data.mid,
@@ -523,6 +524,7 @@ Page({
       start_ans: true,
       start_time: timestamp
     })
+    that.test_start()   //测评开始记录
   },
 
   //返回按钮延伸弹框
@@ -552,7 +554,7 @@ Page({
     console.log(type)
     if (type == 1) {
       console.log("我要交卷")
-
+      that.test_end(answerline)   //测评结束记录
       var params = {
         "token": wx.getStorageSync("token"),
         "mid": that.data.mid,
@@ -709,6 +711,54 @@ Page({
       that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
     }
 
+  },
+
+  //试卷开始记录
+  test_start: function () {
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "kid": that.data.kid,
+      "oid": that.data.oid,
+      "eid": that.data.eid,
+      "type": 4,
+    }
+    console.log(params, "课后作业开始记录参数")
+    app.ols.test_start(params).then(d => {
+      console.log(d, "课后作业开始记录数据")
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        that.setData({
+          hid: d.data.data.hid
+        })
+        console.log("课后作业试卷开始记录接口调取成功")
+      } else {
+        console.log("课后作业试卷开始记录接口==============" + d.data.msg)
+      }
+    })
+  },
+
+  //试卷结束记录
+  test_end: function (duration) {
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "hid": that.data.hid,
+      "duration": duration,
+    }
+    console.log(params, "课后作业结束记录参数")
+    app.ols.test_end(params).then(d => {
+      console.log(d, "课后作业结束记录数据")
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        that.setData({
+          hid: d.data.data.hid
+        })
+        console.log("课后作业试卷结束记录接口调取成功")
+      } else {
+        console.log("课后作业试卷结束记录接口==============" + d.data.msg)
+      }
+    })
   },
 
 
