@@ -6,7 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // cs: [{}, {}, {}],
     currentTab: 0,
     clientHeight: 1000,
     dtk: false,
@@ -20,7 +19,6 @@ Page({
     diffX: 0,
     img: [],
     imgs: []
-    // ans_2:[{"-1"},{"-1"},{"-1"},{"-1"}]
   },
 
   /**
@@ -41,7 +39,6 @@ Page({
     that.setmark()   //试卷状态初始化
     that.test_id()     //获取试题ID列表
     that.ques_info()      //试卷基本信息
-
   },
 
   //获取试题
@@ -55,36 +52,28 @@ Page({
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
-        d.data.data.title = d.data.data.title.replace(/<img/gi, '<img style="max-width:95%;height:auto;display:block"')
-
+        var replace_img = '<img style="max-width:90%;height:auto;display:block"'
+        d.data.data.title = d.data.data.title.replace(/<img/gi, replace_img)
         if (d.data.data.a != null) {
-          d.data.data.a = d.data.data.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+          d.data.data.a = d.data.data.a.replace(/<img/gi, replace_img)
         }
-
         if (d.data.data.b != null) {
-          d.data.data.b = d.data.data.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+          d.data.data.b = d.data.data.b.replace(/<img/gi, replace_img)
         }
-
         if (d.data.data.c != null) {
-          d.data.data.c = d.data.data.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
-
+          d.data.data.c = d.data.data.c.replace(/<img/gi, replace_img)
         }
         if (d.data.data.d != null) {
-          d.data.data.d = d.data.data.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
-
+          d.data.data.d = d.data.data.d.replace(/<img/gi, replace_img)
         }
         that.setData({
           question: d.data.data,
-          
         })
-        
         var cs = "question.myans"
         that.setData({
           [cs]: that.data.id_list[that.data.currentTab].ans
         })
-        
         console.log("作业题接口调取成功")
-
       } else {
         console.log("作业题接口==============" + d.data.msg)
       }
@@ -152,7 +141,6 @@ Page({
         })
         console.log("作业状态初始化接口调取成功")
       } else {
-
         console.log("作业状态初始化接口==============" + d.data.msg)
       }
     })
@@ -211,10 +199,6 @@ Page({
               [cs]: []
             })
           }
-          // var cs = "id_list[" + i + "].ans"
-          // that.setData({
-          //   [cs]: -1
-          // })
         }
         console.log("作业id接口调取成功")
       } else {
