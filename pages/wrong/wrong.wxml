@@ -158,8 +158,8 @@
           <view class="right">答案</view>
         </view>
 
-        <view class="analysis_content" wx:if="{{analysis.type > 4 && analysis.type != 5 }}">
-          <rich-text nodes="{{analysis.note}}"></rich-text>
+        <view class="analysis_content" wx:if="{{analysis.type >= 4 && analysis.type != 5 }}">
+          <rich-text nodes="{{analysis.answer}}"></rich-text>
         </view>
 
         <view class="analysis_content" wx:if="{{analysis.type == 5}}">
@@ -168,12 +168,12 @@
           </view>
         </view>
 
-        <view class="flex">
+        <view class="flex" wx:if="{{ analysis.note != ''}}">
           <view class="shu"></view>
           <view class="right">解析</view>
         </view>
 
-        <view class="analysis_content" wx:if="{{analysis.type != 5}}">
+        <view class="analysis_content" wx:if="{{analysis.type != 5 && analysis.note != ''}}">
           <rich-text nodes="{{analysis.note}}"></rich-text>
         </view>
         <view class="analysis_content" wx:if="{{analysis.type == 5}}">

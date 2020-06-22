@@ -41,15 +41,31 @@ margin-top: 17rpx;
    height: 51rpx;
    align-items: center;
 }
-.l-img{
-  width: 51rpx;
-  height: 51rpx;
+.ava{
+  /* margin-left: 30rpx; */
+  /* margin-top: 20rpx; */
+  width:88rpx;
+  display: flex;
+  flex-direction: column;
+}
+.avatar{
+  margin-left: 19rpx;
+  width:51rpx;
+  height:51rpx;
   border-radius: 50%;
 }
-.l-name{
+.tea_name{
+  /* margin-left: 14rpx; */
+  /* margin-top: 83rpx; */
+  width:88rpx;
+  height:30rpx;
   font-size:22rpx;
-  color: #272727;
-padding: 0 35rpx 0 14rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:30rpx;
+  text-align: center;
+  color:rgba(39,39,39,1);
+  opacity:1;
 }
 .l-keshi{
   /* width: 92rpx;

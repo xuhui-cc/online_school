@@ -25,8 +25,19 @@
       <view class="course_intor">{{course_info.intro}}</view>
     <view class="flex">
       <!-- <image class="avatar" src="../../images/avatar.png"></image> -->
-      <image class="avatar" src="{{course_info.avatar}}"></image>
-      <view class="tea_name">{{course_info.nick}}</view>
+      <view class="flex" style="margin-left:30rpx;width:250rpx;">
+        <view wx:for="{{course_info.teacher}}" wx:key="tea_index" wx:for-item="tea" wx:for-index="tea_index">
+          <view class="flex">
+            <view class="ava">
+              <image class="avatar" src="{{tea.avatar}}"></image>
+              <view class="tea_name">{{tea.nick}}</view>
+            </view>
+            
+          </view>
+          
+        </view>
+          
+      </view>
       <view class="course_text"><text style="color:#03B683;">{{course_info.order_num}}人</text>购买</view>
       <view class="num_layout">
         <view class="course_num">{{class_hour}}课时</view>

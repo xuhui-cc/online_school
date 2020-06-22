@@ -203,7 +203,7 @@
           
         </view>
 
-        <view wx:if="{{question.type == 4 || question.type == 6}}">
+        <view wx:if="{{question.type == 4 || question.type == 6}}" style="padding-bottom:500rpx;">
           <view class="fgx"></view>
           <view class="tips">*请在纸上作答拍照上传清晰照片，老师将尽快为你批改</view>
           <view class="img_btn" bindtap='chooseImg'>
@@ -258,7 +258,7 @@
             </view>
           </view >
 
-          <view >
+          <view style="padding-bottom:500rpx;">
             <view class="fgx"></view>
             <view class="tips">*请在纸上作答拍照上传清晰照片，老师将尽快为你批改</view>
             <view class="img_btn" bindtap='chooseImg'>

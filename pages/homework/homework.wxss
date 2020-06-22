@@ -315,7 +315,8 @@
   background:rgba(255,255,255,1);
   opacity:1;
 }
-.body{ width: 100%; min-height: 1500rpx; position: relative;margin-top: 266rpx;margin-bottom: 200rpx;}
+.body{ width: 750rpx;min-height: 2000rpx; margin-top: 266rpx;}
+
 .unsel_A{
   margin-left: 30rpx;
   margin-top: 5rpx;
@@ -470,7 +471,7 @@
 .img_btn{
   margin-left: 30rpx;
   margin-top: 30rpx;
-  /* margin-bottom: 25rpx; */
+  margin-bottom: 300rpx;
   display: flex;
   width:217rpx;
   height:73rpx;

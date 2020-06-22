@@ -23,13 +23,24 @@
     <view class="course_title">{{order.title}}</view>
       <view class="course_intor">{{order.intro}}</view>
     <view class="flex">
-      <image class="avatar" src="{{order.avatar}}"></image>
-      <view class="tea_name">{{order.nick}}</view>
+      <view class="flex" style="margin-left:30rpx;width:250rpx;">
+        <view wx:for="{{order.teacher}}" wx:key="tea_index" wx:for-item="tea" wx:for-index="tea_index">
+          <view class="flex">
+            <view class="ava">
+              <image class="avatar" src="{{tea.avatar}}"></image>
+              <view class="tea_name">{{tea.nick}}</view>
+            </view>
+            
+          </view>
+          
+        </view>
+          
+      </view>
       
       <view class="num_layout">
         <view class="course_num">{{order.class_hour}}课时</view>
       </view>
-      <view class="course_price">
+      <view class="course_price" style="margin-left:20rpx;">
         <view style="margin-right:8rpx;margin-top:5rpx;">¥</view>
         <view style="font-weight:bold;font-size:42rpx;">{{order.sum_money}}</view>
       </view>

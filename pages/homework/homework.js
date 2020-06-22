@@ -254,9 +254,9 @@ Page({
       var moveX = e.touches[0].clientX;
       diffX = that.data.startX - moveX;
       var moveLeft = '';
-      if (diffX < -35) { //向右
+      if (diffX < -150) { //向右
         moveLeft = 'left:' + -(diffX < -90 ? -90 : diffX) + 'px;';
-      } else if (diffX > 35) { //向左
+      } else if (diffX > 150) { //向左
         moveLeft = 'left:-' + (diffX > 90 ? 90 : diffX) + 'px;';
       } else {
         moveLeft = 'left:0px;';
@@ -278,7 +278,7 @@ Page({
       this.setData({
         moveLeft: moveLeft
       });
-      if (diffX > 35) {
+      if (diffX > 150) {
         if (that.data.currentTab == (that.data.ques_info.num - 1)) {
           that.setData({
             dtk: true
@@ -292,7 +292,7 @@ Page({
           that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
         }
 
-      } else if (diffX < -35) {
+      } else if (diffX < -150) {
         if (that.data.currentTab == 0) {
           wx.showToast({
             title: '已经是第一题咯~',
@@ -612,8 +612,8 @@ Page({
           console.log(tempFilePaths)
           // let imgs = [];
           wx.uploadFile({
-            url: 'http://os.lingjun.net/api.php/annex/upload',
-            // url: 'https://wsg.lingjun.net/api.php/annex/upload',
+            // url: 'http://os.lingjun.net/api.php/annex/upload',
+            url: 'https://wsg.lingjun.net/api.php/annex/upload',
             filePath: tempFilePaths[0],
             name: 'file',
             method: 'POST',
@@ -808,5 +808,19 @@ Page({
    */
   onShareAppMessage: function () {
 
+    let that = this;
+    return {
+      title: '领军网校', // 转发后 所显示的title
+      path: '/pages/first_page/first_page', // 相对的路径
+      imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
+      success: (res) => {    // 成功后要做的事情
+        console.log("成功")
+
+      },
+      fail: function (res) {
+        // 分享失败
+        console.log(res, "分享失败")
+      }
+    }
   }
 })
