@@ -3,16 +3,15 @@
 
   <view class="flex">
     <view class="status" style="margin-left:45rpx;">{{course.annex_num}}份</view>
-  <view class="status" wx:if="{{course.mark_status == 0}}" style="margin-left:400rpx;">未完成</view>
-  <view class="status" wx:if="{{course.mark_status == 1}}" style="margin-left:400rpx;">批改中</view>
-  <view class="status" wx:if="{{course.mark_status == 2}}" style="margin-left:400rpx;">看报告</view>
+    <view class="status" wx:if="{{course.mark_status == 0}}" style="margin-left:400rpx;">未完成</view>
+    <view class="status" wx:if="{{course.mark_status == 1}}" style="margin-left:400rpx;">批改中</view>
+    <view class="status" wx:if="{{course.mark_status == 2}}" style="margin-left:400rpx;">看报告</view>
     <image class="v_img" src="../../images/v-img1.png" bindtap="to_course_file"></image>
     <image class="v_img" src="../../images/v_img2.png" wx:if="{{course.mark_status == 0}}" bindtap="to_homework"></image>
     <image class="v_img" src="../../images/v_img2.png" wx:if="{{course.mark_status == 1}}" ></image>
     <image class="v_img" src="../../images/v_img2.png" wx:if="{{course.mark_status == 2}}" bindtap="to_homework_report"></image>
   </view>
 
-  
 
   <view class="flex" wx:if="{{course.lists != ''}}">
     <view class="shu"></view>
@@ -20,7 +19,7 @@
   </view>
 
   <view style="margin-bottom:30rpx;">
-    <view wx:for="{{course.lists}}" wx:key="index" >
+    <view wx:for="{{course.lists}}" wx:key="index">
       <view class="course_layout" data-xb="{{index}}" bindtap="to_course_detail">
         <view class="title">{{item.title}}</view>
         <view class="intro">{{item.intro}}</view>

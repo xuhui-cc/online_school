@@ -162,6 +162,8 @@ Page({
         that.setData({
           test_list: ''
         })
+        
+        console.log("获取测评列表接口失败")
       }
     })
   },
@@ -204,7 +206,7 @@ Page({
       }
     }
     
-    that.test_list()       //获取测评试卷列表
+    // that.test_list()       //获取测评试卷列表
   },
 
   /**
