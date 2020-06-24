@@ -318,3 +318,15 @@ page{
   width:283rpx;
   height:76rpx;
 }
+.login_read{
+  position: absolute;
+  margin-left: 132rpx;
+  margin-top: 50rpx;
+  width:283rpx;
+  height:76rpx;
+  background: transparent;
+  /* background-color: rgb(209, 20, 20); */
+}
+.login_read::after {
+  border: none;
+}

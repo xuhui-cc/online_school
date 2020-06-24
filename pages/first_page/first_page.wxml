@@ -4,7 +4,7 @@
   
   <!-- <picker class="button_start" bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}"> -->
   <view class="button_start">
-  <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
+  <!-- <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button> -->
     <view bindtap="grade_select">
       <image class="start_img" src="../../images/start_img.png"></image>
       <text class="start_text">开始测评</text>

@@ -5,22 +5,43 @@ const app = getApp()
 Page({
   data: {
     current_subject: 0,
+    // isshare:true
   },
   //事件处理函数
   
-  onLoad: function () {
+  onLoad: function (options) {
     let that = this
+    
+    // console.log(islogin)
+    // console.log(options,"options")
+    // if (options.isshare == 1){
+    //   that.setData({
+    //     isshare:options.isshare,
+    //     gid:options.gid,
+    //     islogin: wx.getStorageSync("login")
+    //   })
+    //   console.log("分享打开",that.data.isshare,that.data.gid)
+    // }else{
+    //   that.setData({
+    //     gid: wx.getStorageSync("gid")
+    //   })
+    //   that.getGrade()  //获取年级
+    //   that.getsubject()   //获取学科
+    //   console.log("非分享打开")
+    // }
+
     that.setData({
       gid: wx.getStorageSync("gid")
     })
-    
+
     that.getGrade()  //获取年级
     that.getsubject()   //获取学科
+    console.log("非分享打开")
+    
     
 
   },
 
-  
 
    //获取年级
   getGrade:function(){
@@ -216,6 +237,7 @@ Page({
     let that = this;
     return {
       title: '领军网校', // 转发后 所显示的title
+      // path: '/pages/index/index?isshare=1&gid=' + that.data.gid, // 相对的路径
       path: '/pages/first_page/first_page', // 相对的路径
       imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
       success: (res) => {    // 成功后要做的事情
@@ -227,6 +249,66 @@ Page({
         console.log(res, "分享失败")
       }
     }
-  }
+  },
+  //获取微信绑定手机号登录
+  getPhoneNumber: function (e) {
+    var that = this
+    wx.login({
+      success: res => {
+
+        if (e.detail.errMsg == "getPhoneNumber:ok") {
+          wx.showLoading({
+            title: '登录中...',
+          })
+          wx.login({
+            success(res) {
+              console.log("cccs.code" + res.code)
+              let iv = encodeURIComponent(e.detail.iv);
+              let encryptedData = encodeURIComponent(e.detail.encryptedData);
+              let code = res.code
+              var params = {
+                "code": code,
+                "iv": iv,
+                "encryptedData": encryptedData
+              }
+              console.log(params, "登录参数")
+              app.ols.login(params).then(d => {
+                console.log(d, "登录接口")
+                if (d.data.code == 0) {
+                  console.log("登陆成功")
+                  wx.hideLoading()
+                  that.setData({
+                    login: true
+                  })
+                  wx.setStorageSync("login", true)
+                  wx.setStorageSync("token", d.data.data.token)
+                  if (d.data.data.gid != null && d.data.data.gid != 0) {
+                    console.log(d.data.data.gid, "d.data.data.gid")
+                    wx.setStorageSync("gid", d.data.data.gid)
+                    // wx.switchTab({
+                    //   url: '../../pages/index/index',   //测评页跳转
+                    // })
+                  } else {
+                    wx.setStorageSync("gid", that.data.gid)
+                  }
+                } else {
+                  console.log(d, "登录失败")
+                  wx.showToast({
+                    title: "登陆失败",
+                    icon: 'none',
+                    duration: 2000
+                  })
+                  console.log(d.data.msg, "登录失败提示")
+
+
+                  wx.hideLoading()
+                }
+              })
+            }
+          })
+        }
+      }
+    })
+  },
   
 })
