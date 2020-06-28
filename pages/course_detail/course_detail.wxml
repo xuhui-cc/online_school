@@ -151,10 +151,10 @@
     <!-- course_info.pay_status :  1 未购买；2已购买 -->
     <view class="yuan">¥</view>
     <view class="price">{{course_info.price}}</view>
-    <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!testlogin}}"></button>
+    <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
     <!--  -->
-    <view wx:if="{{course_info.price == 0}}" class="button_buy"  bindtap="to_free" data-kid="{{course_info.kid}}">立即报名</view>
-    <view wx:else="" class="button_buy"  bindtap="to_pay" data-kid="{{course_info.kid}}">立即购买</view>
+    <view wx:if="{{course_info.price == 0}}" class="button_buy"  bindtap="to_free" >立即报名</view>
+    <view wx:else="" class="button_buy"  bindtap="to_pay" >立即购买</view>
   </view>
   
 

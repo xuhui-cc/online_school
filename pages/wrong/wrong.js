@@ -220,10 +220,10 @@ Page({
       diffX = that.data.startX - moveX;
       
       var moveLeft = '';
-      if (diffX < -35) { //向右
+      if (diffX < -100) { //向右
         moveLeft = 'left:' + -(diffX < -90 ? -90 : diffX) + 'px;';
         
-      } else if (diffX > 35) { //向左
+      } else if (diffX > 100) { //向左
         moveLeft = 'left:-' + (diffX > 90 ? 90 : diffX) + 'px;';
        
       } else {
@@ -246,7 +246,7 @@ Page({
       this.setData({
         moveLeft: moveLeft
       });
-      if (diffX > 35) {
+      if (diffX > 100) {
         if (that.data.currentTab == (that.data.id_list.length - 1)) {
           wx.showToast({
             title: '已经是最后一道咯~',
@@ -260,7 +260,7 @@ Page({
           that.get_wrong_detail(that.data.id_list[(that.data.currentTab)].qid)
         }
 
-      } else if (diffX < -35) {
+      } else if (diffX < -100) {
         if (that.data.currentTab == 0) {
           wx.showToast({
             title: '已经是第一题咯~',

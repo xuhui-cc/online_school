@@ -7,6 +7,7 @@ Page({
    */
   data: {
     // getvideo_info:[]
+    isload: 0,
   },
   // /**关闭视屏 */
   // closeVideo() {
@@ -218,14 +219,14 @@ Page({
         that.setData({
           timeline: d.data.data.duration,
           percent: d.data.data.percent,
-          // status: 0,
+          isload: 1,
         })
         that.update_start()
       } else if (d.data.code == 5) {
         that.setData({
           timeline: 0,
           percent: 0,
-          // status: 0,
+          isload: 1,
         })
         that.update_start()
         console.log("课程视频未学习")

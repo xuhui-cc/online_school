@@ -3,8 +3,10 @@ page{
 }
 .nabigation_bar{
   display: flex;
+  position: fixed;
   width:750rpx;
   height:176rpx;
+  z-index: 500;
   background:rgba(255,255,255,1);
   opacity:1;
 }
@@ -45,12 +47,15 @@ page{
 }
 .tab-h{ 
   padding-left: 10rpx;
+  margin-top: 176rpx;
+  position: fixed;
   width: 750rpx;
   height: 90rpx;
   box-sizing: border-box; 
   overflow: hidden; 
   line-height:90rpx;
   background: rgba(255,255,255,1); 
+  z-index: 500;
   white-space: nowrap;  
 } 
 .tab-item{ 
@@ -95,7 +100,7 @@ page{
 }
 .zt{
   margin-left: 30rpx;
-  margin-top: 30rpx;
+  margin-top: 306rpx;
   width:100rpx;
   height:40rpx;
   font-size:28rpx;
@@ -109,6 +114,7 @@ page{
   display: flex;
 }
 .tab-h1{ 
+  margin-top: 276rpx;
   /* width: 630rpx; */
   height: 80rpx;
   padding-right: 30rpx;

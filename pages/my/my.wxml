@@ -10,7 +10,7 @@
        </view>
   </view>
   <!-- 课程 -->
-  <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!testlogin}}"></button>
+  <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
       
   <view class="course-ul">
       

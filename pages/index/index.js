@@ -107,27 +107,36 @@ Page({
       grade_index: xb,
       gid: that.data.grade[xb].id
     })
-    var params = {
-      "token": wx.getStorageSync("token"),
-      "gid": that.data.grade[xb].id
-    }
-    app.ols.grade_update(params).then(d => {
-      console.log(d)
-
-      if (d.data.code == 200) {
-        that.test_list()
-        wx.setStorageSync("gid", that.data.grade[that.data.grade_index].id)
-        that.setData({
-          grade_select: false
-        })
-      } else {
-        wx.showToast({
-          title: '现在就是这个年级哦~',
-          icon: "none",
-          duration: 2000
-        })
+    if (wx.getStorageSync("login")){
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "gid": that.data.grade[xb].id
       }
-    })
+      app.ols.grade_update(params).then(d => {
+        console.log(d)
+
+        if (d.data.code == 200) {
+          that.test_list()
+          wx.setStorageSync("gid", that.data.grade[that.data.grade_index].id)
+          that.setData({
+            grade_select: false
+          })
+        } else {
+          wx.showToast({
+            title: '现在就是这个年级哦~',
+            icon: "none",
+            duration: 2000
+          })
+        }
+      })
+    }else{
+      that.test_list()
+      wx.setStorageSync("gid", that.data.grade[that.data.grade_index].id)
+      that.setData({
+        grade_select: false
+      })
+    }
+    
   },
 
   //获取学科接口
@@ -182,7 +191,7 @@ Page({
         "token": wx.getStorageSync("token"),
         "gid": that.data.gid,
         "did": that.data.did,
-        "num": 20,
+        "num": 30,
         "page": 1
 
       }
@@ -207,7 +216,7 @@ Page({
         // "token": wx.getStorageSync("token"),
         "gid": that.data.gid,
         "did": that.data.did,
-        "num": 20,
+        "num": 30,
         "page": 1
 
       }
@@ -312,7 +321,8 @@ Page({
               var params = {
                 "code": code,
                 "iv": iv,
-                "encryptedData": encryptedData
+                "encryptedData": encryptedData,
+                "gid": that.data.gid
               }
               console.log(params, "登录参数")
               app.ols.login(params).then(d => {
@@ -331,15 +341,15 @@ Page({
                   wx.setStorageSync("login", true)
                   wx.setStorageSync("token", d.data.data.token)
                   that.onShow()
-                  if (d.data.data.gid != null && d.data.data.gid != 0) {
-                    console.log(d.data.data.gid, "d.data.data.gid")
-                    wx.setStorageSync("gid", d.data.data.gid)
-                    // wx.switchTab({
-                    //   url: '../../pages/index/index',   //测评页跳转
-                    // })
-                  } else {
-                    wx.setStorageSync("gid", that.data.gid)
-                  }
+                  // if (d.data.data.gid != null && d.data.data.gid != 0) {
+                  //   console.log(d.data.data.gid, "d.data.data.gid")
+                  //   wx.setStorageSync("gid", d.data.data.gid)
+                  //   // wx.switchTab({
+                  //   //   url: '../../pages/index/index',   //测评页跳转
+                  //   // })
+                  // } else {
+                  //   wx.setStorageSync("gid", that.data.gid)
+                  // }
                 } else {
                   console.log(d, "登录失败")
                   wx.showToast({

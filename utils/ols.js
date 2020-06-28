@@ -1,5 +1,5 @@
-const URI = 'http://os.lingjun.net/api.php/'    //测试接口
-// const URI = 'https://wsg.lingjun.net/api.php/'    //正式接口
+// const URI = 'http://os.lingjun.net/api.php/'    //测试接口
+const URI = 'https://wsg.lingjun.net/api.php/'    //正式接口
 // const URI = ''    //正式接口
 
 
@@ -7,7 +7,7 @@ const fetch = require('./fetch')
 
 //登录
 function login(params) {
-  return fetch.olsfetchpost(URI, 'login/phonelogin', params)
+  return fetch.olsfetchpost(URI, 'v2/login/phonelogin', params)
 }
 
 // 小程序直播接入
@@ -96,9 +96,14 @@ function grade_course2(params) {
   return fetch.olsfetchpost(URI, 'v2/lesson/getlist', params)
 }
 
-// 获取课程详情介绍
-function course_info(params) {
+// 获取课程详情介绍(已登录)
+function course_info1(params) {
   return fetch.olsfetchpost(URI, 'lesson/getinfo', params)
+}
+
+// 获取课程详情介绍(未登录)
+function course_info2(params) {
+  return fetch.olsfetchpost(URI, 'v2/lesson/getinfo', params)
 }
 
 //传年级
@@ -106,9 +111,14 @@ function grade_update(params) {
   return fetch.olsfetchpost(URI, 'member/update', params)
 }
 
-//获取课程目录
-function course_cata(params) {
+//获取课程目录(已购买)
+function course_cata1(params) {
   return fetch.olsfetchpost(URI, 'lesson/getOption', params)
+}
+
+//获取课程目录(未购买)
+function course_cata2(params) {
+  return fetch.olsfetchpost(URI, 'v2/lesson/getoption', params)
 }
 
 //获取课程讲义列表
@@ -310,4 +320,4 @@ function test_end(params) {
 
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques1, test_ques2, grade_course1, grade_course2,course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end}
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques1, test_ques2, grade_course1, grade_course2, course_info1, course_info2, grade_update, course_cata1, course_cata2, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end}

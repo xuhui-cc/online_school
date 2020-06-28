@@ -5,7 +5,8 @@
   width:310rpx;
   height:75rpx;
   background: transparent;
-  background-color: rgba(58,58,58,1);
+  /* background-color: rgba(58,58,58,1);
+  opacity:0.5; */
 }
 .login_read::after {
   border: none;

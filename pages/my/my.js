@@ -1,4 +1,5 @@
 // pages/my/my.js
+const app = getApp()
 Page({
 
   /**
@@ -27,7 +28,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    that.judge_login()  //登录判断
   },
 
   /**
@@ -83,11 +85,11 @@ Page({
   judge_login: function () {
     let that = this
     that.setData({
-      testlogin: wx.getStorageSync("testlogin"),
+      // testlogin: wx.getStorageSync("testlogin"),
       login: wx.getStorageSync("login"),
       gid: wx.getStorageSync("gid")
     })
-    console.log(that.data.testlogin, "that.data.testlogin")
+    // console.log(that.data.testlogin, "that.data.testlogin")
     console.log(that.data.login, "that.data.login")
     console.log(that.data.gid, "that.data.gid")
   },
@@ -110,7 +112,8 @@ Page({
               var params = {
                 "code": code,
                 "iv": iv,
-                "encryptedData": encryptedData
+                "encryptedData": encryptedData,
+                "gid": that.data.gid
               }
               console.log(params, "登录参数")
               app.ols.login(params).then(d => {
@@ -118,21 +121,19 @@ Page({
                 if (d.data.code == 0) {
                   console.log("登陆成功")
                   wx.hideLoading()
-                  that.setData({
-                    testlogin: true
-                  })
-                  wx.setStorageSync("testlogin", true)
                   // that.setData({
-                  //   login: true
+                  //   testlogin: true
                   // })
-                  // wx.setStorageSync("login", true)
-                  // wx.setStorageSync("token", d.data.data.token)
+                  // wx.setStorageSync("testlogin", true)
+                  that.setData({
+                    login: true
+                  })
+                  wx.setStorageSync("login", true)
+                  wx.setStorageSync("token", d.data.data.token)
                   // if (d.data.data.gid != null && d.data.data.gid != 0) {
                   //   console.log(d.data.data.gid, "d.data.data.gid")
                   //   wx.setStorageSync("gid", d.data.data.gid)
-                  //   // wx.switchTab({
-                  //   //   url: '../../pages/index/index',   //测评页跳转
-                  //   // })
+                    
                   // } else {
                   //   wx.setStorageSync("gid", that.data.gid)
                   // }
