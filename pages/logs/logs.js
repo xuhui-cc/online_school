@@ -1,4 +1,3 @@
-
 const app = getApp()
 Page({
   data: {
@@ -12,16 +11,30 @@ Page({
 
   onLoad: function () {
     let that = this
-    that.setData({
-      gid: wx.getStorageSync("gid")
-    })
+    // that.setData({
+    //   gid: wx.getStorageSync("gid")
+    // })
+
+    that.judge_login()    //登陆判断
 
     that.getgrade()    //获取年级 
     that.getsubject()   //获取学科
-    
-    
+  
     // that.getcourse()         //获取课程
     
+  },
+
+  //登录判断
+  judge_login: function () {
+    let that = this
+    that.setData({
+      // testlogin: wx.getStorageSync("testlogin"),
+      login: wx.getStorageSync("login"),
+      gid: wx.getStorageSync("gid")
+    })
+    // console.log(that.data.testlogin, "that.data.testlogin")
+    console.log(that.data.login, "that.data.login")
+    console.log(that.data.gid, "that.data.gid")
   },
 
   //年级弹框
@@ -33,13 +46,9 @@ Page({
     })
   },
 
-
- 
-
   //专题切换
   swichNav_special: function (e) {
     var that = this
-
     var cur = e.target.dataset.current;
     if (cur == that.data.current_special){
       console.log("专题当前选择项")
@@ -51,30 +60,7 @@ Page({
       that.setData({
         current_special: cur
       })
-      var params = {
-        "token": wx.getStorageSync("token"),
-        "gid": that.data.gid,
-        "did": that.data.did,
-        "cid": that.data.special[cur].id,
-        "num": 12,
-        "page": 1
-      }
-      console.log(params, "params")
-      app.ols.grade_course(params).then(d => {
-        console.log(d)
-        if (d.data.code == 0) {
-          console.log(d.data.data)
-          that.setData({
-            course: d.data.data
-          })
-          console.log(that.data.course, "专题获取课程")
-        } else {
-          console.log(d.data.msg, "专题获取课程msg，失败")
-          that.setData({
-            course: ''
-          })
-        }
-      })
+      that.special_course() //获取专题课程
     }
     
       
@@ -90,12 +76,9 @@ Page({
       current_special:-1,
       did: that.data.subject[cur].id
     })
-    
 
     that.getspecial()  //获取专题
     that.getcourse()     //获取课程
-
-
   },
 
   to_course_detail:function(e){
@@ -145,8 +128,6 @@ Page({
     // console.log(that.data.grade[that.data.grade_index])
     // wx.setStorageSync("gid", that.data.grade[that.data.grade_index].id)
     
-    
-
   },
 
   
@@ -166,30 +147,57 @@ Page({
   //获取课程接口
   getcourse:function(){
     let that = this
-    //获取课程
-    var params = {
-      "token": wx.getStorageSync("token"),
-      "gid": that.data.gid,
-      "did": that.data.did,
-      "num": 12,
-      "page": 1
-    }
-    console.log(params, "params")
-    app.ols.grade_course(params).then(d => {
-      console.log(d)
-      if (d.data.code == 0) {
-        console.log(d.data.data)
-        that.setData({
-          course: d.data.data
-        })
-        console.log(that.data.course,"获取课程")
-      }else{
-        console.log(d.data.msg,"获取课程msg，失败")
-        that.setData({
-          course: ''
-        })
+    if (wx.getStorageSync("login")){
+      //获取课程已登录
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "gid": that.data.gid,
+        "did": that.data.did,
+        "num": 20,
+        "page": 1
       }
-    })
+      console.log(params, "params获取课程已登录")
+      app.ols.grade_course1(params).then(d => {
+        console.log(d)
+        if (d.data.code == 0) {
+          console.log(d.data.data)
+          that.setData({
+            course: d.data.data
+          })
+          console.log(that.data.course, "获取课程已登录")
+        } else {
+          console.log(d.data.msg, "获取课程已登录msg，失败")
+          that.setData({
+            course: ''
+          })
+        }
+      })
+    }else{
+      //获取课程未登录
+      var params = {
+        "gid": that.data.gid,
+        "did": that.data.did,
+        "num": 20,
+        "page": 1
+      }
+      console.log(params, "params获取课程未登录")
+      app.ols.grade_course2(params).then(d => {
+        console.log(d)
+        if (d.data.code == 0) {
+          console.log(d.data.data)
+          that.setData({
+            course: d.data.data
+          })
+          console.log(that.data.course, "获取课程未登录")
+        } else {
+          console.log(d.data.msg, "获取课程未登录msg，失败")
+          that.setData({
+            course: ''
+          })
+        }
+      })
+    }
+    
   },
 
   //获取科目接口
@@ -206,7 +214,7 @@ Page({
         console.log(d.data.data)
         let arr2 = [];
         for (let i in d.data.data) {
-          arr2.push(d.data.data[i]);
+          arr2.push(d.data.data[i]);   //对象转换为数组
         }
         console.log(arr2)
         that.setData({
@@ -217,35 +225,40 @@ Page({
         })
         that.getspecial()      //获取专题
         if (that.data.current_special != -1) {
-          var params = {
-            "token": wx.getStorageSync("token"),
-            "gid": that.data.gid,
-            "did": that.data.did,
-            "cid": that.data.special[that.data.current_special].id,
-            "num": 12,
-            "page": 1
-          }
-          app.ols.grade_course(params).then(d => {
-            console.log(d)
-            if (d.data.code == 0) {
-              console.log(d.data.data)
-              that.setData({
-                course: d.data.data
-              })
-              console.log(that.data.course, "专题获取课程")
-            } else {
-              console.log(d.data.msg, "专题获取课程msg，失败")
-              that.setData({
-                course: ''
-              })
-            }
-          })
+          that.special_course()  //获取专题课程
         }else{
           that.getcourse()    //获取课程
         }
-        
       } else {
         console.log(d.data.msg, "获取科目失败")
+      }
+    })
+  },
+
+  //专题获取课程
+  special_course:function(){
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "gid": that.data.gid,
+      "did": that.data.did,
+      "cid": that.data.special[that.data.current_special].id,
+      "num": 20,
+      "page": 1
+    }
+    app.ols.grade_course(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        that.setData({
+          course: d.data.data
+        })
+        console.log(that.data.course, "专题获取课程")
+      } else {
+        console.log(d.data.msg, "专题获取课程msg，失败")
+        that.setData({
+          course: ''
+        })
       }
     })
   },
@@ -255,12 +268,11 @@ Page({
     let that = this
     //获取年级
     var params = {
-
     }
+    console.log("获取年级无参数")
     app.ols.getlist(params).then(d => {
-      console.log(d)
+      console.log(d, "获取年级接口返回数据")
       if (d.data.code == 0) {
-        // console.log(d.data.data)
         let arr1 = [];
         for (let i in d.data.data) {
           arr1.push(d.data.data[i]);
@@ -269,16 +281,13 @@ Page({
         that.setData({
           grade: arr1
         })
-
         for (var i = 0; i < that.data.grade.length; i++) {
           if (that.data.gid == that.data.grade[i].id) {
             that.setData({
               grade_index: i
             })
-            
           }
         }
-        
       } else {
         console.log(d.data.msg, "获取年级失败")
       }
@@ -293,9 +302,9 @@ Page({
       "gid":that.data.gid,
       "did":that.data.did
     }
-    console.log(params, "params")
+    console.log(params, "获取专题params")
     app.ols.gettoplist(params).then(d => {
-      console.log(d)
+      console.log(d,"获取专题接口数据")
       if (d.data.code == 0) {
         console.log(d.data.data)
         that.setData({
@@ -308,6 +317,7 @@ Page({
     })
   },
 
+//关闭年级选择蒙层
   del: function () {
     let that = this
     that.setData({
@@ -316,11 +326,9 @@ Page({
   },
 
   onShow: function () {
-    
     let that = this
-    that.setData({
-      gid: wx.getStorageSync("gid")
-    })
+    that.judge_login()    //登陆判断
+
     if(that.data.grade){
       for (var i = -0; i < that.data.grade.length; i++) {
         if (that.data.gid == that.data.grade[i].id) {
@@ -334,9 +342,7 @@ Page({
     console.log(that.data.gid,"onshow")
     // that.getgrade()    //获取年级 
     that.getsubject()   //获取学科
-    
-      that.getcourse()    //获取课程
-    
+    that.getcourse()    //获取课程
     
   },
 

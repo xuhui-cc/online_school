@@ -1,9 +1,10 @@
-course_order.login_read{
+.login_read{
   position: absolute;
+  margin-left: 410rpx;
   margin-top: 15rpx;
-  margin-left: 428rpx;
-  width: 287rpx;
-  height: 75rpx;
+  width:310rpx;
+  height:75rpx;
+  background: transparent;
   background-color: rgba(58,58,58,1);
 }
 .login_read::after {

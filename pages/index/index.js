@@ -11,6 +11,7 @@ Page({
   
   onLoad: function (options) {
     let that = this
+    that.judge_login()    //登陆判断
     
     // console.log(islogin)
     // console.log(options,"options")
@@ -30,9 +31,7 @@ Page({
     //   console.log("非分享打开")
     // }
 
-    that.setData({
-      gid: wx.getStorageSync("gid")
-    })
+    
 
     that.getGrade()  //获取年级
     that.getsubject()   //获取学科
@@ -40,6 +39,20 @@ Page({
     
     
 
+  },
+
+
+  //登录判断
+  judge_login:function(){
+    let that = this 
+    that.setData({
+      // testlogin: wx.getStorageSync("testlogin"),
+      login: wx.getStorageSync("login"),
+      gid: wx.getStorageSync("gid")
+    })
+    // console.log(that.data.testlogin, "that.data.testlogin")
+    console.log(that.data.login, "that.data.login")
+    console.log(that.data.gid, "that.data.gid")
   },
 
 
@@ -163,30 +176,58 @@ Page({
   //获取测评列表
   test_list: function () {
     let that = this
-    //获取测评内容
-    var params = {
-      "token": wx.getStorageSync("token"),
-      "gid": that.data.gid,
-      "did": that.data.did,
-      "num": 10,
-      "page": 1
+    if(wx.getStorageSync("login")){
+      //获取测评内容
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "gid": that.data.gid,
+        "did": that.data.did,
+        "num": 20,
+        "page": 1
 
-    }
-    app.ols.test_ques(params).then(d => {
-      console.log(d)
-      if (d.data.code == 0) {
-        console.log("获取测评列表接口成功")
-        that.setData({
-          test_list: d.data.data
-        })
-      } else {
-        that.setData({
-          test_list: ''
-        })
-        
-        console.log("获取测评列表接口失败")
       }
-    })
+      app.ols.test_ques1(params).then(d => {
+        console.log(d)
+        if (d.data.code == 0) {
+          console.log("获取测评列表接口成功")
+          that.setData({
+            test_list: d.data.data
+          })
+        } else {
+          that.setData({
+            test_list: ''
+          })
+
+          console.log("获取测评列表接口失败")
+        }
+      })
+    }else{
+      //获取测评内容
+      var params = {
+        // "token": wx.getStorageSync("token"),
+        "gid": that.data.gid,
+        "did": that.data.did,
+        "num": 20,
+        "page": 1
+
+      }
+      app.ols.test_ques2(params).then(d => {
+        console.log(d)
+        if (d.data.code == 0) {
+          console.log("获取测评列表接口成功")
+          that.setData({
+            test_list: d.data.data
+          })
+        } else {
+          that.setData({
+            test_list: ''
+          })
+
+          console.log("获取测评列表接口失败")
+        }
+      })
+    }
+    
   },
 
   //测评试卷跳转
@@ -226,7 +267,8 @@ Page({
         }
       }
     }
-    
+    that.judge_login()    //登陆判断
+    that.getsubject()   //获取学科
     // that.test_list()       //获取测评试卷列表
   },
 
@@ -250,12 +292,13 @@ Page({
       }
     }
   },
+
+
   //获取微信绑定手机号登录
   getPhoneNumber: function (e) {
     var that = this
     wx.login({
       success: res => {
-
         if (e.detail.errMsg == "getPhoneNumber:ok") {
           wx.showLoading({
             title: '登录中...',
@@ -277,11 +320,17 @@ Page({
                 if (d.data.code == 0) {
                   console.log("登陆成功")
                   wx.hideLoading()
+                  // that.setData({
+                  //   testlogin: true
+                  // })
+                  // wx.setStorageSync("testlogin", true)
+                  
                   that.setData({
                     login: true
                   })
                   wx.setStorageSync("login", true)
                   wx.setStorageSync("token", d.data.data.token)
+                  that.onShow()
                   if (d.data.data.gid != null && d.data.data.gid != 0) {
                     console.log(d.data.data.gid, "d.data.data.gid")
                     wx.setStorageSync("gid", d.data.data.gid)

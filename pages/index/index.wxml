@@ -41,12 +41,15 @@
         <view class="test_layout">
           <view class="title">{{item.title}}</view>
           <view class="intro">{{item.remark}}</view>
-          <view class="btn" wx:if="{{item.mid != 0}}" bindtap="to_cp_report" data-xb="{{index}}" style="background:#4D97F6;">
+          <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
+          
+          <view class="btn" wx:if="{{item.mid > 0}}" bindtap="to_cp_report" data-xb="{{index}}" style="background:#4D97F6;">
             
             <view class="test_word" style="margin-left: 28rpx;">查看报告</view>
             <image class="btn_img" src="../../images/next_bsj.png" style="margin-left: 5rpx;"></image>
           </view>
-          <view class="btn" wx:if="{{item.mid == 0}}" bindtap="to_cp_test" data-xb="{{index}}">
+          <view class="btn" wx:else="" bindtap="to_cp_test" data-xb="{{index}}">
+          <!-- {{item.mid == 0}} -->
             <image class="btn_img" src="../../images/cp_btn.png"></image>
             <view class="test_word">开始测评</view>
           </view>

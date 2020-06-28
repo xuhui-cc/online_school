@@ -4,9 +4,6 @@ page{
   background-color: #F5F5F5;
 }
 /**index.wxss**/
-.container{
-
-}
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -73,7 +70,21 @@ transform: rotate(45deg);
 .list-li:last-child .item{
   border-bottom:none;
 }
+
+
 /* 课程 */
+.login_read{
+  position: absolute;
+  margin-left: 30rpx;
+  margin-top: 290rpx;
+  width:690rpx;
+  height:160rpx;
+  background: transparent;
+  background-color: rgba(58,58,58,1);
+}
+.login_read::after {
+  border: none;
+}
 .course-ul{
   padding-top: 72rpx;
   padding-bottom: 66rpx;
@@ -81,6 +92,7 @@ transform: rotate(45deg);
   display: flex;
   justify-content:  space-around;
 }
+
 .course-li{
   display: flex;
   flex-direction:  column-reverse;
@@ -88,7 +100,6 @@ transform: rotate(45deg);
   width: 104rpx;
   height: 109rpx;
   align-items: center;
-  
 }
 .course-li-title{
   font-size:26rpx;

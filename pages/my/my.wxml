@@ -10,16 +10,20 @@
        </view>
   </view>
   <!-- 课程 -->
+  <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!testlogin}}"></button>
+      
   <view class="course-ul">
+      
       <view class="course-li" bindtap="gourlCourse">
           <text class="course-li-title">我的课程</text>
           <image  src="/images/my_course.png"  class="course-li-img"  mode="aspectFit"></image>
       </view>
+      
       <view class="course-li" bindtap="gourlError">
           <text class="course-li-title">错题本</text>
           <image  src="/images/my_error.png"  class="course-li-imgzhong" mode="aspectFit"></image>
-         
       </view>
+      
       <view class="course-li" bindtap="gourlOrder">
            <text class="course-li-title">我的订单</text>
           <image  src="/images/my_order.png" class="course-li-img"  mode="aspectFit"></image>
@@ -27,6 +31,7 @@
   </view>
   <!-- 列表 -->
   <view class="list">
+    <!-- <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!testlogin}}"></button> -->
      <view class="list-li" bindtap="cepingUrl">
         <image  src="/images/my_about.png" class="item-img" mode="aspectFit"></image>
         <view class="item" bindtap="gourlabout">

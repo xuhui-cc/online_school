@@ -1,6 +1,7 @@
 page{
   background:rgba(245,245,245,1);
 }
+
 .nabigation_bar{
   display: flex;
   position: fixed;
@@ -143,6 +144,20 @@ page{
   -webkit-line-clamp: 2;
   color:rgba(130,130,130,1);
   opacity:1;
+}
+.login_read{
+  position: absolute;
+  margin-left: 489rpx;
+  margin-top: 29rpx;
+  width:167rpx;
+  height:54rpx;
+  
+  background: transparent;
+  background-color: rgba(58,58,58,1);
+  opacity:0.5;
+}
+.login_read::after {
+  border: none;
 }
 .btn{
   display: flex;
@@ -318,15 +333,15 @@ page{
   width:283rpx;
   height:76rpx;
 }
-.login_read{
+/* .login_read{
   position: absolute;
   margin-left: 132rpx;
   margin-top: 50rpx;
   width:283rpx;
   height:76rpx;
   background: transparent;
-  /* background-color: rgb(209, 20, 20); */
+  background-color: rgb(209, 20, 20);
 }
 .login_read::after {
   border: none;
-}
+} */

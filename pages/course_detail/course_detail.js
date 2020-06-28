@@ -19,9 +19,23 @@ Page({
     that.setData({
       kid:kid
     })
-
+    that.judge_login()    //登陆判断
     that.course_detail()  //获取课程详情
   },
+
+  //登录判断
+  judge_login: function () {
+    let that = this
+    that.setData({
+      testlogin: wx.getStorageSync("testlogin"),
+      login: wx.getStorageSync("login"),
+      gid: wx.getStorageSync("gid")
+    })
+    console.log(that.data.testlogin, "that.data.testlogin")
+    console.log(that.data.login, "that.data.login")
+    console.log(that.data.gid, "that.data.gid")
+  },
+
 
   // 获取课程详情
   course_detail:function(){
@@ -525,6 +539,70 @@ Page({
       fail(res) {
         console.log("文件删除失败" + filePath)
         console.log(res)
+      }
+    })
+  },
+
+  //获取微信绑定手机号登录
+  getPhoneNumber: function (e) {
+    var that = this
+    wx.login({
+      success: res => {
+        if (e.detail.errMsg == "getPhoneNumber:ok") {
+          wx.showLoading({
+            title: '登录中...',
+          })
+          wx.login({
+            success(res) {
+              console.log("cccs.code" + res.code)
+              let iv = encodeURIComponent(e.detail.iv);
+              let encryptedData = encodeURIComponent(e.detail.encryptedData);
+              let code = res.code
+              var params = {
+                "code": code,
+                "iv": iv,
+                "encryptedData": encryptedData
+              }
+              console.log(params, "登录参数")
+              app.ols.login(params).then(d => {
+                console.log(d, "登录接口")
+                if (d.data.code == 0) {
+                  console.log("登陆成功")
+                  wx.hideLoading()
+                  that.setData({
+                    testlogin: true
+                  })
+                  wx.setStorageSync("testlogin", true)
+                  // that.setData({
+                  //   login: true
+                  // })
+                  // wx.setStorageSync("login", true)
+                  // wx.setStorageSync("token", d.data.data.token)
+                  // if (d.data.data.gid != null && d.data.data.gid != 0) {
+                  //   console.log(d.data.data.gid, "d.data.data.gid")
+                  //   wx.setStorageSync("gid", d.data.data.gid)
+                  //   // wx.switchTab({
+                  //   //   url: '../../pages/index/index',   //测评页跳转
+                  //   // })
+                  // } else {
+                  //   wx.setStorageSync("gid", that.data.gid)
+                  // }
+                } else {
+                  console.log(d, "登录失败")
+                  wx.showToast({
+                    title: "登陆失败",
+                    icon: 'none',
+                    duration: 2000
+                  })
+                  console.log(d.data.msg, "登录失败提示")
+
+
+                  wx.hideLoading()
+                }
+              })
+            }
+          })
+        }
       }
     })
   },

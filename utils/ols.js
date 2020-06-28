@@ -1,5 +1,5 @@
-// const URI = 'http://os.lingjun.net/api.php/'    //测试接口
-const URI = 'https://wsg.lingjun.net/api.php/'    //正式接口
+const URI = 'http://os.lingjun.net/api.php/'    //测试接口
+// const URI = 'https://wsg.lingjun.net/api.php/'    //正式接口
 // const URI = ''    //正式接口
 
 
@@ -75,14 +75,25 @@ function my_course_all(params) {
   return fetch.olsfetchpost(URI, 'order/getLessonlist', params)
 }
 
-// 获取测评试题
-function test_ques(params) {
+// 获取测评试题（已登录）
+function test_ques1(params) {
   return fetch.olsfetchpost(URI, 'paper/gettestlist', params)
 }
 
-// 获取课程页课程
-function grade_course(params) {
+// 获取测评试题（未登录）
+function test_ques2(params) {
+  return fetch.olsfetchpost(URI, 'v2/paper/gettestlist', params)
+}
+
+
+// 获取课程页课程(已登录)
+function grade_course1(params) {
   return fetch.olsfetchpost(URI, 'lesson/getlist', params)
+}
+
+// 获取课程页课程(未登录)
+function grade_course2(params) {
+  return fetch.olsfetchpost(URI, 'v2/lesson/getlist', params)
 }
 
 // 获取课程详情介绍
@@ -299,4 +310,4 @@ function test_end(params) {
 
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques, grade_course, course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end}
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques1, test_ques2, grade_course1, grade_course2,course_info, grade_update, course_cata, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end}

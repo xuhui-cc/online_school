@@ -16,29 +16,29 @@ Page({
   onLoad: function (options) {
     let that = this
     that.setData({
-      login: wx.getStorageSync("login"),
+      // login: wx.getStorageSync("login"),
         gid: wx.getStorageSync("gid")
     })
     that.get_grade()
-    if (that.data.login) {
-      console.log(that.data.login, "that.data.login")
-      console.log(that.data.gid, "that.data.gid")
+    // if (that.data.login) {
+    //   console.log(that.data.login, "that.data.login")
+    //   console.log(that.data.gid, "that.data.gid")
       if (that.data.gid != null && that.data.gid != 0) {
 
         wx.switchTab({
           url: '../../pages/index/index',
         })
-        console.log("我登录了，我选年级了")
+        console.log("我选年级了")
       } else {
-        that.setData({
-          grade_select: true
-        })
-        console.log("我登录了我没选年级")
+        // that.setData({
+        //   grade_select: true
+        // })
+        // console.log("我没选年级")
       }
-    }
-    else {
-      console.log("我没登录")
-    }
+    // }
+    // else {
+    //   console.log("我没登录")
+    // }
     var params = {
     
     }
@@ -82,22 +82,22 @@ Page({
     let that = this
     var xb = e.currentTarget.dataset.xb
     console.log(xb)
-    var params = {
-      "token": wx.getStorageSync("token"),
-      "gid":that.data.grade[xb].id
-    }
-    console.log(params, "更新年级参数")
+    // var params = {
+    //   "token": wx.getStorageSync("token"),
+    //   "gid":that.data.grade[xb].id
+    // }
+    // console.log(params, "更新年级参数")
     //更新选择年级接口
-    app.ols.grade_update(params).then(d => {
-      console.log(d,"更新班级数据")
-      if (d.data.code == 0) {
+    // app.ols.grade_update(params).then(d => {
+    //   console.log(d,"更新班级数据")
+    //   if (d.data.code == 0) {
         wx.setStorageSync('gid', that.data.grade[xb].id)
         wx.switchTab({
           url: '../../pages/index/index',   //更新年级后跳转测评页
         })
         
-      }
-    })
+    //   }
+    // })
   },
 
   
