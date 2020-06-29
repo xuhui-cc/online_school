@@ -5,40 +5,32 @@ const app = getApp()
 Page({
   data: {
     current_subject: 0,
-    // isshare:true
+    
   },
   //事件处理函数
   
   onLoad: function (options) {
     let that = this
-    that.judge_login()    //登陆判断
     
-    // console.log(islogin)
-    // console.log(options,"options")
-    // if (options.isshare == 1){
-    //   that.setData({
-    //     isshare:options.isshare,
-    //     gid:options.gid,
-    //     islogin: wx.getStorageSync("login")
-    //   })
-    //   console.log("分享打开",that.data.isshare,that.data.gid)
-    // }else{
-    //   that.setData({
-    //     gid: wx.getStorageSync("gid")
-    //   })
-    //   that.getGrade()  //获取年级
-    //   that.getsubject()   //获取学科
-    //   console.log("非分享打开")
-    // }
-
-    
-
+  
+    if (options.isshare == 1){
+      wx.setStorageSync("gid", options.gid)
+      that.setData({
+        isshare:options.isshare,
+        gid:options.gid,
+        islogin: wx.getStorageSync("login")
+      })
+      
+      console.log("分享打开",that.data.isshare,that.data.gid)
+      
+    }else{
+      that.judge_login()    //登陆判断
+     
+      console.log("非分享打开")
+    }
+ 
     that.getGrade()  //获取年级
     that.getsubject()   //获取学科
-    console.log("非分享打开")
-    
-    
-
   },
 
 
@@ -46,11 +38,11 @@ Page({
   judge_login:function(){
     let that = this 
     that.setData({
-      // testlogin: wx.getStorageSync("testlogin"),
+      
       login: wx.getStorageSync("login"),
       gid: wx.getStorageSync("gid")
     })
-    // console.log(that.data.testlogin, "that.data.testlogin")
+    
     console.log(that.data.login, "that.data.login")
     console.log(that.data.gid, "that.data.gid")
   },
@@ -123,9 +115,9 @@ Page({
           })
         } else {
           wx.showToast({
-            title: '现在就是这个年级哦~',
+            title: '选择失败哦',
             icon: "none",
-            duration: 2000
+            duration: 3000
           })
         }
       })
@@ -162,6 +154,7 @@ Page({
         that.setData({
           did: that.data.subject[that.data.current_subject].id
         })
+        console.log("获取学科成功")
         that.test_list()  //获取测评列表
 
       } else {
@@ -195,6 +188,7 @@ Page({
         "page": 1
 
       }
+      console.log(params,"获取测评列表接口1")
       app.ols.test_ques1(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
@@ -220,6 +214,7 @@ Page({
         "page": 1
 
       }
+      console.log(params, "获取测评列表接口2")
       app.ols.test_ques2(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
@@ -278,7 +273,7 @@ Page({
     }
     that.judge_login()    //登陆判断
     that.getsubject()   //获取学科
-    // that.test_list()       //获取测评试卷列表
+    
   },
 
   /**
@@ -288,8 +283,8 @@ Page({
     let that = this;
     return {
       title: '领军网校', // 转发后 所显示的title
-      // path: '/pages/index/index?isshare=1&gid=' + that.data.gid, // 相对的路径
-      path: '/pages/first_page/first_page', // 相对的路径
+      path: '/pages/index/index?isshare=1&gid=' + that.data.gid, // 相对的路径
+      // path: '/pages/first_page/first_page', // 相对的路径
       imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
       success: (res) => {    // 成功后要做的事情
         console.log("成功")
@@ -330,10 +325,7 @@ Page({
                 if (d.data.code == 0) {
                   console.log("登陆成功")
                   wx.hideLoading()
-                  // that.setData({
-                  //   testlogin: true
-                  // })
-                  // wx.setStorageSync("testlogin", true)
+                 
                   
                   that.setData({
                     login: true
@@ -341,15 +333,7 @@ Page({
                   wx.setStorageSync("login", true)
                   wx.setStorageSync("token", d.data.data.token)
                   that.onShow()
-                  // if (d.data.data.gid != null && d.data.data.gid != 0) {
-                  //   console.log(d.data.data.gid, "d.data.data.gid")
-                  //   wx.setStorageSync("gid", d.data.data.gid)
-                  //   // wx.switchTab({
-                  //   //   url: '../../pages/index/index',   //测评页跳转
-                  //   // })
-                  // } else {
-                  //   wx.setStorageSync("gid", that.data.gid)
-                  // }
+                  
                 } else {
                   console.log(d, "登录失败")
                   wx.showToast({

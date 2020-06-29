@@ -13,7 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // cs: [{}, {}, {}],
+    
     currentTab: 0,
     clientHeight: 1000,
     dtk: false,
@@ -30,7 +30,7 @@ Page({
     total_micro_second: 0,
     t: 0,
     clock: 0,//倒计时时间
-    // ans_2:[{"-1"},{"-1"},{"-1"},{"-1"}]
+    
   },
 
   /**
@@ -380,9 +380,9 @@ Page({
       var moveX = e.touches[0].clientX;
       diffX = that.data.startX - moveX;
       var moveLeft = '';
-      if (diffX < -80) { //向右
+      if (diffX < -100) { //向右
         moveLeft = 'left:' + -(diffX < -90 ? -90 : diffX) + 'px;';
-      } else if (diffX > 80) { //向左
+      } else if (diffX > 100) { //向左
         moveLeft = 'left:-' + (diffX > 90 ? 90 : diffX) + 'px;';
       } else {
         moveLeft = 'left:0px;';
@@ -405,7 +405,7 @@ Page({
       this.setData({
         moveLeft: moveLeft
       });
-      if (diffX > 35) {
+      if (diffX > 100) {
         if (that.data.currentTab == (that.data.ques_info.num - 1)) {
           that.setData({
             dtk: true
@@ -420,7 +420,7 @@ Page({
           that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
         }
 
-      } else if (diffX < -80) {
+      } else if (diffX < -100) {
         if (that.data.currentTab == 0) {
           wx.showToast({
             title: '已经是第一题咯~',
@@ -657,8 +657,8 @@ Page({
         console.log(tempFilePaths)
         // let imgs = [];
         wx.uploadFile({
-          // url: 'http://os.lingjun.net/api.php/annex/upload',
-          url: 'https://wsg.lingjun.net/api.php/annex/upload',
+          url: 'http://os.lingjun.net/api.php/annex/upload',
+          // url: 'https://wsg.lingjun.net/api.php/annex/upload',
           filePath: tempFilePaths[0],
           name: 'file',
           method: 'POST',

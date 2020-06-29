@@ -153,8 +153,11 @@
     <view class="price">{{course_info.price}}</view>
     <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
     <!--  -->
-    <view wx:if="{{course_info.price == 0}}" class="button_buy"  bindtap="to_free" >立即报名</view>
-    <view wx:else="" class="button_buy"  bindtap="to_pay" >立即购买</view>
+    <view wx:if="{{course_info.price == 0 && login}}" class="button_buy"  bindtap="to_free" >立即报名</view>
+    <view wx:elif="{{course_info.price == 0 && !login}}" class="button_buy"  >立即报名</view>
+    <view wx:elif="{{course_info.price > 0 && login}}" class="button_buy"  bindtap="to_pay" >立即购买</view>
+    
+    <view wx:else="{{course_info.price > 0 && !login}}" class="button_buy" >立即购买</view>
   </view>
   
 

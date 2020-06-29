@@ -1,26 +1,32 @@
 const app = getApp()
 Page({
   data: {
-    // grade: ["初三", "高三 文科", "高三 理科"],
-    // grade_index: 1,
-    // classify: ["推荐", "语文", "数学", "英语", "政治", "历史", "地理"],
-    
     current_special:-1,
     current_subject: 0,
   },
 
-  onLoad: function () {
+  onLoad: function (options) {
     let that = this
-    // that.setData({
-    //   gid: wx.getStorageSync("gid")
-    // })
+   
+    if (options.isshare == 1) {
+      wx.setStorageSync("gid", options.gid)
+      that.setData({
+        isshare: options.isshare,
+        gid: options.gid,
+        islogin: wx.getStorageSync("login")
+      })
+      console.log("分享打开", that.data.isshare, that.data.gid)
 
-    that.judge_login()    //登陆判断
+    } else {
+      that.judge_login()    //登陆判断
+      console.log("非分享打开")
+    }
+
 
     that.getgrade()    //获取年级 
     that.getsubject()   //获取学科
   
-    // that.getcourse()         //获取课程
+    
     
   },
 
@@ -28,11 +34,11 @@ Page({
   judge_login: function () {
     let that = this
     that.setData({
-      // testlogin: wx.getStorageSync("testlogin"),
+     
       login: wx.getStorageSync("login"),
       gid: wx.getStorageSync("gid")
     })
-    // console.log(that.data.testlogin, "that.data.testlogin")
+  
     console.log(that.data.login, "that.data.login")
     console.log(that.data.gid, "that.data.gid")
   },
@@ -121,9 +127,9 @@ Page({
           console.log("更新接口存班级")
         } else {
           wx.showToast({
-            title: '现在就是这个年级哦~',
+            title: '选择失败',
             icon: "none",
-            duration: 2000
+            duration: 3000
           })
         }
       })
@@ -137,8 +143,7 @@ Page({
       })
     }
     
-    // console.log(that.data.grade[that.data.grade_index])
-    // wx.setStorageSync("gid", that.data.grade[that.data.grade_index].id)
+    
     
   },
 
@@ -276,7 +281,7 @@ Page({
       })
     }else{
       var params = {
-        // "token": wx.getStorageSync("token"),
+        
         "gid": that.data.gid,
         "did": that.data.did,
         "cid": that.data.special[that.data.current_special].id,
@@ -379,7 +384,7 @@ Page({
     }
     
     console.log(that.data.gid,"onshow")
-    // that.getgrade()    //获取年级 
+   
     that.getsubject()   //获取学科
     that.getcourse()    //获取课程
     
@@ -392,7 +397,8 @@ Page({
     let that = this;
     return {
       title: '领军网校', // 转发后 所显示的title
-      path: '/pages/first_page/first_page', // 相对的路径
+      path: '/pages/logs/logs?isshare=1&gid=' + that.data.gid, // 相对的路径
+      // path: '/pages/first_page/first_page', // 相对的路径
       imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
       success: (res) => {    // 成功后要做的事情
         console.log("成功")
@@ -403,6 +409,6 @@ Page({
         console.log(res, "分享失败")
       }
     }
-  }
+  },
     
 })

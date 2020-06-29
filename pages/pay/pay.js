@@ -106,10 +106,7 @@ Page({
         })
       },
       fail(res) {
-        // wx.showToast({
-        //   title: '支付失败',
-        //   duration: 3000
-        // })
+       
         console.log("失败")
         wx.navigateBack({
           delta: 1  // 返回上一级页面。
@@ -165,10 +162,7 @@ Page({
 
   getuserinfo: function (e) {
     let that = this
-    // wx.getSetting({
-      // success(res) {
-        // if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+    
           wx.getUserInfo({
             success: function (res) {
               console.log(res)
@@ -214,15 +208,13 @@ Page({
                       console.log(d.data.msg)
                     }
                   })
-                  // wx.hideLoading()
+                  
                 }
               })
 
             }
           })
-        // }
-      // }
-    // })
+       
 
   },
 

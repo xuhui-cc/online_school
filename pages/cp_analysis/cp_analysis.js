@@ -71,22 +71,24 @@ Page({
         var cs3 = "analysis.c"
         var cs4 = "analysis.d"
 
-        d.data.data.title = d.data.data.title.replace(/<img/gi, '<img style="max-width:95%;height:auto;display:block"')
+        var replace = '<img style="max-width:92%;height:auto;display:block"'
+
+        d.data.data.title = d.data.data.title.replace(/<img/gi, replace)
 
         if (d.data.data.a != null) {
-          d.data.data.a = d.data.data.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+          d.data.data.a = d.data.data.a.replace(/<img/gi, replace)
         }
         
         if (d.data.data.b != null) {
-          d.data.data.b = d.data.data.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+          d.data.data.b = d.data.data.b.replace(/<img/gi, replace)
         }
         
         if (d.data.data.c != null) {
-          d.data.data.c = d.data.data.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+          d.data.data.c = d.data.data.c.replace(/<img/gi, replace)
           
         }
         if (d.data.data.d != null) {
-          d.data.data.d = d.data.data.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+          d.data.data.d = d.data.data.d.replace(/<img/gi, replace)
           
         }
 
@@ -159,29 +161,26 @@ Page({
     console.log(e.touches.length, 'e.touches.length')
     if (e.touches.length == 1) {
       var moveX = e.touches[0].clientX;
-      // console.log(moveX,'moveX')
+      
       diffX = that.data.startX - moveX;
-      // console.log(diffX, 'diffX')
+     
       var moveLeft = '';
-      if (diffX < -80) { //向右
+      if (diffX < -100) { //向右
         moveLeft = 'left:' + -(diffX < -90 ? -90 : diffX) + 'px;';
-        // console.log("右")
-      } else if (diffX > 80) { //向左
+       
+      } else if (diffX > 100) { //向左
         moveLeft = 'left:-' + (diffX > 90 ? 90 : diffX) + 'px;';
-        // console.log("左")
+       
       } else {
         moveLeft = 'left:0px;';
 
       }
-      // console.log(diffX,"diffX")
-      // console.log(currentTab, "currentTab")
 
       that.setData({
-        // diffX:diffX,
         moveLeft: moveLeft
       });
     }
-    // console.log(that.data.diffX, "that.data.diffX")
+    
   },
   touchEnd: function (e) {
     let that = this
@@ -193,7 +192,7 @@ Page({
       this.setData({
         moveLeft: moveLeft
       });
-      if (diffX > 80) {
+      if (diffX > 100) {
         if (that.data.currentTab == (that.data.id_list.length - 1)) {
           wx.showToast({
             title: '已经是最后一道咯~',
@@ -207,7 +206,7 @@ Page({
           that.get_cp_analysis(that.data.id_list[(that.data.currentTab)].pid,that.data.eid)
         }
 
-      } else if (diffX < -80) {
+      } else if (diffX < -100) {
         if (that.data.currentTab == 0) {
           wx.showToast({
             title: '已经是第一题咯~',
@@ -225,59 +224,48 @@ Page({
     }
   },
 
-  
-  
-
-  
   //手动滑页
-  swiperchange: function (e) {
-    var that = this
-    var current = Number(e.currentTarget.dataset.current)  // 当前的
-    var index = e.detail.current;//当前所在页面的 index
-    console.log(index)
-    console.log(current + 1)
-    var params = {
-      "token": wx.getStorageSync("token"),
-      "id": that.data.id_list[(current + 1)].pid
-    }
-    app.ols.ques_detail(params).then(d => {
-      console.log(d)
-      if (d.data.code == 0) {
-        console.log(d.data.data)
-        var cs1 = "question.a"
-        var cs2 = "question.b"
-        var cs3 = "question.c"
-        var cs4 = "question.d"
-        that.setData({
-          question: d.data.data,
-          currentTab: current + 1
-        })
-        var cs = "question.myans"
-        that.setData({
-          [cs]: -1
-        })
-        that.setData({
-          [cs1]: that.data.question.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          [cs2]: that.data.question.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          [cs3]: that.data.question.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-          [cs4]: that.data.question.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+  // swiperchange: function (e) {
+  //   var that = this
+  //   var current = Number(e.currentTarget.dataset.current)  // 当前的
+  //   var index = e.detail.current;//当前所在页面的 index
+  //   console.log(index)
+  //   console.log(current + 1)
+  //   var params = {
+  //     "token": wx.getStorageSync("token"),
+  //     "id": that.data.id_list[(current + 1)].pid
+  //   }
+  //   app.ols.ques_detail(params).then(d => {
+  //     console.log(d)
+  //     if (d.data.code == 0) {
+  //       console.log(d.data.data)
+  //       var cs1 = "question.a"
+  //       var cs2 = "question.b"
+  //       var cs3 = "question.c"
+  //       var cs4 = "question.d"
+  //       that.setData({
+  //         question: d.data.data,
+  //         currentTab: current + 1
+  //       })
+  //       var cs = "question.myans"
+  //       that.setData({
+  //         [cs]: -1
+  //       })
+  //       that.setData({
+  //         [cs1]: that.data.question.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+  //         [cs2]: that.data.question.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+  //         [cs3]: that.data.question.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
+  //         [cs4]: that.data.question.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
 
-        })
-        console.log("测评第" + (current + 2) + "一题接口调取成功")
-      } else {
-        console.log("测评第" + (current + 2) + "一题接口==============" + d.data.msg)
-      }
-    })
+  //       })
+  //       console.log("测评第" + (current + 2) + "一题接口调取成功")
+  //     } else {
+  //       console.log("测评第" + (current + 2) + "一题接口==============" + d.data.msg)
+  //     }
+  //   })
 
 
-  },
-
-  
-
-  
-
-  
-
+  // },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -334,7 +322,6 @@ Page({
       imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
       success: (res) => {    // 成功后要做的事情
         console.log("成功")
-
       },
       fail: function (res) {
         // 分享失败

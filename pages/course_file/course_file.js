@@ -80,57 +80,65 @@ Page({
         title: '资料打开中...',
       })
 
+      var fileName = that.data.handout[xb].name + "." + that.data.handout[xb].suffix
+      that.setData({
+        fileName: fileName
+      })
+      let customFilePath = wx.env.USER_DATA_PATH + "/" + that.data.fileName
+      console.log('得到自定义路径：')
+      console.log(customFilePath)
+
       wx.downloadFile({
-        // 示例 url，并非真实存在
-        url: that.data.handout[xb].annex,
-        success: function (res) {
-          const filePath = res.tempFilePath
+        url: that.data.handout[xb].annex, //仅为示例，并非真实的资源
+        filePath: customFilePath,
+        success(res) {
+          // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+
+          console.log(res)
+          var filePath = res.filePath
+          console.log('返回自定义路径：')
+          console.log(filePath)
+
+          that.openFilePath = filePath
           wx.openDocument({
+            showMenu: true,
             filePath: filePath,
             success: function (res) {
               console.log('打开文档成功')
+              wx.hideLoading()
+            },
+            fail: function (res) {
+              console.log("打开文档失败");
+              console.log(res)
+              wx.hideLoading({
+                complete: (res) => {
+                  wx.showToast({
+                    title: '文件打开失败',
+                    icon: 'none'
+                  })
+                },
+              })
+            },
+            complete: function (res) {
+              console.log("complete");
+              console.log(res)
             }
           })
+        },
+        fail: function (res) {
+          console.log('文件下载失败')
+          console.log(res)
+          wx.hideLoading({
+            complete: (res) => {
+              wx.showToast({
+                title: '文件下载失败',
+                icon: 'none'
+              })
+            },
+          })
+
         }
       })
-
-      
-      // var fileName = that.data.handout[xb].name + "." + that.data.handout[xb].suffix
-      // that.setData({
-      //   fileName: fileName
-      // })
-      // wx.downloadFile({
-      //   url: that.data.handout[xb].annex,
-      //   filePath: wx.env.USER_DATA_PATH + "/" + that.data.fileName,
-      //   success(res) {
-      //     console.log("下载文档成功 =>", res);
-      //     if (res.statusCode === 200) {
-      //       wx.hideLoading();
-            
-      //       wx.openDocument({
-      //         filePath: res.filePath,
-      //         showMenu: true,
-      //         success(e) {
-      //           console.log("打开文档成功 =>", e);
-      //         },
-      //         fail(e) {
-      //           console.log("打开文档失败 =>", e);
-      //           wx.showToast({
-      //             title: "打开文档失败，请重试！",
-      //             icon: "none"
-      //           });
-      //         }
-      //       });
-      //     }
-      //   },
-      //   fail(err) {
-      //     console.log("打开文档失败 =>", err);
-      //     wx.showToast({
-      //       title: "打开文档失败，请重试！",
-      //       icon: "none"
-      //     });
-      //   }
-      // });
     }
   },
 
@@ -149,6 +157,31 @@ Page({
   },
 
   /**
+   * 清除本地保存的文件
+  */
+  clearLocalFile: function () {
+    let that = this
+
+    if (this.openFilePath == '') {
+      return
+    }
+
+    let fs = wx.getFileSystemManager()
+    let filePath = this.openFilePath
+    fs.unlink({
+      filePath: filePath,
+      success(res) {
+        console.log("文件删除成功" + filePath)
+        that.openFilePath = ''
+      },
+      fail(res) {
+        console.log("文件删除失败" + filePath)
+        console.log(res)
+      }
+    })
+  },
+
+  /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
@@ -159,7 +192,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.clearLocalFile()   //清除本地文件缓存
   },
 
   /**

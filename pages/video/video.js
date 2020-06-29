@@ -6,23 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // getvideo_info:[]
+   
     isload: 0,
   },
-  // /**关闭视屏 */
-  // closeVideo() {
-  //   //执行退出全屏方法
-  //   var videoContext = wx.createVideoContext('myvideo', this);
-  //   videoContext.exitFullScreen();
-  // },
-  // /**视屏进入、退出全屏 */
-  // fullScreen(e) {
-  //   var isFull = e.detail.fullScreen;
-  //   //视屏全屏时显示加载video，非全屏时，不显示加载video
-  //   this.setData({
-  //     fullScreen: isFull
-  //   })
-  // },
+ 
 
   /**
    * 生命周期函数--监听页面加载

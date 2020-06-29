@@ -23,22 +23,7 @@ Page({
     
     
     
-    // //获取地址
-    // var params = {
-    //   "token": wx.getStorageSync("token"),
-    // }
-    // app.ols.getdefault(params).then(d => {
-    //   console.log(d)
-    //   if (d.data.code == 0) {
-    //     var adress = d.data.data.prov + d.data.data.city + d.data.data.area + d.data.data.title
-        
-    //     that.setData({
-    //       name: d.data.data.name,
-    //       phone: d.data.data.phone,
-    //       adress: adress
-    //     })
-    //   }
-    // })
+    
   },
 
   order_detail:function(){
@@ -57,13 +42,12 @@ Page({
         that.setData({
           [dateline]: that.timestampToTime(d.data.data.dateline)
         })
-        // var dateline = that.timestampToTime(d.data.data.dateline)
-        // console.log(dateline,"dateline")
+       
         // 调用方法
         that.setData({
           timer: that.timer(that.data.order.dateline, 30)
         })
-        // var time1 =  // 我需要做30分钟的倒计时
+        
         console.log(that.data.timer, "timer"); // 28:00
         
       }
@@ -155,22 +139,7 @@ Page({
 
 
 
-    //获取地址
-    // var params = {
-    //   "token": wx.getStorageSync("token"),
-    // }
-    // app.ols.getdefault(params).then(d => {
-    //   console.log(d)
-    //   if (d.data.code == 0) {
-    //     var adress = d.data.data.prov + d.data.data.city + d.data.data.area + d.data.data.title
-
-    //     that.setData({
-    //       name: d.data.data.name,
-    //       phone: d.data.data.phone,
-    //       adress: adress
-    //     })
-    //   }
-    // })
+    
 
     
   },
