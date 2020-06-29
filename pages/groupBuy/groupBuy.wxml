@@ -1,0 +1,65 @@
+<view class="container">
+  <view class="intro_layout">
+    <view class="flex">
+      <view class="group_num">2人团</view>
+      <view class="course_name">高三数学三角函数专题课数专题课</view>  
+    </view>
+
+    <view class="course_intro">这里是数学能力测评表详情介绍，这里是数学能力测评表详情介绍这里是数学能力测评表详情介绍。</view>
+  
+    <view class="flex">
+
+      <view class="for">
+        <view class="flex" style="width:284rpx;margin-left:30rpx;margin-top:53rpx;margin-bottom:30rpx;">
+          <view class="tea_layout">
+            <image class="tea_avatar" src="../../images/my_head.png"></image>
+            <view class="tea_name">李楠逸轩</view>
+          </view> 
+        </view>
+      </view>  
+      <view>
+        <view class="group_price">¥299.00</view>
+        <view class="old_price">¥999</view>
+      </view>
+    
+    </view>
+
+    
+
+
+  </view>
+
+  <view class="margin_gray"></view>
+
+  <view class="group_message">
+    
+    
+    
+  </view>
+  <view class="margin_gray"></view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- container -->
+</view>

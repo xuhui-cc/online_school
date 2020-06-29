@@ -6,7 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // grade:["初三","高三 文科","高三 理科"],
     grade_index:0
   },
 
@@ -16,13 +15,11 @@ Page({
   onLoad: function (options) {
     let that = this
     that.setData({
-      // login: wx.getStorageSync("login"),
+      
         gid: wx.getStorageSync("gid")
     })
     that.get_grade()
-    // if (that.data.login) {
-    //   console.log(that.data.login, "that.data.login")
-    //   console.log(that.data.gid, "that.data.gid")
+   
       if (that.data.gid != null && that.data.gid != 0) {
 
         wx.switchTab({
@@ -30,15 +27,9 @@ Page({
         })
         console.log("我选年级了")
       } else {
-        // that.setData({
-        //   grade_select: true
-        // })
-        // console.log("我没选年级")
+       
       }
-    // }
-    // else {
-    //   console.log("我没登录")
-    // }
+   
     var params = {
     
     }
@@ -82,15 +73,7 @@ Page({
     let that = this
     var xb = e.currentTarget.dataset.xb
     console.log(xb)
-    // var params = {
-    //   "token": wx.getStorageSync("token"),
-    //   "gid":that.data.grade[xb].id
-    // }
-    // console.log(params, "更新年级参数")
-    //更新选择年级接口
-    // app.ols.grade_update(params).then(d => {
-    //   console.log(d,"更新班级数据")
-    //   if (d.data.code == 0) {
+    
         wx.setStorageSync('gid', that.data.grade[xb].id)
         wx.switchTab({
           url: '../../pages/index/index',   //更新年级后跳转测评页
@@ -175,15 +158,14 @@ Page({
     let that = this
     var params = {
     }
-    // console.log(params, "获取年级参数")
+   
     app.ols.getlist(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
         console.log(d,"获取年级接口数据")
         let arr1 = [];
         for (let i in d.data.data) {
-          //var o={};
-          //o[i]=d.data.data[i];
+          
           arr1.push(d.data.data[i]);
         }
         console.log(arr1)

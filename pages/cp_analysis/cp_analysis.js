@@ -60,8 +60,7 @@ Page({
       "token": wx.getStorageSync("token"),
       "id": id,
       "eid": eid
-      //  "id": '8778',
-      // "eid": '18'
+      
     }
     app.ols.cp_analysis(params).then(d => {
       console.log(d)
@@ -74,6 +73,7 @@ Page({
         var replace = '<img style="max-width:92%;height:auto;display:block"'
 
         d.data.data.title = d.data.data.title.replace(/<img/gi, replace)
+        d.data.data.note = d.data.data.note.replace(/<img/gi, replace)
 
         if (d.data.data.a != null) {
           d.data.data.a = d.data.data.a.replace(/<img/gi, replace)

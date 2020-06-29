@@ -27,6 +27,7 @@
     "pages/test/test",
     "pages/cs/cs",
     "pages/file_scan/file_scan",
+    "pages/groupBuy/groupBuy",
     "pages/analysis/analysis"
   ],
   "window": {

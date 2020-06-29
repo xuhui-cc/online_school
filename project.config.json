@@ -11,6 +11,7 @@
 		"newFeature": true,
 		"coverView": true,
 		"autoAudits": false,
+		"scopeDataCheck": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -18,7 +19,11 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"useIsolateContext": true,
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"compileHotReLoad": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.10.4",
@@ -156,6 +161,14 @@
 					"id": -1,
 					"name": "pages/endcourse_report/endcourse_report",
 					"pathName": "pages/endcourse_report/endcourse_report",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 15,
+					"name": "groupBuy",
+					"pathName": "pages/groupBuy/groupBuy",
+					"query": "",
 					"scene": null
 				}
 			]

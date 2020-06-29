@@ -1,0 +1,108 @@
+.intro_layout{
+  width:750rpx;
+  /* height:343rpx; */
+  background:rgba(255,255,255,1);
+  opacity:1;
+}
+.flex{
+  display: flex;
+}
+.group_num{
+  margin-left: 30rpx;
+  margin-top: 38rpx;
+  margin-right: 9rpx;
+  width:73rpx;
+  height:37rpx;
+  font-size:22rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:37rpx;
+  text-align: center;
+  color:rgba(255,255,255,1);
+  background:linear-gradient(133deg,rgba(255,71,28,1) 0%,rgba(255,192,143,1) 100%);
+  opacity:1;
+  border-radius:7rpx;
+}
+.course_name{
+  margin-top: 31rpx;
+  width:540rpx;
+  height:50rpx;
+  font-size:36rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:50rpx;
+  color:rgba(39,39,39,1);
+  
+}
+.course_intro{
+  margin-left: 30rpx;
+  margin-top: 17rpx;
+  width:690rpx;
+  height:71rpx;
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:33rpx;
+  color:rgba(130,130,130,1);
+}
+.tea_layout{
+  margin-right: 10rpx;
+  width:88rpx;
+}
+.tea_avatar{
+  margin-left: 18rpx;
+  width:51rpx;
+  height:51rpx;
+  border-radius: 50%;
+}
+.tea_name{
+  margin-top: 8rpx;
+  width:88rpx;
+  height:30rpx;
+  font-size:22rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:30rpx;
+  text-align: center;
+  color:rgba(39,39,39,1);
+  opacity:1;
+}
+.group_price{
+  position: absolute;
+  right: 90rpx;
+  margin-top:58rpx;
+  width:138rpx;
+  height:59rpx;
+  font-size:42rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:59rpx;
+  color:rgba(3,182,131,1);
+  opacity:1;
+}
+.old_price{
+  position: absolute;
+  right: 50rpx;
+  margin-top:106rpx;
+  width:70rpx;
+  height:36rpx;
+  font-size:25rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:39rpx;
+  text-decoration:line-through;
+  color:rgba(153,153,153,1);
+  opacity:1;
+}
+.margin_gray{
+  width:750rpx;
+  height:16rpx;
+  background:rgba(245,245,245,1);
+  opacity:1;
+}
+.group_message{
+  width:750rpx;
+  height:626rpx;
+  background:rgba(255,255,255,1);
+  opacity:1;
+}
