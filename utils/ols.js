@@ -10,6 +10,11 @@ function login(params) {
   return fetch.olsfetchpost(URI, 'v2/login/phonelogin', params)
 }
 
+//分享判断
+function judge_share(params) {
+  return fetch.olsfetchpost(URI, 'share/getinterface', params)
+}
+
 // 小程序直播接入
 function getclassroom(params) {
   return fetch.olsfetchpost(URI, 'classroom/getclassroom', params)
@@ -320,4 +325,4 @@ function test_end(params) {
 
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques1, test_ques2, grade_course1, grade_course2, course_info1, course_info2, grade_update, course_cata1, course_cata2, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end}
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques1, test_ques2, grade_course1, grade_course2, course_info1, course_info2, grade_update, course_cata1, course_cata2, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,judge_share}

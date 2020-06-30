@@ -7,6 +7,18 @@
   </view>
   <!-- 标题栏结束 -->
 
+  <!-- 登录蒙层 -->
+  <view class="mask1" wx:if="{{isshare == 1 && login == false}}"></view>
+  <view class="login_layout" wx:if="{{isshare == 1 && login == false}}">
+  
+    <image class="login_del" src="../../images/del.png"></image>
+    <image class="unlogin" src="../../images/unlogin.png"></image>
+    <view class="login_tip">您当前尚未登录! </view>
+    <view class="login_tip">请点击下方按钮登录</view>
+    <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+    <image class="tologin" src="../../images/tologin.png"></image>
+  </view>
+
   <!-- 试卷说明 -->
   <view class="mask" style="z-index:301;" wx:if="{{!start_ans}}"></view>
   <image class="test_tip" src="../../images/test_tip.png" wx:if="{{!start_ans}}"></image>
@@ -214,7 +226,7 @@
             <view class="btn">拍照上传</view>
           </view>
 
-          <view class="img_layout">
+          <view class="img_layout" style="padding-bottom:500rpx;">
             <view wx:for="{{question.myans}}" wx:key="index">
               <image class="del_img" src="../../images/del1.png" data-xb="{{index}}" bindtap="del_img"></image>
               <image class="ans_img" src="{{item}}"></image>
@@ -270,7 +282,7 @@
             </view>
           </view>
           
-          <view class="img_layout">
+          <view class="img_layout" style="padding-bottom:500rpx;">
             <view wx:for="{{question.myans}}" wx:key="index">
               <image class="del_img" src="../../images/del1.png" data-xb="{{index}}" bindtap="del_img"></image>
               <image class="ans_img" src="{{item}}"></image>

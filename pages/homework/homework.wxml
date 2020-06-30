@@ -7,49 +7,21 @@
   </view>
   <!-- 标题栏结束 -->
 
+  <!-- 登录蒙层 -->
+  <view class="mask1" wx:if="{{isshare == 1 && login == false}}"></view>
+  <view class="login_layout" wx:if="{{isshare == 1 && login == false}}">
+  
+    <image class="login_del" src="../../images/del.png"></image>
+    <image class="unlogin" src="../../images/unlogin.png"></image>
+    <view class="login_tip">您当前尚未登录! </view>
+    <view class="login_tip">请点击下方按钮登录</view>
+    <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+    <image class="tologin" src="../../images/tologin.png"></image>
+  </view>
+
   <!-- 试卷说明 -->
   <view class="mask" style="z-index:301;" wx:if="{{!start_ans}}" bindtap="start_ans"></view>
   <image class="test_tip" src="../../images/test_tip.png" wx:if="{{!start_ans}}"></image>
-  <!-- <view class="test_explain" wx:if="{{!start_ans}}">
-    <view class="flex">
-      <image class="title_img" style="margin-left: 190rpx;" src="../../images/dot1.png"></image>
-      <view class="explain_head" >试卷说明</view>
-      <image class="title_img" style="margin-left: 16rpx;" src="../../images/dot2.png"></image>
-    </view>
-    <view class="flex">
-      <view class="explain_shu"></view>
-      <view class="explain_head2" >试卷名称</view>
-    </view>
-    <view class="title">{{test_explain.title}}</view>
-    <view class="flex">
-      <view class="explain_shu"></view>
-      <view class="explain_head2" >试卷说明</view>
-    </view>
-    <view class="title_fu" style="margin-top: 20rpx;">{{ques_info.remark}}</view>
-    <view class="flex">
-      <view class="explain_shu"></view>
-      <view class="explain_head2" >试卷分数</view>
-    </view>
-    <view class="explain">本题分数 <text style="color:#03B683">{{test_explain.all_sum}}分</text> 。</view>
-
-    
-    <view class="wrap">
-      <view wx:for="{{test_explain.option}}" wx:key="index">
-        <view class="flex">
-          <view wx:if="{{item.type == 1}}" class="explain_title">单选题:</view>
-          <view wx:if="{{item.type == 2}}" class="explain_title">多选题:</view>
-          <view wx:if="{{item.type == 3}}" class="explain_title">判断题:</view>
-          <view wx:if="{{item.type == 4}}" class="explain_title">简答题:</view>
-          <view wx:if="{{item.type == 5}}" class="explain_title">组合题:</view>
-          <view wx:if="{{item.type == 6}}" class="explain_title">填空题:</view>
-          <view class="ques_num">{{item.min_count}}道</view>
-          <view class="score_num">{{item.min_sum}}分</view>
-        </view>
-      </view>
-    </view>
-
-    <view class="start_btn" bindtap="start_ans">我知道了，开始答题</view>
-  </view> -->
 
 
   <!-- 试卷菜单栏 -->

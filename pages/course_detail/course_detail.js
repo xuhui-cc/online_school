@@ -24,7 +24,7 @@ Page({
         isshare: options.isshare,
         gid: options.gid,
         
-        islogin: wx.getStorageSync("login")
+        login: wx.getStorageSync("login")
       })
       // wx.setStorageSync("gid", options.gid)
       console.log("分享打开", that.data.isshare, that.data.gid, that.data.gid)

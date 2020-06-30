@@ -13,7 +13,7 @@ Page({
       that.setData({
         isshare: options.isshare,
         gid: options.gid,
-        islogin: wx.getStorageSync("login")
+        login: wx.getStorageSync("login")
       })
       console.log("分享打开", that.data.isshare, that.data.gid)
 

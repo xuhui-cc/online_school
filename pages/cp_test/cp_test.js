@@ -27,17 +27,43 @@ Page({
    */
   onLoad: function (options) {
     let that = this 
-    var id = options.id
-    console.log(id)
-    that.setData({
-      id:id
-    })
+
+    if (options.isshare == 1){
+      wx.setStorageSync("gid", options.gid)
+      that.setData({
+        id:options.id,
+        isshare:options.isshare,
+        gid:options.gid,
+        login: wx.getStorageSync("login")
+      })
+      if(that.data.login){
+        that.judge_share()   //分享判断
+        console.log("分享已登录")
+        
+      }
+      console.log("分享未登录",that.data.isshare,that.data.gid)
+      
+    }else{
+      var id = options.id
+      console.log(id)
+      that.setData({
+        id:id
+      })
 
     that.test_explain()   //试卷概要
     that.setmark()   //试卷状态初始化
     that.test_id()     //获取试题ID列表
     that.ques_info()      //试卷基本信息
+    that.judge_share()   //分享判断
+      console.log("非分享打开")
+    }
+
+
+    
   },
+
+
+  
 
   
 
@@ -481,9 +507,15 @@ Page({
     var type = e.currentTarget.dataset.type
     console.log(type)
     if(type == 1){
-      wx.navigateBack({
-        delta: 1  // 返回上一级页面。
-      })
+      if(that.data.isshare == 1){
+        wx.redirectTo({
+          url: '../../pages/index/index?gid=' + that.data.gid,
+        })
+      }else{
+        wx.navigateBack({
+          delta: 1  // 返回上一级页面。
+        })
+      }
     }else if(type == 2){
       that.setData({
         back:false
@@ -565,9 +597,15 @@ Page({
   back:function(){
     let that = this
     if(!that.data.start_ans){
-      wx.navigateBack({
-        delta: 1  // 返回上一级页面。
-      })
+      if(that.data.isshare == 1){
+        wx.redirectTo({
+          url: '../../pages/index/index?gid=' + that.data.gid,
+        })
+      }else{
+        wx.navigateBack({
+          delta: 1  // 返回上一级页面。
+        })
+      }
     }else{
       that.setData({
         back: true
@@ -599,6 +637,101 @@ Page({
 
   },
 
+  //分享判断
+  judge_share:function(){
+    let that = this
+  var params = {
+    "token": wx.getStorageSync("token"),
+    "url": "testpaper",
+    "id": that.data.id,
+  }
+  console.log(params, "分享判断参数")
+  app.ols.judge_share(params).then(d => {
+    console.log(d, "分享判断数据")
+    if (d.data.code == 0) {
+      console.log(d.data.data,"分享判断接口数据")
+        if(d.data.data.status == 1){
+          wx.redirectTo({
+            url: '../../pages/index/index?kid=' + that.data.kid,
+          })
+        }else if(d.data.data.status == 2){
+          wx.redirectTo({
+            url: '../../pages/homework_report/homework_report?mid=' + d.data.data.mid
+          })
+        }else if(d.data.data.status == 0){
+          that.setData({
+            login:true
+          })
+          that.test_explain()   //试卷概要
+          that.setmark()   //试卷状态初始化
+          that.test_id()     //获取试题ID列表
+          that.ques_info()      //试卷基本信息
+        }
+      
+      
+      console.log("分享判断接口调取成功")
+    } else {
+      console.log("分享判断接口==============" + d.data.msg)
+    }
+  })
+  },
+
+  //获取微信绑定手机号登录
+  getPhoneNumber: function (e) {
+    var that = this
+    wx.login({
+      success: res => {
+        if (e.detail.errMsg == "getPhoneNumber:ok") {
+          wx.showLoading({
+            title: '登录中...',
+          })
+          wx.login({
+            success(res) {
+              console.log("cccs.code" + res.code)
+              let iv = encodeURIComponent(e.detail.iv);
+              let encryptedData = encodeURIComponent(e.detail.encryptedData);
+              let code = res.code
+              var params = {
+                "code": code,
+                "iv": iv,
+                "encryptedData": encryptedData,
+                "gid": that.data.gid
+              }
+              console.log(params, "登录参数")
+              app.ols.login(params).then(d => {
+                console.log(d, "登录接口")
+                if (d.data.code == 0) {
+                  console.log("登陆成功")
+                  wx.hideLoading()
+                 
+                  
+                  that.setData({
+                    login: true
+                  })
+                  wx.setStorageSync("login", true)
+                  wx.setStorageSync("token", d.data.data.token)
+                  // that.onShow()
+                  
+                } else {
+                  console.log(d, "登录失败")
+                  wx.showToast({
+                    title: "登陆失败",
+                    icon: 'none',
+                    duration: 2000
+                  })
+                  console.log(d.data.msg, "登录失败提示")
+
+
+                  wx.hideLoading()
+                }
+              })
+            }
+          })
+        }
+      }
+    })
+  },
+
   /**
    * 用户点击右上角分享
    */
@@ -606,7 +739,7 @@ Page({
     let that = this;
     return {
       title: '领军网校', // 转发后 所显示的title
-      path: '/pages/first_page/first_page', // 相对的路径
+      path: '/pages/cp_test/cp_test?isshare=1&id=' + that.data.id + '&gid=' + that.data.gid, // 相对的路径
       imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
       success: (res) => {    // 成功后要做的事情
         console.log("成功")
