@@ -11,8 +11,8 @@
   <view class="mask1" wx:if="{{isshare == 1 && login == false}}"></view>
   <view class="login_layout" wx:if="{{isshare == 1 && login == false}}">
   
-    <image class="login_del" src="../../images/del.png"></image>
-    <image class="unlogin" src="../../images/unlogin.png"></image>
+    <!-- <image class="login_del" src="../../images/del.png"></image> -->
+    <image class="unlogin" src="../../images/unlogin.png" style="margin-top:75rpx;"></image>
     <view class="login_tip">您当前尚未登录! </view>
     <view class="login_tip">请点击下方按钮登录</view>
     <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>

@@ -57,8 +57,8 @@
   width:283rpx;
   height:76rpx;
   background: transparent;
-  opacity:0.5;
-  background-color: rgb(161, 228, 240);
+  /* opacity:0.5;
+  background-color: rgb(161, 228, 240); */
 }
 .login_read::after {
   border: none;

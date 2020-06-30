@@ -54,7 +54,7 @@ Page({
     that.setmark()   //试卷状态初始化
     that.test_id()     //获取试题ID列表
     that.ques_info()      //试卷基本信息
-    that.judge_share()   //分享判断
+    // that.judge_share()   //分享判断
       console.log("非分享打开")
     }
 
@@ -508,7 +508,7 @@ Page({
     console.log(type)
     if(type == 1){
       if(that.data.isshare == 1){
-        wx.redirectTo({
+        wx.switchTab({
           url: '../../pages/index/index?gid=' + that.data.gid,
         })
       }else{
@@ -598,7 +598,7 @@ Page({
     let that = this
     if(!that.data.start_ans){
       if(that.data.isshare == 1){
-        wx.redirectTo({
+        wx.switchTab({
           url: '../../pages/index/index?gid=' + that.data.gid,
         })
       }else{
@@ -650,13 +650,9 @@ Page({
     console.log(d, "分享判断数据")
     if (d.data.code == 0) {
       console.log(d.data.data,"分享判断接口数据")
-        if(d.data.data.status == 1){
+         if(d.data.data.status == 2){
           wx.redirectTo({
-            url: '../../pages/index/index?kid=' + that.data.kid,
-          })
-        }else if(d.data.data.status == 2){
-          wx.redirectTo({
-            url: '../../pages/homework_report/homework_report?mid=' + d.data.data.mid
+            url: '../../pages/cp_report/cp_report?mid=' + d.data.data.mid
           })
         }else if(d.data.data.status == 0){
           that.setData({
@@ -703,21 +699,20 @@ Page({
                 if (d.data.code == 0) {
                   console.log("登陆成功")
                   wx.hideLoading()
-                 
-                  
+
                   that.setData({
                     login: true
                   })
                   wx.setStorageSync("login", true)
                   wx.setStorageSync("token", d.data.data.token)
                   // that.onShow()
-                  
+                  that.judge_share()
                 } else {
                   console.log(d, "登录失败")
                   wx.showToast({
-                    title: "登陆失败",
+                    title: d.data.msg,
                     icon: 'none',
-                    duration: 2000
+                    duration: 3000
                   })
                   console.log(d.data.msg, "登录失败提示")
 
@@ -739,7 +734,7 @@ Page({
     let that = this;
     return {
       title: '领军网校', // 转发后 所显示的title
-      path: '/pages/cp_test/cp_test?isshare=1&id=' + that.data.id + '&gid=' + that.data.gid, // 相对的路径
+      path: '/pages/cp_test/cp_test?isshare=1&id=' + that.data.id + '&gid=' + wx.getStorageSync("gid"), // 相对的路径
       imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
       success: (res) => {    // 成功后要做的事情
         console.log("成功")

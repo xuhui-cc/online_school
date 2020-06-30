@@ -80,8 +80,8 @@ transform: rotate(45deg);
   width:690rpx;
   height:160rpx;
   background: transparent;
-  background-color: rgba(58,58,58,1);
-  opacity:0.5;
+  /* background-color: rgba(58,58,58,1);
+  opacity:0.5; */
 }
 .login_read::after {
   border: none;

@@ -14,6 +14,12 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    that.get_courselist()
+  },
+
+  //获取课程列表
+  get_courselist:function(){
+    let that = this
     var params = {
       "token": wx.getStorageSync("token"),
     }
@@ -62,7 +68,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    that.get_courselist()
   },
 
   /**
