@@ -107,7 +107,7 @@ Page({
       app.ols.grade_update(params).then(d => {
         console.log(d)
 
-        if (d.data.code == 200) {
+        if (d.data.code == 0) {
           that.test_list()
           wx.setStorageSync("gid", that.data.grade[that.data.grade_index].id)
           that.setData({
@@ -158,6 +158,10 @@ Page({
         that.test_list()  //获取测评列表
 
       } else {
+        that.setData({
+          subject: "",
+          test_list:""
+        })
         console.log(d.data.msg, "获取学科失败")
       }
     })

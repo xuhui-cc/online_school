@@ -58,7 +58,7 @@
           <view wx:elif="{{item.mt == 1}}" class="study_rate" >未开课</view>
           <view wx:else="{{item.mt == 0}}" class="study_rate" >直播已删除</view>
           <image class="xu" src="../../images/xu.png" ></image>
-          <view class="flex" bindtap="to_course_file" data-xb="{{index}}" wx:if="{{item.annex_num > 0}}">
+          <view class="flex" bindtap="{{click_file?'':'to_course_file'}}"  data-xb="{{index}}" wx:if="{{item.annex_num > 0 }}">
             <image class="file-img1" src="../../images/file1.png"></image>
             <view class="file" style="color:rgba(32,32,32,1);">讲义资料</view>
             <view class="file_num">查看</view>
@@ -107,7 +107,7 @@
           <view wx:elif="{{item.percent < 100 && item.percent > 0}}" class="study_rate" >已学习{{item.percent}}%</view>
           <view wx:else="{{item.percent == 100}}" class="study_rate" style="color:#A4A4A4;">已学习{{item.percent}}%</view>
           <image class="xu" src="../../images/xu.png" ></image>
-          <view class="flex" bindtap="to_course_file" data-xb="{{index}}" wx:if="{{item.annex_num > 0}}">
+          <view class="flex" bindtap="{{click_file?'':'to_course_file'}}" data-xb="{{index}}" wx:if="{{item.annex_num > 0 }}">
             <image class="file-img1" src="../../images/file1.png"></image>
             <view class="file" style="color:rgba(32,32,32,1);">讲义资料</view>
             <view class="file_num">查看</view>

@@ -57,7 +57,7 @@
 }
 .layout{
   margin-left: 30rpx;
-  margin-top: 200rpx;
+  margin-top: 24rpx;
   padding-bottom: 50rpx;
   width:690rpx;
   /* height:1209rpx; */

@@ -7,10 +7,10 @@
   <image class="bg" src="../../images/bg2.png"></image>
 
    <!-- 标题栏 -->
-  <view class="nabigation_bar">
+  <!-- <view class="nabigation_bar">
     <image class="back" src="../../images/w_back.png" bindtap="back"></image>
     <view class="head">考试报告</view>
-  </view>
+  </view> -->
   <!-- 标题栏结束 -->
 
   <view class="layout">

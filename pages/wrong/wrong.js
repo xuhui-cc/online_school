@@ -80,19 +80,21 @@ Page({
     }
     app.ols.wrong_detail(params).then(d => {
       console.log(d)
+      var replace = '<img style="max-width:92%;height:auto;display:block"'
       if (d.data.code == 0) {
-        d.data.data.title = d.data.data.title.replace(/<img/gi, '<img style="max-width:95%;height:auto;display:block"')
+        d.data.data.title = d.data.data.title.replace(/<img/gi, replace)
+        d.data.data.note = d.data.data.note.replace(/<img/gi, replace)
         if (d.data.data.a != null){
-          d.data.data.a = d.data.data.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+          d.data.data.a = d.data.data.a.replace(/<img/gi, replace)
         }
         if (d.data.data.b != null) {
-          d.data.data.b = d.data.data.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+          d.data.data.b = d.data.data.b.replace(/<img/gi, replace)
         }
         if (d.data.data.c != null) {
-          d.data.data.c = d.data.data.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+          d.data.data.c = d.data.data.c.replace(/<img/gi, replace)
         }
         if (d.data.data.d != null) {
-          d.data.data.d = d.data.data.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+          d.data.data.d = d.data.data.d.replace(/<img/gi, replace)
         }
         
         that.setData({
@@ -298,19 +300,20 @@ Page({
       if (d.data.code == 0) {
         console.log(d.data.data)
         
+        var repalce = '<img style="max-width:92%;height:auto;display:block"'
+        d.data.data.title = d.data.data.title.replace(/<img/gi, repalce)
         
-        d.data.data.title = d.data.data.title.replace(/<img/gi, '<img style="max-width:95%;height:auto;display:block"')
         if (d.data.data.a != null) {
-          d.data.data.a = d.data.data.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+          d.data.data.a = d.data.data.a.replace(/<img/gi, repalce)
         }
         if (d.data.data.b != null) {
-          d.data.data.b = d.data.data.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+          d.data.data.b = d.data.data.b.replace(/<img/gi, repalce)
         }
         if (d.data.data.c != null) {
-          d.data.data.c = d.data.data.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+          d.data.data.c = d.data.data.c.replace(/<img/gi, repalce)
         }
         if (d.data.data.d != null) {
-          d.data.data.d = d.data.data.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+          d.data.data.d = d.data.data.d.replace(/<img/gi, repalce)
         }
         that.setData({
           question: d.data.data,
@@ -383,21 +386,21 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
 
-    let that = this;
-    return {
-      title: '领军网校', // 转发后 所显示的title
-      path: '/pages/first_page/first_page', // 相对的路径
-      imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
-      success: (res) => {    // 成功后要做的事情
-        console.log("成功")
+  //   let that = this;
+  //   return {
+  //     title: '领军网校', // 转发后 所显示的title
+  //     path: '/pages/first_page/first_page', // 相对的路径
+  //     imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
+  //     success: (res) => {    // 成功后要做的事情
+  //       console.log("成功")
 
-      },
-      fail: function (res) {
-        // 分享失败
-        console.log(res, "分享失败")
-      }
-    }
-  }
+  //     },
+  //     fail: function (res) {
+  //       // 分享失败
+  //       console.log(res, "分享失败")
+  //     }
+  //   }
+  // }
 })

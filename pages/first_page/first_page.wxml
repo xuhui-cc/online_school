@@ -25,7 +25,7 @@
         <view class="heng"></view>
       </view>
     </scroll-view>
-    <view class="yes">确定</view>
+    <!-- <view class="yes">确定</view> -->
   </view>
   
     

@@ -165,6 +165,9 @@ Page({
       current: image[0],
       urls: image
     })
+    that.setData({
+      click_file:false
+    })
   },
 
   //免费课领取
@@ -192,12 +195,18 @@ Page({
   //课程讲义跳转
   to_course_file:function(e){
     let that = this
+    that.setData({
+      click_file:true
+    })
     var xb = e.currentTarget.dataset.xb
     console.log(xb)
     var id = that.data.course_cata.lists[xb].id
     if (that.data.course_cata.lists[xb].annex_num > 1){
       wx.navigateTo({
         url: '../../pages/course_file/course_file?id=' + id,
+      })
+      that.setData({
+        click_file:false
       })
     }else{
       var params = {
@@ -273,10 +282,16 @@ Page({
                   filePath: filePath,
                   success: function (res) {
                     console.log('打开文档成功')
+                    that.setData({
+                      click_file:false
+                    })
                     wx.hideLoading()
                   },
                   fail: function (res) {
                     console.log("打开文档失败");
+                    that.setData({
+                      click_file:false
+                    })
                     console.log(res)
                     wx.hideLoading({
                       complete: (res) => {
@@ -296,6 +311,9 @@ Page({
               fail: function (res) {
                 console.log('文件下载失败')
                 console.log(res)
+                that.setData({
+                  click_file:false
+                })
                 wx.hideLoading({
                   complete: (res) => {
                     wx.showToast({

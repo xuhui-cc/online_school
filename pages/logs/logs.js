@@ -115,7 +115,7 @@ Page({
       app.ols.grade_update(params).then(d => {
         console.log(d)
 
-        if (d.data.code == 200) {
+        if (d.data.code == 0) {
 
           wx.setStorageSync('gid', that.data.grade[xb].id)
           that.getsubject()   //获取科目
