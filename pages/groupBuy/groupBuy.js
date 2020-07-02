@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    currentData: 0,
   },
 
   /**
@@ -13,6 +13,22 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+
+  //课程介绍、目录切换
+  checkCurrent: function (e) {
+    const that = this
+    if (that.data.currentData === e.target.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentData: e.target.dataset.current
+      })
+    }
+    if (e.target.dataset.current == 1){
+      //课程目录接口
+      // that.getcourse_cata()
+    }
   },
 
   /**
