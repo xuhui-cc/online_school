@@ -4,11 +4,8 @@
       <view class="group_num">2人团</view>
       <view class="course_name">高三数学三角函数专题课数专题课</view>  
     </view>
-
     <view class="course_intro1">这里是数学能力测评表详情介绍，这里是数学能力测评表详情介绍这里是数学能力测评表详情介绍。</view>
-  
     <view class="flex">
-
       <view class="for">
         <view class="flex" style="width:284rpx;margin-left:30rpx;margin-top:53rpx;margin-bottom:30rpx;">
           <view class="tea_layout">
@@ -21,24 +18,16 @@
         <view class="group_price">¥299.00</view>
         <view class="old_price">¥999</view>
       </view>
-    
     </view>
-
-    
-
-
   </view>
-
   <view class="margin_gray"></view>
 
   <view class="group_message">
-
     <view class="flex">
       <view class="group_tip">立即参加Ta人的已开团，可快速成团</view>
       <view class="group_rule">查看拼团规则</view>
       <image class="next" src="../../images/next.png"></image>
     </view>
-    
     <view class="for">
       <view class="flex" style="margin-top:56rpx;">
         <view class="flex">
@@ -93,12 +82,8 @@
         </view>
         <view class="join_group">立即参加</view>
       </view>
-    
-    
     </view>
-
     <view class="look_more">查看更多拼团</view>
-    
     
   </view>
   <view class="margin_gray"></view>
@@ -110,7 +95,6 @@
   <view class="heng1"></view>
 
   <view wx:if="{{currentData == 0}}" class="course_intro">
-    <!-- <image class="course_intro_img" src="../../images/intro.png" mode="widthFix"></image> -->
     <rich-text nodes="{{course_info.content}}"></rich-text>
   </view>
 
@@ -130,8 +114,6 @@
             <view class="study">看直播</view>
           </view>
           <view wx:elif="{{item.mt ==4}}" class="study_button" data-xb="{{index}}" bindtap="to_video">看回放</view>
-          <!-- <view wx:elif="{{item.mt == 3}}" class="study_button1" >暂无回放</view> -->
-          <!-- <view wx:else="{{item.mt == 1}}" class="study_button1" >未开始</view> -->
           </view>
           
         </view>
