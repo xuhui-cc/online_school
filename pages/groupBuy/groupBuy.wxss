@@ -544,4 +544,117 @@
   color:rgba(255,255,255,1);
   opacity:1;
 }
+.mask{
+  position: fixed;
+  width:750rpx;
+  height:1624rpx;
+  background:rgba(0,0,0,1);
+  opacity:0.54;
+  z-index: 15;
+}
+.all_group{
+  position: fixed;
+  margin-top: 250rpx;
+  margin-left: 30rpx;
+  width:690rpx;
+  height:877rpx;
+  background:rgba(255,255,255,1);
+  opacity:1;
+  border-radius:5rpx;
+  z-index: 16;
+}
+.mask_del{
+  margin-top: 10rpx;
+  margin-left:600rpx;
+  width:62rpx;
+  height:62rpx;
+}
+.head{
+  margin-top: -30rpx;
+  width:690rpx;
+  height:50rpx;
+  font-size:36rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:50rpx;
+  text-align: center;
+  color:rgba(17,17,17,1);
+  opacity:1;
+}
+.for_layout{
+  margin-top: 30rpx;
+  width:690rpx;
+  height:720rpx;
+}
+.rule_layout{
+  margin-left: 66rpx;
+  margin-top: 200rpx;
+  position: fixed;
+  width:619rpx;
+  height:1004rpx;
+  background:rgba(255,255,255,1);
+  opacity:1;
+  border-radius:5rpx;
+  z-index: 16;
+}
+.head_img{
+  margin-left: 147rpx;
+  width:325rpx;
+  height:43rpx;
+}
+.laber{
+  margin-left: 42rpx;
+  margin-top: 40rpx;
+  width:73rpx;
+  height:36rpx;
+  font-size:25rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:36rpx;
+  text-align: center;
+  color:rgba(255,71,28,1);
+  background:rgba(255, 71, 28, 0.14);
+  border-radius:0rpx 100rpx 100rpx 100rpx;
+}
+.content{
+  margin-left: 41rpx;
+  margin-top: 20rpx;
+  width:552rpx;
+  /* height:33px; */
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:33rpx;
+  color:rgba(52,52,52,1);
+  opacity:1;
+}
+.iknow{
+  margin-left: 43rpx;
+  margin-top: 85rpx;
+  width:533rpx;
+  height:75rpx;
+  
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:75rpx;
+  text-align: center;
+  color:rgba(255,255,255,1);
+
+  background:linear-gradient(124deg,rgba(255,71,28,1) 0%,rgba(255,192,143,1) 100%);
+
+  border-radius:38rpx;
+}
+.iknow_tip{
+  margin-left: 60rpx;
+  margin-top: 20rpx;
+  width:550rpx;
+  height:30rpx;
+  font-size:22rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:35rpx;
+  color:rgba(170,170,170,1);
+  opacity:1;
+}
 

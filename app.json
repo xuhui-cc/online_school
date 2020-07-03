@@ -28,6 +28,7 @@
     "pages/cs/cs",
     "pages/file_scan/file_scan",
     "pages/groupBuy/groupBuy",
+    "pages/groupPay/groupPay",
     "pages/analysis/analysis"
   ],
   "window": {

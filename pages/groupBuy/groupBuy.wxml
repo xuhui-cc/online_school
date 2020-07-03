@@ -228,6 +228,74 @@
   
 
 
+  <!-- 全部拼团蒙层 -->
+  <view class="mask" hidden="true"></view>
+  <view class="all_group" hidden="true">
+    <image class="mask_del" src="../../images/del.png"></image>
+    <view class="head">全部拼团</view>
+    <scroll-view class="for_layout" scroll-y="true">
+      <view class="for">
+        <view class="flex" style="margin-bottom:56rpx;">
+          <view class="flex">
+            <image class="ava1" src="../../images/group_ava.png"></image>
+            <image class="ava1" style="margin-left: 80rpx;z-index: 9;" src="../../images/group_ava.png"></image>
+          </view>
+          <view style="width:285rpx;margin-left: 180rpx;">
+            <view class="flex">
+              <view class="sponsor">滴滴答*** </view>
+              <view class="group_num1">发起的6人团</view>
+            </view>
+            <view class="flex">
+              <view class="lack_num">还差<text style="color:rgba(255,75,32,1);">3人 </text></view>
+              <view class="lack_num" style="margin-left: 10rpx;"> 距结束<text style="color:rgba(255,75,32,1);">00:06:23</text></view>
+            </view>
+          </view>
+          <view class="join_group" style="margin-left:60rpx;">立即参加</view>
+        </view>
+
+        <view class="flex" style="margin-bottom:56rpx;">
+          <view class="flex">
+            <image class="ava1" src="../../images/group_ava.png"></image>
+            <image class="ava1" style="margin-left: 80rpx;z-index: 9;" src="../../images/group_ava.png"></image>
+          </view>
+          <view style="width:285rpx;margin-left: 180rpx;">
+            <view class="flex">
+              <view class="sponsor">滴滴答*** </view>
+              <view class="group_num1">发起的6人团</view>
+            </view>
+            <view class="flex">
+              <view class="lack_num">还差<text style="color:rgba(255,75,32,1);">3人 </text></view>
+              <view class="lack_num" style="margin-left: 10rpx;"> 距结束<text style="color:rgba(255,75,32,1);">00:06:23</text></view>
+            </view>
+          </view>
+          <view class="join_group" style="margin-left:60rpx;">立即参加</view>
+        </view>                     
+        
+      </view>
+    </scroll-view>
+  </view>
+  
+
+  <!-- 拼团规则蒙层 -->
+  <view class="mask" hidden="true"></view>
+  <view class="rule_layout" hidden="true">
+    <image class="mask_del" style="margin-left:550rpx;" src="../../images/del.png"></image>
+    <image class="head_img" src="../../images/rule_head.png"></image>
+    <view class="laber">开团</view>
+    <view class="content">团长发起拼团，购买商品完成支付后，团即可开启；</view>
+    <view class="laber" style="width:224rpx;">如何邀请好友参团</view>
+    <view class="content">团长开团后可以将团链接分享给好友，好友也购买该商品即为参团。</view>
+    <view class="laber" style="width:123rpx;">拼团成功</view>
+    <view class="content">开团24小时内到达规定的成团人数，即拼团成功。</view>
+    <view class="laber" style="width:189rpx;">拼团结束/失败</view>
+    <view class="content">开团24小时内未达到成团人数，即拼团失败，系统自动退款；</view>
+    <view class="iknow">我知道了</view>
+    <view class="iknow_tip">您可以在<text style="color:#FF4B20;">"我的"—"我的订单"</text> ,实时查看拼团进度。</view>
+  
+  
+  
+  </view>
+
 
 
 

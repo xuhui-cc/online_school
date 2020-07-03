@@ -170,6 +170,13 @@
 					"pathName": "pages/groupBuy/groupBuy",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "groupPay",
+					"pathName": "pages/groupPay/groupPay",
+					"query": "",
+					"scene": null
 				}
 			]
 		}
