@@ -29,6 +29,9 @@
     "pages/file_scan/file_scan",
     "pages/groupBuy/groupBuy",
     "pages/groupPay/groupPay",
+    "pages/group_detail/group_detail",
+    "pages/group_share/group_share",
+    "pages/open_course/open_course",
     "pages/analysis/analysis"
   ],
   "window": {

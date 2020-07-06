@@ -1,0 +1,80 @@
+<view class="container">
+  <image class="fm" src="../../images/fm.png"></image>
+  <view class="flex">
+    <view class="group_num">2人团</view>
+    <view class="course_name">高三数学三角函数专题课数专题课</view>  
+  </view>
+  <view class="flex">
+    <view>
+      <view class="flex">
+        <view class="group_price">拼团价：¥299.00</view>
+        <view class="old_price">¥999</view>
+      </view>
+      <view class="num">已有3632人参与此团</view>
+    </view>
+    <view class="couse_detail">查看课程详情</view>
+  </view>
+
+  <view class="xu"></view>
+
+  <view class="people_layout">
+    <view class="people">
+      <image class="ava" src="../../images/group_ava.png"></image>
+      <view class="laber">团长</view>
+      <view class="people_nick">滴滴答*** </view>
+    </view>
+    <view class="people">
+      <image class="ava" src="../../images/group_ava.png"></image>
+      <view class="laber">团长</view>
+      <view class="people_nick">滴滴答*** </view>
+    </view>
+    <view class="people">
+      <image class="ava" src="../../images/group_ava.png"></image>
+      <view class="laber">团长</view>
+      <view class="people_nick">滴滴答*** </view>
+    </view>
+  
+  </view>
+
+  <view class="lack_num">还差<text style="color:#FF4B20;">1人</text>拼团成功</view>
+  <view class="flex">
+    <view class="time_tip">距结束仅剩</view>
+    <view class="kuang"></view>
+    <view class="mao">:</view>
+    <view class="kuang"></view>
+    <view class="mao">:</view>
+    <view class="kuang"></view>
+  </view>
+
+  <view class="join_btn">立即参团</view>
+  <view class="xu"></view>
+  <view class="group_tip"><text style="color:rgba(10,10,10,1);">邀请好友</text> - 人满拼团成功 - 人不满自动退款</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- container -->
+</view>

@@ -1,0 +1,209 @@
+/* pages/group_share/group_share.wxss */
+.fm{
+  width: 750rpx;
+  height: 434rpx;
+}
+.flex{
+  display: flex;
+}
+.group_num{
+  margin-left: 30rpx;
+  margin-top: 38rpx;
+  margin-right: 9rpx;
+  width:73rpx;
+  height:37rpx;
+  font-size:22rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:37rpx;
+  text-align: center;
+  color:rgba(255,255,255,1);
+  background:linear-gradient(133deg,rgba(255,71,28,1) 0%,rgba(255,192,143,1) 100%);
+  opacity:1;
+  border-radius:7rpx;
+}
+.course_name{
+  margin-top: 31rpx;
+  width:540rpx;
+  height:50rpx;
+  font-size:36rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:50rpx;
+  color:rgba(39,39,39,1);
+  
+}
+.group_price{
+  margin-left: 30rpx;
+  margin-top: 40rpx;
+  width:300rpx;
+  height:49rpx;
+  font-size:35rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:49rpx;
+  color:rgba(255,75,32,1);
+  opacity:1;
+}
+.old_price{
+  margin-top: 47rpx;
+  width:73rpx;
+  height:37rpx;
+  font-size:26rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:39rpx;
+  color:rgba(153,153,153,1);
+  opacity:1;
+}
+.num{
+  margin-left: 30rpx;
+  margin-top: 10rpx;
+  width:244rpx;
+  height:37rpx;
+  font-size:26rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:37rpx;
+  color:rgba(153,153,153,1);
+  opacity:1;
+}
+.couse_detail{
+  margin-left: 103rpx;
+  margin-top: 45rpx;
+  width:199rpx;
+  height:66rpx;
+  font-size:25rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:66rpx;
+  text-align: center;
+  color:rgba(255,75,32,1);
+  border:2rpx solid rgba(255,75,32,1);
+  opacity:1;
+  border-radius:33rpx;
+}
+.xu{
+  margin-left: 30rpx;
+  margin-top: 31rpx;
+  border:1rpx dashed rgba(204,204,204,1); 
+  width: 690rpx;
+  height:1rpx;
+}
+.people_layout{
+  display: flex;
+  margin-left: 40rpx;
+  margin-top: 49rpx;
+  width: 670rpx;
+  text-align: center;
+}
+.people{
+  width: 116rpx;
+  text-align: center;
+  margin: 0 auto
+}
+.ava{
+  width: 100rpx;
+  height:100rpx;
+  margin: 0 auto
+}
+.laber{
+  position: absolute;
+  margin-left: 22rpx;
+  margin-top: -30rpx;
+  width:73rpx;
+  height:34rpx;
+  font-size:21rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:34rpx;
+  color:rgba(255,255,255,1);
+  background:rgba(255,75,32,1);
+  border-radius: 20rpx;
+  
+}
+.people_nick{
+  margin-top: 21rpx;
+  width:116rpx;
+  height:33rpx;
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:33rpx;
+  text-align: center;
+  color:rgba(255,75,32,1);
+  opacity:1;
+}
+.lack_num{
+  margin-left: 237rpx;
+  margin-top: 74rpx;
+  width:274rpx;
+  height:50rpx;
+  font-size:36rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:50rpx;
+  color:rgba(10,10,10,1);
+  opacity:1;
+}
+.time_tip{
+  margin-left: 228rpx;
+  margin-top: 20rpx;
+  width:143rpx;
+  height:36rpx;
+  font-size:25rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:36rpx;
+  color:rgba(136,136,136,1);
+  opacity:1;
+}
+.kuang{
+  margin-top: 17rpx;
+  width:44rpx;
+  height:41rpx;
+  background:linear-gradient(180deg,rgba(255,71,28,1) 0%,rgba(255,192,143,1) 100%);
+  opacity:1;
+  border-radius:4rpx;
+}
+.mao{
+  margin-left: 5rpx;
+  margin-right: 5rpx;
+  margin-top: 15rpx;
+  width:5rpx;
+  height:28rpx;
+  font-size:20rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:37rpx;
+  color:rgba(230,85,87,1);
+  opacity:1;
+}
+.join_btn{
+  margin-left: 160rpx;
+  margin-top: 61rpx;
+  margin-bottom: 50rpx;
+  width:430rpx;
+  height:90rpx;
+  font-size:32rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:90rpx;
+  text-align: center;
+  color:rgba(255,255,255,1);
+  background:linear-gradient(129deg,rgba(255,71,28,1) 0%,rgba(255,192,143,1) 100%);
+  box-shadow:0rpx 3rpx 10rpx rgba(255,77,33,0.51);
+  border-radius: 50rpx;
+}
+.group_tip{
+  margin-top: 30rpx;
+  width:750rpx;
+  height:37rpx;
+  font-size:26rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:37rpx;
+  text-align: center;
+  color:rgba(162,162,162,1);
+  opacity:1;
+}

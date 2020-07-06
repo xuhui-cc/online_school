@@ -177,6 +177,26 @@
 					"pathName": "pages/groupPay/groupPay",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "group_detail",
+					"pathName": "pages/group_detail/group_detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "group_share",
+					"pathName": "pages/group_share/group_share",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "open_course",
+					"pathName": "pages/open_course/open_course",
+					"scene": null
 				}
 			]
 		}

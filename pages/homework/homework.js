@@ -79,6 +79,10 @@ Page({
         console.log(d.data.data)
         var replace_img = '<img style="max-width:90%;height:auto;display:block"'
         d.data.data.title = d.data.data.title.replace(/<img/gi, replace_img)
+        d.data.data.title = d.data.data.title.replace(/< </gi, "&lt; <")
+        d.data.data.title = d.data.data.title.replace(/> >/gi, "&gt; >")
+        d.data.data.title = d.data.data.title.replace(/<</gi, "&lt; <")
+        d.data.data.title = d.data.data.title.replace(/>>/gi, "&gt; >")
         if (d.data.data.a != null) {
           d.data.data.a = d.data.data.a.replace(/<img/gi, replace_img)
         }
