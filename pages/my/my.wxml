@@ -2,14 +2,14 @@
 <view class="container">
 <!-- 头像 -->
   <view class="userinfo">
-       <view class="userinfo-avatar" >
-         <image wx:if="{{!login}}" src="../../images/my_head.png"></image>
-         <open-data wx:else="" type="userAvatarUrl"></open-data> 
-       </view>
-       <view class="userinfo-nickname">
-         <view wx:if="{{!login}}">请登录</view>
-         <open-data wx:else="" type="userNickName"></open-data>
-       </view>
+      <image wx:if="{{!login}}" class="ava" src="../../images/my_head.png"></image>
+      <view class="userinfo-avatar" wx:else="">
+        <open-data  type="userAvatarUrl"></open-data> 
+      </view>
+      <view class="userinfo-nickname">
+        <view wx:if="{{!login}}">请登录</view>
+        <open-data wx:else="" type="userNickName"></open-data>
+      </view>
   </view>
   <!-- 课程 -->
   <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>

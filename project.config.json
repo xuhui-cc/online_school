@@ -196,6 +196,13 @@
 					"id": -1,
 					"name": "open_course",
 					"pathName": "pages/open_course/open_course",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "open_detail",
+					"pathName": "pages/open_detail/open_detail",
 					"scene": null
 				}
 			]

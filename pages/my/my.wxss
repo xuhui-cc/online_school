@@ -16,7 +16,12 @@ page{
   width: 105rpx;
   height: 105rpx;
   border-radius: 50%;
- overflow:hidden;
+  overflow:hidden;
+}
+.ava{
+  width: 105rpx;
+  height: 105rpx;
+  border-radius: 50%;
 }
 
 .userinfo-nickname {
