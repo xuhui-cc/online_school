@@ -37,7 +37,7 @@
     <view wx:for="{{subject}}" wx:key="index" class="tab-item {{current_subject==index?'active':''}}" data-current="{{index}}"  bindtap="swichNav_subject">{{item.title}}</view> 
   </scroll-view> 
 
-  <view class="flex" wx:if="{{special && special != ''}}">
+  <view class="flex" wx:if="{{special && special != ''}}" style="margin-bottom:20rpx;">
     <view class="zt">专题：</view>
     <scroll-view  scroll-x="true" class="tab-h1" >
       <view wx:for="{{special}}" wx:key="index" class="tab-item1 {{current_special==index?'active':''}}"  bindtap="swichNav_special" data-current="{{index}}">{{item.title}}</view> 
@@ -46,7 +46,34 @@
 
   <view style="margin-bottom:100rpx;">
     <view wx:for="{{course.lists}}" wx:key="index">
+
       <view class="course_layout" bindtap="to_course_detail" data-xb="{{index}}">
+        <image class="laber" wx:if="{{item.is_buy == 1 && login}}" src="../../images/isbuy.png"></image>
+        <image class="laber" wx:if="{{item.is_buy == 0 && item.is_group == 1}}" src="../../images/group_laber.png"></image>
+        <image class="laber" wx:if="{{!login && item.is_group == 1}}" src="../../images/group_laber.png"></image>
+        <view class="flex">
+          <image class="course_fm" src="{{item.face}}"></image>
+          <view style="margin-left:23rpx;">
+            <view class="course_title">{{item.title}}</view>
+            <view class="flex">
+              <view class="course_text">{{item.order_num}}人购买</view>
+              <view class="margin_shu"></view>
+              <view class="course_num">{{item.class_hour}}课时</view>
+            </view>
+            <view class="flex" wx:if="{{item.is_group == 1}}">
+              <image class="group_laber1" src="../../images/group_laber1.png"></image>
+              <view class="course_price"><text style="font-size:26rpx;font-weight:400;"> ¥ </text>{{item.pt_price}}</view>
+              <view class="old_price">¥{{item.price}}</view>
+            </view>
+            <view wx:if="{{item.is_group == 0}}" class="course_price" style="color:rgba(3,182,131,1);"><text style="font-size:26rpx;font-weight:400;"> ¥ </text>{{item.price}}</view>
+
+          </view>
+        </view>
+      </view>
+      <view class="margin_heng"></view>
+
+      <!-- 原样式 -->
+      <!-- <view class="course_layout" bindtap="to_course_detail" data-xb="{{index}}">
         <image wx:if="{{item.is_buy == 1 && login}}" class="isbuy" src="../../images/is_buy.png"></image>
         <view class="course_title">{{item.title}}</view>
         <view class="course_intor">{{item.intro}}</view>
@@ -64,10 +91,6 @@
             </view>
           
           </view>
-          
-          
-          <!-- <image class="avatar" src="{{item.teacher[0].avatar}}"></image>
-          <view class="tea_name">{{item.teacher[0].nick}}</view> -->
           <view class="course_text"><text style="color:#03B683;">{{item.order_num}}人</text>购买</view>
           <view class="num_layout">
             <view class="course_num">{{item.class_hour}}课时</view>
@@ -77,7 +100,9 @@
             <view style="font-weight:bold;font-size:42rpx;">{{item.price}}</view>
           </view>
         </view>
-      </view>
+      </view> -->
+      <!-- 原样式 -->
+
     </view>
   </view>
 

@@ -91,9 +91,16 @@ Page({
     let that = this
     var xb = e.currentTarget.dataset.xb
     console.log(xb)
-    wx.navigateTo({
-      url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
-    })
+    if(that.data.course.lists[xb].is_group == 0){
+      wx.navigateTo({
+        url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
+      })
+    }else{
+      wx.navigateTo({
+        url: '../../pages/groupBuy/groupBuy?kid=' + that.data.course.lists[xb].kid,
+      })
+    }
+    
   },
 
   //年级切换
@@ -174,7 +181,8 @@ Page({
         "page": 1
       }
       console.log(params, "params获取课程已登录")
-      app.ols.grade_course1(params).then(d => {
+      app.ols.grade_course3(params).then(d => {
+      // app.ols.grade_course1(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
           console.log(d.data.data)
@@ -198,7 +206,8 @@ Page({
         "page": 1
       }
       console.log(params, "params获取课程未登录")
-      app.ols.grade_course2(params).then(d => {
+      app.ols.grade_course3(params).then(d => {
+      // app.ols.grade_course2(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
           console.log(d.data.data)
@@ -264,7 +273,8 @@ Page({
         "num": 30,
         "page": 1
       }
-      app.ols.grade_course1(params).then(d => {
+      app.ols.grade_course3(params).then(d => {
+      // app.ols.grade_course1(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
           console.log(d.data.data)
@@ -288,7 +298,8 @@ Page({
         "num": 30,
         "page": 1
       }
-      app.ols.grade_course2(params).then(d => {
+      app.ols.grade_course3(params).then(d => {
+      // app.ols.grade_course2(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
           console.log(d.data.data)

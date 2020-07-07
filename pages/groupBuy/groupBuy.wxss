@@ -1,3 +1,18 @@
+.login_read{
+  position: absolute;
+  /* margin-left: 330rpx; */
+  margin-top: 15rpx;
+  width:187rpx;
+  height:75rpx;
+  background: transparent;
+  background-color: rgba(58,58,58,1);
+  opacity:0.5;
+  z-index: 20;
+
+}
+.login_read::after {
+  border: none;
+}
 .intro_layout{
   width:750rpx;
   /* height:343rpx; */
@@ -69,7 +84,7 @@
 }
 .group_price{
   position: absolute;
-  right: 90rpx;
+  right: 40rpx;
   margin-top:58rpx;
   width:138rpx;
   height:59rpx;
@@ -77,8 +92,15 @@
   font-family:PingFang SC;
   font-weight:bold;
   line-height:59rpx;
-  color:rgba(3,182,131,1);
+  color:rgba(255,75,32,1);
   opacity:1;
+}
+.group_laber{
+  position: absolute;
+  margin-left: 170rpx;
+  margin-top: 71rpx;
+  width:83rpx;
+  height:33rpx;
 }
 .old_price{
   position: absolute;
@@ -239,7 +261,7 @@
 }
 .course_intro{
   margin-top: 25rpx;
-  margin-bottom: 150rpx;
+  margin-bottom: 200rpx;
 }
 .course_order{
   margin-left: 30rpx;
@@ -478,6 +500,7 @@
   width:750rpx;
   height:120rpx;
   z-index: 10;
+  background:rgba(255,255,255,1);
 }
 .group_btn_layout{
   position: fixed;
