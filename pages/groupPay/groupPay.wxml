@@ -43,18 +43,22 @@
         </view>
           
       </view>
-      
-      <view class="course_price">
-        <view style="margin-right:8rpx;margin-top:5rpx;">¥</view>
-        <view style="font-weight:bold;font-size:42rpx;">{{course_info.price}}</view>
+      <image class="laber" src="../../images/group_laber1.png"></image>
+      <view style="margin-left: 10rpx;">
+        <view class="course_price">
+          <view style="margin-right:8rpx;margin-top:5rpx;">¥</view>
+          <view style="font-weight:bold;font-size:42rpx;">{{course_info.pt_price}}</view>
+        </view>
+        <view class="old_price">¥{{course_info.price}}</view>
       </view>
+      
     </view>
   </view>
 
   <view class="price_layout">
     <view class="total">合计：</view>
     <view class="yuan">¥</view>
-    <view class="price">{{course_info.price}}</view>
+    <view class="price">{{course_info.pt_price}}</view>
     <button class="login_read"  open-type="getUserInfo" bindgetuserinfo="getuserinfo" wx:if="{{!nick}}"></button>
     <view class="buy_button" bindtap="buy">确认支付</view>
   

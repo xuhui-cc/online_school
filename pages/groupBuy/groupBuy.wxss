@@ -676,7 +676,7 @@
 }
 .time_tip{
   position: fixed;
-  margin-left: 457rpx;
+  margin-left: 370rpx;
   bottom: 143rpx;
   width:75rpx;
   height:36rpx;
@@ -689,11 +689,11 @@
 }
 .countDown{
   position: fixed;
-  margin-left: 555rpx;
+  margin-left: 480rpx;
   bottom: 143rpx;
   /* width:30rpx; */
   height:36rpx;
-  font-size:25rpx;
+  font-size:26rpx;
   font-family:PingFang SC;
   font-weight:bold;
   line-height:36rpx;

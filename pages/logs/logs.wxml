@@ -1,12 +1,8 @@
 <view class="container">
   <!-- 标题栏 -->
   <view class="nabigation_bar">
-    <!-- <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}"> -->
       <view class="grade_content" bindtap="grade_select">{{grade[grade_index].title}}</view>
-    <!-- </picker> -->
-    <!-- <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}"> -->
       <image class="grade_img" src="../../images/xsj.png" bindtap="grade_select"></image>
-    <!-- </picker> -->
     <view class="head">课程</view>
   </view>
   <!-- 标题栏结束 -->
@@ -33,9 +29,12 @@
   <!-- </picker> -->
 
 
+
   <scroll-view  scroll-x="true" class="tab-h" >
     <view wx:for="{{subject}}" wx:key="index" class="tab-item {{current_subject==index?'active':''}}" data-current="{{index}}"  bindtap="swichNav_subject">{{item.title}}</view> 
   </scroll-view> 
+
+
 
   <view class="flex" wx:if="{{special && special != ''}}" style="margin-bottom:20rpx;">
     <view class="zt">专题：</view>
@@ -44,7 +43,17 @@
     </scroll-view> 
   </view>
 
-  <view style="margin-bottom:100rpx;">
+  <view wx:if="{{current_subject == 0}}">
+    <swiper class="swiper_container" autoplay="true"  interval="2500" circular="true" indicator-dots="true" indicator-color="rgba(255,255,255,1)" indicator-active-color="rgba(12,205,163,1)">
+      <block wx:for="{{ad}}" wx:key='ad_index' >
+         <swiper-item>
+          <image  class="ad_img" src="../../images/ad.png" mode="widthFix" ></image>
+         </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <view style="margin-bottom:100rpx;" wx:if="{{current_subject > 0}}">
     <view wx:for="{{course.lists}}" wx:key="index">
 
       <view class="course_layout" bindtap="to_course_detail" data-xb="{{index}}">
@@ -103,11 +112,14 @@
       </view> -->
       <!-- 原样式 -->
 
+
     </view>
+
+    <image wx:if="{{course == '' }}" class="course_null" src="../../images/course_null.png"></image>
+    <text wx:if="{{course == ''  }}" class="course_nulltip">暂无课程</text>
   </view>
 
-  <image wx:if="{{course == ''}}" class="course_null" src="../../images/course_null.png"></image>
-  <text wx:if="{{course == ''}}" class="course_nulltip">暂无课程</text>
+  
   
 
 </view>

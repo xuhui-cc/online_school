@@ -49,14 +49,17 @@ Page({
       console.log(params, "课程详情接口参数")
       app.ols.course_info3(params).then(d => {
         that.handle_data1(d)   //课程详情数据处理
-        var timestamp = (Date.parse(new Date()))/1000
-        console.log(timestamp,"timestamp")
-        var cs_total_micro_second = d.data.data.endtime -  timestamp
-        console.log(cs_total_micro_second,"cs_total_micro_second")
-        that.setData({
-          total_micro_second: cs_total_micro_second
-        })
-      that.count_down(that);
+        if(d.data.data.pay_status <= 1 || d.data.data.pay_status >= 5){
+          var timestamp = (Date.parse(new Date()))/1000
+          console.log(timestamp,"timestamp")
+          var cs_total_micro_second = d.data.data.endtime -  timestamp
+          console.log(cs_total_micro_second,"cs_total_micro_second")
+          that.setData({
+            total_micro_second: cs_total_micro_second
+          })
+          that.count_down(that);
+        }
+        
       })
     
   },
@@ -201,6 +204,16 @@ Page({
       url: '../../pages/pay/pay?kid=' + that.data.kid,     //去支付
     })
   },
+
+    //去拼团
+    to_groupPay:function(e){
+      let that = this
+      // var kid = e.currentTarget.dataset.kid
+      // console.log(kid)
+      wx.navigateTo({
+        url: '../../pages/groupPay/groupPay?kid=' + that.data.kid,     //去支付
+      })
+    },
 
   //获取微信绑定手机号登录
   getPhoneNumber: function (e) {
@@ -399,6 +412,7 @@ Page({
 
  //时间格式整理
  dateformat: function (micro_second) {
+  var day = Math.floor(micro_second / (60 * 60 * 24)); 
   // 秒数
   var second = Math.floor(micro_second / 1000);
   // 小时位
@@ -407,7 +421,7 @@ Page({
   var min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
   // 秒位
   var sec = this.fill_zero_prefix((second - hr * 3600 - min * 60));// equal to => var sec = second % 60;
-  return hr + ":" + min + ":" + sec;
+  return day + " 天 " + hr + " : " + min + " : " + sec;
 },
 // dateformatforreport: function (micro_second) {
 //   // 秒数

@@ -45,7 +45,7 @@ Page({
       "token": wx.getStorageSync("token"),
       "kid": kid
     }
-    app.ols.course_info1(params).then(d => {
+    app.ols.course_info3(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
@@ -65,10 +65,11 @@ Page({
     
       var params = {
         "token": wx.getStorageSync("token"),
-        "kid": that.data.kid
+        "pid": that.data.course_info.pt_id,
+        "ptid": 0
       }
     console.log(params,"预支付接口")
-      app.ols.preorder(params).then(d => {
+      app.ols.group_preorder3(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
           var ob = JSON.parse(d.data.data.paystr)

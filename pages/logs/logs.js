@@ -1,8 +1,10 @@
 const app = getApp()
 Page({
   data: {
+    subject:[ {'id':-1, 'title': '推荐'}],
     current_special:-1,
     current_subject: 0,
+    ad:["1","1","1","1","1","1"]
   },
 
   onLoad: function (options) {
@@ -76,15 +78,23 @@ Page({
   swichNav_subject: function (e) {
     var that = this
     var cur = e.target.dataset.current;
+    if(cur == 0){
+      that.setData({
+        current_subject: cur,
+        current_special:-1,
+      })
+    }else{
+      that.setData({
+        current_subject: cur,
+        current_special:-1,
+        did: that.data.subject[cur].id
+      })
+  
+      that.getspecial()  //获取专题
+      that.getcourse()     //获取课程
+    }
 
-    that.setData({
-      current_subject: cur,
-      current_special:-1,
-      did: that.data.subject[cur].id
-    })
-
-    that.getspecial()  //获取专题
-    that.getcourse()     //获取课程
+    
   },
 
   to_course_detail:function(e){
@@ -110,7 +120,7 @@ Page({
     that.setData({
       grade_index: xb,
       gid: that.data.grade[xb].id,
-      current_subject: 0
+      current_subject: -1
     })
     if (wx.getStorageSync("login")) {
       
@@ -126,8 +136,8 @@ Page({
 
           wx.setStorageSync('gid', that.data.grade[xb].id)
           that.getsubject()   //获取科目
-          that.getcourse()    //获取课程
-          that.getspecial()      //获取专题
+          // that.getcourse()    //获取课程
+          // that.getspecial()      //获取专题
           that.setData({
             grade_select: false
           })
@@ -143,8 +153,8 @@ Page({
     }else{
       wx.setStorageSync('gid', that.data.grade[xb].id)
       that.getsubject()   //获取科目
-      that.getcourse()    //获取课程
-      that.getspecial()      //获取专题
+      // that.getcourse()    //获取课程
+      // that.getspecial()      //获取专题
       that.setData({
         grade_select: false
       })
@@ -240,21 +250,24 @@ Page({
         console.log(d.data.data)
         let arr2 = [];
         for (let i in d.data.data) {
-          arr2.push(d.data.data[i]);   //对象转换为数组
+          that.data.subject.push(d.data.data[i]);   //对象转换为数组
         }
-        console.log(arr2)
+        // console.log(arr2)
         that.setData({
-          subject: arr2
+          subject: that.data.subject
         })
-        that.setData({
-          did: that.data.subject[that.data.current_subject].id
-        })
-        that.getspecial()      //获取专题
-        if (that.data.current_special != -1) {
-          that.special_course()  //获取专题课程
-        }else{
-          that.getcourse()    //获取课程
+        if(that.data.current_subject > -1){
+          that.setData({
+            did: that.data.subject[that.data.current_subject].id
+          })
+          that.getspecial()      //获取专题
+          if (that.data.current_special != -1) {
+            that.special_course()  //获取专题课程
+          }else{
+            that.getcourse()    //获取课程
+          }
         }
+        
       } else {
         console.log(d.data.msg, "获取科目失败")
       }
@@ -397,7 +410,7 @@ Page({
     console.log(that.data.gid,"onshow")
    
     that.getsubject()   //获取学科
-    that.getcourse()    //获取课程
+    // that.getcourse()    //获取课程
     
   },
 
