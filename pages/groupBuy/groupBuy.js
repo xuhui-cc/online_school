@@ -7,6 +7,7 @@ Page({
    */
   data: {
     currentData: 0,
+    
   },
 
   /**
@@ -35,7 +36,29 @@ Page({
     }
 
     
-    that.course_detail()  //获取拼团课程详情
+    if (wx.getStorageSync("login")){
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "kid": that.data.kid
+      }
+    }else{
+        var params = {
+          "kid": that.data.kid
+        }
+      }
+      console.log(params, "课程详情接口参数")
+      app.ols.course_info3(params).then(d => {
+        that.handle_data1(d)   //课程详情数据处理
+        var timestamp = (Date.parse(new Date()))/1000
+        console.log(timestamp,"timestamp")
+        var cs_total_micro_second = d.data.data.endtime -  timestamp
+        console.log(cs_total_micro_second,"cs_total_micro_second")
+        that.setData({
+          total_micro_second: cs_total_micro_second
+        })
+      that.count_down(that);
+      })
+    
   },
 
   //登录判断
@@ -84,6 +107,7 @@ Page({
       console.log(params, "课程详情接口参数")
       app.ols.course_info3(params).then(d => {
         that.handle_data1(d)   //课程详情数据处理
+        
       })
     // }else{
       
@@ -150,6 +174,9 @@ Page({
       that.setData({
         course_info: d.data.data
       })
+
+      
+
       var cs = "course_info.content"
       that.setData({
         [cs]: that.data.course_info.content.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block"')
@@ -326,6 +353,77 @@ Page({
   })
 },
 
+  // cs:function(){
+  //   var cs_total_micro_second = 60000 * that.data.test_explain.timeline
+  //   that.setData({
+  //     total_micro_second: cs_total_micro_second
+  //   })
+  //   this.count_down(this);
+  // },
+
+  //小程序倒计时功能
+  count_down: function (that) {
+    that.setData({
+      clock: that.dateformat(that.data.total_micro_second),
+      cur_uni: that.data.total_micro_second
+    });
+    if (that.data.total_micro_second == 0) {
+      that.setData({
+        clock: "00:00:00"
+      });
+      wx.showToast({
+        title: '3秒后将自动交卷',
+        icon:"none",
+        duration:2950
+      })
+      setTimeout(function () {
+        that.update_cpsubmit()    //达到规定时间自动交卷
+       console.log("交卷")
+      }, 3000)
+      return;
+    }
+    var cs_t = setTimeout(function () {
+      var cs_total_micro_second = that.data.total_micro_second
+      cs_total_micro_second -= 1000;
+      that.setData({
+        total_micro_second: cs_total_micro_second
+      })
+      that.count_down(that)
+    }, 1000)
+    
+    that.setData({
+      t:cs_t
+    })
+    console.log(that.data.t)
+  },
+
+ //时间格式整理
+ dateformat: function (micro_second) {
+  // 秒数
+  var second = Math.floor(micro_second / 1000);
+  // 小时位
+  var hr = this.fill_zero_prefix(Math.floor(second / 3600));
+  // 分钟位
+  var min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
+  // 秒位
+  var sec = this.fill_zero_prefix((second - hr * 3600 - min * 60));// equal to => var sec = second % 60;
+  return hr + ":" + min + ":" + sec;
+},
+// dateformatforreport: function (micro_second) {
+//   // 秒数
+//   var second = Math.floor(micro_second / 1000);
+//   // 小时位
+//   var hr = this.fill_zero_prefix(Math.floor(second / 3600));
+//   // 分钟位
+//   var min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
+//   // 秒位
+//   var sec = this.fill_zero_prefix((second - hr * 3600 - min * 60));// equal to => var sec = second % 60;
+//   return hr + "时" + min + "分" + sec + "秒";
+// },
+//位数不足补零
+fill_zero_prefix: function (num) {
+  return num < 10 ? "0" + num : num
+},
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -338,7 +436,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    let that = this
+    // clearInterval(that.data.t)
   },
 
   /**

@@ -1,6 +1,5 @@
 .login_read{
   position: absolute;
-  /* margin-left: 330rpx; */
   margin-top: 15rpx;
   width:187rpx;
   height:75rpx;
@@ -8,14 +7,12 @@
   background-color: rgba(58,58,58,1);
   opacity:0.5;
   z-index: 20;
-
 }
 .login_read::after {
   border: none;
 }
 .intro_layout{
   width:750rpx;
-  /* height:343rpx; */
   background:rgba(255,255,255,1);
   opacity:1;
 }
@@ -177,7 +174,6 @@
   opacity:1;
 }
 .group_num1{
-  /* width:134px; */
   height:33rpx;
   font-size:24rpx;
   font-family:PingFang SC;
@@ -187,11 +183,9 @@
   opacity:1;
 }
 .lack_num{
-  /* width:86rpx; */
   height:33rpx;
   font-size:24rpx;
   font-family:PingFang SC;
-  /* font-weight:bold; */
   line-height:33rpx;
   color:rgba(158,158,158,1);
   opacity:1;
@@ -678,6 +672,32 @@
   font-weight:400;
   line-height:35rpx;
   color:rgba(170,170,170,1);
+  opacity:1;
+}
+.time_tip{
+  position: fixed;
+  margin-left: 457rpx;
+  bottom: 143rpx;
+  width:75rpx;
+  height:36rpx;
+  font-size:25rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:36rpx;
+  color:rgba(255,255,255,1);
+  z-index: 20;
+}
+.countDown{
+  position: fixed;
+  margin-left: 555rpx;
+  bottom: 143rpx;
+  /* width:30rpx; */
+  height:36rpx;
+  font-size:25rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:36rpx;
+  color:rgba(255,75,32,1);
   opacity:1;
 }
 

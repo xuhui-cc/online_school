@@ -1,3 +1,7 @@
-<!--pages/cs/cs.wxml-->
-<text>pages/cs/cs.wxml</text>
-<button open-type="share" style="width: 100rpx;height: 75rpx;background-color: rgba(58,58,58,1);"></button>
+ <view wx:for="{{wearList}}" wx:key="index">
+  <view class="course_layout" >
+    <view>{{item.difftime}}</view>
+  </view>
+ 
+ 
+ </view>

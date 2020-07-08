@@ -5,6 +5,7 @@
       <view class="course_name">{{course_info.title}}</view>  
     </view>
     <view class="course_intro1">{{course_info.intro}}</view>
+    <view>{{clock}}</view>
     <view class="flex">
       <view class="for" wx:for="{{course_info.teacher}}" wx:key="index">
         <view class="flex" style="width:284rpx;margin-left:30rpx;margin-top:53rpx;margin-bottom:30rpx;">
@@ -213,7 +214,14 @@
     
   </view>
 
+
+
+  
   <image class="group_btn_layout" src="../../images/group.png"></image>
+  <!-- <view class="countDown">{{clock}}</view> -->
+  <!-- <view class="countDown" style="margin-left: 619rpx;">{{min}}</view>
+  <view class="countDown" style="margin-left: 683rpx;">{{sec}}</view> -->
+  <view class="time_tip">距结束</view>
   <view class="btn_layout">
     
     <view>

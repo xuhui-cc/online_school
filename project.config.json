@@ -22,7 +22,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -203,6 +203,13 @@
 					"id": -1,
 					"name": "open_detail",
 					"pathName": "pages/open_detail/open_detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "cs",
+					"pathName": "pages/cs/cs",
 					"scene": null
 				}
 			]
