@@ -44,6 +44,7 @@
   </view>
 
   <view wx:if="{{current_subject == 0}}">
+    <!-- 广告条 -->
     <swiper class="swiper_container" autoplay="true"  interval="2500" circular="true" indicator-dots="true" indicator-color="rgba(255,255,255,1)" indicator-active-color="rgba(12,205,163,1)">
       <block wx:for="{{ad}}" wx:key='ad_index' >
          <swiper-item>
@@ -51,6 +52,68 @@
          </swiper-item>
       </block>
     </swiper>
+
+    <!-- 公开课 -->
+    <view style="margin-top:45rpx;margin-left:30rpx;" hidden="true">
+      <view class="flex">
+        <view class="head2">免费公开课</view>
+        <view class="more">查看更多</view>
+        <image class="next" src="../../images/next.png"></image>
+      </view>
+
+      <scroll-view  scroll-x="true" class="scroll_hotbook" enable-flex="true">
+        <view wx:for="{{ad}}" wx:key="hotbook_index" class='hotbook_project' >
+          <image class="open_fm" src="../../images/fm.png"></image>
+          <view class="open_title">618冲刺中考引爆高分备战终极指南</view>
+          <view class="flex">
+            <image class="open_clock" src="../../images/clock1.png"></image>
+            <view class="open_time">6月18日 20:00-21:00</view>
+          </view>
+          <view class="open_btn">立即报名</view>
+        </view> 
+      </scroll-view> 
+  
+    
+    </view>
+
+
+    <view class="head2" style="margin-top:45rpx;margin-left:30rpx;">热门课程限时抢</view>
+    <view class="hot_layout" >
+      <view wx:for="{{wearList}}" wx:key="hot_index">
+        <view class="hot_course">
+          <view class="flex">
+            <view >
+              <image class="hot_fm" src="{{item.face}}"></image>
+              <view class="time_tip">还剩</view>
+              <view class="hot_time">{{item.difftime}}</view>
+            </view>
+            <view>
+              <view class="hot_title">{{item.title}}</view>
+              <view class="flex">
+                <image class="hot_laber" src="../../images/group_laber1.png"></image>
+                <view class="hot_price"><text style="font-size:26rpx;">¥ </text> {{item.pt_price}}</view>
+                <view class="old_price" style="margin-top: 35rpx;">¥{{item.price}}</view>
+              </view>
+              <view class="flex">
+                <view class="join_num">3632人参与</view>
+                <view class="go_btn">
+                  <image class="lightning" src="../../images/lightning.png"></image>
+                  <view class="hot_to">去拼团</view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="margin_heng" style="width:630rpx;margin-top:30rpx;"></view>
+        </view>
+      </view>
+      
+    </view>
+
+
+  
+
+
+  <!-- 推荐页 -->
   </view>
 
   <view style="margin-bottom:100rpx;" wx:if="{{current_subject > 0}}">

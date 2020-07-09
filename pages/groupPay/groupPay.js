@@ -73,6 +73,9 @@ Page({
         console.log(d)
         if (d.data.code == 0) {
           var ob = JSON.parse(d.data.data.paystr)
+          that.setData({
+            orderid:d.data.data.orderid
+          })
           console.log(ob)
           var timeStamp = ob.timeStamp
           var nonceStr = ob.nonceStr
@@ -88,8 +91,32 @@ Page({
     
   },
 
+
+  group_del3:function(){
+    let that = this
+    console.log(that.data.have_adr)
+    
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "oid": that.data.orderid,
+      }
+    console.log(params,"删除接口")
+      app.ols.group_del3(params).then(d => {
+        console.log(d)
+        if (d.data.code == 0) {
+          
+          console.log("删除接口成功")
+        } else {
+          console.log("删除接口失败", d)
+        }
+      })
+    
+    
+  },
+
   //拉起微信支付
   laqizhifu: function (timeStamp, nonceStr, pack, paySign) {
+    let that = this
     wx.requestPayment({
       timeStamp: timeStamp,
       nonceStr: nonceStr,
@@ -107,11 +134,11 @@ Page({
         })
       },
       fail(res) {
-       
         console.log("失败")
-        wx.navigateBack({
-          delta: 1  // 返回上一级页面。
-        })
+        that.group_del3()    //支付失败删除订单
+        // wx.navigateBack({
+        //   delta: 1  // 返回上一级页面。
+        // })
       }
     })
   },

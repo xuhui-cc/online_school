@@ -121,7 +121,7 @@
 }
 .group_message{
   width:750rpx;
-  height:600rpx;
+  /* height:600rpx; */
   background:rgba(255,255,255,1);
   opacity:1;
 }
@@ -206,7 +206,8 @@
 }
 .look_more{
   margin-left: 265rpx;
-  margin-top: 50rpx;
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
   width:221rpx;
   height:57rpx;
   font-size:23rpx;

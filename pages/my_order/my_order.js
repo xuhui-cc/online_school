@@ -15,46 +15,29 @@ Page({
   onLoad: function (options) {
 
     let that = this
-    var params = {
-      "token": wx.getStorageSync("token"),
-    }
-    app.ols.order_all(params).then(d => {
-      
-      if (d.data.code == 0) {
-        console.log(d.data.msg)
-        that.setData({
-          order:d.data.data
-        })
-      }
-      else if (d.data.code == 5){
-        console.log(d.data.msg)
-      
-          that.setData({
-            order: ''
-          })
-        
-      }else {
-        console.log(d.data.code, "code", d.data.msg)
-      }
-    })
+    that.order_all3()   //获取全部订单
+
   },
 
-  order_all:function(){
+  order_all3:function(){
     let that = this
     var params = {
       "token": wx.getStorageSync("token"),
     }
-    app.ols.order_all(params).then(d => {
-
+    app.ols.order_all3(params).then(d => {
       if (d.data.code == 0) {
         console.log(d.data.msg)
+        for(var i=0;i<d.data.data.length;i++){
+          if(d.data.data[i].nick){
+            d.data.data[i].nick = d.data.data[i].nick.substr(0,3) + '***'
+          }
+        }
         that.setData({
           order: d.data.data
         })
       }
       else if (d.data.code == 5) {
         console.log(d.data.msg)
-
         that.setData({
           order: ''
         })
@@ -151,7 +134,7 @@ Page({
       finish: finish
     })
     if (finish == 0){
-      that.order_all()
+      that.order_all3()
     }else if(finish == 1){
       that.order_wait()
     }else if (finish == 2) {
@@ -191,7 +174,7 @@ Page({
   onShow: function () {
     let that = this
     if (that.data.finish == 0) {
-      that.order_all()                                  //全部订单
+      that.order_all3()                                  //全部订单
     } else if (that.data.finish == 1) {
       that.order_wait()                               //待支付
     } else if (that.data.finish == 2) {

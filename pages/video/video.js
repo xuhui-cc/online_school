@@ -192,7 +192,11 @@ Page({
 
   //更新视频开始状态
   update_start: function () {
+
     let that = this
+    var timestamp = (Date.parse(new Date()))/1000
+    console.log(timestamp,"timestamp")
+
     var params = {
       "token": wx.getStorageSync("token"),
       "oid": that.data.id,
@@ -202,8 +206,10 @@ Page({
     console.log(params, "视频开始状态更新参数")
     app.ols.video_start(params).then(d => {
       console.log(d, "视频开始状态更新数据")
+      var timestamp = (Date.parse(new Date()))/1000
+      console.log(timestamp,"timestamp")
       that.setData({
-        hid:d.data.data.hid
+        hid:d.data.data.hid,
       })
       if (d.data.code == 0) {
         console.log("视频开始状态更新成功")

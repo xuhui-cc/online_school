@@ -50,14 +50,7 @@ Page({
       app.ols.course_info3(params).then(d => {
         that.handle_data1(d)   //课程详情数据处理
         if(d.data.data.pay_status <= 1 || d.data.data.pay_status >= 5){
-          var timestamp = (Date.parse(new Date()))/1000
-          console.log(timestamp,"timestamp")
-          var cs_total_micro_second = d.data.data.endtime -  timestamp
-          console.log(cs_total_micro_second,"cs_total_micro_second")
-          that.setData({
-            total_micro_second: cs_total_micro_second
-          })
-          that.count_down(that);
+          that.cs1()   //倒计时
         }
         
       })
@@ -174,6 +167,9 @@ Page({
     console.log(d, "课程详情接口数据")
     if (d.data.code == 0) {
       console.log(d.data.data)
+      var timestamp = (Date.parse(new Date()))/1000
+      console.log(timestamp,"timestamp")
+      d.data.data.endtime = d.data.data.endtime - timestamp
       that.setData({
         course_info: d.data.data
       })
@@ -375,54 +371,57 @@ Page({
   // },
 
   //小程序倒计时功能
-  count_down: function (that) {
-    that.setData({
-      clock: that.dateformat(that.data.total_micro_second),
-      cur_uni: that.data.total_micro_second
-    });
-    if (that.data.total_micro_second == 0) {
-      that.setData({
-        clock: "00:00:00"
-      });
-      wx.showToast({
-        title: '3秒后将自动交卷',
-        icon:"none",
-        duration:2950
-      })
-      setTimeout(function () {
-        that.update_cpsubmit()    //达到规定时间自动交卷
-       console.log("交卷")
-      }, 3000)
-      return;
-    }
-    var cs_t = setTimeout(function () {
-      var cs_total_micro_second = that.data.total_micro_second
-      cs_total_micro_second -= 1000;
-      that.setData({
-        total_micro_second: cs_total_micro_second
-      })
-      that.count_down(that)
-    }, 1000)
+  // count_down: function (that) {
+  //   that.setData({
+  //     clock: that.dateformat(that.data.total_micro_second),
+  //     cur_uni: that.data.total_micro_second
+  //   });
+  //   if (that.data.total_micro_second == 0) {
+  //     that.setData({
+  //       clock: "00:00:00"
+  //     });
+  //     wx.showToast({
+  //       title: '3秒后将自动交卷',
+  //       icon:"none",
+  //       duration:2950
+  //     })
+  //     setTimeout(function () {
+  //       that.update_cpsubmit()    //达到规定时间自动交卷
+  //      console.log("交卷")
+  //     }, 3000)
+  //     return;
+  //   }
+  //   var cs_t = setTimeout(function () {
+  //     var cs_total_micro_second = that.data.total_micro_second
+  //     cs_total_micro_second -= 1000;
+  //     that.setData({
+  //       total_micro_second: cs_total_micro_second
+  //     })
+  //     that.count_down(that)
+  //   }, 1000)
     
-    that.setData({
-      t:cs_t
-    })
-    console.log(that.data.t)
-  },
+  //   that.setData({
+  //     t:cs_t
+  //   })
+  //   console.log(that.data.t)
+  // },
 
  //时间格式整理
- dateformat: function (micro_second) {
-  var day = Math.floor(micro_second / (60 * 60 * 24)); 
-  // 秒数
-  var second = Math.floor(micro_second / 1000);
-  // 小时位
-  var hr = this.fill_zero_prefix(Math.floor(second / 3600));
-  // 分钟位
-  var min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
-  // 秒位
-  var sec = this.fill_zero_prefix((second - hr * 3600 - min * 60));// equal to => var sec = second % 60;
-  return day + " 天 " + hr + " : " + min + " : " + sec;
-},
+//  dateformat: function (micro_second) {
+//   var day = Math.floor(micro_second / (60 * 60 * 24)); 
+//   // 秒数
+//   var second = Math.floor(micro_second / 1000);  //Math.floor(intDiff / (60 * 60)) - (day * 24)
+//   // 小时位
+//   var hr = this.fill_zero_prefix(Math.floor(second / 3600));
+//   // var hr = this.fill_zero_prefix(Math.floor(second / 3600));
+//   // 分钟位
+//   var min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
+//   // 秒位
+//   var sec = this.fill_zero_prefix((second - hr * 3600 - min * 60));// equal to => var sec = second % 60;
+//   return day + " 天 " + hr + " : " + min + " : " + sec;
+// },
+
+
 // dateformatforreport: function (micro_second) {
 //   // 秒数
 //   var second = Math.floor(micro_second / 1000);
@@ -445,6 +444,81 @@ fill_zero_prefix: function (num) {
   onHide: function () {
 
   },
+
+  cs1:function(){
+    let that = this
+    // let len=that.data.hot1.lists.length;//时间数据长度 
+    function nowTime() {//时间函数 
+      // console.log(a) 
+      // for (var i = 0; i < that.data.hot1.lists.length; i++) { 
+        var intDiff = that.data.course_info.endtime;//获取数据中的时间戳 
+        // console.log(intDiff) 
+        var day=0, hour=0, minute=0, second=0;        
+        if(intDiff > 0){//转换时间 
+          day = Math.floor(intDiff / (60 * 60 * 24)); 
+          hour = Math.floor(intDiff / (60 * 60)) - (day * 24); 
+          minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60); 
+          second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60); 
+          if(hour <=9) hour = '0' + hour; 
+          if (minute <= 9) minute = '0' + minute; 
+          if (second <= 9) second = '0' + second; 
+          that.data.course_info.endtime--; 
+          var str=day + "天 " + hour +':'+minute+':'+ second     
+          // console.log(str)     
+        }else{ 
+          var str = "已结束！"; 
+          clearInterval(timer);   
+        } 
+        // console.log(str); 
+        // that.data.course_info.difftime = str;//在数据中添加difftime参数名，把时间放进去 
+
+      // } 
+      that.setData({ 
+        clock: str
+      }) 
+      // console.log(that)
+    } 
+    nowTime(); 
+    var timer = setInterval(nowTime, 1000); 
+  },
+
+  cs:function(){
+    let that = this
+    let len=that.data.hot1.lists.length;//时间数据长度 
+    function nowTime() {//时间函数 
+      // console.log(a) 
+      for (var i = 0; i < that.data.hot1.lists.length; i++) { 
+        var intDiff = that.data.hot1.lists[i].endtime;//获取数据中的时间戳 
+        // console.log(intDiff) 
+        var day=0, hour=0, minute=0, second=0;        
+        if(intDiff > 0){//转换时间 
+          day = Math.floor(intDiff / (60 * 60 * 24)); 
+          hour = Math.floor(intDiff / (60 * 60)) - (day * 24); 
+          minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60); 
+          second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60); 
+          if(hour <=9) hour = '0' + hour; 
+          if (minute <= 9) minute = '0' + minute; 
+          if (second <= 9) second = '0' + second; 
+          that.data.hot1.lists[i].endtime--; 
+          var str=day + "天 " + hour +':'+minute+':'+ second     
+          // console.log(str)     
+        }else{ 
+          var str = "已结束！"; 
+          clearInterval(timer);   
+        } 
+        // console.log(str); 
+        that.data.hot1.lists[i].difftime = str;//在数据中添加difftime参数名，把时间放进去 
+
+      } 
+      that.setData({ 
+        wearList: that.data.hot1.lists 
+      }) 
+      // console.log(that)
+    } 
+    nowTime(); 
+    var timer = setInterval(nowTime, 1000); 
+  },
+
 
   /**
    * 生命周期函数--监听页面卸载
