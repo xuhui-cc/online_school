@@ -140,7 +140,7 @@
 }
 .group_rule{
   margin-left: 100rpx;
-  margin-top: 40rpx;
+  margin-top: 38rpx;
   width:144rpx;
   height:37rpx;
   font-size:24rpx;
@@ -414,7 +414,7 @@
 }
 .next{
  
-  margin-top: 31rpx;
+  margin-top: 35rpx;
   width:44rpx;
   height:44rpx;
 }
