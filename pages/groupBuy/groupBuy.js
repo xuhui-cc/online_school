@@ -70,6 +70,16 @@ Page({
     console.log(that.data.gid, "that.data.gid")
   },
 
+
+  //去拼团详情
+  to_group_detail:function(e){
+    let that = this
+    var tid = e.currentTarget.dataset.tid
+    wx.navigateTo({
+      url: '../../pages/group_detail/group_detail?tid=' + tid, 
+    })
+  },
+
   //课程介绍、目录切换
   checkCurrent: function (e) {
     const that = this
@@ -170,6 +180,9 @@ Page({
       var timestamp = (Date.parse(new Date()))/1000
       console.log(timestamp,"timestamp")
       d.data.data.endtime = d.data.data.endtime - timestamp
+      for(var i=0;i<d.data.data.group.length;i++){
+          d.data.data.group[i].nick = d.data.data.group[i].nick.substr(0,3) + '***'
+      }
       that.setData({
         course_info: d.data.data
       })

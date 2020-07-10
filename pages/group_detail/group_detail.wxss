@@ -236,6 +236,7 @@
   margin-top: 40rpx;
   width:96rpx;
   height:96rpx;
+  border-radius: 50%;
 }
 .group_identity1{
   margin-left: 23rpx;

@@ -15,11 +15,20 @@ Page({
   onLoad: function (options) {
     let that = this
     var kid = options.kid
-
-    that.setData({
-      kid:kid,
-      nick:wx.getStorageSync("nick")
-    })
+    if(options.tid){
+      that.setData({
+        kid:kid,
+        nick:wx.getStorageSync("nick"),
+        tid:options.tid
+      })
+    }else{
+      that.setData({
+        kid:kid,
+        nick:wx.getStorageSync("nick"),
+        tid:0
+      })
+    }
+    
     var params = {
       "token": wx.getStorageSync("token"),
     }
@@ -66,7 +75,7 @@ Page({
       var params = {
         "token": wx.getStorageSync("token"),
         "pid": that.data.course_info.pt_id,
-        "ptid": 0
+        "ptid": that.data.tid
       }
     console.log(params,"预支付接口")
       app.ols.group_preorder3(params).then(d => {

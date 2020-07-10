@@ -2,14 +2,15 @@
 
   <view class="group_layout">
     <view class="flex">
-      <image class="ava" src="../../images/group_ava.png"></image>
+      <image class="ava" src="{{group.avatar}}"></image>
       <view style="margin-left: 23rpx;">
-        <view class="nick">滴滴答答下个不停</view>
+        <view class="nick">{{group.nick}}</view>
         <view class="label">团长</view>
       </view>
     </view>
 
-    <view class="status">待参团</view>
+    <view class="status" wx:if="{{group.join == 1}}">已参团</view>
+    <view class="status" wx:else="">待参团</view>
     <view class="time_tip">距该团结束仅剩</view>
     <view class="time">00 : 02 : 03 : 15</view>
     
@@ -18,8 +19,9 @@
   </view>
 
   <view class="invite_layout">
-    <view class="num_tip">还差<text style="color:#FF4B20;">2人</text>拼团成功</view>
-    <view class="join_btn">立即参团</view>
+    <view class="num_tip">还差<text style="color:#FF4B20;">{{group.nums - group.has_nums}}人</text>拼团成功</view>
+    <view class="join_btn" wx:if="{{group.join == 1}}">点击邀请给好友参团</view>
+    <view class="join_btn" wx:else="" bindtap="to_groupPay">立即参团</view>
     <view class="flex" bindtap="look_rule">
       <view class="icon">!</view>
       <view class="look_rule">查看拼团规则</view>
@@ -46,43 +48,20 @@
     <view class="head">我的拼团好友</view>
   </view>
 
-  <view class="for" style="margin-bottom:100rpx;">
-    <view class="flex">
-      <image class="group_ava" src="../../images/group_ava.png"></image>
-      <view>
-        <view class="flex">
-          <view class="group_identity1">团长</view>
-          <view class="group_nick">滴滴答答下个不停</view>
+  <view  style="margin-bottom:100rpx;">
+    <view wx:for="{{group.member}}" wx:key="index">
+      <view class="flex">
+        <image class="group_ava" src="{{item.avatar}}"></image>
+        <view>
+          <view class="flex">
+            <view class="group_identity1">团长</view>
+            <view class="group_nick">{{item.nick}}</view>
+          </view>
+          <view class="group_time">开团时间：2020-06-28   15:26:03</view>
         </view>
-        <view class="group_time">开团时间：2020-06-28   15:26:03</view>
       </view>
     </view>
-
-    <view class="flex">
-      <image class="group_ava" src="../../images/group_ava.png"></image>
-      <view>
-        <view class="flex">
-          <view class="group_identity2">团员</view>
-          <view class="group_nick">滴滴答答下个不停</view>
-        </view>
-        <view class="group_time">开团时间：2020-06-28   15:26:03</view>
-      </view>
-    </view>
-
-    <view class="flex">
-      <image class="group_ava" src="../../images/group_ava.png"></image>
-      <view>
-        <view class="flex">
-          <view class="group_identity2">团员</view>
-          <view class="group_nick">滴滴答答下个不停</view>
-        </view>
-        <view class="group_time">开团时间：2020-06-28   15:26:03</view>
-      </view>
-    </view>
-  
-  
-  
-  
+    
   </view>
 
   <!-- 拼团规则蒙层 -->
