@@ -38,16 +38,16 @@
         </view>
         <view class="flex" wx:if="{{item.nums == 3}}">
           <image class="ava1" src="{{item.member[0].avatar}}"></image>
-          <image class="ava1" style="margin-left: 55rpx;z-index: 9;" wx:if="{{item.member[1].avatar != ''}}" src="{{item.member[1].avatar}}"></image>
-          <image class="ava1" style="margin-left: 55rpx;z-index: 9;" wx:else="" src="../../images/group_ava.png"></image>
+          <image class="ava1" style="margin-left: 55rpx;z-index: 9;" wx:if="{{item.member[1].avatar}}" src="{{item.member[1].avatar}}"></image>
+          <image class="ava1" style="margin-left: 55rpx;z-index: 9;" wx:if="{{!item.member[1].avatar}}" src="../../images/group_ava.png"></image>
           <image class="ava1" style="margin-left: 85rpx;z-index: 8;" src="../../images/group_ava.png"></image>
         </view>
         <view class="flex" wx:if="{{item.nums > 3}}">
           <image class="ava1" src="{{item.member[0].avatar}}" ></image>
-          <image class="ava1" style="margin-left: 45rpx;z-index: 9;" wx:if="{{item.member[1].avatar != ''}}" src="{{item.member[1].avatar}}"></image>
-          <image class="ava1" style="margin-left: 45rpx;z-index: 9;" wx:else="" src="../../images/group_ava.png"></image>
-          <image class="ava1" style="margin-left: 57rpx;z-index: 8;" wx:if="{{item.member[2].avatar != ''}}" src="{{item.member[2].avatar}}"></image>
-          <image class="ava1" style="margin-left: 57rpx;z-index: 8;" wx:else="" src="../../images/group_ava.png"></image>
+          <image class="ava1" style="margin-left: 45rpx;z-index: 9;" wx:if="{{item.member[1].avatar}}" src="{{item.member[1].avatar}}"></image>
+          <image class="ava1" style="margin-left: 45rpx;z-index: 9;" wx:if="{{!item.member[1].avatar}}" src="../../images/group_ava.png"></image>
+          <image class="ava1" style="margin-left: 57rpx;z-index: 8;" wx:if="{{item.member[2].avatar}}" src="{{item.member[2].avatar}}"></image>
+          <image class="ava1" style="margin-left: 57rpx;z-index: 8;" wx:if="{{!item.member[2].avatar}}" src="../../images/group_ava.png"></image>
           <image class="ava1" style="margin-left: 75rpx;z-index: 7;" src="../../images/group_ava.png"></image>
         </view>
         <view style="width:285rpx;margin-left: 180rpx;">
@@ -60,6 +60,7 @@
             <view class="lack_num" style="margin-left: 10rpx;"> 距结束<text style="color:rgba(255,75,32,1);">00:06:23</text></view>
           </view>
         </view>
+        <button class="login_read" style="margin-top:-1rpx;margin-left:565rpx; width:144rpx;height:66rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-type="{{1}}" wx:if="{{!login}}"></button>
         <view class="join_group" wx:if="{{course_info.has_join <= 0}}" bindtap="to_group_detail" data-tid="{{item.id}}">立即参加</view>
         <view class="join_group" wx:if="{{course_info.has_join > 0}}" bindtap="to_group_detail" data-tid="{{item.id}}">查看进度</view>
       </view>
@@ -213,8 +214,8 @@
     
     <image class="group_label" src="../../images/group_label.png"></image>
     <view class="flex" style="margin-left:70rpx;" >
-      <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
-      <button class="login_read" style="margin-left:187rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
+      <button class="login_read" data-type="{{2}}"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
+      <button class="login_read" data-type="{{3}}" style="margin-left:187rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
     </view>
     
     <view class="single_buy" bindtap="{{login?'to_pay':''}}"><text class="buy_price" >单独购买</text><text class="buy_price" style="margin-top: 34rpx;margin-left: 67rpx;">¥{{course_info.price}}</text> </view>

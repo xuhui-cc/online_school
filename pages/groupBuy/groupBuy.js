@@ -227,6 +227,8 @@ Page({
   //获取微信绑定手机号登录
   getPhoneNumber: function (e) {
     var that = this
+    var type = e.currentTarget.dataset.type
+    console.log(type)
     wx.login({
       success: res => {
         if (e.detail.errMsg == "getPhoneNumber:ok") {
@@ -257,7 +259,10 @@ Page({
                   })
                   wx.setStorageSync("login", true)
                   wx.setStorageSync("token", d.data.data.token)
-                  if (that.data.currentData == 0){
+                  if(type == 1){
+                    that.onShow()
+                  }else{
+                    if (that.data.currentData == 0){
                     var params = {
                       "token": wx.getStorageSync("token"),
                       "kid": that.data.kid
@@ -267,14 +272,15 @@ Page({
                       if (d.data.code == 0) {
                         console.log(d.data.data)
                         if (d.data.data.pay_status <= 1 || d.data.data.pay_status >= 5) {
-                          if (d.data.data.price != 0) {
-                            // wx.navigateTo({
-                            //   url: '../../pages/pay/pay?kid=' + that.data.kid,     //去支付
-                            // })
-                          } else {
-                            // that.to_free()  //免费课
+                          if (type == 2) {
+                            wx.navigateTo({
+                              url: '../../pages/pay/pay?kid=' + that.data.kid,     //去支付
+                            })
+                          } else if(type == 3) {
+                            wx.navigateTo({
+                              url: '../../pages/groupPay/groupPay?kid=' + that.data.kid,     //去支付
+                            })
                           }
-
                         } else {
                           that.onShow()
                         }
@@ -293,9 +299,15 @@ Page({
                       console.log(d, "获取课程目录接口数据")
                       if (d.data.code == 0) {
                         if (d.data.data.buy == 0) {
-                          // wx.navigateTo({
-                          //   url: '../../pages/pay/pay?kid=' + that.data.kid,     //去支付
-                          // })
+                          if (type == 2) {
+                            wx.navigateTo({
+                              url: '../../pages/pay/pay?kid=' + that.data.kid,     //去支付
+                            })
+                          } else if(type == 3) {
+                            wx.navigateTo({
+                              url: '../../pages/groupPay/groupPay?kid=' + that.data.kid,     //去支付
+                            })
+                          }
                         } else {
                           that.onShow()
                         }
@@ -304,6 +316,8 @@ Page({
                       }
                     })
                   }
+                  }
+                  
                   
                 } else {
                   console.log(d, "登录失败")

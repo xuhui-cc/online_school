@@ -225,7 +225,7 @@ Page({
                         "kid": that.data.kid
                       }
                       console.log(params, "预支付接口")
-                      app.ols.preorder(params).then(d => {
+                      app.ols.preorder3(params).then(d => {
                         console.log(d)
                         if (d.data.code == 0) {
                           var ob = JSON.parse(d.data.data.paystr)
