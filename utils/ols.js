@@ -60,19 +60,34 @@ function order_all3(params) {
   return fetch.olsfetchpost(URI, 'v3/order/getlist', params)
 }
 
+// //待支付
+// function order_wait(params) {
+//   return fetch.olsfetchpost(URI, 'order/getwaitlist', params)
+// }
+
 //待支付
 function order_wait(params) {
-  return fetch.olsfetchpost(URI, 'order/getwaitlist', params)
+  return fetch.olsfetchpost(URI, 'v3/order/getwaitlist', params)
 }
+
+// //已支付
+// function order_ed(params) {
+//   return fetch.olsfetchpost(URI, 'order/getpaylist', params)
+// }
 
 //已支付
 function order_ed(params) {
-  return fetch.olsfetchpost(URI, 'order/getpaylist', params)
+  return fetch.olsfetchpost(URI, 'v3/order/getpaylist', params)
 }
+
+// //已关闭
+// function order_close(params) {
+//   return fetch.olsfetchpost(URI, 'order/getcloselist', params)
+// }
 
 //已关闭
 function order_close(params) {
-  return fetch.olsfetchpost(URI, 'order/getcloselist', params)
+  return fetch.olsfetchpost(URI, 'v3/order/getcloselist', params)
 }
 
 // 获取全部错题

@@ -35,6 +35,7 @@ Page({
         that.setData({
           order: d.data.data
         })
+        console.log(that.data.order,"order")
       }
       else if (d.data.code == 5) {
         console.log(d.data.msg)

@@ -12,7 +12,7 @@
     <view class="status" wx:if="{{group.join == 1}}">已参团</view>
     <view class="status" wx:else="">待参团</view>
     <view class="time_tip">距该团结束仅剩</view>
-    <view class="time">00 : 02 : 03 : 15</view>
+    <view class="time"> {{hour}}<text style="font-size:35rpx;">  时  </text> {{min}}<text style="font-size:35rpx;">  分  </text> {{sec}}<text style="font-size:35rpx;">  秒 </text></view>
     
     
   
@@ -54,7 +54,8 @@
         <image class="group_ava" src="{{item.avatar}}"></image>
         <view>
           <view class="flex">
-            <view class="group_identity1">团长</view>
+            <view wx:if="{{index ==0}}" class="group_identity1">团长</view>
+            <view wx:else="" class="group_identity2">团员</view>
             <view class="group_nick">{{item.nick}}</view>
           </view>
           <view class="group_time">开团时间：2020-06-28   15:26:03</view>

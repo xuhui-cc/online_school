@@ -133,17 +133,25 @@ Page({
   to_course_detail:function(e){
     let that = this
     var xb = e.currentTarget.dataset.xb
+    // var type = e.currentTarget.dataset.type
     console.log(xb)
     if(that.data.course.lists[xb].is_group == 0){
-      wx.navigateTo({
-        url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
-      })
+        wx.navigateTo({
+          url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
+        })
     }else{
-      wx.navigateTo({
-        url: '../../pages/groupBuy/groupBuy?kid=' + that.data.course.lists[xb].kid,
-      })
-    }
-    
+      if(that.data.course.lists[xb].is_buy == 1 || that.data.course.lists[xb].is_buy == 3){
+        wx.navigateTo({
+          url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
+        })
+      }
+      else{
+        wx.navigateTo({
+          url: '../../pages/groupBuy/groupBuy?kid=' + that.data.course.lists[xb].kid,
+        })
+      }
+    } 
+      
   },
 
   //年级切换

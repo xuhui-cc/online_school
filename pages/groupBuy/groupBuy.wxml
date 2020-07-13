@@ -25,7 +25,7 @@
   <view class="margin_gray" wx:if="{{course_info.group != '' && course_info.pay_status <=2 && course_info.pay_status <= 4}}"></view>
 
   <view class="group_message" wx:if="{{course_info.group != '' && course_info.pay_status <=2 && course_info.pay_status <= 4}} ">
-    <view class="flex">
+    <view class="flex" >
       <view class="group_tip">立即参加Ta人的已开团，可快速成团</view>
       <view class="group_rule">查看拼团规则</view>
       <image class="next" src="../../images/next.png"></image>
@@ -57,7 +57,7 @@
           </view>
           <view class="flex">
             <view class="lack_num">还差<text style="color:rgba(255,75,32,1);">{{item.nums - item.has_nums}}人 </text></view>
-            <view class="lack_num" style="margin-left: 10rpx;"> 距结束<text style="color:rgba(255,75,32,1);">00:06:23</text></view>
+            <view class="lack_num" style="margin-left: 10rpx;"> 距结束<text style="color:rgba(255,75,32,1);">{{item.difftime}}</text></view>
           </view>
         </view>
         <button class="login_read" style="margin-top:-1rpx;margin-left:565rpx; width:144rpx;height:66rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-type="{{1}}" wx:if="{{!login}}"></button>
@@ -66,7 +66,7 @@
       </view>
     </view>
 
-    <view class="look_more" wx:if="{{course_info.has_join <= 0}}">查看更多拼团</view>
+    <view class="look_more" wx:if="{{course_info.has_join <= 0 && course_info.group != ''}}">查看更多拼团</view>
 
     
     

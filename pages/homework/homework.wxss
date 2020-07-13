@@ -316,7 +316,8 @@
   opacity:1;
 }
 .dtk_layout{
-  position: fixed;
+  /* position: fixed; */
+  /* padding-bottom:200rpx ; */
   margin-top:266rpx;
   width: 750rpx;
   /* height: 1126rpx; */

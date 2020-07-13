@@ -32,6 +32,7 @@
   margin-top: 44rpx;
   width:96rpx;
   height:96rpx;
+  border-radius: 50%;
 }
 .nick{
   
@@ -136,7 +137,7 @@
 }
 .buy_num{
   margin-left: 20rpx;
-  width:119rpx;
+  width:122rpx;
   height:30rpx;
   font-size:22rpx;
   font-family:PingFang SC;

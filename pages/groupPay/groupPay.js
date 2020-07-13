@@ -138,9 +138,27 @@ Page({
           title: '支付成功',
           duration:3000
         })
-        wx.navigateBack({
-          delta: 1  // 返回上一级页面。
+        var params = {
+          "token": wx.getStorageSync("token"),
+          "kid": that.data.kid
+        }
+        app.ols.course_info3(params).then(d => {
+          if (d.data.code == 0) {
+            if(d.data.data.pt_status < 1){
+              wx.navigateBack({
+                delta: 1  // 返回上一级页面。
+              })
+            }else if(d.data.data.pt_status >= 1){
+              wx.navigateTo({
+                url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
+              })
+            }
+          } else {
+            console.log("课程详情介绍接口==============" + d.data.msg)
+          }
+          
         })
+        
       },
       fail(res) {
         console.log("失败")
@@ -220,26 +238,7 @@ Page({
                     if (d.data.code == 0) {
                       console.log(d.data.data)
                       wx.setStorageSync("nick", true)
-                      var params = {
-                        "token": wx.getStorageSync("token"),
-                        "kid": that.data.kid
-                      }
-                      console.log(params, "预支付接口")
-                      app.ols.group_preorder3(params).then(d => {
-                        console.log(d)
-                        if (d.data.code == 0) {
-                          var ob = JSON.parse(d.data.data.paystr)
-                          console.log(ob)
-                          var timeStamp = ob.timeStamp
-                          var nonceStr = ob.nonceStr
-                          var pack = ob.package
-                          var paySign = ob.paySign
-                          that.laqizhifu(timeStamp, nonceStr, pack, paySign)
-                          console.log("预支付接口成功")
-                        } else {
-                          console.log("预支付接口失败", d)
-                        }
-                      })
+                      that.buy()
                     } else {
                       console.log(d.data.code)
                       console.log(d.data.msg)

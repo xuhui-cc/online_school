@@ -81,7 +81,7 @@
   </view>
 
   <!-- 试卷详情 -->
-   <view class="body" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd'  style='{{moveLeft}}'>
+   <view class="body" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd'  style='{{moveLeft}}' hidden="{{dtk}}">
       <scroll-view scroll-y="true">
         <!-- 题型标识 -->
         <view wx:if="{{question.type == 1}}" style="margin-left:20rpx;margin-bottom:10rpx;">【单选题】</view>
