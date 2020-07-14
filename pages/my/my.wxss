@@ -91,6 +91,19 @@ transform: rotate(45deg);
 .login_read::after {
   border: none;
 }
+.login_ava{
+  position: fixed;
+  /* margin-left: 30rpx;
+  margin-top: 50rpx; */
+  width:105rpx;
+  height:105rpx;
+  background: transparent;
+  /* background-color: rgba(58,58,58,1);
+  opacity:0.5; */
+}
+.login_ava::after {
+  border: none;
+}
 .course-ul{
   padding-top: 72rpx;
   padding-bottom: 66rpx;

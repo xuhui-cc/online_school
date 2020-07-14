@@ -143,9 +143,9 @@ Page({
                 } else {
                   console.log(d, "登录失败")
                   wx.showToast({
-                    title: "登陆失败",
+                    title: "登陆失败，请重新登录",
                     icon: 'none',
-                    duration: 2000
+                    duration: 3000
                   })
                   console.log(d.data.msg, "登录失败提示")
 

@@ -20,6 +20,7 @@
 
   <view class="invite_layout">
     <view class="num_tip">还差<text style="color:#FF4B20;">{{group.nums - group.has_nums}}人</text>拼团成功</view>
+    <button class="share_btn"  open-type="share" wx:if="{{group.join == 1}}"></button>
     <view class="join_btn" wx:if="{{group.join == 1}}">点击邀请给好友参团</view>
     <view class="join_btn" wx:else="" bindtap="to_groupPay">立即参团</view>
     <view class="flex" bindtap="look_rule">

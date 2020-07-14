@@ -5,27 +5,27 @@
       <view class="course_name">{{course_info.title}}</view>  
     </view>
     <view class="course_intro1">{{course_info.intro}}</view>
-    <!-- <view>{{clock}}</view> -->
-    <view class="flex">
-      <view class="for" wx:for="{{course_info.teacher}}" wx:key="index">
-        <view class="flex" style="width:284rpx;margin-left:30rpx;margin-top:53rpx;margin-bottom:30rpx;">
+    
+    <view class="flex" style="width:400rpx;margin-left:30rpx;">
+      <view wx:for="{{course_info.teacher}}" wx:key="index">
+        <view class="flex" style="margin-bottom:30rpx;margin-top:53rpx;">
           <view class="tea_layout">
             <image class="tea_avatar" src="{{item.avatar}}"></image>
             <view class="tea_name">{{item.nick}}</view>
           </view> 
         </view>
       </view>  
-      <view>
+      
         <image class="group_laber" src="../../images/group_laber1.png"></image>
         <view class="group_price">¥{{course_info.pt_price}}</view>
         <view class="old_price">¥{{course_info.price}}</view>
-      </view>
+      
     </view>
   </view>
   <view class="margin_gray" wx:if="{{course_info.group != '' && course_info.pay_status <=2 && course_info.pay_status <= 4}}"></view>
 
   <view class="group_message" wx:if="{{course_info.group != '' && course_info.pay_status <=2 && course_info.pay_status <= 4}} ">
-    <view class="flex" >
+    <view class="flex" wx:if="{{course_info.group != ''}}">
       <view class="group_tip">立即参加Ta人的已开团，可快速成团</view>
       <view class="group_rule">查看拼团规则</view>
       <image class="next" src="../../images/next.png"></image>
@@ -200,12 +200,11 @@
 
 
   
-  <image class="group_btn_layout" src="../../images/group.png" wx:if="{{course_info.pay_status <= 1 || course_info.pay_status >= 5}}"></image>
-  <view class="countDown" wx:if="{{course_info.pay_status <= 1 || course_info.pay_status >= 5}}">{{clock}}</view>
-  <!-- <view class="countDown" style="margin-left: 619rpx;">{{min}}</view>
-  <view class="countDown" style="margin-left: 683rpx;">{{sec}}</view> -->
-  <view class="time_tip" wx:if="{{course_info.pay_status <= 1 || course_info.pay_status >= 5}}">距结束</view>
-  <view class="btn_layout" wx:if="{{course_info.pay_status <= 1 || course_info.pay_status >= 5}}">
+  <image class="group_btn_layout" src="../../images/group.png" wx:if="{{course_info.is_buy == 0 }}"></image>
+  <view class="countDown" wx:if="{{course_info.is_buy == 0 }}">{{clock}}</view>
+  
+  <view class="time_tip" wx:if="{{course_info.is_buy == 0 }}">距结束</view>
+  <view class="btn_layout" wx:if="{{course_info.is_buy == 0 }}">
     
     <view>
       <view class="group_price1"><text style="font-size:30rpx;">¥</text>{{course_info.pt_price}}</view>

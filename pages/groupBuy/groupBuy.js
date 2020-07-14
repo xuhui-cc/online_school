@@ -49,7 +49,10 @@ Page({
       console.log(params, "课程详情接口参数")
       app.ols.course_info3(params).then(d => {
         that.handle_data1(d)   //课程详情数据处理
-        that.cs_group()   // 已有团列表倒计时
+        if(d.data.data.group){
+          that.cs_group()   // 已有团列表倒计时
+        }
+        
         if(d.data.data.pay_status <= 1 || d.data.data.pay_status >= 5){
           that.cs1()   //倒计时
         }
@@ -181,11 +184,13 @@ Page({
       var timestamp = (Date.parse(new Date()))/1000
       console.log(timestamp,"timestamp")
       d.data.data.endtime = d.data.data.endtime - timestamp
-      
-      for(var i=0;i<d.data.data.group.length;i++){
-        d.data.data.group[i].nick = d.data.data.group[i].nick.substr(0,3) + '***'
-        d.data.data.group[i].addtime =  d.data.data.group[i].addtime + (24*60*60) - timestamp
+      if(d.data.data.group){
+        for(var i=0;i<d.data.data.group.length;i++){
+          d.data.data.group[i].nick = d.data.data.group[i].nick.substr(0,3) + '***'
+          d.data.data.group[i].addtime =  d.data.data.group[i].addtime + (24*60*60) - timestamp
+        }
       }
+      
       that.setData({
         course_info: d.data.data
       })
@@ -575,7 +580,21 @@ fill_zero_prefix: function (num) {
   /**
    * 用户点击右上角分享
    */
-  // onShareAppMessage: function () {
+  onShareAppMessage: function () {
+    let that = this;
+    return {
+      title: '领军网校', // 转发后 所显示的title
+      path: '/pages/groupBuy/groupBuy?isshare=1&gid=' + that.data.gid + '&kid=' + that.data.kid, // 相对的路径
+      // path: '/pages/first_page/first_page', // 相对的路径
+      imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
+      success: (res) => {    // 成功后要做的事情
+        console.log("成功")
 
-  // }
+      },
+      fail: function (res) {
+        // 分享失败
+        console.log(res, "分享失败")
+      }
+    }
+  }
 })

@@ -100,24 +100,41 @@ Page({
   //热门课程
   hot:function(){
     let that = this
-    var params = {
-      "gid": that.data.gid,
-      "num": 30,
-      "page": 1
+    if (wx.getStorageSync("login")) {
+      
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "gid": that.data.gid
+      }
+    }else{
+      var params = {
+        "gid": that.data.gid,
+      }
     }
+    
     // console.log(params, "params获取课程未登录")
-    app.ols.group_list3(params).then(d => {
+    app.ols.hot_list3(params).then(d => {
     // app.ols.grade_course2(params).then(d => {
       console.log(d)
+      var hot1 = []
+      var hot2 = []
       if (d.data.code == 0) {
         console.log(d.data.data)
         var timestamp = (Date.parse(new Date()))/1000
         console.log(timestamp,"timestamp")
+        
         for(var i=0;i<d.data.data.lists.length;i++){
-          d.data.data.lists[i].endtime = d.data.data.lists[i].endtime - timestamp
+          if(d.data.data.lists[i].pt_price){
+            d.data.data.lists[i].endtime = d.data.data.lists[i].endtime - timestamp
+            hot1.push(d.data.data.lists[i])
+          }else{
+            hot2.push(d.data.data.lists[i])
+          }
+         
         }
         that.setData({
-          hot1: d.data.data
+          hot1: hot1,
+          hot2:hot2
         })
         that.cs()
         // console.log(that.data.course, "获取课程未登录")
@@ -151,6 +168,37 @@ Page({
         })
       }
     } 
+      
+  },
+
+  to_course_hot:function(e){
+    let that = this
+    var kid = e.currentTarget.dataset.kid
+    var hot = e.currentTarget.dataset.hot
+    if(hot == 1){
+      wx.navigateTo({
+        url: '../../pages/groupBuy/groupBuy?kid=' + kid,
+      })
+    }else if(hot == 2){
+      wx.navigateTo({
+        url: '../../pages/course_detail/course_detail?kid=' + kid,
+      })
+
+    }
+    // if(that.data.course.lists[xb].is_group == 0){
+        
+    // }else{
+    //   if(that.data.course.lists[xb].is_buy == 1 || that.data.course.lists[xb].is_buy == 3){
+    //     wx.navigateTo({
+    //       url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
+    //     })
+    //   }
+    //   else{
+    //     wx.navigateTo({
+    //       url: '../../pages/groupBuy/groupBuy?kid=' + that.data.course.lists[xb].kid,
+    //     })
+    //   }
+    // } 
       
   },
 
@@ -231,9 +279,16 @@ Page({
         "num": 30,
         "page": 1
       }
-      console.log(params, "params获取课程已登录")
+    }else{
+      var params = {
+        "gid": that.data.gid,
+        "did": that.data.did,
+        "num": 30,
+        "page": 1
+      }
+    }
+      console.log(params, "params获取课程")
       app.ols.grade_course3(params).then(d => {
-      // app.ols.grade_course1(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
           console.log(d.data.data)
@@ -248,32 +303,6 @@ Page({
           })
         }
       })
-    }else{
-      //获取课程未登录
-      var params = {
-        "gid": that.data.gid,
-        "did": that.data.did,
-        "num": 30,
-        "page": 1
-      }
-      console.log(params, "params获取课程未登录")
-      app.ols.grade_course3(params).then(d => {
-      // app.ols.grade_course2(params).then(d => {
-        console.log(d)
-        if (d.data.code == 0) {
-          console.log(d.data.data)
-          that.setData({
-            course: d.data.data
-          })
-          console.log(that.data.course, "获取课程未登录")
-        } else {
-          console.log(d.data.msg, "获取课程未登录msg，失败")
-          that.setData({
-            course: ''
-          })
-        }
-      })
-    }
     
   },
 
@@ -447,12 +476,15 @@ Page({
         }
       }
     }
-    
+    that.setData({
+      current_special:-1,
+    })
     console.log(that.data.gid,"onshow")
+
+    // that.hot()  //热门课程
+    that.getspecial()  //获取专题
+    that.getcourse()     //获取课程
    
-    // that.getsubject()   //获取学科
-    // that.getcourse()    //获取课程
-    
   },
 
   /**
@@ -478,11 +510,11 @@ Page({
 
   cs:function(){
     let that = this
-    let len=that.data.hot1.lists.length;//时间数据长度 
+    let len=that.data.hot1.length;//时间数据长度 
     function nowTime() {//时间函数 
       // console.log(a) 
-      for (var i = 0; i < that.data.hot1.lists.length; i++) { 
-        var intDiff = that.data.hot1.lists[i].endtime;//获取数据中的时间戳 
+      for (var i = 0; i < that.data.hot1.length; i++) { 
+        var intDiff = that.data.hot1[i].endtime;//获取数据中的时间戳 
         // console.log(intDiff) 
         var day=0, hour=0, minute=0, second=0;        
         if(intDiff > 0){//转换时间 
@@ -493,7 +525,7 @@ Page({
           if(hour <=9) hour = '0' + hour; 
           if (minute <= 9) minute = '0' + minute; 
           if (second <= 9) second = '0' + second; 
-          that.data.hot1.lists[i].endtime--; 
+          that.data.hot1[i].endtime--; 
           var str=day + "天 " + hour +':'+minute+':'+ second     
           // console.log(str)     
         }else{ 
@@ -501,11 +533,11 @@ Page({
           clearInterval(timer);   
         } 
         // console.log(str); 
-        that.data.hot1.lists[i].difftime = str;//在数据中添加difftime参数名，把时间放进去 
+        that.data.hot1[i].difftime = str;//在数据中添加difftime参数名，把时间放进去 
 
       } 
       that.setData({ 
-        wearList: that.data.hot1.lists 
+        hot1: that.data.hot1 
       }) 
       // console.log(that)
     } 

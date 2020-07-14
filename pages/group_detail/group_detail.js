@@ -20,6 +20,26 @@ Page({
     // that.group_detail3()
   },
 
+  //获取课程详情
+  course_detail:function(){
+    let that = this
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "kid": that.data.kid
+      }
+    
+      console.log(params, "课程详情接口参数")
+      app.ols.course_info3(params).then(d => {
+        if (d.data.code == 0) {
+          that.setData({
+            course_info:d.data.data
+          })
+        }
+        
+        
+      })
+  },
+
   //获取团详情
   group_detail3:function(){
     let that = this
@@ -118,6 +138,7 @@ Page({
   onShow: function () {
     let that = this
     that.group_detail3()
+    that.course_detail()
   },
 
   /**
@@ -152,6 +173,20 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    let that = this;
+    return {
+      title: '领军网校', // 转发后 所显示的title
+      path: '/pages/group_share/group_share?isshare=1&gid=' + wx.getStorageSync("gid") + '&kid=' + that.data.group.kid + '&tid=' + that.data.tid, // 相对的路径
+      // path: '/pages/first_page/first_page', // 相对的路径
+      imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
+      success: (res) => {    // 成功后要做的事情
+        console.log("成功")
 
+      },
+      fail: function (res) {
+        // 分享失败
+        console.log(res, "分享失败")
+      }
+    }
   }
 })

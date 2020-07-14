@@ -491,7 +491,14 @@ page{
 .hot_course{
   
   width:630rpx;
-  height:272rpx;
+  /* height:272rpx; */
+}
+.hot_group{
+  position: absolute;
+  margin-left: 30rpx;
+  margin-top: 20rpx;
+  width:63rpx;
+  height:34rpx;
 }
 .hot_fm{
   margin-left: 30rpx;

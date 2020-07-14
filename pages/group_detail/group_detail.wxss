@@ -14,6 +14,18 @@
   background:rgba(255,243,239,1);
   
 }
+.share_btn{
+  position: absolute;
+  margin-left: 130rpx;
+  margin-top: 20rpx;
+  width:430rpx;
+  height:90rpx;
+  /* background: rgba(58,58,58,1); */
+  background: transparent;
+}
+.share_btn::after {
+  border: none;
+}
 .course{
   position: absolute;
   margin-left: 57rpx;

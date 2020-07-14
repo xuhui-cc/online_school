@@ -1,6 +1,5 @@
 const URI = 'http://os.lingjun.net/api.php/'    //测试接口
 // const URI = 'https://wsg.lingjun.net/api.php/'    //正式接口
-// const URI = ''    //正式接口
 
 
 const fetch = require('./fetch')
@@ -60,30 +59,15 @@ function order_all3(params) {
   return fetch.olsfetchpost(URI, 'v3/order/getlist', params)
 }
 
-// //待支付
-// function order_wait(params) {
-//   return fetch.olsfetchpost(URI, 'order/getwaitlist', params)
-// }
-
 //待支付
 function order_wait(params) {
   return fetch.olsfetchpost(URI, 'v3/order/getwaitlist', params)
 }
 
-// //已支付
-// function order_ed(params) {
-//   return fetch.olsfetchpost(URI, 'order/getpaylist', params)
-// }
-
 //已支付
 function order_ed(params) {
   return fetch.olsfetchpost(URI, 'v3/order/getpaylist', params)
 }
-
-// //已关闭
-// function order_close(params) {
-//   return fetch.olsfetchpost(URI, 'order/getcloselist', params)
-// }
 
 //已关闭
 function order_close(params) {
@@ -175,10 +159,6 @@ function getvideo_info(params) {
   return fetch.olsfetchpost(URI, 'study/getvideoline', params)
 }
 
-//获取课程视频断点时间 ——1.1
-// function getvideo_info(params) {
-//   return fetch.olsfetchpost(URI, 'lesson/getvideoline', params)
-// }
 
 //课程预支付
 function preorder(params) {
@@ -194,11 +174,6 @@ function group_preorder3(params) {
 function order_detail(params) {
   return fetch.olsfetchpost(URI, 'order/getinfo', params)
 }
-
-// //更新视频观看状态——1.1
-// function study_pro(params) {
-//   return fetch.olsfetchpost(URI, 'lesson/setloginfo', params)
-// }
 
 //视频结束更新状态——1.2
 function video_end(params) {
@@ -296,11 +271,6 @@ function get_live(params) {
 }
 
 
-// //上传图片
-// function upload_img(params) {
-//   return fetch.olsfetchpostimg(URI, 'annex/upload', params)
-// }
-
 //（课后作业、结课考试）报告
 function test_report(params) {
   return fetch.olsfetchpost(URI, 'report/getchart', params)
@@ -362,8 +332,8 @@ function test_end(params) {
 }
 
 //获取拼团数据列表v3
-function group_list3(params) {
-  return fetch.olsfetchpost(URI, 'v3/group/getlist', params)
+function hot_list3(params) {
+  return fetch.olsfetchpost(URI, 'v3/group/gethotlist', params)
 }
 
 
@@ -377,7 +347,45 @@ function group_detail3(params) {
   return fetch.olsfetchpost(URI, 'v3/group/getgrouplist', params)
 }
 
+//团分享v3
+function group_share3(params) {
+  return fetch.olsfetchpost(URI, 'v3/share/getinterface', params)
+}
 
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques1, test_ques2, grade_course1, grade_course2, course_info1, course_info2, grade_update, course_cata1, course_cata2, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,judge_share,grade_course3,course_info3,course_cata3,group_list3,group_preorder3,order_all3,group_del3,group_detail3}
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all, test_ques1, test_ques2, grade_course1, grade_course2, course_info1, course_info2, grade_update, course_cata1, course_cata2, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,judge_share,grade_course3,course_info3,course_cata3,hot_list3,group_preorder3,order_all3,group_del3,group_detail3,group_share3}
+
+
+
+
+
+// //已关闭
+// function order_close(params) {
+//   return fetch.olsfetchpost(URI, 'order/getcloselist', params)
+// }
+
+// //已支付
+// function order_ed(params) {
+//   return fetch.olsfetchpost(URI, 'order/getpaylist', params)
+// }
+
+// //更新视频观看状态——1.1
+// function study_pro(params) {
+//   return fetch.olsfetchpost(URI, 'lesson/setloginfo', params)
+// }
+
+// //待支付
+// function order_wait(params) {
+//   return fetch.olsfetchpost(URI, 'order/getwaitlist', params)
+// }
+
+// //上传图片
+// function upload_img(params) {
+//   return fetch.olsfetchpostimg(URI, 'annex/upload', params)
+// }
+
+//获取课程视频断点时间 ——1.1
+// function getvideo_info(params) {
+//   return fetch.olsfetchpost(URI, 'lesson/getvideoline', params)
+// }
