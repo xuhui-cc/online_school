@@ -25,7 +25,7 @@
       </view>
       <view class="num">已有{{group.order_num}}人参与此团</view>
     </view>
-    <view class="couse_detail">查看课程详情</view>
+    <view class="couse_detail" bindtap="to_groupBuy">查看课程详情</view>
   </view>
 
   <view class="xu"></view>

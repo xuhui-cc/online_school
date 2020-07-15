@@ -1,5 +1,6 @@
 // pages/group_share/group_share.js
 const app = getApp()
+var timer
 Page({
 
   /**
@@ -22,9 +23,7 @@ Page({
     })
     wx.setStorageSync("gid", options.gid)
     console.log(that.data.kid,that.data.tid,that.data.gid,that.data.login)
-    if(that.data.login){
-      that.share()
-    }
+    
     
   },
 
@@ -47,15 +46,36 @@ Page({
       console.log(d, "分享数据")
       var timestamp = (Date.parse(new Date()))/1000
       console.log(timestamp,"timestamp")
-      if(d.data.data.is_buy == 0)
-      that.setData({
-        group:d.data.data.group,
-      })
+      // if(d.data.data.is_buy == 0)
+      
       if (d.data.code == 0) {
+        d.data.data.group.endtime = d.data.data.endtime - timestamp
+        d.data.data.lists.group[i].addtime =  d.data.data.lists.group[i].addtime + (24*60*60) - timestamp
+        that.setData({
+          group:d.data.data.group,
+        })
+        if(d.data.data.is_buy == 1 || d.data.data.is_buy == 3 ){
+          wx.redirectTo({
+            url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
+          })
+        }else if(d.data.data.is_buy == 2){
+          wx.redirectTo({
+            url: '../../pages/groupBuy/groupBuy?kid=' + that.data.kid,
+          })
+        }
+        
+      
         console.log("分享成功")
       } else {
         console.log("分享失败==============" + d.data.msg)
       }
+    })
+  },
+
+  to_groupBuy:function(){
+    let that = this
+    wx.navigateTo({
+      url: '../../pages/groupBuy/groupBuy?kid=' + that.data.kid,
     })
   },
 
@@ -136,11 +156,51 @@ Page({
 
   },
 
+  cs1:function(){
+    let that = this
+    // let len=that.data.hot1.lists.length;//时间数据长度 
+    function nowTime() {//时间函数 
+      // console.log(a) 
+      // for (var i = 0; i < that.data.hot1.lists.length; i++) { 
+        var intDiff = that.data.course_info.endtime;//获取数据中的时间戳 
+        // console.log(intDiff) 
+        var day=0, hour=0, minute=0, second=0;        
+        if(intDiff > 0){//转换时间 
+          day = Math.floor(intDiff / (60 * 60 * 24)); 
+          hour = Math.floor(intDiff / (60 * 60)) - (day * 24); 
+          minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60); 
+          second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60); 
+          if(hour <=9) hour = '0' + hour; 
+          if (minute <= 9) minute = '0' + minute; 
+          if (second <= 9) second = '0' + second; 
+          that.data.course_info.endtime--; 
+          var str=day + "天 " + hour +':'+minute+':'+ second     
+          // console.log(str)     
+        }else{ 
+          var str = "已结束！"; 
+          clearInterval(timer);   
+        } 
+        // console.log(str); 
+        // that.data.course_info.difftime = str;//在数据中添加difftime参数名，把时间放进去 
+
+      // } 
+      that.setData({ 
+        clock: str
+      }) 
+      // console.log(that)
+    } 
+    nowTime(); 
+    timer = setInterval(nowTime, 1000); 
+  },
+
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this 
+    if(that.data.login){
+      that.share()
+    }
   },
 
   /**

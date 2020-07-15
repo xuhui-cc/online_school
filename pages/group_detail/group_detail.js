@@ -56,6 +56,14 @@ Page({
         var timestamp = (Date.parse(new Date()))/1000
       console.log(timestamp,"timestamp")
       d.data.data.addtime =  d.data.data.addtime + (24*60*60) - timestamp
+      for(var j=0;j<d.data.data.member.length;j++){
+        if(d.data.data.member[j].avatar.indexOf("/") == 0){
+          d.data.data.member[j].avatar = 'http://os.lingjun.net' + d.data.data.member[j].avatar
+          //表示strCode是以ssss开头；
+        }else if(d.data.data.member[j].avatar.indexOf("/") == -1){
+          //表示strCode不是以ssss开头
+        }
+      }
         that.setData({
           group:d.data.data
         })

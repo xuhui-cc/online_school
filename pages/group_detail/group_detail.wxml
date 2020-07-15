@@ -59,7 +59,8 @@
             <view wx:else="" class="group_identity2">团员</view>
             <view class="group_nick">{{item.nick}}</view>
           </view>
-          <view class="group_time">开团时间：2020-06-28   15:26:03</view>
+          <view class="group_time" wx:if="{{index ==0}}">开团时间：{{item.addtime}}</view>
+          <view class="group_time" wx:else="">入团时间：{{item.addtime}}</view>
         </view>
       </view>
     </view>

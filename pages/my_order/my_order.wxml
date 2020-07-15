@@ -49,7 +49,7 @@
         </view>
         <view class="flex">
           <view class="sponsor" style="margin-top: 60rpx;">实付款：<text style="color:rgba(255,75,32,1);font-weight:bold;font-size:36rpx;">¥{{item.sum_money}}</text></view>
-          <view class="btn">邀请好友</view>
+          <view class="btn" bindtap="to_group_detail" data-tid="{{item.pl_id}}" data-kid="{{item.kid}}">邀请好友</view>
         </view>
       </view>
 

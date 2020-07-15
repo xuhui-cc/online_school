@@ -27,8 +27,8 @@
   <view class="group_message" wx:if="{{course_info.group != '' && course_info.pay_status <=2 && course_info.pay_status <= 4}} ">
     <view class="flex" wx:if="{{course_info.group != ''}}">
       <view class="group_tip">立即参加Ta人的已开团，可快速成团</view>
-      <view class="group_rule">查看拼团规则</view>
-      <image class="next" src="../../images/next.png"></image>
+      <view class="group_rule" bindtap="look_rule">查看拼团规则</view>
+      <image class="next" src="../../images/next.png" bindtap="look_rule"></image>
     </view>
     <view  wx:for="{{course_info.group}}" wx:key="group_index" style="margin-bottom:40rpx;">
       <view class="flex" style="margin-top:56rpx;">
@@ -228,43 +228,43 @@
   <!-- 全部拼团蒙层 -->
   <view class="mask" wx:if="{{all_group}}"></view>
   <view class="all_group" wx:if="{{all_group}}">
-    <image class="mask_del" src="../../images/del.png"></image>
+    <image class="mask_del" src="../../images/del.png" bindtap="close_all"></image>
     <view class="head">全部拼团</view>
     <scroll-view class="for_layout" scroll-y="true">
       <view wx:for="{{all_grouplist.group}}" wx:key="grouplist_index">
         <view class="flex" style="margin-top:56rpx;">
-        <view class="flex" wx:if="{{item.nums == 2}}">
-          <image class="ava1" src="{{item.member[0].avatar}}"></image>
-          <image class="ava1" style="margin-left: 80rpx;z-index: 9;" src="../../images/group_ava.png"></image>
-        </view>
-        <view class="flex" wx:if="{{item.nums == 3}}">
-          <image class="ava1" src="{{item.member[0].avatar}}"></image>
-          <image class="ava1" style="margin-left: 55rpx;z-index: 9;" wx:if="{{item.member[1].avatar}}" src="{{item.member[1].avatar}}"></image>
-          <image class="ava1" style="margin-left: 55rpx;z-index: 9;" wx:if="{{!item.member[1].avatar}}" src="../../images/group_ava.png"></image>
-          <image class="ava1" style="margin-left: 85rpx;z-index: 8;" src="../../images/group_ava.png"></image>
-        </view>
-        <view class="flex" wx:if="{{item.nums > 3}}">
-          <image class="ava1" src="{{item.member[0].avatar}}" ></image>
-          <image class="ava1" style="margin-left: 45rpx;z-index: 9;" wx:if="{{item.member[1].avatar}}" src="{{item.member[1].avatar}}"></image>
-          <image class="ava1" style="margin-left: 45rpx;z-index: 9;" wx:if="{{!item.member[1].avatar}}" src="../../images/group_ava.png"></image>
-          <image class="ava1" style="margin-left: 57rpx;z-index: 8;" wx:if="{{item.member[2].avatar}}" src="{{item.member[2].avatar}}"></image>
-          <image class="ava1" style="margin-left: 57rpx;z-index: 8;" wx:if="{{!item.member[2].avatar}}" src="../../images/group_ava.png"></image>
-          <image class="ava1" style="margin-left: 75rpx;z-index: 7;" src="../../images/group_ava.png"></image>
-        </view>
-        <view style="width:285rpx;margin-left: 180rpx;">
-          <view class="flex">
-            <view class="sponsor">{{item.nick}} </view>
-            <view class="group_num1">发起的团</view>
+          <view class="flex" wx:if="{{item.nums == 2}}">
+            <image class="ava1" src="{{item.member[0].avatar}}"></image>
+            <image class="ava1" style="margin-left: 80rpx;z-index: 9;" src="../../images/group_ava.png"></image>
           </view>
-          <view class="flex">
-            <view class="lack_num">还差<text style="color:rgba(255,75,32,1);">{{item.nums - item.has_nums}}人 </text></view>
-            <view class="lack_num" style="margin-left: 10rpx;"> 距结束<text style="color:rgba(255,75,32,1);">{{item.difftime}}</text></view>
+          <view class="flex" wx:if="{{item.nums == 3}}">
+            <image class="ava1" src="{{item.member[0].avatar}}"></image>
+            <image class="ava1" style="margin-left: 55rpx;z-index: 9;" wx:if="{{item.member[1].avatar}}" src="{{item.member[1].avatar}}"></image>
+            <image class="ava1" style="margin-left: 55rpx;z-index: 9;" wx:if="{{!item.member[1].avatar}}" src="../../images/group_ava.png"></image>
+            <image class="ava1" style="margin-left: 85rpx;z-index: 8;" src="../../images/group_ava.png"></image>
           </view>
+          <view class="flex" wx:if="{{item.nums > 3}}">
+            <image class="ava1" src="{{item.member[0].avatar}}" ></image>
+            <image class="ava1" style="margin-left: 45rpx;z-index: 9;" wx:if="{{item.member[1].avatar}}" src="{{item.member[1].avatar}}"></image>
+            <image class="ava1" style="margin-left: 45rpx;z-index: 9;" wx:if="{{!item.member[1].avatar}}" src="../../images/group_ava.png"></image>
+            <image class="ava1" style="margin-left: 57rpx;z-index: 8;" wx:if="{{item.member[2].avatar}}" src="{{item.member[2].avatar}}"></image>
+            <image class="ava1" style="margin-left: 57rpx;z-index: 8;" wx:if="{{!item.member[2].avatar}}" src="../../images/group_ava.png"></image>
+            <image class="ava1" style="margin-left: 75rpx;z-index: 7;" src="../../images/group_ava.png"></image>
+          </view>
+          <view style="width:285rpx;margin-left: 180rpx;">
+            <view class="flex">
+              <view class="sponsor">{{item.nick}} </view>
+              <view class="group_num1">发起的团</view>
+            </view>
+            <view class="flex">
+              <view class="lack_num">还差<text style="color:rgba(255,75,32,1);">{{item.nums - item.has_nums}}人 </text></view>
+              <view class="lack_num" style="margin-left: 10rpx;"> 距结束<text style="color:rgba(255,75,32,1);">{{item.difftime}}</text></view>
+            </view>
+          </view>
+          <!-- <button class="login_read" style="margin-top:-1rpx;margin-left:565rpx; width:144rpx;height:66rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-type="{{1}}" wx:if="{{!login}}"></button> -->
+          <view class="join_group" style="margin-left:50rpx;" bindtap="to_group_detail" data-tid="{{item.id}}">立即参加</view>
+          <!-- <view class="join_group" wx:if="{{course_info.has_join > 0}}" bindtap="to_group_detail" data-tid="{{item.id}}">查看进度</view> -->
         </view>
-        <button class="login_read" style="margin-top:-1rpx;margin-left:565rpx; width:144rpx;height:66rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-type="{{1}}" wx:if="{{!login}}"></button>
-        <view class="join_group" wx:if="{{course_info.has_join <= 0}}" bindtap="to_group_detail" data-tid="{{item.id}}">立即参加</view>
-        <view class="join_group" wx:if="{{course_info.has_join > 0}}" bindtap="to_group_detail" data-tid="{{item.id}}">查看进度</view>
-      </view>
 
         
       </view>
@@ -273,9 +273,9 @@
   
 
   <!-- 拼团规则蒙层 -->
-  <view class="mask" hidden="true"></view>
-  <view class="rule_layout" hidden="true">
-    <image class="mask_del" style="margin-left:550rpx;" src="../../images/del.png"></image>
+  <view class="mask" wx:if="{{rule}}"></view>
+  <view class="rule_layout" wx:if="{{rule}}">
+    <image class="mask_del" style="margin-left:550rpx;" src="../../images/del.png" bindtap="look_rule"></image>
     <image class="head_img" src="../../images/rule_head.png"></image>
     <view class="laber">开团</view>
     <view class="content">团长发起拼团，购买商品完成支付后，团即可开启；</view>
@@ -285,7 +285,7 @@
     <view class="content">开团24小时内到达规定的成团人数，即拼团成功。</view>
     <view class="laber" style="width:189rpx;">拼团结束/失败</view>
     <view class="content">开团24小时内未达到成团人数，即拼团失败，系统自动退款；</view>
-    <view class="iknow">我知道了</view>
+    <view class="iknow" bindtap="look_rule">我知道了</view>
     <view class="iknow_tip">您可以在<text style="color:#FF4B20;">"我的"—"我的订单"</text> ,实时查看拼团进度。</view>
   
   

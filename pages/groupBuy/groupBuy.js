@@ -9,6 +9,7 @@ Page({
   data: {
     currentData: 0,
     all_group:false,
+    rule:false,
   },
 
   /**
@@ -54,7 +55,7 @@ Page({
           that.cs_group()   // 已有团列表倒计时
         }
         
-        if(d.data.data.pay_status <= 1 || d.data.data.pay_status >= 5){
+        if(d.data.data.is_buy == 0 || d.data.data.is_buy == 2){
           that.cs1()   //倒计时
         }
         
@@ -88,17 +89,21 @@ Page({
       console.log(d, "获取更多拼团接口数据")
       if (d.data.code == 0) {
         console.log(d.data.data)
+        var timestamp = (Date.parse(new Date()))/1000
+      console.log(timestamp,"timestamp")
+      d.data.data.endtime = d.data.data.endtime - timestamp
         for(var i=0;i<d.data.data.lists.group.length;i++){
-          // for(var j=0;j<d.data.data.lists.group[i].member.length;j++){
-          //   if(d.data.data.lists.group[i].member[j].avatar.indexOf("/") == 0){
-          //     d.data.data.lists.group[i].member[j].avatar = 'http://os.lingjun.net' + d.data.data.group[i].member[j].avatar
-          //     //表示strCode是以ssss开头；
-          //   }else if(d.data.data.group[i].member[j].avatar.indexOf("/") == -1){
-          //     //表示strCode不是以ssss开头
-          //   }
+          for(var j=0;j<d.data.data.lists.group[i].member.length;j++){
+            if(d.data.data.lists.group[i].member[j].avatar.indexOf("/") == 0){
+              d.data.data.lists.group[i].member[j].avatar = 'http://os.lingjun.net' + d.data.data.lists.group[i].member[j].avatar
+              //表示strCode是以ssss开头；
+            }else if(d.data.data.lists.group[i].member[j].avatar.indexOf("/") == -1){
+              //表示strCode不是以ssss开头
+            }
           }
           d.data.data.lists.group[i].nick = d.data.data.lists.group[i].nick.substr(0,3) + '***'
           d.data.data.lists.group[i].addtime =  d.data.data.lists.group[i].addtime + (24*60*60) - timestamp
+        }
         that.setData({
           all_group:true,
           all_grouplist: d.data.data.lists
@@ -111,6 +116,22 @@ Page({
     })
   },
 
+  //关闭所有拼团
+  close_all:function(){
+    let that = this 
+    that.setData({
+      all_group:false,
+    })
+    clearInterval(timer_grouplist);   
+  },
+
+  //拼团规则
+  look_rule:function(){
+    let that = this
+    that.setData({
+      rule:!that.data.rule,
+    })
+  },
 
   //去拼团详情
   to_group_detail:function(e){
@@ -523,6 +544,7 @@ fill_zero_prefix: function (num) {
 
   cs1:function(){
     let that = this
+    console.log("cs1")
     // let len=that.data.hot1.lists.length;//时间数据长度 
     function nowTime() {//时间函数 
       // console.log(a) 
@@ -617,7 +639,7 @@ fill_zero_prefix: function (num) {
           // console.log(str)     
         }else{ 
           var str = "已结束！"; 
-          clearInterval(timer_group);   
+          clearInterval(timer_grouplist);   
         } 
         // console.log(str); 
         that.data.all_grouplist.group[i].difftime = str;//在数据中添加difftime参数名，把时间放进去 
@@ -636,8 +658,9 @@ fill_zero_prefix: function (num) {
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    clearInterval(timer_group);   
-    clearInterval(timer);   
+    // clearInterval(timer_group);   
+    // clearInterval(timer);   
+    // clearInterval(timer_grouplist);   
   },
 
 
@@ -647,7 +670,8 @@ fill_zero_prefix: function (num) {
   onUnload: function () {
     let that = this
     clearInterval(timer_group);   
-    clearInterval(timer);   
+    clearInterval(timer);  
+    clearInterval(timer_grouplist);    
   },
 
   /**

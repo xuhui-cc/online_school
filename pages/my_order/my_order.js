@@ -49,6 +49,16 @@ Page({
     })
   },
 
+   //去拼团详情
+   to_group_detail:function(e){
+    let that = this
+    var tid = e.currentTarget.dataset.tid
+    var kid = e.currentTarget.dataset.kid
+    wx.navigateTo({
+      url: '../../pages/group_detail/group_detail?tid=' + tid + '&kid=' + kid, 
+    })
+  },
+
   order_wait: function () {
     let that = this
     var params = {
