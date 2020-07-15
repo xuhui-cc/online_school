@@ -49,7 +49,7 @@ Page({
       console.log(timestamp,"timestamp")
       if(d.data.data.is_buy == 0)
       that.setData({
-        hid:d.data.data.group,
+        group:d.data.data.group,
       })
       if (d.data.code == 0) {
         console.log("分享成功")

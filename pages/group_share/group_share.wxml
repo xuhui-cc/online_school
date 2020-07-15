@@ -12,18 +12,18 @@
     <image class="tologin" src="../../images/tologin.png"></image>
   </view>
 
-  <image class="fm" src="../../images/fm.png"></image>
+  <image class="fm" src="{{group.face}}"></image>
   <view class="flex">
-    <view class="group_num">2人团</view>
-    <view class="course_name">高三数学三角函数专题课数专题课</view>  
+    <view class="group_num">{{group.persons}}人团</view>
+    <view class="course_name">{{group.title}}</view>  
   </view>
   <view class="flex">
     <view>
       <view class="flex">
-        <view class="group_price">拼团价：¥299.00</view>
-        <view class="old_price">¥999</view>
+        <view class="group_price">拼团价：¥{{group.pt_price}}</view>
+        <view class="old_price">¥{{group.price}}</view>
       </view>
-      <view class="num">已有3632人参与此团</view>
+      <view class="num">已有{{group.order_num}}人参与此团</view>
     </view>
     <view class="couse_detail">查看课程详情</view>
   </view>
@@ -31,25 +31,17 @@
   <view class="xu"></view>
 
   <view class="people_layout">
-    <view class="people">
-      <image class="ava" src="../../images/group_ava.png"></image>
-      <view class="laber">团长</view>
-      <view class="people_nick">滴滴答*** </view>
+    <view wx:for="{{group.member}}" wx:key="index" class="people_layout" style="margin-left: 0rpx;">
+      <view class="people">
+        <image wx:if="{{index == 0}}" class="ava" src="{{item.avatar}}"></image>
+        <view class="laber">团长</view>
+        <view class="people_nick">{{item.nick}} </view>
+      </view>
+    
     </view>
-    <view class="people">
-      <image class="ava" src="../../images/group_ava.png"></image>
-      <view class="laber">团长</view>
-      <view class="people_nick">滴滴答*** </view>
-    </view>
-    <view class="people">
-      <image class="ava" src="../../images/group_ava.png"></image>
-      <view class="laber">团长</view>
-      <view class="people_nick">滴滴答*** </view>
-    </view>
-  
   </view>
 
-  <view class="lack_num">还差<text style="color:#FF4B20;">1人</text>拼团成功</view>
+  <view class="lack_num">还差<text style="color:#FF4B20;">{{group.persons - group.has_nums}}人</text>拼团成功</view>
   <view class="flex">
     <view class="time_tip">距结束仅剩</view>
     <view class="kuang"></view>

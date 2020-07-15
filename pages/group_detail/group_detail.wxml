@@ -32,13 +32,13 @@
 
   <view class="course">
     <view class="flex">
-      <image class="fm" src="../../images/fm.png"></image>
+      <image class="fm" src="{{course_info.face}}"></image>
       <view>
-        <view class="title">高三数学三角函数专题课数专题课专题课课数专题课专题课</view>
-        <view class="now_price">¥929.90</view>
+        <view class="title">{{course_info.title}}</view>
+        <view class="now_price">¥{{course_info.pt_price}}</view>
         <view class="flex">
-          <view class="buy_num">3632人参与</view>
-          <view class="old_proce">¥999</view>
+          <view class="buy_num">{{course_info.order_num}}人参与</view>
+          <view class="old_proce">¥{{course_info.price}}</view>
         </view>
       </view>
     </view>  

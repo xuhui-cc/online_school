@@ -1,5 +1,6 @@
 // pages/groupBuy/groupBuy.js
 const app = getApp()
+var timer,timer_group,timer_grouplist
 Page({
 
   /**
@@ -7,7 +8,7 @@ Page({
    */
   data: {
     currentData: 0,
-    
+    all_group:false,
   },
 
   /**
@@ -74,13 +75,49 @@ Page({
     console.log(that.data.gid, "that.data.gid")
   },
 
+  //获取所有拼团列表
+  all_group:function(){
+    let that = this
+    
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "pid": that.data.course_info.pt_id
+    }
+    console.log(params, "获取更多拼团参数")
+    app.ols.all_group3(params).then(d => {
+      console.log(d, "获取更多拼团接口数据")
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        for(var i=0;i<d.data.data.lists.group.length;i++){
+          // for(var j=0;j<d.data.data.lists.group[i].member.length;j++){
+          //   if(d.data.data.lists.group[i].member[j].avatar.indexOf("/") == 0){
+          //     d.data.data.lists.group[i].member[j].avatar = 'http://os.lingjun.net' + d.data.data.group[i].member[j].avatar
+          //     //表示strCode是以ssss开头；
+          //   }else if(d.data.data.group[i].member[j].avatar.indexOf("/") == -1){
+          //     //表示strCode不是以ssss开头
+          //   }
+          }
+          d.data.data.lists.group[i].nick = d.data.data.lists.group[i].nick.substr(0,3) + '***'
+          d.data.data.lists.group[i].addtime =  d.data.data.lists.group[i].addtime + (24*60*60) - timestamp
+        that.setData({
+          all_group:true,
+          all_grouplist: d.data.data.lists
+        })
+        that.cs_grouplist()
+        console.log("更多拼团接口调取成功")
+      } else {
+        console.log("更多拼团==============" + d.data.msg)
+      }
+    })
+  },
+
 
   //去拼团详情
   to_group_detail:function(e){
     let that = this
     var tid = e.currentTarget.dataset.tid
     wx.navigateTo({
-      url: '../../pages/group_detail/group_detail?tid=' + tid, 
+      url: '../../pages/group_detail/group_detail?tid=' + tid + '&kid=' + that.data.kid, 
     })
   },
 
@@ -186,6 +223,15 @@ Page({
       d.data.data.endtime = d.data.data.endtime - timestamp
       if(d.data.data.group){
         for(var i=0;i<d.data.data.group.length;i++){
+          for(var j=0;j<d.data.data.group[i].member.length;j++){
+            if(d.data.data.group[i].member[j].avatar.indexOf("/") == 0){
+              d.data.data.group[i].member[j].avatar = 'http://os.lingjun.net' + d.data.data.group[i].member[j].avatar
+              //表示strCode是以ssss开头；
+            }else if(d.data.data.group[i].member[j].avatar.indexOf("/") == -1){
+              //表示strCode不是以ssss开头
+            }
+          }
+          
           d.data.data.group[i].nick = d.data.data.group[i].nick.substr(0,3) + '***'
           d.data.data.group[i].addtime =  d.data.data.group[i].addtime + (24*60*60) - timestamp
         }
@@ -473,12 +519,7 @@ fill_zero_prefix: function (num) {
   return num < 10 ? "0" + num : num
 },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
+  
 
   cs1:function(){
     let that = this
@@ -514,7 +555,7 @@ fill_zero_prefix: function (num) {
       // console.log(that)
     } 
     nowTime(); 
-    var timer = setInterval(nowTime, 1000); 
+    timer = setInterval(nowTime, 1000); 
   },
 
   cs_group:function(){
@@ -551,7 +592,52 @@ fill_zero_prefix: function (num) {
       // console.log(that)
     } 
     nowTime(); 
-    var timer_group = setInterval(nowTime, 1000); 
+    timer_group = setInterval(nowTime, 1000); 
+  },
+
+  cs_grouplist:function(){
+    let that = this
+    let len=that.data.all_grouplist.group.length;//时间数据长度 
+    function nowTime() {//时间函数 
+      // console.log(a) 
+      for (var i = 0; i < that.data.all_grouplist.group.length; i++) { 
+        var intDiff = that.data.all_grouplist.group[i].addtime;//获取数据中的时间戳 
+        // console.log(intDiff) 
+        var day=0, hour=0, minute=0, second=0;        
+        if(intDiff > 0){//转换时间 
+          day = Math.floor(intDiff / (60 * 60 * 24)); 
+          hour = Math.floor(intDiff / (60 * 60)) - (day * 24); 
+          minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60); 
+          second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60); 
+          if(hour <=9) hour = '0' + hour; 
+          if (minute <= 9) minute = '0' + minute; 
+          if (second <= 9) second = '0' + second; 
+          that.data.all_grouplist.group[i].addtime--; 
+          var str=hour +':'+minute+':'+ second     
+          // console.log(str)     
+        }else{ 
+          var str = "已结束！"; 
+          clearInterval(timer_group);   
+        } 
+        // console.log(str); 
+        that.data.all_grouplist.group[i].difftime = str;//在数据中添加difftime参数名，把时间放进去 
+
+      } 
+      that.setData({ 
+        all_grouplist: that.data.all_grouplist
+      }) 
+      // console.log(that)
+    } 
+    nowTime(); 
+    timer_grouplist = setInterval(nowTime, 1000); 
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    clearInterval(timer_group);   
+    clearInterval(timer);   
   },
 
 
@@ -560,7 +646,8 @@ fill_zero_prefix: function (num) {
    */
   onUnload: function () {
     let that = this
-    // clearInterval(that.data.t)
+    clearInterval(timer_group);   
+    clearInterval(timer);   
   },
 
   /**

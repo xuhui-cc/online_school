@@ -37,8 +37,8 @@
 }
 .course_name{
   margin-top: 31rpx;
-  width:540rpx;
-  height:50rpx;
+  width:580rpx;
+  /* height:50rpx; */
   font-size:36rpx;
   font-family:PingFang SC;
   font-weight:bold;

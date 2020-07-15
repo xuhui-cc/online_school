@@ -1,5 +1,6 @@
 // pages/group_detail/group_detail.js
 const app = getApp()
+var timer
 Page({
 
   /**
@@ -15,7 +16,8 @@ Page({
   onLoad: function (options) {
     let that =this
     that.setData({
-      tid:options.tid
+      tid:options.tid,
+      kid:options.kid
     })
     // that.group_detail3()
   },
@@ -104,7 +106,8 @@ Page({
       // console.log(that)
     } 
     nowTime(); 
-    var timer = setInterval(nowTime, 1000); 
+    // var timer = setInterval(nowTime, 1000); 
+    timer = setInterval(nowTime, 1000); 
   },
 
 
@@ -145,14 +148,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    // clearInterval(timer);   
+    clearInterval(timer);   
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    // clearInterval(timer);   
+    clearInterval(timer);   
   },
 
   /**

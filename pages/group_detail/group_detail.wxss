@@ -136,7 +136,7 @@
   color:rgba(39,39,39,1);
 }
 .now_price{
-  margin-left: 230rpx;
+  margin-left: 220rpx;
   margin-top: 10rpx;
   width:120rpx;
   height:37rpx;
@@ -144,6 +144,7 @@
   font-family:PingFang SC;
   font-weight:400;
   line-height:37rpx;
+  text-align: right;
   color:rgba(255,75,32,1);
   
 }
