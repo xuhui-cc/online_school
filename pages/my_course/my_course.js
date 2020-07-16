@@ -23,7 +23,7 @@ Page({
     var params = {
       "token": wx.getStorageSync("token"),
     }
-    app.ols.my_course_all(params).then(d => {
+    app.ols.my_course_all3(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
         that.setData({

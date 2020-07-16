@@ -87,10 +87,11 @@ Page({
         }
         else if(d.data.data.status == 2){
           console.log("d.data.data.status == 2")
+          that.setData({
+            full:true
+          })
         }
         
-        
-      
         console.log("分享成功")
       } else {
         console.log("分享失败==============" + d.data.msg)
