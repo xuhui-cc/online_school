@@ -233,6 +233,20 @@
   opacity:1;
   border-radius:4rpx;
 }
+.hour{
+  position: absolute;
+  margin-left: 375rpx;
+  margin-top: 17rpx;
+  width:30rpx;
+  height:41rpx;
+  font-size:25rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:41rpx;
+  /* text-align: center; */
+  color:rgba(255,255,255,1);
+
+}
 .mao{
   margin-left: 5rpx;
   margin-right: 5rpx;
@@ -273,4 +287,54 @@
   text-align: center;
   color:rgba(162,162,162,1);
   opacity:1;
+}
+.group_tip_layout{
+  position: absolute;
+  margin-left: 120rpx;
+  margin-top: 450rpx;
+  width:512rpx;
+  height:372rpx;
+  background:rgba(255,255,255,1);
+  border:1rpx solid rgba(112,112,112,1);
+  border-radius:5rpx;
+  z-index: 25;
+}
+.tip_head{
+  margin-top: 63rpx;
+  width:512rpx;
+  height:48rpx;
+  font-size:34rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:48rpx;
+  text-align: center;
+  color:rgba(39,39,39,1);
+  opacity:1;
+}
+.tip_content{
+  margin-top: 17rpx;
+  width:512rpx;
+  height:37rpx;
+  font-size:26rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:37rpx;
+  text-align: center;
+  color:rgba(129,129,129,1);
+  
+}
+.yes_btn{
+  margin-left:133rpx;
+  margin-top: 68rpx;
+  width:246rpx;
+height:72rpx;
+font-size:32rpx;
+font-family:PingFang SC;
+font-weight:400;
+line-height:72rpx;
+text-align: center;
+color:rgba(255,255,255,1);
+background:linear-gradient(130deg,rgba(255,71,28,1) 0%,rgba(255,192,143,1) 100%);
+opacity:1;
+border-radius:200rpx;
 }

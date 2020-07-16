@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    full:false,
+    close:false
   },
 
   /**
@@ -25,6 +26,15 @@ Page({
     console.log(that.data.kid,that.data.tid,that.data.gid,that.data.login)
     
     
+  },
+
+   //去拼团付款
+   to_groupPay:function(){
+    let that = this
+    // var tid = e.currentTarget.dataset.tid
+    wx.navigateTo({
+      url: '../../pages/groupPay/groupPay?tid=' + that.data.tid + "&kid=" + that.data.kid, 
+    })
   },
 
   //分享判断
@@ -49,20 +59,36 @@ Page({
       // if(d.data.data.is_buy == 0)
       
       if (d.data.code == 0) {
-        d.data.data.group.endtime = d.data.data.endtime - timestamp
-        d.data.data.lists.group[i].addtime =  d.data.data.lists.group[i].addtime + (24*60*60) - timestamp
+        
+        d.data.data.group.addtime =  d.data.data.group.addtime + (24*60*60) - timestamp
+        for(var j=0;j<d.data.data.group.member.length;j++){
+          if(d.data.data.group.member[j].avatar.indexOf("/") == 0){
+            d.data.data.group.member[j].avatar = 'http://os.lingjun.net' + d.data.data.group.member[j].avatar
+            console.log("假人头像")
+            //表示strCode是以ssss开头；
+          }else if(d.data.data.group.member[j].avatar.indexOf("/") == -1){
+            //表示strCode不是以ssss开头
+          }
+        }
         that.setData({
           group:d.data.data.group,
         })
-        if(d.data.data.is_buy == 1 || d.data.data.is_buy == 3 ){
-          wx.redirectTo({
-            url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
-          })
-        }else if(d.data.data.is_buy == 2){
-          wx.redirectTo({
-            url: '../../pages/groupBuy/groupBuy?kid=' + that.data.kid,
-          })
+        that.cs1()
+        if(d.data.data.status == 1){
+          if(d.data.data.is_buy == 1 || d.data.data.is_buy == 3){
+            wx.redirectTo({
+              url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
+            })
+          }else if(d.data.data.is_buy == 2){
+            wx.redirectTo({
+              url: '../../pages/groupBuy/groupBuy?kid=' + that.data.kid,
+            })
+          }
         }
+        else if(d.data.data.status == 2){
+          console.log("d.data.data.status == 2")
+        }
+        
         
       
         console.log("分享成功")
@@ -71,6 +97,14 @@ Page({
       }
     })
   },
+
+  // //好的按钮
+  // yes:function(){
+  //   let that = this
+  //   wx.redirectTo({
+  //     url: '../../pages/groupBuy/groupBuy?kid=' + that.data.kid,
+  //   })
+  // },
 
   to_groupBuy:function(){
     let that = this
@@ -135,6 +169,49 @@ Page({
     })
   },
 
+  //倒计时
+  cs1:function(){
+    let that = this
+    // let len=that.data.hot1.lists.length;//时间数据长度 
+    function nowTime() {//时间函数 
+      // console.log(a) 
+      // for (var i = 0; i < that.data.hot1.lists.length; i++) { 
+        var intDiff = that.data.group.addtime;//获取数据中的时间戳 
+        // console.log(intDiff) 
+        var day=0, hour=0, minute=0, second=0;        
+        if(intDiff > 0){//转换时间 
+          day = Math.floor(intDiff / (60 * 60 * 24)); 
+          hour = Math.floor(intDiff / (60 * 60)) - (day * 24); 
+          minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60); 
+          second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60); 
+          if(hour <=9) hour = '0' + hour; 
+          if (minute <= 9) minute = '0' + minute; 
+          if (second <= 9) second = '0' + second; 
+          that.data.group.addtime--; 
+          var str=hour +''+minute+':'+ second     
+          // console.log(str)     
+        }else{ 
+          var str = "已结束！"; 
+          clearInterval(timer);   
+        } 
+        // console.log(str); 
+        // that.data.group.difftime = str;//在数据中添加difftime参数名，把时间放进去 
+
+      // } 
+      that.setData({ 
+        hour: hour,
+        min: minute,
+        sec: second,
+
+      }) 
+      // console.log(that)
+    } 
+    nowTime(); 
+    // var timer = setInterval(nowTime, 1000); 
+    timer = setInterval(nowTime, 1000); 
+  },
+
+
 
   //登录判断
   judge_login: function () {
@@ -156,43 +233,7 @@ Page({
 
   },
 
-  cs1:function(){
-    let that = this
-    // let len=that.data.hot1.lists.length;//时间数据长度 
-    function nowTime() {//时间函数 
-      // console.log(a) 
-      // for (var i = 0; i < that.data.hot1.lists.length; i++) { 
-        var intDiff = that.data.course_info.endtime;//获取数据中的时间戳 
-        // console.log(intDiff) 
-        var day=0, hour=0, minute=0, second=0;        
-        if(intDiff > 0){//转换时间 
-          day = Math.floor(intDiff / (60 * 60 * 24)); 
-          hour = Math.floor(intDiff / (60 * 60)) - (day * 24); 
-          minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60); 
-          second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60); 
-          if(hour <=9) hour = '0' + hour; 
-          if (minute <= 9) minute = '0' + minute; 
-          if (second <= 9) second = '0' + second; 
-          that.data.course_info.endtime--; 
-          var str=day + "天 " + hour +':'+minute+':'+ second     
-          // console.log(str)     
-        }else{ 
-          var str = "已结束！"; 
-          clearInterval(timer);   
-        } 
-        // console.log(str); 
-        // that.data.course_info.difftime = str;//在数据中添加difftime参数名，把时间放进去 
-
-      // } 
-      that.setData({ 
-        clock: str
-      }) 
-      // console.log(that)
-    } 
-    nowTime(); 
-    timer = setInterval(nowTime, 1000); 
-  },
-
+  
   /**
    * 生命周期函数--监听页面显示
    */
@@ -214,7 +255,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    clearInterval(timer);   
   },
 
   /**
