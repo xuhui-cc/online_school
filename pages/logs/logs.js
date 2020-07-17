@@ -31,6 +31,26 @@ Page({
     that.hot()  //热门课程
 
   },
+  //轮播图
+  get_banner3:function(){
+    let that = this 
+    var params = {}
+    // console.log(params, "params")
+    app.ols.banner3(params).then(d => {
+      console.log(d,"轮播")
+
+      if (d.data.code == 0) {
+
+        
+        that.setData({
+          banner3: d.data.data.lists
+        })
+       
+      } else {
+        console.log("轮播图失败")
+      }
+    })
+  },
 
   //登录判断
   judge_login: function () {
@@ -185,20 +205,8 @@ Page({
       })
 
     }
-    // if(that.data.course.lists[xb].is_group == 0){
         
-    // }else{
-    //   if(that.data.course.lists[xb].is_buy == 1 || that.data.course.lists[xb].is_buy == 3){
-    //     wx.navigateTo({
-    //       url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
-    //     })
-    //   }
-    //   else{
-    //     wx.navigateTo({
-    //       url: '../../pages/groupBuy/groupBuy?kid=' + that.data.course.lists[xb].kid,
-    //     })
-    //   }
-    // } 
+    
       
   },
 
@@ -466,7 +474,7 @@ Page({
   onShow: function () {
     let that = this
     that.judge_login()    //登陆判断
-
+    that.get_banner3()  //轮播图
     if(that.data.grade){
       for (var i = -0; i < that.data.grade.length; i++) {
         if (that.data.gid == that.data.grade[i].id) {

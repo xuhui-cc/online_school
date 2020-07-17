@@ -46,9 +46,9 @@
   <view wx:if="{{current_subject == 0}}">
     <!-- 广告条 -->
     <swiper class="swiper_container" autoplay="true"  interval="2500" circular="true" indicator-dots="true" indicator-color="rgba(255,255,255,1)" indicator-active-color="rgba(12,205,163,1)">
-      <block wx:for="{{ad}}" wx:key='ad_index' >
+      <block wx:for="{{banner3}}" wx:key='ad_index' >
          <swiper-item>
-          <image  class="ad_img" src="../../images/ad.png" mode="widthFix" ></image>
+          <image  class="ad_img" src="{{item.picurl}}" mode="widthFix" ></image>
          </swiper-item>
       </block>
     </swiper>
