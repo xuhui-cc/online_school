@@ -96,7 +96,7 @@
                 <view class="old_price" style="margin-top: 35rpx;">¥{{item.price}}</view>
               </view>
               <view class="flex">
-                <view class="join_num">3632人参与</view>
+                <view class="join_num">{{item.order_num}}人参与</view>
                 <view class="go_btn" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{1}}" >
                   <image class="lightning" src="../../images/lightning.png"></image>
                   <view class="hot_to">去拼团</view>
