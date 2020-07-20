@@ -80,7 +80,7 @@ Page({
     }
     app.ols.wrong_detail(params).then(d => {
       console.log(d)
-      var replace = '<img style="max-width:92%;height:auto;display:block"'
+      var replace = '<img style="max-width:92%;height:auto;display: initial !important;"'
       if (d.data.code == 0) {
         d.data.data.title = d.data.data.title.replace(/<img/gi, replace)
         d.data.data.note = d.data.data.note.replace(/<img/gi, replace)
@@ -300,7 +300,7 @@ Page({
       if (d.data.code == 0) {
         console.log(d.data.data)
         
-        var repalce = '<img style="max-width:92%;height:auto;display:block"'
+        var repalce = '<img style="max-width:92%;height:auto;display: initial !important;"'
         d.data.data.title = d.data.data.title.replace(/<img/gi, repalce)
         
         if (d.data.data.a != null) {

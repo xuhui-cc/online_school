@@ -62,7 +62,7 @@
 
   <view class="mask1" wx:if="{{login && full}}"></view>
   <view class="group_tip_layout" wx:if="{{login && full}}">
-    <view class="tip_head">该团人数已满！</view>
+    <view class="tip_head">{{tip}}</view>
     <view class="tip_content">请参加其他拼团或单独发起拼团</view>
     <view class="yes_btn" bindtap="to_groupBuy">好的</view>
   </view>

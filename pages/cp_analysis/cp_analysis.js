@@ -70,7 +70,7 @@ Page({
         var cs3 = "analysis.c"
         var cs4 = "analysis.d"
 
-        var replace = '<img style="max-width:92%;height:auto;display:block"'
+        var replace = '<img style="max-width:92%;height:auto;display: initial !important;"'
 
         d.data.data.title = d.data.data.title.replace(/<img/gi, replace)
         d.data.data.note = d.data.data.note.replace(/<img/gi, replace)
@@ -252,10 +252,10 @@ Page({
   //         [cs]: -1
   //       })
   //       that.setData({
-  //         [cs1]: that.data.question.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-  //         [cs2]: that.data.question.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-  //         [cs3]: that.data.question.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-  //         [cs4]: that.data.question.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+  //         [cs1]: that.data.question.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display: initial !important;"'),
+  //         [cs2]: that.data.question.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display: initial !important;"'),
+  //         [cs3]: that.data.question.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display: initial !important;"'),
+  //         [cs4]: that.data.question.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display: initial !important;"')
 
   //       })
   //       console.log("测评第" + (current + 2) + "一题接口调取成功")

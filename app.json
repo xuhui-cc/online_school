@@ -33,6 +33,7 @@
     "pages/group_share/group_share",
     "pages/open_course/open_course",
     "pages/open_detail/open_detail",
+    "pages/share_analysis/share_analysis",
     "pages/analysis/analysis"
   ],
   "window": {

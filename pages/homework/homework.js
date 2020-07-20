@@ -77,7 +77,7 @@ Page({
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
-        var replace_img = '<img style="max-width:90%;height:auto;display:block"'
+        var replace_img = '<img style="max-width:90%;height:auto;display: initial !important;"'
         d.data.data.title = d.data.data.title.replace(/<img/gi, replace_img)
         d.data.data.title = d.data.data.title.replace(/< </gi, "&lt; <")
         d.data.data.title = d.data.data.title.replace(/> >/gi, "&gt; >")

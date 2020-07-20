@@ -210,6 +210,13 @@
 					"id": -1,
 					"name": "cs",
 					"pathName": "pages/cs/cs",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "share_analysis",
+					"pathName": "pages/share_analysis/share_analysis",
 					"scene": null
 				}
 			]

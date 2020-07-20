@@ -86,7 +86,7 @@
       </view>
     </view>
 
-    <view class="ques_title" wx:if="{{ques_type6 == 6}}">组合题</view>
+    <view class="ques_title" wx:if="{{ques_type6 == 6}}">填空题</view>
     <view class="warp" wx:if="{{ques_type6 == 6}}">
       <view class="for" wx:for="{{id_list}}" wx:key="index">
         <view wx:if="{{item.type == 6}}">

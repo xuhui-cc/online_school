@@ -92,6 +92,13 @@ Page({
 
             })
           }
+          else if (that.data.report.option[i].type == 6) {
+
+            that.setData({
+              ques_type6: 6,
+
+            })
+          }
         }
       } else {
         console.log("课后作业报告接口==============" + d.data.msg)

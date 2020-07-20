@@ -1,4 +1,5 @@
 const app = getApp()
+var timer
 Page({
   data: {
     subject:[ {'id':-1, 'title': '推荐'}],
@@ -28,7 +29,7 @@ Page({
     that.getgrade()    //获取年级 
     that.getsubject()   //获取学科
 
-    that.hot()  //热门课程
+    // that.hot()  //热门课程
 
   },
   //轮播图
@@ -52,6 +53,36 @@ Page({
     })
   },
 
+  //广告条跳转
+  ad_detail: function (e) {
+    var id = e.currentTarget.dataset.id
+    var type = e.currentTarget.dataset.type
+    var cate = e.currentTarget.dataset.cate
+    if(type == 2) {
+      if(cate == 0){
+        wx.navigateTo({
+          url: '../../pages/course_detail/course_detail?kid=' + id,
+        })
+      }
+      else if(cate == 1){
+        wx.navigateTo({
+          url: '../../pages/groupBuy/groupBuy?kid=' + id,
+        })
+      }else if(cate == 2){
+        console.log("秒杀")
+        // wx.navigateTo({
+        //   url: '../../pages/groupBuy/groupBuy?kid=' + id,
+        // })
+      }
+    }else if(type == 1){
+      console.log("文章")
+      // wx.navigateTo({
+      //   url: '/pages/book_detail/book_detail?bid=' + bid
+      // })
+    }
+    
+  },
+
   //登录判断
   judge_login: function () {
     let that = this
@@ -60,7 +91,6 @@ Page({
       login: wx.getStorageSync("login"),
       gid: wx.getStorageSync("gid")
     })
-  
     console.log(that.data.login, "that.data.login")
     console.log(that.data.gid, "that.data.gid")
   },
@@ -489,7 +519,7 @@ Page({
     })
     console.log(that.data.gid,"onshow")
 
-    // that.hot()  //热门课程
+    that.hot()  //热门课程
     that.getspecial()  //获取专题
     that.getcourse()     //获取课程
    
@@ -550,7 +580,15 @@ Page({
       // console.log(that)
     } 
     nowTime(); 
-    var timer = setInterval(nowTime, 1000); 
+    timer = setInterval(nowTime, 1000); 
+  },
+
+
+   /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    clearInterval(timer); 
   },
 
     

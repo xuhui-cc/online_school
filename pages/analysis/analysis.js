@@ -56,7 +56,7 @@ Page({
         var cs2 = "analysis.b"
         var cs3 = "analysis.c"
         var cs4 = "analysis.d"
-        var replace = '<img style="max-width:93%;height:auto;display:block"'
+        var replace = '<img style="max-width:93%;height:auto;display: initial !important;"'
         d.data.data.title = d.data.data.title.replace(/<img/gi, replace)
         if (d.data.data.mark.mark != null){
           d.data.data.mark.mark = d.data.data.mark.mark.replace(/<img/gi, replace)
@@ -372,10 +372,10 @@ Page({
   //         [cs]: -1
   //       })
   //       that.setData({
-  //         [cs1]: that.data.question.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-  //         [cs2]: that.data.question.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-  //         [cs3]: that.data.question.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"'),
-  //         [cs4]: that.data.question.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display:block"')
+  //         [cs1]: that.data.question.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display: initial !important;"'),
+  //         [cs2]: that.data.question.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display: initial !important;"'),
+  //         [cs3]: that.data.question.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display: initial !important;"'),
+  //         [cs4]: that.data.question.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display: initial !important;"')
 
   //       })
   //       console.log("测评第" + (current + 2) + "一题接口调取成功")
@@ -448,7 +448,7 @@ Page({
     let that = this;
     return {
       title: '领军网校', // 转发后 所显示的title
-      path: '/pages/first_page/first_page', // 相对的路径
+      path: '/pages/share_analysis/share_analysis?isshare=1&pid=' + that.data.id_list[(that.data.currentTab)].pid, // 相对的路径
       imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
       success: (res) => {    // 成功后要做的事情
         console.log("成功")

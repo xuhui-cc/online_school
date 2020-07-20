@@ -149,7 +149,7 @@ Page({
                 delta: 1  // 返回上一级页面。
               })
             }else if(d.data.data.pt_status >= 1){
-              wx.navigateTo({
+              wx.redirectTo({
                 url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
               })
             }

@@ -129,7 +129,7 @@
       <scroll-view scroll-y="true">
         <!-- <view>{{question.title}}</view> -->
         <view class="ques_content">
-          <rich-text nodes="{{question.title}}"></rich-text>
+          <rich-text nodes="{{question.title}}" style="max-width:690rpx;"></rich-text>
         </view>
         
         <view class="select" style="{{question.myans == 0?'background:rgba(248,249,252,1);':''}}" wx:if="{{question.a != null}}" data-ans="0" data-id="{{question.id}}" bindtap="submit_ans">

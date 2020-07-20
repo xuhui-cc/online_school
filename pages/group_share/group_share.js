@@ -32,7 +32,7 @@ Page({
    to_groupPay:function(){
     let that = this
     // var tid = e.currentTarget.dataset.tid
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../../pages/groupPay/groupPay?tid=' + that.data.tid + "&kid=" + that.data.kid, 
     })
   },
@@ -59,7 +59,9 @@ Page({
       // if(d.data.data.is_buy == 0)
       
       if (d.data.code == 0) {
-        
+        that.setData({
+          is_buy:d.data.data.is_buy
+        })
         d.data.data.group.addtime =  d.data.data.group.addtime + (24*60*60) - timestamp
         for(var j=0;j<d.data.data.group.member.length;j++){
           if(d.data.data.group.member[j].avatar.indexOf("/") == 0){
@@ -88,7 +90,17 @@ Page({
         else if(d.data.data.status == 2){
           console.log("d.data.data.status == 2")
           that.setData({
-            full:true
+            full:true,
+            tip:"该团人数已满！",
+            full1:1
+          })
+        }
+        else if(d.data.data.status == 0){
+          console.log("d.data.data.status == 0")
+          that.setData({
+            full:true,
+            tip:"活动已结束！",
+            full1:0
           })
         }
         
@@ -109,9 +121,22 @@ Page({
 
   to_groupBuy:function(){
     let that = this
-    wx.navigateTo({
-      url: '../../pages/groupBuy/groupBuy?kid=' + that.data.kid,
-    })
+    if(that.data.full1 == 0){
+      wx.navigateTo({
+        url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
+      })
+    }else{
+      if(that.data.is_buy == 1 || that.data.is_buy == 3){
+        wx.redirectTo({
+          url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
+        })
+      }else if(that.data.is_buy == 2 ||that.data.is_buy == 0 ){
+        wx.redirectTo({
+          url: '../../pages/groupBuy/groupBuy?kid=' + that.data.kid,
+        })
+      }
+    }
+    
   },
 
   //获取微信绑定手机号登录

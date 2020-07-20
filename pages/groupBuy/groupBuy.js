@@ -540,6 +540,27 @@ fill_zero_prefix: function (num) {
   return num < 10 ? "0" + num : num
 },
 
+//看视频
+to_video:function(e){
+  let that = this
+  var xb = e.currentTarget.dataset.xb
+  console.log(xb)
+  var id = that.data.course_cata.lists[xb].id
+  var kid = that.data.course_cata.lists[xb].kid
+  var eid = that.data.course_cata.lists[xb].eid
+  var mid = that.data.course_cata.lists[xb].mid
+  if (that.data.course_cata.lists[xb].cateid == 1) {
+    wx.navigateTo({
+      url: '../../pages/live/live?id=' + id + '&kid=' + kid,    //直播
+    })
+  } else {
+    wx.navigateTo({
+      url: '../../pages/video/video?id=' + id + '&kid=' + kid + '&eid=' + eid + '&mid=' + mid,  //看视频
+    })
+  }
+  
+},
+
   
 
   cs1:function(){
