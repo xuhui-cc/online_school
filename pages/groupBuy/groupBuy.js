@@ -177,13 +177,6 @@ Page({
         that.handle_data1(d)   //课程详情数据处理
         
       })
-    // }else{
-      
-    //   console.log(params, "课程详情接口参数")
-    //   app.ols.course_info3(params).then(d => {
-    //     that.handle_data1(d)   //课程详情数据处理
-    //   })
-    // }
     
   },
 
@@ -214,22 +207,6 @@ Page({
           console.log("课程目录==============" + d.data.msg)
         }
       })
-    // }else{
-      
-    //   console.log(params, "获取课程目录参数")
-    //   app.ols.course_cata2(params).then(d => {
-    //     console.log(d, "获取课程目录接口数据")
-    //     if (d.data.code == 0) {
-    //       console.log(d.data.data)
-    //       that.setData({
-    //         course_cata: d.data.data
-    //       })
-    //       console.log("课程目录接口调取成功")
-    //     } else {
-    //       console.log("课程目录==============" + d.data.msg)
-    //     }
-    //   })
-    // }
     
   },
 
@@ -298,6 +275,197 @@ Page({
         url: '../../pages/groupPay/groupPay?kid=' + that.data.kid,     //去支付
       })
     },
+
+    //课程讲义跳转
+  to_course_file:function(e){
+    let that = this
+    that.setData({
+      click_file:true
+    })
+    var xb = e.currentTarget.dataset.xb
+    console.log(xb)
+    var id = that.data.course_cata.lists[xb].id
+    if (that.data.course_cata.lists[xb].annex_num > 1){
+      wx.navigateTo({
+        url: '../../pages/course_file/course_file?id=' + id,
+      })
+      that.setData({
+        click_file:false
+      })
+    }else{
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "id": id
+      }
+      app.ols.handout(params).then(d => {
+        console.log(d)
+        if (d.data.code == 0) {
+          console.log(d.data.data)
+          that.setData({
+            handout: d.data.data
+          })
+          // for (var i = 0; i < that.data.handout.length; i++) {
+            var suffix = "handout[0].suffix"
+            if (that.data.handout[0].annex.indexOf(".pdf") != -1) {
+              that.setData({
+                [suffix]: "pdf"
+              })
+            } else if (that.data.handout[0].annex.indexOf(".doc") != -1) {
+              that.setData({
+                [suffix]: "doc"
+              })
+            }
+            else if (that.data.handout[0].annex.indexOf(".ppt") != -1) {
+              that.setData({
+                [suffix]: "ppt"
+              })
+            }
+            else if (that.data.handout[0].annex.indexOf(".xls") != -1) {
+              that.setData({
+                [suffix]: "xls"
+              })
+            }
+            else if (that.data.handout[0].annex.indexOf(".png") != -1 || that.data.handout[0].annex.indexOf(".jpg") != -1) {
+              that.setData({
+                [suffix]: "img"
+              })
+            }
+          // }
+
+          if (that.data.handout[0].annex.indexOf(".png") != -1 || that.data.handout[0].annex.indexOf(".jpg") != -1) {
+            that.previewImage()
+            console.log("图")
+          } else {
+            
+            wx.showLoading({
+              title: '资料打开中...',
+            })
+
+            var fileName = that.data.handout[0].name + "." + that.data.handout[0].suffix
+            that.setData({
+              fileName: fileName
+            })
+            let customFilePath = wx.env.USER_DATA_PATH + "/" + that.data.fileName
+            console.log('得到自定义路径：')
+            console.log(customFilePath)
+
+            wx.downloadFile({
+              url: that.data.handout[0].annex, //仅为示例，并非真实的资源
+              filePath: customFilePath,
+              success(res) {
+                // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+
+                console.log(res)
+                var filePath = res.filePath
+                console.log('返回自定义路径：')
+                console.log(filePath)
+
+                that.openFilePath = filePath
+                wx.openDocument({
+                  showMenu: true,
+                  filePath: filePath,
+                  success: function (res) {
+                    console.log('打开文档成功')
+                    that.setData({
+                      click_file:false
+                    })
+                    wx.hideLoading()
+                  },
+                  fail: function (res) {
+                    console.log("打开文档失败");
+                    that.setData({
+                      click_file:false
+                    })
+                    console.log(res)
+                    wx.hideLoading({
+                      complete: (res) => {
+                        wx.showToast({
+                          title: '文件打开失败',
+                          icon: 'none'
+                        })
+                      },
+                    })
+                  },
+                  complete: function (res) {
+                    console.log("complete");
+                    console.log(res)
+                  }
+                })
+              },
+              fail: function (res) {
+                console.log('文件下载失败')
+                console.log(res)
+                that.setData({
+                  click_file:false
+                })
+                wx.hideLoading({
+                  complete: (res) => {
+                    wx.showToast({
+                      title: '文件下载失败',
+                      icon: 'none'
+                    })
+                  },
+                })
+                
+              }
+            })
+
+          
+          }
+          console.log("课程讲义接口调取成功")
+        } else {
+          console.log("课程讲义==============" + d.data.msg)
+        }
+      })
+    }
+    
+  },
+
+  //查看课后作业报告
+  to_homework_report:function(e){
+    let that = this
+    var mid = e.currentTarget.dataset.mid
+    wx.navigateTo({
+      url: '../../pages/homework_report/homework_report?mid=' + mid   //课后作业报告
+    })
+  },
+
+  //结课考试
+  to_test:function(e){
+    let that = this
+    wx.navigateTo({
+      url: '../../pages/test/test?eid=' + that.data.course_cata.eid + "&kid=" + that.data.kid,  //结课考试
+    })
+  },
+
+  //结课考试报告
+  to_test_report: function (e) {
+    let that = this
+    wx.navigateTo({
+      url: '../../pages/test_report/test_report?mid=' + that.data.course_cata.mid,  //考试报告
+    })
+  },
+
+  //课后作业
+  to_homework: function (e) {
+    let that = this
+    var xb = e.currentTarget.dataset.xb
+    var eid = that.data.course_cata.lists[xb].eid
+    var kid = that.data.course_cata.lists[xb].kid
+    var oid = that.data.course_cata.lists[xb].id
+    console.log(eid)
+    wx.navigateTo({
+      url: '../../pages/homework/homework?eid=' + eid + "&kid=" + kid + "&oid=" + oid,   //课后作业
+    })
+  },
+
+  //查看报告
+  to_end_report:function(){
+    let that = this
+    wx.navigateTo({
+      url: '../../pages/endcourse_report/endcourse_report?kid=' + that.data.kid,     //结课报告
+    })
+  },
 
   //获取微信绑定手机号登录
   getPhoneNumber: function (e) {
@@ -464,77 +632,6 @@ Page({
   })
 },
 
-  // cs:function(){
-  //   var cs_total_micro_second = 60000 * that.data.test_explain.timeline
-  //   that.setData({
-  //     total_micro_second: cs_total_micro_second
-  //   })
-  //   this.count_down(this);
-  // },
-
-  //小程序倒计时功能
-  // count_down: function (that) {
-  //   that.setData({
-  //     clock: that.dateformat(that.data.total_micro_second),
-  //     cur_uni: that.data.total_micro_second
-  //   });
-  //   if (that.data.total_micro_second == 0) {
-  //     that.setData({
-  //       clock: "00:00:00"
-  //     });
-  //     wx.showToast({
-  //       title: '3秒后将自动交卷',
-  //       icon:"none",
-  //       duration:2950
-  //     })
-  //     setTimeout(function () {
-  //       that.update_cpsubmit()    //达到规定时间自动交卷
-  //      console.log("交卷")
-  //     }, 3000)
-  //     return;
-  //   }
-  //   var cs_t = setTimeout(function () {
-  //     var cs_total_micro_second = that.data.total_micro_second
-  //     cs_total_micro_second -= 1000;
-  //     that.setData({
-  //       total_micro_second: cs_total_micro_second
-  //     })
-  //     that.count_down(that)
-  //   }, 1000)
-    
-  //   that.setData({
-  //     t:cs_t
-  //   })
-  //   console.log(that.data.t)
-  // },
-
- //时间格式整理
-//  dateformat: function (micro_second) {
-//   var day = Math.floor(micro_second / (60 * 60 * 24)); 
-//   // 秒数
-//   var second = Math.floor(micro_second / 1000);  //Math.floor(intDiff / (60 * 60)) - (day * 24)
-//   // 小时位
-//   var hr = this.fill_zero_prefix(Math.floor(second / 3600));
-//   // var hr = this.fill_zero_prefix(Math.floor(second / 3600));
-//   // 分钟位
-//   var min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
-//   // 秒位
-//   var sec = this.fill_zero_prefix((second - hr * 3600 - min * 60));// equal to => var sec = second % 60;
-//   return day + " 天 " + hr + " : " + min + " : " + sec;
-// },
-
-
-// dateformatforreport: function (micro_second) {
-//   // 秒数
-//   var second = Math.floor(micro_second / 1000);
-//   // 小时位
-//   var hr = this.fill_zero_prefix(Math.floor(second / 3600));
-//   // 分钟位
-//   var min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
-//   // 秒位
-//   var sec = this.fill_zero_prefix((second - hr * 3600 - min * 60));// equal to => var sec = second % 60;
-//   return hr + "时" + min + "分" + sec + "秒";
-// },
 //位数不足补零
 fill_zero_prefix: function (num) {
   return num < 10 ? "0" + num : num

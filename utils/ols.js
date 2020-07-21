@@ -99,7 +99,10 @@ function grade_course3(params) {
   return fetch.olsfetchpost(URI, 'v3/lesson/getlist', params)
 }
 
-
+// //获取课程列表
+// function grade_course3(params) {
+//   return fetch.olsfetchpost(URI, 'lesson/getlist', params)
+// }
 
 
 

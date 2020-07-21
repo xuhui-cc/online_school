@@ -123,7 +123,7 @@ Page({
   to_groupPay:function(){
     let that = this
     // var tid = e.currentTarget.dataset.tid
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../../pages/groupPay/groupPay?tid=' + that.data.group.id + "&kid=" + that.data.group.kid, 
     })
   },

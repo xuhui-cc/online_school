@@ -57,7 +57,7 @@ Page({
         var cs3 = "analysis.c"
         var cs4 = "analysis.d"
         var replace = '<img style="max-width:93%;height:auto;display: initial !important;"'
-        d.data.data.title = d.data.data.title.replace(/<img/gi, replace)
+        d.data.data.title = d.data.data.title.replace(/<img/gi, replace).replace(/< </gi, "&lt; <").replace(/> >/gi, "&gt; >").replace(/<</gi, "&lt; <").replace(/>>/gi, "&gt; >")
         if (d.data.data.mark.mark != null){
           d.data.data.mark.mark = d.data.data.mark.mark.replace(/<img/gi, replace)
         }
@@ -68,19 +68,19 @@ Page({
           d.data.data.note = d.data.data.note.replace(/<img/gi, replace)
         }
         if (d.data.data.a != null) {
-          d.data.data.a = d.data.data.a.replace(/<img/gi, replace)
+          d.data.data.a = d.data.data.a.replace(/<img/gi, replace).replace("$","236").replace("\u0000","9").replace("\t","79")
         }
 
         if (d.data.data.b != null) {
-          d.data.data.b = d.data.data.b.replace(/<img/gi, replace)
+          d.data.data.b = d.data.data.b.replace(/<img/gi, replace).replace("$","236").replace("\u0000","9").replace("\t","79")
         }
 
         if (d.data.data.c != null) {
-          d.data.data.c = d.data.data.c.replace(/<img/gi, replace)
+          d.data.data.c = d.data.data.c.replace(/<img/gi, replace).replace("$","236").replace("\u0000","9").replace("\t","79")
 
         }
         if (d.data.data.d != null) {
-          d.data.data.d = d.data.data.d.replace(/<img/gi, replace)
+          d.data.data.d = d.data.data.d.replace(/<img/gi, replace).replace("$","236").replace("\u0000","9").replace("\t","79")
 
         }
 
@@ -441,14 +441,12 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage: function () {
     let that = this;
     return {
       title: '领军网校', // 转发后 所显示的title
-      path: '/pages/share_analysis/share_analysis?isshare=1&pid=' + that.data.id_list[(that.data.currentTab)].pid, // 相对的路径
+      path: '/pages/share_analysis/share_analysis?gid=' + wx.getStorageSync("gid") + '&pid=' + that.data.analysis.id , // 相对的路径
+      // path: '/pages/first_page/first_page', // 相对的路径
       imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
       success: (res) => {    // 成功后要做的事情
         console.log("成功")
@@ -459,6 +457,5 @@ Page({
         console.log(res, "分享失败")
       }
     }
-  
   }
 })
