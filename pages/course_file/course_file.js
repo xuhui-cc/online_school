@@ -1,7 +1,8 @@
 // pages/course_file/course_file.js
 const app = getApp()
 Page({
-
+  // 打开的文件路径 在onShow中删除文件
+  openFilePath: '',
   /**
    * 页面的初始数据
    */

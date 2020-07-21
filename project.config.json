@@ -217,6 +217,13 @@
 					"id": -1,
 					"name": "share_analysis",
 					"pathName": "pages/share_analysis/share_analysis",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/course_seckill/course_seckill",
+					"pathName": "pages/course_seckill/course_seckill",
 					"scene": null
 				}
 			]

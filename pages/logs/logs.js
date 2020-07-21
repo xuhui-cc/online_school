@@ -1,5 +1,5 @@
 const app = getApp()
-var timer
+var timer,ms_timer
 Page({
   data: {
     subject:[ {'id':-1, 'title': '推荐'}],
@@ -168,6 +168,7 @@ Page({
       console.log(d)
       var hot1 = []
       var hot2 = []
+      var hot3 = []
       if (d.data.code == 0) {
         console.log(d.data.data)
         var timestamp = (Date.parse(new Date()))/1000
@@ -177,6 +178,9 @@ Page({
           if(d.data.data.lists[i].pt_price){
             d.data.data.lists[i].endtime = d.data.data.lists[i].endtime - timestamp
             hot1.push(d.data.data.lists[i])
+          }else if(d.data.data.lists[i].ms_price){
+            d.data.data.lists[i].endtime = d.data.data.lists[i].endtime - timestamp
+            hot3.push(d.data.data.lists[i])
           }else{
             hot2.push(d.data.data.lists[i])
           }
@@ -184,9 +188,16 @@ Page({
         }
         that.setData({
           hot1: hot1,
-          hot2:hot2
+          hot2:hot2,
+          hot3:hot3
         })
-        that.cs()
+        if(hot1 != ''){
+          that.cs()
+        }
+        if(hot3 != ''){
+          that.cs_ms()
+        }
+        // that.cs()
         // console.log(that.data.course, "获取课程未登录")
       } else {
         console.log(d.data.msg, "获取课程未登录msg，失败")
@@ -202,23 +213,45 @@ Page({
     var xb = e.currentTarget.dataset.xb
     // var type = e.currentTarget.dataset.type
     console.log(xb)
-    if(that.data.course.lists[xb].is_group == 0){
+    if(that.data.course.lists[xb].is_buy == 1){
         wx.navigateTo({
           url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
         })
     }else{
-      if(that.data.course.lists[xb].is_buy == 1 || that.data.course.lists[xb].is_buy == 3){
+      if(that.data.course.lists[xb].is_group == 0 && that.data.course.lists[xb].is_miaosha == 0){
         wx.navigateTo({
           url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
         })
-      }
-      else{
+      }else if(that.data.course.lists[xb].is_miaosha == 1){
+        wx.navigateTo({
+          url: '../../pages/course_seckill/course_seckill?kid=' + that.data.course.lists[xb].kid,
+        })
+      }else if(that.data.course.lists[xb].is_group == 1){
         wx.navigateTo({
           url: '../../pages/groupBuy/groupBuy?kid=' + that.data.course.lists[xb].kid,
         })
       }
-    } 
-      
+    }
+    // if(that.data.course.lists[xb].is_group == 0 && that.data.course.lists[xb].is_miaosha == 0){
+    //     wx.navigateTo({
+    //       url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
+    //     })
+    // }else if(that.data.course.lists[xb].is_miaosha == 1){
+    //   wx.navigateTo({
+    //     url: '../../pages/course_seckill/course_seckill?kid=' + that.data.course.lists[xb].kid,
+    //   })
+    // }else if(that.data.course.lists[xb].is_group == 1){
+    //   if(that.data.course.lists[xb].is_buy == 1 || that.data.course.lists[xb].is_buy == 3){
+    //     wx.navigateTo({
+    //       url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
+    //     })
+    //   }
+    //   else{
+    //     wx.navigateTo({
+    //       url: '../../pages/groupBuy/groupBuy?kid=' + that.data.course.lists[xb].kid,
+    //     })
+    //   }
+    // } 
   },
 
   to_course_hot:function(e){
@@ -583,12 +616,50 @@ Page({
     timer = setInterval(nowTime, 1000); 
   },
 
+  cs_ms:function(){
+    let that = this
+    let len=that.data.hot3.length;//时间数据长度 
+    function nowTime() {//时间函数 
+      // console.log(a) 
+      for (var i = 0; i < that.data.hot3.length; i++) { 
+        var intDiff = that.data.hot3[i].endtime;//获取数据中的时间戳 
+        // console.log(intDiff) 
+        var day=0, hour=0, minute=0, second=0;        
+        if(intDiff > 0){//转换时间 
+          day = Math.floor(intDiff / (60 * 60 * 24)); 
+          hour = Math.floor(intDiff / (60 * 60)) - (day * 24); 
+          minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60); 
+          second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60); 
+          if(hour <=9) hour = '0' + hour; 
+          if (minute <= 9) minute = '0' + minute; 
+          if (second <= 9) second = '0' + second; 
+          that.data.hot3[i].endtime--; 
+          var str=day + "天 " + hour +':'+minute+':'+ second     
+          // console.log(str)     
+        }else{ 
+          var str = "已结束！"; 
+          clearInterval(ms_timer);   
+        } 
+        // console.log(str); 
+        that.data.hot3[i].difftime = str;//在数据中添加difftime参数名，把时间放进去 
+
+      } 
+      that.setData({ 
+        hot3: that.data.hot3 
+      }) 
+      // console.log(that)
+    } 
+    nowTime(); 
+    ms_timer = setInterval(nowTime, 1000); 
+  },
+
 
    /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
     clearInterval(timer); 
+    clearInterval(ms_timer); 
   },
 
     

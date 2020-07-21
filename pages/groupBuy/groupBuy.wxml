@@ -21,10 +21,13 @@
         <view class="old_price">¥{{course_info.price}}</view>
       
     </view>
-  </view>
-  <view class="margin_gray" wx:if="{{course_info.group != '' && course_info.pay_status <=2 && course_info.pay_status <= 4}}"></view>
 
-  <view class="group_message" wx:if="{{course_info.group != '' && course_info.pay_status <=2 && course_info.pay_status <= 4}} ">
+
+    
+  </view>
+  <view class="margin_gray" wx:if="{{course_info.group != '' && (course_info.is_buy == 0 || course_info.is_buy == 2)}}"></view>
+
+  <view class="group_message" wx:if="{{course_info.group != '' && (course_info.is_buy == 0 || course_info.is_buy == 2)}}">
     <view class="flex" wx:if="{{course_info.group != ''}}">
       <view class="group_tip">立即参加Ta人的已开团，可快速成团</view>
       <view class="group_rule" bindtap="look_rule">查看拼团规则</view>
