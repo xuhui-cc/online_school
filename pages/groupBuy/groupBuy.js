@@ -1,6 +1,6 @@
 // pages/groupBuy/groupBuy.js
 const app = getApp()
-var timer,timer_group,timer_grouplist
+var timer,timer_option,timer_grouplist
 Page({
 
   /**
@@ -51,7 +51,7 @@ Page({
       console.log(params, "课程详情接口参数")
       app.ols.course_info3(params).then(d => {
         that.handle_data1(d)   //课程详情数据处理
-        if(d.data.data.group){
+        if(d.data.data.option){
           that.cs_group()   // 已有团列表倒计时
         }
         
@@ -219,19 +219,22 @@ Page({
       var timestamp = (Date.parse(new Date()))/1000
       console.log(timestamp,"timestamp")
       d.data.data.endtime = d.data.data.endtime - timestamp
-      if(d.data.data.group){
-        for(var i=0;i<d.data.data.group.length;i++){
-          for(var j=0;j<d.data.data.group[i].member.length;j++){
-            if(d.data.data.group[i].member[j].avatar.indexOf("/") == 0){
-              d.data.data.group[i].member[j].avatar = 'http://os.lingjun.net' + d.data.data.group[i].member[j].avatar
-              //表示strCode是以ssss开头；
-            }else if(d.data.data.group[i].member[j].avatar.indexOf("/") == -1){
-              //表示strCode不是以ssss开头
+      if(d.data.data.option){
+        for(var i=0;i<d.data.data.option.length;i++){
+          // if(d.data.data.option[i].member){
+            for(var j=0;j<d.data.data.option[i].member.length;j++){
+              if(d.data.data.option[i].member[j].avatar.indexOf("/") == 0){
+                d.data.data.option[i].member[j].avatar = 'http://os.lingjun.net' + d.data.data.option[i].member[j].avatar
+                //表示strCode是以ssss开头；
+              }else if(d.data.data.option[i].member[j].avatar.indexOf("/") == -1){
+                //表示strCode不是以ssss开头
+              }
             }
-          }
+          // }
           
-          d.data.data.group[i].nick = d.data.data.group[i].nick.substr(0,3) + '***'
-          d.data.data.group[i].addtime =  d.data.data.group[i].addtime + (24*60*60) - timestamp
+          
+          d.data.data.option[i].nick = d.data.data.option[i].nick.substr(0,3) + '***'
+          d.data.data.option[i].addtime =  d.data.data.option[i].addtime + (24*60*60) - timestamp
         }
       }
       
@@ -700,11 +703,11 @@ to_video:function(e){
 
   cs_group:function(){
     let that = this
-    let len=that.data.course_info.group.length;//时间数据长度 
+    let len=that.data.course_info.option.length;//时间数据长度 
     function nowTime() {//时间函数 
       // console.log(a) 
-      for (var i = 0; i < that.data.course_info.group.length; i++) { 
-        var intDiff = that.data.course_info.group[i].addtime;//获取数据中的时间戳 
+      for (var i = 0; i < that.data.course_info.option.length; i++) { 
+        var intDiff = that.data.course_info.option[i].addtime;//获取数据中的时间戳 
         // console.log(intDiff) 
         var day=0, hour=0, minute=0, second=0;        
         if(intDiff > 0){//转换时间 
@@ -715,15 +718,15 @@ to_video:function(e){
           if(hour <=9) hour = '0' + hour; 
           if (minute <= 9) minute = '0' + minute; 
           if (second <= 9) second = '0' + second; 
-          that.data.course_info.group[i].addtime--; 
+          that.data.course_info.option[i].addtime--; 
           var str=hour +':'+minute+':'+ second     
           // console.log(str)     
         }else{ 
           var str = "已结束！"; 
-          clearInterval(timer_group);   
+          clearInterval(timer_option);   
         } 
         // console.log(str); 
-        that.data.course_info.group[i].difftime = str;//在数据中添加difftime参数名，把时间放进去 
+        that.data.course_info.option[i].difftime = str;//在数据中添加difftime参数名，把时间放进去 
 
       } 
       that.setData({ 
@@ -732,7 +735,7 @@ to_video:function(e){
       // console.log(that)
     } 
     nowTime(); 
-    timer_group = setInterval(nowTime, 1000); 
+    timer_option = setInterval(nowTime, 1000); 
   },
 
   cs_grouplist:function(){
@@ -787,7 +790,7 @@ to_video:function(e){
    */
   onUnload: function () {
     let that = this
-    clearInterval(timer_group);   
+    clearInterval(timer_option);   
     clearInterval(timer);  
     clearInterval(timer_grouplist);    
   },

@@ -144,15 +144,15 @@ Page({
         }
         app.ols.course_info3(params).then(d => {
           if (d.data.code == 0) {
-            if(d.data.data.pt_status < 1){
-              wx.navigateBack({
-                delta: 1  // 返回上一级页面。
-              })
-            }else if(d.data.data.pt_status >= 1){
+            // if(d.data.data.pt_status < 1){
               wx.redirectTo({
                 url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
               })
-            }
+            // }else if(d.data.data.pt_status >= 1){
+            //   wx.redirectTo({
+            //     url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
+            //   })
+            // }
           } else {
             console.log("课程详情介绍接口==============" + d.data.msg)
           }

@@ -25,15 +25,15 @@
 
     
   </view>
-  <view class="margin_gray" wx:if="{{course_info.group != '' && (course_info.is_buy == 0 || course_info.is_buy == 2)}}"></view>
+  <view class="margin_gray" wx:if="{{course_info.groupnum > 0 && (course_info.is_buy == 0 || course_info.is_buy == 2)}}"></view>
 
-  <view class="group_message" wx:if="{{course_info.group != '' && (course_info.is_buy == 0 || course_info.is_buy == 2)}}">
-    <view class="flex" wx:if="{{course_info.group != ''}}">
+  <view class="group_message" wx:if="{{course_info.groupnum > 0 && (course_info.is_buy == 0 || course_info.is_buy == 2)}}">
+    <view class="flex" wx:if="{{course_info.groupnum > 0}}">
       <view class="group_tip">立即参加Ta人的已开团，可快速成团</view>
       <view class="group_rule" bindtap="look_rule">查看拼团规则</view>
       <image class="next" src="../../images/next.png" bindtap="look_rule"></image>
     </view>
-    <view  wx:for="{{course_info.group}}" wx:key="group_index" style="margin-bottom:40rpx;">
+    <view  wx:for="{{course_info.option}}" wx:key="group_index" style="margin-bottom:40rpx;">
       <view class="flex" style="margin-top:56rpx;">
         <view class="flex" wx:if="{{item.nums == 2}}">
           <image class="ava1" src="{{item.member[0].avatar}}"></image>
@@ -64,12 +64,12 @@
           </view>
         </view>
         <button class="login_read" style="margin-top:-1rpx;margin-left:565rpx; width:144rpx;height:66rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-type="{{1}}" wx:if="{{!login}}"></button>
-        <view class="join_group" wx:if="{{course_info.has_join <= 0}}" bindtap="to_group_detail" data-tid="{{item.id}}">立即参加</view>
-        <view class="join_group" wx:if="{{course_info.has_join > 0}}" bindtap="to_group_detail" data-tid="{{item.id}}">查看进度</view>
+        <view class="join_group" wx:if="{{course_info.is_buy <= 0}}" bindtap="to_group_detail" data-tid="{{item.id}}">立即参加</view>
+        <view class="join_group" wx:if="{{course_info.is_buy > 0}}" bindtap="to_group_detail" data-tid="{{item.id}}">查看进度</view>
       </view>
     </view>
 
-    <view class="look_more" wx:if="{{course_info.has_join <= 0 && course_info.groupnum > 3}}" bindtap="all_group">查看更多拼团</view>
+    <view class="look_more" wx:if="{{course_info.is_buy <= 0 && course_info.groupnum > 3}}" bindtap="all_group">查看更多拼团</view>
 
     
     

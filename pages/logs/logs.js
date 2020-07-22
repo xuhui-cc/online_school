@@ -232,26 +232,6 @@ Page({
         })
       }
     }
-    // if(that.data.course.lists[xb].is_group == 0 && that.data.course.lists[xb].is_miaosha == 0){
-    //     wx.navigateTo({
-    //       url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
-    //     })
-    // }else if(that.data.course.lists[xb].is_miaosha == 1){
-    //   wx.navigateTo({
-    //     url: '../../pages/course_seckill/course_seckill?kid=' + that.data.course.lists[xb].kid,
-    //   })
-    // }else if(that.data.course.lists[xb].is_group == 1){
-    //   if(that.data.course.lists[xb].is_buy == 1 || that.data.course.lists[xb].is_buy == 3){
-    //     wx.navigateTo({
-    //       url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
-    //     })
-    //   }
-    //   else{
-    //     wx.navigateTo({
-    //       url: '../../pages/groupBuy/groupBuy?kid=' + that.data.course.lists[xb].kid,
-    //     })
-    //   }
-    // } 
   },
 
   to_course_hot:function(e){
@@ -268,8 +248,6 @@ Page({
       })
 
     }
-        
-    
       
   },
 
@@ -296,8 +274,6 @@ Page({
 
           wx.setStorageSync('gid', that.data.grade[xb].id)
           that.getsubject()   //获取科目
-          // that.getcourse()    //获取课程
-          // that.getspecial()      //获取专题
           that.setData({
             grade_select: false
           })
@@ -313,15 +289,12 @@ Page({
     }else{
       wx.setStorageSync('gid', that.data.grade[xb].id)
       that.getsubject()   //获取科目
-      // that.getcourse()    //获取课程
-      // that.getspecial()      //获取专题
+
       that.setData({
         grade_select: false
       })
     }
-    
-    
-    
+
   },
 
   
