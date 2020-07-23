@@ -35,14 +35,28 @@ Page({
             that.setData({
               [suffix]:"pdf"
             })
-          } else if (that.data.handout[i].annex.indexOf(".doc") != -1){
+          } else if (that.data.handout[i].annex.indexOf(".docx") != -1) {
+            that.setData({
+              [suffix]: "docx"
+            })
+          }
+          else if (that.data.handout[i].annex.indexOf(".doc") != -1) {
             that.setData({
               [suffix]: "doc"
+            })
+          }else if (that.data.handout[i].annex.indexOf(".pptx") != -1) {
+            that.setData({
+              [suffix]: "pptx"
             })
           }
           else if (that.data.handout[i].annex.indexOf(".ppt") != -1) {
             that.setData({
               [suffix]: "ppt"
+            })
+          }
+          else if (that.data.handout[i].annex.indexOf(".xlsx") != -1) {
+            that.setData({
+              [suffix]: "xlsx"
             })
           }
           else if (that.data.handout[i].annex.indexOf(".xls") != -1) {

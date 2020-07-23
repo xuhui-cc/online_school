@@ -51,7 +51,8 @@ Page({
       console.log(params, "课程详情接口参数")
       app.ols.course_info3(params).then(d => {
         that.handle_data1(d)   //课程详情数据处理
-        if(d.data.data.option){
+        
+        if((d.data.data.is_buy == 1 || d.data.data.is_buy == 3)  && d.data.data.option){
           that.cs_group()   // 已有团列表倒计时
         }
         
@@ -137,9 +138,13 @@ Page({
   to_group_detail:function(e){
     let that = this
     var tid = e.currentTarget.dataset.tid
+    that.setData({
+      all_group:false
+    })
     wx.navigateTo({
       url: '../../pages/group_detail/group_detail?tid=' + tid + '&kid=' + that.data.kid, 
     })
+    
   },
 
   //课程介绍、目录切换
@@ -248,7 +253,7 @@ Page({
       that.setData({
         [cs]: that.data.course_info.content.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block"')
       })
-      if (that.data.course_info.pay_status > 1 && that.data.course_info.pay_status < 5) {
+      if (that.data.course_info.is_buy == 3 || that.data.course_info.is_buy == 1) {
         that.setData({
           currentData: 1
         })
@@ -274,7 +279,7 @@ Page({
       let that = this
       // var kid = e.currentTarget.dataset.kid
       // console.log(kid)
-      wx.navigateTo({
+      wx.redirectTo({
         url: '../../pages/groupPay/groupPay?kid=' + that.data.kid,     //去支付
       })
     },
@@ -303,7 +308,7 @@ Page({
       app.ols.handout(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
-          console.log(d.data.data)
+          console.log(d.data.data,"详细资料数据")
           that.setData({
             handout: d.data.data
           })
@@ -313,14 +318,28 @@ Page({
               that.setData({
                 [suffix]: "pdf"
               })
-            } else if (that.data.handout[0].annex.indexOf(".doc") != -1) {
+            } else if (that.data.handout[0].annex.indexOf(".docx") != -1) {
+              that.setData({
+                [suffix]: "docx"
+              })
+            }
+            else if (that.data.handout[0].annex.indexOf(".doc") != -1) {
               that.setData({
                 [suffix]: "doc"
+              })
+            }else if (that.data.handout[0].annex.indexOf(".pptx") != -1) {
+              that.setData({
+                [suffix]: "pptx"
               })
             }
             else if (that.data.handout[0].annex.indexOf(".ppt") != -1) {
               that.setData({
                 [suffix]: "ppt"
+              })
+            }
+            else if (that.data.handout[0].annex.indexOf(".xlsx") != -1) {
+              that.setData({
+                [suffix]: "xlsx"
               })
             }
             else if (that.data.handout[0].annex.indexOf(".xls") != -1) {
@@ -389,10 +408,10 @@ Page({
                       },
                     })
                   },
-                  complete: function (res) {
-                    console.log("complete");
-                    console.log(res)
-                  }
+                  // complete: function (res) {
+                  //   console.log("complete");
+                  //   console.log(res)
+                  // }
                 })
               },
               fail: function (res) {
@@ -523,7 +542,7 @@ Page({
                               url: '../../pages/pay/pay?kid=' + that.data.kid,     //去支付
                             })
                           } else if(type == 3) {
-                            wx.navigateTo({
+                            wx.redirectTo({
                               url: '../../pages/groupPay/groupPay?kid=' + that.data.kid,     //去支付
                             })
                           }
@@ -550,7 +569,7 @@ Page({
                               url: '../../pages/pay/pay?kid=' + that.data.kid,     //去支付
                             })
                           } else if(type == 3) {
-                            wx.navigateTo({
+                            wx.redirectTo({
                               url: '../../pages/groupPay/groupPay?kid=' + that.data.kid,     //去支付
                             })
                           }

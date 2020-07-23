@@ -7,7 +7,7 @@
 
   <view class="layout">
     <view class="title">手机号</view>
-    <input class="input" placeholder="请输入收货人手机号" bindinput="phone" value="{{phone}}"></input>
+    <input class="input" placeholder="请输入收货人手机号" bindinput="phone" type="number" value="{{phone}}"></input>
   </view>
   <view class="heng"></view>
 

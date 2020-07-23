@@ -112,7 +112,8 @@
       
     </view>
 
-    <view class="hot_layout" >
+    <!-- miaosha  -->
+    <view class="hot_layout" hidden="true">
       <view wx:for="{{hot3}}" wx:key="hot_index">
         <view class="hot_course">
           <view class="flex">
@@ -142,8 +143,6 @@
         </view>
         
       </view>
-
-      
     </view>
     
     <view class="hot_layout"> 

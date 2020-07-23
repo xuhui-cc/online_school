@@ -702,4 +702,20 @@
   color:rgba(255,75,32,1);
   opacity:1;
 }
+.button_buy{
+  position: absolute;
+  margin-left: 350rpx;
+  margin-top: 15rpx;
+  width:372rpx;
+  height:75rpx;
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:75rpx;
+  text-align: center;
+  color:rgba(255,255,255,1);
+  background:#FF994B;
+  opacity:1;
+  border-radius:38rpx;
+}
 

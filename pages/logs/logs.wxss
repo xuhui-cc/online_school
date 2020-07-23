@@ -505,6 +505,7 @@ page{
   margin-top: 20rpx;
   width:256rpx;
   height:148rpx;
+  border-radius: 8rpx;
 }
 .time_tip{
   margin-top: 20rpx;

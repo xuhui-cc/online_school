@@ -71,7 +71,9 @@ Page({
   buy:function(){
     let that = this
     console.log(that.data.have_adr)
-    
+    wx.showLoading({
+      title: '请稍后...',
+    })
       var params = {
         "token": wx.getStorageSync("token"),
         "pid": that.data.course_info.pt_id,
@@ -93,6 +95,11 @@ Page({
           that.laqizhifu(timeStamp, nonceStr, pack, paySign)
           console.log("预支付接口成功")
         } else {
+          wx.showToast({
+            title: '请填写地址信息！',
+            icon:"none",
+            duration:3000
+          })
           console.log("预支付接口失败", d)
         }
       })
@@ -103,6 +110,7 @@ Page({
 
   group_del3:function(){
     let that = this
+    console.log("")
     console.log(that.data.have_adr)
     
       var params = {
@@ -126,6 +134,7 @@ Page({
   //拉起微信支付
   laqizhifu: function (timeStamp, nonceStr, pack, paySign) {
     let that = this
+    wx.hideLoading()
     wx.requestPayment({
       timeStamp: timeStamp,
       nonceStr: nonceStr,
@@ -146,7 +155,7 @@ Page({
           if (d.data.code == 0) {
             // if(d.data.data.pt_status < 1){
               wx.redirectTo({
-                url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
+                url: '../../pages/groupBuy/groupBuy?kid=' + that.data.kid,
               })
             // }else if(d.data.data.pt_status >= 1){
             //   wx.redirectTo({

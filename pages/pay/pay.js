@@ -62,7 +62,9 @@ Page({
   buy:function(){
     let that = this
     console.log(that.data.have_adr)
-    
+    wx.showLoading({
+      title: '请稍后...',
+    })
       var params = {
         "token": wx.getStorageSync("token"),
         "kid": that.data.kid
@@ -80,6 +82,12 @@ Page({
           that.laqizhifu(timeStamp, nonceStr, pack, paySign)
           console.log("预支付接口成功")
         } else {
+          wx.showToast({
+            title: '请填写地址信息！',
+            icon:"none",
+            duration:2000
+          })
+          // wx.hideLoading()
           console.log("预支付接口失败", d)
         }
       })
@@ -89,6 +97,7 @@ Page({
 
   //拉起微信支付
   laqizhifu: function (timeStamp, nonceStr, pack, paySign) {
+    wx.hideLoading()
     wx.requestPayment({
       timeStamp: timeStamp,
       nonceStr: nonceStr,
