@@ -274,29 +274,27 @@ Page({
     console.log(e.touches.length, 'e.touches.length')
     if (e.touches.length == 1) {
       var moveX = e.touches[0].clientX;
-      // console.log(moveX,'moveX')
+      
       diffX = that.data.startX - moveX;
-      // console.log(diffX, 'diffX')
+     
       var moveLeft = '';
       if (diffX < -300) { //向右
         moveLeft = 'left:' + -(diffX < -90 ? -90 : diffX) + 'px;';
-        // console.log("右")
+        
       } else if (diffX > 300) { //向左
         moveLeft = 'left:-' + (diffX > 90 ? 90 : diffX) + 'px;';
-        // console.log("左")
+       
       } else {
         moveLeft = 'left:0px;';
 
       }
-      // console.log(diffX,"diffX")
-      // console.log(currentTab, "currentTab")
+      
 
       that.setData({
-        // diffX:diffX,
+       
         moveLeft: moveLeft
       });
     }
-    // console.log(that.data.diffX, "that.data.diffX")
   },
   touchEnd: function (e) {
     let that = this
@@ -340,50 +338,6 @@ Page({
     }
   },
 
-
-
-
-
-  //手动滑页
-  // swiperchange: function (e) {
-  //   var that = this
-  //   var current = Number(e.currentTarget.dataset.current)  // 当前的
-  //   var index = e.detail.current;//当前所在页面的 index
-  //   console.log(index)
-  //   console.log(current + 1)
-  //   var params = {
-  //     "token": wx.getStorageSync("token"),
-  //     "id": that.data.id_list[(current + 1)].pid
-  //   }
-  //   app.ols.ques_detail(params).then(d => {
-  //     console.log(d)
-  //     if (d.data.code == 0) {
-  //       console.log(d.data.data)
-  //       var cs1 = "question.a"
-  //       var cs2 = "question.b"
-  //       var cs3 = "question.c"
-  //       var cs4 = "question.d"
-  //       that.setData({
-  //         question: d.data.data,
-  //         currentTab: current + 1
-  //       })
-  //       var cs = "question.myans"
-  //       that.setData({
-  //         [cs]: -1
-  //       })
-  //       that.setData({
-  //         [cs1]: that.data.question.a.replace(/<img/gi, '<img style="max-width:90%;height:auto;display: initial !important;"'),
-  //         [cs2]: that.data.question.b.replace(/<img/gi, '<img style="max-width:90%;height:auto;display: initial !important;"'),
-  //         [cs3]: that.data.question.c.replace(/<img/gi, '<img style="max-width:90%;height:auto;display: initial !important;"'),
-  //         [cs4]: that.data.question.d.replace(/<img/gi, '<img style="max-width:90%;height:auto;display: initial !important;"')
-
-  //       })
-  //       console.log("测评第" + (current + 2) + "一题接口调取成功")
-  //     } else {
-  //       console.log("测评第" + (current + 2) + "一题接口==============" + d.data.msg)
-  //     }
-  //   })
-  // },
 
   //查看大图
   previewImg: function (e) {
