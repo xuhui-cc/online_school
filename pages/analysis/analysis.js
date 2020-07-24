@@ -157,12 +157,7 @@ Page({
 
   },
 
-  // time:function(time){
-  //   let that = this
-  //   var h = time%3600
-  //   var m = time%60
-  //   var s = time
-  // }
+ 
 
   //测评试题ID列表
   cp_ans_id: function () {
