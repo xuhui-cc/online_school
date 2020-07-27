@@ -52,7 +52,7 @@ Page({
       app.ols.course_info3(params).then(d => {
         that.handle_data1(d)   //课程详情数据处理
         
-        if((d.data.data.is_buy == 1 || d.data.data.is_buy == 3)  && d.data.data.option){
+        if((d.data.data.is_buy == 0|| d.data.data.is_buy == 2)  && d.data.data.option){
           that.cs_group()   // 已有团列表倒计时
         }
         
@@ -96,7 +96,8 @@ Page({
         for(var i=0;i<d.data.data.lists.group.length;i++){
           for(var j=0;j<d.data.data.lists.group[i].member.length;j++){
             if(d.data.data.lists.group[i].member[j].avatar.indexOf("/") == 0){
-              d.data.data.lists.group[i].member[j].avatar = 'http://os.lingjun.net' + d.data.data.lists.group[i].member[j].avatar
+              // d.data.data.lists.group[i].member[j].avatar = 'http://os.lingjun.net' + d.data.data.lists.group[i].member[j].avatar
+              d.data.data.lists.group[i].member[j].avatar = 'https://wsg.lingjun.net' + d.data.data.lists.group[i].member[j].avatar
               //表示strCode是以ssss开头；
             }else if(d.data.data.lists.group[i].member[j].avatar.indexOf("/") == -1){
               //表示strCode不是以ssss开头
@@ -229,7 +230,8 @@ Page({
           // if(d.data.data.option[i].member){
             for(var j=0;j<d.data.data.option[i].member.length;j++){
               if(d.data.data.option[i].member[j].avatar.indexOf("/") == 0){
-                d.data.data.option[i].member[j].avatar = 'http://os.lingjun.net' + d.data.data.option[i].member[j].avatar
+                d.data.data.option[i].member[j].avatar = 'https://wsg.lingjun.net' + d.data.data.option[i].member[j].avatar
+                // d.data.data.option[i].member[j].avatar = 'http://os.lingjun.net' + d.data.data.option[i].member[j].avatar
                 //表示strCode是以ssss开头；
               }else if(d.data.data.option[i].member[j].avatar.indexOf("/") == -1){
                 //表示strCode不是以ssss开头

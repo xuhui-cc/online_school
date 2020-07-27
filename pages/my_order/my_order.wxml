@@ -34,7 +34,7 @@
     <!-- 普通样式 -->
 
     <!-- 拼团样式 -->
-    <view class="group_layout" bindtap="to_order_detail" data-id="{{item.id}}" wx:if="{{item.is_buy > 1}}">
+    <view class="group_layout"  data-id="{{item.id}}" wx:if="{{item.is_buy > 1}}">
       <view class="flex">
         <view class="group_status" wx:if="{{item.is_buy == 2}}">拼团中...</view>
         <view class="group_status" wx:if="{{item.is_buy == 3}}">拼团成功</view>

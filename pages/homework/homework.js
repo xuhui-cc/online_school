@@ -656,8 +656,8 @@ Page({
           console.log(tempFilePaths)
           // let imgs = [];
           wx.uploadFile({
-            url: 'http://os.lingjun.net/api.php/annex/upload',
-            // url: 'https://wsg.lingjun.net/api.php/annex/upload',
+            // url: 'http://os.lingjun.net/api.php/annex/upload',
+            url: 'https://wsg.lingjun.net/api.php/annex/upload',
             filePath: tempFilePaths[0],
             name: 'file',
             method: 'POST',

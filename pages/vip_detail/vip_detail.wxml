@@ -1,0 +1,53 @@
+
+<view class="container">
+  <image class="bg3" src="../../images/bg3.png"></image>
+
+  <view class="flex" style="margin-top:176rpx;">
+    <image class="ava" src="../../images/group_ava.png"></image>
+    <view class="nick">张东升的假发</view>
+    <view class="btn">立即开通</view>
+  </view>
+
+
+  <swiper
+    class="swiper"
+    circular="{{circular}}" 
+    previous-margin="{{previousMargin}}" 
+    next-margin="{{nextMargin}}"
+    bindchange="swiperBindchange"
+  >
+    <block wx:for="{{imgUrls}}" wx:key="index">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image {{currentSwiperIndex == index ? 'zoom-in' : 'zoom-out'}}" mode='widthFix'/>
+      </swiper-item>
+    </block>
+  </swiper>
+
+
+  <view class="layout">
+    <view class="h1">黄金VIP会员权益</view>
+    <view class="h2"><text style="font-size:30rpx;">20门</text>精选好课</view>
+    <view style="margin-top:32rpx;">
+      <view wx:for="{{imgUrls}}" wx:key="index" style="margin-left:30rpx;margin-bottom:42rpx;">
+      
+        <view class="flex" >
+          <image class="laber" src="../../images/vip_laber2.png"></image>
+          <image class="fm" src="../../images/ad.png"></image>
+          <view>
+            <view class="title">高三数学三角函数专题课数专题课专题课专题课专题专题...</view>
+            <view class="flex">
+              <view class="num">30课时</view>
+              <view class="tip">免费学</view>
+            </view>
+            
+          </view>
+        </view>
+      
+      </view>
+    </view>
+
+
+
+  </view>
+  
+</view>
