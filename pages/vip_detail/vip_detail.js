@@ -12,7 +12,6 @@ Page({
       '../../images/vip1.png',
       '../../images/vip2.png',
       '../../images/vip3.png',
-      
     ],
     
     interval: 3000, //停留时间间隔
@@ -28,6 +27,13 @@ Page({
     })
   },
 
+  //返回我的主页
+  back:function(){
+    wx.navigateBack({
+      delta: 1,
+    })
+  },
+ 
   /**
    * 生命周期函数--监听页面加载
    */

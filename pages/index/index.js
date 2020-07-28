@@ -292,7 +292,6 @@ Page({
       imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
       success: (res) => {    // 成功后要做的事情
         console.log("成功")
-
       },
       fail: function (res) {
         // 分享失败
@@ -329,8 +328,6 @@ Page({
                 if (d.data.code == 0) {
                   console.log("登陆成功")
                   wx.hideLoading()
-                 
-                  
                   that.setData({
                     login: true
                   })
@@ -346,8 +343,6 @@ Page({
                     duration: 3000
                   })
                   console.log(d.data.msg, "登录失败提示")
-
-
                   wx.hideLoading()
                 }
               })
@@ -357,5 +352,4 @@ Page({
       }
     })
   },
-  
 })

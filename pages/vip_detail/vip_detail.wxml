@@ -1,11 +1,29 @@
 
 <view class="container">
+
+  <image class="back" src="../../images/w_back2.png" bindtap="back"></image>
+
+
   <image class="bg3" src="../../images/bg3.png"></image>
 
-  <view class="flex" style="margin-top:176rpx;">
-    <image class="ava" src="../../images/group_ava.png"></image>
-    <view class="nick">张东升的假发</view>
-    <view class="btn">立即开通</view>
+  <view class="flex" style="margin-top:176rpx;margin-left: 50rpx;">
+    <view class="ava">
+      <open-data  type="userAvatarUrl"></open-data>
+    </view>
+    
+     
+    <view class="flex" >
+      <open-data type="userNickName" class="nick"></open-data>
+      <view class="btn">立即开通</view>
+    </view>
+    <view style="margin-top: 15rpx;" hidden="true">
+      <open-data type="userNickName" class="nick"></open-data>
+      <!-- <view class="nick" >张东升的假发</view> -->
+      <view class="flex">
+        <image class="badge_img" src="../../images/vip_badge2.png"></image>
+        <view class="vip_time">2020-09-30到期</view>
+      </view>
+    </view>
   </view>
 
 
@@ -23,8 +41,12 @@
     </block>
   </swiper>
 
+  <view class="intro">免费学习10门领军大咖老师挑选的经典好课</view>
+  <view class="price"><text style="font-size:32rpx;font-weight:400;">¥</text>299</view>
+
 
   <view class="layout">
+    <image class="exchange_entry" src="../../images/exchange_entry.png"></image>
     <view class="h1">黄金VIP会员权益</view>
     <view class="h2"><text style="font-size:30rpx;">20门</text>精选好课</view>
     <view style="margin-top:32rpx;">

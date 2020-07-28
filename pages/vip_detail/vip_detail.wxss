@@ -4,6 +4,13 @@
   height: 1624rpx;
   z-index: -1;
 }
+.back{
+  position: absolute;
+  margin-top: 100rpx;
+  margin-left: 15rpx;
+  width: 56rpx;
+  height: 56rpx;
+}
 .flex{
   display: flex;
 }
@@ -25,10 +32,18 @@
   transform: scale(1);
   transition: all 0.5s ease-in 0s;
 }
-.ava{
+/* .ava{
   margin-left: 50rpx;
   width: 117rpx;
   height: 117rpx;
+  border-radius: 50%;
+} */
+
+.ava{
+  width: 117rpx;
+  height: 117rpx;
+  border-radius: 50%;
+  overflow:hidden;
 }
 .nick{
   margin-left: 23rpx;
@@ -42,9 +57,27 @@
   color:rgba(255,255,255,1);
   
 }
+.badge_img{
+  margin-left: 23rpx;
+  margin-top: 8rpx;
+  width:24rpx;
+  height:28rpx;
+}
+.vip_time{
+  margin-left: 8rpx;
+  margin-top: 5rpx;
+  width:192rpx;
+  height:33rpx;
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:33rpx;
+  color:rgba(255,231,183,1);
+  opacity:1;
+}
 .btn{
   margin-left: 30rpx;
-  margin-top: 42rpx;
+  margin-top: 35rpx;
   width:146rpx;
   height:55rpx;
   font-size:24rpx;
@@ -55,6 +88,13 @@
   color:rgba(22,28,46,1);
   background:linear-gradient(304deg,rgba(255,190,56,1) 0%,rgba(255,232,186,1) 100%);
   border-radius:28rpx;
+}
+.exchange_entry{
+  margin-left: 485rpx;
+  margin-top: 45rpx;
+  position: absolute;
+  width:237rpx;
+  height:37rpx;
 }
 .layout{
   position: absolute;
@@ -140,5 +180,30 @@
   position: absolute;
   width: 52rpx;
   height: 34rpx;
+  
+}
+.intro{
+  position: absolute;
+  margin-left: 105rpx;
+  margin-top: 470rpx;
+  width:356rpx;
+  height:61rpx;
+  font-size:22rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:31rpx;
+  color:rgba(123,123,123,1);
+}
+.price{
+  position: absolute;
+  margin-left: 530rpx;
+  margin-top: 460rpx;
+  width:95rpx;
+  height:81rpx;
+  font-size:58rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:81rpx;
+  color:rgba(102,102,102,1);
   
 }

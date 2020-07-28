@@ -830,6 +830,13 @@ to_video:function(e){
 
   },
 
+  
+/**阻止页面滚动。模拟器中页面仍然可以滚动，真机上不能滚动。*/
+preventTouchMove: function (e) {
+ 
+},   
+
+
   /**
    * 用户点击右上角分享
    */

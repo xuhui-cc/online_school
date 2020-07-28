@@ -15,11 +15,9 @@
           </view> 
         </view>
       </view>  
-      
         <image class="group_laber" src="../../images/group_laber1.png"></image>
         <view class="group_price">¥{{course_info.pt_price}}</view>
         <view class="old_price">¥{{course_info.price}}</view>
-      
     </view>
 
 
@@ -28,6 +26,7 @@
   <view class="margin_gray" wx:if="{{course_info.groupnum > 0 && (course_info.is_buy == 0 || course_info.is_buy == 2)}}"></view>
 
   <view class="group_message" wx:if="{{course_info.groupnum > 0 && (course_info.is_buy == 0 || course_info.is_buy == 2)}}">
+  <!--  -->
     <view class="flex" wx:if="{{course_info.groupnum > 0}}">
       <view class="group_tip">立即参加Ta人的已开团，可快速成团</view>
       <view class="group_rule" bindtap="look_rule">查看拼团规则</view>
@@ -69,9 +68,10 @@
       </view>
     </view>
 
-    <view class="look_more" wx:if="{{course_info.is_buy <= 0 && course_info.groupnum > 3}}" bindtap="all_group">查看更多拼团</view>
+    <button class="login_read" style="margin-left:262rpx; width:225rpx;height:58rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-type="{{1}}" wx:if="{{!login && course_info.is_buy <= 0 && course_info.groupnum > 3}}"></button>
+    <view class="look_more" bindtap="all_group" wx:if="{{course_info.is_buy <= 0 && course_info.groupnum > 3}}">查看更多拼团</view>
 
-    
+    <!--   -->
     
   </view>
   <view class="margin_gray"></view>
@@ -231,8 +231,8 @@
 
 
   <!-- 全部拼团蒙层 -->
-  <view class="mask" wx:if="{{all_group}}"></view>
-  <view class="all_group" wx:if="{{all_group}}">
+  <view class="mask" wx:if="{{all_group}}" catchtouchmove="preventTouchMove"></view>
+  <view class="all_group" wx:if="{{all_group}}" catchtouchmove="preventTouchMove">
     <image class="mask_del" src="../../images/del.png" bindtap="close_all"></image>
     <view class="head">全部拼团</view>
     <scroll-view class="for_layout" scroll-y="true">
@@ -278,8 +278,8 @@
   
 
   <!-- 拼团规则蒙层 -->
-  <view class="mask" wx:if="{{rule}}"></view>
-  <view class="rule_layout" wx:if="{{rule}}">
+  <view class="mask" wx:if="{{rule}}" catchtouchmove="preventTouchMove"></view>
+  <view class="rule_layout" wx:if="{{rule}}" catchtouchmove="preventTouchMove">
     <image class="mask_del" style="margin-left:550rpx;" src="../../images/del.png" bindtap="look_rule"></image>
     <image class="head_img" src="../../images/rule_head.png"></image>
     <view class="laber">开团</view>

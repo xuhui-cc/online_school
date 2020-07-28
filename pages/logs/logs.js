@@ -170,7 +170,7 @@ Page({
       var hot2 = []
       var hot3 = []
       if (d.data.code == 0) {
-        console.log(d.data.data)
+        console.log(d.data.data,"热门课程")
         var timestamp = (Date.parse(new Date()))/1000
         console.log(timestamp,"timestamp")
         
@@ -258,7 +258,9 @@ Page({
     that.setData({
       grade_index: xb,
       gid: that.data.grade[xb].id,
-      current_subject: -1
+      current_subject: 0,
+      hot2:'',
+      hot3:'',
     })
     if (wx.getStorageSync("login")) {
       
@@ -268,12 +270,13 @@ Page({
       }
       console.log(params, "params")
       app.ols.grade_update(params).then(d => {
-        console.log(d)
+        console.log(d,"年级切换")
 
         if (d.data.code == 0) {
-
+          clearInterval(timer);   
           wx.setStorageSync('gid', that.data.grade[xb].id)
           that.getsubject()   //获取科目
+          that.hot()  //获取热门
           that.setData({
             grade_select: false
           })
@@ -287,8 +290,10 @@ Page({
         }
       })
     }else{
+      clearInterval(timer);   
       wx.setStorageSync('gid', that.data.grade[xb].id)
       that.getsubject()   //获取科目
+      that.hot()  //获取热门
 
       that.setData({
         grade_select: false
@@ -362,13 +367,13 @@ Page({
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
-        let arr2 = [];
+        var subject=[ {'id':-1, 'title': '推荐'}]
         for (let i in d.data.data) {
-          that.data.subject.push(d.data.data[i]);   //对象转换为数组
+          subject.push(d.data.data[i]);   //对象转换为数组
         }
         // console.log(arr2)
         that.setData({
-          subject: that.data.subject
+          subject: subject
         })
         if(that.data.current_subject > -1){
           that.setData({
