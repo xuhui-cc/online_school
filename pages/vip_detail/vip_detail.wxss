@@ -207,3 +207,50 @@
   color:rgba(102,102,102,1);
   
 }
+.mask{
+  position: fixed;
+  width:750rpx;
+  height:1624rpx;
+  background:rgba(0,0,0,0.68);
+  /* opacity:0.54; */
+  /* z-index: 15; */
+}
+.bg_exchange{
+  position: fixed;
+  margin-top: 535rpx ;
+  margin-left: 91rpx;
+  width:568rpx;
+  height:598rpx;
+}
+.input{
+  position: fixed;
+  margin-top: 800rpx ;
+  margin-left: 157rpx;
+  width:437rpx;
+  height:90rpx;
+  
+  font-size:32rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:90rpx;
+  text-align: center;
+  color:rgba(57,57,57,1);
+
+  background:rgba(242,242,242,1);
+  border-radius:17rpx;
+}
+.btn1{
+  position: fixed;
+  margin-top: 980rpx ;
+  margin-left: 244rpx;
+  width:263rpx;
+  height:77rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:77rpx;
+  text-align: center;
+  color:rgba(197,106,47,1);
+  background:linear-gradient(90deg,rgba(255,229,209,1) 0%,rgba(242,167,110,1) 100%);
+  border-radius:39rpx;
+}

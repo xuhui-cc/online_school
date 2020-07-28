@@ -71,5 +71,10 @@
 
 
   </view>
+
+  <view class="mask" catchtouchmove="preventTouchMove"></view>
+  <image class="bg_exchange" src="../../images/bg_exchange.png"></image>
+  <input class="input" placeholder="请输入您的兑换码" placeholder-style=" text-align: center;"></input>
+  <view class="btn1">提交</view>
   
 </view>
