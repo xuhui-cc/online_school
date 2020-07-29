@@ -16,8 +16,8 @@
   <!-- 课程 -->
   <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
   
-  <!-- <view class="vip_layout">
-    <view wx:if="{{vip.valid == -1}}">
+  <view class="vip_layout">
+    <view wx:if="{{vip.valid == -1 || !vip.valid}}">
       <image class="king" src="../../images/king.png"></image>
       <view class="open_vip" >开通会员</view>
       <view class="open_content" >免费学习领军大咖老师的经典好课</view>
@@ -25,14 +25,14 @@
     </view>
 
     <view wx:if="{{vip.valid == 1}}">
-      <image class="king" src="../../images/king.png"></image>
-      <view class="open_vip" >{{vip.title}}</view>
-      <view class="open_content" >{{vip.valid_days}}到期</view>
+      <image class="vip_badge2" src="../../images/vip_badge2.png"></image>
+      <view class="open_vip1" >{{vip.title}}</view>
+      <view class="open_time" >{{vip.valid_days}}到期</view>
       <view class="vip_btn"  bindtap="to_vip">查看会员权益</view>
     </view>
     <image class="vip_img" src="../../images/vip_all1.png"></image>
     
-  </view> -->
+  </view>
 
   <view class="course-ul">
       

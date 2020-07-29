@@ -33,9 +33,16 @@ Page({
 
   my_vip: function () {
     let that = this
-    var params = {
-      "token": wx.getStorageSync("token"),
+    if(that.data.login){
+      var params = {
+        "token": wx.getStorageSync("token"),
+      }
+    }else{
+      var params = {
+        // "token": wx.getStorageSync("token"),
+      }
     }
+    
     app.ols.v4_myVip(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
@@ -62,6 +69,7 @@ Page({
   onShow: function () {
     let that = this
     that.judge_login()  //登录判断
+    that.my_vip()
   },
 
   /**
@@ -124,9 +132,9 @@ Page({
     // console.log(that.data.testlogin, "that.data.testlogin")
     console.log(that.data.login, "that.data.login")
     console.log(that.data.gid, "that.data.gid")
-    if(that.data.login){
-      that.my_vip()
-    }
+    // if(that.data.login){
+    //   that.my_vip()
+    // }
   },
 
   //vip详情页跳转

@@ -38,7 +38,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    // dummy:'http://os.lingjun.net',
-    dummy:'https://wsg.lingjun.net'
+    dummy:'http://os.lingjun.net',
+    // dummy:'https://wsg.lingjun.net'
   }
 })
