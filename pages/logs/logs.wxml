@@ -77,8 +77,8 @@
     </view> -->
 
     <view class="head2" style="margin-top:45rpx;margin-left:30rpx;" >热门课程限时抢</view>
-    <image wx:if="{{hot1 == '' }}" class="course_null" style="margin-top:200rpx;" src="../../images/course_null.png"></image>
-    <text wx:if="{{hot1 == ''  }}" class="course_nulltip" >暂无课程</text>
+    <image wx:if="{{hot1 == '' && hot2 == '' &&  hot3 == ''}}" class="course_null" style="margin-top:200rpx;" src="../../images/course_null.png"></image>
+    <text wx:if="{{hot1 == '' && hot2 == '' &&  hot3 == ''}}" class="course_nulltip" >暂无课程</text>
     <view class="hot_layout" >
       <view wx:for="{{hot1}}" wx:key="hot_index">
         <view class="hot_course">

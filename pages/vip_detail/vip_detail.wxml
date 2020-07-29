@@ -12,22 +12,23 @@
     </view>
     
      
-    <view class="flex" >
+    <view class="flex" wx:if="{{vip_list[0].is_buy == 0}}">
       <open-data type="userNickName" class="nick"></open-data>
-      <view class="btn">立即开通</view>
+      <view class="btn" bindtap="vip_buy">立即开通</view>
     </view>
-    <view style="margin-top: 15rpx;" hidden="true">
+    <view style="margin-top: 15rpx;" wx:if="{{vip_list[0].is_buy >0}}">
       <open-data type="userNickName" class="nick"></open-data>
       <!-- <view class="nick" >张东升的假发</view> -->
       <view class="flex">
         <image class="badge_img" src="../../images/vip_badge2.png"></image>
-        <view class="vip_time">2020-09-30到期</view>
+        <view wx:if="{{vip_list[0].valid_days == 0}}" class="vip_time">永久</view>
+        <view wx:else="" class="vip_time">2020-09-30到期</view>
       </view>
     </view>
   </view>
 
-
-  <swiper
+  <!-- 卡片滚动 -->
+  <!-- <swiper
     class="swiper"
     circular="{{circular}}" 
     previous-margin="{{previousMargin}}" 
@@ -39,27 +40,30 @@
         <image src="{{item}}" class="slide-image {{currentSwiperIndex == index ? 'zoom-in' : 'zoom-out'}}" mode='widthFix'/>
       </swiper-item>
     </block>
-  </swiper>
+  </swiper> -->
 
-  <view class="intro">免费学习10门领军大咖老师挑选的经典好课</view>
-  <view class="price"><text style="font-size:32rpx;font-weight:400;">¥</text>299</view>
+  <!-- <image class="" src="{{vip_list[0].bgpic}}"></image> -->
+  <image class="vip_fm" src="{{imgUrls[0]}}"></image>
+
+  <view class="intro">{{vip_list[0].memo}}</view>
+  <view class="price" wx:if="{{vip_list[0].is_buy == 0}}"><text style="font-size:32rpx;font-weight:400;">¥</text>{{vip_list[0].price}}</view>
 
 
   <view class="layout">
-    <image class="exchange_entry" src="../../images/exchange_entry.png"></image>
-    <view class="h1">黄金VIP会员权益</view>
-    <view class="h2"><text style="font-size:30rpx;">20门</text>精选好课</view>
+    <image wx:if="{{vip_list[0].is_buy == 0}}" class="exchange_entry" src="../../images/exchange_entry.png" bindtap="exchange"></image>
+    <view class="h1">{{vip_list[0].title}}会员权益</view>
+    <view class="h2"><text style="font-size:30rpx;">{{vip_list[0].course_num}}门</text>精选好课</view>
     <view style="margin-top:32rpx;">
-      <view wx:for="{{imgUrls}}" wx:key="index" style="margin-left:30rpx;margin-bottom:42rpx;">
+      <view wx:for="{{vip_list[0].course}}" wx:key="index" style="margin-left:30rpx;margin-bottom:42rpx;">
       
         <view class="flex" >
-          <image class="laber" src="../../images/vip_laber2.png"></image>
-          <image class="fm" src="../../images/ad.png"></image>
+          <image class="laber" src="../../images/vip_laber2.png" ></image>
+          <image class="fm" src="{{item.face}}"></image>
           <view>
-            <view class="title">高三数学三角函数专题课数专题课专题课专题课专题专题...</view>
+            <view class="title">{{item.title}}</view>
             <view class="flex">
-              <view class="num">30课时</view>
-              <view class="tip">免费学</view>
+              <view class="num">{{item.class_hour}}课时</view>
+              <view class="tip" style="{{vip_list[0].is_buy == 0?'color:rgba(163,163,163,1);':''}}">免费学</view>
             </view>
             
           </view>
@@ -72,9 +76,22 @@
 
   </view>
 
-  <view class="mask" catchtouchmove="preventTouchMove"></view>
-  <image class="bg_exchange" src="../../images/bg_exchange.png"></image>
-  <input class="input" placeholder="请输入您的兑换码" placeholder-style=" text-align: center;"></input>
-  <view class="btn1">提交</view>
+  <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!exchange}}"></view>
+  <view style="margin-top:-120rpx;" hidden="{{!exchange}}">
+    <image class="bg_exchange" src="../../images/bg_exchange.png" ></image>
+    <input class="input" placeholder="请输入您的兑换码" placeholder-style=" text-align: center;"></input>
+    <view class="btn1">提交</view>
+    <image class="exchange_close" src="../../images/exchange_close.png" bindtap="exchange"></image>
+  </view>
+
+  <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!pay}}"></view>
+  <view style="margin-top:-120rpx;" hidden="{{!pay}}">
+    <image class="success_img" src="../../images/seuccess_vip1.png" ></image>
+    <view class="cuccess_tip">您已成功开通白银VIP会员</view>
+    <view class="cuccess_tip1">立即开启您的学习成功之旅</view>
+    <view class="success_yes" bindtap="success_yes">查看会员权限</view>
+    <image class="exchange_close" src="../../images/exchange_close.png" bindtap="success_yes"></image>
+  </view>
+  
   
 </view>

@@ -66,7 +66,7 @@ Page({
         for(var j=0;j<d.data.data.group.member.length;j++){
           if(d.data.data.group.member[j].avatar.indexOf("/") == 0){
             // d.data.data.group.member[j].avatar = 'http://os.lingjun.net' + d.data.data.group.member[j].avatar
-            d.data.data.group.member[j].avatar = 'https://wsg.lingjun.net' + d.data.data.group.member[j].avatar
+            d.data.data.group.member[j].avatar = app.globalData.dummy + d.data.data.group.member[j].avatar
             console.log("假人头像")
             //表示strCode是以ssss开头；
           }else if(d.data.data.group.member[j].avatar.indexOf("/") == -1){

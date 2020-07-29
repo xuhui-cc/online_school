@@ -2,10 +2,11 @@ const app = getApp()
 var timer,ms_timer
 Page({
   data: {
+    // subject:[ {'id':-1, 'title': '推荐'},{'id':-2, 'title': 'VIP'}],
     subject:[ {'id':-1, 'title': '推荐'}],
     current_special:-1,
     current_subject: 0,
-    ad:["1","1","1","1","1","1"]
+    // ad:["1","1","1","1","1","1"]
   },
 
   onLoad: function (options) {
@@ -202,7 +203,9 @@ Page({
       } else {
         console.log(d.data.msg, "获取课程未登录msg，失败")
         that.setData({
-          hot1: ''
+          hot1: '',
+          hot2:'',
+          hot3:''
         })
       }
     })
@@ -368,6 +371,7 @@ Page({
       if (d.data.code == 0) {
         console.log(d.data.data)
         var subject=[ {'id':-1, 'title': '推荐'}]
+        // var subject=[ {'id':-1, 'title': '推荐'},{'id':-2, 'title': 'VIP'}]
         for (let i in d.data.data) {
           subject.push(d.data.data[i]);   //对象转换为数组
         }

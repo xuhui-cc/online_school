@@ -14,6 +14,12 @@
 .flex{
   display: flex;
 }
+.vip_fm{
+  margin-top: 50rpx;
+  margin-left: 59rpx;
+  width: 633rpx;
+  height: 245rpx;
+}
 .swiper{
   margin-top: 50rpx;
 }
@@ -217,14 +223,14 @@
 }
 .bg_exchange{
   position: fixed;
-  margin-top: 535rpx ;
+  /* margin-top: 535rpx ; */
   margin-left: 91rpx;
   width:568rpx;
   height:598rpx;
 }
 .input{
   position: fixed;
-  margin-top: 800rpx ;
+  margin-top: 265rpx ;
   margin-left: 157rpx;
   width:437rpx;
   height:90rpx;
@@ -241,7 +247,7 @@
 }
 .btn1{
   position: fixed;
-  margin-top: 980rpx ;
+  margin-top: 445rpx ;
   margin-left: 244rpx;
   width:263rpx;
   height:77rpx;
@@ -253,4 +259,59 @@
   color:rgba(197,106,47,1);
   background:linear-gradient(90deg,rgba(255,229,209,1) 0%,rgba(242,167,110,1) 100%);
   border-radius:39rpx;
+}
+.exchange_close{
+  position: fixed;
+  margin-top: 650rpx ;
+  margin-left: 338rpx;
+  width:74rpx;
+  height:74rpx;
+}
+
+/* 
+成为会员提示样式
+ */
+.success_img{
+  position: fixed;
+  /* margin-top: 535rpx ; */
+  margin-left: 30rpx;
+  width:690rpx;
+  height:712rpx;
+}
+.cuccess_tip{
+  position: fixed;
+  margin-top: 340rpx ;
+  margin-left: 179rpx;
+  font-size:34rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:48rpx;
+  color:rgba(75,75,75,1);
+  
+}
+.cuccess_tip1{
+  position: fixed;
+  margin-top: 398rpx ;
+  margin-left: 219rpx;
+  font-size:26rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:37rpx;
+  color:rgba(167,167,167,1);
+  
+}
+.success_yes{
+  position: fixed;
+  margin-top: 518rpx ;
+  margin-left: 228rpx;
+  width:295rpx;
+  height:77rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:77rpx;
+  color:rgba(236,236,236,1);
+  text-align: center;
+  background:linear-gradient(90deg,rgba(60,67,88,1) 0%,rgba(25,22,48,1) 100%);
+  border-radius:44rpx;
 }

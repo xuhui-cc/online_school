@@ -31,6 +31,24 @@ Page({
     }
   },
 
+  my_vip: function () {
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+    }
+    app.ols.v4_myVip(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        that.setData({
+          vip: d.data.data
+        })
+      }
+      else {
+        console.log(d.data.msg)
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -106,6 +124,17 @@ Page({
     // console.log(that.data.testlogin, "that.data.testlogin")
     console.log(that.data.login, "that.data.login")
     console.log(that.data.gid, "that.data.gid")
+    if(that.data.login){
+      that.my_vip()
+    }
+  },
+
+  //vip详情页跳转
+  to_vip:function(){
+    let that = this
+    wx.navigateTo({
+      url: '../../pages/vip_detail/vip_detail',
+    })
   },
 
   //获取微信绑定手机号登录
