@@ -1,0 +1,218 @@
+/* pages/teacher_studentList/teacher_studentList.wxss */
+page{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.flex_row_alignItemCenter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.naviBgView {
+  width: 100%;
+  background-color: white;
+  z-index: 97;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.teacherInfoView {
+  width: 100%;
+  height: 474rpx;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  z-index: 99;
+}
+
+.teacherInfo_bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 98;
+}
+
+.teacherInfo_avatar {
+  width: 147rpx;
+  height: 147rpx;
+  border-radius: 50%;
+  border: 4rpx solid white;
+  margin-top: 162rpx;
+  z-index: 99;
+}
+
+.teacherInfo_name {
+  margin-top: 23rpx;
+  height: 53rpx;
+  max-width: 500rpx;
+  color: white;
+  font-size: 38rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  z-index: 99;
+}
+
+.teacherInfo_role {
+  margin-top: 2rpx;
+  line-height: 33rpx;
+  height: 33rpx;
+  color: white;
+  font-size: 24rpx;
+  z-index: 99;
+}
+
+.studentList_Header {
+  margin-top: 24rpx;
+  height: 86rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  z-index: 100;
+}
+
+.studentList_Header_icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-left: 36rpx;
+}
+
+.studentList_Header_title {
+  color: #af5800;
+  font-size: 34rpx;
+  font-weight: bold;
+  margin-left: 10rpx;
+}
+
+.student_Cell {
+  height: 215rpx;
+  margin-left: 30rpx;
+  width: 690rpx;
+  border-radius: 17rpx;background-color: white;
+  box-shadow: 0rpx 3rpx 41rpx rgba(0,13,77,0.07);
+  -webkit-box-shadow: 0px 3px 41px rgba(0,13,77,0.07);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.student_addRecord_bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.student_addRecord_bg:active {
+  opacity: 0.5;
+}
+
+.student_addRecord {
+  width: 63rpx;
+  height: 63rpx;
+}
+
+.studentList_name {
+  margin-left: 31rpx;
+  max-width: 420rpx;
+  color: #000933;
+  font-size: 34rpx;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.studentList_gender {
+  margin-left: 10rpx;
+  width: 14rpx;
+  height: 22rpx;
+  margin-top: 6rpx;
+}
+
+.studentList_grade {
+  height: 34rpx;
+  padding-left: 12rpx;
+  padding-right: 11rpx;
+  border-radius: 5rpx;
+  border: 1rpx solid #ff4f01;
+  color: #ff4f01;
+  background-color: #ffefe8;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  margin-left: 24rpx;
+}
+
+.studentList_phone {
+  height: 37rpx;
+  display: flex;
+  align-items: center;
+  max-width: 180rpx;
+  color: #8288a7;
+  font-size: 26rpx;
+  margin-left: 31rpx;
+}
+
+.studentList_school {
+  max-width: 349rpx;
+  height: 37rpx;
+  color: #8288a7;
+  font-size: 26rpx;
+  margin-left: 18rpx;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.studentList_recordPoint {
+  width: 8rpx;
+  height: 8rpx;
+  margin-left: 31rpx;
+  border-radius: 50%;
+  background-color: #4964f6;
+}
+
+.studentList_recordTime {
+  color: #c3c9e5;
+  font-size: 24rpx;
+  max-width: 150rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.studentList_recordDetail {
+  color: #c3c9e5;
+  font-size: 24rpx;
+  margin-left: 14rpx;
+  max-width: 417rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.studentList_noRecord {
+  color: #c3c9e5;
+  font-size: 24rpx;
+  margin-left: 31rpx;
+  max-width: 417rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+

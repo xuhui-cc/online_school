@@ -35,7 +35,8 @@
     "pages/open_detail/open_detail",
     "pages/share_analysis/share_analysis",
     "pages/course_seckill/course_seckill",
-    "pages/analysis/analysis"
+    "pages/analysis/analysis",
+    "pages/teacher_studentList/teacher_studentList"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -43,7 +44,6 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
- 
   "sitemapLocation": "sitemap.json",
   "tabBar": {
     "custom": false,
@@ -74,10 +74,8 @@
   },
   "plugins": {
     "live-player-plugin": {
-      "version": "1.1.0", 
-      "provider": "wx2b03c6e691cd7370" 
+      "version": "1.1.0",
+      "provider": "wx2b03c6e691cd7370"
     }
   }
-
- 
 }

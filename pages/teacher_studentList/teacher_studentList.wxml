@@ -1,0 +1,62 @@
+<!--pages/teacher_studentList/teacher_studentList.wxml-->
+<view class="container">
+  <!-- 导航栏白色背景，向上滚动可见 -->
+  <view class="naviBgView" style="height:{{naviHeight}}px"></view>
+
+  <!-- 老师信息 -->
+  <view class="teacherInfoView">
+    <image class="teacherInfo_bg" src="../../images/teacher_client/teacher_info_bg.png"></image>
+    <image class="teacherInfo_avatar" src="../../images/my_head.png"></image>
+    <view class="teacherInfo_name">李洙赫</view>
+    <text class="teacherInfo_role">老师</text>
+  </view>
+
+  <!-- 学员列表 表头 -->
+  <view class="studentList_Header" style="position:{{headerFixed ? 'fixed' : 'static'}}; top:{{HeaderFixedTop}}px; margin-top:{{headerFixed ? 0 : 24}}rpx;">
+    <image class="studentList_Header_icon" src="../../images/teacher_client/studentList_header.png"></image>
+    <view class="studentList_Header_title">学员</view>
+  </view>
+  <view class="studentList_Header" hidden="{{!headerFixed}}"></view>
+
+  <!-- 学员列表 -->
+  <block wx:for="{{studentList}}" wx:key="index">
+    <view class="student_Cell" style="margin-top:{{index==0 ? 0 : 20}}rpx;" bindtap="studentCellClicked" data-index="{{index}}">
+      <view class="flex_row_alignItemCenter" style="margin-top:29rpx; height:48rpx;">
+        <!-- 姓名 -->
+        <view class="studentList_name">刘芳路</view>
+        <!-- 性别 -->
+        <image class="studentList_gender" src="{{index%2==0 ? '../../images/teacher_client/teacherList_gender_female.png' : '../../images/teacher_client/teacherList_gender_male.png'}}"></image>
+        <!-- 年级 -->
+        <view class="studentList_grade">初二</view>
+      </view>
+      <view class="flex_row_alignItemCenter" style="margin-top:11rpx; height:37rpx;">
+        <!-- 电话 -->
+        <view class="studentList_phone">18695423655</view>
+        <view style="height:19rpx; width:2rpx; margin-left:20rpx; background-color:#c4ccf3;"></view>
+        <!-- 校区 -->
+        <view class="studentList_school">西安市长兴校区</view>
+      </view>
+      <view class="flex_row_alignItemCenter" style="margin-top:30rpx; height:33rpx">
+        <block wx:if="{{index%2==0}}">
+          <!-- 小蓝点，只有今天有最新日志才展示 -->
+          <view class="studentList_recordPoint"></view>
+          <!-- 最新日志时间 -->
+          <view class="studentList_recordTime" style="margin-left:{{index%2==0 ? 8 : 31}}rpx;">07/16 22:04</view>
+          <!-- 最新日志更新人 -->
+          <view class="studentList_recordDetail">陈文锦鲤老师更新了日志</view>
+        </block>
+        <block wx:else>
+          <!-- 无日志 -->
+          <view class="studentList_noRecord">该学生暂无日志！</view>
+        </block>
+      </view>
+      <view class="student_addRecord_bg" catchtap="addRecordButtonClciked" data-index="{{index}}">
+        <image class="student_addRecord" src="../../images/teacher_client/studentList_addRecord.png"></image>
+      </view>
+    </view>
+  </block>
+  
+  <!-- safeArea留空 -->
+  <view style="height:{{safeArea_bottom+10}}px; width:100%;"></view>
+</view>
+
