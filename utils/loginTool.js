@@ -32,6 +32,16 @@ function getPhoneNumber(e, gid, callback) {
   })
 }
 
+/**
+ * 登录接口
+ * 参数：
+ *    iv : 用户微信iv值
+ *    code : 用户微信code值
+ *    encryptedData : 用户微信登录返回的encryptedData值
+ *    gid : 年级ID
+ * 返回值：
+ *    role：1-学生 2-家长 3-老师
+*/
 function login(params, callback) {
   console.log(params, "登录参数")
   ols.login(params).then(d => {
@@ -41,7 +51,30 @@ function login(params, callback) {
       wx.hideLoading()
       wx.setStorageSync("login", true)
       wx.setStorageSync("token", d.data.data.token)
-      typeof callback == "function" && callback(true, "登录成功")
+      let userinfo = d.data.data
+      wx.setStorageSync('userinfo', userinfo)
+      switch(userinfo.role * 1) {
+        case 1: {
+          // 学生
+          typeof callback == "function" && callback(true, "登录成功")
+          break
+        }
+        case 2: {
+          // 家长
+          wx.showToast({
+            title: '家长端暂未处理',
+            icon: 'none'
+          })
+          break
+        }
+        case 3: {
+          // 老师
+          wx.reLaunch({
+            url: '../pages/teacher_studentList/teacher_studentList',
+          })
+          break
+        }
+      }
     } else {
       console.log(d, "登录失败")
       wx.showToast({
