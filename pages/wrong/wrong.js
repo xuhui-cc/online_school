@@ -85,16 +85,16 @@ Page({
         d.data.data.title = d.data.data.title.replace(/<img/gi, replace).replace(/< </gi, "&lt; <").replace(/> >/gi, "&gt; >").replace(/<</gi, "&lt; <").replace(/>>/gi, "&gt; >")
         d.data.data.note = d.data.data.note.replace(/<img/gi, replace)
         if (d.data.data.a != null){
-          d.data.data.a = d.data.data.a.replace(/<img/gi, replace).replace("$","236").replace("\u0000","9").replace("\t","79")
+          d.data.data.a = d.data.data.a.replace(/<img/gi, replace).replace("$","236").replace("\u0000","9")
         }
         if (d.data.data.b != null) {
-          d.data.data.b = d.data.data.b.replace(/<img/gi, replace).replace("$","236").replace("\u0000","9").replace("\t","79")
+          d.data.data.b = d.data.data.b.replace(/<img/gi, replace).replace("$","236").replace("\u0000","9")
         }
         if (d.data.data.c != null) {
-          d.data.data.c = d.data.data.c.replace(/<img/gi, replace).replace("$","236").replace("\u0000","9").replace("\t","79")
+          d.data.data.c = d.data.data.c.replace(/<img/gi, replace).replace("$","236").replace("\u0000","9")
         }
         if (d.data.data.d != null) {
-          d.data.data.d = d.data.data.d.replace(/<img/gi, replace).replace("$","236").replace("\u0000","9").replace("\t","79")
+          d.data.data.d = d.data.data.d.replace(/<img/gi, replace).replace("$","236").replace("\u0000","9")
         }
         
         that.setData({

@@ -370,8 +370,8 @@ Page({
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
-        var subject=[ {'id':-1, 'title': '推荐'}]
-        // var subject=[ {'id':-1, 'title': '推荐'},{'id':-2, 'title': 'VIP'}]
+        // var subject=[ {'id':-1, 'title': '推荐'}]
+        var subject=[ {'id':-1, 'title': '推荐'},{'id':-2, 'title': 'VIP'}]
         for (let i in d.data.data) {
           subject.push(d.data.data[i]);   //对象转换为数组
         }

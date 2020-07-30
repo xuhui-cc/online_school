@@ -54,7 +54,10 @@ Page({
     app.ols.v4_viplist(params).then(d => {
       console.log(d, "会员列表数据")
       if (d.data.code == 0) {
-        d.data.data.lists[0].course_num = d.data.data.lists[0].course.length
+        if(d.data.data.lists[0].course){
+          d.data.data.lists[0].course_num = d.data.data.lists[0].course.length
+        }
+        
         that.setData({
           vip_list:d.data.data.lists
         })

@@ -81,10 +81,11 @@ transform: rotate(45deg);
   margin-left: 30rpx;
   margin-top: 290rpx;
   width:690rpx;
-  height:160rpx;
+  height:350rpx;
   background: transparent;
   /* background-color: rgba(58,58,58,1);
   opacity:0.5; */
+  z-index: 5;
 }
 .login_read::after {
   border: none;

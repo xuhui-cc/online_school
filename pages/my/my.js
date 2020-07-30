@@ -69,7 +69,7 @@ Page({
   onShow: function () {
     let that = this
     that.judge_login()  //登录判断
-    that.my_vip()
+    // that.my_vip()
   },
 
   /**
@@ -132,9 +132,9 @@ Page({
     // console.log(that.data.testlogin, "that.data.testlogin")
     console.log(that.data.login, "that.data.login")
     console.log(that.data.gid, "that.data.gid")
-    // if(that.data.login){
-    //   that.my_vip()
-    // }
+    if(that.data.login){
+      that.my_vip()
+    }
   },
 
   //vip详情页跳转
@@ -177,6 +177,7 @@ Page({
                   })
                   wx.setStorageSync("login", true)
                   wx.setStorageSync("token", d.data.data.token)
+                  that.onShow()
                 } else {
                   console.log(d, "登录失败")
                   wx.showToast({
