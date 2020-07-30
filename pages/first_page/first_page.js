@@ -13,6 +13,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // wx.reLaunch({
+    //   url: '../../pages/teacher_studentList/teacher_studentList',
+    // })
+    // return
     let that = this
     that.setData({
       
@@ -87,66 +91,23 @@ Page({
   //获取微信绑定手机号登录
   getPhoneNumber: function (e) {
     var that = this
-    wx.login({
-      success: res => {
-
-        if (e.detail.errMsg == "getPhoneNumber:ok") {
-          wx.showLoading({
-            title: '登录中...',
+    app.loginTool.getPhoneNumber(e, that.data.gid, function(success, message){
+      if (success) {
+        that.setData({
+          login: true
+        })
+        if (d.data.data.gid != null && d.data.data.gid != 0){
+          that.setData({
+            grade_select:false
           })
-          wx.login({
-            success(res) {
-              console.log("cccs.code" + res.code)
-              let iv = encodeURIComponent(e.detail.iv);
-              let encryptedData = encodeURIComponent(e.detail.encryptedData);
-              let code = res.code
-              var params = {
-                "code": code,
-                "iv": iv,
-                "encryptedData": encryptedData
-              }
-              console.log(params, "登录参数")
-              app.ols.login(params).then(d => {
-                console.log(d,"登录接口")
-                if (d.data.code == 0) {
-                  console.log("登陆成功")
-                  wx.hideLoading()
-                  that.setData({
-                    login:true
-                  })
-                  wx.setStorageSync("login", true)
-                  wx.setStorageSync("token", d.data.data.token)
-                  if (d.data.data.gid != null && d.data.data.gid != 0){
-                    that.setData({
-                      grade_select:false
-                    })
-                    console.log(d.data.data.gid,"d.data.data.gid")
-                    wx.setStorageSync("gid", d.data.data.gid)
-                    wx.switchTab({
-                      url: '../../pages/index/index',   //测评页跳转
-                    })
-                  }else{
-                    that.setData({
-                      grade_select: true    //选择年级弹框
-                    })
-                  }
-                  
-
-
-                } else {
-                  console.log(d,"登录失败")
-                  wx.showToast({
-                    title: "登陆失败",
-                    icon: 'none',
-                    duration: 2000
-                  })
-                  console.log(d.data.msg,"登录失败提示")
-                  
-
-                  wx.hideLoading()
-                }
-              })
-            }
+          console.log(d.data.data.gid,"d.data.data.gid")
+          wx.setStorageSync("gid", d.data.data.gid)
+          wx.switchTab({
+            url: '../../pages/index/index',   //测评页跳转
+          })
+        }else{
+          that.setData({
+            grade_select: true    //选择年级弹框
           })
         }
       }

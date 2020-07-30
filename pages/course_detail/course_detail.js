@@ -517,97 +517,55 @@ Page({
   //获取微信绑定手机号登录
   getPhoneNumber: function (e) {
     var that = this
-    wx.login({
-      success: res => {
-        if (e.detail.errMsg == "getPhoneNumber:ok") {
-          wx.showLoading({
-            title: '登录中...',
-          })
-          wx.login({
-            success(res) {
-              console.log("cccs.code" + res.code)
-              let iv = encodeURIComponent(e.detail.iv);
-              let encryptedData = encodeURIComponent(e.detail.encryptedData);
-              let code = res.code
-              var params = {
-                "code": code,
-                "iv": iv,
-                "encryptedData": encryptedData,
-                "gid": that.data.gid
-              }
-              console.log(params, "登录参数")
-              app.ols.login(params).then(d => {
-                console.log(d, "登录接口")
-                if (d.data.code == 0) {
-                  console.log("登陆成功")
-                  wx.hideLoading()
-                 
-                  that.setData({
-                    login: true
+    app.loginTool.getPhoneNumber(e, that.data.gid, function(success, message){
+      if (success) {
+        that.setData({
+          login: true
+        })
+        if (that.data.currentData == 0){
+          var params = {
+            "token": wx.getStorageSync("token"),
+            "kid": that.data.kid
+          }
+          console.log(params, "课程详情接口参数")
+          app.ols.course_info1(params).then(d => {
+            if (d.data.code == 0) {
+              console.log(d.data.data)
+              if (d.data.data.pay_status <= 1 || d.data.data.pay_status >= 5) {
+                if (d.data.data.price != 0) {
+                  wx.navigateTo({
+                    url: '../../pages/pay/pay?kid=' + that.data.kid,     //去支付
                   })
-                  wx.setStorageSync("login", true)
-                  wx.setStorageSync("token", d.data.data.token)
-                  if (that.data.currentData == 0){
-                    var params = {
-                      "token": wx.getStorageSync("token"),
-                      "kid": that.data.kid
-                    }
-                    console.log(params, "课程详情接口参数")
-                    app.ols.course_info1(params).then(d => {
-                      if (d.data.code == 0) {
-                        console.log(d.data.data)
-                        if (d.data.data.pay_status <= 1 || d.data.data.pay_status >= 5) {
-                          if (d.data.data.price != 0) {
-                            wx.navigateTo({
-                              url: '../../pages/pay/pay?kid=' + that.data.kid,     //去支付
-                            })
-                          } else {
-                            that.to_free()  //免费课
-                          }
-
-                        } else {
-                          that.onShow()
-                        }
-
-                      } else {
-                        console.log("课程详情介绍接口==============" + d.data.msg)
-                      }
-                    })
-                  }else{
-                    var params = {
-                      "token": wx.getStorageSync("token"),
-                      "kid": that.data.kid
-                    }
-                    console.log(params, "获取课程目录参数")
-                    app.ols.course_cata1(params).then(d => {
-                      console.log(d, "获取课程目录接口数据")
-                      if (d.data.code == 0) {
-                        if (d.data.data.buy == 0) {
-                          wx.navigateTo({
-                            url: '../../pages/pay/pay?kid=' + that.data.kid,     //去支付
-                          })
-                        } else {
-                          that.onShow()
-                        }
-                      } else {
-                        console.log("课程目录==============" + d.data.msg)
-                      }
-                    })
-                  }
-                  
                 } else {
-                  console.log(d, "登录失败")
-                  wx.showToast({
-                    title: "登陆失败，请重新登录",
-                    icon: 'none',
-                    duration: 2000
-                  })
-                  console.log(d.data.msg, "登录失败提示")
-
-
-                  wx.hideLoading()
+                  that.to_free()  //免费课
                 }
-              })
+
+              } else {
+                that.onShow()
+              }
+
+            } else {
+              console.log("课程详情介绍接口==============" + d.data.msg)
+            }
+          })
+        }else{
+          var params = {
+            "token": wx.getStorageSync("token"),
+            "kid": that.data.kid
+          }
+          console.log(params, "获取课程目录参数")
+          app.ols.course_cata1(params).then(d => {
+            console.log(d, "获取课程目录接口数据")
+            if (d.data.code == 0) {
+              if (d.data.data.buy == 0) {
+                wx.navigateTo({
+                  url: '../../pages/pay/pay?kid=' + that.data.kid,     //去支付
+                })
+              } else {
+                that.onShow()
+              }
+            } else {
+              console.log("课程目录==============" + d.data.msg)
             }
           })
         }
