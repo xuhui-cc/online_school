@@ -490,7 +490,7 @@ page{
 }
 .hot_course{
   
-  width:630rpx;
+  width:690rpx;
   /* height:272rpx; */
 }
 .hot_group{
@@ -713,4 +713,21 @@ page{
   margin-top: 314rpx;
   width:64rpx;
   height:74rpx;
+}
+.vip_layout{
+  /* margin-left: 30rpx; */
+  margin-top: 25rpx;
+  margin-bottom: 20rpx;
+  width:750rpx;
+  /* height:545rpx; */
+  background:rgba(255,255,255,1);
+  opacity:1;
+  border-radius:12rpx;
+}
+.vip_fm{
+  margin-left: 30rpx;
+  margin-top: 20rpx;
+  width:297rpx;
+  height:172rpx;
+  border-radius: 8rpx;
 }

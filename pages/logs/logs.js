@@ -3,10 +3,10 @@ var timer,ms_timer
 Page({
   data: {
     // subject:[ {'id':-1, 'title': '推荐'},{'id':-2, 'title': 'VIP'}],
-    subject:[ {'id':-1, 'title': '推荐'}],
+    // subject:[ {'id':-1, 'title': '推荐'}],
     current_special:-1,
     current_subject: 0,
-    // ad:["1","1","1","1","1","1"]
+    
   },
 
   onLoad: function (options) {
@@ -50,6 +50,30 @@ Page({
        
       } else {
         console.log("轮播图失败")
+      }
+    })
+  },
+
+  //获取会员卡列表
+  v4_viplist:function(){
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+    }
+    // console.log(params, "会员列表参数")
+    app.ols.v4_viplist(params).then(d => {
+      console.log(d, "会员列表数据")
+      if (d.data.code == 0) {
+        if(d.data.data.lists[0].course){
+          d.data.data.lists[0].course_num = d.data.data.lists[0].course.length
+        }
+        
+        that.setData({
+          vip_list:d.data.data.lists
+        })
+        console.log("会员列表成功")
+      } else {
+        console.log("会员列表失败==============" + d.data.msg)
       }
     })
   },
@@ -134,6 +158,13 @@ Page({
         current_subject: cur,
         current_special:-1,
       })
+      
+    }else if(cur == 1){
+      that.setData({
+        current_subject: cur,
+        current_special:-1,
+      })
+      that.v4_viplist()  //获取vip
     }else{
       that.setData({
         current_subject: cur,
