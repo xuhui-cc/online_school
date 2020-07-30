@@ -77,10 +77,12 @@ Page({
       this.setData({
         headerFixed: true
       })
+      // console.log("悬停")
     } else if (scrollTopConstant < this.data.headerTop && this.data.headerFixed) {
       this.setData({
         headerFixed: false
       })
+      // console.log("不悬停")
     }
   },
 
@@ -123,7 +125,10 @@ Page({
   addRecordButtonClciked: function(e){
     // console.log(e)
     let index = e.currentTarget.dataset.index
-
+    let student = this.data.studentList[index]
+    wx.navigateTo({
+      url: '../../pages/teacher_addRecord/teacher_addRecord',
+    })
   },
 
   /**

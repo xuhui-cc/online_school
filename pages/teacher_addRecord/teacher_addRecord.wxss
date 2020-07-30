@@ -1,0 +1,376 @@
+/* pages/teacher_addRecord/teacher_addRecord.wxss */
+
+.oneLine_ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.flex_row_alignItemCenter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.naviBar {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.naviBar_back {
+  height: 100%;
+  width: 82rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.naviBar_backImage {
+  width: 58rpx;
+  height: 58rpx;
+}
+
+.naviBar_title {
+  color: white;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.headerBgView {
+  height: 474rpx;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.headerBg_image {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.header_studentName {
+  color: #ffe35a;
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-top: 207rpx;
+  margin-left: 30rpx;
+  max-width: 690rpx;
+  height: 42rpx;
+  display: flex;
+  align-items: center;
+}
+
+.header_time {
+  color: #ffe35a;
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-top: 19rpx;
+  margin-left: 30rpx;
+  max-width: 690rpx;
+  height: 42rpx;
+  display: flex;
+  align-items: center;
+}
+
+.recordContentView {
+  margin-top: 21rpx;
+  /* height: 753rpx; */
+  padding-bottom: 150rpx;
+  margin-left: 30rpx;
+  width: 690rpx;
+  border-radius: 17rpx;
+  background-color: white;
+  box-shadow:0rpx 3rpx 41rpx rgba(0,13,77,0.07);
+  -webkit-box-shadow:0px 3px 41px rgba(0,13,77,0.07);
+  display: flex;
+  flex-direction: column;
+  /* z-index: 1; */
+}
+
+.recordContent_titleView {
+  margin-top: 45rpx;
+  height: 48rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.recordContent_titleImage {
+  margin-left: 34rpx;
+  width: 33rpx;
+  height: 36rpx;
+}
+
+.recordContent_title {
+  color: #af5800;
+  font-size: 34rpx;
+  font-weight: bold;
+  margin-left: 14rpx;
+  display: flex;
+  align-items: center;
+}
+
+.recordContent_edit {
+  margin-top: 27rpx;
+  width: 100%;
+  /* height: 223rpx; */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.record_content_editIcon {
+  margin-top: 6rpx;
+  margin-left: 37rpx;
+  width: 26.8rpx;
+  height: 30.52rpx;
+}
+
+.record_content_textarea {
+  flex-grow: 2;
+  margin-right: 24rpx;
+  margin-left: 17rpx;
+  height: 223rpx;
+  color: #272727;
+  font-size: 30rpx;
+  padding-top: 3rpx;
+}
+
+.record_content_placehoulder {
+  font-size: 30rpx;
+  color: rgba(0, 9, 52, 0.22);
+}
+
+.reocrdContent_length {
+  height: 67rpx;
+  width: 666rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 24rpx;
+  color: #C7C9D2;
+  font-size: 24rpx;
+  font-weight: bold;
+  border-bottom: 0.5rpx solid #f2f2f2;
+}
+
+.recordFileList {
+  margin-top: 4rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.recordFileCell {
+  width: 173rpx;
+  height: 178rpx;
+  position: relative;
+  margin-top: 11rpx;
+}
+
+.recordFile_image {
+  width: 161rpx;
+  height: 161rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.recordFile_videoView {
+  width: 161rpx;
+  height: 161rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.54);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recordFile_videoPlay {
+  width: 43rpx;
+  height: 50rpx;
+}
+
+.recordFile_delete {
+  width: 70rpx;
+  height: 70rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.recoprdFile_deleteImage {
+  width: 35rpx;
+  height: 35rpx;
+}
+
+.recordTypeView {
+  margin-top: 38rpx;
+  margin-left: 45rpx;
+  width: 640rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.recordTypeCell {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  height: 44rpx;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+}
+
+.recordClearCourseHours {
+  height: 89rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.recordClearCourseHour_selectImage {
+  margin-left: 65rpx;
+  width: 34rpx;
+  height: 34rpx;
+}
+
+.recoudClearCourseHour_title {
+  font-size: 28rpx;
+  margin-left: 12rpx;
+}
+
+.recordClearCourseHour_minus {
+  font-size: 28rpx;
+  margin-right: 9rpx;
+  color: #dbdce5;
+}
+
+.recordClearCourseHour_count {
+  width: 104rpx;
+  height: 51rpx;
+  background-color: #f1f3fb;
+  border-radius: 25.5rpx;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 13rpx;
+}
+
+.recordClearCourseHour_Unit {
+  font-size: 28rpx;
+  margin-right: 64rpx;
+}
+
+.bottomButton {
+  position: fixed;
+  height: 90rpx;
+  left: 30rpx;
+  width: 690rpx;
+  background-color: #4964f6;
+  border-radius: 45rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 34rpx;
+  font-weight: bold;
+  z-index: 100;
+}
+
+.clearCountSelectView_bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  z-index: 101;
+  background-color: rgba(0,0,0,0.68);
+}
+
+.clearCountSelectView {
+  height: 600rpx;
+  width: 100%;
+  background-color: white;
+  border-radius: 30rpx 30rpx 0rpx 0rpx;
+}
+
+.clearCount_titleView {
+  height: 100rpx;
+  width: 100%;
+  border-bottom: 0.5rpx solid #f1f1f1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.clearCountView_Close {
+  width: 122rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clearCountView_CloseImage {
+  width: 62rpx;
+  height: 62rpx;
+}
+
+.clearCountView_title {
+  color: #3a3a3a;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.clearCountPickerCell {
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a1a;
+  font-size: 40rpx;
+}
+
+.clearCountView_sureButton {
+  margin-left: 30rpx;
+  width: 690rpx;
+  height: 100rpx;
+  margin-top: 36rpx;
+  border-radius: 45rpx;
+  background-color: #4964F6;
+  color: white;
+  font-size: 34rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
