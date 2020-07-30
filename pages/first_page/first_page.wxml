@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" wx:if="{{showPageContent}}">
   <image class="firstPage_bg" src="../../images/first_bg.png"></image>
   <view class="tip">已有 <text  style="color:#02DC9F;font-weight:bold;">{{num}}人</text> 参与测评，离高分更近一步！</view>
   

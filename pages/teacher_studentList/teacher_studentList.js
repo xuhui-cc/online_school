@@ -137,5 +137,9 @@ Page({
   studentCellClicked: function (e) {
     // console.log(e)
     let index = e.currentTarget.dataset.index
+    let student = this.data.studentList[index]
+    wx.navigateTo({
+      url: '../../pages/study_record/study_record',
+    })
   }
 })

@@ -70,7 +70,7 @@ function login(params, callback) {
         case 3: {
           // 老师
           wx.reLaunch({
-            url: '../pages/teacher_studentList/teacher_studentList',
+            url: '/pages/teacher_studentList/teacher_studentList',
           })
           break
         }

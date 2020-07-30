@@ -37,7 +37,8 @@
     "pages/course_seckill/course_seckill",
     "pages/analysis/analysis",
     "pages/teacher_studentList/teacher_studentList",
-    "pages/teacher_addRecord/teacher_addRecord"
+    "pages/teacher_addRecord/teacher_addRecord",
+    "pages/study_record/study_record"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,17 @@
+<!--pages/study_record/study_record.wxml-->
+
+<view class="container">
+  <!-- 顶部背景图片 -->
+  <image class="topBackgroundImage" src="../../images/study_record/study_record_pageBg.png"></image>
+
+  <!-- 导航栏 -->
+  <view class="naviBar" style="top:{{statusBarHeight}}px; height:{{naviContentHeight}}px">
+    <view class="naviBar_back" bindtap="naviBackItemClicked">
+      <image class="naviBar_backImage" src="../../images/study_record/back_black.png"></image>
+    </view>
+    <view class="naviBar_title">查看日志</view>
+    <view class="naviBar_back"></view>
+  </view>
+
+  
+</view>

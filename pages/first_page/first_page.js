@@ -6,52 +6,62 @@ Page({
    * 页面的初始数据
    */
   data: {
-    grade_index:0
+    grade_index:0,
+
+    // 是否展示页面内容
+    showPageContent: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // wx.reLaunch({
-    //   url: '../../pages/teacher_studentList/teacher_studentList',
-    // })
-    // return
     let that = this
-    that.setData({
-      
-        gid: wx.getStorageSync("gid")
-    })
-    that.get_grade()
-   
-      if (that.data.gid != null && that.data.gid != 0) {
-
+    let login = wx.getStorageSync('login')
+    if (login) {
+      // 已登陆
+      let userinfo = wx.getStorageSync('userinfo')
+      switch(userinfo.role*1) {
+        case 1:{
+          // 学生
+          wx.switchTab({
+            url: '../../pages/index/index',
+          })
+          break
+        }
+        case 2: {
+          // 家长
+          wx.reLaunch({
+            url: '/pages/study_record/study_record',
+          })
+          break
+        }
+        case 3: {
+          // 老师
+          wx.reLaunch({
+            url: '/pages/teacher_studentList/teacher_studentList',
+          })
+          break
+        }
+      }
+    } else {
+      // 未登录
+      let gid = wx.getStorageSync("gid")
+      if (gid != null && gid != 0) {
+        // 已选择过年级
         wx.switchTab({
           url: '../../pages/index/index',
         })
-        console.log("我选年级了")
       } else {
-       
-      }
-   
-    var params = {
-    
-    }
-    app.ols.user_number(params).then(d => {
-      console.log(d)
-      if (d.data.code == 0) {
-        console.log(d.data.data)
+        // 未选择过年级
         that.setData({
-          num: d.data.data.res,
+          gid: gid,
+          showPageContent: true
         })
-        
-        console.log("人数成功")
-      } else {
-        console.log(d.data.msg, "人数失败")
+        that.get_grade()
+        that.getJoinNumber()
       }
-    })
-  
-    
+    }
   },
 
   //关闭弹框
@@ -199,5 +209,29 @@ Page({
         console.log(res, "分享失败")
       }
     }
+  },
+
+  //----------------------------------------------接口------------------------------------
+  /**
+   * 获取参与评测人数
+  */
+  getJoinNumber: function() {
+    let that = this
+    var params = {
+    
+    }
+    app.ols.user_number(params).then(d => {
+      console.log(d)
+      if (d.data.code == 0) {
+        console.log(d.data.data)
+        that.setData({
+          num: d.data.data.res,
+        })
+        
+        console.log("人数成功")
+      } else {
+        console.log(d.data.msg, "人数失败")
+      }
+    })
   }
 })
