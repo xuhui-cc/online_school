@@ -163,6 +163,7 @@ Page({
       that.setData({
         current_subject: cur,
         current_special:-1,
+        special:''
       })
       that.v4_viplist()  //获取vip
     }else{
@@ -190,12 +191,13 @@ Page({
       }
     }else{
       var params = {
+        "token":0,
         "gid": that.data.gid,
       }
     }
     
     // console.log(params, "params获取课程未登录")
-    app.ols.hot_list3(params).then(d => {
+    app.ols.hot_list4(params).then(d => {
     // app.ols.grade_course2(params).then(d => {
       console.log(d)
       var hot1 = []
@@ -247,24 +249,59 @@ Page({
     var xb = e.currentTarget.dataset.xb
     // var type = e.currentTarget.dataset.type
     console.log(xb)
-    if(that.data.course.lists[xb].is_buy == 1){
+    var course = that.data.course.lists[xb]
+    if(course.type == 0){
+      wx.navigateTo({
+        url: '../../pages/course_detail/course_detail?kid=' + course.kid,
+      })
+  }else if(course.type == 1){
+    wx.navigateTo({
+      url: '../../pages/groupBuy/groupBuy?kid=' + course.kid,
+    })
+  }else if(course.type == 2){
+    wx.navigateTo({
+      url: '../../pages/course_seckill/course_seckill?kid=' + course.kid,
+    })
+  }
+    // if(that.data.course.lists[xb].is_buy == 1){
+    //     wx.navigateTo({
+    //       url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
+    //     })
+    // }else{
+    //   if(that.data.course.lists[xb].is_group == 0 && that.data.course.lists[xb].is_miaosha == 0){
+    //     wx.navigateTo({
+    //       url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
+    //     })
+    //   }else if(that.data.course.lists[xb].is_miaosha == 1){
+    //     wx.navigateTo({
+    //       url: '../../pages/course_seckill/course_seckill?kid=' + that.data.course.lists[xb].kid,
+    //     })
+    //   }else if(that.data.course.lists[xb].is_group == 1){
+    //     wx.navigateTo({
+    //       url: '../../pages/groupBuy/groupBuy?kid=' + that.data.course.lists[xb].kid,
+    //     })
+    //   }
+    // }
+  },
+
+  vip_course_detail:function(e){
+    let that = this
+    var xb = e.currentTarget.dataset.xb
+    // var type = e.currentTarget.dataset.type
+    console.log(xb)
+    var course = that.data.vip_list[0].course[xb]
+    if(course.type == 0){
         wx.navigateTo({
-          url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
+          url: '../../pages/course_detail/course_detail?kid=' + course.kid,
         })
-    }else{
-      if(that.data.course.lists[xb].is_group == 0 && that.data.course.lists[xb].is_miaosha == 0){
-        wx.navigateTo({
-          url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
-        })
-      }else if(that.data.course.lists[xb].is_miaosha == 1){
-        wx.navigateTo({
-          url: '../../pages/course_seckill/course_seckill?kid=' + that.data.course.lists[xb].kid,
-        })
-      }else if(that.data.course.lists[xb].is_group == 1){
-        wx.navigateTo({
-          url: '../../pages/groupBuy/groupBuy?kid=' + that.data.course.lists[xb].kid,
-        })
-      }
+    }else if(course.type == 1){
+      wx.navigateTo({
+        url: '../../pages/groupBuy/groupBuy?kid=' + course.kid,
+      })
+    }else if(course.type == 2){
+      wx.navigateTo({
+        url: '../../pages/course_seckill/course_seckill?kid=' + course.kid,
+      })
     }
   },
 
@@ -279,6 +316,11 @@ Page({
     }else if(hot == 2){
       wx.navigateTo({
         url: '../../pages/course_detail/course_detail?kid=' + kid,
+      })
+
+    }else if(hot == 3){
+      wx.navigateTo({
+        url: '../../pages/course_seckill/course_seckill?kid=' + kid,
       })
 
     }
@@ -364,6 +406,7 @@ Page({
       }
     }else{
       var params = {
+        "token": 0,
         "gid": that.data.gid,
         "did": that.data.did,
         "num": 30,
@@ -371,7 +414,7 @@ Page({
       }
     }
       console.log(params, "params获取课程")
-      app.ols.grade_course3(params).then(d => {
+      app.ols.grade_course4(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
           console.log(d.data.data)
@@ -440,32 +483,17 @@ Page({
         "num": 30,
         "page": 1
       }
-      app.ols.grade_course3(params).then(d => {
-      // app.ols.grade_course1(params).then(d => {
-        console.log(d)
-        if (d.data.code == 0) {
-          console.log(d.data.data)
-          that.setData({
-            course: d.data.data
-          })
-          console.log(that.data.course, "专题获取课程")
-        } else {
-          console.log(d.data.msg, "专题获取课程msg，失败")
-          that.setData({
-            course: ''
-          })
-        }
-      })
     }else{
       var params = {
-        
+        "token": 0,
         "gid": that.data.gid,
         "did": that.data.did,
         "cid": that.data.special[that.data.current_special].id,
         "num": 30,
         "page": 1
       }
-      app.ols.grade_course3(params).then(d => {
+    }
+      app.ols.grade_course4(params).then(d => {
       // app.ols.grade_course2(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
@@ -481,7 +509,7 @@ Page({
           })
         }
       })
-    }
+    
     
   },
 

@@ -184,7 +184,7 @@ page{
 .laber{
   position: absolute;
   margin-left: 30rpx;
-  padding-top: 22rpx;
+  padding-top: 20rpx;
   width:83rpx;
   height:36rpx;
 }
@@ -612,7 +612,7 @@ page{
 }
 
 
-.vip_layout{
+.vip_layout1{
   width:750rpx;
   /* background:#fff; */
   
@@ -730,4 +730,11 @@ page{
   width:297rpx;
   height:172rpx;
   border-radius: 8rpx;
+}
+.vip_laber{
+  position: absolute;
+  margin-left: 30rpx;
+  margin-top: 20rpx;
+  width:52rpx;
+  height:34rpx;
 }
