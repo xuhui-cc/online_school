@@ -1,4 +1,20 @@
 /* pages/study_record/study_record.wxss */
+.oneLine_ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.flex_row_alignItemCenter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex_column {
+  display: flex;
+  flex-direction: column;
+}
 
 .topBackgroundImage {
   z-index: -1;
@@ -36,4 +52,96 @@
   color: black;
   font-size: 36rpx;
   font-weight: bold;
+}
+
+.scrollView {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.studentInfoView {
+  height: 169rpx;
+  width: 100%;
+  margin-top: 2rpx;
+  border-bottom: 0.5rpx solid #f1f1f1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.studentInfo_avatar {
+  margin-left: 41rpx;
+  width: 95rpx;
+  height: 95rpx;
+  border-radius: 50%;
+}
+
+.studentInfo_name {
+  height: 53rpx;
+  max-width: 344rpx;
+  color: #000934;
+  font-size: 38rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  margin-left: 23rpx;
+}
+
+.studentInfo_level {
+  width: 42.63rpx;
+  height: 28.1rpx;
+  margin-left: 4rpx;
+  margin-top: 4.5rpx;
+}
+
+.studentInfo_courseHour {
+  height: 33rpx;
+  color: #AEB3C9;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+}
+
+.studentInfo_courseHour_count {
+  color: #4964F6;
+  font-size: 24rpx;
+}
+
+.studentInfo_useListTitle {
+  font-size: 24rpx;
+  color: #AEB3C9;
+  margin-right: 10rpx;
+}
+
+.studentInfo_enterIcon {
+  width: 16rpx;
+  height: 16rpx;
+  margin-right: 32rpx;
+}
+
+.recordView {
+  margin-top: 22rpx;
+  width: 100%;
+  border-radius: 40rpx 40rpx 0rpx 0rpx;
+  box-shadow: 0rpx 3rpx 20rpx rgba(0,13,77,0.13);
+  -webkit-box-shadow: 0px 3px 20px rgba(0,13,77,0.13);
+  position: relative;
+}
+
+.backToTopView {
+  width: 83rpx;
+  height: 83rpx;
+  position: fixed;
+  bottom: 90rpx;
+  right: 33rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.backTopTop_image {
+  width: 83rpx;
+  height: 83rpx;
 }

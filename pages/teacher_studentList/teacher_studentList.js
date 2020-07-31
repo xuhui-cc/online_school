@@ -1,5 +1,13 @@
 // pages/teacher_studentList/teacher_studentList.js
+const app = getApp()
+
 Page({
+
+  pageData: {
+    page: 1,
+    perpage: 10,
+    canLoadNextPage: false,
+  },
 
   /**
    * 页面的初始数据
@@ -10,6 +18,12 @@ Page({
 
     // 表头是否悬停
     headerFixed: false,
+
+    // 老师信息
+    teacherUserinfo: {
+      avatar: '../../images/my_head.png',
+      name: '',
+    }
   },
 
   /**
@@ -17,7 +31,9 @@ Page({
    */
   onLoad: function (options) {
     this.getSystemSize()
+    this.setUserInfo()
     this.getStudentListHeaderTop()
+    this.teacherGetStudentList()
   },
 
   /**
@@ -116,6 +132,36 @@ Page({
         HeaderFixedTop: headerFixedTop
       })
     }).exec()
+  },
+
+  /**
+   * 给页面data设置用户信息
+  */
+  setUserInfo: function() {
+    let userinfo = wx.getStorageSync('userinfo')
+    let teacherUserInfo = {
+      avatar: userinfo.avatar && userinfo.avatar != '' ? userinfo.avatar : '../../images/my_head.png',
+      name: userinfo.nick
+    }
+    this.setData({
+      teacherUserinfo: teacherUserInfo,
+    })
+  },
+
+  //--------------------------------------------------接口-------------------------------------
+  /**
+   * 老师端获取学员列表
+  */
+  teacherGetStudentList: function() {
+    let param = {
+      token: wx.getStorageSync('token'),
+      num: this.pageData.perpage,
+      page: this.pageData.page,
+    }
+    app.ols.teacherGetStudentsList(param).then(d=>{
+      let code = d.data.code
+      
+    })
   },
 
   //-------------------------------------------------交互事件-----------------------------------

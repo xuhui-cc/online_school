@@ -5,7 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 日志列表 最小高度
+    minRecordListHeight: 0,
 
+    // 日志数组
+    recordList: [],
+
+    // 一键返回顶部
+    scrollTop: 0,
   },
 
   /**
@@ -84,4 +91,61 @@ Page({
       screenHeight: systemInfo.screenHeight
     })
   },
+
+  //------------------------------------------------------交互事件------------------------------------------------
+  /**
+   * 日历 天点击 回调
+  */
+  dayClicked: function(e) {
+    console.log("点击了天")
+    console.log(e)
+  },
+
+  /**
+   * 日历 日期范围改变 回调
+  */
+  datePeriodChange: function(e) {
+    console.log("日期区间改变")
+    console.log(e)
+  },
+
+  /**
+   * 日历 每次翻页/回今天/初始化/切换显示模式时 返回高度
+  */
+  getCalenderHeight: function(e) {
+    if (this.data.minRecordListHeight == 0) {
+      let that = this
+      console.log("日历高度")
+      console.log(e)
+      let calenderHeight = e.detail
+      let query = wx.createSelectorQuery()
+      query.select(".studentInfoView").boundingClientRect(function (rect) {
+        // console.log(rect)
+        let studentInfoHeight = rect.height
+        let studentInfoTop = rect.top
+        let minRecordHeight = that.data.screenHeight - calenderHeight/750.0*that.data.screenWidth - studentInfoHeight - studentInfoTop
+        that.setData({
+          minRecordListHeight: minRecordHeight
+        })
+      }).exec()
+    }
+  },
+
+  /**
+   * 返回顶部 按钮 点击事件
+  */
+  backToTop: function() {
+    this.setData({
+      scrollTop: 0,
+    })
+  },
+
+  /**
+   * 导航栏 返回item 点击事件
+  */
+  naviBackItemClicked: function() {
+    wx.navigateBack({
+      delta: 0,
+    })
+  }
 })

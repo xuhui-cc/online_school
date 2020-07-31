@@ -13,5 +13,56 @@
     <view class="naviBar_back"></view>
   </view>
 
-  
+  <scroll-view class="scrollView" scroll-y="true" scroll-top="{{scrollTop}}" style="height:{{screenHeight-naviHeight}}px; margin-top:{{naviHeight}}px">
+    <!-- 学生信息 -->
+    <view class="studentInfoView">
+      <view class="flex_row_alignItemCenter" style="height:100%; flex-grow:2;">
+        <!-- 学生头像 -->
+        <image class="studentInfo_avatar" src="/images/my_head.png"></image>
+        <view class="flex_column" style="height:100%; flex-grow:2;">
+          <view class="flex_row_alignItemCenter" style="margin-top:40rpx;">
+            <!-- 姓名 -->
+            <view class="studentInfo_name oneLine_ellipsis">李婷婷</view>
+            <!-- 级别 -->
+            <image class="studentInfo_level" style="background-color:black"></image>
+          </view>
+          <view class="flex_row_alignItemCenter" style="margin-top:3rpx;">
+            <!-- 总课时 -->
+            <view class="studentInfo_courseHour" style="margin-left:23rpx;">
+              共
+              <text class="studentInfo_courseHour_count">22</text>
+              课时
+            </view>
+            <!-- 剩余课时 -->
+            <view class="studentInfo_courseHour" style="margin-left:22rpx;">
+              剩余
+              <text class="studentInfo_courseHour_count">6</text>
+              课时
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="flex_row_alignItemCenter">
+        <view class="studentInfo_useListTitle">查看销课记录</view>
+        <image class="studentInfo_enterIcon" src="/images/study_record/arrowRight_gray.png"></image>
+      </view>
+    </view>
+    <!-- 日历 -->
+    <calendar bind:dayClicked="dayClicked" bind:datePeriodChange="datePeriodChange" bind:getHeight="getCalenderHeight" top="0px" dots="{{[]}}"></calendar>
+
+    <view class="recordView" style="min-height:{{minRecordListHeight}}px;">
+      <!-- 日志列表 -->
+      <block wx:if="{{recordList && recordList != '' && recordList.length != 0}}">
+
+      </block>
+      <block wx:else>
+        <!-- 空页面 -->
+        <null_image title="您当前还没有学习日志~" type="2" z_index="-1" position_type="2" top="24.3%"></null_image>
+      </block>
+    </view>
+  </scroll-view>
+
+  <view class="backToTopView" bindtap="backToTop">
+    <image class="backTopTop_image" src="../../images/study_record/backToTop.png"></image>
+  </view>
 </view>
