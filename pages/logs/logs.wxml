@@ -204,7 +204,7 @@
     <view class="vip_layout"> 
       <view wx:for="{{vip_list[0].course}}" wx:key="hot2_index">
           <view class="hot_course">
-            <view class="flex" bindtap="vip_course_hot" data-kid="{{item.kid}}">
+            <view class="flex" bindtap="vip_course_detail" data-kid="{{item.kid}}">
               <image class="vip_fm" src="{{item.face}}"></image>
               <image class="vip_laber" wx:if="{{item.buy == 0 || item.buy == 2 || item.buy > 4}}" src="../../images/vip_laber2.png"></image>
               <image class="laber" wx:if="{{item.buy == 1 || item.buy == 3 || item.buy == 4 }}" src="../../images/isbuy.png"></image>

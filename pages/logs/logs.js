@@ -594,7 +594,10 @@ Page({
     console.log(that.data.gid,"onshow")
 
     that.hot()  //热门课程
-    that.getspecial()  //获取专题
+    if(that.data.current_subject != 1){
+      that.getspecial()  //获取专题
+    }
+    
     that.getcourse()     //获取课程
    
   },
