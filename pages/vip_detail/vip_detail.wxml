@@ -56,7 +56,7 @@
     <view style="margin-top:32rpx;">
       <view wx:for="{{vip_list[0].course}}" wx:key="index" style="margin-left:30rpx;margin-bottom:42rpx;">
       
-        <view class="flex" >
+        <view class="flex" bindtap="vip_course_detail" data-xb="{{index}}">
           <image class="laber" src="../../images/vip_laber2.png" ></image>
           <image class="fm" src="{{item.face}}"></image>
           <view>

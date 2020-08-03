@@ -19,7 +19,7 @@ function olsfetch(api, path, params) {
 
 function olsfetchpost(api, path, params, log, showToast, loadingMsg) {
   if (showToast) {
-    wx.showToast({
+    wx.showLoading({
       title: loadingMsg && loadingMsg != '' ? loadingMsg : '加载中',
     })
   }

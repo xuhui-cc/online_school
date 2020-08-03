@@ -68,6 +68,26 @@ Page({
     })
   },
 
+  vip_course_detail:function(e){
+    let that = this
+    var xb = e.currentTarget.dataset.xb
+    console.log(xb)
+    var course = that.data.vip_list[0].course[xb]
+    if(course.type == 0){
+        wx.navigateTo({
+          url: '../../pages/course_detail/course_detail?kid=' + course.kid,
+        })
+    }else if(course.type == 1){
+      wx.navigateTo({
+        url: '../../pages/groupBuy/groupBuy?kid=' + course.kid,
+      })
+    }else if(course.type == 2){
+      wx.navigateTo({
+        url: '../../pages/course_seckill/course_seckill?kid=' + course.kid,
+      })
+    }
+  },
+
   vip_buy:function(){
     let that = this
     wx.showLoading({

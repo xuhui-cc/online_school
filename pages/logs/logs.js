@@ -199,12 +199,12 @@ Page({
     // console.log(params, "params获取课程未登录")
     app.ols.hot_list4(params).then(d => {
     // app.ols.grade_course2(params).then(d => {
-      console.log(d)
+      // console.log(d)
       var hot1 = []
       var hot2 = []
       var hot3 = []
       if (d.data.code == 0) {
-        console.log(d.data.data,"热门课程")
+        // console.log(d.data.data,"热门课程")
         var timestamp = (Date.parse(new Date()))/1000
         console.log(timestamp,"timestamp")
         
@@ -234,7 +234,7 @@ Page({
         // that.cs()
         // console.log(that.data.course, "获取课程未登录")
       } else {
-        console.log(d.data.msg, "获取课程未登录msg，失败")
+        // console.log(d.data.msg, "获取课程未登录msg，失败")
         that.setData({
           hot1: '',
           hot2:'',
@@ -244,6 +244,15 @@ Page({
     })
   },
 
+  //vip详情页跳转
+  to_vip:function(){
+    let that = this
+    wx.navigateTo({
+      url: '../../pages/vip_detail/vip_detail',
+    })
+  },
+
+  //课程详情跳转
   to_course_detail:function(e){
     let that = this
     var xb = e.currentTarget.dataset.xb
@@ -263,25 +272,6 @@ Page({
       url: '../../pages/course_seckill/course_seckill?kid=' + course.kid,
     })
   }
-    // if(that.data.course.lists[xb].is_buy == 1){
-    //     wx.navigateTo({
-    //       url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
-    //     })
-    // }else{
-    //   if(that.data.course.lists[xb].is_group == 0 && that.data.course.lists[xb].is_miaosha == 0){
-    //     wx.navigateTo({
-    //       url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
-    //     })
-    //   }else if(that.data.course.lists[xb].is_miaosha == 1){
-    //     wx.navigateTo({
-    //       url: '../../pages/course_seckill/course_seckill?kid=' + that.data.course.lists[xb].kid,
-    //     })
-    //   }else if(that.data.course.lists[xb].is_group == 1){
-    //     wx.navigateTo({
-    //       url: '../../pages/groupBuy/groupBuy?kid=' + that.data.course.lists[xb].kid,
-    //     })
-    //   }
-    // }
   },
 
   vip_course_detail:function(e){
