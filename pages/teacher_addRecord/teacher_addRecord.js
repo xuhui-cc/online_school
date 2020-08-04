@@ -1,5 +1,9 @@
 // pages/teacher_addRecord/teacher_addRecord.js
+const app = getApp()
 Page({
+
+  // 学员id
+  sid: null,
 
   // 课时选择器 过渡处理数据
   clearCountPickerData: {
@@ -13,27 +17,17 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 学员名字
+    studentName: '',
+    // 今日日期
+    date: '',
     // 日志类型数组
-    typeList: [
-      {
-        title: "上课",
-        id: 1,
-        selected: false,
-      }, 
-      {
-        title: "作业",
-        id: 2,
-        selected: false
-      }, 
-      {
-        title: "课间活动",
-        id: 3,
-        selected: false
-      }
-    ],
+    typeList: [],
 
     // 选中的日志类型 索引
     selectedTypeIndex: null,
+    // 是否展示消课
+    showClearCourseHour: false,
     // 是否消课
     clearCourseHour: false,
     // 消课课时
@@ -41,7 +35,7 @@ Page({
     clearCourseHourCount_pointRight: "0",
     clearCourseHourCount_pointLeft_index: 1,
     clearCourseHourCount_pointRight_index: 0,
-    // 是否展示
+    // 是否展示 课时选择器
     showClearCountSelectView: false,
 
     // 课时选择弹框 选择器数据
@@ -61,7 +55,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setUpInitialData(options)
     this.getSystemSize()
+    this.getRecordTagList()
   },
 
   /**
@@ -89,7 +85,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    
   },
 
   /**
@@ -134,28 +130,152 @@ Page({
     })
   },
 
+  /**
+   * 处理初始化数据
+  */
+  setUpInitialData: function(options) {
+    let nowDate = new Date()
+    let nowDateStr = app.util.customFormatTimeByDate(nowDate, 'yyyy/MM/dd')
+    this.sid = options.sid,
+    this.setData({
+      studentName: options.studentname,
+      date: nowDateStr
+    })
+  },
+
+  /**
+   * 判断是否展示 消课视图
+  */
+  ifShowClearHourView: function() {
+    let selectedTag = this.data.typeList[this.data.selectedTypeIndex]
+    if (selectedTag.iscosttime == 1) {
+      let defaultHour =selectedTag.num*1
+      let pointLeft = parseInt(defaultHour)
+      let pointRight = (defaultHour - pointLeft)*10
+
+      let leftIndex = pointLeft-1
+      let rightIndex = pointRight == 5 ? 1: 0
+      this.setData({
+        showClearCourseHour: true,
+        clearCourseHour: false,
+        clearCourseHourCount_pointLeft: String(pointLeft),
+        clearCourseHourCount_pointRight: String(pointRight),
+        clearCourseHourCount_pointLeft_index: leftIndex,
+        clearCourseHourCount_pointRight_index: rightIndex,
+      })
+    } else {
+      this.setData({
+        showClearCourseHour: false,
+        clearCourseHour: false,
+      })
+    }
+  },
+
   //--------------------------------------------------------接口---------------------------------------------------
   /**
    * 上传图片
   */
   recordUploadFile: function(file) {
     let that = this
-    if(file.type == "video") {
-      that.data.files.unshift(file)
-    } else {
-      that.data.files.push(file)
-    }
-    that.setData({
-      files: that.data.files
+    var filePath = file.tempFilePath
+    app.ols.recordUploadFile(filePath).then(d=>{
+      if (d.code == 0) {
+        file.serverPath = d.data.file
+        if(file.type == "video") {
+          that.data.files.unshift(file)
+        } else {
+          that.data.files.push(file)
+        }
+        that.setData({
+          files: that.data.files
+        })
+      }
     })
   },
+
+  /**
+   * 获取日志标签列表
+  */
+  getRecordTagList: function() {
+    let param = {
+      token: wx.getStorageSync('token')
+    }
+    let that = this
+    app.ols.getReocrdTagList(param).then(d=>{
+      if (d.data.code == 0) {
+        let tagList = d.data.data.data
+        for(var i = 0; i < tagList.length; i++) {
+          let tag = tagList[i]
+          // 默认未选中
+          tag.selected = false
+        }
+        that.setData({
+          typeList: tagList
+        })
+      }
+    })
+  },
+
+  /**
+   * 提交接口
+  */
+  submit: function(callback) {
+    let content = this.data.content
+    if (!content || content == '') {
+      wx.showToast({
+        title: '请填写内容',
+        icon: 'none'
+      })
+      return
+    }
+    if (this.data.selectedTypeIndex == null) {
+      wx.showToast({
+        title: '请选择日志类型',
+        icon: 'none'
+      })
+      return
+    }
+    let tag = this.data.typeList[this.data.selectedTypeIndex]
+    let param = {
+      token: wx.getStorageSync('token'),
+      sid: this.sid,
+      tid: tag.id,
+      content: content,
+    }
+
+    if (this.data.files && this.data.files.length != 0) {
+      let file_url_string = ''
+      for (var i = 0; i < this.data.files.length; i++) {
+        let file = this.data.files[i]
+        if (i == 0) {
+          file_url_string = file.serverPath
+        } else {
+          file_url_string = file_url_string + "," + file.serverPath
+        }
+      }
+      param.file_urls_string = file_url_string
+    }
+    if (this.data.clearCourseHour) {
+      param.num = this.data.clearCourseHourCount_pointLeft + '.' + this.data.clearCourseHourCount_pointRight
+    }
+    app.ols.submitReocrd(param).then(d=>{
+      if (d.data.code == 0) {
+        wx.showToast({
+          title: '提交成功',
+          icon: 'none'
+        })
+        typeof callback == "function" && callback()
+      }
+    })
+  },
+
 
   //-------------------------------------------------------交互事件-------------------------------------------------
   /**
    * 导航栏返回按钮 点击事件
   */
   naviBackItemClicked: function () {
-      wx.navigateBack()
+    wx.navigateBack()
   },
 
   /**
@@ -183,6 +303,8 @@ Page({
         selectedTypeIndex: index
       })
     }
+    // 判断是否展示消课
+    this.ifShowClearHourView()
   },
 
   /**
@@ -198,6 +320,9 @@ Page({
    * 消课数量 点击事件
   */
   clearCourseHourCountClicked: function() {
+    if (!this.data.clearCourseHour) {
+      return
+    }
     this.setData({
       showClearCountSelectView: true
     })
@@ -340,12 +465,10 @@ Page({
    * 提交按钮 点击事件
   */
   submitButtonClciked: function() {
-    wx.navigateBack({
-      delta: 0,
-    })
-    wx.showToast({
-      title: '提交成功',
-      icon: 'none'
+    this.submit(function (){
+      wx.navigateBack({
+        delta: 0,
+      })
     })
   }
 })

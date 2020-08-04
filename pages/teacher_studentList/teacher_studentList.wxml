@@ -24,27 +24,27 @@
       <view class="student_Cell" style="margin-top:{{index==0 ? 0 : 20}}rpx;" bindtap="studentCellClicked" data-index="{{index}}">
         <view class="flex_row_alignItemCenter" style="margin-top:29rpx; height:48rpx;">
           <!-- 姓名 -->
-          <view class="studentList_name">刘芳路</view>
+          <view class="studentList_name">{{item.nick}}</view>
           <!-- 性别 -->
-          <image class="studentList_gender" src="{{index%2==0 ? '../../images/teacher_client/teacherList_gender_female.png' : '../../images/teacher_client/teacherList_gender_male.png'}}"></image>
+          <image class="studentList_gender" src="{{item.sex==0 ? '../../images/teacher_client/teacherList_gender_female.png' : '../../images/teacher_client/teacherList_gender_male.png'}}"></image>
           <!-- 年级 -->
-          <view class="studentList_grade">初二</view>
+          <view class="studentList_grade" style="border-color:{{gradeStyleDictionary[item.grade_title].borderColor}}; background-color:{{gradeStyleDictionary[item.grade_title].backgroundColor}}; color:{{gradeStyleDictionary[item.grade_title].textColor}};">{{item.grade_title}}</view>
         </view>
         <view class="flex_row_alignItemCenter" style="margin-top:11rpx; height:37rpx;">
           <!-- 电话 -->
-          <view class="studentList_phone">18695423655</view>
+          <view class="studentList_phone">{{item.mobile}}</view>
           <view style="height:19rpx; width:2rpx; margin-left:20rpx; background-color:#c4ccf3;"></view>
           <!-- 校区 -->
-          <view class="studentList_school">西安市长兴校区</view>
+          <view class="studentList_school">{{item.school_address ? item.school_address : '暂无校区'}}</view>
         </view>
         <view class="flex_row_alignItemCenter" style="margin-top:30rpx; height:33rpx">
-          <block wx:if="{{index%2==0}}">
+          <block wx:if="{{item.log && item.log!=''}}">
             <!-- 小蓝点，只有今天有最新日志才展示 -->
-            <view class="studentList_recordPoint"></view>
+            <view class="studentList_recordPoint" wx:if="{{item.log.isDian == 1}}"></view>
             <!-- 最新日志时间 -->
-            <view class="studentList_recordTime" style="margin-left:{{index%2==0 ? 8 : 31}}rpx;">07/16 22:04</view>
+            <view class="studentList_recordTime" style="margin-left:{{item.log.isDian == 1 ? 8 : 31}}rpx;">{{item.log.time}}</view>
             <!-- 最新日志更新人 -->
-            <view class="studentList_recordDetail">陈文锦鲤老师更新了日志</view>
+            <view class="studentList_recordDetail">{{item.log.teacher_name}}老师更新了日志</view>
           </block>
           <block wx:else>
             <!-- 无日志 -->

@@ -1,7 +1,12 @@
+const { grade_course1 } = require("../../utils/ols")
+
 // pages/teacher_studentList/teacher_studentList.js
 const app = getApp()
 
 Page({
+
+  // 是否是页面第一次出现
+  firstShow: true,
 
   pageData: {
     page: 1,
@@ -14,7 +19,7 @@ Page({
    */
   data: {
     //学员列表
-    studentList: ["", "", "", "", "", "", ""],
+    studentList: [],
 
     // 表头是否悬停
     headerFixed: false,
@@ -23,6 +28,70 @@ Page({
     teacherUserinfo: {
       avatar: '../../images/my_head.png',
       name: '',
+    },
+
+    // 年级样式
+    gradeStyleDictionary: {
+      "初一": {
+        backgroundColor: '#ECE5FF',
+        borderColor: '#8B60FF',
+        textColor: '#8B60FF'
+      },
+      "初二": {
+        backgroundColor: '#EBF8FF',
+        borderColor: '#54C5FF',
+        textColor: '#54C5FF'
+      },
+      "初三": {
+        backgroundColor: '#FFEFE8',
+        borderColor: '#FF4F01',
+        textColor: '#FF4F01'
+      },
+      "高一": {
+        backgroundColor: '#ECE5FF',
+        borderColor: '#8B60FF',
+        textColor: '#8B60FF'
+      },
+      "高二": {
+        backgroundColor: '#EBF8FF',
+        borderColor: '#54C5FF',
+        textColor: '#54C5FF'
+      },
+      "高三": {
+        backgroundColor: '#FFEFE8',
+        borderColor: '#FF4F01',
+        textColor: '#FF4F01'
+      },
+      "一年级": {
+        backgroundColor: '#ECE5FF',
+        borderColor: '#8B60FF',
+        textColor: '#8B60FF'
+      },
+      "二年级": {
+        backgroundColor: '#EBF8FF',
+        borderColor: '#54C5FF',
+        textColor: '#54C5FF'
+      },
+      "三年级": {
+        backgroundColor: '#FFEFE8',
+        borderColor: '#FF4F01',
+        textColor: '#FF4F01'
+      },
+      "四年级": {
+        backgroundColor: '#EFFFFB',
+        borderColor: '#47D4AD',
+        textColor: '#47D4AD'
+      },
+      "五年级": {
+        backgroundColor: '#FFFAE8',
+        borderColor: '#EBC034',
+        textColor: '#EBC034'
+      },
+      "六年级": {
+        backgroundColor: '#FFF2F6',
+        borderColor: '#EB5D84',
+        textColor: '#FE5281'
+      },
     }
   },
 
@@ -30,10 +99,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this
     this.getSystemSize()
     this.setUserInfo()
-    this.getStudentListHeaderTop()
-    this.teacherGetStudentList()
   },
 
   /**
@@ -47,7 +115,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    this.teacherGetStudentList(function () {
+      if (that.firstShow) {
+        that.getStudentListHeaderTop()
+        that.firstShow = false
+      }
+    })
   },
 
   /**
@@ -152,15 +226,37 @@ Page({
   /**
    * 老师端获取学员列表
   */
-  teacherGetStudentList: function() {
+  teacherGetStudentList: function(callback) {
     let param = {
       token: wx.getStorageSync('token'),
       num: this.pageData.perpage,
       page: this.pageData.page,
     }
+    let that = this
     app.ols.teacherGetStudentsList(param).then(d=>{
       let code = d.data.code
-      
+      if(code == 0) {
+        let studentList = d.data.data.data
+        // 分页处理
+        var newList = []
+        if (that.pageData.page == 1) {
+          newList = studentList
+        } else {
+          newList = that.data.studentList.concat(studentList)
+        }
+        // 判断是否可以加载下一页
+        if (!studentList || studentList == '' || studentList.length < that.pageData.perpage) {
+          that.pageData.canLoadNextPage = false
+        } else {
+          that.pageData.canLoadNextPage = true
+        }
+        that.setData({
+          studentList: newList
+        })
+        if (studentList && studentList.length != 0) {
+          typeof callback == "function" && callback()
+        }
+      }
     })
   },
 
@@ -173,7 +269,7 @@ Page({
     let index = e.currentTarget.dataset.index
     let student = this.data.studentList[index]
     wx.navigateTo({
-      url: '../../pages/teacher_addRecord/teacher_addRecord',
+      url: '../../pages/teacher_addRecord/teacher_addRecord?sid='+student.sid+"&studentname="+student.nick,
     })
   },
 
@@ -185,7 +281,7 @@ Page({
     let index = e.currentTarget.dataset.index
     let student = this.data.studentList[index]
     wx.navigateTo({
-      url: '../../pages/study_record/study_record',
+      url: '../../pages/study_record/study_record?sid='+student.sid,
     })
   }
 })

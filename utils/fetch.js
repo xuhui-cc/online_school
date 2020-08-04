@@ -19,7 +19,7 @@ function olsfetch(api, path, params) {
 
 function olsfetchpost(api, path, params, log, showToast, loadingMsg) {
   if (showToast) {
-    wx.showToast({
+    wx.showLoading({
       title: loadingMsg && loadingMsg != '' ? loadingMsg : '加载中',
     })
   }
@@ -117,6 +117,79 @@ function olsfetchpost(api, path, params, log, showToast, loadingMsg) {
   })
 }
 
+function olsfetchUpload(api, path, filePath, log, showToast, loadingMsg) {
+  if (showToast) {
+    wx.showLoading({
+      title: loadingMsg && loadingMsg != '' ? loadingMsg : '上传中',
+    })
+  }
+  if (log) {
+    console.log(log, '\n', path, "\n文件路径：\n", filePath)
+  }
+  return new Promise((resolve, reject) => {
+    wx.uploadFile({
+      url: `${api}${path}`,
+      filePath: filePath,
+      name: 'file',
+      method: 'POST',
+      timeout: 1000*60*60,
+      formData: {
+        'file': filePath,
+        "token": wx.getStorageSync("token"),
+      },
+      success(r) {
+        if (showToast) {
+          wx.hideLoading({
+            success: (res) => {},
+          })
+        }
+        if (log) {
+          console.log(log, "\n返回数据：\n", r)
+        }
+        if (r.statusCode == 200) {
+          let result = JSON.parse(r.data);
+          if (result.code == 0) {
+            resolve(result)
+          } else {
+            debugger
+            if (showToast) {
+              wx.showToast({
+                title: result.msg && result.msg != '' ? result.msg : '上传失败',
+                icon: 'none'
+              })
+            }
+            resolve(result)
+          }
+        } else {
+          if (showToast) {
+            wx.showToast({
+              title: '服务器数据错误',
+              icon: 'none'
+            })
+          }
+          resolve(r)
+        }
+      },
+      fail (res) {
+        if (showToast) {
+          wx.hideLoading({
+            success: (res) => {},
+          })
+        }
+        if (log) {
+          console.log(log, '请求失败：\n', res)
+        }
+        if (showToast){
+          wx.showToast({
+            title: '请求失败',
+            icon: "none"
+          })
+        }
+      }
+    })
+  })
+}
+
 // function olsfetchpostimg(api, path, params) {
 //   return new Promise((resolve, reject) => {
 //     wx.request({
@@ -131,4 +204,4 @@ function olsfetchpost(api, path, params, log, showToast, loadingMsg) {
 // }
 
 
-module.exports = { olsfetch, olsfetchpost}
+module.exports = { olsfetch, olsfetchpost, olsfetchUpload}

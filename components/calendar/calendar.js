@@ -5,6 +5,11 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    /**
+     * 打点数据
+     *   riqi；打点日期 0000-00-00
+     *   type: 1-打绿点  2-打红点
+    */
     dots: {
       type: Array,
       value: [],

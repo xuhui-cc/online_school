@@ -17,9 +17,9 @@
   <view style="margin-top:{{naviHeight}}px; width:100%;">
     <scroll-view style="height:{{screenHeight-naviHeight-safeArea_bottom}}px;" scroll-y="true" enable-flex="true">
       <!-- 学员名称 -->
-      <view class="header_studentName oneLine_ellipsis" style="margin-top:{{207/750.0*screenWidth - naviHeight}}px;">学员：李婷婷</view>
+      <view class="header_studentName oneLine_ellipsis" style="margin-top:{{207/750.0*screenWidth - naviHeight}}px;">学员：{{studentName}}</view>
       <!-- 当前日期 -->
-      <view class="header_time oneLine_ellipsis">时间：2020/06/20</view>
+      <view class="header_time oneLine_ellipsis">时间：{{date}}</view>
       <!-- 内容框 -->
       <view class="recordContentView">
         <view class="recordContent_titleView">
@@ -63,7 +63,7 @@
         </block>
       </view>
       <!-- 是否消课 -->
-      <view class="recordClearCourseHours" bindtap="clearCourseHourClicked">
+      <view class="recordClearCourseHours" bindtap="clearCourseHourClicked" wx:if="{{showClearCourseHour}}">
         <view class="flex_row_alignItemCenter">
           <image class="recordClearCourseHour_selectImage" src="{{clearCourseHour ? '../../images/teacher_client/teacher_addRecord_clearCourseHour.png' : '../../images/teacher_client/teacher_addRecord_notClearCourseHour.png'}}"></image>
           <view class="recoudClearCourseHour_title" style="color:{{clearCourseHour ? '#af5800' : '#dbdce5'}}">是否消课</view>

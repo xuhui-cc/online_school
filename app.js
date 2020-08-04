@@ -2,11 +2,13 @@
 
 const ols = require('./utils/ols.js')
 const loginTool = require('./utils/loginTool.js')
+const util = require('./utils/util.js')
 
 App({
 
   ols: ols,
   loginTool: loginTool,
+  util: util,
   onLaunch: function () {
     
 
