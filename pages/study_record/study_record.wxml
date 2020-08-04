@@ -13,7 +13,7 @@
     <view class="naviBar_back"></view>
   </view>
 
-  <scroll-view class="scrollView" scroll-y="true" scroll-top="{{scrollTop}}" style="height:{{screenHeight-naviHeight}}px; margin-top:{{naviHeight}}px">
+  <scroll-view class="scrollView" scroll-y="true" scroll-top="{{scrollTop}}" style="height:{{screenHeight-naviHeight}}px; margin-top:{{naviHeight}}px" refresher-enabled="true" bindrefresherrefresh="pullRefresh" refresher-triggered="{{recordListPullRefershing}}" bindscrolltolower="recordListScrollReachBottom">
     <!-- 学生信息 -->
     <view class="studentInfoView" bindtap="showClearCourseHourList">
       <view class="flex_row_alignItemCenter" style="height:100%; flex-grow:2;">
@@ -112,7 +112,7 @@
       <view class="clearHourView_sectionHeader_title" style="width:156rpx; margin-left:0rpx;">销课老师</view>
       <view class="clearHourView_sectionHeader_title" style="width:132rpx; margin-left:0rpx;">销课时</view>
     </view>
-    <scroll-view scroll-y="true">
+    <scroll-view scroll-y="true" refresher-enabled="true" bindrefresherrefresh="clearListPullRefresh" refresher-triggered="{{clearListPullRefershing}}" bindscrolltolower="clearListReachBottom">
       <block wx:for="{{clearList}}" wx:key="index">
         <view class="clearCell">
           <view class="clearCell_content oneLine_ellipsis" style="width:74rpx; margin-left:16rpx;">{{index+1}}</view>

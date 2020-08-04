@@ -4,6 +4,8 @@ const ols = require("../../utils/ols")
 const app = getApp()
 Page({
 
+  // 选中的天 0000-00-00
+  selectedDayStr: '',
   // 最新日志
   newRecord: null,
 
@@ -58,6 +60,12 @@ Page({
 
     // 是否展示画布，生成分享图片
     showCanvas: false,
+
+    // 日志列表 是否正在下拉刷新
+    recordListPullRefershing: false,
+
+    // 消课记录列表 是否正在下拉刷新
+    clearListPullRefershing: false,
   },
 
   /**
@@ -248,20 +256,23 @@ Page({
    * 参数：
    *    riqi：日期：0000-00-00
   */
-  getStudentRecordList: function(riqi) {
+  getStudentRecordList: function(riqi, callback) {
     let params = {
       token: wx.getStorageSync('token'),
       sid: this.sid,
       riqi: riqi,
       num: this.pageData.perpage,
-      pager: this.pageData.page
+      page: this.pageData.page
     }
     let that = this
     app.ols.getStudentRecordListByDay(params).then(d=>{
       if (d.data.code == 0) {
         let recordArray = d.data.data.data
+
+        // 遍历日志列表
         for(var i = 0; i < recordArray.length; i++) {
           let record = recordArray[i]
+          // 处理附件
           if (record.file && record.file != '' && record.file.length != 0) {
             let fileItemArray = []
             for (var j = 0; j < record.file.length; j++) {
@@ -282,15 +293,31 @@ Page({
             record.file = fileItemArray
           }
         }
+        // 分页数据处理
+        let newRecordArray = []
+        if(that.pageData.page == 1) {
+          newRecordArray = recordArray
+        } else {
+          newRecordArray = that.data.recordList.concat(recordArray)
+        }
+
+        // 判断是否可以加在下一页
+        if (!recordArray || recordArray == '' || recordArray.length < that.pageData.perpage) {
+          that.pageData.canLoadNextPage = false
+        } else {
+          that.pageData.canLoadNextPage = true
+        }
         that.setData({
-          recordList: recordArray
+          recordList: newRecordArray
         })
+        typeof callback == "function" && callback(true)
       } else {
         if (that.pageData.page == 1) {
           this.setData({
             recordList: []
           })
         }
+        typeof callback == "function" && callback(false)
       }
     })
   },
@@ -372,8 +399,21 @@ Page({
     app.ols.getClearCourseHourList(params).then(d=>{
       if (d.data.code == 0) {
         let clearList = d.data.data.data
+        // 处理分页数据
+        let newList = []
+        if (that.pageData.clearPage == 1) {
+          newList = clearList
+        } else {
+          newList = that.data.clearList.concat(clearList)
+        }
+        // 判断是否可以加载下一页
+        if (!clearList || clearList == '' || clearList.length < that.pageData.clearPage) {
+          that.pageData.clearCanLoadNextPage = false
+        } else {
+          that.pageData.clearCanLoadNextPage = true
+        }
         that.setData({
-          clearList: clearList
+          clearList: newList
         })
         typeof callback == "function" && callback(true)
       } else {
@@ -430,7 +470,10 @@ Page({
     }
     // console.log("点击了天")
     // console.log(e)
+    
     let dateStr = e.detail.dateStr
+    this.selectedDayStr = dateStr
+    this.pageData.page = 1
     this.getStudentRecordList(dateStr)
   },
 
@@ -530,5 +573,70 @@ Page({
     } else {
       // 视频
     }
+  },
+
+  /**
+   * 日志列表 下拉刷新
+  */
+  pullRefresh: function(res) {
+    // console.log('触发下拉刷新')
+    this.pageData.page = 1
+    let that = this
+    this.getStudentRecordList(this.selectedDayStr, function(success){
+      that.setData({
+        recordListPullRefershing : false
+      })
+    })
+  },
+
+  /**
+   * 日志列表滚动到底部
+  */
+  recordListScrollReachBottom: function() {
+    if (!this.pageData.canLoadNextPage) {
+      return
+    }
+    let oldPage = this.pageData.page
+    this.pageData.page += 1
+    let that = this
+    this.getStudentRecordList(this.selectedDayStr, function(success){
+      if (success) {
+        that.pageData.page = oldPage
+      }
+    })
+  }, 
+
+  /**
+   * 消课记录列表 下拉刷新
+  */
+  clearListPullRefresh: function() {
+    let oldPage = this.pageData.clearPage
+    this.pageData.clearPage = 1
+    let that = this
+    this.getClearList(function(success){
+      that.setData({
+        clearListPullRefershing: false
+      })
+      if (!success){
+        that.pageData.clearPage = oldPage
+      }
+    })
+  },
+
+  /**
+   * 消课记录列表 上拉加载
+  */
+  clearListReachBottom: function() {
+    if (!this.pageData.clearCanLoadNextPage) {
+      return
+    }
+    let oldPage = this.pageData.clearPage
+    this.pageData.clearPage += 1
+    let that = this
+    this.getClearList(function(success){
+      if (!success){
+        that.pageData.clearPage = oldPage
+      }
+    })
   }
 })

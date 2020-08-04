@@ -1,0 +1,2 @@
+<!--pages/uploadVideo/uploadVideo.wxml-->
+<web-view src="{{url}}" bindmessage="bindmessage" bindload="loadSuccess" binderror="loadError"></web-view>

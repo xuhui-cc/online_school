@@ -116,12 +116,8 @@ Page({
    */
   onShow: function () {
     let that = this
-    this.teacherGetStudentList(function () {
-      if (that.firstShow) {
-        that.getStudentListHeaderTop()
-        that.firstShow = false
-      }
-    })
+    this.pageData.page = 1
+    this.teacherGetStudentList()
   },
 
   /**
@@ -142,14 +138,34 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    let oldPage = this.pageData.page
+    this.pageData.page = 1
+    let that = this
+    this.teacherGetStudentList(function(success){
+      wx.stopPullDownRefresh({
+        success: (res) => {},
+      })
+      if (!success) {
+        that.pageData.page = oldPage
+      }
+    })
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (!this.pageData.canLoadNextPage) {
+      return
+    }
+    let oldPage = this.pageData.page
+    this.pageData.page += 1
+    let that = this
+    this.teacherGetStudentList(function(success){
+      if (!success) {
+        that.pageData.page = oldPage
+      }
+    })
   },
 
   /**
@@ -253,9 +269,16 @@ Page({
         that.setData({
           studentList: newList
         })
+        // 第一次加载 若有学员 计算表头高度
         if (studentList && studentList.length != 0) {
-          typeof callback == "function" && callback()
+          if (that.firstShow) {
+            that.getStudentListHeaderTop()
+            that.firstShow = false
+          }
         }
+        typeof callback == "function" && callback(true)
+      } else {
+        typeof callback == "function" && callback(false)
       }
     })
   },

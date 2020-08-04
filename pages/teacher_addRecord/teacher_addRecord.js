@@ -402,6 +402,10 @@ Page({
    * 添加图片/视频按钮 点击事件
   */
   addFileButtonClicked: function() {
+    wx.navigateTo({
+      url: '/pages/uploadVideo/uploadVideo',
+    })
+    return
     let that = this
     wx.chooseMedia({
       count: 1,
@@ -440,7 +444,7 @@ Page({
    * 附件 点击事件
   */
   showBigFile: function(e) {
-    return
+    // return
     let index = e.currentTarget.dataset.index
     let file = this.data.files[index]
     let sourse = {
