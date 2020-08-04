@@ -183,7 +183,7 @@
   <!-- vip页 -->
   <view wx:if="{{current_subject == 1}}">
     <view class="vip_layout1">
-      <view wx:if="{{vip_list[0].is_buy == 0}}">
+      <view wx:if="{{!vip_list[0].is_buy}}">
       <!-- wx:if="{{vip.valid == -1 || !vip.valid}}" -->
         <image class="king" src="../../images/king.png"></image>
         <view class="open_vip" >开通会员</view>

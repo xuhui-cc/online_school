@@ -14,6 +14,11 @@ function judge_share(params) {
   return fetch.olsfetchpost(URI, 'share/getinterface', params)
 }
 
+//分享判断
+function judge_share4(params) {
+  return fetch.olsfetchpost(URI, 'v4/share/getinterface', params,"分享判断v4",true,"分享加载中")
+}
+
 // 小程序直播接入
 function getclassroom(params) {
   return fetch.olsfetchpost(URI, 'classroom/getclassroom', params)
@@ -155,12 +160,12 @@ function handout(params) {
 
 //获取课程视频链接
 function getvideo(params) {
-  return fetch.olsfetchpost(URI, 'lesson/getvideo', params)
+  return fetch.olsfetchpost(URI, 'lesson/getvideo', params,"获取课程视频")
 }
 
 //获取课程视频断点时间——1.2
 function getvideo_info(params) {
-  return fetch.olsfetchpost(URI, 'study/getvideoline', params)
+  return fetch.olsfetchpost(URI, 'study/getvideoline', params,"获取课程视频断点")
 }
 
 
@@ -171,7 +176,7 @@ function preorder(params) {
 
 //拼团预支付
 function group_preorder3(params) {
-  return fetch.olsfetchpost(URI, 'v3/wepay/pregrouporder', params)
+  return fetch.olsfetchpost(URI, 'v3/wepay/pregrouporder', params,"拼团预支付")
 }
 
 //订单详情
@@ -317,12 +322,12 @@ function getpushlist(params) {
 
 //视频页其他信息
 function getplaypushlist(params) {
-  return fetch.olsfetchpost(URI, 'lesson/getplaypushlist', params)
+  return fetch.olsfetchpost(URI, 'lesson/getplaypushlist', params,"获取视频页附加信息")
 }
 
 //授权头像
 function avatar_update(params) {
-  return fetch.olsfetchpost(URI, 'member/upinfo', params)
+  return fetch.olsfetchpost(URI, 'member/upinfo', params,"获取头像")
 }
 
 //试卷开始学习记录
@@ -356,6 +361,11 @@ function group_share3(params) {
   return fetch.olsfetchpost(URI, 'v3/share/getinterface', params)
 }
 
+// //团分享v3
+// function group_share4(params) {
+//   return fetch.olsfetchpost(URI, 'v4/share/getinterface', params)
+// }
+
 //团分享v3
 function all_group3(params) {
   return fetch.olsfetchpost(URI, 'v3/group/getlessongrouplist', params)
@@ -383,7 +393,7 @@ function v4_myVip(params) {
 }
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all3, test_ques1, test_ques2, grade_course1, grade_course2, course_info1, course_info2, grade_update, course_cata1, course_cata2, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,judge_share,grade_course4,course_info4,course_cata3,hot_list4,group_preorder3,order_all3,group_del3,group_detail3,group_share3,all_group3,banner3,v4_viplist,v4_vipPreorder,v4_myVip,course_cata4}
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all3, test_ques1, test_ques2, grade_course1, grade_course2, course_info1, course_info2, grade_update, course_cata1, course_cata2, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,judge_share,grade_course4,course_info4,course_cata3,hot_list4,group_preorder3,order_all3,group_del3,group_detail3,group_share3,all_group3,banner3,v4_viplist,v4_vipPreorder,v4_myVip,course_cata4,judge_share4}
 
 
 

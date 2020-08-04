@@ -64,10 +64,11 @@ function olsfetchpost(api, path, params, log, showToast, loadingMsg) {
             // token过期
             let gid = wx.getStorageSync('gid')
             wx.clearStorageSync()
+            console.log("清除本地缓存")
             wx.setStorageSync('gid', gid)
-            wx.reLaunch({
-              url: '../pages/first_page/first_page',
-            })
+            // wx.reLaunch({
+            //   url: '../pages/first_page/first_page',
+            // })
             break
           }
           case 3: {

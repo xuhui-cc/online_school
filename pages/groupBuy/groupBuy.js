@@ -45,6 +45,7 @@ Page({
       }
     }else{
         var params = {
+          "token": '',
           "kid": that.data.kid
         }
       }
@@ -175,6 +176,7 @@ Page({
       }
     }else{
         var params = {
+          "token": '',
           "kid": that.data.kid
         }
       }
@@ -196,7 +198,7 @@ Page({
       }
     }else{
       var params = {
-        // "token": wx.getStorageSync("token"),
+        "token": '',
         "kid": that.data.kid
       }
     }

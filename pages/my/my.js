@@ -154,7 +154,7 @@ Page({
         that.setData({
           login: true
         })
-        that.onshow()
+        that.onShow()
       }
     })
   },

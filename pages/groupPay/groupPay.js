@@ -54,7 +54,7 @@ Page({
       "token": wx.getStorageSync("token"),
       "kid": kid
     }
-    app.ols.course_info3(params).then(d => {
+    app.ols.course_info4(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
@@ -151,7 +151,7 @@ Page({
           "token": wx.getStorageSync("token"),
           "kid": that.data.kid
         }
-        app.ols.course_info3(params).then(d => {
+        app.ols.course_info4(params).then(d => {
           if (d.data.code == 0) {
             // if(d.data.data.pt_status < 1){
               wx.redirectTo({

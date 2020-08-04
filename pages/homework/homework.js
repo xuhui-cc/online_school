@@ -860,36 +860,72 @@ Page({
       "url": "homepaper",
       "id": that.data.oid,
     }
-    console.log(params, "分享判断参数")
-    app.ols.judge_share(params).then(d => {
-      console.log(d, "分享判断数据")
+    // console.log(params, "分享判断参数")
+    app.ols.judge_share4(params).then(d => {
+      // console.log(d, "分享判断数据")
       if (d.data.code == 0) {
-        console.log(d.data.data,"分享判断接口数据")
-        if(d.data.data.is_buy == 0){
+        // console.log(d.data.data,"分享判断接口数据")
+        if(d.data.data.buy == 1 || (d.data.data.buy >= 3 && d.data.data.buy <= 5)){
+            if(d.data.data.status == 1){
+              wx.redirectTo({
+                url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
+              })
+            }else if(d.data.data.status == 2){
+              wx.redirectTo({
+                url: '../../pages/homework_report/homework_report?mid=' + d.data.data.mid
+              })
+            }else if(d.data.data.status == 0){
+              that.setData({
+                login:true
+              })
+              that.test_explain()   //试卷概要
+              that.test_id()     //获取试题ID列表
+              that.ques_info()      //试卷基本信息
+              that.setmark()   //试卷状态初始化
+            }
+          }
+          
+        else if(d.data.data.buy == 2){
           wx.redirectTo({
-            url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
+            url: '../../pages/groupBuy/groupBuy?kid=' + that.data.kid,
           })
-        }else{
-          if(d.data.data.status == 1){
+        }
+        else if(d.data.data.buy == 0 || d.data.data.buy == 6){
+          if(d.data.data.type == 0){
             wx.redirectTo({
               url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
             })
-          }else if(d.data.data.status == 2){
+          }
+          else if(d.data.data.type == 1){
             wx.redirectTo({
-              url: '../../pages/homework_report/homework_report?mid=' + d.data.data.mid
+              url: '../../pages/groupBuy/groupBuy?kid=' + that.data.kid,
             })
-          }else if(d.data.data.status == 0){
-            that.setData({
-              login:true
+          }
+          else if(d.data.data.type == 2){
+            wx.redirectTo({
+              url: '../../pages/course_seckill/course_seckill?kid=' + that.data.kid,
             })
-            that.test_explain()   //试卷概要
-            that.test_id()     //获取试题ID列表
-            that.ques_info()      //试卷基本信息
-            that.setmark()   //试卷状态初始化
           }
         }
+        // if(d.data.data.buy == 0){
+        //   wx.redirectTo({
+        //     url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
+        //   })
+        // }else{
+        //   if(d.data.data.status == 1){
+        //     wx.redirectTo({
+        //       url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
+        //     })
+        //   }else if(d.data.data.status == 2){
+        //     wx.redirectTo({
+        //       url: '../../pages/homework_report/homework_report?mid=' + d.data.data.mid
+        //     })
+        //   }else if(d.data.data.status == 0){
+            
+        //   }
+        // }
         
-        console.log("分享判断接口调取成功")
+        // console.log("分享判断接口调取成功")
       } else {
         console.log("分享判断接口==============" + d.data.msg)
       }

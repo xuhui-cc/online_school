@@ -69,6 +69,7 @@ Page({
       })
     }else{
       var params = {
+        "token": '',
         "kid": that.data.kid
       }
       console.log(params, "课程详情接口参数")
@@ -93,7 +94,7 @@ Page({
       that.setData({
         [cs]: that.data.course_info.content.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block"')
       })
-      if (that.data.course_info.buy == 1 || that.data.course_info.buy == 5) {
+      if (that.data.course_info.buy == 1 || (that.data.course_info.buy >= 3 && that.data.course_info.buy <= 5)) {
         that.setData({
           currentData: 1
         })
@@ -195,6 +196,7 @@ Page({
   //课程讲义跳转
   to_course_file:function(e){
     let that = this
+    that.clearLocalFile()
     that.setData({
       click_file:true
     })
@@ -361,7 +363,7 @@ Page({
       }
     }else{
       var params = {
-        // "token": wx.getStorageSync("token"),
+        "token": '',
         "kid": that.data.kid
       }
     }
@@ -432,7 +434,7 @@ Page({
   to_test:function(e){
     let that = this
     wx.navigateTo({
-      url: '../../pages/test/test?eid=' + that.data.course_cata.eid + "&kid=" + that.data.kid,  //结课考试
+      url: '../../pages/test/test?eid=' + that.data.course_cata.res.eid + "&kid=" + that.data.kid,  //结课考试
     })
   },
 
@@ -440,7 +442,7 @@ Page({
   to_test_report: function (e) {
     let that = this
     wx.navigateTo({
-      url: '../../pages/test_report/test_report?mid=' + that.data.course_cata.mid,  //考试报告
+      url: '../../pages/test_report/test_report?mid=' + that.data.course_cata.res.mid,  //考试报告
     })
   },
 
@@ -456,7 +458,7 @@ Page({
    */
   onShow: function () {
     let that = this
-    this.clearLocalFile()
+    
     that.judge_login()    //登陆判断
     if (that.data.currentData == 0){
       that.course_detail()   //获取课程简介
