@@ -50,7 +50,13 @@ function olsfetchpost(api, path, params, log, showToast, loadingMsg) {
             break
           }
           case 1: {
-            // 参数无效
+            // 参数不合法
+          }
+          case 2: {
+            // 无效请求方式
+          }
+          case 5: {
+            // 数据查询返回空数据组
             resolve(res)
             if (showToast) {
               wx.showToast({
@@ -60,30 +66,14 @@ function olsfetchpost(api, path, params, log, showToast, loadingMsg) {
             }
             break
           }
-          case 2: {
+          case 20: {
             // token过期
             let gid = wx.getStorageSync('gid')
             wx.clearStorageSync()
             wx.setStorageSync('gid', gid)
             wx.reLaunch({
-              url: '../pages/first_page/first_page',
+              url: '/pages/first_page/first_page',
             })
-            break
-          }
-          case 3: {
-            // 数据验证失败
-          }
-          case 4: {
-            // 无请求数据
-          }
-          case 5: {
-            resolve(res)
-            if (showToast) {
-              wx.showToast({
-                title: res.data.msg,
-                icon: 'none'
-              })
-            }
             break
           }
           default: {
