@@ -44,6 +44,17 @@ Page({
     that.v4_viplist()
   },
 
+  //兑换码输入
+  input_code: function (e) {
+    let that = this
+    // var code = e.detail.value
+    that.setData({
+      code : e.detail.value
+      })
+  },
+
+  
+
   //获取会员卡列表
   v4_viplist:function(){
     let that = this

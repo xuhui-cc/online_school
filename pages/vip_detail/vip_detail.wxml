@@ -22,7 +22,7 @@
       <view class="flex">
         <image class="badge_img" src="../../images/vip_badge2.png"></image>
         <view wx:if="{{vip_list[0].valid_days == 0}}" class="vip_time">永久</view>
-        <view wx:else="" class="vip_time">2020-09-30到期</view>
+        <view wx:else="" class="vip_time">{{vip_list[0].valid_days}}到期</view>
       </view>
     </view>
   </view>
@@ -50,7 +50,7 @@
 
 
   <view class="layout">
-    <image wx:if="{{vip_list[0].is_buy == 0}}" class="exchange_entry" src="../../images/exchange_entry.png" bindtap="exchange"></image>
+    <image  class="exchange_entry" src="../../images/exchange_entry.png" bindtap="exchange"></image>
     <view class="h1">{{vip_list[0].title}}会员权益</view>
     <view class="h2"><text style="font-size:30rpx;">{{vip_list[0].course_num}}门</text>精选好课</view>
     <view style="margin-top:32rpx;">
@@ -79,8 +79,8 @@
   <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!exchange}}"></view>
   <view style="margin-top:-120rpx;" hidden="{{!exchange}}">
     <image class="bg_exchange" src="../../images/bg_exchange.png" ></image>
-    <input class="input" placeholder="请输入您的兑换码" placeholder-style=" text-align: center;"></input>
-    <view class="btn1">提交</view>
+    <input class="input" placeholder="请输入您的兑换码" placeholder-style=" text-align: center;" bindinput=""></input>
+    <view class="btn1" bindtap="submit_check">提交</view>
     <image class="exchange_close" src="../../images/exchange_close.png" bindtap="exchange"></image>
   </view>
 
