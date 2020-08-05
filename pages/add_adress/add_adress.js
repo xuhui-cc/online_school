@@ -7,8 +7,6 @@ Page({
    */
   data: {
     region: [],
-    
-
   },
 
   /**
@@ -75,8 +73,8 @@ Page({
 
   save:function(){
     let that = this
-    if(that.data.phone.length == 11){
-      if (that.data.region != '' && that.data.name != '' && that.data.detail_adress != '' && that.data.phone != ''){
+    if(that.data.phone != undefined && that.data.phone.length == 11 ){
+      if ((that.data.region != '' && that.data.region != undefined ) && (that.data.name != '' && that.data.name != undefined) && (that.data.detail_adress != '' && that.data.detail_adress != undefined) && (that.data.phone != '' && that.data.phone != undefined)){
         if (that.data.type == 1) {
           var params = {
             "token": wx.getStorageSync("token"),
@@ -121,7 +119,7 @@ Page({
         wx.showToast({
           title: '信息完善后才能提交哦~',
           icon:"none",
-          duration:300,
+          duration:3000,
         })
       }
     }else{

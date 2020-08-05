@@ -1,0 +1,97 @@
+
+<view class="container">
+
+  <image class="back" src="../../images/w_back2.png" bindtap="back"></image>
+
+
+  <image class="bg3" src="../../images/bg3.png"></image>
+
+  <view class="flex" style="margin-top:176rpx;margin-left: 50rpx;">
+    <view class="ava">
+      <open-data  type="userAvatarUrl"></open-data>
+    </view>
+    
+     
+    <view class="flex" wx:if="{{vip_list[0].is_buy == 0}}">
+      <open-data type="userNickName" class="nick"></open-data>
+      <view class="btn" bindtap="vip_buy">立即开通</view>
+    </view>
+    <view style="margin-top: 15rpx;" wx:if="{{vip_list[0].is_buy >0}}">
+      <open-data type="userNickName" class="nick"></open-data>
+      <!-- <view class="nick" >张东升的假发</view> -->
+      <view class="flex">
+        <image class="badge_img" src="../../images/vip_badge2.png"></image>
+        <view wx:if="{{vip_list[0].valid_days == 0}}" class="vip_time">永久</view>
+        <view wx:else="" class="vip_time">{{vip_list[0].valid_days}}到期</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 卡片滚动 -->
+  <!-- <swiper
+    class="swiper"
+    circular="{{circular}}" 
+    previous-margin="{{previousMargin}}" 
+    next-margin="{{nextMargin}}"
+    bindchange="swiperBindchange"
+  >
+    <block wx:for="{{imgUrls}}" wx:key="index">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image {{currentSwiperIndex == index ? 'zoom-in' : 'zoom-out'}}" mode='widthFix'/>
+      </swiper-item>
+    </block>
+  </swiper> -->
+
+  <!-- <image class="" src="{{vip_list[0].bgpic}}"></image> -->
+  <image class="vip_fm" src="{{imgUrls[0]}}"></image>
+
+  <view class="intro">{{vip_list[0].memo}}</view>
+  <view class="price" wx:if="{{vip_list[0].is_buy == 0}}"><text style="font-size:32rpx;font-weight:400;">¥</text>{{vip_list[0].price}}</view>
+
+
+  <view class="layout">
+    <image  class="exchange_entry" src="../../images/exchange_entry.png" bindtap="exchange"></image>
+    <view class="h1">{{vip_list[0].title}}会员权益</view>
+    <view class="h2"><text style="font-size:30rpx;">{{vip_list[0].course_num}}门</text>精选好课</view>
+    <view style="margin-top:32rpx;">
+      <view wx:for="{{vip_list[0].course}}" wx:key="index" style="margin-left:30rpx;margin-bottom:42rpx;">
+      
+        <view class="flex" bindtap="vip_course_detail" data-xb="{{index}}">
+          <image class="laber" src="../../images/vip_laber2.png" ></image>
+          <image class="fm" src="{{item.face}}"></image>
+          <view>
+            <view class="title">{{item.title}}</view>
+            <view class="flex">
+              <view class="num">{{item.class_hour}}课时</view>
+              <view class="tip" style="{{vip_list[0].is_buy == 0?'color:rgba(163,163,163,1);':''}}">免费学</view>
+            </view>
+            
+          </view>
+        </view>
+      
+      </view>
+    </view>
+
+
+
+  </view>
+
+  <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!exchange}}"></view>
+  <view style="margin-top:-120rpx;" hidden="{{!exchange}}">
+    <image class="bg_exchange" src="../../images/bg_exchange.png" ></image>
+    <input class="input" placeholder="请输入您的兑换码" placeholder-style=" text-align: center;" bindinput=""></input>
+    <view class="btn1" bindtap="submit_check">提交</view>
+    <image class="exchange_close" src="../../images/exchange_close.png" bindtap="exchange"></image>
+  </view>
+
+  <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!pay}}"></view>
+  <view style="margin-top:-120rpx;" hidden="{{!pay}}">
+    <image class="success_img" src="../../images/seuccess_vip1.png" ></image>
+    <view class="cuccess_tip">您已成功开通白银VIP会员</view>
+    <view class="cuccess_tip1">立即开启您的学习成功之旅</view>
+    <view class="success_yes" bindtap="success_yes">查看会员权限</view>
+    <image class="exchange_close" src="../../images/exchange_close.png" bindtap="success_yes"></image>
+  </view>
+  
+  
+</view>

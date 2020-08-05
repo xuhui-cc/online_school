@@ -45,18 +45,19 @@ Page({
       }
     }else{
         var params = {
+          "token": '',
           "kid": that.data.kid
         }
       }
-      console.log(params, "课程详情接口参数")
-      app.ols.course_info3(params).then(d => {
+      // console.log(params, "课程详情接口参数")
+      app.ols.course_info4(params).then(d => {
         that.handle_data1(d)   //课程详情数据处理
         
-        if((d.data.data.is_buy == 1 || d.data.data.is_buy == 3)  && d.data.data.option){
+        if((d.data.data.buy == 0|| d.data.data.buy == 2 || d.data.data.buy == 6)  && d.data.data.option){
           that.cs_group()   // 已有团列表倒计时
         }
         
-        if(d.data.data.is_buy == 0 || d.data.data.is_buy == 2){
+        if(d.data.data.buy == 0 || d.data.data.buy == 2 || d.data.data.buy == 6){
           that.cs1()   //倒计时
         }
         
@@ -96,7 +97,8 @@ Page({
         for(var i=0;i<d.data.data.lists.group.length;i++){
           for(var j=0;j<d.data.data.lists.group[i].member.length;j++){
             if(d.data.data.lists.group[i].member[j].avatar.indexOf("/") == 0){
-              d.data.data.lists.group[i].member[j].avatar = 'http://os.lingjun.net' + d.data.data.lists.group[i].member[j].avatar
+              // d.data.data.lists.group[i].member[j].avatar = 'http://os.lingjun.net' + d.data.data.lists.group[i].member[j].avatar
+              d.data.data.lists.group[i].member[j].avatar = app.globalData.dummy + d.data.data.lists.group[i].member[j].avatar
               //表示strCode是以ssss开头；
             }else if(d.data.data.lists.group[i].member[j].avatar.indexOf("/") == -1){
               //表示strCode不是以ssss开头
@@ -174,11 +176,12 @@ Page({
       }
     }else{
         var params = {
+          "token": '',
           "kid": that.data.kid
         }
       }
-      console.log(params, "课程详情接口参数")
-      app.ols.course_info3(params).then(d => {
+      // console.log(params, "课程详情接口参数")
+      app.ols.course_info4(params).then(d => {
         that.handle_data1(d)   //课程详情数据处理
         
       })
@@ -195,19 +198,19 @@ Page({
       }
     }else{
       var params = {
-        // "token": wx.getStorageSync("token"),
+        "token": '',
         "kid": that.data.kid
       }
     }
-      console.log(params, "获取课程目录参数")
-      app.ols.course_cata3(params).then(d => {
-        console.log(d, "获取课程目录接口数据")
+      // console.log(params, "获取课程目录参数")
+      app.ols.course_cata4(params).then(d => {
+        // console.log(d, "获取课程目录接口数据")
         if (d.data.code == 0) {
           console.log(d.data.data)
           that.setData({
             course_cata: d.data.data
           })
-          console.log("课程目录接口调取成功")
+          // console.log("课程目录接口调取成功")
         } else {
           console.log("课程目录==============" + d.data.msg)
         }
@@ -218,9 +221,9 @@ Page({
   //课程详情介绍数据处理
   handle_data1:function(d){
     let that = this
-    console.log(d, "课程详情接口数据")
+    // console.log(d, "课程详情接口数据")
     if (d.data.code == 0) {
-      console.log(d.data.data)
+      // console.log(d.data.data)
       var timestamp = (Date.parse(new Date()))/1000
       console.log(timestamp,"timestamp")
       d.data.data.endtime = d.data.data.endtime - timestamp
@@ -229,7 +232,8 @@ Page({
           // if(d.data.data.option[i].member){
             for(var j=0;j<d.data.data.option[i].member.length;j++){
               if(d.data.data.option[i].member[j].avatar.indexOf("/") == 0){
-                d.data.data.option[i].member[j].avatar = 'http://os.lingjun.net' + d.data.data.option[i].member[j].avatar
+                d.data.data.option[i].member[j].avatar = app.globalData.dummy + d.data.data.lists.group[i].member[j].avatar
+                // d.data.data.option[i].member[j].avatar = 'http://os.lingjun.net' + d.data.data.option[i].member[j].avatar
                 //表示strCode是以ssss开头；
               }else if(d.data.data.option[i].member[j].avatar.indexOf("/") == -1){
                 //表示strCode不是以ssss开头
@@ -253,7 +257,7 @@ Page({
       that.setData({
         [cs]: that.data.course_info.content.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block"')
       })
-      if (that.data.course_info.is_buy == 3 || that.data.course_info.is_buy == 1) {
+      if (that.data.course_info.buy == 3 || that.data.course_info.buy == 1 || that.data.course_info.buy == 5) {
         that.setData({
           currentData: 1
         })
@@ -507,10 +511,10 @@ Page({
               "token": wx.getStorageSync("token"),
               "kid": that.data.kid
             }
-            console.log(params, "课程详情接口参数")
-            app.ols.course_info3(params).then(d => {
+            // console.log(params, "课程详情接口参数")
+            app.ols.course_info4(params).then(d => {
               if (d.data.code == 0) {
-                console.log(d.data.data)
+                // console.log(d.data.data)
                 if (d.data.data.pay_status <= 1 || d.data.data.pay_status >= 5) {
                   if (type == 2) {
                     wx.navigateTo({
@@ -535,7 +539,7 @@ Page({
               "kid": that.data.kid
             }
             console.log(params, "获取课程目录参数")
-            app.ols.course_cata1(params).then(d => {
+            app.ols.course_cata4(params).then(d => {
               console.log(d, "获取课程目录接口数据")
               if (d.data.code == 0) {
                 if (d.data.data.buy == 0) {
@@ -784,6 +788,13 @@ to_video:function(e){
   onReachBottom: function () {
 
   },
+
+  
+/**阻止页面滚动。模拟器中页面仍然可以滚动，真机上不能滚动。*/
+preventTouchMove: function (e) {
+ 
+},   
+
 
   /**
    * 用户点击右上角分享

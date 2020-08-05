@@ -292,7 +292,6 @@ Page({
       imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
       success: (res) => {    // 成功后要做的事情
         console.log("成功")
-
       },
       fail: function (res) {
         // 分享失败
@@ -305,14 +304,15 @@ Page({
   //获取微信绑定手机号登录
   getPhoneNumber: function (e) {
     var that = this
+
     app.loginTool.getPhoneNumber(e, that.data.gid, function(success, message){
       if (success) {
         that.setData({
           login: true
         })
         that.onShow()
+
       }
     })
   },
-  
 })

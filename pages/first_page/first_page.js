@@ -16,6 +16,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // wx.reLaunch({
+    //   url: '../../pages/teacher_studentList/teacher_studentList',
+    // })
+    // return
     let that = this
     let login = wx.getStorageSync('login')
     if (login) {

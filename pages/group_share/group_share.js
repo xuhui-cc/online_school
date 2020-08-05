@@ -51,21 +51,22 @@ Page({
     //   "id": 8,
       
     // }
-    console.log(params, "分享参数")
-    app.ols.group_share3(params).then(d => {
-      console.log(d, "分享数据")
+    // console.log(params, "分享参数")
+    app.ols.judge_share4(params).then(d => {
+      // console.log(d, "分享数据")
       var timestamp = (Date.parse(new Date()))/1000
       console.log(timestamp,"timestamp")
       // if(d.data.data.is_buy == 0)
       
       if (d.data.code == 0) {
         that.setData({
-          is_buy:d.data.data.is_buy
+          buy:d.data.data.buy
         })
         d.data.data.group.addtime =  d.data.data.group.addtime + (24*60*60) - timestamp
         for(var j=0;j<d.data.data.group.member.length;j++){
           if(d.data.data.group.member[j].avatar.indexOf("/") == 0){
-            d.data.data.group.member[j].avatar = 'http://os.lingjun.net' + d.data.data.group.member[j].avatar
+            // d.data.data.group.member[j].avatar = 'http://os.lingjun.net' + d.data.data.group.member[j].avatar
+            d.data.data.group.member[j].avatar = app.globalData.dummy + d.data.data.group.member[j].avatar
             console.log("假人头像")
             //表示strCode是以ssss开头；
           }else if(d.data.data.group.member[j].avatar.indexOf("/") == -1){
@@ -77,15 +78,17 @@ Page({
         })
         that.cs1()
         if(d.data.data.status == 1){
-          if(d.data.data.is_buy == 1 || d.data.data.is_buy == 3){
-            wx.redirectTo({
-              url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
-            })
-          }else if(d.data.data.is_buy == 2){
-            wx.redirectTo({
+          if(d.data.data.buy >0 &&  d.data.data.buy <6){
+               wx.redirectTo({
               url: '../../pages/groupBuy/groupBuy?kid=' + that.data.kid,
             })
+          
           }
+          // else if(d.data.data.buy == 2){
+          //   wx.redirectTo({
+          //     url: '../../pages/groupBuy/groupBuy?kid=' + that.data.kid,
+          //   })
+          // }
         }
         else if(d.data.data.status == 2){
           console.log("d.data.data.status == 2")
@@ -126,15 +129,9 @@ Page({
         url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
       })
     }else{
-      if(that.data.is_buy == 1 || that.data.is_buy == 3){
-        wx.redirectTo({
-          url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
-        })
-      }else if(that.data.is_buy == 2 ||that.data.is_buy == 0 ){
         wx.redirectTo({
           url: '../../pages/groupBuy/groupBuy?kid=' + that.data.kid,
         })
-      }
     }
     
   },

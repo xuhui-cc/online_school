@@ -2,10 +2,11 @@ const app = getApp()
 var timer,ms_timer
 Page({
   data: {
-    subject:[ {'id':-1, 'title': '推荐'}],
+    // subject:[ {'id':-1, 'title': '推荐'},{'id':-2, 'title': 'VIP'}],
+    // subject:[ {'id':-1, 'title': '推荐'}],
     current_special:-1,
     current_subject: 0,
-    ad:["1","1","1","1","1","1"]
+    
   },
 
   onLoad: function (options) {
@@ -49,6 +50,30 @@ Page({
        
       } else {
         console.log("轮播图失败")
+      }
+    })
+  },
+
+  //获取会员卡列表
+  v4_viplist:function(){
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+    }
+    // console.log(params, "会员列表参数")
+    app.ols.v4_viplist(params).then(d => {
+      console.log(d, "会员列表数据")
+      if (d.data.code == 0) {
+        if(d.data.data.lists[0].course){
+          d.data.data.lists[0].course_num = d.data.data.lists[0].course.length
+        }
+        
+        that.setData({
+          vip_list:d.data.data.lists
+        })
+        console.log("会员列表成功")
+      } else {
+        console.log("会员列表失败==============" + d.data.msg)
       }
     })
   },
@@ -133,6 +158,14 @@ Page({
         current_subject: cur,
         current_special:-1,
       })
+      
+    }else if(cur == 1){
+      that.setData({
+        current_subject: cur,
+        current_special:-1,
+        special:''
+      })
+      that.v4_viplist()  //获取vip
     }else{
       that.setData({
         current_subject: cur,
@@ -158,19 +191,20 @@ Page({
       }
     }else{
       var params = {
+        "token":0,
         "gid": that.data.gid,
       }
     }
     
     // console.log(params, "params获取课程未登录")
-    app.ols.hot_list3(params).then(d => {
+    app.ols.hot_list4(params).then(d => {
     // app.ols.grade_course2(params).then(d => {
-      console.log(d)
+      // console.log(d)
       var hot1 = []
       var hot2 = []
       var hot3 = []
       if (d.data.code == 0) {
-        console.log(d.data.data)
+        // console.log(d.data.data,"热门课程")
         var timestamp = (Date.parse(new Date()))/1000
         console.log(timestamp,"timestamp")
         
@@ -200,37 +234,64 @@ Page({
         // that.cs()
         // console.log(that.data.course, "获取课程未登录")
       } else {
-        console.log(d.data.msg, "获取课程未登录msg，失败")
+        // console.log(d.data.msg, "获取课程未登录msg，失败")
         that.setData({
-          hot1: ''
+          hot1: '',
+          hot2:'',
+          hot3:''
         })
       }
     })
   },
 
+  //vip详情页跳转
+  to_vip:function(){
+    let that = this
+    wx.navigateTo({
+      url: '../../pages/vip_detail/vip_detail',
+    })
+  },
+
+  //课程详情跳转
   to_course_detail:function(e){
     let that = this
     var xb = e.currentTarget.dataset.xb
     // var type = e.currentTarget.dataset.type
     console.log(xb)
-    if(that.data.course.lists[xb].is_buy == 1){
+    var course = that.data.course.lists[xb]
+    if(course.type == 0){
+      wx.navigateTo({
+        url: '../../pages/course_detail/course_detail?kid=' + course.kid,
+      })
+  }else if(course.type == 1){
+    wx.navigateTo({
+      url: '../../pages/groupBuy/groupBuy?kid=' + course.kid,
+    })
+  }else if(course.type == 2){
+    wx.navigateTo({
+      url: '../../pages/course_seckill/course_seckill?kid=' + course.kid,
+    })
+  }
+  },
+
+  vip_course_detail:function(e){
+    let that = this
+    var xb = e.currentTarget.dataset.xb
+    // var type = e.currentTarget.dataset.type
+    console.log(xb)
+    var course = that.data.vip_list[0].course[xb]
+    if(course.type == 0){
         wx.navigateTo({
-          url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
+          url: '../../pages/course_detail/course_detail?kid=' + course.kid,
         })
-    }else{
-      if(that.data.course.lists[xb].is_group == 0 && that.data.course.lists[xb].is_miaosha == 0){
-        wx.navigateTo({
-          url: '../../pages/course_detail/course_detail?kid=' + that.data.course.lists[xb].kid,
-        })
-      }else if(that.data.course.lists[xb].is_miaosha == 1){
-        wx.navigateTo({
-          url: '../../pages/course_seckill/course_seckill?kid=' + that.data.course.lists[xb].kid,
-        })
-      }else if(that.data.course.lists[xb].is_group == 1){
-        wx.navigateTo({
-          url: '../../pages/groupBuy/groupBuy?kid=' + that.data.course.lists[xb].kid,
-        })
-      }
+    }else if(course.type == 1){
+      wx.navigateTo({
+        url: '../../pages/groupBuy/groupBuy?kid=' + course.kid,
+      })
+    }else if(course.type == 2){
+      wx.navigateTo({
+        url: '../../pages/course_seckill/course_seckill?kid=' + course.kid,
+      })
     }
   },
 
@@ -247,6 +308,11 @@ Page({
         url: '../../pages/course_detail/course_detail?kid=' + kid,
       })
 
+    }else if(hot == 3){
+      wx.navigateTo({
+        url: '../../pages/course_seckill/course_seckill?kid=' + kid,
+      })
+
     }
       
   },
@@ -258,7 +324,9 @@ Page({
     that.setData({
       grade_index: xb,
       gid: that.data.grade[xb].id,
-      current_subject: -1
+      current_subject: 0,
+      hot2:'',
+      hot3:'',
     })
     if (wx.getStorageSync("login")) {
       
@@ -268,12 +336,13 @@ Page({
       }
       console.log(params, "params")
       app.ols.grade_update(params).then(d => {
-        console.log(d)
+        console.log(d,"年级切换")
 
         if (d.data.code == 0) {
-
+          clearInterval(timer);   
           wx.setStorageSync('gid', that.data.grade[xb].id)
           that.getsubject()   //获取科目
+          that.hot()  //获取热门
           that.setData({
             grade_select: false
           })
@@ -287,8 +356,10 @@ Page({
         }
       })
     }else{
+      clearInterval(timer);   
       wx.setStorageSync('gid', that.data.grade[xb].id)
       that.getsubject()   //获取科目
+      that.hot()  //获取热门
 
       that.setData({
         grade_select: false
@@ -325,6 +396,7 @@ Page({
       }
     }else{
       var params = {
+        "token": 0,
         "gid": that.data.gid,
         "did": that.data.did,
         "num": 30,
@@ -332,7 +404,7 @@ Page({
       }
     }
       console.log(params, "params获取课程")
-      app.ols.grade_course3(params).then(d => {
+      app.ols.grade_course4(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
           console.log(d.data.data)
@@ -362,13 +434,14 @@ Page({
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
-        let arr2 = [];
+        // var subject=[ {'id':-1, 'title': '推荐'}]
+        var subject=[ {'id':-1, 'title': '推荐'},{'id':-2, 'title': 'VIP'}]
         for (let i in d.data.data) {
-          that.data.subject.push(d.data.data[i]);   //对象转换为数组
+          subject.push(d.data.data[i]);   //对象转换为数组
         }
         // console.log(arr2)
         that.setData({
-          subject: that.data.subject
+          subject: subject
         })
         if(that.data.current_subject > -1){
           that.setData({
@@ -400,32 +473,17 @@ Page({
         "num": 30,
         "page": 1
       }
-      app.ols.grade_course3(params).then(d => {
-      // app.ols.grade_course1(params).then(d => {
-        console.log(d)
-        if (d.data.code == 0) {
-          console.log(d.data.data)
-          that.setData({
-            course: d.data.data
-          })
-          console.log(that.data.course, "专题获取课程")
-        } else {
-          console.log(d.data.msg, "专题获取课程msg，失败")
-          that.setData({
-            course: ''
-          })
-        }
-      })
     }else{
       var params = {
-        
+        "token": 0,
         "gid": that.data.gid,
         "did": that.data.did,
         "cid": that.data.special[that.data.current_special].id,
         "num": 30,
         "page": 1
       }
-      app.ols.grade_course3(params).then(d => {
+    }
+      app.ols.grade_course4(params).then(d => {
       // app.ols.grade_course2(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
@@ -441,7 +499,7 @@ Page({
           })
         }
       })
-    }
+    
     
   },
 
@@ -526,7 +584,10 @@ Page({
     console.log(that.data.gid,"onshow")
 
     that.hot()  //热门课程
-    that.getspecial()  //获取专题
+    if(that.data.current_subject != 1){
+      that.getspecial()  //获取专题
+    }
+    
     that.getcourse()     //获取课程
    
   },

@@ -64,15 +64,16 @@ Page({
         "kid": that.data.kid
       }
       console.log(params, "课程详情接口参数")
-      app.ols.course_info1(params).then(d => {
+      app.ols.course_info4(params).then(d => {
         that.handle_data1(d)   //课程详情数据处理
       })
     }else{
       var params = {
+        "token": '',
         "kid": that.data.kid
       }
       console.log(params, "课程详情接口参数")
-      app.ols.course_info2(params).then(d => {
+      app.ols.course_info4(params).then(d => {
         that.handle_data1(d)   //课程详情数据处理
       })
     }
@@ -93,7 +94,7 @@ Page({
       that.setData({
         [cs]: that.data.course_info.content.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block"')
       })
-      if (that.data.course_info.pay_status > 1 && that.data.course_info.pay_status < 5) {
+      if (that.data.course_info.buy == 1 || (that.data.course_info.buy >= 3 && that.data.course_info.buy <= 5)) {
         that.setData({
           currentData: 1
         })
@@ -195,6 +196,7 @@ Page({
   //课程讲义跳转
   to_course_file:function(e){
     let that = this
+    that.clearLocalFile()
     that.setData({
       click_file:true
     })
@@ -359,38 +361,44 @@ Page({
         "token": wx.getStorageSync("token"),
         "kid": that.data.kid
       }
-      console.log(params, "获取课程目录参数")
-      app.ols.course_cata1(params).then(d => {
-        console.log(d, "获取课程目录接口数据")
-        if (d.data.code == 0) {
-          console.log(d.data.data)
-          that.setData({
-            course_cata: d.data.data
-          })
-          console.log("课程目录接口调取成功")
-        } else {
-          console.log("课程目录==============" + d.data.msg)
-        }
-      })
     }else{
       var params = {
-        // "token": wx.getStorageSync("token"),
+        "token": '',
         "kid": that.data.kid
       }
-      console.log(params, "获取课程目录参数")
-      app.ols.course_cata2(params).then(d => {
-        console.log(d, "获取课程目录接口数据")
+    }
+      // console.log(params, "获取课程目录参数")
+      app.ols.course_cata4(params).then(d => {
+        // console.log(d, "获取课程目录接口数据")
         if (d.data.code == 0) {
           console.log(d.data.data)
           that.setData({
             course_cata: d.data.data
           })
-          console.log("课程目录接口调取成功")
+          // console.log("课程目录接口调取成功")
         } else {
-          console.log("课程目录==============" + d.data.msg)
+          // console.log("课程目录==============" + d.data.msg)
         }
       })
-    }
+    // }else{
+    //   var params = {
+    //     // "token": wx.getStorageSync("token"),
+    //     "kid": that.data.kid
+    //   }
+    //   console.log(params, "获取课程目录参数")
+    //   app.ols.course_cata2(params).then(d => {
+    //     console.log(d, "获取课程目录接口数据")
+    //     if (d.data.code == 0) {
+    //       console.log(d.data.data)
+    //       that.setData({
+    //         course_cata: d.data.data
+    //       })
+    //       console.log("课程目录接口调取成功")
+    //     } else {
+    //       console.log("课程目录==============" + d.data.msg)
+    //     }
+    //   })
+    // }
     
   },
 
@@ -426,7 +434,7 @@ Page({
   to_test:function(e){
     let that = this
     wx.navigateTo({
-      url: '../../pages/test/test?eid=' + that.data.course_cata.eid + "&kid=" + that.data.kid,  //结课考试
+      url: '../../pages/test/test?eid=' + that.data.course_cata.res.eid + "&kid=" + that.data.kid,  //结课考试
     })
   },
 
@@ -434,7 +442,7 @@ Page({
   to_test_report: function (e) {
     let that = this
     wx.navigateTo({
-      url: '../../pages/test_report/test_report?mid=' + that.data.course_cata.mid,  //考试报告
+      url: '../../pages/test_report/test_report?mid=' + that.data.course_cata.res.mid,  //考试报告
     })
   },
 
@@ -450,7 +458,7 @@ Page({
    */
   onShow: function () {
     let that = this
-    this.clearLocalFile()
+    
     that.judge_login()    //登陆判断
     if (that.data.currentData == 0){
       that.course_detail()   //获取课程简介
@@ -517,60 +525,70 @@ Page({
   //获取微信绑定手机号登录
   getPhoneNumber: function (e) {
     var that = this
+
     app.loginTool.getPhoneNumber(e, that.data.gid, function(success, message){
       if (success) {
         that.setData({
           login: true
         })
-        if (that.data.currentData == 0){
-          var params = {
-            "token": wx.getStorageSync("token"),
-            "kid": that.data.kid
-          }
-          console.log(params, "课程详情接口参数")
-          app.ols.course_info1(params).then(d => {
-            if (d.data.code == 0) {
-              console.log(d.data.data)
-              if (d.data.data.pay_status <= 1 || d.data.data.pay_status >= 5) {
-                if (d.data.data.price != 0) {
-                  wx.navigateTo({
-                    url: '../../pages/pay/pay?kid=' + that.data.kid,     //去支付
-                  })
-                } else {
-                  that.to_free()  //免费课
-                }
-
-              } else {
-                that.onShow()
-              }
-
-            } else {
-              console.log("课程详情介绍接口==============" + d.data.msg)
-            }
-          })
-        }else{
-          var params = {
-            "token": wx.getStorageSync("token"),
-            "kid": that.data.kid
-          }
-          console.log(params, "获取课程目录参数")
-          app.ols.course_cata1(params).then(d => {
-            console.log(d, "获取课程目录接口数据")
-            if (d.data.code == 0) {
-              if (d.data.data.buy == 0) {
-                wx.navigateTo({
-                  url: '../../pages/pay/pay?kid=' + that.data.kid,     //去支付
-                })
-              } else {
-                that.onShow()
-              }
-            } else {
-              console.log("课程目录==============" + d.data.msg)
-            }
-          })
-        }
+        that.onShow()
       }
     })
+    // var that = this
+    // app.loginTool.getPhoneNumber(e, that.data.gid, function(success, message){
+    //   if (success) {
+    //     that.setData({
+    //       login: true
+    //     })
+    //     if (that.data.currentData == 0){
+    //       var params = {
+    //         "token": wx.getStorageSync("token"),
+    //         "kid": that.data.kid
+    //       }
+    //       console.log(params, "课程详情接口参数")
+    //       app.ols.course_info1(params).then(d => {
+    //         if (d.data.code == 0) {
+    //           console.log(d.data.data)
+    //           if (d.data.data.pay_status <= 1 || d.data.data.pay_status >= 5) {
+    //             if (d.data.data.price != 0) {
+    //               wx.navigateTo({
+    //                 url: '../../pages/pay/pay?kid=' + that.data.kid,     //去支付
+    //               })
+    //             } else {
+    //               that.to_free()  //免费课
+    //             }
+
+    //           } else {
+    //             that.onShow()
+    //           }
+
+    //         } else {
+    //           console.log("课程详情介绍接口==============" + d.data.msg)
+    //         }
+    //       })
+    //     }else{
+    //       var params = {
+    //         "token": wx.getStorageSync("token"),
+    //         "kid": that.data.kid
+    //       }
+    //       console.log(params, "获取课程目录参数")
+    //       app.ols.course_cata1(params).then(d => {
+    //         console.log(d, "获取课程目录接口数据")
+    //         if (d.data.code == 0) {
+    //           if (d.data.data.buy == 0) {
+    //             wx.navigateTo({
+    //               url: '../../pages/pay/pay?kid=' + that.data.kid,     //去支付
+    //             })
+    //           } else {
+    //             that.onShow()
+    //           }
+    //         } else {
+    //           console.log("课程目录==============" + d.data.msg)
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
   },
 
   /**

@@ -16,7 +16,9 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-
+    // that.setData({
+    //   isshare:options.isshare
+    // })
     if (options.isshare == 1){
       wx.setStorageSync("gid", options.gid)
       that.setData({
@@ -31,9 +33,8 @@ Page({
       if(that.data.login){
         that.judge_share()   //分享判断
         console.log("分享已登录")
-        
+        // console.log("分享未登录",that.data.isshare,that.data.gid)
       }
-      console.log("分享未登录",that.data.isshare,that.data.gid)
       
     }else{
       that.setData({
@@ -43,13 +44,26 @@ Page({
         mid:options.mid
       })
       that.get_video()    //获取视频数据
-      that.getCourse()  //获取视频附加课程
+      // that.getCourse()  //获取视频附加课程
       // that.judge_share()   //分享判断
       console.log("非分享打开")
     }
 
 
     
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    let that = this
+    if(wx.getStorageSync("token")){
+     
+    that.getvideo_info()  //获取视频断点
+    that.getCourse()  //获取视频页附加课程数据
+    }
     
   },
 
@@ -75,6 +89,40 @@ Page({
     })
 
   },
+
+
+  //获取视频断点时间,获取学员学习每节课观看视频记录
+  getvideo_info:function(){
+    let that = this
+   var params = {
+    "token": wx.getStorageSync("token"),
+    "oid": that.data.id
+    // "id": that.data.id            //1.1版
+  }
+  app.ols.getvideo_info(params).then(d => {
+    // console.log(d)
+    // console.log(d, "接口1数据")
+    if (d.data.code == 0) {
+      that.setData({
+        timeline: d.data.data.duration,
+        percent: d.data.data.percent,
+        isload: 1,
+      })
+      that.update_start()
+    } else if (d.data.code == 5) {
+      that.setData({
+        timeline: 0,
+        percent: 0,
+        isload: 1,
+      })
+      that.update_start()
+      // console.log("课程视频未学习")
+    } else {
+      // console.log("课程视频断点时间接口==============" + d.data.msg)
+    }
+  })
+  },
+   
 
   //课后作业
   to_homework: function () {
@@ -219,44 +267,7 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    let that = this
-    this.clearLocalFile()   //清除打开文件本地缓存
-
-    //获取视频断点时间,获取学员学习每节课观看视频记录
-    var params = {
-      "token": wx.getStorageSync("token"),
-      "oid": that.data.id
-      // "id": that.data.id            //1.1版
-    }
-    app.ols.getvideo_info(params).then(d => {
-      // console.log(d)
-      console.log(d, "接口1数据")
-      if (d.data.code == 0) {
-        that.setData({
-          timeline: d.data.data.duration,
-          percent: d.data.data.percent,
-          isload: 1,
-        })
-        that.update_start()
-      } else if (d.data.code == 5) {
-        that.setData({
-          timeline: 0,
-          percent: 0,
-          isload: 1,
-        })
-        that.update_start()
-        console.log("课程视频未学习")
-      } else {
-        console.log("课程视频断点时间接口==============" + d.data.msg)
-      }
-    })
-
-    that.getCourse()  //获取视频页附加课程数据
-  },
+  
 
   //获取视频页附加课程数据
   getCourse:function(){
@@ -350,6 +361,7 @@ Page({
   //单一讲义资料打开
   openFile: function () {
     let that = this
+    that.clearLocalFile()   //清除打开文件本地缓存
     if (that.data.handout[0].annex.indexOf(".png") != -1 || that.data.handout[0].annex.indexOf(".jpg") != -1) {
       that.previewImage()
       console.log("图")
@@ -455,30 +467,49 @@ Page({
     let that = this
   var params = {
     "token": wx.getStorageSync("token"),
-    "url": "homepaper",
+    "url": "study",
     "id": that.data.id,
   }
-  console.log(params, "分享判断参数")
-  app.ols.judge_share(params).then(d => {
-    console.log(d, "分享判断数据")
+  // console.log(params, "分享判断参数")
+  app.ols.judge_share4(params).then(d => {
+    // console.log(d, "分享判断数据")
     if (d.data.code == 0) {
-      console.log(d.data.data,"分享判断接口数据")
-      if(d.data.data.is_buy == 0){
-        wx.redirectTo({
-          url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
-        })
-      }else{
+      // console.log(d.data.data,"分享判断接口数据")
+      if(d.data.data.buy == 1 || (d.data.data.buy >= 3 && d.data.data.buy <= 5 )){
+        // wx.redirectTo({
+        //   url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
+        // })
         that.onShow()
         that.get_video()    //获取视频数据
-        
+      }else if(d.data.data.buy == 2){
+        wx.redirectTo({
+          url: '../../pages/groupBuy/groupBuy?kid=' + that.data.kid,
+        })
+      }else if(d.data.data.buy == 0 || d.data.data.buy == 6){
+        if(d.data.data.type == 0){
+          wx.redirectTo({
+            url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
+          })
+        }
+        else if(d.data.data.type == 1){
+          wx.redirectTo({
+            url: '../../pages/groupBuy/groupBuy?kid=' + that.data.kid,
+          })
+        }
+        else if(d.data.data.type == 2){
+          wx.redirectTo({
+            url: '../../pages/course_seckill/course_seckill?kid=' + that.data.kid,
+          })
+        }
+      }
        
         // that.getCourse()  //获取视频附加课程
         
-      }
       
-      console.log("分享判断接口调取成功")
+      
+      // console.log("分享判断接口调取成功")
     } else {
-      console.log("分享判断接口==============" + d.data.msg)
+      // console.log("分享判断接口==============" + d.data.msg)
     }
   })
   },

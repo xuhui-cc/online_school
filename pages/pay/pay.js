@@ -61,7 +61,7 @@ Page({
 
   buy:function(){
     let that = this
-    console.log(that.data.have_adr)
+    console.log(that.data.have_adr,"dizhi")
     wx.showLoading({
       title: '请稍后...',
     })

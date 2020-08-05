@@ -26,8 +26,6 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-
-
     if (options.isshare == 1){
       wx.setStorageSync("gid", options.gid)
       that.setData({
@@ -81,16 +79,16 @@ Page({
         d.data.data.title = d.data.data.title.replace(/<img/gi, replace_img).replace(/< </gi, "&lt; <").replace(/> >/gi, "&gt; >").replace(/<</gi, "&lt; <").replace(/>>/gi, "&gt; >")
         
         if (d.data.data.a != null) {
-          d.data.data.a = d.data.data.a.replace(/<img/gi, replace_img).replace("$","236").replace("\u0000","9").replace("\t","79")
+          d.data.data.a = d.data.data.a.replace(/<img/gi, replace_img).replace("$","236").replace("\u0000","9")
         }
         if (d.data.data.b != null) {
-          d.data.data.b = d.data.data.b.replace(/<img/gi, replace_img).replace("$","236").replace("\u0000","9").replace("\t","79")
+          d.data.data.b = d.data.data.b.replace(/<img/gi, replace_img).replace("$","236").replace("\u0000","9")
         }
         if (d.data.data.c != null) {
-          d.data.data.c = d.data.data.c.replace(/<img/gi, replace_img).replace("$","236").replace("\u0000","9").replace("\t","79")
+          d.data.data.c = d.data.data.c.replace(/<img/gi, replace_img).replace("$","236").replace("\u0000","9")
         }
         if (d.data.data.d != null) {
-          d.data.data.d = d.data.data.d.replace(/<img/gi, replace_img).replace("$","236").replace("\u0000","9").replace("\t","79")
+          d.data.data.d = d.data.data.d.replace(/<img/gi, replace_img).replace("$","236").replace("\u0000","9")
         }
         that.setData({
           question: d.data.data,
@@ -656,8 +654,8 @@ Page({
           console.log(tempFilePaths)
           // let imgs = [];
           wx.uploadFile({
-            url: 'http://os.lingjun.net/api.php/annex/upload',
-            // url: 'https://wsg.lingjun.net/api.php/annex/upload',
+            // url: 'http://os.lingjun.net/api.php/annex/upload',
+            url: 'https://wsg.lingjun.net/api.php/annex/upload',
             filePath: tempFilePaths[0],
             name: 'file',
             method: 'POST',
@@ -862,36 +860,72 @@ Page({
       "url": "homepaper",
       "id": that.data.oid,
     }
-    console.log(params, "分享判断参数")
-    app.ols.judge_share(params).then(d => {
-      console.log(d, "分享判断数据")
+    // console.log(params, "分享判断参数")
+    app.ols.judge_share4(params).then(d => {
+      // console.log(d, "分享判断数据")
       if (d.data.code == 0) {
-        console.log(d.data.data,"分享判断接口数据")
-        if(d.data.data.is_buy == 0){
+        // console.log(d.data.data,"分享判断接口数据")
+        if(d.data.data.buy == 1 || (d.data.data.buy >= 3 && d.data.data.buy <= 5)){
+            if(d.data.data.status == 1){
+              wx.redirectTo({
+                url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
+              })
+            }else if(d.data.data.status == 2){
+              wx.redirectTo({
+                url: '../../pages/homework_report/homework_report?mid=' + d.data.data.mid
+              })
+            }else if(d.data.data.status == 0){
+              that.setData({
+                login:true
+              })
+              that.test_explain()   //试卷概要
+              that.test_id()     //获取试题ID列表
+              that.ques_info()      //试卷基本信息
+              that.setmark()   //试卷状态初始化
+            }
+          }
+          
+        else if(d.data.data.buy == 2){
           wx.redirectTo({
-            url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
+            url: '../../pages/groupBuy/groupBuy?kid=' + that.data.kid,
           })
-        }else{
-          if(d.data.data.status == 1){
+        }
+        else if(d.data.data.buy == 0 || d.data.data.buy == 6){
+          if(d.data.data.type == 0){
             wx.redirectTo({
               url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
             })
-          }else if(d.data.data.status == 2){
+          }
+          else if(d.data.data.type == 1){
             wx.redirectTo({
-              url: '../../pages/homework_report/homework_report?mid=' + d.data.data.mid
+              url: '../../pages/groupBuy/groupBuy?kid=' + that.data.kid,
             })
-          }else if(d.data.data.status == 0){
-            that.setData({
-              login:true
+          }
+          else if(d.data.data.type == 2){
+            wx.redirectTo({
+              url: '../../pages/course_seckill/course_seckill?kid=' + that.data.kid,
             })
-            that.test_explain()   //试卷概要
-            that.test_id()     //获取试题ID列表
-            that.ques_info()      //试卷基本信息
-            that.setmark()   //试卷状态初始化
           }
         }
+        // if(d.data.data.buy == 0){
+        //   wx.redirectTo({
+        //     url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
+        //   })
+        // }else{
+        //   if(d.data.data.status == 1){
+        //     wx.redirectTo({
+        //       url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
+        //     })
+        //   }else if(d.data.data.status == 2){
+        //     wx.redirectTo({
+        //       url: '../../pages/homework_report/homework_report?mid=' + d.data.data.mid
+        //     })
+        //   }else if(d.data.data.status == 0){
+            
+        //   }
+        // }
         
-        console.log("分享判断接口调取成功")
+        // console.log("分享判断接口调取成功")
       } else {
         console.log("分享判断接口==============" + d.data.msg)
       }

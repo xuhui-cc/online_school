@@ -54,7 +54,7 @@ Page({
       "token": wx.getStorageSync("token"),
       "kid": kid
     }
-    app.ols.course_info3(params).then(d => {
+    app.ols.course_info4(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
@@ -151,7 +151,7 @@ Page({
           "token": wx.getStorageSync("token"),
           "kid": that.data.kid
         }
-        app.ols.course_info3(params).then(d => {
+        app.ols.course_info4(params).then(d => {
           if (d.data.code == 0) {
             // if(d.data.data.pt_status < 1){
               wx.redirectTo({
@@ -242,15 +242,16 @@ Page({
                     "nick": nickName,
                     "avatar": avatarUrl
                   }
-                  console.log(params)
+                  console.log(params,"获取头像参数")
                   app.ols.avatar_update(params).then(d => {
+                    console.log(d,"获取头像数据")
                     if (d.data.code == 0) {
-                      console.log(d.data.data)
+                      
                       wx.setStorageSync("nick", true)
                       that.buy()
                     } else {
-                      console.log(d.data.code)
-                      console.log(d.data.msg)
+                      console.log(d.data.code,"d.data.code")
+                      console.log(d.data.msg,"d.data.msg")
                     }
                   })
                   
