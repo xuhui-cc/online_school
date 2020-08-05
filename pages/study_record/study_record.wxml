@@ -1,17 +1,17 @@
 <!--pages/study_record/study_record.wxml-->
+<!-- 顶部背景图片 -->
+<image class="topBackgroundImage" src="../../images/study_record/study_record_pageBg.png"></image>
 
-<view class="container">
-  <!-- 顶部背景图片 -->
-  <image class="topBackgroundImage" src="../../images/study_record/study_record_pageBg.png"></image>
-
-  <!-- 导航栏 -->
-  <view class="naviBar" style="top:{{statusBarHeight}}px; height:{{naviContentHeight}}px">
-    <view class="naviBar_back" bindtap="naviBackItemClicked">
-      <image class="naviBar_backImage" src="../../images/study_record/back_black.png"></image>
-    </view>
-    <view class="naviBar_title">查看日志</view>
-    <view class="naviBar_back"></view>
+<!-- 导航栏 -->
+<view class="naviBar" style="top:{{statusBarHeight}}px; height:{{naviContentHeight}}px">
+  <view class="naviBar_back" bindtap="naviBackItemClicked">
+    <image class="naviBar_backImage" src="../../images/study_record/back_black.png"></image>
   </view>
+  <view class="naviBar_title">查看日志</view>
+  <view class="naviBar_back"></view>
+</view>
+
+<view class="container" wx:if="{{showContent}}">
 
   <scroll-view class="scrollView" scroll-y="true" scroll-top="{{scrollTop}}" style="height:{{screenHeight-naviHeight}}px; margin-top:{{naviHeight}}px" refresher-enabled="true" bindrefresherrefresh="pullRefresh" refresher-triggered="{{recordListPullRefershing}}" bindscrolltolower="recordListScrollReachBottom">
     <!-- 学生信息 -->
@@ -71,10 +71,19 @@
               <!-- 附件列表 -->
               <block wx:for="{{item.file}}" wx:key="fileIndex" wx:for-index="fileIndex" wx:for-item="fileItem">
                 <view class="recordCell_fileCell" style="margin-top:{{fileIndex>2 ? 23 : 0}}rpx; margin-left:{{fileIndex%3==0 ? 0 : 24}}rpx;" bindtap="fileClicked" data-recordindex="{{index}}" data-fileindex="{{fileIndex}}">
-                  <image class="recordCell_fileCell_image" src="{{fileItem.url}}" mode="aspectFill"></image>
-                  <view class="recordCell_fileCell_videoView" wx:if="{{fileItem.type == 'video'}}">
+                  <!-- 视频附件 -->
+                  <block wx:if="{{fileItem.type == 'video'}}">
+                    <video src="{{fileItem.url}}" controls="false" show-center-play-btn="false" show-progress="false" class="recordCell_fileCell_image"></video>
+                    <view class="recordCell_fileCell_image" style="position: absolute; top: 0; left: 0;"></view>
+                  </block>
+                  <!-- 图片附件 -->
+                  <block wx:else>
+                    <image class="recordCell_fileCell_image" src="{{fileItem.url}}" mode="aspectFill"></image>
+                  </block>
+                  
+                  <!-- <view class="recordCell_fileCell_videoView" wx:if="{{fileItem.type == 'video'}}">
                     <image class="recordCell_fileCell_playIcon" src="../../images/teacher_client/video_play.png"></image>
-                  </view>
+                  </view> -->
                 </view>
               </block>
             </view>

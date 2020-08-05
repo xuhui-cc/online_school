@@ -32,6 +32,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 是否展示学生日志页面内容
+    showContent: false,
+
     // 日志列表 最小高度
     minRecordListHeight: 0,
 
@@ -74,7 +77,15 @@ Page({
   onLoad: function (options) {
     this.sid = options.sid
     this.getSystemSize()
-    this.getStudentInfo()
+    let that = this
+    this.relationWithStudent(function(show){
+      if (show) {
+        // 展示日志页面
+        that.getStudentInfo()
+      } else {
+        // 展示7v1介绍图片
+      }
+    })
   },
 
   /**
@@ -460,6 +471,32 @@ Page({
     })
   },
 
+  /**
+   * 判断登录用户与该学生之间是否有关系
+  */
+  relationWithStudent: function(callback) {
+    let params ={
+      token: wx.getStorageSync('token'),
+      sid: this.sid
+    }
+    let that = this
+    app.ols.haveRelationWithStudent(params).then(d=>{
+      if (d.data.code == 0) {
+        let relation = d.data.data.relation
+        if (relation) {
+          that.setData({
+            showContent: true
+          })
+          typeof callback == 'function' && callback(true)
+        } else {
+          typeof callback == 'function' && callback(false)
+        }
+      } else {
+        typeof callback == 'function' && callback(false)
+      }
+    })
+  },
+
   //------------------------------------------------------交互事件------------------------------------------------
   /**
    * 日历 天点击 回调
@@ -572,6 +609,9 @@ Page({
       })
     } else {
       // 视频
+      wx.previewMedia({
+        sources: [{url: selectedFile.url, type: 'video'}],
+      })
     }
   },
 

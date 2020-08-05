@@ -77,7 +77,14 @@ Page({
    * 获取h5发送的数据
   */
   bindmessage: function (e) {
-    console.log(e)
+    console.log("h5发送的数据：\n", e)
+    let url = e.detail.data[0].url
+    let naviPages = getCurrentPages();
+    if (naviPages.length >= 2) {
+      let lastPage = naviPages[naviPages.length -2]
+      lastPage.appendFile(url)
+    }
+
   },
 
   loadSuccess: function(e) {

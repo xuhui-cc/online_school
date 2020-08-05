@@ -171,6 +171,29 @@ Page({
     }
   },
 
+  /**
+   * 添加附件
+  */
+  appendFile: function(url) {
+    console.log("得到附件：",url)
+    let urlPartArray = url.split('.')
+    if (urlPartArray.length >= 2) {
+      let fileTypeStr = urlPartArray[urlPartArray.length-1]
+      let fileType = 'video'
+      if (fileTypeStr == 'png' || fileTypeStr == 'jpg' || fileTypeStr == 'jpeg') {
+        fileType = 'image'
+      }
+      let file = {
+        type: fileType,
+        serverPath: url
+      }
+      this.data.files.push(file)
+      this.setData({
+        files: this.data.files
+      })
+    }
+  },
+
   //--------------------------------------------------------接口---------------------------------------------------
   /**
    * 上传图片
@@ -448,12 +471,12 @@ Page({
     let index = e.currentTarget.dataset.index
     let file = this.data.files[index]
     let sourse = {
-      url: file.tempFilePath,
+      url: file.serverPath,
       type: file.type,
     }
-    if (file.type == 'video') {
-      sourse.poster = file.thumbTempFilePath
-    }
+    // if (file.type == 'video') {
+    //   sourse.poster = file.thumbTempFilePath
+    // }
     wx.previewMedia({
       sources: [sourse],
       fail (res) {
