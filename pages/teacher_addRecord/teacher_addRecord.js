@@ -187,7 +187,12 @@ Page({
         type: fileType,
         serverPath: url
       }
-      this.data.files.push(file)
+      if (file.type == 'image') {
+        this.data.files.push(file)
+      } else {
+        this.data.files.unshift(file)
+      }
+      
       this.setData({
         files: this.data.files
       })
