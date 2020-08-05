@@ -267,6 +267,20 @@
   width:74rpx;
   height:74rpx;
 }
+.checkCode_tip{
+  position: fixed;
+  margin-top: 365rpx ;
+  margin-left: 157rpx;
+  width:437rpx;
+  height:33rpx;
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:31rpx;
+  text-align: center;
+  color:rgba(255,68,68,1);
+  
+}
 
 /* 
 成为会员提示样式
@@ -314,4 +328,93 @@
   text-align: center;
   background:linear-gradient(90deg,rgba(60,67,88,1) 0%,rgba(25,22,48,1) 100%);
   border-radius:44rpx;
+}
+.bg_exchange1{
+  position: fixed;
+  /* margin-top: 535rpx ; */
+  margin-left: 63rpx;
+  width:625rpx;
+  height:667rpx;
+}
+.checkinfo_head{
+  position: fixed;
+  margin-top: 70rpx ;
+  margin-left: 135rpx;
+  width:295rpx;
+  height:40rpx;
+  font-size:40rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:40rpx;
+  color:rgba(255,255,255,1);
+}
+.checkinfo_intro{
+  position: fixed;
+  margin-top: 160rpx ;
+  margin-left: 135rpx;
+  width:315rpx;
+  height:70rpx;
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:36rpx;
+  color:rgba(130,72,13,1);
+  opacity:1;
+}
+.checkinfo_tip1{
+  position: fixed;
+  margin-top: 345rpx ;
+  margin-left: 179rpx;
+  width:430rpx;
+  height:48rpx;
+  font-size:34rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:31rpx;
+  color:rgba(130,72,13,1);
+  opacity:1;
+}
+.checkinfo_tip2{
+  position: fixed;
+  margin-top: 406rpx ;
+  margin-left: 198rpx;
+  width:354rpx;
+  height:67rpx;
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:34rpx;
+  color:rgba(155,155,155,1);
+  opacity:1;
+}
+.btn2{
+  position: fixed;
+  margin-top: 521rpx ;
+  margin-left: 130rpx;
+  width:231rpx;
+  height:71rpx;
+  font-size:26rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:71rpx;
+  text-align: center;
+  color:rgba(255,223,131,1);
+  background:linear-gradient(90deg,rgba(60,67,88,1) 0%,rgba(25,22,48,1) 100%);
+
+  border-radius:44rpx;
+}
+.btn3{
+  position: fixed;
+  margin-top: 521rpx ;
+  margin-left: 390rpx;
+  width:231rpx;
+height:71rpx;
+border:2rpx solid rgba(41,42,66,1);
+font-size:26rpx;
+font-family:PingFang SC;
+font-weight:bold;
+line-height:71rpx;
+text-align: center;
+color:rgba(28,26,52,1);
+border-radius:44rpx;
 }
