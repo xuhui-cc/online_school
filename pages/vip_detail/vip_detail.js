@@ -1,5 +1,6 @@
 // pages/vip_detail/vip_detail.js
 const app = getApp()
+// 9910745D9F
 Page({
 
   /**
@@ -16,6 +17,7 @@ Page({
     ],
     pay:false,
     exchange:false,
+    exchange_page:false,
     interval: 3000, //停留时间间隔
     previousMargin: '35px', //前边距，可用于露出前一项的一小部分，接受 px 和 rpx 值
     nextMargin: '35px', //后边距，可用于露出后一项的一小部分，接受 px 和 rpx 值
@@ -51,6 +53,65 @@ Page({
     that.setData({
       code : e.detail.value
       })
+  },
+
+  //兑换码验证
+  submit_check:function(){
+    let that =  this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "code":that.data.code
+    }
+    app.ols.cheek_code4(params).then(d => {
+      
+      if (d.data.code == 0) {
+        that.setData({
+          codeinfo:d.data.data,
+          exchange_page:true,
+          exchange:false
+        })
+      } else if(d.data.code == 5){
+        that.setData({
+          checkCode:-1
+        })
+      }
+      else{
+        console.log("会员列表失败==============" + d.data.msg)
+      }
+    })
+  },
+
+  //确认兑换
+  yes_exchange:function(){
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "id":that.data.codeinfo.id
+    }
+    app.ols.exchange_code4(params).then(d => {
+      
+      if (d.data.code == 0) {
+        // that.onLoad()
+        that.setData({
+          exchange_page:false,
+          pay:true
+        })
+        // that.setData({
+          
+        // })
+      } 
+      else{
+        // console.log("会员列表失败==============" + d.data.msg)
+      }
+    })
+  },
+
+  //兑换页关闭
+  exchange_page:function(){
+    let that = this
+    that.setData({
+      exchange_page:false
+    })
   },
 
   
@@ -173,6 +234,7 @@ Page({
   exchange:function(){
     let that = this
     that.setData({
+      code:'',
       exchange:!that.data.exchange
     })
   },
@@ -180,7 +242,7 @@ Page({
   //查看会员权益
   success_yes:function(){
     let that = this 
-    that.onLoad()
+    that.v4_viplist()
     that.setData({
       pay:false
     })

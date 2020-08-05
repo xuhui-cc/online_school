@@ -79,18 +79,33 @@
   <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!exchange}}"></view>
   <view style="margin-top:-120rpx;" hidden="{{!exchange}}">
     <image class="bg_exchange" src="../../images/bg_exchange.png" ></image>
-    <input class="input" placeholder="请输入您的兑换码" placeholder-style=" text-align: center;" bindinput=""></input>
+    <input class="input" placeholder="请输入您的兑换码" placeholder-style=" text-align: center;" bindinput="input_code"></input>
+    <view wx:if="{{checkCode == -1}}" class="checkCode_tip">*兑换码错误</view>
     <view class="btn1" bindtap="submit_check">提交</view>
     <image class="exchange_close" src="../../images/exchange_close.png" bindtap="exchange"></image>
+  </view>
+
+  <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!exchange_page}}"></view>
+  <!--  -->
+  <view style="margin-top:-120rpx;" hidden="{{!exchange_page}}">
+    <image class="bg_exchange1" src="../../images/exchange_page.png" ></image>
+    <view class="checkinfo_head">{{codeinfo.title}}</view>
+    <view class="checkinfo_intro">{{codeinfo.remark}}</view>
+    <view class="checkinfo_tip1">确认兑换为{{codeinfo.title}}？</view>
+    <view class="checkinfo_tip2">您当前为{{vip_list[0].title}},确认兑换后将替换掉原有会员卡。</view>
+    <view class="btn2" bindtap="yes_exchange">是，立即兑换</view>
+    <view class="btn3" bindtap="exchange_page">否，暂不兑换</view>
+    <image class="exchange_close" style="margin-top:700rpx" src="../../images/exchange_close.png" bindtap="exchange_page"></image>
   </view>
 
   <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!pay}}"></view>
   <view style="margin-top:-120rpx;" hidden="{{!pay}}">
     <image class="success_img" src="../../images/seuccess_vip1.png" ></image>
-    <view class="cuccess_tip">您已成功开通白银VIP会员</view>
+    <view class="checkinfo_head">{{vip_list[0].title}}</view>
+    <view class="cuccess_tip">您已成功开通{{vip_list[0].title}}</view>
     <view class="cuccess_tip1">立即开启您的学习成功之旅</view>
     <view class="success_yes" bindtap="success_yes">查看会员权限</view>
-    <image class="exchange_close" src="../../images/exchange_close.png" bindtap="success_yes"></image>
+    <image class="exchange_close"  style="margin-top:700rpx" src="../../images/exchange_close.png" bindtap="success_yes"></image>
   </view>
   
   
