@@ -589,6 +589,7 @@ Page({
     }
     
     that.getcourse()     //获取课程
+    that.v4_viplist()   //获取vip
    
   },
 

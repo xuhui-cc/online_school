@@ -43,9 +43,9 @@
     </scroll-view> 
   </view>
 
-  <view wx:if="{{current_subject == 0}}">
+  <view wx:if="{{current_subject == 0 }}">
     <!-- 广告条 -->
-    <swiper class="swiper_container" autoplay="true"  interval="2500" circular="true" indicator-dots="true" indicator-color="rgba(255,255,255,1)" indicator-active-color="rgba(12,205,163,1)">
+    <swiper class="swiper_container" wx:if="{{banner3}}" autoplay="true"  interval="2500" circular="true" indicator-dots="true" indicator-color="rgba(255,255,255,1)" indicator-active-color="rgba(12,205,163,1)">
       <block wx:for="{{banner3}}" wx:key='ad_index' >
          <swiper-item>
           <image  class="ad_img" src="{{item.picurl}}" mode="widthFix" bindtap="ad_detail" data-type="{{item.type}}"  data-id="{{item.attachid}}" data-cate="{{item.cate}}" ></image>
@@ -76,7 +76,7 @@
     
     </view> -->
 
-    <view class="head2" style="margin-top:45rpx;margin-left:30rpx;" >热门课程限时抢</view>
+    <view class="head2"  style="{{banner3?'margin-top:45rpx;margin-left:30rpx;':'margin-top:290rpx;margin-left:30rpx;'}}">热门课程限时抢</view>
     <image wx:if="{{hot1 == '' && hot2 == '' &&  hot3 == ''}}" class="course_null" style="margin-top:200rpx;" src="../../images/course_null.png"></image>
     <text wx:if="{{hot1 == '' && hot2 == '' &&  hot3 == ''}}" class="course_nulltip" >暂无课程</text>
     <view class="hot_layout" >
@@ -116,7 +116,7 @@
     </view>
 
     <!-- miaosha  -->
-    <view class="hot_layout" >
+    <view class="hot_layout" hidden="true">
     <!-- hidden="true" -->
       <view wx:for="{{hot3}}" wx:key="hot_index">
         <view class="hot_course">
@@ -151,7 +151,7 @@
       </view>
     </view>
     
-    <view class="hot_layout"> 
+    <view class="hot_layout" > 
       <view wx:for="{{hot2}}" wx:key="hot2_index">
           <view class="hot_course">
             <view class="flex" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{2}}">
@@ -192,12 +192,18 @@
       </view>
 
       <view wx:if="{{vip_list[0].is_buy == 1}}">
-      <image class="vip_badge2" src="../../images/vip_badge2.png"></image>
-      <view class="open_vip1" >{{vip_list[0].title}}</view>
-      <!-- <view class="open_time" >{{vip_list[0].valid_days}}到期</view> -->
-      <view class="open_time" >{{vip_list[0].valid_days}}到期</view>
-      <view class="vip_btn"  bindtap="to_vip">查看会员权益</view>
-    </view>
+        <view class="ava">
+          <open-data  type="userAvatarUrl"></open-data> 
+        </view>
+      <!-- <image class="vip_badge2" src="../../images/vip_badge2.png"></image> -->
+        <open-data class="open_vip1" type="userNickName"></open-data>
+        <image class="laber_small" src="../../images/vip_badge2.png"></image>
+        <view class="open_vip2" >{{vip_list[0].title}}</view>
+        <!-- <view class="open_time" >{{vip_list[0].valid_days}}到期</view> -->
+        <view class="open_time" >{{vip_list[0].valid_days}}</view>
+        <image class="vip_jt" src="../../images/next_bsj.png"></image>
+      <!-- <view class="vip_btn"  bindtap="to_vip">查看会员权益</view> -->
+      </view>
 
       <!-- <view wx:if="{{vip.valid == 1}}">
         <image class="vip_badge2" src="../../images/vip_badge2.png"></image>

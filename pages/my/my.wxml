@@ -27,7 +27,9 @@
     <view wx:if="{{vip.valid == 1}}">
       <image class="vip_badge2" src="../../images/vip_badge2.png"></image>
       <view class="open_vip1" >{{vip.title}}</view>
-      <view class="open_time" >{{vip.valid_days}}到期</view>
+      <view class="open_time" wx:if="{{vip.valid_days == 0}}">永久</view>
+      <view class="open_time" wx:else="">{{vip.valid_days}}到期</view>
+      
       <view class="vip_btn"  bindtap="to_vip">查看会员权益</view>
     </view>
     <image class="vip_img" src="../../images/vip_all1.png"></image>

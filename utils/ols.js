@@ -446,7 +446,7 @@ function v4_vipPreorder(params) {
 
 //我的页面vip信息
 function v4_myVip(params) {
-  return fetch.olsfetchpost(URI, 'v4/vipcard/getvipcard', params)
+  return fetch.olsfetchpost(URI, 'v4/vipcard/getvipcard', params,"我的vip")
 }
 
 //兑换码验证
