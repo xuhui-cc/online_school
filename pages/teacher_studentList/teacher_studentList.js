@@ -99,9 +99,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    options = app.shareTool.getShareOption()
+    
     let that = this
     this.getSystemSize()
     this.setUserInfo()
+
+    app.shareTool.shareTarget()
   },
 
   /**
@@ -172,7 +176,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    app.shareTool.getShareReturnInfo('all', '/pages/first_page/first_page')
   },
 
   // 页面滚动时触发

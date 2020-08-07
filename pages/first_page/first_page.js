@@ -20,23 +20,27 @@ Page({
     //   url: '../../pages/teacher_studentList/teacher_studentList',
     // })
     // return
+    app.shareTool.setShareOption
     let that = this
     let login = wx.getStorageSync('login')
     if (login) {
       // 已登陆
       let userinfo = wx.getStorageSync('userinfo')
+      if (options.share == 1) {
+        app.shareTool.getFirstPageShareParam(options, userinfo.role)
+      }
       switch(userinfo.role*1) {
         case 1:{
           // 学生
           wx.switchTab({
-            url: '../../pages/index/index',
+            url: '/pages/index/index',
           })
           break
         }
         case 2: {
           // 家长
           wx.reLaunch({
-            url: '/pages/study_record/study_record',
+            url: '/pages/parent_childList/parent_childList',
           })
           break
         }
@@ -50,7 +54,16 @@ Page({
       }
     } else {
       // 未登录
-      let gid = wx.getStorageSync("gid")
+      let gid = 0
+      if (options.share == 1) {
+        app.shareTool.getFirstPageShareParam(options, 0)
+      }
+      if (options.isshare == 1 && options.gid) {
+        gid = options.gid
+      } else {
+        gid = wx.getStorageSync("gid")
+      }
+      
       if (gid != null && gid != 0) {
         // 已选择过年级
         wx.switchTab({
@@ -200,19 +213,7 @@ Page({
   onShareAppMessage: function () {
 
     let that = this;
-    return {
-      title: '领军网校', // 转发后 所显示的title
-      path: '/pages/first_page/first_page', // 相对的路径
-      imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
-      success: (res) => {    // 成功后要做的事情
-        console.log("成功")
-
-      },
-      fail: function (res) {
-        // 分享失败
-        console.log(res, "分享失败")
-      }
-    }
+    return app.ols.getShareReturnInfo('all', '/pages/first_page/first_page')
   },
 
   //----------------------------------------------接口------------------------------------

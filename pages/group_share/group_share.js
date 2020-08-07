@@ -256,6 +256,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return app.ols.getShareReturnInfo('all', '/pages/first_page/first_page')
   }
 })

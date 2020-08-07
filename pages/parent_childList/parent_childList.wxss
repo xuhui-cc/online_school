@@ -1,0 +1,77 @@
+/* pages/parent_childList/parent_childList.wxss */
+
+.oneLine_ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bg_image {
+  width: 100%;
+  height: 1624rpx;
+}
+
+.childSelectView {
+  position: absolute;
+  top: 673rpx;
+  width: 689rpx;
+  height: 896rpx;
+  left: 30.5rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 40rpx;
+  box-shadow: 0rpx 0rpx 21rpx rgba(0,11,64,0.39);
+  -webkit-box-shadow: 0px 0px 21px rgba(0,11,64,0.39);
+}
+
+.childView_titleView {
+  width: 312rpx;
+  height: 80.89rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #AD5701;
+  font-size: 38rpx;
+  font-weight: bold;
+  margin-top: 74rpx;
+}
+
+.childView_titleBg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.childCell {
+  height: 100rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1A1A1A;
+  font-size: 40rpx;
+}
+
+.selectView_sureButton {
+  margin-top: 134rpx;
+  width: 492rpx;
+  height: 90rpx;
+  background-color: #4964F6;
+  border-radius: 45rpx;
+  color: white;
+  font-size: 34rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selectView_sureButton :active {
+  opacity: 0.5;
+  background-color: teal;
+}

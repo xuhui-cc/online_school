@@ -186,19 +186,7 @@ Page({
    */
   onShareAppMessage: function () {
     let that = this;
-    return {
-      title: '领军网校', // 转发后 所显示的title
-      path: '/pages/group_share/group_share?isshare=1&gid=' + wx.getStorageSync("gid") + '&kid=' + that.data.group.kid + '&tid=' + that.data.tid, // 相对的路径
-      // path: '/pages/first_page/first_page', // 相对的路径
-      imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
-      success: (res) => {    // 成功后要做的事情
-        console.log("成功")
-
-      },
-      fail: function (res) {
-        // 分享失败
-        console.log(res, "分享失败")
-      }
-    }
+    let paramsStr = 'isshare=1&gid=' + wx.getStorageSync("gid") + '&kid=' + that.data.group.kid + '&tid=' + that.data.tid
+    return app.shareTool.getShareReturnInfo('0,1', '/pages/group_share/group_share', paramsStr, '../../images/share1.png', '领军网校')
   }
 })

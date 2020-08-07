@@ -40,7 +40,8 @@
     "pages/teacher_addRecord/teacher_addRecord",
     "pages/study_record/study_record",
     "pages/uploadVideo/uploadVideo",
-    "pages/vip_detail/vip_detail"
+    "pages/vip_detail/vip_detail",
+    "pages/parent_childList/parent_childList"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -78,8 +79,8 @@
   },
   "plugins": {
     "live-player-plugin": {
-      "version": "1.1.3", 
-      "provider": "wx2b03c6e691cd7370" 
+      "version": "1.1.3",
+      "provider": "wx2b03c6e691cd7370"
     }
   }
 }

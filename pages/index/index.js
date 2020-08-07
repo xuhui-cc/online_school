@@ -11,7 +11,7 @@ Page({
   
   onLoad: function (options) {
     let that = this
-    
+    options = app.shareTool.getShareOption()
   
     if (options.isshare == 1){
       wx.setStorageSync("gid", options.gid)
@@ -31,6 +31,8 @@ Page({
  
     that.getGrade()  //获取年级
     that.getsubject()   //获取学科
+
+    app.shareTool.shareTarget()
   },
 
 
@@ -285,19 +287,8 @@ Page({
    */
   onShareAppMessage: function () {
     let that = this;
-    return {
-      title: '领军网校', // 转发后 所显示的title
-      path: '/pages/index/index?isshare=1&gid=' + that.data.gid, // 相对的路径
-      // path: '/pages/first_page/first_page', // 相对的路径
-      imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
-      success: (res) => {    // 成功后要做的事情
-        console.log("成功")
-      },
-      fail: function (res) {
-        // 分享失败
-        console.log(res, "分享失败")
-      }
-    }
+    let paramStr = 'isshare=1&gid=' + that.data.gid
+    return app.shareTool.getShareReturnInfo('0,1', '/pages/index/index', paramStr, '../../images/share1.png', '领军网校')
   },
 
 

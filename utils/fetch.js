@@ -74,6 +74,10 @@ function olsfetchpost(api, path, params, log, showToast, loadingMsg) {
             wx.reLaunch({
               url: '/pages/first_page/first_page',
             })
+            wx.showToast({
+              title: '登录已失效',
+              icon: 'none'
+            })
             break
           }
           default: {

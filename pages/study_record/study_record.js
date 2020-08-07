@@ -134,20 +134,8 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    let shareInfo = {
-      title: '查看日志',
-      path: '/pages/study_record/study_record?sid='+this.sid,
-      success (res) {
-        console.log('转发成功', res)
-      },
-      fail (res) {
-        console.log('转发失败', res)
-      }
-    }
-    if (this.shareImagePath && this.shareImagePath != '') {
-      shareInfo.imageUrl = this.shareImagePath
-    }
-    return shareInfo
+    let paramStr = 'sid='+this.sid
+    return app.shareTool.getShareReturnInfo('1,2,3', '/pages/study_record/study_record', paramStr, this.shareImagePath ? this.shareImagePath : '', '查看日志')
   },
 
   //----------------------------------------------------------私有方法-------------------------------------------------
@@ -596,11 +584,14 @@ Page({
    * 附件 图片/视频 点击事件
   */
   fileClicked: function (e) {
-    console.log(e)
+    // console.log(e)
     let recordIndex = e.currentTarget.dataset.recordindex
     let fileIndex = e.currentTarget.dataset.fileindex
     let record = this.data.recordList[recordIndex]
     let selectedFile = record.file[fileIndex]
+    if (selectedFile.error) {
+      return
+    }
     if (selectedFile.type == 'image') {
       // 图片
       wx.previewImage({
@@ -640,7 +631,7 @@ Page({
     this.pageData.page += 1
     let that = this
     this.getStudentRecordList(this.selectedDayStr, function(success){
-      if (success) {
+      if (!success) {
         that.pageData.page = oldPage
       }
     })
@@ -677,6 +668,19 @@ Page({
       if (!success){
         that.pageData.clearPage = oldPage
       }
+    })
+  },
+
+  /**
+   * 视频播放出错
+  */
+  videoPlayError: function(e) {
+    let fileIndex = e.currentTarget.dataset.index
+    let recordIndex = e.currentTarget.dataset.recordindex
+
+    let recordFileStr = "recordList[" + recordIndex + "].file["+fileIndex+"].error"
+    this.setData({
+      [recordFileStr]: true
     })
   }
 })

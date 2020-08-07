@@ -13,6 +13,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    options = app.shareTool.getShareOption()
     let that = this
     if (options.isshare == 1) {
       wx.setStorageSync("gid", options.gid)
@@ -29,6 +30,7 @@ Page({
       
       console.log("非分享打开")
     }
+    app.shareTool.shareTarget()
   },
 
   my_vip: function () {
@@ -105,20 +107,8 @@ Page({
    */
   onShareAppMessage: function () {
     let that = this;
-    return {
-      title: '领军网校', // 转发后 所显示的title
-      path: '/pages/my/my?isshare=1&gid=' + that.data.gid, // 相对的路径
-      // path: '/pages/first_page/first_page', // 相对的路径
-      imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
-      success: (res) => {    // 成功后要做的事情
-        console.log("成功")
-
-      },
-      fail: function (res) {
-        // 分享失败
-        console.log(res, "分享失败")
-      }
-    }
+    let paramStr = 'isshare=1&gid=' + that.data.gid
+    return app.shareTool.getShareReturnInfo('0,1', '/pages/my/my', paramStr, '../../images/share1.png', '领军网校')
   },
 
   //登录判断

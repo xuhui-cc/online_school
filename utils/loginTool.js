@@ -45,10 +45,10 @@ function getPhoneNumber(e, gid, callback) {
 function login(params, callback) {
   console.log(params, "登录参数")
   ols.login(params).then(d => {
+    wx.hideLoading()
     console.log(d, "登录接口")
     if (d.data.code == 0) {
       console.log("登陆成功")
-      wx.hideLoading()
       wx.setStorageSync("login", true)
       wx.setStorageSync("token", d.data.data.token)
       let userinfo = d.data.data
@@ -61,9 +61,8 @@ function login(params, callback) {
         }
         case 2: {
           // 家长
-          wx.showToast({
-            title: '家长端暂未处理',
-            icon: 'none'
+          wx.reLaunch({
+            url: '/pages/parent_childList/parent_childList',
           })
           break
         }
@@ -83,9 +82,6 @@ function login(params, callback) {
         duration: 3000
       })
       console.log(d.data.msg, "登录失败提示")
-
-
-      wx.hideLoading()
       typeof callback == "function" && callback(false, "登录失败")
     }
   })

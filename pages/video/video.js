@@ -533,18 +533,7 @@ getPhoneNumber: function (e) {
   onShareAppMessage: function () {
 
     let that = this;
-    return {
-      title: '领军网校', // 转发后 所显示的title
-      path: '/pages/video/video?isshare=1&eid=' + that.data.eid + '&gid=' + wx.getStorageSync('gid') + '&kid=' + that.data.kid + '&id=' + that.data.id + '&mid=' + that.data.mid, // 相对的路径
-      imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
-      success: (res) => {    // 成功后要做的事情
-        console.log("成功")
-
-      },
-      fail: function (res) {
-        // 分享失败
-        console.log(res, "分享失败")
-      }
-    }
+    let paramStr = 'isshare=1&eid=' + that.data.eid + '&gid=' + wx.getStorageSync('gid') + '&kid=' + that.data.kid + '&id=' + that.data.id + '&mid=' + that.data.mid
+    return app.shareTool.getShareReturnInfo('0,1', '/pages/video/video', paramStr, '../../images/share1.png', '领军网校')
   }
 })

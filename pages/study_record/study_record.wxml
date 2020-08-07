@@ -71,9 +71,13 @@
               <!-- 附件列表 -->
               <block wx:for="{{item.file}}" wx:key="fileIndex" wx:for-index="fileIndex" wx:for-item="fileItem">
                 <view class="recordCell_fileCell" style="margin-top:{{fileIndex>2 ? 23 : 0}}rpx; margin-left:{{fileIndex%3==0 ? 0 : 24}}rpx;" bindtap="fileClicked" data-recordindex="{{index}}" data-fileindex="{{fileIndex}}">
+                  <!-- 文件不能展示 -->
+                  <block wx:if="{{fileItem.error}}">
+                    <view class="recordCell_fileCell_error">文件已损坏</view>
+                  </block>
                   <!-- 视频附件 -->
-                  <block wx:if="{{fileItem.type == 'video'}}">
-                    <video src="{{fileItem.url}}" controls="false" show-center-play-btn="false" show-progress="false" class="recordCell_fileCell_image"></video>
+                  <block wx:elif="{{fileItem.type == 'video'}}">
+                    <video src="{{fileItem.url}}" controls="false" show-center-play-btn="false" show-progress="false" class="recordCell_fileCell_image" binderror="videoPlayError" data-index="{{fileIndex}}" data-recordindex="{{index}}"></video>
                     <view class="recordCell_fileCell_image" style="position: absolute; top: 0; left: 0;"></view>
                   </block>
                   <!-- 图片附件 -->

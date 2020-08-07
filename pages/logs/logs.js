@@ -10,6 +10,7 @@ Page({
   },
 
   onLoad: function (options) {
+    options = app.shareTool.getShareOption()
     let that = this
    
     if (options.isshare == 1) {
@@ -31,7 +32,7 @@ Page({
     that.getsubject()   //获取学科
 
     // that.hot()  //热门课程
-
+    app.shareTool.shareTarget()
   },
   //轮播图
   get_banner3:function(){
@@ -597,20 +598,8 @@ Page({
    */
   onShareAppMessage: function () {
     let that = this;
-    return {
-      title: '领军网校', // 转发后 所显示的title
-      path: '/pages/logs/logs?isshare=1&gid=' + that.data.gid, // 相对的路径
-      // path: '/pages/first_page/first_page', // 相对的路径
-      imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
-      success: (res) => {    // 成功后要做的事情
-        console.log("成功")
-
-      },
-      fail: function (res) {
-        // 分享失败
-        console.log(res, "分享失败")
-      }
-    }
+    let paramStr = 'isshare=1&gid=' + that.data.gid
+    return app.shareTool.getShareReturnInfo('0,1', '/pages/logs/logs', paramStr, '../../images/share1.png', '领军网校')
   },
 
   cs:function(){
