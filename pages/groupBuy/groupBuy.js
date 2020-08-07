@@ -232,7 +232,7 @@ Page({
           // if(d.data.data.option[i].member){
             for(var j=0;j<d.data.data.option[i].member.length;j++){
               if(d.data.data.option[i].member[j].avatar.indexOf("/") == 0){
-                d.data.data.option[i].member[j].avatar = app.globalData.dummy + d.data.data.lists.group[i].member[j].avatar
+                d.data.data.option[i].member[j].avatar = app.ols.dummy() + d.data.data.option[i].member[j].avatar
                 // d.data.data.option[i].member[j].avatar = 'http://os.lingjun.net' + d.data.data.option[i].member[j].avatar
                 //表示strCode是以ssss开头；
               }else if(d.data.data.option[i].member[j].avatar.indexOf("/") == -1){
