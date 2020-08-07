@@ -110,7 +110,8 @@
   background:rgba(255,255,255,1);
   box-shadow:0rpx -3rpx 23rpx rgba(0,0,0,0.16);
   opacity:1;
-  border-radius:20rpx 20rpx 0rpx 0rpx;
+  /* border-radius:20rpx 20rpx 0rpx 0rpx; */
+  border-radius: 20rpx;
 }
 .h1{
   /* width:242px; */
@@ -260,6 +261,23 @@
   background:linear-gradient(90deg,rgba(255,229,209,1) 0%,rgba(242,167,110,1) 100%);
   border-radius:39rpx;
 }
+
+.btn1_2{
+  position: fixed;
+  margin-top: 445rpx ;
+  margin-left: 244rpx;
+  width:263rpx;
+  height:77rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:77rpx;
+  text-align: center;
+  color:rgba(197,106,47,0.35);
+  background:linear-gradient(90deg,rgba(255,229,209,1) 0%,rgba(242,167,110,1) 100%);
+  opacity:0.43;
+  border-radius:39rpx;
+}
 .exchange_close{
   position: fixed;
   margin-top: 650rpx ;
@@ -337,7 +355,7 @@
   height:667rpx;
 }
 .checkinfo_head{
-  position: fixed;
+  position: absolute;
   margin-top: 70rpx ;
   margin-left: 135rpx;
   width:295rpx;

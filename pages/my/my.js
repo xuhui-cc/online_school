@@ -155,6 +155,14 @@ Page({
     })   
   },
 
+    // 跳转到关于我们
+    studyLog: function () {
+      var userinfo = wx.getStorageSync('userinfo')
+      wx.navigateTo({
+        url: '../study_record/study_record?sid=' + userinfo.id,
+      })   
+    },
+
   // 跳转我的课程
   gourlCourse: function () {
     wx.navigateTo({

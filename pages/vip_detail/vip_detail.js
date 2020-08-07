@@ -1,6 +1,7 @@
 // pages/vip_detail/vip_detail.js
 const app = getApp()
 // 9910745D9F
+// 0FED2DE7EB
 Page({
 
   /**
@@ -72,7 +73,8 @@ Page({
         })
       } else if(d.data.code == 5){
         that.setData({
-          checkCode:-1
+          checkCode:-1,
+          check_msg:d.data.msg
         })
       }
       else{
@@ -91,7 +93,7 @@ Page({
     app.ols.exchange_code4(params).then(d => {
       
       if (d.data.code == 0) {
-        // that.onLoad()
+        that.v4_viplist()
         that.setData({
           exchange_page:false,
           pay:true

@@ -691,11 +691,11 @@ Page({
    */
   onShareAppMessage: function () {
     let that = this;
-    let params = 'isshare=1&id='+that.data.id + '&gid=' + wx.getStorageSync("gid")
+    let params = 'isshare=1&id=' + that.data.id + '&gid=' + wx.getStorageSync("gid")
     return app.shareTool.getShareReturnInfo('0,1', '/pages/cp_test/cp_test', params, '../../images/share1.png', '领军网校')
   }
 
-   //手动滑页
+  //手动滑页
   // swiperchange: function (e) {
   //   var that = this
   //   var current = Number(e.currentTarget.dataset.current)  // 当前的

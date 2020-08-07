@@ -244,6 +244,19 @@ page{
   color:rgba(197,197,197,1);
   
 }
+.free{
+  margin-left: 209rpx;
+  margin-top: 48rpx;
+  
+  width:84rpx;
+  height:40rpx;
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:31rpx;
+  color:rgba(255,154,2,1);
+  opacity:1;
+}
 .group_laber1{
   margin-top: 6rpx;
   width:83rpx;
@@ -314,7 +327,7 @@ page{
   background:rgba(255,255,255,1);
   opacity:1;
   border-radius:30rpx 30rpx 0rpx 0rpx;
-  z-index: 2;
+  z-index: 502;
 }
 .del_img{
   margin-left: 220rpx;
@@ -377,7 +390,7 @@ page{
   height:1624rpx;
   background:rgba(0,0,0,1);
   opacity:0.6;
-  z-index: 1;
+  z-index: 501;
 }
 .head2{
   /* width:170rpx; */
@@ -451,16 +464,19 @@ page{
   width:22rpx;
   height:22rpx;
 }
+
 .open_time{
-  margin-left: 7rpx;
-  /* margin-top: 3rpx; */
-  width:240rpx;
+  position: absolute;
+  margin-left: 470rpx;
+  margin-top: 345rpx;
+  width:192rpx;
   height:33rpx;
   font-size:24rpx;
   font-family:PingFang SC;
   font-weight:400;
-  line-height:40rpx;
-  color:rgba(3,182,131,1);
+  line-height:11rpx;
+  color:rgba(255,231,183,1);
+  opacity:1;
   
 }
 .open_btn{
@@ -663,8 +679,36 @@ page{
   font-family:PingFang SC;
   
   line-height:33rpx;
+  color:rgba(255,255,255,1);
+  
+}
+.open_vip2{
+  position: absolute;
+  margin-left: 170rpx;
+  margin-top: 358rpx;
+  width:200rpx;
+  height:33rpx;
+  font-size:22rpx;
+  font-weight:bold;
+  font-family:PingFang SC;
+  
+  line-height:33rpx;
   color:rgba(255,204,165,1);
   
+}
+.laber_small{
+  position: absolute;
+  margin-left: 138rpx;
+  margin-top: 360rpx;
+  width:24rpx;
+  height:28rpx;
+}
+.vip_jt{
+  position: absolute;
+  margin-left: 660rpx;
+  margin-top: 342rpx;
+  width:15rpx;
+  height:15rpx;
 }
 .open_content{
   position: absolute;
@@ -679,18 +723,7 @@ page{
   color:rgba(255,204,165,1);
   
 }
-.open_time{
-  position: absolute;
-  margin-left: 138rpx;
-  margin-top: 359rpx;
-  width:176rpx;
-  height:30rpx;
-  font-size:22rpx;
-  font-family:PingFang SC;
-  font-weight:400;
-  color:rgba(255,231,183,1);
-
-}
+/*  */
 .vip_btn{
   position: absolute;
   margin-left: 525rpx;
@@ -737,4 +770,28 @@ page{
   margin-top: 20rpx;
   width:52rpx;
   height:34rpx;
+}
+.ava{
+  position: absolute;
+  margin-left: 50rpx;
+  margin-top: 314rpx;
+  width:77rpx;
+  height:77rpx;
+  border-radius: 50%;
+  overflow:hidden;
+}
+.login_read{
+  position: absolute;
+  margin-left: 525rpx;
+  margin-top: 319rpx;
+  width:180rpx;
+  height:59rpx;
+  
+  background: transparent;
+  /* background-color: rgba(58,58,58,1);
+  opacity:0.5; */
+  z-index: 10;
+}
+.login_read::after {
+  border: none;
 }
