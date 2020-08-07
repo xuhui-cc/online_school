@@ -282,6 +282,11 @@ Page({
         }
         typeof callback == "function" && callback(true)
       } else {
+        if (that.pageData.page == 1) {
+          that.setData({
+            studentList: []
+          })
+        }
         typeof callback == "function" && callback(false)
       }
     })

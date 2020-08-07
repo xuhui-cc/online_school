@@ -81,7 +81,6 @@ function login(params, callback) {
         icon: 'none',
         duration: 3000
       })
-      console.log(d.data.msg, "登录失败提示")
       typeof callback == "function" && callback(false, "登录失败")
     }
   })
