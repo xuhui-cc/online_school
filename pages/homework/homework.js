@@ -646,7 +646,9 @@ Page({
   //上传图片
   chooseImg() {
     let that = this;
-    
+    that.setData({
+      addImg:app.ols.addImg()
+    })
       wx.chooseImage({
         count: 3,
         success: (res) => {
@@ -655,7 +657,8 @@ Page({
           // let imgs = [];
           wx.uploadFile({
             // url: 'http://os.lingjun.net/api.php/annex/upload',
-            url: 'https://wsg.lingjun.net/api.php/annex/upload',
+            // url: 'https://wsg.lingjun.net/api.php/annex/upload',
+            url: that.data.addImg,
             filePath: tempFilePaths[0],
             name: 'file',
             method: 'POST',

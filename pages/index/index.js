@@ -28,7 +28,6 @@ Page({
      
       console.log("非分享打开")
     }
- 
     that.getGrade()  //获取年级
     that.getsubject()   //获取学科
   },

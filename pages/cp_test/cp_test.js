@@ -697,7 +697,6 @@ Page({
       imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
       success: (res) => {    // 成功后要做的事情
         console.log("成功")
-
       },
       fail: function (res) {
         // 分享失败
@@ -707,7 +706,7 @@ Page({
   
   }
 
-   //手动滑页
+  //手动滑页
   // swiperchange: function (e) {
   //   var that = this
   //   var current = Number(e.currentTarget.dataset.current)  // 当前的

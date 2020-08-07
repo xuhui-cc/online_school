@@ -55,14 +55,22 @@
   </view>
   <!-- 列表 -->
   <view class="list">
-    <!-- <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!testlogin}}"></button> -->
-     <view class="list-li" bindtap="cepingUrl">
+    <!-- <button class="login_read" style="margin-top: 0rpx;height:110rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!testlogin}}"></button> -->
+    <view class="list-li" wx:if="{{vip.open_log == 1}}">
+        <image  src="/images/log.png" class="item-img" mode="aspectFit"></image>
+        <view class="item" bindtap="studyLog">
+           <text class="item-text">查看日志</text>
+           <view class="right-img"></view>
+        </view>
+    </view>
+    <view class="heng"></view>
+    <view class="list-li" >
         <image  src="/images/my_about.png" class="item-img" mode="aspectFit"></image>
         <view class="item" bindtap="gourlabout">
            <text class="item-text">关于我们</text>
            <view class="right-img"></view>
         </view>
-     </view>
+    </view>
 
   </view>
 </view>

@@ -349,9 +349,12 @@ Page({
           console.log("更新接口存班级")
         } else {
           wx.showToast({
-            title: '选择失败',
+            title: '现在就是这个年级哦',
             icon: "none",
             duration: 3000
+          })
+          that.setData({
+            grade_select: false
           })
         }
       })
@@ -687,6 +690,21 @@ Page({
     nowTime(); 
     ms_timer = setInterval(nowTime, 1000); 
   },
+
+    //获取微信绑定手机号登录
+    getPhoneNumber: function (e) {
+      var that = this
+  
+      app.loginTool.getPhoneNumber(e, that.data.gid, function(success, message){
+        if (success) {
+          that.setData({
+            login: true
+          })
+          // that.v4_viplist()
+          that.onShow()
+        }
+      })
+    },
 
 
    /**
