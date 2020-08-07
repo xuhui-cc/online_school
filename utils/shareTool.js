@@ -42,8 +42,10 @@ function getShareReturnInfo(role, targetPath ,paramsStr, imageUrl, title) {
   }
   
   // 拼接 targethome参数
-  if (homePagePath.indexOf(targetPath) != -1)
-  path += "&targethome=1"
+  if (homePagePath.indexOf(targetPath) != -1) {
+    path += "&targethome=1"
+  }
+  
   // 拼接 target参数
   if (targetPath && targetPath != '') {
     path += "&target=" + targetPath
