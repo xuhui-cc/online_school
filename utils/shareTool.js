@@ -42,8 +42,10 @@ function getShareReturnInfo(role, targetPath ,paramsStr, imageUrl, title) {
   }
   
   // 拼接 targethome参数
-  if (homePagePath.indexOf(targetPath) != -1)
-  path += "&targethome=1"
+  if (homePagePath.indexOf(targetPath) != -1) {
+    path += "&targethome=1"
+  }
+  
   // 拼接 target参数
   if (targetPath && targetPath != '') {
     path += "&target=" + targetPath
@@ -72,9 +74,8 @@ function getShareReturnInfo(role, targetPath ,paramsStr, imageUrl, title) {
  * 参数：
  *    options：firstPage页面onLoad方法的参数对象
  *    role： 角色 0-未登录 1-学生 2-家长 3-老师
- *    shareType: firstPage页面onLoad方法返回的sharetype参数
  * 返回值：
- *    跳转至各角色首页时，跳转地址拼接的参数
+ *    处理后的options
 */
 function getFirstPageShareParam(options, role) {
   
@@ -100,6 +101,7 @@ function getFirstPageShareParam(options, role) {
 function shareTarget () {
   if (shareOption.target && shareOption.share) {
     if (tabbarPagePath.indexOf(shareOption.target) != -1) {
+      // 分享页面为tabbar页面
       shareOption.share = 0
     }
     if (shareOption.share) {
@@ -109,6 +111,7 @@ function shareTarget () {
       })
       shareOption = {}
     } else {
+      // tabbar页面
       setTimeout(function(){
         wx.switchTab({
           url: shareOption.target,
