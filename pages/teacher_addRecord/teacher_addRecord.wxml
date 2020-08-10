@@ -74,7 +74,7 @@
       <view class="recordClearCourseHours" bindtap="clearCourseHourClicked" wx:if="{{showClearCourseHour}}">
         <view class="flex_row_alignItemCenter">
           <image class="recordClearCourseHour_selectImage" src="{{clearCourseHour ? '../../images/teacher_client/teacher_addRecord_clearCourseHour.png' : '../../images/teacher_client/teacher_addRecord_notClearCourseHour.png'}}"></image>
-          <view class="recoudClearCourseHour_title" style="color:{{clearCourseHour ? '#af5800' : '#dbdce5'}}">是否消课</view>
+          <view class="recoudClearCourseHour_title" style="color:{{clearCourseHour ? '#af5800' : '#dbdce5'}}">是否销课</view>
         </view>
         <view class="flex_row_alignItemCenter">
           <view class="recordClearCourseHour_minus">－</view>
