@@ -82,10 +82,10 @@ page{
   opacity:1;
 }
 .grade_img{
-  padding-left: 15rpx;
-  padding-top: 125rpx;
-  width:20rpx;
-  height:20rpx;
+  /* padding-left: -10rpx; */
+  padding-top: 105rpx;
+  width:60rpx;
+  height:60rpx;
   /* background:rgb(189, 48, 48); */
 }
 .head{

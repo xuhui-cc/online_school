@@ -6,7 +6,7 @@
       <view class="grade_content" bindtap="grade_select">{{grade[grade_index].title}}</view>
     <!-- </picker> -->
     <!-- <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}"> -->
-      <image class="grade_img" src="../../images/xsj.png" bindtap="grade_select"></image>
+      <image class="grade_img" src="../../images/xsj2.png" bindtap="grade_select"></image>
     <!-- </picker> -->
     <view class="head">领军网校</view>
   </view>

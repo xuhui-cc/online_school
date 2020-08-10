@@ -6,7 +6,7 @@
   <view class="button_start">
   <!-- <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button> -->
     <view bindtap="grade_select">
-      <image class="start_img" src="../../images/start_img.png"></image>
+      <image class="start_img" src="../../images/cp_btn.png"></image>
       <text class="start_text">开始测评</text>
     </view>
   </view>
