@@ -4,6 +4,11 @@ const ols = require('./utils/ols.js')
 const loginTool = require('./utils/loginTool.js')
 const util = require('./utils/util.js')
 const shareTool = require('./utils/shareTool.js')
+const notificationCenter = require('./utils/WxNotificationCenter.js')
+
+const notiNameDic = {
+  userinfoChange: "userinfoChange"
+}
 
 App({
 
@@ -11,6 +16,8 @@ App({
   loginTool: loginTool,
   util: util,
   shareTool: shareTool,
+  notificationCenter: notificationCenter,
+  notiNameDic: notiNameDic,
   onLaunch: function () {
     
 
@@ -79,7 +86,7 @@ App({
           wx.setStorageSync('userinfo', oldUserInfo)
           if (avatar != oldAvatar || nick != oldNick) {
             // 名字/头像更改了 发送通知
-
+            notificationCenter.postNotificationName(notiNameDic.userinfoChange, oldUserInfo)
           }
         }
       }

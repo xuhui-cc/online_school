@@ -135,7 +135,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    app.notificationCenter.removeNotification(app.notiNameDic.userinfoChange, this)
   },
 
   /**
@@ -240,6 +240,18 @@ Page({
     this.setData({
       teacherUserinfo: teacherUserInfo,
     })
+
+    let that = this
+    app.notificationCenter.addNotification(app.notiNameDic.userinfoChange, function(userinfo){
+      console.log('用户信息改变:\n', userinfo)
+      that.setData({
+        teacherUserinfo: {
+          avatar: userinfo.avatar,
+          name: userinfo.nick
+        }
+      })
+      app.notificationCenter.removeNotification(app.notiNameDic.userinfoChange, that)
+    }, this)
   },
 
   //--------------------------------------------------接口-------------------------------------
