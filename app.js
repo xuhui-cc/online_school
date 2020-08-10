@@ -41,6 +41,68 @@ App({
       }
     })
   },
+
+  onShow: function() {
+    this.refreshUserInfo()
+  },
+
+  /**
+   * 刷新用户信息
+  */
+  refreshUserInfo: function() {
+    let login = wx.getStorageSync('login')
+    if (!login) {
+      return
+    }
+    let oldUserInfo = wx.getStorageSync('userinfo')
+    let params = {
+      token: oldUserInfo.token
+    }
+    let that = this
+    ols.refreshUserInfo(params).then(d=>{
+      if (d.data.code == 0) {
+        // 角色更改后清空登录信息
+        let info = d.data.data
+        if (info) {
+          let newRole = info.role_id
+          // 角色变更 清空登录信息 跳转至first_page重新分发页面
+          if (newRole != oldUserInfo.role) {
+            that.clearLocalInfo()
+          }
+
+          let avatar = info.avatar
+          let nick = info.nick
+          let oldAvatar = oldUserInfo.avatar
+          let oldNick = oldUserInfo.nick
+          oldUserInfo.avatar = avatar
+          oldUserInfo.nick = nick
+          wx.setStorageSync('userinfo', oldUserInfo)
+          if (avatar != oldAvatar || nick != oldNick) {
+            // 名字/头像更改了 发送通知
+
+          }
+        }
+      }
+    })
+  },
+
+   /**
+   * 清除本地数据
+  */
+  clearLocalInfo () {
+    wx.clearStorage({
+      fail:function(res) {
+        console.log('清除本地信息失败', res)
+      },
+      complete: (res) => {
+        console.log('清空数据完成，即将跳转至first_page')
+        wx.reLaunch({
+          url: '/pages/first_page/first_page',
+        })
+      },
+    })
+  },
+
   globalData: {
     userInfo: null
   }

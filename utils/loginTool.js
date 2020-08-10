@@ -3,6 +3,9 @@ const ols = require('./ols')
 
 function getPhoneNumber(e, gid, callback) {
   var that = this
+  if (e.detail.errMsg != "getPhoneNumber:ok") {
+    return
+  }
   wx.showLoading({
     title: '登录中...',
   })
