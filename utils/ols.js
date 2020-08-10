@@ -356,7 +356,7 @@ function test_end(params) {
 
 //获取拼团数据列表v3
 function hot_list4(params) {
-  return fetch.olsfetchpost(URI, 'v4/group/gethotlist', params,"热门课程",true,"课程加载中...")
+  return fetch.olsfetchpost(URI, 'v4/group/gethotlist', params,"热门课程",false,"课程加载中...")
 }
 
 
