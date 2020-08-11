@@ -59,7 +59,7 @@
               <!-- 时间 -->
               <view class="recordCell_time oneLine_ellipsis">{{item.time}}</view>
               <!-- 老师名字 -->
-              <view class="recordCell_teacherName oneLine_ellipsis">{{item.teacher_name}}</view>
+              <view class="recordCell_teacherName oneLine_ellipsis">{{item.teacher_name}}老师</view>
             </view>
             <!-- 日志内容 -->
             <view class="recordCell_content">
