@@ -46,15 +46,15 @@
               <block wx:if="{{item.type == 'image'}}">
                 <!-- 附件图片 -->
                 <image class="recordFile_image" mode="aspectFill" src="{{item.serverPath}}"></image>
-                <!-- 视频半透明遮盖 -->
-                <!-- <view class="recordFile_videoView" wx:if="{{item.type == 'video'}}">
-                  <image class="recordFile_videoPlay" src="../../images/teacher_client/video_play.png"></image>
-                </view> -->
+                
               </block>
               <!-- 视频附件 -->
               <block wx:else>
-                <video src="{{item.serverPath}}" controls="false" show-center-play-btn="false" show-progress="false" class="recordFile_image"></video>
-                <view class="recordFile_image"></view>
+                <video src="{{item.serverPath}}" controls="{{false}}" show-center-play-btn="{{false}}" show-progress="{{false}}" class="recordFile_image"></video>
+                <!-- 视频半透明遮盖 -->
+                <view class="recordFile_videoView">
+                  <image class="recordFile_videoPlay" src="../../images/teacher_client/video_play.png"></image>
+                </view>
               </block>
               <!-- 删除按钮 -->
               <view class="recordFile_delete" catchtap="fileDeleteButtonClciked" data-index="{{index}}">

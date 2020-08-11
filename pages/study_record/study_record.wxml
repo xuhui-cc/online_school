@@ -77,8 +77,10 @@
                   </block>
                   <!-- 视频附件 -->
                   <block wx:elif="{{fileItem.type == 'video'}}">
-                    <video src="{{fileItem.url}}" controls="false" show-center-play-btn="false" show-progress="false" class="recordCell_fileCell_image" binderror="videoPlayError" data-index="{{fileIndex}}" data-recordindex="{{index}}"></video>
-                    <view class="recordCell_fileCell_image" style="position: absolute; top: 0; left: 0;"></view>
+                    <video src="{{fileItem.url}}" controls="{{false}}" show-center-play-btn="{{false}}" show-progress="{{false}}" class="recordCell_fileCell_image" binderror="videoPlayError" data-index="{{fileIndex}}" data-recordindex="{{index}}"></video>
+                    <view class="recordCell_fileCell_videoAlpha">
+                      <image class="recordFile_videoPlay" src="../../images/teacher_client/video_play.png"></image>
+                    </view>
                   </block>
                   <!-- 图片附件 -->
                   <block wx:else>
