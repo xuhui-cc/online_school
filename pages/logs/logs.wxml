@@ -81,8 +81,8 @@
     <text wx:if="{{hot1 == '' && hot2 == '' &&  hot3 == ''}}" class="course_nulltip" >暂无课程</text>
     <view class="hot_layout" >
       <view wx:for="{{hot1}}" wx:key="hot_index">
-        <view class="hot_course">
-          <view class="flex">
+        <view class="hot_course" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{1}}">
+          <view class="flex" >
             <view>
               <image class="vip_laber" wx:if="{{(item.buy == 0 || item.buy == 2 || item.buy > 4) && item.vip == 1}}" src="../../images/vip_laber2.png"></image>
               <image class="hot_group"  style="{{item.vip == 1?'margin-left:82rpx;':''}}" wx:if="{{ item.buy == 0 || item.buy == 2 || item.buy == 6}}" src="../../images/hot_group.png"></image>
@@ -100,7 +100,7 @@
               </view>
               <view class="flex">
                 <view class="join_num">{{item.order_num}}人参与</view>
-                <view class="go_btn" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{1}}" >
+                <view class="go_btn" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{1}}" hidden="{{btn_buy}}">
                   <image class="lightning" src="../../images/lightning.png"></image>
                   <view class="hot_to">去拼团</view>
                 </view>
@@ -119,7 +119,7 @@
     <view class="hot_layout" hidden="true">
     <!-- hidden="true" -->
       <view wx:for="{{hot3}}" wx:key="hot_index">
-        <view class="hot_course">
+        <view class="hot_course" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{3}}">
           <view class="flex">
             <view>
               <image class="vip_laber" wx:if="{{(item.buy == 0 || item.buy > 4) && item.vip == 1}}" src="../../images/vip_laber2.png"></image>
@@ -138,7 +138,7 @@
               </view>
               <view class="flex">
                 <view class="join_num">{{item.order_num}}人参与</view>
-                <view class="go_btn" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{3}}">
+                <view class="go_btn" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{3}}" hidden="{{btn_buy}}">
                   <image class="lightning" src="../../images/lightning.png"></image>
                   <view class="hot_to">去秒杀</view>
                 </view>

@@ -112,5 +112,6 @@ App({
 
   globalData: {
     userInfo: null,
+    btn_buy:true
   }
 })

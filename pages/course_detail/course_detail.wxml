@@ -147,7 +147,7 @@
   </view>
 
 
-  <view class="course_buy"  wx:if="{{course_info.buy  == 0 || course_info.buy == 6}}">   
+  <view class="course_buy"  wx:if="{{course_info.buy  == 0 || course_info.buy == 6}}" hidden="{{btn_buy}}">   
     <!-- course_info.pay_status :  1 未购买；2已购买 -->
     <view class="yuan">¥</view>
     <view class="price">{{course_info.price}}</view>

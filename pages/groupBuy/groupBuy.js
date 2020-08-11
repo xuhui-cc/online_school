@@ -10,6 +10,7 @@ Page({
     currentData: 0,
     all_group:false,
     rule:false,
+    btn_buy:app.globalData.btn_buy
   },
 
   /**

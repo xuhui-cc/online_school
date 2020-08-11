@@ -6,7 +6,7 @@ Page({
     // subject:[ {'id':-1, 'title': '推荐'}],
     current_special:-1,
     current_subject: 0,
-    
+    btn_buy:app.globalData.btn_buy
   },
 
   onLoad: function (options) {

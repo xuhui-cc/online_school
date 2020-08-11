@@ -202,31 +202,33 @@
 
 
 
-  
-  <image class="group_btn_layout" src="../../images/group.png" wx:if="{{course_info.buy == 0 || course_info.buy == 2 || course_info.buy == 6}}"></image>
-  <view class="countDown" wx:if="{{course_info.buy == 0 || course_info.buy == 2 || course_info.buy == 6}}">{{clock}}</view>
-  
-  <view class="time_tip" wx:if="{{course_info.buy == 0 || course_info.buy == 2 || course_info.buy == 6}}">距结束</view>
-  <view class="btn_layout" wx:if="{{course_info.buy == 0  || course_info.buy == 2 || course_info.buy == 6}}">
+  <view hidden="{{btn_buy}}">
+    <image class="group_btn_layout" src="../../images/group.png" wx:if="{{course_info.buy == 0 || course_info.buy == 2 || course_info.buy == 6}}"></image>
+    <view class="countDown" wx:if="{{course_info.buy == 0 || course_info.buy == 2 || course_info.buy == 6}}">{{clock}}</view>
     
-    <view>
-      <view class="group_price1"><text style="font-size:30rpx;">¥</text>{{course_info.pt_price}}</view>
-      <view class="old_price1">¥{{course_info.price}}</view>
-    </view>
-    
-    <image class="group_label" src="../../images/group_label.png"></image>
-    <view class="flex" style="margin-left:70rpx;" >
-      <button class="login_read" data-type="{{2}}"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
-      <button class="login_read" data-type="{{3}}" style="margin-left:187rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
-    </view>
-    
-    <view class="single_buy" bindtap="{{login?'to_pay':''}}" wx:if="{{course_info.buy == 0}}"><text class="buy_price" >单独购买</text><text class="buy_price" style="margin-top: 34rpx;margin-left: 67rpx;">¥{{course_info.price}}</text> </view>
+    <view class="time_tip" wx:if="{{course_info.buy == 0 || course_info.buy == 2 || course_info.buy == 6}}">距结束</view>
+    <view class="btn_layout" wx:if="{{course_info.buy == 0  || course_info.buy == 2 || course_info.buy == 6}}">
+      
+      <view>
+        <view class="group_price1"><text style="font-size:30rpx;">¥</text>{{course_info.pt_price}}</view>
+        <view class="old_price1">¥{{course_info.price}}</view>
+      </view>
+      
+      <image class="group_label" src="../../images/group_label.png"></image>
+      <view class="flex" style="margin-left:70rpx;" >
+        <button class="login_read" data-type="{{2}}"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
+        <button class="login_read" data-type="{{3}}" style="margin-left:187rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
+      </view>
+      
+      <view class="single_buy" bindtap="{{login?'to_pay':''}}" wx:if="{{course_info.buy == 0}}"><text class="buy_price" >单独购买</text><text class="buy_price" style="margin-top: 34rpx;margin-left: 67rpx;">¥{{course_info.price}}</text> </view>
 
-    <view class="single_buy" bindtap="{{login?'to_groupPay':''}}" wx:if="{{course_info.buy == 0}}" style="margin-left: 530rpx;border-radius:0rpx 38rpx 38rpx 0rpx;background:rgba(255,75,32,1);"><text class="buy_price">发起拼团</text><text class="buy_price" style="margin-top: 34rpx;margin-left: 67rpx;">¥{{course_info.pt_price}}</text> </view>
+      <view class="single_buy" bindtap="{{login?'to_groupPay':''}}" wx:if="{{course_info.buy == 0}}" style="margin-left: 530rpx;border-radius:0rpx 38rpx 38rpx 0rpx;background:rgba(255,75,32,1);"><text class="buy_price">发起拼团</text><text class="buy_price" style="margin-top: 34rpx;margin-left: 67rpx;">¥{{course_info.pt_price}}</text> </view>
 
-    <view class="button_buy" wx:if="{{course_info.buy == 2}}" bindtap="to_group_detail" data-tid="{{course_info.option[0].id}}">查看拼团进度</view>
-    
+      <view class="button_buy" wx:if="{{course_info.buy == 2}}" bindtap="to_group_detail" data-tid="{{course_info.option[0].id}}">查看拼团进度</view>
+      
+    </view>
   </view>
+  
   
 
 

@@ -8,6 +8,7 @@ Page({
    */
   data: {
     currentData: 0,
+    btn_buy:app.globalData.btn_buy
   },
 
   /**

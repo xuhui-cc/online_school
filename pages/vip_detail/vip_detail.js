@@ -24,6 +24,7 @@ Page({
     nextMargin: '35px', //后边距，可用于露出后一项的一小部分，接受 px 和 rpx 值
     circular: true, //是否采用衔接滑动
     currentSwiperIndex: 0, //swiper当前索引
+    btn_buy:app.globalData.btn_buy     //购买按钮屏蔽
   },
 
   swiperBindchange(e) {
