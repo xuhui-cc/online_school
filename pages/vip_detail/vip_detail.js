@@ -55,6 +55,11 @@ Page({
     that.setData({
       code : e.detail.value
       })
+      if(that.data.code != e.detail.value){
+        that.setData({
+          checkCode:1,
+        })
+      }
   },
 
   //兑换码验证
@@ -70,7 +75,8 @@ Page({
         that.setData({
           codeinfo:d.data.data,
           exchange_page:true,
-          exchange:false
+          exchange:false,
+          code:''
         })
       } else if(d.data.code == 5){
         that.setData({
@@ -97,7 +103,8 @@ Page({
         that.v4_viplist()
         that.setData({
           exchange_page:false,
-          pay:true
+          pay:true,
+          code:''
         })
         // that.setData({
           
@@ -113,7 +120,9 @@ Page({
   exchange_page:function(){
     let that = this
     that.setData({
-      exchange_page:false
+      exchange_page:false,
+      code:'',
+      checkCode:1,
     })
   },
 
@@ -262,6 +271,7 @@ Page({
     let that = this
     that.setData({
       code:'',
+      checkCode:1,
       exchange:!that.data.exchange
     })
   },

@@ -12,9 +12,9 @@
     </view>
     
      
-    <view class="flex" wx:if="{{vip_list[0].is_buy == 0}}" hidden="{{btn_buy}}">
+    <view class="flex" wx:if="{{vip_list[0].is_buy == 0}}" >
       <open-data type="userNickName" class="nick"></open-data>
-      <view class="btn" bindtap="vip_buy">立即开通</view>
+      <view class="btn" bindtap="vip_buy" hidden="{{btn_buy}}">立即开通</view>
     </view>
     <view style="margin-top: 15rpx;" wx:if="{{vip_list[0].is_buy >0}}">
       <open-data type="userNickName" class="nick"></open-data>
@@ -79,9 +79,9 @@
   <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!exchange}}"></view>
   <view style="margin-top:-120rpx;" hidden="{{!exchange}}">
     <image class="bg_exchange" src="../../images/bg_exchange.png" ></image>
-    <input class="input" placeholder="请输入您的兑换码" placeholder-style=" text-align: center;" bindinput="input_code"></input>
+    <input class="input" placeholder="请输入您的兑换码" placeholder-style=" text-align: center;" bindinput="input_code" value="{{code}}"></input>
     <view wx:if="{{checkCode == -1}}" class="checkCode_tip">*{{check_msg}}</view>
-    <view class="btn1_2" wx:if="{{code == ''}}" >提交</view>
+    <view class="btn1_2" wx:if="{{code == '' && checkCode != -1}}" >提交</view>
     <view class="btn1" wx:else="" bindtap="submit_check">提交</view>
     <image class="exchange_close" src="../../images/exchange_close.png" bindtap="exchange"></image>
   </view>
