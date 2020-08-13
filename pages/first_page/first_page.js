@@ -58,7 +58,7 @@ Page({
       if (options.share == 1) {
         app.shareTool.getFirstPageShareParam(options, 0)
       }
-      if (options.isshare == 1 && options.gid) {
+      if (options.gid) {
         gid = options.gid
       } else {
         gid = wx.getStorageSync("gid")

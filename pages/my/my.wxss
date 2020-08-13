@@ -204,7 +204,7 @@ transform: rotate(45deg);
   position: absolute;
   margin-left: 138rpx;
   margin-top: 109rpx;
-  width:176rpx;
+  width:276rpx;
   height:30rpx;
   font-size:22rpx;
   font-family:PingFang SC;

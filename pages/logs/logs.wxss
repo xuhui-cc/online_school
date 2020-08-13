@@ -467,14 +467,15 @@ page{
 
 .open_time{
   position: absolute;
-  margin-left: 470rpx;
+  margin-left: 250rpx;
   margin-top: 345rpx;
-  width:192rpx;
+  width:400rpx;
   height:33rpx;
   font-size:24rpx;
   font-family:PingFang SC;
   font-weight:400;
   line-height:11rpx;
+  text-align: right;
   color:rgba(255,231,183,1);
   opacity:1;
   

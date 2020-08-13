@@ -197,7 +197,7 @@
         </view>
         
 
-        <view class="flex" wx:if="{{analysis.cate}}">
+        <view class="flex" wx:if="{{analysis.cate != ''}}">
           <view class="shu"></view>
           <view class="right">考点</view>
         </view>

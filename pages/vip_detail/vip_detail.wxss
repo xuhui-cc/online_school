@@ -1,3 +1,68 @@
+.mask1{
+  position: fixed;
+  width:750rpx;
+  height:1624rpx;
+  background:rgba(0,0,0,1);
+  opacity:0.8;
+  z-index: 350;
+}
+.login_layout{
+  position: fixed;
+  margin-left: 102rpx;
+  margin-top: 450rpx;
+  width:547rpx;
+  height:538rpx;
+  background:rgba(255,255,255,1);
+  opacity:1;
+  border-radius:20rpx;
+  z-index:353;
+}
+.login_del{
+  /* position: absolute; */
+  margin-left: 465rpx;
+  margin-top: 22rpx;
+  width:44rpx;
+  height:54rpx;
+  /* z-index: 3; */
+}
+.unlogin{
+  margin-left: 215rpx;
+  margin-top: -10rpx;
+  margin-bottom: 30rpx;
+  width:117rpx;
+  height:114rpx;
+}
+.login_tip{
+  margin-left: 121rpx;
+  width:306rpx;
+  font-size:34rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:50rpx;
+  text-align: center;
+  color:rgba(0,0,0,1);
+  opacity:1;
+}
+.tologin{
+  margin-left: 132rpx;
+  margin-top: 50rpx;
+  width:283rpx;
+  height:76rpx;
+}
+.login_read{
+  position: absolute;
+  margin-left: 132rpx;
+  margin-top: 50rpx;
+  width:283rpx;
+  height:76rpx;
+  background: transparent;
+  /* opacity:0.5;
+  background-color: rgb(161, 228, 240); */
+}
+.login_read::after {
+  border: none;
+}
+
 .bg3{
   position: absolute;
   width: 750rpx;
@@ -72,7 +137,7 @@
 .vip_time{
   margin-left: 8rpx;
   margin-top: 5rpx;
-  width:192rpx;
+  width:292rpx;
   height:33rpx;
   font-size:24rpx;
   font-family:PingFang SC;

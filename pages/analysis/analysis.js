@@ -392,7 +392,7 @@ Page({
 
   onShareAppMessage: function () {
     let that = this;
-    let paramsStr = 'gid=' + wx.getStorageSync("gid") + '&pid=' + that.data.analysis.id
+    let paramsStr = 'isshare=1&gid=' + wx.getStorageSync("gid") + '&pid=' + that.data.analysis.id
     return app.shareTool.getShareReturnInfo('0,1', '/pages/share_analysis/share_analysis',paramsStr, '../../images/share1.png', '领军网校')
   }
 })

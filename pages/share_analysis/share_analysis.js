@@ -39,9 +39,9 @@ Page({
       if(d.data.code == 0){
         var replace = '<img style="max-width:93%;height:auto;display: initial !important;"'
         d.data.data.question.title = d.data.data.question.title.replace(/<img/gi, replace).replace(/< </gi, "&lt; <").replace(/> >/gi, "&gt; >").replace(/<</gi, "&lt; <").replace(/>>/gi, "&gt; >")
-        if (d.data.data.question.mark.mark != null){
-          d.data.data.question.mark.mark = d.data.data.question.mark.mark.replace(/<img/gi, replace)
-        }
+        // if (d.data.data.question.mark.mark != null){
+        //   d.data.data.question.mark.mark = d.data.data.question.mark.mark.replace(/<img/gi, replace)
+        // }
         if (d.data.data.question.answer != null) {
           d.data.data.question.answer = d.data.data.question.answer.replace(/<img/gi, replace)
         }

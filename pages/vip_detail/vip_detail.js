@@ -35,8 +35,8 @@ Page({
 
   //返回我的主页
   back:function(){
-    wx.navigateBack({
-      delta: 1,
+    wx.switchTab({
+      url: '../../pages/my/my',
     })
   },
  
@@ -45,7 +45,22 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    that.v4_viplist()
+    if (options.isshare == 1){
+      wx.setStorageSync("gid", options.gid)
+      that.setData({
+        isshare:options.isshare,
+        gid:options.gid,
+        login: wx.getStorageSync("login")
+      })
+      if(that.data.login){
+        that.v4_viplist()
+      }
+      
+    }else{
+      that.v4_viplist()
+      console.log("非分享打开")
+    }
+    
   },
 
   //兑换码输入
@@ -285,6 +300,19 @@ Page({
     })
   },
 
+   //获取微信绑定手机号登录
+getPhoneNumber: function (e) {
+  var that = this
+  app.loginTool.getPhoneNumber(e, that.data.gid, function(success, message){
+    if (success) {
+      that.setData({
+        login: true
+      })
+      that.v4_viplist()
+    }
+  })
+},
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -336,6 +364,8 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    app.shareTool.getShareReturnInfo('all', '/pages/first_page/first_page')
+    let that = this;
+    let paramStr = 'isshare=1&gid=' + wx.getStorageSync('gid') 
+    return app.shareTool.getShareReturnInfo('0,1', '/pages/vip_detail/vip_detail', paramStr, '../../images/share1.png', '领军网校')
   }
 })
