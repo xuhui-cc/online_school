@@ -37,6 +37,33 @@ Page({
     app.ols.group_share3(params).then(d => {
       console.log(d, "分享数据")
       if(d.data.code == 0){
+        var replace = '<img style="max-width:93%;height:auto;display: initial !important;"'
+        d.data.data.question.title = d.data.data.question.title.replace(/<img/gi, replace).replace(/< </gi, "&lt; <").replace(/> >/gi, "&gt; >").replace(/<</gi, "&lt; <").replace(/>>/gi, "&gt; >")
+        if (d.data.data.question.mark.mark != null){
+          d.data.data.question.mark.mark = d.data.data.question.mark.mark.replace(/<img/gi, replace)
+        }
+        if (d.data.data.question.answer != null) {
+          d.data.data.question.answer = d.data.data.question.answer.replace(/<img/gi, replace)
+        }
+        if (d.data.data.question.note != null) {
+          d.data.data.question.note = d.data.data.question.note.replace(/<img/gi, replace)
+        }
+        if (d.data.data.question.a != null) {
+          d.data.data.question.a = d.data.data.question.a.replace(/<img/gi, replace).replace("$","236").replace("\u0000","9")
+        }
+
+        if (d.data.data.question.b != null) {
+          d.data.data.question.b = d.data.data.question.b.replace(/<img/gi, replace).replace("$","236").replace("\u0000","9")
+        }
+
+        if (d.data.data.question.c != null) {
+          d.data.data.question.c = d.data.data.question.c.replace(/<img/gi, replace).replace("$","236").replace("\u0000","9")
+
+        }
+        if (d.data.data.question.d != null) {
+          d.data.data.question.d = d.data.data.question.d.replace(/<img/gi, replace).replace("$","236").replace("\u0000","9")
+
+        }
         that.setData({
           analysis: d.data.data.question,
           mark:d.data.data.mark

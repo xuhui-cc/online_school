@@ -109,7 +109,8 @@ Page({
         console.log(d)
 
         if (d.data.code == 0) {
-          that.test_list()
+          // that.test_list()
+          that.getsubject()   //获取学科
           wx.setStorageSync("gid", that.data.grade[that.data.grade_index].id)
           that.setData({
             grade_select: false
@@ -123,7 +124,7 @@ Page({
         }
       })
     }else{
-      that.test_list()
+      that.getsubject()   //获取学科
       wx.setStorageSync("gid", that.data.grade[that.data.grade_index].id)
       that.setData({
         grade_select: false

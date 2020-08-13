@@ -63,7 +63,7 @@
             <view class="title">{{item.title}}</view>
             <view class="flex">
               <view class="num">{{item.class_hour}}课时</view>
-              <view class="tip" style="{{vip_list[0].is_buy == 0?'color:rgba(163,163,163,1);':''}}">免费学</view>
+              <view class="tip" style="{{vip_list[0].valid <= 0?'color:rgba(163,163,163,1);':''}}">免费学</view>
             </view>
             
           </view>
