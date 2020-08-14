@@ -45,13 +45,13 @@
          
           </view>
 
-          <view class="buy_num">{{item.order_num}}人已购买</view>
+          <view class="buy_num">{{item.order_num}}人已学习</view>
           
           <view class="num_layout">
             <view class="course_num">{{item.class_hour}}课时</view>
           </view>
 
-          <view class="course_price">
+          <view class="course_price" hidden="{{btn_buy}}">
             <view style="margin-right:8rpx;margin-top:5rpx;">¥</view>
             <view style="font-weight:bold;font-size:42rpx;">{{item.price}}</view>
           </view>

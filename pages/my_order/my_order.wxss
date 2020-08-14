@@ -90,6 +90,7 @@ page{
 .intro{
   margin-left: 34rpx;
   margin-top: 18rpx;
+  
   width:616rpx;
   height:71rpx;
   font-size:24rpx;

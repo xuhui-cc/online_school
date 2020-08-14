@@ -15,9 +15,9 @@
           </view> 
         </view>
       </view>  
-        <image class="group_laber" src="../../images/group_laber1.png"></image>
-        <view class="group_price">¥{{course_info.pt_price}}</view>
-        <view class="old_price">¥{{course_info.price}}</view>
+        <image class="group_laber" src="../../images/group_laber1.png" hidden="{{btn_buy}}"></image>
+        <view class="group_price" hidden="{{btn_buy}}">¥{{course_info.pt_price}}</view>
+        <view class="old_price" hidden="{{btn_buy}}">¥{{course_info.price}}</view>
     </view>
 
 

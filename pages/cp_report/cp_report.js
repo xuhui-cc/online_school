@@ -7,6 +7,7 @@ Page({
    */
   data: {
     // iknow:false
+    btn_buy:app.globalData.btn_buy
   },
 
   //我知道了
