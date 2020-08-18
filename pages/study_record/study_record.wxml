@@ -127,7 +127,7 @@
       <view class="clearHourView_sectionHeader_title" style="width:156rpx; margin-left:0rpx;">销课老师</view>
       <view class="clearHourView_sectionHeader_title" style="width:132rpx; margin-left:0rpx;">销课时</view>
     </view>
-    <scroll-view scroll-y="true" refresher-enabled="true" bindrefresherrefresh="clearListPullRefresh" refresher-triggered="{{clearListPullRefershing}}" bindscrolltolower="clearListReachBottom">
+    <scroll-view scroll-y="true" style="height: 533rpx; width:100%;" refresher-enabled="true" bindrefresherrefresh="clearListPullRefresh" refresher-triggered="{{clearListPullRefershing}}" bindscrolltolower="clearListReachBottom">
       <block wx:for="{{clearList}}" wx:key="index">
         <view class="clearCell">
           <view class="clearCell_content oneLine_ellipsis" style="width:74rpx; margin-left:16rpx;">{{index+1}}</view>
