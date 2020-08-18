@@ -64,7 +64,7 @@ page{
 }
 
 .test_margin{
-  margin-top: 280rpx;
+  /* margin-top: 280rpx; */
   margin-bottom: 100rpx;
 }
 .grade_content{
@@ -338,7 +338,7 @@ page{
 /* 名师入口 */
 .teacher_inter{
   margin-left: 30rpx;
-  /* margin-top: 120rpx; */
+  margin-top: 300rpx;
   width:690rpx;
   height:177rpx;
 }

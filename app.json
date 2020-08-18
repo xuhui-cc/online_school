@@ -41,7 +41,8 @@
     "pages/study_record/study_record",
     "pages/uploadVideo/uploadVideo",
     "pages/vip_detail/vip_detail",
-    "pages/parent_childList/parent_childList"
+    "pages/parent_childList/parent_childList",
+    "pages/teacherList/teacherList"
   ],
   "window": {
     "backgroundTextStyle": "light",

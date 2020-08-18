@@ -282,6 +282,13 @@ Page({
     
   },
 
+  //名师简介
+  teacher_inter:function(){
+    wx.navigateTo({
+      url: '../../pages/teacherList/teacherList',
+    })
+  },
+
   /**
    * 用户点击右上角分享
    */

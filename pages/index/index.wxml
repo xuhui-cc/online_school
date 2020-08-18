@@ -35,7 +35,7 @@
     <view wx:for="{{subject}}" wx:key="index" class="tab-item {{current_subject==index?'active':''}}" data-current="{{index}}"  bindtap="swichNav_subject">{{item.title}}</view> 
   </scroll-view> 
 
-  <!-- <image class="teacher_inter" src="../../images/teacherFile/teacher_inter.png"></image> -->
+  <image class="teacher_inter" src="../../images/teacherFile/teacher_inter.png" bindtap="teacher_inter"></image>
 
   <view wx:if="{{test_list != ''}}">
     <view class="test_margin">

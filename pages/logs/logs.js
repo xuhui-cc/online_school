@@ -695,6 +695,13 @@ Page({
       })
     },
 
+      //名师简介
+  teacher_inter:function(){
+    wx.navigateTo({
+      url: '../../pages/teacherList/teacherList',
+    })
+  },
+
 
    /**
    * 生命周期函数--监听页面隐藏

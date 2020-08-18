@@ -1,6 +1,14 @@
 page{
   background:rgba(245,245,245,1);
 }
+
+/* 名师入口 */
+.teacher_inter{
+  margin-left: 30rpx;
+  margin-top: 300rpx;
+  width:690rpx;
+  height:177rpx;
+}
 .nabigation_bar{
   display: flex;
   position: fixed;

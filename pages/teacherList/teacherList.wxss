@@ -1,0 +1,15 @@
+page{
+  background:rgba(21,39,48,1);
+}
+.head{
+  position: absolute;
+  width: 750rpx;
+  height: 577rpx;
+  z-index: -1;
+}
+.back{
+  margin-top:100rpx;
+  margin-left: 33rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
