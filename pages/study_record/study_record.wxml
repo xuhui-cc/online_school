@@ -112,6 +112,7 @@
     <image class="backTopTop_image" src="../../images/study_record/backToTop.png"></image>
   </view>
 </view>
+<!-- 无权限查看 展示7v1介绍h5 -->
 <block wx:else>
   <web-view src="{{url7v1}}"></web-view>
 </block>
