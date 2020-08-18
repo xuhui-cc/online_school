@@ -86,6 +86,6 @@ Page({
   onShareAppMessage: function () {
 
     let that = this;
-    app.shareTool.getShareReturnInfo('all', '/pages/first_page/first_page')
+    return app.shareTool.getShareReturnInfo('all', '/pages/first_page/first_page')
   }
 })

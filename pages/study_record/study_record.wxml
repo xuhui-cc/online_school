@@ -112,6 +112,9 @@
     <image class="backTopTop_image" src="../../images/study_record/backToTop.png"></image>
   </view>
 </view>
+<block wx:else>
+  <web-view src="{{url7v1}}"></web-view>
+</block>
 
 <!-- 消课记录弹框 -->
 <view class="clearHourView_bg" wx:if="{{showClearHourView}}">

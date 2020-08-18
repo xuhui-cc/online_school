@@ -69,6 +69,9 @@ Page({
 
     // 消课记录列表 是否正在下拉刷新
     clearListPullRefershing: false,
+
+    // 7v1介绍 h5地址
+    url7v1: null,
   },
 
   /**
@@ -84,6 +87,10 @@ Page({
         that.getStudentInfo()
       } else {
         // 展示7v1介绍图片
+        let url7v1 = app.ols.get7v1Intro_h5()
+        that.setData({
+          url7v1: url7v1
+        })
       }
     })
   },
