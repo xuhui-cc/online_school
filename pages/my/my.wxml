@@ -59,7 +59,7 @@
     <view class="list-li" wx:if="{{vip.open_log == 1}}">
         <image  src="/images/log.png" class="item-img" mode="aspectFit"></image>
         <view class="item" bindtap="studyLog">
-           <text class="item-text">x学习日志</text>
+           <text class="item-text">学习日志</text>
            <view class="right-img"></view>
         </view>
     </view>
