@@ -334,15 +334,11 @@ page{
   width:283rpx;
   height:76rpx;
 }
-/* .login_read{
-  position: absolute;
-  margin-left: 132rpx;
-  margin-top: 50rpx;
-  width:283rpx;
-  height:76rpx;
-  background: transparent;
-  background-color: rgb(209, 20, 20);
+
+/* 名师入口 */
+.teacher_inter{
+  margin-left: 30rpx;
+  /* margin-top: 120rpx; */
+  width:690rpx;
+  height:177rpx;
 }
-.login_read::after {
-  border: none;
-} */
