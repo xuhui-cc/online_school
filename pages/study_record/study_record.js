@@ -406,7 +406,7 @@ Page({
           newList = that.data.clearList.concat(clearList)
         }
         // 判断是否可以加载下一页
-        if (!clearList || clearList == '' || clearList.length < that.pageData.clearPage) {
+        if (!clearList || clearList == '' || clearList.length < that.pageData.clearPerpage) {
           that.pageData.clearCanLoadNextPage = false
         } else {
           that.pageData.clearCanLoadNextPage = true
