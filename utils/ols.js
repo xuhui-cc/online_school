@@ -301,7 +301,7 @@ function test_report(params) {
 
 //结课报告1
 function end_report1(params) {
-  return fetch.olsfetchpost(URI, 'report/getstudyday', params)
+  return fetch.olsfetchpost(URI, 'v5/report/getstudyday', params)
 }
 
 //结课报告2
