@@ -1,5 +1,4 @@
-// pages/teacherList/teacherList.js
-const app = getApp()
+// pages/teacherIntro/teacherIntro.js
 Page({
 
   /**
@@ -13,17 +12,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let that = this
-    that.getTeacherList()   //获取名师列表
-  },
 
-  
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**
@@ -66,26 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  /**---------------------------------------------------接口----------------------------------------------- */
-
-  //获取名师列表
-  getTeacherList:function(){
-    let that = this
-    var params = {}
-    app.ols.v5_getTeacherList(params).then(d => {
-      if (d.data.code == 0) {
-        that.setData({
-          teacherList: d.data.data
-        })
-      } else {
-        // console.log("结课考试试卷结束记录接口==============" + d.data.msg)
-      }
-    })
-  },
-
-
-
-
+  }
 })

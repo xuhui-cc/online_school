@@ -42,6 +42,7 @@
     "pages/uploadVideo/uploadVideo",
     "pages/vip_detail/vip_detail",
     "pages/parent_childList/parent_childList",
+    "pages/teacherIntro/teacherIntro",
     "pages/teacherList/teacherList"
   ],
   "window": {

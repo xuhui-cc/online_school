@@ -60,7 +60,7 @@ function olsfetchpost(api, path, params, log, showToast, loadingMsg) {
             resolve(res)
             if (showToast) {
               wx.showToast({
-                title: res.data.msg,
+                title: "暂无数据",
                 icon: 'none'
               })
             }
