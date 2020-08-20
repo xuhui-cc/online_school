@@ -77,7 +77,7 @@ Page({
     app.ols.v5_getTeacherList(params).then(d => {
       if (d.data.code == 0) {
         that.setData({
-          teacherList: d.data.data
+          teacherList: d.data.data.lists
         })
       } else {
         // console.log("结课考试试卷结束记录接口==============" + d.data.msg)

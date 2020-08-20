@@ -4,6 +4,21 @@
   <image class="head" src="../../images/teacherFile/teacher_hade1.png"></image>
   <image class="back" src="../../images/w_back2.png"></image>
 
+  <!-- 名师列表 -->
+  
+  <view class="tea_layout">
+    <view wx:for="{{teacherList}}" wx:key="index" >
+      <image class="tea_bg" src="../../images/teacherFile/teacher_bottom.png"></image>
+      <image class="tea_ava" src="../../images/teacherFile/tea_ava.png"></image>
+
+    </view>
+  
+  
+  
+  
+  </view>
+   <!-- 名师列表 -->
+
 
 
 

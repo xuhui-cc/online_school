@@ -13,3 +13,22 @@ page{
   width: 50rpx;
   height: 50rpx;
 }
+.tea_layout{
+  margin-top:420rpx;
+}
+.tea_bg{
+  position: absolute;
+  margin-top:50rpx;
+  margin-left: 30rpx;
+  width: 690rpx;
+  height: 180rpx;
+  z-index: -1;
+}
+.tea_ava{
+  /* position: absolute; */
+  padding-top:25rpx;
+  padding-left:30rpx;
+  width: 132rpx;
+  height:160rpx;
+  
+}
