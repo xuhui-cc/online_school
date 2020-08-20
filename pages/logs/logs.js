@@ -70,7 +70,8 @@ Page({
         }
         
         that.setData({
-          vip_list:d.data.data.lists
+          vip_list:d.data.data.lists,
+          vip:d.data.data
         })
         console.log("会员列表成功")
       } else {

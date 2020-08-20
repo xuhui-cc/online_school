@@ -182,40 +182,58 @@
 
   <!-- vip页 -->
   <view wx:if="{{current_subject == 1}}">
-    <view class="vip_layout1">
-      <view wx:if="{{!vip_list[0].is_buy}}">
-      <!-- wx:if="{{vip.valid == -1 || !vip.valid}}" -->
-        <image class="king" src="../../images/king.png"></image>
-        <view class="open_vip" >开通会员</view>
-        <view class="open_content" >免费学习领军大咖老师的经典好课</view>
-        <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
-        <view class="vip_btn"  bindtap="to_vip">会员中心</view>
-      </view>
-
-      <view wx:if="{{vip_list[0].is_buy == 1}}">
-        <view class="ava">
-          <open-data  type="userAvatarUrl"></open-data> 
-        </view>
-      <!-- <image class="vip_badge2" src="../../images/vip_badge2.png"></image> -->
-        <open-data class="open_vip1" type="userNickName"></open-data>
-        <image class="laber_small" src="../../images/vip_badge2.png"></image>
-        <view class="open_vip2" >{{vip_list[0].title}}</view>
-        <!-- <view class="open_time" >{{vip_list[0].valid_days}}到期</view> -->
-        <view class="open_time" bindtap="to_vip" wx:if="{{vip_list[0].valid_days == 0}}">永久</view>
-        <view class="open_time" bindtap="to_vip" wx:else="">{{vip_list[0].valid_days}}到期</view>
-        <image class="vip_jt" src="../../images/next_bsj.png" bindtap="to_vip"></image>
-      <!-- <view class="vip_btn"  bindtap="to_vip">查看会员权益</view> -->
-      </view>
-
-      <!-- <view wx:if="{{vip.valid == 1}}">
-        <image class="vip_badge2" src="../../images/vip_badge2.png"></image>
-        <view class="open_vip1" >{{vip.title}}</view>
-        <view class="open_time" >{{vip.valid_days}}到期</view>
-        <view class="vip_btn"  bindtap="to_vip">查看会员权益</view>
-      </view> -->
-      <image class="vip_img" src="../../images/vip_all1.png"></image>
+    <!-- <view wx:if="{{vip.expire == -1}}">
+      <view class="vip_layout1">
+        
+          <view class="ava">
+            <open-data  type="userAvatarUrl"></open-data> 
+          </view>
+          <open-data class="open_vip1" type="userNickName"></open-data>
+          <image class="laber_small" src="../../images/vip_badge2.png"></image>
+          <view class="open_vip2" >{{vip.vipcard.title}}</view>
+        
+          <view class="open_time" bindtap="to_vip" wx:if="{{vip.vipcard.valid_days == 0}}">永久</view>
+          <view class="open_time" bindtap="to_vip" wx:else="">{{vip.vipcard.valid_days}}到期</view>
+          <image class="vip_jt" src="../../images/next_bsj.png" bindtap="to_vip"></image>
       
-    </view>
+
+      
+        <image class="vip_img" src="../../images/vip_all1.png"></image>
+        
+      </view>
+    </view> -->
+    <!-- <view wx:if="{{vip.expire > -1}}"> -->
+      <view class="vip_layout1">
+        <view wx:if="{{!vip_list[0].is_buy && vip.expire == 0 }}">
+        <!-- wx:if="{{vip.valid == -1 || !vip.valid}}" -->
+          <image class="king" src="../../images/king.png"></image>
+          <view class="open_vip" >开通会员</view>
+          <view class="open_content" >免费学习领军大咖老师的经典好课</view>
+          <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
+          <view class="vip_btn"  bindtap="to_vip">会员中心</view>
+        </view>
+
+        <view wx:if="{{vip.expire != 0}}">
+          <view class="ava">
+            <open-data  type="userAvatarUrl"></open-data> 
+          </view>
+          <open-data class="open_vip1" type="userNickName"></open-data>
+          <image class="laber_small" src="../../images/vip_badge2.png"></image>
+          <view class="open_vip2" >{{vip.vipcard.title}}</view>
+        
+          <view class="open_time" bindtap="to_vip" wx:if="{{vip.vipcard.valid_days == 0}}">永久</view>
+          <view class="open_time" bindtap="to_vip" wx:else="">{{vip.vipcard.valid_days}}到期</view>
+          <image class="vip_jt" src="../../images/next_bsj.png" bindtap="to_vip"></image>
+      
+        </view>
+
+      
+        <image class="vip_img" src="../../images/vip_all1.png"></image>
+        
+      </view>
+    <!-- </view> -->
+
+    
 
     <view class="vip_layout"> 
       <view wx:for="{{vip_list[0].course}}" wx:key="hot2_index">
@@ -285,6 +303,7 @@
       </view>
     </view>
   </view>
+  <!-- vip结束 -->
 
   <view style="margin-bottom:100rpx;" wx:if="{{current_subject > 1}}">
     <view wx:for="{{course.lists}}" wx:key="index">
