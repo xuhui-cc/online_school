@@ -8,8 +8,13 @@
   
   <view class="tea_layout">
     <view wx:for="{{teacherList}}" wx:key="index" >
-      <image class="tea_bg" src="../../images/teacherFile/teacher_bottom.png"></image>
-      <image class="tea_ava" src="../../images/teacherFile/tea_ava.png"></image>
+      
+        <image class="tea_ava" src="../../images/teacherFile/tea_ava.png"></image>
+        <view class="tea_name">{{item.name}}</view>
+        <image class="tea_bg" src="../../images/teacherFile/teacher_bottom.png"></image>
+      
+      
+      
 
     </view>
   
