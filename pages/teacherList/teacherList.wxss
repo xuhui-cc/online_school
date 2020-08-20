@@ -15,25 +15,17 @@ page{
 }
 .tea_layout{
   margin-top:420rpx;
+  margin-bottom: 150rpx;
 }
-.tea_bg{
-  position: absolute;
-  margin-top:-180rpx;
-  margin-left: 30rpx;
-  width: 690rpx;
-  height: 180rpx;
-  z-index: -1;
+.flex{
+  display: flex;
 }
-.tea_ava{
-  padding-left:30rpx;
+.tea_avatar{
   width: 132rpx;
-  height:160rpx;
-  
+  height: 163rpx;
+  border-radius: 66rpx;
 }
 .tea_name{
-  
-  /* padding-top:20rpx; */
-  margin-left:191rpx;
   width:128rpx;
   height:45rpx;
   font-size:32rpx;
@@ -41,5 +33,33 @@ page{
   font-weight:400;
   line-height:45rpx;
   color:rgba(19,224,178,1);
+  
+}
+.tea_position{
+  width:88rpx;
+  height:30rpx;
+  font-size:22rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:30rpx;
+  color:rgba(19,224,178,1);
+ 
+}
+.tea_intro{
+  width:492rpx;
+  /* height:40px; */
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:40rpx;
+  color:rgba(220,246,241,1);
   opacity:1;
+}
+.tea_bottom{
+  position: absolute;
+  margin-top:27rpx;
+  margin-left: 27rpx;
+  width:690rpx;
+  height:181rpx;
+  z-index: -1;
 }
