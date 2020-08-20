@@ -306,7 +306,7 @@ function end_report1(params) {
 
 //结课报告2
 function end_report2(params) {
-  return fetch.olsfetchpost(URI, 'report/getstudyearlynight', params)
+  return fetch.olsfetchpost(URI, 'v5/report/getstudyearlynight', params)
 }
 
 //结课报告3
@@ -316,7 +316,7 @@ function end_report3(params) {
 
 //结课报告4
 function end_report4(params) {
-  return fetch.olsfetchpost(URI, 'report/getstudyresult', params)
+  return fetch.olsfetchpost(URI, 'v5/report/getstudyresult', params)
 }
 
 //获取免费课

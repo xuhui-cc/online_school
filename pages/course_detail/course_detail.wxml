@@ -1,6 +1,6 @@
 <view class="container">
 
-  <image class="report_img" src="../../images/report.png" bindtap="to_end_report" wx:if="{{course_info.mark_status == 2 || course_cata.mark_status == 2 }}"></image>
+  <!-- <image class="report_img" src="../../images/report.png" bindtap="to_end_report" wx:if="{{course_info.mark_status == 2 || course_cata.mark_status == 2 }}"></image> -->
 
   <view class="flex">
     <view class="head">{{course_info.title}}</view>
