@@ -114,7 +114,9 @@
 </view>
 <!-- 无权限查看 展示7v1介绍h5 -->
 <block wx:else>
-  <web-view src="{{url7v1}}"></web-view>
+  <block wx:if="{{url7v1 && url7v1 != ''}}">
+    <web-view src="{{url7v1}}"></web-view>
+  </block>
 </block>
 
 <!-- 消课记录弹框 -->
