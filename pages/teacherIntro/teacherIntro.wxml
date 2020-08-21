@@ -1,2 +1,86 @@
-<!--pages/teacherIntro/teacherIntro.wxml-->
-<text>pages/teacherIntro/teacherIntro.wxml</text>
+<view class="container" style="height:100%;position:fixed;width:750rpx;">
+<scroll-view scroll-y="false" bindscroll="scroll" style="height:100%;">
+  <view >
+    <image class="intro_bottom1" src="../../images/teacherFile/intro_bottom1.png"></image>
+    <image class="tea_avatar1" src="{{teacherIntro.avatar}}"></image>
+    <view class="tea_name1">{{teacherIntro.name}}</view>
+    <view class="tea_position1">{{teacherIntro.discipline}}老师</view>
+  </view>
+
+  <view hidden="true">
+    <image class="intro_bottom2" src="../../images/teacherFile/intro_bottom2.png"></image>
+    <view class="flex">
+      <image class="tea_avatar2" src="{{teacherIntro.avatar}}"></image>
+      <view class="tea_name2">{{teacherIntro.name}}</view>
+      <view class="tea_position2">{{teacherIntro.discipline}}老师</view>
+    </view>
+  </view>
+
+  <image class="head1" src="../../images/teacherFile/head1.png"></image>
+  <view>
+    <image class="yin1" src="../../images/teacherFile/yin1.png"></image>
+    <view class="intro_layout">
+      <view class="tea_intro">{{teacherIntro.techintro}}</view>
+    </view>
+  </view>
+  <image class="yin2"  src="../../images/teacherFile/yin2.png"></image> 
+
+  <image class="head1" src="../../images/teacherFile/head2.png"></image>
+  
+  <view style="display:none">
+    <image wx:for="{{video1}}" wx:key="id" id="{{item.csid}}" src="{{item.videopic}}" bindload="onImageLoad"></image>
+  </view>
+
+  <scroll-view scroll-y="true" class="layout" >
+  <view style="width:100%">
+    <view class="img_item">
+      <view wx:for="{{col1}}" wx:key="id"  >
+        <image src="{{item.videopic}}" style="width:100%;height:{{item.height}}px" bindtap="to_teaVideo" data-url="{{item.videourl}}"></image>
+      </view>
+    </view>
+    <view class="img_item">
+      <view wx:for="{{col2}}" wx:key="id" >
+        <image src="{{item.videopic}}" style="width:100%;height:{{item.height}}px" bindtap="to_teaVideo" data-url="{{item.videourl}}"></image>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</scroll-view>
+<!-- container -->
+</view>

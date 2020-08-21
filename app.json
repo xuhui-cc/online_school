@@ -43,6 +43,7 @@
     "pages/vip_detail/vip_detail",
     "pages/parent_childList/parent_childList",
     "pages/teacherIntro/teacherIntro",
+    "pages/teacherVideo/teacherVideo",
     "pages/teacherList/teacherList"
   ],
   "window": {

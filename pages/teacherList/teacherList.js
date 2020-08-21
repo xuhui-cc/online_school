@@ -1,4 +1,5 @@
 // pages/teacherList/teacherList.js
+
 const app = getApp()
 Page({
 
@@ -70,13 +71,14 @@ Page({
 
 
   /**---------------------------------------------------功能----------------------------------------------- */
+
   //名师介绍页跳转
   to_teacherIntro:function(e){
     let that = this
     var xb = e.currentTarget.dataset.xb
     console.log(xb)
     wx.navigateTo({
-      url: '../../pages/teacherIntro/teacherIntro',
+      url: '../../pages/teacherIntro/teacherIntro?id=' + that.data.teacherList[xb].id,
     })
   },
 
