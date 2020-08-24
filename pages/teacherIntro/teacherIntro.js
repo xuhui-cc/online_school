@@ -4,6 +4,9 @@ let col1H = 0;
 let col2H = 0;
 Page({
 
+  // 分享图片的路径
+  shareImagePath: '',
+
   /**
    * 页面的初始数据
    */
@@ -15,7 +18,8 @@ Page({
     images: [],
     col1: [],
     col2: [],
-    scrollTop: null
+    scrollTop: null,
+    showCanvas:false,
   },
 
   /**
@@ -42,6 +46,7 @@ Page({
           
       }
   })
+  
   },
 
 
@@ -140,6 +145,114 @@ loadImages: function () {
   });
 },
 
+// 处理图片
+dealAva:function(){
+  let that = this 
+  
+    wx.getImageInfo({
+      src: wx.getStorageSync('ava'),
+      success: function (res) {
+        console.log(res,"res");
+        var ava = res.path
+        that.drawShareImage(ava)
+      }
+    })
+    // console.log(promise3,"promise3")
+  
+},
+
+
+/**
+   * 绘制分享图片
+  */
+ drawShareImage: function (ava) {
+  this.setData({
+    showCanvas: true
+  })
+  const ctx = wx.createCanvasContext('shareCanvas')
+  ctx.drawImage('../../images/teacherFile/share_teaInfo.png', 0, 0, 375, 300)
+
+  //画头像
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(187 , 80, 37, 0, 2 * Math.PI);
+  ctx.setStrokeStyle('white')
+  ctx.stroke()
+  ctx.clip()
+  ctx.drawImage(ava, 150, 43, 80, 100)
+
+  //画昵称
+  ctx.restore()
+  ctx.beginPath()
+  ctx.setFontSize(26)
+  ctx.setFillStyle('#13E0B2')
+  ctx.setTextAlign('center')
+  ctx.fillText(this.data.teacherIntro.name, 187, 150 ,120)
+  ctx.stroke()
+
+  //画职位
+  ctx.restore()
+  ctx.beginPath()
+  ctx.setFontSize(16)
+  ctx.setFillStyle('#13E0B2')
+  ctx.setTextAlign('center')
+  ctx.fillText(this.data.teacherIntro.discipline, 187, 175 ,120)
+  ctx.stroke()
+
+  //画简介
+  ctx.restore()
+  ctx.beginPath()
+  ctx.setFontSize(17)
+  ctx.setFillStyle('#FFFFFF')
+  ctx.setTextAlign('left')
+  ctx.fillText(this.data.teacherIntro.techintro, 40,260)
+  ctx.stroke()
+
+
+  // ctx.beginPath();
+  
+  // ctx.closePath();
+  //   // ctx.fill();
+  // ctx.clip()
+  // // 底图
+  
+  
+  
+
+  
+
+  
+
+  console.log("画图完成")
+
+  let that = this
+  ctx.draw(true,function(e) {
+    console.log("开始画图")
+    wx.canvasToTempFilePath({
+      x: 0,
+      y: 0,
+      width: 375,
+      height: 300,
+      canvasId: 'shareCanvas',
+      success(res) {
+        console.log(res.tempFilePath)
+        that.shareImagePath = res.tempFilePath
+        console.log(that.shareImagePath,"图片地址")
+        that.setData({
+          showCanvas: false
+        })
+      },
+      fail (res) {
+        console.log("失败")
+        that.setData({
+          showCanvas: false
+        })
+      }
+    })
+  })
+
+},
+
 /*---------------------------------------------------------接口------------------------------------------------*/
 
   //获取名师详细介绍
@@ -153,16 +266,19 @@ loadImages: function () {
         that.setData({
           teacherIntro: d.data.data
         })
+        wx.setStorageSync('ava', d.data.data.avatar)
         for(var i=0;i<that.data.teacherIntro.video.length;i++){
           var csheight = "teacherIntro.video[" + i + "].height"
           that.setData({
             [csheight]:0
           })
         }
+        
         that.setData({
           video: d.data.data.video
         })
         that.loadImages();
+        that.dealAva()
         
       } else {
         // console.log("结课考试试卷结束记录接口==============" + d.data.msg)
@@ -218,6 +334,7 @@ loadImages: function () {
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    let paramStr = 'sid=1'
+    return app.shareTool.getShareReturnInfo('1,2,3', '/pages/study_record/study_record', paramStr, this.shareImagePath ? this.shareImagePath : '', '名师介绍')
   }
 })

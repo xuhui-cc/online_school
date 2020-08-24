@@ -1,4 +1,5 @@
 <view class="container" style="height:100%;position:fixed;width:750rpx;">
+
 <scroll-view scroll-y="false" bindscroll="scroll" style="height:100%;">
   <view >
     <image class="intro_bottom1" src="../../images/teacherFile/intro_bottom1.png"></image>
@@ -32,32 +33,23 @@
   </view>
 
   <scroll-view scroll-y="true" class="layout" >
-  <view style="width:100%">
-    <view class="img_item">
-      <view wx:for="{{col1}}" wx:key="id"  >
-        <image src="{{item.videopic}}" style="width:100%;height:{{item.height}}px" bindtap="to_teaVideo" data-url="{{item.videourl}}"></image>
+    <view style="width:100%">
+      <view class="img_item">
+        <view wx:for="{{col1}}" wx:key="id"  >
+          <image src="{{item.videopic}}" style="width:100%;height:{{item.height}}px" bindtap="to_teaVideo" data-url="{{item.videourl}}"></image>
+        </view>
+      </view>
+      <view class="img_item">
+        <view wx:for="{{col2}}" wx:key="id" >
+          <image src="{{item.videopic}}" style="width:100%;height:{{item.height}}px" bindtap="to_teaVideo" data-url="{{item.videourl}}"></image>
+        </view>
       </view>
     </view>
-    <view class="img_item">
-      <view wx:for="{{col2}}" wx:key="id" >
-        <image src="{{item.videopic}}" style="width:100%;height:{{item.height}}px" bindtap="to_teaVideo" data-url="{{item.videourl}}"></image>
-      </view>
-    </view>
-  </view>
-</scroll-view>
+  </scroll-view>
   
   
   
   
-
-
-
-
-
-
-
-
-
 
 
 
@@ -83,4 +75,7 @@
 
 </scroll-view>
 <!-- container -->
+<canvas canvas-id="shareCanvas" style="width:375px; height:300px;" wx:if="{{showCanvas}}"></canvas> 
+
+<!-- wx:if="{{showCanvas}}" -->
 </view>
