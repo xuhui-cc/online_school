@@ -29,7 +29,15 @@ Page({
     let that = this 
     that.setData({
       tea_id:options.id
+      
     })
+    if(options.gid){
+      that.setData({
+        gid:options.gid
+      })
+      wx.setStorageSync('gid', options.gid)
+    }
+    
     that.getTeacherIntro()   //获取名师详情
     wx.getSystemInfo({
       success: (res) => {
@@ -64,9 +72,12 @@ Page({
 
     //返回
   back:function(){
-    wx.reLaunch({
+    wx.navigateTo({
       url: '../../pages/teacherList/teacherList',
     })
+    // wx.reLaunch({
+    //   url: '../../pages/teacherList/teacherList',
+    // })
   },
 
     //名师视频跳转
@@ -254,13 +265,15 @@ dealAva:function(){
         //   urls: [that.shareImagePath],
         // })
         that.setData({
-          showCanvas: false
+          showCanvas: false,
+          teacher_info:true
         })
       },
       fail (res) {
         console.log("失败")
         that.setData({
-          showCanvas: false
+          showCanvas: false,
+          teacher_info:true
         })
       }
     })
@@ -349,7 +362,7 @@ dealAva:function(){
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    let paramStr = 'sid=1'
-    return app.shareTool.getShareReturnInfo('1,2,3', '/pages/study_record/study_record', paramStr, this.shareImagePath ? this.shareImagePath : '', '名师介绍')
+    let paramStr = 'isshare=1'+ '&gid=' + wx.getStorageSync('gid') + '&id=' + that.data.id
+    return app.shareTool.getShareReturnInfo('0,1', '/pages/teacherIntro/teacherIntro', paramStr, this.shareImagePath ? this.shareImagePath : '', '名师介绍')
   }
 })

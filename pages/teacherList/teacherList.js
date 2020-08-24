@@ -15,6 +15,12 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    if(options.gid){
+      that.setData({
+        gid:options.gid
+      })
+      wx.setStorageSync('gid', options.gid)
+    }
     that.getTeacherList()   //获取名师列表
   },
 
@@ -66,7 +72,8 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    let paramStr = 'isshare=1'+ '&gid=' + wx.getStorageSync('gid') 
+    return app.shareTool.getShareReturnInfo('0,1', '/pages/teacherList/teacherList', paramStr, this.shareImagePath ? this.shareImagePath : '', '名师介绍')
   },
 
 
