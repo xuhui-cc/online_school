@@ -2,7 +2,7 @@
 
   <!-- HEAD -->
   <image class="head" src="../../images/teacherFile/teacher_hade1.png"></image>
-  <image class="back" src="../../images/w_back2.png"></image>
+  <image class="back" src="../../images/w_back2.png" bindtap="back"></image>
 
   <!-- 名师列表 -->
   

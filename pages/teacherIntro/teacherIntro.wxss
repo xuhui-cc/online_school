@@ -2,6 +2,18 @@
 page{
   background:rgba(21,39,48,1);
 }
+.back{
+  position: fixed;
+  margin-top:100rpx;
+  margin-left: 33rpx;
+  width: 50rpx;
+  height: 50rpx;
+  z-index: 20;
+}
+.fixed{
+  position: fixed;
+  z-index: 19;
+}
 .intro_bottom1{
   position: absolute;
   width: 750rpx;

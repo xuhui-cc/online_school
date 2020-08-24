@@ -7,6 +7,7 @@ Page({
    */
   data: {
     grade_index:0,
+    bg:"https://onlineschool-1256006778.cos.ap-beijing.myqcloud.com/first_bg.png",
 
     // 是否展示页面内容
     showPageContent: false

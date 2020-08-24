@@ -56,8 +56,18 @@ Page({
     //滚动条监听
     scroll: function (e) {
       console.log(e.detail.scrollTop,"scrollTop")
+      // if(e.detail.scrollTop >300){
+
+      // }
       this.setData({ scrollTop: e.detail.scrollTop })
     },
+
+    //返回
+  back:function(){
+    wx.reLaunch({
+      url: '../../pages/teacherList/teacherList',
+    })
+  },
 
     //名师视频跳转
     to_teaVideo:function(e){
@@ -145,6 +155,8 @@ loadImages: function () {
   });
 },
 
+
+
 // 处理图片
 dealAva:function(){
   let that = this 
@@ -170,7 +182,7 @@ dealAva:function(){
     showCanvas: true
   })
   const ctx = wx.createCanvasContext('shareCanvas')
-  ctx.drawImage('../../images/teacherFile/share_teaInfo.png', 0, 0, 375, 300)
+  ctx.drawImage('../../images/teacherFile/share_teaInfo.png', 0, 0, 375, 320)
 
   //画头像
   ctx.save();
@@ -232,15 +244,15 @@ dealAva:function(){
       x: 0,
       y: 0,
       width: 375,
-      height: 300,
+      height: 320,
       canvasId: 'shareCanvas',
       success(res) {
         console.log(res.tempFilePath)
         that.shareImagePath = res.tempFilePath
         console.log(that.shareImagePath,"图片地址")
-        wx.previewImage({
-          urls: [that.shareImagePath],
-        })
+        // wx.previewImage({
+        //   urls: [that.shareImagePath],
+        // })
         that.setData({
           showCanvas: false
         })

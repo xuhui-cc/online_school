@@ -1,5 +1,5 @@
 <view class="container" wx:if="{{showPageContent}}">
-  <image class="firstPage_bg" src="../../images/first_bg.png"></image>
+  <image class="firstPage_bg" src="{{bg}}"></image>
   <view class="tip">已有 <text  style="color:#02DC9F;font-weight:bold;">{{num}}人</text> 参与测评，离高分更近一步！</view>
   
   <!-- <picker class="button_start" bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}"> -->

@@ -3,7 +3,7 @@
   <!-- 导航栏 -->
   <view class="naviBar" style="top:{{statusBarHeight}}px; height:{{naviContentHeight}}px">
     <view class="naviBar_back" bindtap="naviBackItemClicked">
-      <image class="naviBar_backImage" src="../../images/teacher_client/navi_back_white.png"></image>
+      <image class="naviBar_backImage" src="../../images/w_back2.png"></image>
     </view>
     <view class="naviBar_title">添加日志</view>
     <view class="naviBar_back"></view>

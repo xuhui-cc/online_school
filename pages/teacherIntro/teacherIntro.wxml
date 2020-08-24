@@ -1,5 +1,13 @@
 <view class="container" style="height:100%;position:fixed;width:750rpx;">
-
+<image class="back" src="../../images/w_back2.png" bindtap="back"></image>
+<view wx:if="{{scrollTop >200}}" class="fixed">
+    <image class="intro_bottom2" src="../../images/teacherFile/intro_bottom2.png"></image>
+    <view class="flex">
+      <image class="tea_avatar2" src="{{teacherIntro.avatar}}"></image>
+      <view class="tea_name2">{{teacherIntro.name}}</view>
+      <view class="tea_position2">{{teacherIntro.discipline}}老师</view>
+    </view>
+  </view>
 <scroll-view scroll-y="false" bindscroll="scroll" style="height:100%;">
   <view >
     <image class="intro_bottom1" src="../../images/teacherFile/intro_bottom1.png"></image>
@@ -8,14 +16,7 @@
     <view class="tea_position1">{{teacherIntro.discipline}}老师</view>
   </view>
 
-  <view hidden="true">
-    <image class="intro_bottom2" src="../../images/teacherFile/intro_bottom2.png"></image>
-    <view class="flex">
-      <image class="tea_avatar2" src="{{teacherIntro.avatar}}"></image>
-      <view class="tea_name2">{{teacherIntro.name}}</view>
-      <view class="tea_position2">{{teacherIntro.discipline}}老师</view>
-    </view>
-  </view>
+  
 
   <image class="head1" src="../../images/teacherFile/head1.png"></image>
   <view>
@@ -31,8 +32,12 @@
   <view style="display:none">
     <image wx:for="{{video1}}" wx:key="id" id="{{item.csid}}" src="{{item.videopic}}" bindload="onImageLoad"></image>
   </view>
+  
 
-  <scroll-view scroll-y="true" class="layout" >
+  <view class="layout">
+  
+  
+  
     <view style="width:100%">
       <view class="img_item">
         <view wx:for="{{col1}}" wx:key="id"  >
@@ -45,7 +50,8 @@
         </view>
       </view>
     </view>
-  </scroll-view>
+  </view>
+ 
   
   
   
@@ -74,8 +80,11 @@
 
 
 </scroll-view>
+
+
 <!-- container -->
-<canvas canvas-id="shareCanvas" style="width:375px; height:300px;" wx:if="{{showCanvas}}"></canvas> 
+
 
 <!-- wx:if="{{showCanvas}}" -->
 </view>
+<canvas canvas-id="shareCanvas" style="width:375px; height:320px;" hidden="true"></canvas> 
