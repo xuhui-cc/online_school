@@ -238,6 +238,9 @@ dealAva:function(){
         console.log(res.tempFilePath)
         that.shareImagePath = res.tempFilePath
         console.log(that.shareImagePath,"图片地址")
+        wx.previewImage({
+          urls: [that.shareImagePath],
+        })
         that.setData({
           showCanvas: false
         })
