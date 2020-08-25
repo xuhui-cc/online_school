@@ -3,16 +3,29 @@
 const app = getApp()
 
 Page({
+
+  // 是否要跳转到分享的页面
+  toSharePage: false,
+  
+  // 是否页面第一次出现
+  firstShow: true,
+
   data: {
     current_subject: 0,
     
+    // 广告弹窗读对象
+    adWindowModel: null,
   },
   //事件处理函数
   
   onLoad: function (options) {
     let that = this
     options = app.shareTool.getShareOption()
-  
+
+    if (options.share && options.share == 1) {
+      this.toSharePage = true
+    }
+
     if (options.isshare == 1){
       wx.setStorageSync("gid", options.gid)
       that.setData({
@@ -32,6 +45,7 @@ Page({
     that.getsubject()   //获取学科
 
     app.shareTool.shareTarget()
+
   },
 
 
@@ -280,6 +294,11 @@ Page({
     that.judge_login()    //登陆判断
     that.getsubject()   //获取学科
     
+    if ((this.firstShow && !this.toSharePage) || (!this.firstShow && this.toSharePage)) {
+      this.toSharePage = false
+      this.getAd()
+    }
+    this.firstShow = false
   },
 
   /**
@@ -303,6 +322,45 @@ Page({
         })
         that.onShow()
 
+      }
+    })
+  },
+
+  // ---------------------------------------------------接口-----------------------------------------------------
+  /**
+   * 获取弹窗广告
+  */
+  getAd: function() {
+    let params = {
+      // token: wx.getStorageSync("token"),
+    }
+    let that = this
+    app.ols.getAdWindow(params).then(d=>{
+      if (d.data.code == 0) {
+        let ads = d.data.data
+        if (ads && ads != '' && ads.length != 0) {
+          let adModel = ads[0]
+          let storageAdIdArray = wx.getStorageSync('adIDArray')
+          let canLoadAd = false
+          if (storageAdIdArray && storageAdIdArray.length != 0) {
+            // 若有已存的广告ID
+            if(storageAdIdArray.indexOf(adModel.id) == -1) {
+              // 是新的ID
+              canLoadAd = true
+              storageAdIdArray.push(adModel.id)
+              wx.setStorageSync('adIDArray', storageAdIdArray)
+            }
+          } else {
+            // 若没有已存的广告ID
+            wx.setStorageSync('adIDArray', [adModel.id])
+            canLoadAd = true
+          }
+          if (canLoadAd) {
+            that.setData({
+              adWindowModel: adModel
+            })
+          }
+        }
       }
     })
   },

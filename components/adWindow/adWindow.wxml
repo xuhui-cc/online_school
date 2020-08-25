@@ -1,0 +1,7 @@
+<!--components/adWindow/adWindow.wxml-->
+<view class="adWindow" wx:if="{{show}}">
+  <view class="centerView">
+    <image class="adImage" src="{{imgSrc}}" mode="aspectFit" style="height:{{imageHeight}}rpx;" bindtap="adImageClicked"></image>
+    <image class="adCloseButton" src="./images/adWindow_close.png" bindtap="adWindowCloseButtonClciked"></image>
+  </view>
+</view>

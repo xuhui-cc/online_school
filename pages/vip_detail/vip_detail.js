@@ -35,9 +35,7 @@ Page({
 
   //返回我的主页
   back:function(){
-    wx.switchTab({
-      url: '../../pages/my/my',
-    })
+    wx.navigateBack()
   },
  
   /**
