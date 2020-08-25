@@ -126,8 +126,9 @@ page{
 .tea_intro{
   margin-left: 28rpx;
   padding-top: 44rpx;
+  padding-bottom: 40rpx;
   width:635rpx;
-  height:130rpx;
+  /* height:130rpx; */
   font-size:28rpx;
   font-family:PingFang SC;
   font-weight:400;
@@ -148,4 +149,10 @@ page{
   margin: 1%;
   display: inline-block;
   vertical-align: top;
+}
+.play{
+  position: absolute;
+  width:90rpx;
+  height:90rpx;
+  z-index: 3;
 }

@@ -53,7 +53,7 @@
       </block>
     </swiper>
 
-    <image class="teacher_inter" style="{{banner3?'margin-top: 600rpx;':''}}" src="../../images/teacherFile/teacher_inter.png" bindtap="teacher_inter"></image>
+    <image class="teacher_inter" style="{{banner3?'margin-top: 30rpx;':''}}" src="../../images/teacherFile/teacher_inter.png" bindtap="teacher_inter"></image>
 
     <!-- 公开课 -->
     <!-- <view style="margin-top:45rpx;margin-left:30rpx;" hidden="true">

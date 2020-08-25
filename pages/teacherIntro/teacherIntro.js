@@ -228,7 +228,7 @@ dealAva:function(){
   ctx.setFontSize(17)
   ctx.setFillStyle('#FFFFFF')
   ctx.setTextAlign('left')
-  ctx.fillText(this.data.teacherIntro.techintro, 40,260)
+  ctx.fillText(this.data.teacherIntro.intro, 40,260)
   ctx.stroke()
 
 

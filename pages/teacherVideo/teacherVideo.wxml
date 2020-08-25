@@ -1,5 +1,5 @@
 <view class="container">
-  <video class="video" src="{{url}}" autoplay="true"></video>
+  <video class="video" style="height:{{Height}}px;" src="{{url}}" autoplay="true"></video>
 
 </view>
 

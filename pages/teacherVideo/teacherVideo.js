@@ -13,6 +13,21 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    wx.getSystemInfo({
+      success: (res) => {
+          // let ww = res.windowWidth;
+          // // let wh = res.windowHeight;
+          // let imgWidth = ww * 0.48;
+          // // let scrollH = wh;
+
+          this.setData({
+            Height: res.windowHeight
+              // imgWidth: imgWidth
+          });
+
+          
+      }
+    })
     that.setData({
       url:options.url
     })

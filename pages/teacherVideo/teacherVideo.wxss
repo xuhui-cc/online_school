@@ -3,7 +3,7 @@ page{
   background:rgba(21,39,48,1);
 }
 .video{
-  margin-top: 70rpx;
+  /* margin-top: 70rpx; */
   width: 750rpx;
-  height:1318rpx;
+  /* height:1318rpx; */
 }
