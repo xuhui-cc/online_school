@@ -82,8 +82,8 @@ transform: rotate(45deg);
   margin-top: 450rpx;
   width:690rpx;
   height:210rpx;
-  /* background: transparent; */
-  background-color: rgba(58,58,58,1);
+  background: transparent;
+  /* background-color: rgba(58,58,58,1); */
   opacity:0.5;
   z-index: 5;
 }
