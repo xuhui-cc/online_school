@@ -53,7 +53,6 @@ Page({
   judge_login:function(){
     let that = this 
     that.setData({
-      
       login: wx.getStorageSync("login"),
       gid: wx.getStorageSync("gid")
     })
@@ -283,7 +282,7 @@ Page({
       gid: wx.getStorageSync("gid")
     })
     if (that.data.grade){
-      for (var i = -0; i < that.data.grade.length; i++) {
+      for (var i = 0; i < that.data.grade.length; i++) {
         if (that.data.gid == that.data.grade[i].id) {
           that.setData({
             grade_index: i

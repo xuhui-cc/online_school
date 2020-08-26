@@ -50,10 +50,7 @@ Page({
         gid:options.gid,
         login: wx.getStorageSync("login")
       })
-      if(that.data.login){
         that.v4_viplist()
-      }
-      
     }else{
       that.setData({
         login: wx.getStorageSync("login")
@@ -152,18 +149,19 @@ Page({
     }
     // console.log(params, "会员列表参数")
     app.ols.v4_viplist(params).then(d => {
-      console.log(d, "会员列表数据")
+      // console.log(d, "会员列表数据")
       if (d.data.code == 0) {
         if(d.data.data.lists[0].course){
           d.data.data.lists[0].course_num = d.data.data.lists[0].course.length
         }
         
         that.setData({
+          vip:d.data.data,
           vip_list:d.data.data.lists
         })
-        console.log("会员列表成功")
+        // console.log("会员列表成功")
       } else {
-        console.log("会员列表失败==============" + d.data.msg)
+        // console.log("会员列表失败==============" + d.data.msg)
       }
     })
   },

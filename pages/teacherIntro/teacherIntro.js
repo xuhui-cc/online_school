@@ -3,7 +3,7 @@ const app = getApp()
 let col1H = 0;
 let col2H = 0;
 Page({
-
+  
   // 分享图片的路径
   shareImagePath: '',
 
@@ -27,11 +27,13 @@ Page({
    */
   onLoad: function (options) {
     let that = this 
-    col1H = 0
-    col2H = 0
+    if(options.isshare){
+      that.setData({
+        isshare:options.isshare
+      })
+    }
     that.setData({
       tea_id:options.id
-      
     })
     if(options.gid){
       that.setData({
@@ -74,12 +76,21 @@ Page({
 
     //返回
   back:function(){
-    wx.navigateTo({
-      url: '../../pages/teacherList/teacherList',
-    })
-    // wx.reLaunch({
+    let that = this
+    if(that.data.isshare){
+      wx.redirectTo({
+        url: '../../pages/teacherList/teacherList',
+      })
+    }else{
+      wx.navigateBack({
+        delta: 0,
+      })
+    }
+    
+    // wx.navigateTo({
     //   url: '../../pages/teacherList/teacherList',
     // })
+    
   },
 
     //名师视频跳转
@@ -93,21 +104,29 @@ Page({
     },
 
   onImageLoad: function (e) {
+    
     // console.log("分组图")
     // console.log(this.data.images)
-    let imageId = e.currentTarget.id;
+    let imageId = e.currentTarget.dataset.id;
     let oImgW = e.detail.width;         //图片原始宽度
     let oImgH = e.detail.height;        //图片原始高度
     let imgWidth = this.data.imgWidth;  //图片设置的宽度
-    let scale = imgWidth / oImgW;        //比例计算
-    let imgHeight = oImgH * scale;      //自适应高度
+    let imgHeight =0;      //自适应高度
+    if(oImgW>oImgH){
+      imgHeight = 129
+    }else{
+      imgHeight = 282
+    }
+    // let scale = imgWidth / oImgW;        //比例计算
+    // let imgHeight = oImgH * scale;      //自适应高度
 
     let images = this.data.video1;
     let imageObj = null;
+    console.log(imageId,"imageId")
 
     for (let i = 0; i < images.length; i++) {
         let img = images[i];
-        if (img.csid === imageId) {
+        if (i == imageId) {
             imageObj = img;
             break;
         }
@@ -119,18 +138,37 @@ Page({
     let col1 = this.data.col1;
     let col2 = this.data.col2;
 
-    if (col1H <= col2H) {
-        col1H += imgHeight;
-        col1.push(imageObj);
-    } else {
+    if(col1H == 0){
+      col1H += imgHeight;
+      col1.push(imageObj);
+      console.log("col1H==0")
+    }else{
+      if(col2H == 0){
         col2H += imgHeight;
         col2.push(imageObj);
+        console.log("col2H==0")
+      }else{
+        if (col1H <= col2H) {
+          col1H += imgHeight;
+          col1.push(imageObj);
+      } else {
+          col2H += imgHeight;
+          col2.push(imageObj);
+      }
+      }
     }
+    // if (col1H <= col2H) {
+    //     col1H += imgHeight;
+    //     col1.push(imageObj);
+    // } else {
+    //     col2H += imgHeight;
+    //     col2.push(imageObj);
+    // }
 
     let data = {
-        loadingCount: loadingCount,
-        col1: col1,
-        col2: col2
+      loadingCount: loadingCount,
+      col1: col1,
+      col2: col2
     };
 
     if (!loadingCount) {
@@ -156,11 +194,11 @@ loadImages: function () {
 
   let images = that.data.video
 
-  let baseId = "img-" + (+new Date());
+  // let baseId = "img-" + (+new Date());
 
-  for (let i = 0; i < images.length; i++) {
-    images[i].csid = baseId + "-" + i;
-  }
+  // for (let i = 0; i < images.length; i++) {
+  //   images[i].csid = baseId + "-" + i;
+  // }
 
   this.setData({
     loadingCount: images.length,
@@ -344,8 +382,8 @@ dealAva:function(){
    */
   onUnload: function () {
     let that = this
-    that.col1H = 0;
-    that.col2H = 0;
+    col1H = 0;
+    col2H = 0;
     that.setData({
       scrollH: 0,
       imgWidth: 0,
@@ -374,7 +412,7 @@ dealAva:function(){
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    let paramStr = 'isshare=1'+ '&gid=' + wx.getStorageSync('gid') + '&id=' + that.data.id
+    let paramStr = 'isshare=1'+ '&gid=' + wx.getStorageSync('gid') + '&id=' + this.data.tea_id
     return app.shareTool.getShareReturnInfo('0,1', '/pages/teacherIntro/teacherIntro', paramStr, this.shareImagePath ? this.shareImagePath : '', '名师介绍')
   }
 })
