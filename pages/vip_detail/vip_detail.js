@@ -55,6 +55,9 @@ Page({
       }
       
     }else{
+      that.setData({
+        login: wx.getStorageSync("login")
+      })
       that.v4_viplist()
       console.log("非分享打开")
     }
@@ -301,11 +304,20 @@ Page({
    //获取微信绑定手机号登录
 getPhoneNumber: function (e) {
   var that = this
+  var type = e.currentTarget.dataset.type
+  console.log(type)
   app.loginTool.getPhoneNumber(e, that.data.gid, function(success, message){
     if (success) {
       that.setData({
         login: true
       })
+      if(type == 1){
+        that.setData({
+          code:'',
+          checkCode:1,
+          exchange:!that.data.exchange
+        })
+      }
       that.v4_viplist()
     }
   })

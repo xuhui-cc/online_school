@@ -27,6 +27,8 @@ Page({
    */
   onLoad: function (options) {
     let that = this 
+    col1H = 0
+    col2H = 0
     that.setData({
       tea_id:options.id
       
@@ -42,12 +44,12 @@ Page({
     wx.getSystemInfo({
       success: (res) => {
           let ww = res.windowWidth;
-          // let wh = res.windowHeight;
+          let wh = res.windowHeight;
           let imgWidth = ww * 0.48;
-          // let scrollH = wh;
+          let scrollH = wh;
 
           this.setData({
-              // scrollH: scrollH,
+              scrollH: scrollH,
               imgWidth: imgWidth
           });
 
@@ -334,14 +336,24 @@ dealAva:function(){
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    let that = this
+    that.col1H = 0;
+    that.col2H = 0;
+    that.setData({
+      scrollH: 0,
+      imgWidth: 0,
+      loadingCount: 0,
+      images: [],
+      col1: [],
+      col2: [],
+    })
   },
 
   /**

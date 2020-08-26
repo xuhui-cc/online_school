@@ -1,18 +1,21 @@
 
 <view class="container">
-
+  <button class="login1"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="0"></button>
   <image class="back" src="../../images/w_back2.png" bindtap="back"></image>
 
 
+
   <image class="bg3" src="../../images/bg3.png"></image>
+  
 
   <view class="flex" style="margin-top:176rpx;margin-left: 50rpx;">
-    <view class="ava">
+    <image wx:if="{{!login}}" src="../../images/my_head.png" class="ava"></image>
+    <view class="ava" wx:else="">
       <open-data  type="userAvatarUrl"></open-data>
     </view>
     
-     
-    <view class="flex" wx:if="{{vip_list[0].is_buy == 0}}" >
+    <view wx:if="{{!login}}" class="nick">请登录</view>
+    <view class="flex" wx:if="{{vip_list[0].is_buy == 0 && login}}" >
       <open-data type="userNickName" class="nick"></open-data>
       <view class="btn" bindtap="vip_buy" hidden="{{btn_buy}}">立即开通</view>
     </view>
@@ -48,7 +51,7 @@
   <view class="intro">{{vip_list[0].memo}}</view>
   <view class="price" wx:if="{{vip_list[0].is_buy == 0}}" hidden="{{btn_buy}}"><text style="font-size:32rpx;font-weight:400;" >¥</text>{{vip_list[0].price}}</view>
 
-
+  <button class="login1" style="margin-left: 485rpx;margin-top: 600rpx;width:240rpx;height:40rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="1"></button>
   <view class="layout">
     <image  class="exchange_entry" src="../../images/exchange_entry.png" bindtap="exchange"></image>
     <view class="h1">{{vip_list[0].title}}会员权益</view>
@@ -63,7 +66,7 @@
             <view class="title">{{item.title}}</view>
             <view class="flex">
               <view class="num">{{item.class_hour}}课时</view>
-              <view class="tip" wx:if="{{vip_list[0].valid <= 0 || vip_list[0].is_buy == 0}}" style="color:rgba(163,163,163,1);">免费学</view>
+              <view class="tip" wx:if="{{vip_list[0].valid <= 0 || vip_list[0].is_buy == 0 || !vip_list[0].valid}}" style="color:rgba(163,163,163,1);">免费学</view>
               <view class="tip" wx:if="{{vip_list[0].valid > 0  &&  vip_list[0].is_buy > 0}}">免费学</view>
             </view>
             
@@ -112,16 +115,16 @@
 
 
   <!-- 登录蒙层 -->
-  <view class="mask1" wx:if="{{isshare == 1 && login == false}}"></view>
+  <!-- <view class="mask1" wx:if="{{isshare == 1 && login == false}}"></view>
   <view class="login_layout" wx:if="{{isshare == 1 && login == false}}">
   
-    <!-- <image class="login_del" src="../../images/del.png"></image> -->
+    
     <image class="unlogin" src="../../images/unlogin.png" style="margin-top:75rpx;"></image>
     <view class="login_tip">您当前尚未登录! </view>
     <view class="login_tip">请点击下方按钮登录</view>
     <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
     <image class="tologin" src="../../images/tologin.png"></image>
-  </view>
+  </view> -->
   
   
 </view>

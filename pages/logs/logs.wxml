@@ -211,7 +211,7 @@
           <image class="king" src="../../images/king.png"></image>
           <view class="open_vip" >开通会员</view>
           <view class="open_content" >免费学习领军大咖老师的经典好课</view>
-          <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
+          <!-- <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button> -->
           <view class="vip_btn"  bindtap="to_vip">会员中心</view>
         </view>
 
