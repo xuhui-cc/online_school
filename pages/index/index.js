@@ -297,6 +297,10 @@ Page({
     if ((this.firstShow && !this.toSharePage) || (!this.firstShow && this.toSharePage)) {
       this.toSharePage = false
       this.getAd()
+    } else {
+      this.setData({
+        adWindowModel: null
+      })
     }
     this.firstShow = false
   },
