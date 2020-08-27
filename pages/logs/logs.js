@@ -699,7 +699,7 @@ Page({
       //名师简介
   teacher_inter:function(){
     wx.navigateTo({
-      url: '../../pages/teacherList/teacherList',
+      url: '../../pages/teacherList/teacherList?type=1',
     })
   },
 

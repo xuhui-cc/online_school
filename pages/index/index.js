@@ -20,6 +20,11 @@ Page({
   
   onLoad: function (options) {
     let that = this
+    if(wx.getStorageSync('index_xk')){
+      that.setData({
+        current_subject:wx.getStorageSync('index_xk')
+      })
+    }
     options = app.shareTool.getShareOption()
 
     if (options.share && options.share == 1) {
@@ -191,6 +196,7 @@ Page({
       current_subject: cur,
       did: that.data.subject[cur].id
     })
+    wx.setStorageSync('index_xk', cur)
     that.test_list()  //获取测评列表
   },
 
@@ -307,7 +313,7 @@ Page({
   //名师简介
   teacher_inter:function(){
     wx.navigateTo({
-      url: '../../pages/teacherList/teacherList',
+      url: '../../pages/teacherList/teacherList?type=0',
     })
   },
 

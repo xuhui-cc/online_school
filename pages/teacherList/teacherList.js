@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    image_bg:"https://onlineschool-1256006778.cos.ap-beijing.myqcloud.com/teacher_hade1.png"
   },
 
   /**
@@ -15,6 +15,11 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    if(options.type){
+      that.setData({
+        type:options.type
+      })
+    }
     if(options.gid){
       that.setData({
         gid:options.gid
@@ -91,9 +96,17 @@ Page({
 
   //返回
   back:function(){
-    wx.reLaunch({
-      url: '../../pages/index/index',
-    })
+    let that = this
+    if(that.data.type == 1){
+      wx.reLaunch({
+        url: '../../pages/logs/logs',
+      })
+    }else{
+      wx.reLaunch({
+        url: '../../pages/index/index',
+      })
+    }
+    
   },
 
 

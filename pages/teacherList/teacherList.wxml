@@ -1,7 +1,7 @@
 <view class="container">
 
   <!-- HEAD -->
-  <image class="head" src="../../images/teacherFile/teacher_hade1.png"></image>
+  <image class="head" src="{{image_bg}}"></image>
   <image class="back" src="../../images/w_back2.png" bindtap="back"></image>
 
   <!-- 名师列表 -->
