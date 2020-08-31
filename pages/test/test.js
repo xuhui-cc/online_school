@@ -413,9 +413,9 @@ Page({
       var moveX = e.touches[0].clientX;
       diffX = that.data.startX - moveX;
       var moveLeft = '';
-      if (diffX < -100) { //向右
+      if (diffX < -200) { //向右
         moveLeft = 'left:' + -(diffX < -90 ? -90 : diffX) + 'px;';
-      } else if (diffX > 100) { //向左
+      } else if (diffX > 200) { //向左
         moveLeft = 'left:-' + (diffX > 90 ? 90 : diffX) + 'px;';
       } else {
         moveLeft = 'left:0px;';
@@ -438,7 +438,7 @@ Page({
       this.setData({
         moveLeft: moveLeft
       });
-      if (diffX > 100) {
+      if (diffX > 200) {
         if (that.data.currentTab == (that.data.ques_info.num - 1)) {
           that.setData({
             dtk: true
@@ -453,7 +453,7 @@ Page({
           that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
         }
 
-      } else if (diffX < -100) {
+      } else if (diffX < -200) {
         if (that.data.currentTab == 0) {
           wx.showToast({
             title: '已经是第一题咯~',

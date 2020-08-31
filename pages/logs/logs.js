@@ -462,6 +462,9 @@ Page({
         
       } else {
         console.log(d.data.msg, "获取科目失败")
+        that.setData({
+          subject: ''
+        })
       }
     })
   },

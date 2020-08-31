@@ -135,9 +135,12 @@ Page({
           })
         } else {
           wx.showToast({
-            title: '选择失败哦',
+            title: '现在就是这个年级哦',
             icon: "none",
             duration: 3000
+          })
+          that.setData({
+            grade_select: false
           })
         }
       })

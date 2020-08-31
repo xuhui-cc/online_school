@@ -31,11 +31,11 @@
 
   <!-- 标题栏结束 -->
 
-  <scroll-view  scroll-x="true" class="tab-h" >
+  <scroll-view  scroll-x="true" class="tab-h" wx:if="{{subject}}">
     <view wx:for="{{subject}}" wx:key="index" class="tab-item {{current_subject==index?'active':''}}" data-current="{{index}}"  bindtap="swichNav_subject">{{item.title}}</view> 
   </scroll-view> 
 
-  <image class="teacher_inter" src="../../images/teacherFile/teacher_inter.png" bindtap="teacher_inter"></image>
+  <image class="teacher_inter" style="{{subject?'':'margin-top: 210rpx;'}}" src="../../images/teacherFile/teacher_inter.png" bindtap="teacher_inter"></image>
 
   <view wx:if="{{test_list != ''}}">
     <view class="test_margin">

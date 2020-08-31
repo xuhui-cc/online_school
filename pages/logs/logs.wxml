@@ -30,7 +30,7 @@
 
 
 
-  <scroll-view  scroll-x="true" class="tab-h" >
+  <scroll-view  scroll-x="true" class="tab-h" wx:if="{{subject}}">
     <view wx:for="{{subject}}" wx:key="index" class="tab-item {{current_subject==index?'active':''}}" data-current="{{index}}"  bindtap="swichNav_subject">{{item.title}}</view> 
   </scroll-view> 
 
@@ -43,9 +43,9 @@
     </scroll-view> 
   </view>
 
-  <view wx:if="{{current_subject == 0 }}">
+  <view wx:if="{{current_subject == 0 }}" >
     <!-- 广告条 -->
-    <swiper class="swiper_container" wx:if="{{banner3}}" autoplay="true"  interval="2500" circular="true" indicator-dots="true" indicator-color="rgba(255,255,255,1)" indicator-active-color="rgba(12,205,163,1)">
+    <swiper class="swiper_container" style="{{subject ?'':'margin-top: 200rpx;'}}" wx:if="{{banner3}}" autoplay="true"  interval="2500" circular="true" indicator-dots="true" indicator-color="rgba(255,255,255,1)" indicator-active-color="rgba(12,205,163,1)">
       <block wx:for="{{banner3}}" wx:key='ad_index' >
          <swiper-item>
           <image  class="ad_img" src="{{item.picurl}}" mode="widthFix" bindtap="ad_detail" data-type="{{item.type}}"  data-id="{{item.attachid}}" data-cate="{{item.cate}}" ></image>
@@ -53,7 +53,8 @@
       </block>
     </swiper>
 
-    <image class="teacher_inter" style="{{banner3?'margin-top: 30rpx;':''}}" src="../../images/teacherFile/teacher_inter.png" bindtap="teacher_inter"></image>
+    <image class="teacher_inter" wx:if="{{banner3}}" src="../../images/teacherFile/teacher_inter.png" bindtap="teacher_inter"></image>
+    <image class="teacher_inter" wx:else="" style="{{subject?'':'margin-top: 210rpx;'}}" src="../../images/teacherFile/teacher_inter.png" bindtap="teacher_inter"></image>
 
     <!-- 公开课 -->
     <!-- <view style="margin-top:45rpx;margin-left:30rpx;" hidden="true">
