@@ -1,3 +1,4 @@
+let pagePath = require('./pagePath.js')
 /*
 *api    根地址
 *path   请求路径
@@ -72,7 +73,7 @@ function olsfetchpost(api, path, params, log, showToast, loadingMsg) {
             wx.clearStorageSync()
             wx.setStorageSync('gid', gid)
             wx.reLaunch({
-              url: '/pages/first_page/first_page',
+              url: pagePath.getPagePath('first_page'),
             })
             wx.showToast({
               title: '登录已失效',

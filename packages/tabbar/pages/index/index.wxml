@@ -1,0 +1,94 @@
+<view class="container">
+
+ <!-- 标题栏 -->
+  <view class="nabigation_bar">
+    <!-- <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}"> -->
+      <view class="grade_content" bindtap="grade_select">{{grade[grade_index].title}}</view>
+    <!-- </picker> -->
+    <!-- <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}"> -->
+      <image class="grade_img" src="/images/other/xsj2.png" bindtap="grade_select"></image>
+    <!-- </picker> -->
+    <view class="head">领军网校</view>
+  </view>
+
+  <!-- 年级选择 -->
+  <view class="mask" wx:if="{{grade_select}}"></view>
+
+  <view class="select" wx:if="{{grade_select}}">
+    <view class="flex">
+      <view class="title1">年级选择</view>
+      <image class="del_img" src="/images/other/del.png" bindtap="del"></image>
+    </view>
+    <view class="heng"></view>
+    <scroll-view class="selec_layout"  scroll-y="true">
+      <view wx:for="{{grade}}" wx:key="index">
+        <view class="sel_item" data-xb="{{index}}" bindtap="subject_sel">{{item.title}}</view>
+        <view class="heng"></view>
+      </view>
+    </scroll-view>
+    <!-- <view class="yes">确定</view> -->
+  </view>
+
+  <!-- 标题栏结束 -->
+
+  <scroll-view  scroll-x="true" class="tab-h" wx:if="{{subject}}">
+    <view wx:for="{{subject}}" wx:key="index" class="tab-item {{current_subject==index?'active':''}}" data-current="{{index}}"  bindtap="swichNav_subject">{{item.title}}</view> 
+  </scroll-view> 
+
+  <image class="teacher_inter" style="{{subject?'':'margin-top: 210rpx;'}}" src="/images/teacherFile/teacher_inter.png" bindtap="teacher_inter"></image>
+
+  <view wx:if="{{test_list != ''}}">
+    <view class="test_margin">
+      <view  wx:for="{{test_list.lists}}" wx:key="index">
+        <view class="test_layout">
+          <view class="title">{{item.title}}</view>
+          <view class="intro">{{item.remark}}</view>
+          <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
+          
+          <view class="btn" wx:if="{{item.mid > 0}}" bindtap="to_cp_report" data-xb="{{index}}" style="background:#4D97F6;">
+            
+            <view class="test_word" style="margin-left: 28rpx;">查看报告</view>
+            <image class="btn_img" src="/images/other/next_bsj.png" style="margin-left: 5rpx;"></image>
+          </view>
+          <view class="btn" wx:else="" bindtap="to_cp_test" data-xb="{{index}}">
+          <!-- {{item.mid == 0}} -->
+            <image class="btn_img" src="/images/other/cp_btn.png"></image>
+            <view class="test_word">开始测评</view>
+          </view>
+        </view>
+      </view>
+    
+    
+    </view>
+  </view>
+
+  <view wx:if="{{test_list == ''}}">
+    <image class="null_img" src="/images/null/cp_null.png"></image>
+    <view class="null_tip">暂无测评</view>
+  </view>
+
+
+
+
+  <!-- 登录蒙层 -->
+  <!-- <view class="mask1" wx:if="{{isshare == 1 && islogin == false}}"></view>
+  <view class="login_layout" wx:if="{{isshare == 1 && islogin == false}}">
+    <image class="login_del" src="../../images/del.png"></image>
+    <image class="unlogin" src="../../images/unlogin.png"></image>
+    <view class="login_tip">您当前尚未登录! </view>
+    <view class="login_tip">请点击下方按钮登录</view>
+    <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+    <image class="tologin" src="../../images/tologin.png"></image>
+  </view>
+   -->
+
+
+
+
+
+
+
+
+</view>
+
+<adWindow wx:if="{{adWindowModel}}" imgSrc="{{adWindowModel.picurl}}" type="{{adWindowModel.type}}"></adWindow>

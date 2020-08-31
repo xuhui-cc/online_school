@@ -1,20 +1,20 @@
-
+let pagePath = require('./pagePath.js')
 // 存储的分享参数
 let shareOption = {}
 
 // first_page页面路径
-let firstPagePath = '/pages/first_page/first_page'
+let firstPagePath = pagePath.getPagePath('first_page')
 
 // 各角色首页路径
 let homePagePath = [
-  '/pages/index/index',
+  pagePath.getPagePath('index'),
   '/pages/teacher_studentList/teacher_studentList',
   '/pages/parent_childList/parent_childList'
 ]
 // tabbar各首页路径
 let tabbarPagePath = [
-  '/pages/logs/logs',
-  '/pages/my/my',
+  pagePath.getPagePath('logs'),
+  pagePath.getPagePath('my'),
 ]
 
 /**
@@ -59,7 +59,7 @@ function getShareReturnInfo(role, targetPath ,paramsStr, imageUrl, title) {
   return {
     title: title ? title : '领军网校',
     path: path,
-    imageUrl: imageUrl && imageUrl != '' ? imageUrl : '../../images/share1.png',
+    imageUrl: imageUrl && imageUrl != '' ? imageUrl : '/images/other/share1.png',
     success (res) {
       console.log('分享成功')
     },

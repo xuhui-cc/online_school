@@ -99,11 +99,11 @@ Page({
     let that = this
     if(that.data.type == 1){
       wx.reLaunch({
-        url: '../../pages/logs/logs',
+        url: app.getPagePath('logs'),
       })
     }else{
       wx.reLaunch({
-        url: '../../pages/index/index',
+        url: app.getPagePath('index'),
       })
     }
     

@@ -1,0 +1,48 @@
+<view class="container">
+  <view class="inter_layout">
+    <view class="time">课程时间：6月18日 20:00-21:00</view>
+    <view class="btn">立即报名</view>
+    <view class="mask"></view>
+    <image class="fm" src="/images/other/fm.png"></image>
+
+    <view class="course_layout">
+      <view class="title">高三数学三角函数专题课数专题课专题课专题课专题专题课专题课专题课</view>
+      <view class="flex">
+        <view class="free">免费</view>
+        <view class="num">3654人已报名</view>
+        <image class="clock" src="./resource/clock1.png"></image>
+        <view class="course_time">6月18日 20:00-21:00</view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="recommend">推荐课程</view>
+  <scroll-view  scroll-x="true" class="scroll_hotbook" enable-flex="true">
+    <view wx:for="{{recommend}}" wx:key="hotbook_index" class='hotbook_project'>
+      <image class="hotbook_img" src="/images/other/fm.png" ></image>
+      <view class="hotbook_name">高三数学三角函数专题课数专题课专题课专</view>
+    </view> 
+  </scroll-view> 
+  <rich-text nodes="{{bg}}"></rich-text>
+
+  <view class="btn_layout">
+    <view class="btn_btn">立即报名</view>
+  </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- container -->
+</view>

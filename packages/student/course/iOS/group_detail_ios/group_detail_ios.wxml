@@ -1,0 +1,106 @@
+<view class="container">
+
+  <view class="group_layout">
+    <view class="flex">
+      <image class="ava" src="{{group.avatar}}"></image>
+      <view style="margin-left: 23rpx;">
+        <view class="nick">{{group.nick}}</view>
+        <view class="label">团长</view>
+      </view>
+    </view>
+
+    <view class="status" wx:if="{{group.join == 1}}">已参团</view>
+    <view class="status" wx:else="">待参团</view>
+    <view class="time_tip">距该团结束仅剩</view>
+    <view class="time"> {{hour}}<text style="font-size:35rpx;">  时  </text> {{min}}<text style="font-size:35rpx;">  分  </text> {{sec}}<text style="font-size:35rpx;">  秒 </text></view>
+    
+    
+  
+  </view>
+
+  <view class="invite_layout">
+    <view class="num_tip">还差<text style="color:#FF4B20;">{{group.nums - group.has_nums}}人</text>拼团成功</view>
+    <button class="share_btn"  open-type="share" wx:if="{{group.join == 1}}"></button>
+    <view class="join_btn" wx:if="{{group.join == 1}}">点击邀请给好友参团</view>
+    <view class="join_btn" wx:else="" bindtap="to_groupPay">立即参团</view>
+    <view class="flex" bindtap="look_rule">
+      <view class="icon">!</view>
+      <view class="look_rule">查看拼团规则</view>
+    </view>
+  
+  </view>
+
+  <view class="course">
+    <view class="flex">
+      <image class="fm" src="{{course_info.face}}"></image>
+      <view>
+        <view class="title">{{course_info.title}}</view>
+        <view class="now_price">¥{{course_info.pt_price}}</view>
+        <view class="flex">
+          <view class="buy_num">{{course_info.order_num}}人参与</view>
+          <view class="old_proce">¥{{course_info.price}}</view>
+        </view>
+      </view>
+    </view>  
+  </view>
+
+  <view class="flex">
+    <view class="shu"></view>
+    <view class="head">我的拼团好友</view>
+  </view>
+
+  <view  style="margin-bottom:100rpx;">
+    <view wx:for="{{group.member}}" wx:key="index">
+      <view class="flex">
+        <image class="group_ava" src="{{item.avatar}}"></image>
+        <view>
+          <view class="flex">
+            <view wx:if="{{index ==0}}" class="group_identity1">团长</view>
+            <view wx:else="" class="group_identity2">团员</view>
+            <view class="group_nick">{{item.nick}}</view>
+          </view>
+          <view class="group_time" wx:if="{{index ==0}}">开团时间：{{item.addtime}}</view>
+          <view class="group_time" wx:else="">入团时间：{{item.addtime}}</view>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+
+  <!-- 拼团规则蒙层 -->
+  <view class="mask" wx:if="{{rule}}"></view>
+  <view class="rule_layout" wx:if="{{rule}}">
+    <image class="mask_del" style="margin-left:550rpx;" src="/images/other/del.png" bindtap="look_rule"></image>
+    <image class="head_img" src="/images/other/rule_head.png"></image>
+    <view class="laber">开团</view>
+    <view class="content">团长发起拼团，购买商品完成支付后，团即可开启；</view>
+    <view class="laber" style="width:224rpx;">如何邀请好友参团</view>
+    <view class="content">团长开团后可以将团链接分享给好友，好友也购买该商品即为参团。</view>
+    <view class="laber" style="width:123rpx;">拼团成功</view>
+    <view class="content">开团24小时内到达规定的成团人数，即拼团成功。</view>
+    <view class="laber" style="width:189rpx;">拼团结束/失败</view>
+    <view class="content">开团24小时内未达到成团人数，即拼团失败，系统自动退款；</view>
+    <view class="iknow" bindtap="look_rule">我知道了</view>
+    <view class="iknow_tip">您可以在<text style="color:#FF4B20;">"我的"—"我的订单"</text> ,实时查看拼团进度。</view>
+  </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- container -->
+</view>

@@ -1,0 +1,78 @@
+<!--pages/my/my.wxml-->
+<view class="container">
+<!-- 头像 -->
+  <view class="userinfo">
+      <button class="login_ava"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
+      <image wx:if="{{!login}}" class="ava" src="/images/defaultHead/my_head.png"></image>
+      <view class="userinfo-avatar" wx:else="">
+        <open-data  type="userAvatarUrl"></open-data> 
+      </view>
+      <view class="userinfo-nickname">
+        <button class="login_ava" style="height: 55rpx;"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
+        <view wx:if="{{!login}}">请登录</view>
+        <open-data wx:else="" type="userNickName"></open-data>
+      </view>
+  </view>
+  <!-- 课程 -->
+  <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
+  
+  <view class="vip_layout">
+    <view wx:if="{{vip.valid == -1 || !vip.valid}}">
+      <image class="king" src="/images/other/king.png"></image>
+      <view class="open_vip" >开通会员</view>
+      <view class="open_content" >免费学习领军大咖老师的经典好课</view>
+      <view class="vip_btn"  bindtap="to_vip">会员中心</view>
+    </view>
+
+    <view wx:if="{{vip.valid == 1}}">
+      <image class="vip_badge2" src="/images/other/vip_badge2.png"></image>
+      <view class="open_vip1" >{{vip.title}}</view>
+      <view class="open_time" wx:if="{{vip.valid_days == 0}}">永久</view>
+      <view class="open_time" wx:else="">{{vip.valid_days}}到期</view>
+      
+      <view class="vip_btn"  bindtap="to_vip">查看会员权益</view>
+    </view>
+    <image class="vip_img" src="/images/other/vip_all1.png"></image>
+    
+  </view>
+
+  <view class="course-ul">
+      
+      <view class="course-li" bindtap="gourlCourse">
+          <text class="course-li-title">我的课程</text>
+          <image  src="./resource/my_course.png"  class="course-li-img"  mode="aspectFit"></image>
+      </view>
+      
+      <view class="course-li" bindtap="gourlError">
+          <text class="course-li-title">错题本</text>
+          <image  src="./resource/my_error.png"  class="course-li-imgzhong" mode="aspectFit"></image>
+      </view>
+      
+      <view class="course-li" bindtap="gourlOrder">
+           <text class="course-li-title">我的订单</text>
+          <image  src="./resource/my_order.png" class="course-li-img"  mode="aspectFit"></image>
+      </view>
+  </view>
+  <!-- 列表 -->
+  <view class="list">
+    <!-- <button class="login_read" style="margin-top: 0rpx;height:110rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!testlogin}}"></button> -->
+    <view class="list-li" wx:if="{{vip.open_log == 1}}">
+        <image  src="./resource/log.png" class="item-img" mode="aspectFit"></image>
+        <view class="item" bindtap="studyLog">
+           <text class="item-text">学习日志</text>
+           <view class="right-img"></view>
+        </view>
+    </view>
+    <view class="heng"></view>
+    <view class="list-li" >
+        <image  src="./resource/my_about.png" class="item-img" mode="aspectFit"></image>
+        <view class="item" bindtap="gourlabout">
+           <text class="item-text">关于我们</text>
+           <view class="right-img"></view>
+        </view>
+    </view>
+
+  </view>
+</view>
+
+

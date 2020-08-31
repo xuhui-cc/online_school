@@ -1,0 +1,64 @@
+<view class="container">
+
+  <view class="adr_layout" wx:if="{{course_info.hasbook > 0}}">
+    <image class="adr_img" src="/images/other/adress.png"></image>
+
+    <view class="flex" bindtap="to_add_adress" data-type="1" wx:if="{{!have_adr}}">
+      <view class="adr_tip" >地址信息</view>
+      <view class="add_tip" >点击填写</view>
+      <image class="next_img" src="/images/navi/next.png" ></image>
+    </view>
+
+    <view wx:if="{{have_adr}}">
+      <view class="flex">
+        <view class="name">{{name}}</view>
+        <view class="phone">{{phone}}</view>
+      </view>
+      <view class="adress_content">收货地址：{{adress}}</view>
+    </view>
+
+    <image wx:if="{{have_adr}}" class="edit" src="/images/other/edit.png" bindtap="to_add_adress" data-type="2"></image>
+  </view>
+
+  <view class="course_layout">
+    <view class="course_title">{{course_info.title}}</view>
+      <view class="course_intor">{{course_info.intro}}</view>
+    <view class="flex">
+      <!-- <image class="avatar" src="../../images/avatar.png"></image> -->
+      <view class="flex" style="margin-left:30rpx;width:250rpx;">
+        <view wx:for="{{course_info.teacher}}" wx:key="tea_index" wx:for-item="tea" wx:for-index="tea_index">
+          <view class="flex">
+            <view class="ava">
+              <image class="avatar" src="{{tea.avatar}}"></image>
+              <view class="tea_name">{{tea.nick}}</view>
+            </view>
+            
+          </view>
+          
+        </view>
+          
+      </view>
+      <view class="course_text"><text style="color:#03B683;">{{course_info.order_num}}人</text>购买</view>
+      <view class="num_layout">
+        <view class="course_num">{{class_hour}}课时</view>
+      </view>
+      <view class="course_price">
+        <view style="margin-right:8rpx;margin-top:5rpx;">¥</view>
+        <view style="font-weight:bold;font-size:42rpx;">{{course_info.price}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="price_layout">
+    <view class="total">合计：</view>
+    <view class="yuan">¥</view>
+    <view class="price">{{course_info.price}}</view>
+    <button class="login_read"  open-type="getUserInfo" bindgetuserinfo="getuserinfo" wx:if="{{!nick}}"></button>
+    <view class="buy_button" bindtap="buy">确认支付</view>
+  
+  </view>
+
+  
+
+
+</view>

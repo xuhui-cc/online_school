@@ -1,0 +1,242 @@
+<view class="container">
+
+ <!-- 标题栏 -->
+  <view class="nabigation_bar">
+    <image class="back" src="/images/navi/back.png" bindtap="back"></image>
+    <view class="head">测评</view>
+  </view>
+  <!-- 标题栏结束 -->
+
+  <!-- 登录蒙层 -->
+  <view class="mask1" wx:if="{{isshare == 1 && login == false}}"></view>
+  <view class="login_layout" wx:if="{{isshare == 1 && login == false}}">
+  
+    <!-- <image class="login_del" src="../../images/del.png"></image> -->
+    <image class="unlogin" src="/images/other/unlogin.png" style="margin-top:75rpx;"></image>
+    <view class="login_tip">您当前尚未登录! </view>
+    <view class="login_tip">请点击下方按钮登录</view>
+    <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+    <image class="tologin" src="/images/other/tologin.png"></image>
+  </view>
+  
+
+  <!-- 试卷说明 -->
+  <view class="mask" wx:if="{{!start_ans}}"></view>
+  <image class="test_tip" src="/images/other/test_tip.png" wx:if="{{!start_ans}}"></image>
+  <view class="test_explain" wx:if="{{!start_ans}}">
+    <view class="flex">
+      <image class="title_img" style="margin-left: 190rpx;" src="/images/other/dot1.png"></image>
+      <view class="explain_head" >试卷说明</view>
+      <image class="title_img" style="margin-left: 16rpx;" src="/images/other/dot2.png"></image>
+    </view>
+    <view class="flex">
+      <view class="explain_shu"></view>
+      <view class="explain_head2" >试卷名称</view>
+    </view>
+    <view class="title">{{test_explain.title}}</view>
+    <view class="flex">
+      <view class="explain_shu"></view>
+      <view class="explain_head2" >试卷说明</view>
+    </view>
+    <view class="title_fu" style="margin-top: 20rpx;">{{ques_info.remark}}</view>
+    <view class="flex">
+      <view class="explain_shu"></view>
+      <view class="explain_head2" >试卷分数</view>
+    </view>
+    <view class="explain">本题分数 <text style="color:#03B683">{{test_explain.all_sum}}分</text> ，答题时长 <text style="color:#03B683;">{{test_explain.timeline}}分钟</text>。</view>
+
+    
+    <view class="wrap">
+      <view wx:for="{{test_explain.option}}" wx:key="index">
+        <view class="flex">
+          <view wx:if="{{item.type == 1}}" class="explain_title">单选题:</view>
+          <view class="ques_num">{{item.min_count}}道</view>
+          <view class="score_num">{{item.min_sum}}分</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="start_btn" bindtap="start_ans">我知道了，开始答题</view>
+  </view>
+
+
+  <!-- 试卷菜单栏 -->
+  <view class="layout" wx:if="{{start_ans}}">
+    <image class="clock" src="/images/other/clock.png"></image>
+    <view class="time">{{clock}}</view>
+    <view class="current">{{currentTab + 1}}</view>
+    <view class="sum">/{{ques_info.num}}</view>
+    <image class="card_img" wx:if="{{!dtk}}" src="/images/other/card.png"></image>
+    <image class="card_img" wx:if="{{dtk}}" src="/images/other/card_g.png"></image>
+    <view class="dtk" wx:if="{{!dtk}}" bindtap="dtk">答题卡</view>
+    <view class="dtk" wx:if="{{dtk}}" style="color:rgba(3,182,131,1);" bindtap="dtk">返回试题</view>
+  </view>
+  <!-- 答题卡 -->
+
+  
+  <!-- wx:if="{{dtk}}" -->
+  <view class="dtk_layout" wx:if="{{dtk}}">
+    <view class="ques_title" wx:if="{{ques_type == 1}}">一、单选题</view>
+    <view class="warp">
+      <view class="for" wx:for="{{id_list}}" wx:key="index">
+        <view wx:if="{{item.type == 1}}" class="r-a-w" style="{{item.ans<0?'background:rgba(235,235,235,1);':'background:rgba(3,182,131,1);'}}" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
+      </view>
+    </view>
+
+    <!-- <view class="ques_title" wx:if="{{ques_type == 2}}">二、多选题</view>
+    <view class="warp">
+      <view class="for" wx:for="{{id_list}}" wx:key="index">
+        <view wx:if="{{item.type == 2}}" class="r-a-w" style="{{item.ans<0?'background:rgba(235,235,235,1);':'background:rgba(3,182,131,1);'}}" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
+      </view>
+    </view>
+
+    <view class="ques_title" wx:if="{{ques_type == 3}}">三、判断题</view>
+    <view class="warp">
+      <view class="for" wx:for="{{id_list}}" wx:key="index">
+        <view wx:if="{{item.type == 3}}" class="r-a-w" style="{{item.ans<0?'background:rgba(235,235,235,1);':'background:rgba(3,182,131,1);'}}" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
+      </view>
+    </view>
+
+    <view class="ques_title" wx:if="{{ques_type == 4}}">四、简答题</view>
+    <view class="warp">
+      <view class="for" wx:for="{{id_list}}" wx:key="index">
+        <view wx:if="{{item.type == 4}}" class="r-a-w" style="{{item.ans<0?'background:rgba(235,235,235,1);':'background:rgba(3,182,131,1);'}}" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
+      </view>
+    </view>
+
+    <view class="ques_title" wx:if="{{ques_type == 5}}">五、组合题</view>
+    <view class="warp">
+      <view class="for" wx:for="{{id_list}}" wx:key="index">
+        <view wx:if="{{item.type == 5}}" class="r-a-w" style="{{item.ans<0?'background:rgba(235,235,235,1);':'background:rgba(3,182,131,1);'}}" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
+      </view>
+    </view> -->
+    <view class="submit1" bindtap="dtk_back" >返回试题</view>
+    <view class="submit" bindtap="dtk_submit">交卷</view>
+
+  </view>
+
+  <!-- 试卷详情 -->
+
+  <!-- <swiper bindanimationfinish ="swiperchange"  data-current="{{currentTab}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}"> -->
+
+   <view class="body" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd'  style='{{moveLeft}}'>
+
+    <!-- bindanimationfinish ="swiperchange"  -->
+  
+    <!-- <swiper-item > -->
+    <!-- wx:for="{{cs}}" wx:key="index" -->
+      
+      <scroll-view scroll-y="true">
+        <!-- <view>{{question.title}}</view> -->
+        <view class="ques_content">
+          <rich-text nodes="{{question.title}}" style="max-width:690rpx;"></rich-text>
+        </view>
+        
+        <view class="select" style="{{question.myans == 0?'background:rgba(248,249,252,1);':''}}" wx:if="{{question.a != null}}" data-ans="0" data-id="{{question.id}}" bindtap="submit_ans">
+          <view class="{{question.myans == 0?'sel_A':'unsel_A'}}" >A</view>
+            <rich-text nodes="{{question.a}}" class="cs"></rich-text>
+        </view>
+        <view class="select" style="{{question.myans == 1?'background:rgba(248,249,252,1);':''}}" wx:if="{{question.b != null}}" data-ans="1" data-id="{{question.id}}" bindtap="submit_ans">
+          <view class="{{question.myans == 1?'sel_A':'unsel_A'}}">B</view>
+            <rich-text nodes="{{question.b}}" class="cs"></rich-text>
+        </view>
+        <view class="select" style="{{question.myans == 2?'background:rgba(248,249,252,1);':''}}" wx:if="{{question.c != null}}" data-ans="2" data-id="{{question.id}}" bindtap="submit_ans">
+          <view class="{{question.myans == 2?'sel_A':'unsel_A'}}">C</view>
+            <rich-text nodes="{{question.c}}" class="cs"></rich-text> 
+        </view>
+        <view class="select" style="{{question.myans == 3?'background:rgba(248,249,252,1);':''}}" wx:if="{{question.d != null}}" data-ans="3" data-id="{{question.id}}" bindtap="submit_ans">
+          <view class="{{question.myans == 3?'sel_A':'unsel_A'}}">D</view>   
+            <rich-text nodes="{{question.d}}" class="cs"></rich-text>
+        </view>
+        <view class="select" wx:if="{{question.e != null}}">
+          <view class="unsel_A">E</view>
+          <rich-text nodes="{{question.e}}"></rich-text>
+          <!-- <view class="sel_content">{{question.e}}</view> -->
+        </view>
+        <view class="select" wx:if="{{question.f != null}}">
+          <view class="unsel_A">F</view>
+          <rich-text nodes="{{question.f}}"></rich-text>
+          <!-- <view class="sel_content">{{question.f}}</view> -->
+        </view>
+        <view class="select" wx:if="{{question.g != null}}">
+          <view class="unsel_A">G</view>
+          <rich-text nodes="{{question.g}}"></rich-text>
+          <!-- <view class="sel_content">{{question.g}}</view> -->
+        </view>
+        <view class="select" wx:if="{{question.h != null}}">
+          <view class="unsel_A">H</view>
+          <rich-text nodes="{{question.h}}"></rich-text>
+          <!-- <view class="sel_content">{{question.h}}</view> -->
+        </view>
+        <!-- <view wx:if="{{question.a != ''}}">A.{{question.a}}</view> -->
+        <!-- <view wx:if="{{question.b != ''}}">B.{{question.b}}</view>
+        <view wx:if="{{question.c != ''}}">C.{{question.c}}</view>
+        <view wx:if="{{question.d != ''}}">D.{{question.d}}</view>
+        <view wx:if="{{question.e != ''}}">E.{{question.e}}</view>
+        <view wx:if="{{question.f != ''}}">F.{{question.f}}</view>
+        <view wx:if="{{question.g != ''}}">G.{{question.g}}</view>
+        <view wx:if="{{question.h != ''}}">H.{{question.h}}</view> -->
+        
+      </scroll-view>
+      
+    <!-- </swiper-item> -->
+  </view>
+  <!-- </swiper> -->
+
+
+  <!-- 交卷提示 -->
+  <view class="mask" wx:if="{{!finish_all}}"></view>
+  <view class="unfinish_layout" wx:if="{{!finish_all}}">
+    <view class="tip1">您还有题目没有做完是否现在交卷？</view>
+    <view class="tip2">* 提交后不能再次答卷哦~</view>
+  
+    <view class="heng"></view>
+    <view class="flex">
+      <view class="yes" bindtap="dtk_submit_btn" data-type="1">是，我要交卷</view>
+      <view class="shu"></view>
+      <view class="yes" style="color:#03B683;" bindtap="dtk_submit_btn" data-type="2">否，继续做题</view>
+    </view>
+    
+  
+  
+  </view>
+
+  <!-- 返回提示 -->
+  <view class="mask" wx:if="{{back}}"></view>
+  <view class="unfinish_layout" wx:if="{{back}}">
+    <view class="tip1" style="width:350rpx;margin-left: 80rpx;">退出后将不会保留做题记录,是否确认退出？</view>
+    
+  
+    <view class="heng" style="margin-top:40rpx;"></view>
+    <view class="flex">
+      <view class="yes" bindtap="back_btn" data-type="1">是，我要退出</view>
+      <view class="shu"></view>
+      <view class="yes" style="color:#03B683;" bindtap="back_btn" data-type="2">否，继续做题</view>
+    </view>
+    
+  
+  
+  </view>
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- container -->
+</view>

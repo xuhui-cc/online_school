@@ -9,7 +9,7 @@
   
 
   <view class="flex" style="margin-top:176rpx;margin-left: 50rpx;">
-    <image wx:if="{{!login}}" src="../../images/my_head.png" class="ava"></image>
+    <image wx:if="{{!login}}" src="/images/defaultHead/my_head.png" class="ava"></image>
     <view class="ava" wx:else="">
       <open-data  type="userAvatarUrl"></open-data>
     </view>
@@ -23,7 +23,7 @@
       <open-data type="userNickName" class="nick"></open-data>
       <!-- <view class="nick" >张东升的假发</view> -->
       <view class="flex">
-        <image class="badge_img" src="../../images/vip_badge2.png"></image>
+        <image class="badge_img" src="/images/other/vip_badge2.png"></image>
         <view wx:if="{{vip_list[0].valid_days == 0}}" class="vip_time">永久</view>
         <view wx:else="" class="vip_time">{{vip_list[0].valid_days}}到期</view>
       </view>
@@ -60,7 +60,7 @@
       <view wx:for="{{vip_list[0].course}}" wx:key="index" style="margin-left:30rpx;margin-bottom:42rpx;">
       
         <view class="flex" bindtap="vip_course_detail" data-xb="{{index}}">
-          <image class="laber" src="../../images/vip_laber2.png" ></image>
+          <image class="laber" src="/images/other/vip_laber2.png" ></image>
           <image class="fm" src="{{item.face}}"></image>
           <view>
             <view class="title">{{item.title}}</view>

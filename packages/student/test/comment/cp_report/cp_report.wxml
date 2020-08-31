@@ -1,0 +1,132 @@
+<view class="container">
+
+  <view class="mask" wx:if="{{!iknow}}"></view>
+  <image class="test_tip" src="/images/other/report_tip.png" wx:if="{{!iknow}}"></image>
+  <view class="hhh" bindtap="iknow" wx:if="{{!iknow}}"></view>
+
+  <view class="layout1">
+    <view class="flex">
+      <view class="shu"></view>
+      <view class="your_score">您的得分：</view>
+      <view class="num" wx:if="{{report.chart.get_score == null}}">0</view>
+      <view class="num" wx:if="{{report.chart.get_score != null}}">{{report.chart.get_score}}</view>
+      <view class="fen">分</view>
+    </view>
+
+    <view class="flex">
+      <view class="all_num">共 <text style="font-size:45rpx;"> {{report.chart.all_num}} </text> 题</view>
+      <view class="shu2"></view>
+      <view class="right">答对：<text style="font-size:45rpx;color:#14CBA2;"> {{report.chart.right_num}} </text></view>
+      <view class="right">答错：<text style="font-size:45rpx;color:#F86B6B;"> {{report.chart.worry_num}} </text></view>
+      <view class="right">未做：<text style="font-size:45rpx;color:#BABABA;"> {{report.chart.miss_num}} </text></view>
+    </view>
+
+    <view class="wrap">
+      <view wx:for="{{report.option}}" wx:key="index">
+        <view wx:if="{{item.status == 1}}" class="r-a-w" style="background:#03B683;" data-index="{{index}}" bindtap="to_cp_analysis">{{index + 1}}</view>
+        <view wx:if="{{item.status == 3}}" class="r-a-w" style="background:#F86B6B;" data-index="{{index}}" bindtap="to_cp_analysis">{{index + 1}}</view>
+        <view wx:if="{{item.status == 0}}" class="r-a-w" style="background:#EBEBEB;" data-index="{{index}}" bindtap="to_cp_analysis">{{index + 1}}</view>
+      </view>
+    </view>
+
+    <view class="heng"></view>
+
+    <view class="flex" wx:if="{{comment}}">
+      <view class="shu"></view>
+      <view class="your_score">名师点评</view>
+    </view>
+
+    <view>
+        <view wx:for="{{comment}}" wx:key="index">
+          <view class="point">考点：{{item.title}}</view>
+          <view class="flex">
+            <view class="rank" wx:if="{{item.grade ==  1}}">{{item.percent}}% 优秀：</view>
+            <view class="rank" wx:if="{{item.grade ==  2}}">{{item.percent}}% 中等：</view>
+            <view class="rank" wx:if="{{item.grade ==  3}}">{{item.percent}}% 较差：</view>
+            <image wx:if="{{item.fold != null}}" class="xu-img" src="/images/other/xu.png"></image>
+            <image wx:if="{{item.fold == true}}" class="xsj-img" src="/images/other/xsj2.png" bindtap="fold" data-xb="{{index}}"></image>
+            <image wx:if="{{item.fold == false}}" class="xsj-img" src="./resource/ssj2.png" bindtap="fold" data-xb="{{index}}"></image>
+          </view>
+          <view class="first_comment">{{item.remark}}</view>
+          <view style="margin-top:30rpx;padding-bottom:50rpx;" wx:if="{{item.fold == false}}">
+            <view wx:for="{{item.second}}" wx:key="second_index" wx:for-item="second" wx:for-index="second_index">
+              <view class="flex">
+                <image class="ling" src="./resource/ling.png"></image>
+                <view class="second_title">{{second.question}}</view>
+                <view class="second_title">考点:{{second.title}}</view>
+              </view>
+              <view class="flex" style="margin-bottom:15rpx;">
+                <view class="second_img"></view>
+                <view class="second_comment">{{second.remark}}</view>
+              </view>
+            </view>
+          </view>
+          
+        
+        
+        
+        
+        </view>
+      </view>
+
+
+      
+
+  
+  
+  
+  </view>
+
+  <view class="pushlist" wx:if="{{course.res}}">推荐课程</view>
+  <view style="margin-bottom:30rpx;">
+    <view wx:for="{{course.res}}" wx:key="index" >
+    
+      <view class="course_layout" bindtap="to_course_detail" data-xb="{{index}}">
+        
+        <view class="course_title">{{item.title}}</view>
+        <view class="course_intor">{{item.intro}}</view>
+        <view class="flex">
+          <view>
+            <image class="avatar" src="{{item.avatar}}"></image>
+            <view class="tea_name">{{item.nick}}</view>
+          </view>
+          
+          <view class="course_text"><text style="color:#03B683;">{{item.order_num}}人</text>学习</view>
+          <view class="num_layout">
+            <view class="course_num">{{item.class_hour}}课时</view>
+          </view>
+          <view class="course_price" hidden="{{btn_buy}}">
+            <view style="margin-right:8rpx;margin-top:5rpx;">¥</view>
+            <view style="font-weight:bold;font-size:42rpx;">{{item.price}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  
+  
+  </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</view>

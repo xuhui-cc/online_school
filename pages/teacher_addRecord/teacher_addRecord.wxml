@@ -101,7 +101,7 @@
       <text class="clearCountView_title">课时选择</text>
       <!-- 关闭按钮 -->
       <view class="clearCountView_Close" bindtap="clearCountViewClose">
-        <image class="clearCountView_CloseImage" src="../../images/del.png"></image>
+        <image class="clearCountView_CloseImage" src="/images/other/del.png"></image>
       </view>
     </view>
     <!-- 选择器 -->

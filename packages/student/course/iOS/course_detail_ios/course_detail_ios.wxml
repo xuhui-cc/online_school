@@ -1,0 +1,199 @@
+<view class="container">
+
+  <!-- <image class="report_img" src="../../images/report.png" bindtap="to_end_report" wx:if="{{course_info.mark_status == 2 || course_cata.mark_status == 2 }}"></image> -->
+
+  <view class="flex">
+    <view class="head">{{course_info.title}}</view>
+    <button class="share_btn"  open-type="share"></button>
+    <!-- <button open-type="share"></button> -->
+    <image class="share" src="/images/other/share.png"></image>
+  </view>
+
+  <view class="intro">{{course_info.intro}}</view>
+
+  <view class="flex">
+    <view class="buy_num">{{course_info.order_num}}人</view>
+    <view class="buy">学习</view>
+    <view class="course_num">{{course_info.class_hour}}课时</view>
+  </view>
+
+  
+  <view class='main_sel'>
+    <view class='tab  {{currentData == 0 ? "tabBorer" : ""}}'  data-current = "0" bindtap='checkCurrent'>课程介绍</view>
+    <view class='tab  {{currentData == 1 ? "tabBorer" : ""}}'  data-current = "1" bindtap='checkCurrent'>课程目录</view>
+  </view>
+  <view class="heng1"></view>
+
+
+  <view wx:if="{{currentData == 0}}" class="course_intro">
+    <!-- <image class="course_intro_img" src="../../images/intro.png" mode="widthFix"></image> -->
+    <rich-text nodes="{{course_info.content}}"></rich-text>
+  </view>
+
+  <view wx:if="{{currentData == 1}}" class="course_intro">
+    <view wx:for="{{course_cata.lists}}" wx:key="index">
+
+      <!-- 直播课 -->
+      <view wx:if="{{item.cateid == 1}}">
+        <view class="flex">
+          <view wx:if="{{index < 9}}" class="course_order">0{{index + 1}}</view>
+          <view wx:else class="course_order">0{{index + 1}}</view>
+          <image class="record_img" src="/images/other/live.png"></image>
+          
+          <view class="course_title">{{item.name}}</view>
+          <view wx:if="{{course_info.buy == 1 || (course_info.buy >= 3 && course_info.buy <= 5)}}">
+            <view wx:if="{{item.mt == 2}}" class="study_button" style="background:rgba(3,182,131,1);" data-xb="{{index}}" bindtap="to_video">
+            <view class="study">看直播</view>
+          </view>
+          <view wx:elif="{{item.mt ==4}}" class="study_button" data-xb="{{index}}" bindtap="to_video">看回放</view>
+          <!-- <view wx:elif="{{item.mt == 3}}" class="study_button1" >暂无回放</view> -->
+          <!-- <view wx:else="{{item.mt == 1}}" class="study_button1" >未开始</view> -->
+          </view>
+          
+        </view>
+        <view wx:if="{{course_info.buy == 1 || (course_info.buy >= 3 && course_info.buy <= 5)}}">
+          <view wx:if="{{item.mt == 2}}" class="study_rate" >正在直播中</view>
+          <view wx:elif="{{item.mt == 3}}" class="study_rate" style="color:#A4A4A4;">回放生成中...</view>
+          <view wx:elif="{{item.mt == 4}}" class="study_rate" >回放已生成</view>
+          <view wx:elif="{{item.mt == 1}}" class="study_rate" >未开课</view>
+          <view wx:else="{{item.mt == 0}}" class="study_rate" >直播已删除</view>
+          <image class="xu" src="/images/other/xu.png" ></image>
+          <view class="flex" bindtap="{{click_file?'':'to_course_file'}}"  data-xb="{{index}}" wx:if="{{item.annex_num > 0 }}">
+            <image class="file-img1" src="/images/other/file1.png"></image>
+            <view class="file" style="color:rgba(32,32,32,1);">讲义资料</view>
+            <view class="file_num">查看</view>
+            <image class="next" src="/images/navi/next.png"></image>
+          </view>
+          <view class="flex" wx:if="{{item.eid > 0}}">
+            <image class="file-img1" src="/images/other/work1.png"></image>
+            <view class="file" style="color:rgba(32,32,32,1);">课后作业</view>
+            <view class="work_finish" wx:if="{{item.mark_status == 0 || item.mark_status == null}}" bindtap="to_homework" data-xb="{{index}}">待完成</view>
+            <view class="work_finish" wx:elif="{{item.mark_status == 1}}" style="color:rgba(164,164,164,1);">批改中</view>
+            <view class="work_finish" wx:else="{{item.mark_status == 2}}" style="color:rgba(77,151,246,1);" bindtap="to_homework_report" data-mid="{{item.mid}}">查看报告</view>
+            <image class="next" src="/images/navi/next.png"></image>
+          </view>
+          <view class="heng3"></view>
+        </view>
+
+
+        <view class="flex" wx:if="{{course_info.buy == 0 || buy == 6}}">
+          <image class="file_img" src="/images/other/file.png"></image>
+          <view class="file">讲义资料</view>
+          <view class="shu"></view>
+          <image class="work_img" src="/images/other/work.png"></image>
+          <view class="file">课后作业</view>
+        </view>
+        <view class="heng2" wx:if="{{course_info.buy == 0 || buy == 6}}"></view>
+      </view>
+
+      <view wx:if="{{item.cateid == 0}}">
+        <view class="flex">
+          <view wx:if="{{index < 9}}" class="course_order">0{{index + 1}}</view>
+          <view wx:else class="course_order">0{{index + 1}}</view>
+          <image class="record_img" src="/images/other/record.png"></image>
+          
+          <view class="course_title">{{item.name}}</view>
+          <view wx:if="{{course_info.buy == 1 || (course_info.buy >= 3 && course_info.buy <= 5)}}">
+            <view wx:if="{{item.percent == 0}}" class="study_button" style="background:rgba(3,182,131,1);" data-xb="{{index}}" bindtap="to_video">
+            <view class="study">去学习</view>
+          </view>
+          <view wx:elif="{{item.percent < 100 && item.percent > 0}}" class="study_button" data-xb="{{index}}" bindtap="to_video">继续学习</view>
+          <view wx:else="{{item.percent == 100}}" class="study_button1" data-xb="{{index}}" bindtap="to_video">去复习</view>
+          </view>
+          
+        </view>
+        <view wx:if="{{course_info.buy == 1 || (course_info.buy >= 3 && course_info.buy <= 5)}}">
+          <view wx:if="{{item.percent == 0}}" class="study_rate" >未学习</view>
+          <view wx:elif="{{item.percent < 100 && item.percent > 0}}" class="study_rate" >已学习{{item.percent}}%</view>
+          <view wx:else="{{item.percent == 100}}" class="study_rate" style="color:#A4A4A4;">已学习{{item.percent}}%</view>
+          <image class="xu" src="/images/other/xu.png" ></image>
+          <view class="flex" bindtap="{{click_file?'':'to_course_file'}}" data-xb="{{index}}" wx:if="{{item.annex_num > 0 }}">
+            <image class="file-img1" src="/images/other/file1.png"></image>
+            <view class="file" style="color:rgba(32,32,32,1);">讲义资料</view>
+            <view class="file_num">查看</view>
+            <image class="next" src="/images/navi/next.png"></image>
+          </view>
+          <view class="flex" wx:if="{{item.eid > 0}}">
+            <image class="file-img1" src="/images/other/work1.png"></image>
+            <view class="file" style="color:rgba(32,32,32,1);">课后作业</view>
+            <view class="work_finish" wx:if="{{item.mark_status == 0 || item.mark_status == null}}" bindtap="to_homework" data-xb="{{index}}">待完成</view>
+            <view class="work_finish" wx:elif="{{item.mark_status == 1}}" style="color:rgba(164,164,164,1);">批改中</view>
+            <view class="work_finish" wx:else="{{item.mark_status == 2}}" style="color:rgba(77,151,246,1);" bindtap="to_homework_report" data-mid="{{item.mid}}">查看报告</view>
+            <image class="next" src="/images/navi/next.png"></image>
+          </view>
+          <view class="heng3"></view>
+        </view>
+
+
+        <view class="flex" wx:if="{{course_info.buy == 0 || course_info.buy == 6 }}">
+          <image class="file_img" src="/images/other/file.png"></image>
+          <view class="file">讲义资料</view>
+          <view class="shu"></view>
+          <image class="work_img" src="/images/other/work.pngg"></image>
+          <view class="file">课后作业</view>
+        </view>
+        <view class="heng2" wx:if="{{course_info.buy == 0 || course_info.buy == 6 }}"></view>
+      </view>
+    </view>
+
+    <view class="end_test">
+      <view class="btn_end_test" wx:if="{{(course_cata.res.buy == 1 || course_cata.res.buy == 3 || course_cata.res.buy == 4 || course_cata.res.buy == 5) && course_cata.res.mark_status == 0 }}" bindtap="to_test">去考试</view>
+      <view class="btn_end_test" wx:if="{{course_cata.res.mark_status == 1 && (course_cata.res.buy == 1 || course_cata.res.buy == 3 || course_cata.res.buy == 4 || course_cata.res.buy == 5)}}"  style="background:rgba(204,204,204,1);">批改中</view>
+      <view class="btn_end_test" wx:if="{{course_cata.res.mark_status == 2 && (course_cata.res.buy == 1 || course_cata.res.buy == 3 || course_cata.res.buy == 4 || course_cata.res.buy == 5)}}" bindtap="to_test_report" style="background:rgba(77,151,246,1);">查看报告</view>
+      <view class="end_title">结课考试</view>
+      <view class="end_intro">巩固知识点，全面掌握考点学习方法。</view>
+    </view>
+    
+  </view>
+
+
+  <view class="course_buy"  wx:if="{{course_info.buy  == 0 || course_info.buy == 6}}" hidden="{{btn_buy}}">   
+    <!-- course_info.pay_status :  1 未购买；2已购买 -->
+    <view class="yuan">¥</view>
+    <view class="price">{{course_info.price}}</view>
+    <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
+    <!--  -->
+    <view wx:if="{{course_info.price == 0 && login}}" class="button_buy"  bindtap="to_free" >立即报名</view>
+    <view wx:elif="{{course_info.price == 0 && !login}}" class="button_buy"  >立即报名</view>
+    <view wx:elif="{{course_info.price > 0 && login}}" class="button_buy"  bindtap="to_pay" >立即购买</view>
+    
+    <view wx:else="{{course_info.price > 0 && !login}}" class="button_buy" >立即购买</view>
+  </view>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- container -->
+</view>

@@ -56,7 +56,7 @@ Page({
     var tid = e.currentTarget.dataset.tid
     var kid = e.currentTarget.dataset.kid
     wx.navigateTo({
-      url: '../../pages/group_detail/group_detail?tid=' + tid + '&kid=' + kid, 
+      url: app.getPagePath('group_detail') + '?tid=' + tid + '&kid=' + kid, 
     })
   },
 
@@ -169,7 +169,7 @@ Page({
     let that = this
     var kid = e.currentTarget.dataset.kid
     wx.navigateTo({
-      url: '../../pages/pay/pay?kid=' + kid,
+      url: app.getPagePath('pay') + '?kid=' + kid,
     })
   },
 
@@ -232,8 +232,8 @@ Page({
   //   let that = this;
   //   return {
   //     title: '领军网校', // 转发后 所显示的title
-  //     path: '/pages/first_page/first_page', // 相对的路径
-  //     imageUrl: '../../images/share1.png',  //用户分享出去的自定义图片大小为5:4,
+  //     path: '/packages/firstpage/first_page/first_page', // 相对的路径
+  //     imageUrl: '/images/other/share1.png',  //用户分享出去的自定义图片大小为5:4,
   //     success: (res) => {    // 成功后要做的事情
   //       console.log("成功")
 

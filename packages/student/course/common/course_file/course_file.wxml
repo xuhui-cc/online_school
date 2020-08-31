@@ -1,0 +1,17 @@
+<view class="container">
+  <view class="for" wx:for="{{handout}}" wx:key="index">
+    <view class="layout" data-xb="{{index}}" bindtap="open_file">
+      <image wx:if="{{item.suffix == 'doc' || item.suffix == 'docx'}}" class="icon" src="./resource/doc.png"></image>
+      <image wx:if="{{item.suffix == 'pdf'}}" class="icon" src="./resource/pdf.png"></image>
+      <image wx:if="{{item.suffix == 'img'}}" class="icon" src="./resource/img.png"></image>
+      <image wx:if="{{item.suffix == 'ppt' ||item.suffix == 'pptx'}}" class="icon" src="./resource/ppt.png"></image>
+      <image wx:if="{{item.suffix == 'xls' ||item.suffix == 'xlsx'}}" class="icon" src="./resource/xls.png"></image>
+      <view class="title">{{item.name}}</view>
+      <image  class="next" src="/images/navi/next.png"></image>
+    </view>
+    <view class="heng"></view>
+  </view>
+
+
+
+</view>

@@ -1,239 +1,239 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": false,
-		"es6": true,
-		"postcss": true,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"autoAudits": false,
-		"scopeDataCheck": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"useIsolateContext": true,
-		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.10.4",
-	"appid": "wxecad056112c87205",
-	"projectname": "online_school",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": [
-				{
-					"id": -1,
-					"name": "pages/logs/logs",
-					"pathName": "pages/logs/logs",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/course_detail/course_detail",
-					"pathName": "pages/course_detail/course_detail",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/homework/homework",
-					"pathName": "pages/homework/homework",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/homework_report/homework_report",
-					"pathName": "pages/homework_report/homework_report",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/finish_test_report/finish_test_report",
-					"pathName": "pages/finish_test_report/finish_test_report",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/zbcs/zbcs",
-					"pathName": "pages/zbcs/zbcs",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/pay/pay",
-					"pathName": "pages/pay/pay",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/add_adress/add_adress",
-					"pathName": "pages/add_adress/add_adress",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/course_file/course_file",
-					"pathName": "pages/course_file/course_file",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/my_order/my_order",
-					"pathName": "pages/my_order/my_order",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/order_detail/order_detail",
-					"pathName": "pages/order_detail/order_detail",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/cs/cs",
-					"pathName": "pages/cs/cs",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/cp_analysis/cp_analysis",
-					"pathName": "pages/cp_analysis/cp_analysis",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/endcourse_report/endcourse_report",
-					"pathName": "pages/endcourse_report/endcourse_report",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 15,
-					"name": "groupBuy",
-					"pathName": "pages/groupBuy/groupBuy",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "groupPay",
-					"pathName": "pages/groupPay/groupPay",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "group_detail",
-					"pathName": "pages/group_detail/group_detail",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "group_share",
-					"pathName": "pages/group_share/group_share",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "open_course",
-					"pathName": "pages/open_course/open_course",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "open_detail",
-					"pathName": "pages/open_detail/open_detail",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "cs",
-					"pathName": "pages/cs/cs",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "share_analysis",
-					"pathName": "pages/share_analysis/share_analysis",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/course_seckill/course_seckill",
-					"pathName": "pages/course_seckill/course_seckill",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "vip_detail",
-					"pathName": "pages/vip_detail/vip_detail",
-					"scene": null
-				}
-			]
-		}
-	}
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "autoAudits": false,
+    "scopeDataCheck": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "useCompilerModule": false,
+    "userConfirmedUseCompilerModuleSwitch": false
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.10.4",
+  "appid": "wxecad056112c87205",
+  "projectname": "online_school",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "plugin": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "currentL": -1,
+      "list": []
+    },
+    "gamePlugin": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": -1,
+      "list": [
+        {
+          "id": -1,
+          "name": "pages/logs/logs",
+          "pathName": "pages/logs/logs",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "course_detail",
+          "pathName": "packages/student/course/android/course_detail/course_detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "packages/student/test/comment/homework/homework",
+          "pathName": "packages/student/test/comment/homework/homework",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "/packages/student/test/comment/homework_report/homework_report",
+          "pathName": "/packages/student/test/comment/homework_report/homework_report",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/finish_test_report/finish_test_report",
+          "pathName": "pages/finish_test_report/finish_test_report",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/zbcs/zbcs",
+          "pathName": "pages/zbcs/zbcs",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pay",
+          "pathName": "packages/student/course/android/pay/pay",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "add_adress",
+          "pathName": "packages/student/course/common/add_adress/add_adress",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "course_file",
+          "pathName": "packages/student/course/common/course_file/course_file",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/my_order/my_order",
+          "pathName": "pages/my_order/my_order",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/order_detail/order_detail",
+          "pathName": "pages/order_detail/order_detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/cs/cs",
+          "pathName": "pages/cs/cs",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "packages/student/test/comment/cp_analysis/cp_analysis",
+          "pathName": "packages/student/test/comment/cp_analysis/cp_analysis",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "packages/student/course/common/endcourse_report/endcourse_report",
+          "pathName": "packages/student/course/common/endcourse_report/endcourse_report",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 15,
+          "name": "groupBuy",
+          "pathName": "packages/student/course/android/groupBuy/groupBuy",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "groupPay",
+          "pathName": "packages/student/course/android/groupPay/groupPay",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "group_detail",
+          "pathName": "packages/student/course/android/group_detail/group_detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "group_share",
+          "pathName": "packages/student/course/common/group_share/group_share",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "open_course",
+          "pathName": "packages/student/course/android/open_course/open_course",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "open_detail",
+          "pathName": "packages/student/course/android/open_detail/open_detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "cs",
+          "pathName": "pages/cs/cs",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "share_analysis",
+          "pathName": "packages/student/test/comment/share_analysis/share_analysis",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "course_seckill",
+          "pathName": "packages/student/course/android/course_seckill/course_seckill",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "vip_detail",
+          "pathName": "pages/vip_detail/vip_detail",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

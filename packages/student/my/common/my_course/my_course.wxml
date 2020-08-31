@@ -1,0 +1,43 @@
+<!--pages/my_course/my_course.wxml-->
+<view class="container">
+
+  <view wx:for="{{course}}" wx:key="index">
+    <view class="course" data-xb="{{index}}" bindtap="to_course_detail">
+      <view class="title">{{item.title}}</view>
+      <view class="decribe">{{item.intro}}</view>
+      <view class="course-content">
+          <view class="content-left">
+            <view class="flex" style="width:250rpx;">
+              <view wx:for="{{item.teacher}}" wx:key="tea_index" wx:for-item="tea" wx:for-index="tea_index">
+                <view class="flex">
+                  <view class="ava">
+                    <image class="avatar" src="{{tea.avatar}}"></image>
+                    <view class="tea_name">{{tea.nick}}</view>
+                  </view>
+                  
+                </view>
+                
+              </view>
+                
+            </view>
+              <!-- <image src="{{item.avatar}}" class="l-img"></image>
+              <text class="l-name">{{item.nick}}</text> -->
+            <text class="l-keshi">{{item.class_hour}}课时</text>
+          </view>
+          <view class="content-right">
+              <view class="r-view">
+                <progress percent="{{item.study_percent}}"  border-radius="2.5" stroke-width="5" color="#fff" active="{{true}}" activeColor="#02DC9F" />
+              </view>
+              <text class="lear">已学习{{item.study_percent}}%</text>
+          </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view wx:if="{{course == ''}}">
+    <image class="null_img" src="/images/null/course_null.png"></image>
+    <view class="null">暂无课程</view>
+  </view>
+
+</view>

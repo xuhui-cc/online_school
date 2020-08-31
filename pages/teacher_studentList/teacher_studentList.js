@@ -26,7 +26,7 @@ Page({
 
     // 老师信息
     teacherUserinfo: {
-      avatar: '../../images/my_head.png',
+      avatar: '/images/defaultHead/my_head.png',
       name: '',
     },
 
@@ -176,7 +176,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    return app.shareTool.getShareReturnInfo('all', '/pages/first_page/first_page','','../../images/share1.png', '领军网校')
+    return app.shareTool.getShareReturnInfo('all', app.getPagePath('first_page'),'','/images/other/share1.png', '领军网校')
   },
 
   // 页面滚动时触发
@@ -234,7 +234,7 @@ Page({
   setUserInfo: function() {
     let userinfo = wx.getStorageSync('userinfo')
     let teacherUserInfo = {
-      avatar: userinfo.avatar && userinfo.avatar != '' ? userinfo.avatar : '../../images/my_head.png',
+      avatar: userinfo.avatar && userinfo.avatar != '' ? userinfo.avatar : '/images/defaultHead/my_head.png',
       name: userinfo.nick
     }
     this.setData({

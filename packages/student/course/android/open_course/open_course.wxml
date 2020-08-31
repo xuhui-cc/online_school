@@ -1,0 +1,82 @@
+<view class="container">
+  <scroll-view  scroll-x="true" class="tab-h1" >
+    <view wx:for="{{special}}" wx:key="index" class="tab-item1 {{current_special==index?'active':''}}"  bindtap="swichNav_special" data-current="{{index}}">{{item}}</view> 
+  </scroll-view> 
+
+  <view class="for">
+    <view class="course_layout">
+      <view class="mask">
+        <image class="ava" src="/images/other/group_ava.png"></image>
+        <view  class="tea_name">徐文祖组</view>
+        <view class="time">6月18日 20:00-21:00</view>
+      </view>
+      <image class="fm" src="/images/other/fm.png"></image>
+      <view class="title">高三数学三角函数专题课数专题课专题课专题课专题专题课专题课专题课专专题课专题课专专题课专......</view>
+      <view class="flex">
+        <view class="free">免费</view>
+        <view class="num">3654人已报名</view>
+        <view class="join">立即报名</view>
+      </view>
+    </view>
+    <view class="course_layout">
+      <view class="mask">
+        <image class="ava" src="/images/other/group_ava.png"></image>
+        <view  class="tea_name">徐文祖组</view>
+        <view class="time">6月18日 20:00-21:00</view>
+      </view>
+      <image class="fm" src="/images/other/fm.png"></image>
+      <view class="title">高三数学三角函数专题课数专题课专题课专题课专题专题课专题课专题课专专题课专题课专专题课专......</view>
+      <view class="flex">
+        <view class="free">免费</view>
+        <view class="num">3654人已报名</view>
+        <view class="join">立即报名</view>
+      </view>
+    </view>
+    <view class="course_layout">
+      <view class="mask">
+        <image class="ava" src="/images/other/group_ava.png"></image>
+        <view  class="tea_name">徐文祖组</view>
+        <view class="time">6月18日 20:00-21:00</view>
+      </view>
+      <image class="fm" src="/images/other/fm.png"></image>
+      <view class="title">高三数学三角函数专题课数专题课专题课专题课专题专题课专题课专题课专专题课专题课专专题课专......</view>
+      <view class="flex">
+        <view class="free">免费</view>
+        <view class="num">3654人已报名</view>
+        <view class="join">立即报名</view>
+      </view>
+    </view>
+  
+  
+  
+  
+  </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- container -->
+</view>

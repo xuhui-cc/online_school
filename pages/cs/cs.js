@@ -129,7 +129,7 @@ Page({
   onShareAppMessage: function () {
     
     let that = this;
-    return app.ols.getShareReturnInfo('all', '/pages/first_page/first_page')
+    return app.ols.getShareReturnInfo('all',  app.getPagePath('first_page'))
   }
     
   

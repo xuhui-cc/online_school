@@ -1,0 +1,181 @@
+page{
+  background:rgba(245,245,245,1);
+}
+.fm{
+  width: 750rpx;
+  height: 434rpx;
+}
+.mask{
+  position: absolute;
+  width:750rpx;
+  height:434rpx;
+  background:rgba(0,0,0,1);
+  border:1px solid rgba(112,112,112,1);
+  opacity:0.64;
+}
+.time{
+  position: absolute;
+  margin-left: 134rpx;
+  margin-top: 139rpx;
+  width:482rpx;
+  height:45rpx;
+  font-size:32rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:40rpx;
+  color:rgba(255,255,255,1);
+  z-index: 2;
+}
+.btn{
+  position: absolute;
+  margin-left: 255rpx;
+  margin-top: 212rpx;
+  width:240rpx;
+  height:83rpx;
+  font-size:32rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:83rpx;
+  text-align: center;
+  color:rgba(255,255,255,1);
+  background:linear-gradient(130deg,rgba(255,71,28,1) 0%,rgba(255,192,143,1) 100%);
+  opacity:1;
+  border-radius:42rpx;
+  z-index: 2;
+}
+.course_layout{
+  width:750rpx;
+  height:201rpx;
+  background:rgba(255,255,255,1);
+  opacity:1;
+}
+.title{
+  margin-left: 30rpx;
+  padding-top: 25rpx;
+  width:690rpx;
+  height:90rpx;
+  font-size:32rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:45rpx;
+  color:rgba(39,39,39,1);
+  opacity:1;
+}
+.flex{
+  display: flex;
+}
+.free{
+  margin-left: 30rpx;
+  margin-top: 15rpx;
+  width:72rpx;
+  height:50rpx;
+  font-size:36rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:40rpx;
+  color:rgba(255,75,32,1);
+  opacity:1;
+}
+.num{
+  margin-left: 25rpx;
+  margin-top: 17rpx;
+  width:166rpx;
+  height:37rpx;
+  font-size:26rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:40rpx;
+  color:rgba(130,130,130,1);
+  opacity:1;
+}
+.clock{
+  margin-left: 25rpx;
+  margin-top: 25rpx;
+  width:24rpx;
+  height:24rpx;
+}
+.course_time{
+  margin-left: 25rpx;
+  margin-top: 17rpx;
+  height:37rpx;
+  font-size:26rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:40rpx;
+  color:rgba(3,182,131,1);
+  opacity:1;
+}
+.recommend{
+  margin-left: 30rpx;
+  margin-top: 34rpx;
+  width:136rpx;
+  height:48rpx;
+  font-size:34rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:48rpx;
+  color:rgba(39,39,39,1);
+  opacity:1;
+}
+.scroll_hotbook{
+  display: flex;
+  padding-top: 22rpx;
+  padding-right: 30rpx;
+  
+  width: 750rpx; 
+  height: 400rpx;
+  box-sizing: border-box; 
+  overflow: hidden; 
+  line-height: 42rpx; 
+  
+}
+.hotbook_project{
+  width: 297rpx;
+  display: inline-block; 
+  margin-right: 20rpx;
+  
+}
+.hotbook_img{
+  margin-left: 25rpx;
+  width: 297rpx;
+  height: 172rpx;
+  border-radius:4rpx;
+}
+
+.hotbook_name{
+  display: block;
+  margin-top: 15rpx;
+  margin-left: 25rpx;
+  width:290rpx;
+  height: 70rpx;
+  text-align: center;
+  font-size:26rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:35rpx;
+  color:rgba(58,58,58,1);
+  opacity:1;
+}
+.btn_layout{
+  position: fixed;
+  bottom: 0rpx;
+  width:750rpx;
+  height:100rpx;
+  background:rgba(255,255,255,1);
+  opacity:1;
+}
+.btn_btn{
+  margin-top: 12rpx;
+  margin-left: 31rpx;
+  width:688rpx;
+  height:75rpx;
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:75rpx;
+  text-align: center;
+  color:rgba(255,255,255,1);
+  background:linear-gradient(90deg,rgba(255,71,28,1) 0%,rgba(255,192,143,1) 100%);
+  opacity:1;
+  border-radius:38rpx;
+}

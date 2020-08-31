@@ -9,7 +9,7 @@
   <view wx:if="{{order.active <= 1 && timer != 0}}" class="timing_tip">{{timer}}后订单自动关闭</view>
 
   <view class="adr_layout" wx:if="{{order.sum_money != 0 && order.hasbook > 0 }}">
-    <image class="adr_img" src="../../images/adress.png"></image>
+    <image class="adr_img" src="/images/other/adress.png"></image>
     <view>
       <view class="flex" >
         <view class="name">{{order.name}}</view>

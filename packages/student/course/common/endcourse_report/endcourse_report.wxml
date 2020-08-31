@@ -1,0 +1,63 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="scroll-fullpage">
+    <view class="videoDetail" style="">
+      <image id="myVideo"  style="transform:translateY(-{{scrollTop*100}}%)"  autoplay='{{true}}' class="myimg"  src="{{url}}" bindtouchstart="onTouchStart" bindtouchend="onTouchEnd" />
+      
+    </view>
+
+  </view>
+
+    
+  <!--因为我右侧有需要操作的图标，所以我款低没有设置100%，留下了右侧操作位置-->
+  <canvas disable-scroll="true" style="width: 750rpx;height:90%;position:absolute;top:0;"  bindtouchstart="onTouchStart" bindtouchend="onTouchEnd" canvas-id="videoCover" >
+   
+    <view wx:if="{{current == 1}}">
+      <view class="content1"><text class="name">{{report.res.name}} </text> 同学：</view>
+      <view class="content1" style="margin-top: 59rpx;"><text class="name">{{report.res.start_time}}  </text> 开始加入：</view>
+      <view class="content1" style="margin-top: 30rpx;margin-left: 54rpx;"><text class="name">《{{report.res.lesson_title}}》 </text> </view>
+      <view class="content1" style="margin-top: 30rpx;">一转眼已经学习  <text class="name">{{report.res.study_days}}  </text>天了。 </view>
+    </view>
+
+
+    <view wx:if="{{current == 2}}">
+      <view class="content2" style="margin-top: 274rpx;">在学习的日子里，</view>
+      <view class="content2" >每一天都能力满满，</view>
+      <view class="content2" >最早 <text class="name">{{report.res.early_time}}</text> 就开始学习了，</view>
+      <view class="content2" >最晚  <text class="name">{{report.res.night_time}}</text> 还在奋斗~</view>
+    </view>
+
+    <view wx:if="{{current == 3}}">
+      <view class="content3" style="margin-top: 850rpx;">此次课程，</view>
+      <view class="content3" >在 <text class="name">{{report.res.hours}}</text> 小时 <text class="name">{{report.res.minute}}</text> 分钟里，</view>
+      <view class="content3" >你一共完成了 <text class="name">{{report.res.class_hour}}</text> 节课程的学习，</view>
+      <view class="content3" ><text class="name">{{report.res.study_times}}</text> 次课后作业的提交。</view>
+    </view>
+
+    <view wx:if="{{current == 4}}">
+      <view class="content4" style="margin-top: 100rpx;">恭喜你获得：</view>
+      <view class="content4" ><text class="name">《{{report.res.lesson_title}}》</text></view>
+      <view class="content4" >的结课证书，</view>
+      <view class="content4" >学习还未结束，我们将一直陪伴~</view>
+
+      <view class="content5" style="margin-top: 390rpx;"><text class="name1">{{report.res.name}} </text> 同学：</view>
+      <view class="content5" >于<text class="name1">{{report.res.start_time}} </text> 日，认真并优秀地学习了 <text class="name1">《{{report.res.lesson_title}}》。</text></view>
+      <view class="content5">特授此证书，祝成绩更进一步！</view>
+      <view class="content5" style="margin-top: 76rpx;margin-left: 513rpx;">课程老师</view>
+      <view class="content5" style="margin-left: 520rpx;margin-top: 1rpx;color:rgba(23,161,104,1);font-weight:bold;">{{report.res.teacher}}</view>
+
+     
+
+    </view>
+
+    
+    
+  </canvas>
+ 
+ 
+    <button wx:if="{{current == 4}}" class="share_btn"  open-type="share"></button>
+    <!-- <button open-type="share"></button> -->
+    <image wx:if="{{current == 4}}" class="share" src="./resource/share_report.png"></image>
+    
+  
+</view>

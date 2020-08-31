@@ -73,7 +73,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    return app.shareTool.getShareReturnInfo('all', '/pages/first_page/first_page')
+    return app.shareTool.getShareReturnInfo('all', app.getPagePath('first_page'))
   },
 
   //-----------------------------------------------------接口--------------------------------------------------------

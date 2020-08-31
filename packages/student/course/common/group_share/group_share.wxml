@@ -1,0 +1,95 @@
+<view class="container">
+
+  <!-- 登录蒙层 -->
+  <view class="mask1" wx:if="{{login == false}}"></view>
+  <view class="login_layout" wx:if="{{login == false}}">
+  
+    <!-- <image class="login_del" src="../../images/del.png"></image> -->
+    <image class="unlogin" src="/images/other/unlogin.png" style="margin-top:75rpx;"></image>
+    <view class="login_tip">您当前尚未登录! </view>
+    <view class="login_tip">请点击下方按钮登录</view>
+    <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+    <image class="tologin" src="/images/other/tologin.png"></image>
+  </view>
+
+  <image class="fm" src="{{group.face}}"></image>
+  <view class="flex">
+    <view class="group_num">{{group.persons}}人团</view>
+    <view class="course_name">{{group.title}}</view>  
+  </view>
+  <view class="flex">
+    <view>
+      <view class="flex">
+        <view class="group_price">拼团价：¥{{group.pt_price}}</view>
+        <view class="old_price">¥{{group.price}}</view>
+      </view>
+      <view class="num">已有{{group.order_num}}人参与此团</view>
+    </view>
+    <view class="couse_detail" bindtap="to_groupBuy">查看课程详情</view>
+  </view>
+
+  <view class="xu"></view>
+
+  <view class="people_layout">
+    <view wx:for="{{group.member}}" wx:key="index" class="people_layout" style="margin-left: 0rpx;">
+      <view class="people">
+        <image  class="ava" src="{{item.avatar}}"></image>
+        <view wx:if="{{index == 0}}" class="laber">团长</view>
+        <view class="people_nick">{{item.nick}} </view>
+      </view>
+    
+    </view>
+  </view>
+
+  <view class="lack_num">还差<text style="color:#FF4B20;">{{group.persons - group.has_nums}}人</text>拼团成功</view>
+  <view class="flex">
+    <view class="time_tip">距结束仅剩</view>
+    <view class="hour">{{hour}}</view>
+    <view class="kuang"></view>
+    <view class="mao">:</view>
+    <view class="hour" style="margin-left:430rpx;">{{min}}</view>
+    <view class="kuang"></view>
+    <view class="mao">:</view>
+    <view class="hour" style="margin-left:483rpx;">{{sec}}</view>
+    <view class="kuang"></view>
+  </view>
+
+  <view class="join_btn" bindtap="to_groupPay">立即参团</view>
+  <view class="xu"></view>
+  <view class="group_tip"><text style="color:rgba(10,10,10,1);">邀请好友</text> - 人满拼团成功 - 人不满自动退款</view>
+
+
+
+  <view class="mask1" wx:if="{{login && full}}"></view>
+  <view class="group_tip_layout" wx:if="{{login && full}}">
+    <view class="tip_head">{{tip}}</view>
+    <view class="tip_content">请参加其他拼团或单独发起拼团</view>
+    <view class="yes_btn" bindtap="to_groupBuy">好的</view>
+  </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- container -->
+</view>

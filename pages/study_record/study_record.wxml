@@ -5,7 +5,7 @@
 <!-- 导航栏 -->
 <view class="naviBar" style="top:{{statusBarHeight}}px; height:{{naviContentHeight}}px">
   <view class="naviBar_back" bindtap="naviBackItemClicked">
-    <image class="naviBar_backImage" src="../../images/back.png"></image>
+    <image class="naviBar_backImage" src="/images/navi/back.png"></image>
   </view>
   <view class="naviBar_title">查看日志</view>
   <view class="naviBar_back"></view>

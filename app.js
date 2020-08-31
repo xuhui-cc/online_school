@@ -5,6 +5,7 @@ const loginTool = require('./utils/loginTool.js')
 const util = require('./utils/util.js')
 const shareTool = require('./utils/shareTool.js')
 const notificationCenter = require('./utils/WxNotificationCenter.js')
+const pagePath = require('./utils/pagePath.js')
 
 const notiNameDic = {
   userinfoChange: "userinfoChange"
@@ -18,8 +19,8 @@ App({
   shareTool: shareTool,
   notificationCenter: notificationCenter,
   notiNameDic: notiNameDic,
+  pagePath: pagePath,
   onLaunch: function () {
-    
 
     // 登录
     wx.login({
@@ -104,10 +105,17 @@ App({
       complete: (res) => {
         console.log('清空数据完成，即将跳转至first_page')
         wx.reLaunch({
-          url: '/pages/first_page/first_page',
+          url: pagePath.getPagePath('first_page'),
         })
       },
     })
+  },
+
+  /**
+   * 获取页面路径
+  */
+  getPagePath(pageName) {
+    return pagePath.getPagePath(pageName)
   },
 
   globalData: {

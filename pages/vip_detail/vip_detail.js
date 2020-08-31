@@ -173,15 +173,15 @@ Page({
     var course = that.data.vip_list[0].course[xb]
     if(course.type == 0){
         wx.navigateTo({
-          url: '../../pages/course_detail/course_detail?kid=' + course.kid,
+          url: app.getPagePath('course_detail') + '?kid=' + course.kid,
         })
     }else if(course.type == 1){
       wx.navigateTo({
-        url: '../../pages/groupBuy/groupBuy?kid=' + course.kid,
+        url: app.getPagePath('groupBuy') + '?kid=' + course.kid,
       })
     }else if(course.type == 2){
       wx.navigateTo({
-        url: '../../pages/course_seckill/course_seckill?kid=' + course.kid,
+        url: app.getPagePath('course_seckill') + '?kid=' + course.kid,
       })
     }
   },
@@ -374,6 +374,6 @@ getPhoneNumber: function (e) {
   onShareAppMessage: function () {
     let that = this;
     let paramStr = 'isshare=1&gid=' + wx.getStorageSync('gid') 
-    return app.shareTool.getShareReturnInfo('0,1', '/pages/vip_detail/vip_detail', paramStr, '../../images/share1.png', '领军网校')
+    return app.shareTool.getShareReturnInfo('0,1', '/pages/vip_detail/vip_detail', paramStr, '/images/other/share1.png', '领军网校')
   }
 })

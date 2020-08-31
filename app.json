@@ -1,41 +1,17 @@
 {
   "pages": [
-    "pages/first_page/first_page",
-    "pages/my/my",
-    "pages/my_course/my_course",
-    "pages/my_wrongbook/my_wrongbook",
+    "packages/firstpage/first_page/first_page",
+    "packages/tabbar/pages/my/my",
+    "packages/tabbar/pages/index/index",
+    "packages/tabbar/pages/logs/logs",
+
     "pages/my_order/my_order",
     "pages/order_detail/order_detail",
     "pages/my_about/my_about",
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/course_detail/course_detail",
-    "pages/homework/homework",
-    "pages/homework_report/homework_report",
-    "pages/test_report/test_report",
-    "pages/endcourse_report/endcourse_report",
+
+    
     "pages/zbcs/zbcs",
-    "pages/pay/pay",
-    "pages/course_file/course_file",
-    "pages/add_adress/add_adress",
-    "pages/video/video",
-    "pages/cp_test/cp_test",
-    "pages/cp_report/cp_report",
-    "pages/cp_analysis/cp_analysis",
-    "pages/wrong/wrong",
-    "pages/live/live",
-    "pages/test/test",
     "pages/cs/cs",
-    "pages/file_scan/file_scan",
-    "pages/groupBuy/groupBuy",
-    "pages/groupPay/groupPay",
-    "pages/group_detail/group_detail",
-    "pages/group_share/group_share",
-    "pages/open_course/open_course",
-    "pages/open_detail/open_detail",
-    "pages/share_analysis/share_analysis",
-    "pages/course_seckill/course_seckill",
-    "pages/analysis/analysis",
     "pages/teacher_studentList/teacher_studentList",
     "pages/teacher_addRecord/teacher_addRecord",
     "pages/study_record/study_record",
@@ -45,6 +21,73 @@
     "pages/teacherIntro/teacherIntro",
     "pages/teacherVideo/teacherVideo",
     "pages/teacherList/teacherList"
+  ],
+  "subPackages":[
+    {
+      "root": "packages/student/test/comment",
+      "pages": [
+        "cp_test/cp_test",
+        "cp_report/cp_report",
+        "cp_analysis/cp_analysis",
+        "homework/homework",
+        "homework_report/homework_report",
+        "test/test",
+        "test_report/test_report",
+        "analysis/analysis",
+        "share_analysis/share_analysis"
+      ],
+      "name": "test_common"
+    },
+    {
+      "root": "packages/student/course/common",
+      "pages": [
+        "endcourse_report/endcourse_report",
+        "group_share/group_share",
+        "file_scan/file_scan",
+        "course_file/course_file",
+        "add_adress/add_adress",
+        "video/video",
+        "live/live"
+      ],
+      "name": "course_common"
+    },
+    {
+      "root": "packages/student/course/android",
+      "pages": [
+        "course_detail/course_detail",
+        "pay/pay",
+        "groupBuy/groupBuy",
+        "groupPay/groupPay",
+        "group_detail/group_detail",
+        "open_course/open_course",
+        "open_detail/open_detail",
+        "course_seckill/course_seckill"
+      ],
+      "name": "course_android"
+    },
+    {
+      "root": "packages/student/course/iOS",
+      "pages": [
+        "course_detail_ios/course_detail_ios",
+        "pay_ios/pay_ios",
+        "groupBuy_ios/groupBuy_ios",
+        "groupPay_ios/groupPay_ios",
+        "group_detail_ios/group_detail_ios",
+        "open_course_ios/open_course_ios",
+        "open_detail_ios/open_detail_ios",
+        "course_seckill_ios/course_seckill_ios"
+      ],
+      "name": "course_iOS"
+    },
+    {
+      "root": "packages/student/my/common",
+      "pages": [
+        "my_course/my_course",
+        "my_wrongbook/my_wrongbook",
+        "wrong/wrong"
+      ],
+      "name": "my_common"
+    }
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -62,21 +105,21 @@
     "list": [
       {
         "text": "测评",
-        "pagePath": "pages/index/index",
-        "iconPath": "images/test2.png",
-        "selectedIconPath": "images/test1.png"
+        "pagePath": "packages/tabbar/pages/index/index",
+        "iconPath": "packages/tabbar/resource/test2.png",
+        "selectedIconPath": "packages/tabbar/resource/test1.png"
       },
       {
         "text": "课程",
-        "pagePath": "pages/logs/logs",
-        "iconPath": "images/course2.png",
-        "selectedIconPath": "images/course1.png"
+        "pagePath": "packages/tabbar/pages/logs/logs",
+        "iconPath": "packages/tabbar/resource/course2.png",
+        "selectedIconPath": "packages/tabbar/resource/course1.png"
       },
       {
         "text": "我的",
-        "pagePath": "pages/my/my",
-        "iconPath": "images/my2.png",
-        "selectedIconPath": "images/my1.png"
+        "pagePath": "packages/tabbar/pages/my/my",
+        "iconPath": "packages/tabbar/resource/my2.png",
+        "selectedIconPath": "packages/tabbar/resource/my1.png"
       }
     ]
   },

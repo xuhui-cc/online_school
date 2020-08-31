@@ -49,7 +49,7 @@ Page({
 
     // 学生信息
     studentInfo: {
-      avatar: '../../images/my_head.png',
+      avatar: '/images/defaultHead/my_head.png',
       name: '',
       total_coursetime: 0,
       left_coursetime: 0,
@@ -377,7 +377,7 @@ Page({
         let studentInfo = d.data.data.data
         if (studentInfo && studentInfo != '') {
           let info = {
-            avatar: studentInfo.avatar && studentInfo.avatar != '' ? studentInfo.avatar : '../../images/my_head.png',
+            avatar: studentInfo.avatar && studentInfo.avatar != '' ? studentInfo.avatar : '/images/defaultHead/my_head.png',
             name: studentInfo.nick,
             total_coursetime: studentInfo.total_coursetime,
             left_coursetime: studentInfo.coursetime*1,

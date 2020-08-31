@@ -1,0 +1,124 @@
+<view class="container">
+
+  <view class="mask" wx:if="{{!iknow}}"></view>
+  <image class="test_tip" src="/images/other/report_tip.png" wx:if="{{!iknow}}"></image>
+  <view class="hhh" bindtap="iknow" wx:if="{{!iknow}}"></view>
+
+  
+  <view class="layout">
+    <view class="homework_title">{{report.title}}</view>
+
+    <view class="flex">
+      <view class="shu1"></view>
+      <view class="v1">您的得分：</view>
+      <view class="score">{{report.score}}</view>
+      <view style="font-size:26rpx;color:rgba(32,32,32,1);margin-left: 22rpx;margin-top: 69rpx;">分</view>
+      <view class="sum">总分：{{report.paper_score}}分</view>
+    </view>
+    
+    <view class="flex">
+      <view class="shu2"></view>
+      <view class="submit_time">交卷时间：{{report.dateline}}</view>
+      <view class="shu2"></view>
+      <view class="submit_time">用时：{{report.answerline}}秒</view>
+    </view>
+
+    <view class="heng"></view>
+
+    <view class="ques_type" wx:if="{{ques_type1 == 1}}">单选题</view>
+    <view class="warp" >
+      <view class="for" wx:for="{{report.option}}" wx:key="index">
+        <view wx:if="{{item.type == 1}}">
+        <view class="r-a-w" wx:if="{{item.status == 0  }}" style="background:rgba(235,235,235,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 1  }}" style="background:rgba(3,182,131,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 3  }}" style="background:rgba(248,107,107,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="ques_type" wx:if="{{ques_type2 == 2}}">多选题</view>
+    
+    <view class="warp" >
+      <view class="for" wx:for="{{report.option}}" wx:key="index">
+        <view wx:if="{{item.type == 3}}">
+        <view class="r-a-w" wx:if="{{item.status == 0  }}" style="background:rgba(235,235,235,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 1}}" style="background:rgba(3,182,131,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 3}}" style="background:rgba(248,107,107,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view wx:if="{{item.status == 2}}" data-index="{{index}}" bindtap="to_analysis">
+            <view class="ques_num">{{index +1}}</view>
+            <image class="r-a-w_img" src="/images/other/r-a-w.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="ques_type" wx:if="{{ques_type3 == 3}}">判断题</view>
+    <view class="warp" >
+      <view class="for" wx:for="{{report.option}}" wx:key="index">
+        <view wx:if="{{item.type == 3}}">
+        <view class="r-a-w" wx:if="{{item.status == 0  }}" style="background:rgba(235,235,235,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 1  }}" style="background:rgba(3,182,131,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 3  }}" style="background:rgba(248,107,107,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="ques_type" wx:if="{{ques_type4 == 4}}">简答题</view>
+    <view class="warp" >
+      <view class="for" wx:for="{{report.option}}" wx:key="index">
+        <view wx:if="{{item.type == 4}}">
+        <view class="r-a-w" wx:if="{{item.status == 0  }}" style="background:rgba(235,235,235,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 1}}" style="background:rgba(3,182,131,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 3}}" style="background:rgba(248,107,107,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view wx:if="{{item.status == 2}}" data-index="{{index}}" bindtap="to_analysis">
+            <view class="ques_num">{{index +1}}</view>
+            <image class="r-a-w_img" src="/images/other/r-a-w.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="ques_type" wx:if="{{ques_type5 == 5}}">组合题</view>
+    <view class="warp" >
+      <view class="for" wx:for="{{report.option}}" wx:key="index">
+        <view wx:if="{{item.type == 5}}">
+        <view class="r-a-w" wx:if="{{item.status == 0  }}" style="background:rgba(235,235,235,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 1}}" style="background:rgba(3,182,131,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 3}}" style="background:rgba(248,107,107,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view wx:if="{{item.status == 2}}" data-index="{{index}}" bindtap="to_analysis">
+            <view class="ques_num">{{index +1}}</view>
+            <image class="r-a-w_img" src="/images/other/r-a-w.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="ques_type" wx:if="{{ques_type6 == 6}}">填空题</view>
+    <view class="warp" >
+      <view class="for" wx:for="{{report.option}}" wx:key="index">
+        <view wx:if="{{item.type == 6}}">
+        <view class="r-a-w" wx:if="{{item.status == 0  }}" style="background:rgba(235,235,235,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 1}}" style="background:rgba(3,182,131,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view class="r-a-w" wx:if="{{item.status == 3}}" style="background:rgba(248,107,107,1);" data-index="{{index}}" bindtap="to_analysis">{{index +1}}</view>
+          <view wx:if="{{item.status == 2}}" data-index="{{index}}" bindtap="to_analysis">
+            <view class="ques_num">{{index +1}}</view>
+            <image class="r-a-w_img" src="/images/other/r-a-w.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  
+  </view>
+
+
+
+
+
+
+
+
+
+
+<!-- container -->
+</view>

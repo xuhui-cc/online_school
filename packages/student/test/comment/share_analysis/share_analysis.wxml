@@ -1,0 +1,246 @@
+<view class="container">
+
+  
+
+
+  <!-- 试卷菜单栏 -->
+  <!-- <view class="layout">
+    <view class="current">{{currentTab + 1}}</view>
+    <view class="sum">/{{sum}}</view>
+    <image class="card_img" src="/images/other/card.png"></image>
+    <view class="dtk" bindtap="dtk">答题卡</view>
+  </view> -->
+
+
+
+  <!-- 答题卡 -->
+  <!-- wx:if="{{dtk}}" -->
+  <!-- <view class="dtk_layout" wx:if="{{dtk}}">
+    
+    <view class="warp">
+      <view class="for" wx:for="{{id_list}}" wx:key="index">
+        <view class="r-a-w" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
+      </view>
+    </view>
+
+  </view> -->
+
+  <!-- 登录蒙层 -->
+  <view class="mask1" wx:if="{{login == false}}"></view>
+  
+  <view class="login_layout" wx:if="{{login == false}}">
+  
+    <!-- <image class="login_del" src="../../images/del.png"></image> -->
+    <image class="unlogin" src="/images/other/unlogin.png" style="margin-top:75rpx;"></image>
+    <view class="login_tip">您当前尚未登录! </view>
+    <view class="login_tip">请点击下方按钮登录</view>
+    <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+    <image class="tologin" src="/images/other/tologin.png"></image>
+  </view>
+
+  
+
+  <!-- 试卷详情 -->
+
+  <!-- <swiper bindanimationfinish ="swiperchange"  data-current="{{currentTab}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}"> -->
+
+   <!-- <view class="body" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd'  style='{{moveLeft}}'>
+
+    
+      
+    <scroll-view scroll-y="true"> -->
+        
+      <view class="ques_content">
+        <rich-text nodes="{{analysis.title}}"></rich-text>
+      </view>
+      
+      <view style="margin-left:30rpx;">
+        <view wx:for="{{analysis.option}}" wx:key="index">
+
+          <view wx:if="{{item.type == 1 || item.type == 2}}">
+            <view class="flex">
+              <view>{{index + 1}}、</view>
+              <rich-text nodes="{{item.title}}" class="cs1"></rich-text>
+            </view>
+            <view class="flex" wx:if="{{item.a != null}}" style="margin-left:30rpx;">
+              <view style="margin-top:5rpx;">A.</view>
+              <rich-text  nodes="{{item.a}}" class="cs1"></rich-text>
+            </view>
+            <view class="flex" wx:if="{{item.b != null}}" style="margin-left:30rpx;">
+              <view style="margin-top:5rpx;">B.</view>
+              <rich-text  nodes="{{item.b}}" class="cs1"></rich-text>
+            </view>
+            <view class="flex" wx:if="{{item.c != null}}" style="margin-left:30rpx;">
+              <view style="margin-top:5rpx;">C.</view>
+              <rich-text  nodes="{{item.c}}" class="cs1"></rich-text>
+            </view>
+            <view class="flex" wx:if="{{item.d != null}}" style="margin-left:30rpx;">
+              <view style="margin-top:5rpx;">D.</view>
+              <rich-text  nodes="{{item.d}}" class="cs1"></rich-text>
+            </view>                                 
+          </view>
+
+          <view wx:if="{{item.type == 4}}">
+            <view class="flex">
+              <view>{{index + 1}}、</view>
+              <rich-text nodes="{{item.title}}" class="cs1"></rich-text>
+            </view>
+          </view>
+
+        </view>
+      </view >
+
+
+      <!-- 单选 -->
+      <view wx:if="{{analysis.type == 1}}">
+        <view class="select"  wx:if="{{analysis.a != null}}" >
+          <view class="unsel_A" >A</view>
+          <rich-text nodes="{{analysis.a}}" class="cs"></rich-text>
+        </view>
+        <view class="select"  wx:if="{{analysis.b != null}}" >
+          <view class="unsel_A">B</view>
+          <rich-text nodes="{{analysis.b}}" class="cs"></rich-text>
+        </view>
+        <view class="select"  wx:if="{{analysis.c != null}}" >
+          <view class="unsel_A">C</view>
+          <rich-text nodes="{{analysis.c}}" class="cs"></rich-text> 
+        </view>
+        <view class="select"  wx:if="{{analysis.d != null}}" >
+          <view class="unsel_A">D</view>   
+          <rich-text nodes="{{analysis.d}}" class="cs"></rich-text>
+        </view>
+      </view>
+
+      <!-- 多选 -->
+      <view wx:if="{{analysis.type == 2}}">
+        <view class="select"  wx:if="{{analysis.a != null}}" >
+        <!-- style="{{analysis.a[1] == true ?'background:rgba(2,220,159,0.1);':''}}" -->
+          <view class="unsel_A" >A</view>
+          <rich-text nodes="{{analysis.a[0]}}" class="cs"></rich-text>
+        </view>
+        <view class="select"  wx:if="{{analysis.b != null}}" >
+          <view class="unsel_A">B</view>
+          <rich-text nodes="{{analysis.b[0]}}" class="cs"></rich-text>
+        </view>
+        <view class="select"  wx:if="{{analysis.c != null}}" >
+          <view class="unsel_A">C</view>
+          <rich-text nodes="{{analysis.c[0]}}" class="cs"></rich-text> 
+        </view>
+        <view class="select"  wx:if="{{analysis.d != null}}" >
+          <view class="unsel_A">D</view>   
+          <rich-text nodes="{{analysis.d[0]}}" class="cs"></rich-text>
+        </view>
+      </view>
+
+      <!-- <view class="xf" bindtap="jx">查看解析</view> -->
+
+      <view>
+        <view class="flex">
+          <view class="shu"></view>
+          <view class="right" wx:if="{{analysis.type < 4}}">正确答案：</view>
+          <view class="right" wx:else="{{analysis.type > 3}}">您的答案：</view>
+
+
+          <view wx:if="{{analysis.type <= 2}}" class="flex">
+            <view wx:if="{{analysis.answer == 0}}" class="right_ans">A</view>
+            <view wx:if="{{analysis.answer == 1}}" class="right_ans">B</view>
+            <view wx:if="{{analysis.answer == 2}}" class="right_ans">C</view>
+            <view wx:if="{{analysis.answer == 3}}" class="right_ans">D</view>
+
+            <view wx:if="{{mark == null}}" class="your">您的答案: 未做</view>
+            <view wx:if="{{mark == 0}}" class="your">您的答案: A</view>
+            <view wx:if="{{mark == 1}}" class="your">您的答案: B</view>
+            <view wx:if="{{mark == 2}}" class="your">您的答案: C</view>
+            <view wx:if="{{mark == 3}}" class="your">您的答案: D</view>
+          </view>
+
+          
+        </view>
+        
+        <!-- <view class="ques_content" wx:if="{{analysis.type > 2 && analysis.type != 4 }}">
+          <rich-text nodes="{{analysis.answer}}"></rich-text>
+        </view> -->
+
+        <view class="flex" wx:if="{{analysis.type > 2 }}">
+          <view wx:for="{{mark}}" wx:key="{{index}}">
+            <image class="ans_img" src="{{item}}" data-xb='{{index}}'  bindtap='previewImg'></image>
+          </view>
+        </view>
+
+        <view class="flex" wx:if="{{analysis.type > 3}}">
+          <view class="shu"></view>
+          <view class="right">答案</view>
+        </view>
+
+        <view class="analysis_content" wx:if="{{analysis.type >= 4 && analysis.type != 5 }}">
+          <rich-text nodes="{{analysis.answer}}"></rich-text>
+        </view>
+
+        <view class="analysis_content" wx:if="{{analysis.type == 5}}">
+          <view wx:for="{{analysis.option}}" wx:key="index">
+            <rich-text nodes="{{item.answer}}"></rich-text>
+          </view>
+        </view>
+
+        <view class="flex" wx:if="{{ analysis.note != ''}}">
+          <view class="shu"></view>
+          <view class="right">解析</view>
+        </view>
+
+        <view class="analysis_content" wx:if="{{analysis.type != 5 && analysis.note != ''}}">
+          <rich-text nodes="{{analysis.note}}"></rich-text>
+        </view>
+        <view class="analysis_content" wx:if="{{analysis.type == 5}}">
+          <view wx:for="{{analysis.option}}" wx:key="index">
+            <rich-text nodes="{{item.note}}"></rich-text>
+          </view>
+        </view>
+        
+
+        <view class="flex" wx:if="{{analysis.cate != ''}}">
+          <view class="shu"></view>
+          <view class="right">考点</view>
+        </view>
+
+        <view class="kd_layout" wx:if="{{analysis.cate}}">
+          <view wx:for="{{analysis.cate}}" wx:key="index">
+            <view class="point">{{item.title}}</view>
+          </view>
+        
+        </view>
+
+      </view>
+      
+
+        
+    <!-- </scroll-view> -->
+      
+    <!-- </swiper-item> -->
+  <!-- </view> -->
+  <!-- </swiper> -->
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- container -->
+</view>

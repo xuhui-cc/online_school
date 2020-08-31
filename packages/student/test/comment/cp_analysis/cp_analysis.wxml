@@ -1,0 +1,223 @@
+<view class="container">
+
+ 
+
+
+  <!-- 试卷菜单栏 -->
+  <view class="layout">
+    <view class="current">{{currentTab + 1}}</view>
+    <view class="sum">/{{all_num}}</view>
+    <image class="card_img" src="/images/other/card.png"></image>
+    <view class="dtk" bindtap="dtk">答题卡</view>
+  </view>
+
+
+
+  <!-- 答题卡 -->
+  <!-- wx:if="{{dtk}}" -->
+  <view class="dtk_layout" wx:if="{{dtk}}">
+    <view class="ques_title" >一、单选题</view>
+    <view class="warp">
+      <view class="for" wx:for="{{id_list}}" wx:key="index">
+        <view wx:if="{{item.status == 1}}" class="r-a-w" style="background:#03B683;" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
+        <view wx:if="{{item.status == 3}}" class="r-a-w" style="background:#F86B6B;" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
+        <view wx:if="{{item.status == 0}}" class="r-a-w" style="background:#EBEBEB;" data-index="{{index}}" bindtap="dtk_jump">{{index + 1}}</view>
+      </view>
+    </view>
+
+  
+  </view>
+
+  <!-- 试卷详情 -->
+
+  <!-- <swiper bindanimationfinish ="swiperchange"  data-current="{{currentTab}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}"> -->
+
+   <view class="body" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd'  style='{{moveLeft}}'>
+
+    
+      
+    <scroll-view scroll-y="true">
+        
+      <view class="ques_content">
+        <rich-text nodes="{{analysis.title}}"></rich-text>
+      </view>
+
+
+      <!-- 未做 -->
+      <view wx:if="{{analysis.mark == 0}}">
+        <view class="select"  wx:if="{{analysis.a != null}}" style="{{analysis.answer == 0?'background:rgba(2,220,159,0.1);':''}}">
+          <view class="{{analysis.answer == 0?'sel_A':'unsel_A'}}" >A</view>
+          <rich-text nodes="{{analysis.a}}" class="cs"></rich-text>
+        </view>
+        <view class="select"  wx:if="{{analysis.b != null}}" style="{{analysis.answer == 1?'background:rgba(2,220,159,0.1);':''}}">
+          <view class="{{analysis.answer == 1?'sel_A':'unsel_A'}}">B</view>
+          <rich-text nodes="{{analysis.b}}" class="cs"></rich-text>
+        </view>
+        <view class="select"  wx:if="{{analysis.c != null}}" style="{{analysis.answer == 2?'background:rgba(2,220,159,0.1);':''}}">
+          <view class="{{analysis.answer == 2?'sel_A':'unsel_A'}}">C</view>
+          <rich-text nodes="{{analysis.c}}" class="cs"></rich-text> 
+        </view>
+        <view class="select"  wx:if="{{analysis.d != null}}" style="{{analysis.answer == 3?'background:rgba(2,220,159,0.1);':''}}">
+          <view class="{{analysis.answer == 3?'sel_A':'unsel_A'}}">D</view>   
+          <rich-text nodes="{{analysis.d}}" class="cs"></rich-text>
+        </view>
+      </view>
+
+      <!-- 做对 -->
+      <view wx:if="{{analysis.mark.status == 1}}">
+        <view class="select"  wx:if="{{analysis.a != null}}" style="{{analysis.mark.submit == 0?'background:rgba(2,220,159,0.1);':''}}">
+          <view class="{{analysis.mark.submit == 0?'sel_A':'unsel_A'}}" >A</view>
+          <rich-text nodes="{{analysis.a}}" class="cs"></rich-text>
+        </view>
+        <view class="select"  wx:if="{{analysis.b != null}}" style="{{analysis.mark.submit == 1?'background:rgba(2,220,159,0.1);':''}}">
+          <view class="{{analysis.mark.submit == 1?'sel_A':'unsel_A'}}">B</view>
+          <rich-text nodes="{{analysis.b}}" class="cs"></rich-text>
+        </view>
+        <view class="select"  wx:if="{{analysis.c != null}}" style="{{analysis.mark.submit == 2?'background:rgba(2,220,159,0.1);':''}}">
+          <view class="{{analysis.mark.submit == 2?'sel_A':'unsel_A'}}">C</view>
+          <rich-text nodes="{{analysis.c}}" class="cs"></rich-text> 
+        </view>
+        <view class="select"  wx:if="{{analysis.d != null}}" style="{{analysis.mark.submit == 3?'background:rgba(2,220,159,0.1);':''}}">
+          <view class="{{analysis.mark.submit == 3?'sel_A':'unsel_A'}}">D</view>   
+          <rich-text nodes="{{analysis.d}}" class="cs"></rich-text>
+        </view>
+      </view>
+
+      <!-- 做错 -->
+      <view wx:if="{{analysis.mark.status == 3}}">
+        <view wx:if="{{analysis.a != null}}" >
+          <view class="select" wx:if="{{analysis.answer == 0}}" style="background:rgba(2,220,159,0.1);">
+            <view class="unsel_A" style="{{analysis.answer == 0?'background:rgba(3,182,131,1);border:2rpx solid rgba(3,182,131,1);color:rgba(255,255,255,1);':''}}">A</view>
+            <rich-text nodes="{{analysis.a}}" class="cs"></rich-text>
+          </view>
+          <view class="select1" wx:elif="{{analysis.mark.submit == 0}}" >
+            <view class="unsel_A" style="{{analysis.mark.submit == 0?'background:rgba(248,107,107,1);border:2rpx solid rgba(248,107,107,1);color:rgba(255,255,255,1);':''}}">A</view>
+            <rich-text nodes="{{analysis.a}}" class="cs"></rich-text>
+          </view>
+          <view class="select" wx:else="">
+            <view class="unsel_A">A</view>
+            <rich-text nodes="{{analysis.a}}" class="cs"></rich-text>
+          </view>
+        </view>
+
+        <view wx:if="{{analysis.b != null}}" >
+          <view class="select" wx:if="{{analysis.answer == 1}}" style="background:rgba(2,220,159,0.1);">
+            <view class="unsel_A" style="{{analysis.answer == 1?'background:rgba(3,182,131,1);border:2rpx solid rgba(3,182,131,1);color:rgba(255,255,255,1);':''}}">B</view>
+            <rich-text nodes="{{analysis.b}}" class="cs"></rich-text>
+          </view>
+          <view class="select1" wx:elif="{{analysis.mark.submit == 1}}">
+            <view class="unsel_A" style="{{analysis.mark.submit == 1?'background:rgba(248,107,107,1);border:2rpx solid rgba(248,107,107,1);color:rgba(255,255,255,1);':''}}">B</view>
+            <rich-text nodes="{{analysis.b}}" class="cs"></rich-text>
+          </view>
+          <view class="select" wx:else="">
+            <view class="unsel_A">B</view>
+            <rich-text nodes="{{analysis.b}}" class="cs"></rich-text>
+          </view>
+        </view>
+
+        <view wx:if="{{analysis.c != null}}" >
+          <view class="select" wx:if="{{analysis.answer == 2}}" style="background:rgba(2,220,159,0.1);">
+            <view class="unsel_A" style="{{analysis.answer == 2?'background:rgba(3,182,131,1);border:2rpx solid rgba(3,182,131,1);color:rgba(255,255,255,1);':''}}">C</view>
+            <rich-text nodes="{{analysis.c}}" class="cs"></rich-text>
+          </view>
+          <view class="select1" wx:elif="{{analysis.mark.submit == 2}}" >
+            <view class="unsel_A" style="{{analysis.mark.submit == 2?'background:rgba(248,107,107,1);border:2rpx solid rgba(248,107,107,1);color:rgba(255,255,255,1);':''}}">C</view>
+            <rich-text nodes="{{analysis.c}}" class="cs"></rich-text>
+          </view>
+          <view class="select" wx:else="">
+            <view class="unsel_A">C</view>
+            <rich-text nodes="{{analysis.c}}" class="cs"></rich-text>
+          </view>
+
+        </view>
+
+        <view wx:if="{{analysis.d != null}}" >
+          <view class="select" wx:if="{{analysis.answer == 3}}" style="background:rgba(2,220,159,0.1);">
+            <view class="unsel_A" style="{{analysis.answer == 3?'background:rgba(3,182,131,1);border:2rpx solid rgba(3,182,131,1);color:rgba(255,255,255,1);':''}}">D</view>
+            <rich-text nodes="{{analysis.d}}" class="cs"></rich-text>
+          </view>
+          <view class="select1" wx:elif="{{analysis.mark.submit == 3}}" >
+            <view class="unsel_A" style="{{analysis.mark.submit == 3?'background:rgba(248,107,107,1);border:2rpx solid rgba(248,107,107,1);color:rgba(255,255,255,1);':''}}">D</view>
+            <rich-text nodes="{{analysis.d}}" class="cs"></rich-text>
+          </view>
+          <view class="select" wx:else="">
+            <view class="unsel_A">D</view>
+            <rich-text nodes="{{analysis.d}}" class="cs"></rich-text>
+          </view>
+        </view>
+
+      </view>
+
+
+       
+
+      <view class="flex">
+        <view class="shu"></view>
+        <view class="right">正确答案：</view>
+        <view wx:if="{{analysis.answer == 0}}" class="right_ans">A</view>
+        <view wx:if="{{analysis.answer == 1}}" class="right_ans">B</view>
+        <view wx:if="{{analysis.answer == 2}}" class="right_ans">C</view>
+        <view wx:if="{{analysis.answer == 3}}" class="right_ans">D</view>
+
+        <view wx:if="{{analysis.mark == 0}}" class="your">您的答案: 未做</view>
+        <view wx:if="{{analysis.mark.submit == 0}}" class="your">您的答案: A</view>
+        <view wx:if="{{analysis.mark.submit == 1}}" class="your">您的答案: B</view>
+        <view wx:if="{{analysis.mark.submit == 2}}" class="your">您的答案: C</view>
+        <view wx:if="{{analysis.mark.submit == 3}}" class="your">您的答案: D</view>
+      </view>
+
+      <view class="flex" wx:if="{{analysis.note != ''}}">
+        <view class="shu"></view>
+        <view class="right">答案解析</view>
+      </view>
+
+
+      <view class="analysis_content">
+        <rich-text nodes="{{analysis.note}}"></rich-text>
+      </view>
+
+      <view class="flex" wx:if="{{analysis.category}}">
+        <view class="shu"></view>
+        <view class="right">考点</view>
+      </view>
+
+      
+      <view class="kd_layout" wx:if="{{analysis.category}}">
+        <view wx:for="{{analysis.category}}" wx:key="index">
+          <view class="point">{{item.title}}</view>
+        </view>
+        
+      </view>
+
+        
+    </scroll-view>
+      
+    <!-- </swiper-item> -->
+  </view>
+  <!-- </swiper> -->
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- container -->
+</view>
