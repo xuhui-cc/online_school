@@ -115,7 +115,7 @@ Page({
     var kid = that.data.course_cata.lists[xb].kid
     var eid = that.data.course_cata.lists[xb].eid
     var mid = that.data.course_cata.lists[xb].mid
-    if (that.data.course_cata.lists[xb].cateid == 1) {
+    if (that.data.course_cata.lists[xb].cateid == 1|| that.data.course_cata.lists[xb].cateid == 2) {
       wx.navigateTo({
         url: app.getPagePath('live') + '?id=' + id + '&kid=' + kid,    //直播
       })

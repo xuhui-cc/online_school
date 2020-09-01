@@ -34,7 +34,7 @@
     <view wx:for="{{course_cata.lists}}" wx:key="index">
 
       <!-- 直播课 -->
-      <view wx:if="{{item.cateid == 1}}">
+      <view wx:if="{{item.cateid == 1 || item.cateid == 2}}">
         <view class="flex">
           <view wx:if="{{index < 9}}" class="course_order">0{{index + 1}}</view>
           <view wx:else class="course_order">0{{index + 1}}</view>
