@@ -1,4 +1,5 @@
 // components/adWindow/adWindow.js
+let pagePath = require('../../utils/pagePath.js')
 Component({
   /**
    * 组件的属性列表
@@ -79,7 +80,7 @@ Component({
         case 1: {
           // 会员卡广告
           wx.navigateTo({
-            url: app.getPagePath('vip_detail'),
+            url: pagePath.getPagePath('vip_detail'),
           })
 
           break
