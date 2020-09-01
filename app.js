@@ -19,7 +19,6 @@ App({
   shareTool: shareTool,
   notificationCenter: notificationCenter,
   notiNameDic: notiNameDic,
-  pagePath: pagePath,
   onLaunch: function () {
 
     // 登录

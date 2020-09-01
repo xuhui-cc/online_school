@@ -692,7 +692,7 @@ Page({
   onShareAppMessage: function () {
     let that = this;
     let params = 'isshare=1&id=' + that.data.id + '&gid=' + wx.getStorageSync("gid")
-    return app.shareTool.getShareReturnInfo('0,1', app.getPagePath('cp_test'), params, '/images/other/share1.png', '领军网校')
+    return app.shareTool.getShareReturnInfo('0,1', 'cp_test', params, '/images/other/share1.png', '领军网校')
   }
 
   //手动滑页

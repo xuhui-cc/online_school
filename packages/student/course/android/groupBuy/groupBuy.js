@@ -803,6 +803,6 @@ preventTouchMove: function (e) {
   onShareAppMessage: function () {
     let that = this;
     let paramsStr = 'isshare=1&gid=' + that.data.gid + '&kid=' + that.data.kid
-    return app.ols.getShareReturnInfo('0,1', app.getPagePath('groupBuy'. true), paramsStr, '/images/other/share1.png', '领军网校')
+    return app.ols.getShareReturnInfo('0,1', 'groupBuy', paramsStr, '/images/other/share1.png', '领军网校')
   }
 })

@@ -1,4 +1,4 @@
-const { grade_course1 } = require("../../utils/ols")
+
 
 // pages/teacher_studentList/teacher_studentList.js
 const app = getApp()
@@ -176,7 +176,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    return app.shareTool.getShareReturnInfo('all', app.getPagePath('first_page'),'','/images/other/share1.png', '领军网校')
+    return app.shareTool.getShareReturnInfo('all', 'first_page','','/images/other/share1.png', '领军网校')
   },
 
   // 页面滚动时触发

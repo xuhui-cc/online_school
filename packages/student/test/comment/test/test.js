@@ -1014,6 +1014,6 @@ onShareAppMessage: function () {
 
   let that = this;
   let paramStr = 'isshare=1&eid=' + that.data.eid + '&gid=' + wx.getStorageSync('gid') + '&kid=' + that.data.kid
-  return app.shareTool.getShareReturnInfo('0,1', app.getPagePath('test'), paramStr, '/images/other/share1.png', '领军网校')
+  return app.shareTool.getShareReturnInfo('0,1', 'test', paramStr, '/images/other/share1.png', '领军网校')
 }
 })

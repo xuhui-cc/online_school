@@ -3,33 +3,34 @@ let pagePath = require('./pagePath.js')
 let shareOption = {}
 
 // first_page页面路径
-let firstPagePath = pagePath.getPagePath('first_page')
+let firstPageName = 'first_page'
 
 // 各角色首页路径
-let homePagePath = [
-  pagePath.getPagePath('index'),
-  pagePath.getPagePath('teacher_studentList'),
-  pagePath.getPagePath('parent_childList')
+let homePageName = [
+  'index',
+  'teacher_studentList',
+  'parent_childList'
 ]
 // tabbar各首页路径
-let tabbarPagePath = [
-  pagePath.getPagePath('logs'),
-  pagePath.getPagePath('my'),
+let tabbarPageName = [
+  'logs',
+  'my',
 ]
 
 /**
  * 获取分享信息
  * 参数：
  *    role: 有查看分享页面权限的角色，字符串 0-未登录 1-学生 2-家长 3-老师 all-所有角色 多个角色用‘,’隔开
- *    targetPath：分享的目标页面路径 字符串
+ *    targetPageName：分享的目标页面名字 字符串
  *    paramsStr：参数字符串  key=value&key=value&...
  *    imageUrl: 分享图片的地址
 */
-function getShareReturnInfo(role, targetPath ,paramsStr, imageUrl, title) {
-  let path = firstPagePath
+function getShareReturnInfo(role, targetPageName ,paramsStr, imageUrl, title) {
+  // 启动页路径
+  let path = pagePath.getPagePath(firstPageName)
 
-  // 拼接 share参数
-  if (targetPath == firstPagePath) {
+  // 拼接 share参数 用于打开分享卡片时在启动页判断是否是 启动页本身
+  if (targetPageName == firstPageName) {
     path = path + "?share=0"
   } else {
     path = path + "?share=1"
@@ -41,14 +42,14 @@ function getShareReturnInfo(role, targetPath ,paramsStr, imageUrl, title) {
     path += "&role=all"
   }
   
-  // 拼接 targethome参数
-  if (homePagePath.indexOf(targetPath) != -1) {
+  // 拼接 targethome参数 用于打开分享卡片时在启动页判断是否是 各角色首页
+  if (homePageName.indexOf(targetPageName) != -1) {
     path += "&targethome=1"
   }
   
-  // 拼接 target参数
-  if (targetPath && targetPath != '') {
-    path += "&target=" + targetPath
+  // 拼接 target参数  目标页面名字
+  if (targetPageName && targetPageName != '') {
+    path += "&target=" + targetPageName
   }
 
   // 拼接 其他传入参数
@@ -59,7 +60,7 @@ function getShareReturnInfo(role, targetPath ,paramsStr, imageUrl, title) {
   return {
     title: title ? title : '领军网校',
     path: path,
-    imageUrl: imageUrl && imageUrl != '' ? imageUrl : '/images/other/share1.png',
+    imageUrl: (imageUrl && imageUrl != '') ? imageUrl : '/images/other/share1.png',
     success (res) {
       console.log('分享成功')
     },
@@ -73,7 +74,7 @@ function getShareReturnInfo(role, targetPath ,paramsStr, imageUrl, title) {
  * 在firstPage页面得到跳转首页的参数
  * 参数：
  *    options：firstPage页面onLoad方法的参数对象
- *    role： 角色 0-未登录 1-学生 2-家长 3-老师
+ *    role： 当前角色 0-未登录 1-学生 2-家长 3-老师
  * 返回值：
  *    处理后的options
 */
@@ -85,8 +86,8 @@ function getFirstPageShareParam(options, role) {
     shareOption = {}
   } else {
     // 用户角色可以查看分享的页面
-    if (homePagePath.indexOf(options.target) != -1) {
-      // 分享目标页为角色首页
+    if (homePageName.indexOf(options.target) != -1) {
+      // 分享目标页为角色首页  将share变为0，以便在各角色首页判断是其本身
       options.share = 0
     }
     console.log("获取分发首页时的分享参数：\n", options)
@@ -100,21 +101,22 @@ function getFirstPageShareParam(options, role) {
 */
 function shareTarget () {
   if (shareOption.target && shareOption.share) {
-    if (tabbarPagePath.indexOf(shareOption.target) != -1) {
+    if (tabbarPageName.indexOf(shareOption.target) != -1) {
       // 分享页面为tabbar页面
       shareOption.share = 0
     }
     if (shareOption.share) {
+      // 分享的页面不为tabbar页面，跳转过去
       let sharePath = getShareTargetPath()
       wx.navigateTo({
         url: sharePath,
       })
       shareOption = {}
     } else {
-      // tabbar页面
+      // 分享的页面为 tabbar页面 切换tabbar选中item
       setTimeout(function(){
         wx.switchTab({
-          url: shareOption.target,
+          url: app.getPagePath(shareOption.target),
         })
       }, 100)
     }
@@ -161,7 +163,7 @@ function appendOptions(options) {
 */
 function getShareTargetPath() {
   if (shareOption.target) {
-    let targetPath = shareOption.target
+    let targetPath = pagePath.getPagePath(shareOption.target)
     let paramsStr = appendOptions(shareOption)
     targetPath += "?" + paramsStr
     console.log("获取目标分享页面:\n", targetPath)

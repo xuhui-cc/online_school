@@ -607,7 +607,7 @@ Page({
   onShareAppMessage: function () {
     let that = this;
     let paramStr = 'isshare=1&gid=' + that.data.gid
-    return app.shareTool.getShareReturnInfo('0,1', app.getPagePath('logs'), paramStr, '/images/other/share1.png', '领军网校')
+    return app.shareTool.getShareReturnInfo('0,1', 'logs', paramStr, '/images/other/share1.png', '领军网校')
   },
 
   cs:function(){

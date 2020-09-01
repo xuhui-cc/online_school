@@ -187,6 +187,6 @@ Page({
   onShareAppMessage: function () {
     let that = this;
     let paramsStr = 'isshare=1&gid=' + wx.getStorageSync("gid") + '&kid=' + that.data.group.kid + '&tid=' + that.data.tid
-    return app.shareTool.getShareReturnInfo('0,1', app.getPagePath('group_share'), paramsStr, '/images/other/share1.png', '领军网校')
+    return app.shareTool.getShareReturnInfo('0,1', 'group_share', paramsStr, '/images/other/share1.png', '领军网校')
   }
 })

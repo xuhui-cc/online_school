@@ -1,4 +1,4 @@
-const ols = require("../../utils/ols")
+
 
 // pages/study_record/study_record.js
 const app = getApp()
@@ -142,7 +142,7 @@ Page({
    */
   onShareAppMessage: function () {
     let paramStr = 'sid='+this.sid
-    return app.shareTool.getShareReturnInfo('1,2,3', app.getPagePath('study_record', true), paramStr, this.shareImagePath ? this.shareImagePath : '', '查看日志')
+    return app.shareTool.getShareReturnInfo('1,2,3', 'study_record', paramStr, this.shareImagePath ? this.shareImagePath : '', '查看日志')
   },
 
   //----------------------------------------------------------私有方法-------------------------------------------------

@@ -535,6 +535,6 @@ getPhoneNumber: function (e) {
 
     let that = this;
     let paramStr = 'isshare=1&eid=' + that.data.eid + '&gid=' + wx.getStorageSync('gid') + '&kid=' + that.data.kid + '&id=' + that.data.id + '&mid=' + that.data.mid
-    return app.shareTool.getShareReturnInfo('0,1', app.getPagePath('video'), paramStr, '/images/other/share1.png', '领军网校')
+    return app.shareTool.getShareReturnInfo('0,1', 'video', paramStr, '/images/other/share1.png', '领军网校')
   }
 })

@@ -955,6 +955,6 @@ Page({
 
     let that = this;
     let prarmsStr = 'isshare=1&eid=' + that.data.eid + '&gid=' + wx.getStorageSync('gid') + '&kid=' + that.data.kid + '&oid=' + that.data.oid
-    return app.shareTool.getShareReturnInfo('0,1', app.getPagePath('homework'), prarmsStr,'/images/other/share1.png', '领军网校')
+    return app.shareTool.getShareReturnInfo('0,1', 'homework', prarmsStr,'/images/other/share1.png', '领军网校')
   }
 })

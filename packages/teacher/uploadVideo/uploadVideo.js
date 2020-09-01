@@ -69,7 +69,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    return app.shareTool.getShareReturnInfo('all', app.getPagePath('first_page'))
+    return app.shareTool.getShareReturnInfo('all', 'first_page')
   },
 
   // -------------------------------------------------交互事件-----------------------------------------
