@@ -1,5 +1,5 @@
 // components/adWindow/adWindow.js
-let pagePath = require('../../utils/pagePath')
+let pagePath = require('../../utils/pagePath.js')
 Component({
   /**
    * 组件的属性列表
