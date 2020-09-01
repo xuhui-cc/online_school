@@ -1,0 +1,126 @@
+<!--pages/teacher_addRecord/teacher_addRecord.wxml-->
+<view class="container">
+  <!-- 导航栏 -->
+  <view class="naviBar" style="top:{{statusBarHeight}}px; height:{{naviContentHeight}}px">
+    <view class="naviBar_back" bindtap="naviBackItemClicked">
+      <image class="naviBar_backImage" src="/images/navi/w_back2.png"></image>
+    </view>
+    <view class="naviBar_title">添加日志</view>
+    <view class="naviBar_back"></view>
+  </view>
+
+  <!-- 顶部背景 -->
+  <view class="headerBgView">
+    <image class="headerBg_image" src="./resource/teacher_info_bg.png"></image>
+  </view>
+
+  <view style="margin-top:{{naviHeight}}px; width:100%;">
+    <scroll-view style="height:{{screenHeight-naviHeight-safeArea_bottom}}px;" scroll-y="true" enable-flex="true">
+      <!-- 学员名称 -->
+      <view class="header_studentName oneLine_ellipsis" style="margin-top:{{207/750.0*screenWidth - naviHeight}}px;">学员：{{studentName}}</view>
+      <!-- 当前日期 -->
+      <view class="header_time oneLine_ellipsis">时间：{{date}}</view>
+      <!-- 内容框 -->
+      <view class="recordContentView">
+        <view class="recordContent_titleView">
+          <image class="recordContent_titleImage" src="./resource/teahcer_addRecord_contentTitle.png"></image>
+          <view class="recordContent_title">内容：</view>
+        </view>
+        <view class="recordContent_edit">
+          <image class="record_content_editIcon" src="./resource/teacher_addContent.png"></image>
+          <!-- 输入框 -->
+          <textarea class="record_content_textarea" placeholder="请输入该学生的学习内容" placeholder-class="record_content_placehoulder" maxlength="1000"  bindinput="recordContentTextareaInput" value="{{content}}"></textarea>
+        </view>
+        <!-- 字数 -->
+        <view class="reocrdContent_length">{{content.length+"/1000"}}</view>
+        <!-- 附件列表 -->
+        <view class="recordFileList">
+          <!-- 添加按钮 -->
+          <view class="recordFileCell" style="margin-left:34rpx" bindtap="addFileButtonClicked">
+            <image class="recordFile_image" src="./resource/add_file.png"></image>
+          </view>
+          <!-- 附件列表 -->
+          <block wx:for="{{files}}" wx:key="index">
+            <view class="recordFileCell" style="margin-left:{{index>1 && (index-2)%3==0 ? 34 : 16}}rpx" bindtap="showBigFile" data-index="{{index}}">
+              <!-- 图片附件 -->
+              <block wx:if="{{item.type == 'image'}}">
+                <!-- 附件图片 -->
+                <image class="recordFile_image" mode="aspectFill" src="{{item.serverPath}}"></image>
+                
+              </block>
+              <!-- 视频附件 -->
+              <block wx:else>
+                <video src="{{item.serverPath}}" controls="{{false}}" show-center-play-btn="{{false}}" show-progress="{{false}}" class="recordFile_image"></video>
+                <!-- 视频半透明遮盖 -->
+                <view class="recordFile_videoView">
+                  <image class="recordFile_videoPlay" src="./resource/video_play.png"></image>
+                </view>
+              </block>
+              <!-- 删除按钮 -->
+              <view class="recordFile_delete" catchtap="fileDeleteButtonClciked" data-index="{{index}}">
+                <image class="recoprdFile_deleteImage" src="./resource/file_delete.png"></image>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <!-- 日志类型 -->
+      <view class="recordTypeView">
+        <block wx:for="{{typeList}}" wx:key="index">
+          <view class="recordTypeCell" style="{{item.selected ? 'color:#af5800; border:2rpx solid #af5800; background-color:#ffe35a;' : 'color:#c7c9d2; border:2rpx solid #c7c9d2; background-color:white;'}}" bindtap="recordTypeCellClicked" data-index="{{index}}">{{item.title}}</view>
+        </block>
+      </view>
+      <!-- 是否消课 -->
+      <view class="recordClearCourseHours" bindtap="clearCourseHourClicked" wx:if="{{showClearCourseHour}}">
+        <view class="flex_row_alignItemCenter">
+          <image class="recordClearCourseHour_selectImage" src="{{clearCourseHour ? './resource/teacher_addRecord_clearCourseHour.png' : './resource/teacher_addRecord_notClearCourseHour.png'}}"></image>
+          <view class="recoudClearCourseHour_title" style="color:{{clearCourseHour ? '#af5800' : '#dbdce5'}}">是否销课</view>
+        </view>
+        <view class="flex_row_alignItemCenter">
+          <view class="recordClearCourseHour_minus">－</view>
+          <view class="recordClearCourseHour_count" style="color:{{clearCourseHour? '#000934' : '#cacee4'}};" catchtap="clearCourseHourCountClicked">{{clearCourseHourCount_pointLeft + '.' + clearCourseHourCount_pointRight}}</view>
+          <view class="recordClearCourseHour_Unit" style="color:{{clearCourseHour ? '#c7c9d2' : '#dbdce5'}};">课时</view>
+        </view>
+      </view>
+      <!-- 垫高底部 -->
+      <view style="height:157rpx; width:100%"></view>
+    </scroll-view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="bottomButton" style="bottom:{{safeArea_bottom + 37/750.0*screenWidth}}px" bindtap="submitButtonClciked">提交</view>
+</view>
+
+
+<!-- 选择消课课时弹框 -->
+<view class="clearCountSelectView_bg" wx:if="{{showClearCountSelectView}}">
+  <view class="clearCountSelectView" style="height:{{573/750.0*screenWidth+safeArea_bottom}}px">
+    <view class="clearCount_titleView">
+      <view class="clearCountView_Close"></view>
+      <!-- title -->
+      <text class="clearCountView_title">课时选择</text>
+      <!-- 关闭按钮 -->
+      <view class="clearCountView_Close" bindtap="clearCountViewClose">
+        <image class="clearCountView_CloseImage" src="/images/other/del.png"></image>
+      </view>
+    </view>
+    <!-- 选择器 -->
+    <picker-view indicator-style="height:100rpx;" style="width: 100%; height: 300rpx;" value="{{[clearCourseHourCount_pointLeft_index,0,clearCourseHourCount_pointRight_index]}}" bindpickstart="clearCountPickerStartScroll" bindpickend="clearCountPickerEndScroll" bindchange="clearCountPickerChange">
+      <picker-view-column>
+        <block wx:for="{{clearCourseCount_pointLeftList}}" wx:key="index">
+          <view class="clearCountPickerCell" style="justify-content: flex-end;">{{item}}</view>
+        </block>
+      </picker-view-column>
+      <picker-view-column>
+        <view class="clearCountPickerCell">.</view>
+      </picker-view-column>
+      <picker-view-column>
+        <block wx:for="{{clearCourseCount_pointRightList}}" wx:key="index">
+          <view class="clearCountPickerCell" style="justify-content: flex-start;">{{item}}</view>
+        </block>
+      </picker-view-column>
+    </picker-view>
+    <!-- 确定按钮 -->
+    <view class="clearCountView_sureButton" bindtap="clearCountSelectSureButtonClciked">确定</view>
+  </view>
+</view>

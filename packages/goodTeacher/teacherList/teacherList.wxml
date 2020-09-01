@@ -1,0 +1,68 @@
+<view class="container">
+
+  <!-- HEAD -->
+  <image class="head" src="{{image_bg}}"></image>
+  <image class="back" src="/images/navi/w_back2.png" bindtap="back"></image>
+
+  <!-- 名师列表 -->
+  
+  <view class="tea_layout">
+    <view wx:for="{{teacherList}}" wx:key="index" style="margin-bottom:50rpx;" bindtap="to_teacherIntro" data-xb="{{index}}">
+      <image class="tea_bottom" src="./resource/teacher_bottom.png"></image>
+      <view class="flex" style="margin-left:30rpx;">
+        <image class="tea_avatar" src="{{item.avatar}}"></image>
+        <view>
+          <view class="flex" style="margin-top:70rpx;margin-left:25rpx;margin-bottom:8rpx">
+            <text class="tea_name">{{item.name}}</text>
+            <text class="tea_position" style="margin-top:13rpx;">{{item.discipline}}老师</text>
+          </view>
+          <text class="tea_intro" >“{{item.intro}}”</text>
+        </view>
+      </view>
+      
+      
+      <!-- <image class="tea_ava" src="../../images/teacherFile/tea_ava.png"></image>
+      <view class="tea_name">{{item.name}}</view>
+      <image class="tea_bg" src="../../images/teacherFile/teacher_bottom.png"></image> -->
+      
+      
+      
+
+    </view>
+  
+  
+  
+  
+  </view>
+   <!-- 名师列表 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- container -->
+</view>

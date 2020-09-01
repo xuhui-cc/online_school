@@ -1,0 +1,130 @@
+
+<view class="container">
+  <button class="login1"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="0"></button>
+  <image class="back" src="/images/navi/w_back2.png" bindtap="back"></image>
+
+
+
+  <image class="bg3" src="./resource/bg3.png"></image>
+  
+
+  <view class="flex" style="margin-top:176rpx;margin-left: 50rpx;">
+    <image wx:if="{{!login}}" src="/images/defaultHead/my_head.png" class="ava"></image>
+    <view class="ava" wx:else="">
+      <open-data  type="userAvatarUrl"></open-data>
+    </view>
+    
+    <view wx:if="{{!login}}" class="nick">请登录</view>
+    <view class="flex" wx:if="{{vip_list[0].is_buy == 0 && login}}" >
+      <open-data type="userNickName" class="nick"></open-data>
+      <view class="btn" bindtap="vip_buy" hidden="{{btn_buy}}">立即开通</view>
+    </view>
+    <view style="margin-top: 15rpx;" wx:if="{{vip_list[0].is_buy >0 && login}}">
+      <open-data type="userNickName" class="nick"></open-data>
+      <!-- <view class="nick" >张东升的假发</view> -->
+      <view class="flex">
+        <image class="badge_img" src="/images/other/vip_badge2.png"></image>
+        <view wx:if="{{vip_list[0].valid_days == 0}}" class="vip_time">永久</view>
+        <view wx:else="" class="vip_time">{{vip_list[0].valid_days}}到期</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 卡片滚动 -->
+  <!-- <swiper
+    class="swiper"
+    circular="{{circular}}" 
+    previous-margin="{{previousMargin}}" 
+    next-margin="{{nextMargin}}"
+    bindchange="swiperBindchange"
+  >
+    <block wx:for="{{imgUrls}}" wx:key="index">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image {{currentSwiperIndex == index ? 'zoom-in' : 'zoom-out'}}" mode='widthFix'/>
+      </swiper-item>
+    </block>
+  </swiper> -->
+
+  <!-- <image class="" src="{{vip_list[0].bgpic}}"></image> -->
+  <image class="vip_fm" src="{{imgUrls[0]}}"></image>
+  <view class="checkinfo_head" style="margin-left: 185rpx;margin-top: 385rpx;">{{vip_list[0].title}}</view>
+  <view class="intro">{{vip_list[0].memo}}</view>
+  <view class="price" wx:if="{{vip_list[0].is_buy == 0}}" hidden="{{btn_buy}}"><text style="font-size:32rpx;font-weight:400;" >¥</text>{{vip_list[0].price}}</view>
+
+  <button class="login1" style="margin-left: 485rpx;margin-top: 600rpx;width:240rpx;height:40rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="1"></button>
+  <view class="layout">
+    <image  class="exchange_entry" src="./resource/exchange_entry.png" bindtap="exchange"></image>
+    <view class="h1">{{vip_list[0].title}}会员权益</view>
+    <view class="h2"><text style="font-size:30rpx;">{{vip_list[0].course_num}}门</text>精选好课</view>
+    <view style="margin-top:32rpx;">
+      <view wx:for="{{vip_list[0].course}}" wx:key="index" style="margin-left:30rpx;margin-bottom:42rpx;">
+      
+        <view class="flex" bindtap="vip_course_detail" data-xb="{{index}}">
+          <image class="laber" src="/images/other/vip_laber2.png" ></image>
+          <image class="fm" src="{{item.face}}"></image>
+          <view>
+            <view class="title">{{item.title}}</view>
+            <view class="flex">
+              <view class="num">{{item.class_hour}}课时</view>
+              <view class="tip" wx:if="{{vip_list[0].valid <= 0 || vip_list[0].is_buy == 0 || !vip_list[0].valid}}" style="color:rgba(163,163,163,1);">免费学</view>
+              <view class="tip" wx:if="{{vip_list[0].valid > 0  &&  vip_list[0].is_buy > 0}}">免费学</view>
+            </view>
+            
+          </view>
+        </view>
+      
+      </view>
+    </view>
+
+
+
+  </view>
+
+  <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!exchange}}"></view>
+  <view style="margin-top:-120rpx;" hidden="{{!exchange}}">
+    <image class="bg_exchange" src="./resource/bg_exchange.png" ></image>
+    <input class="input" placeholder="请输入您的兑换码" placeholder-style=" text-align: center;" bindinput="input_code" value="{{code}}"></input>
+    <view wx:if="{{checkCode == -1}}" class="checkCode_tip">*{{check_msg}}</view>
+    <view class="btn1_2" wx:if="{{code == '' && checkCode != -1}}" >提交</view>
+    <view class="btn1" wx:else="" bindtap="submit_check">提交</view>
+    <image class="exchange_close" src="/images/other/exchange_close.png" bindtap="exchange"></image>
+  </view>
+
+  <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!exchange_page}}"></view>
+  <!--  -->
+  <view style="margin-top:-120rpx;" hidden="{{!exchange_page}}">
+    <image class="bg_exchange1" src="./resource/exchange_page.png" ></image>
+    <view class="checkinfo_head">{{codeinfo.title}}</view>
+    <view class="checkinfo_intro">{{codeinfo.remark}}</view>
+    <view class="checkinfo_tip1">确认兑换为{{codeinfo.title}}？</view>
+    <view class="checkinfo_tip2" wx:if="{{vip.expire > 0}}">您当前为{{vip_list[0].title}},确认兑换后将替换掉原有会员卡。</view>
+    <view class="btn2" bindtap="yes_exchange">是，立即兑换</view>
+    <view class="btn3" bindtap="exchange_page">否，暂不兑换</view>
+    <image class="exchange_close" style="margin-top:700rpx" src="/images/other/exchange_close.png" bindtap="exchange_page"></image>
+  </view>
+
+  <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!pay}}"></view>
+  <view style="margin-top:-120rpx;" hidden="{{!pay}}">
+    <image class="success_img" src="./resource/seuccess_vip1.png" ></image>
+    <view class="checkinfo_head">{{vip_list[0].title}}</view>
+    <view class="cuccess_tip">您已成功开通{{vip_list[0].title}}</view>
+    <view class="cuccess_tip1">立即开启您的学习成功之旅</view>
+    <view class="success_yes" bindtap="success_yes">查看会员权限</view>
+    <image class="exchange_close"  style="margin-top:700rpx" src="/images/other/exchange_close.png" bindtap="success_yes"></image>
+  </view>
+
+
+  <!-- 登录蒙层 -->
+  <!-- <view class="mask1" wx:if="{{isshare == 1 && login == false}}"></view>
+  <view class="login_layout" wx:if="{{isshare == 1 && login == false}}">
+  
+    
+    <image class="unlogin" src="../../images/unlogin.png" style="margin-top:75rpx;"></image>
+    <view class="login_tip">您当前尚未登录! </view>
+    <view class="login_tip">请点击下方按钮登录</view>
+    <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+    <image class="tologin" src="../../images/tologin.png"></image>
+  </view> -->
+  
+  
+</view>

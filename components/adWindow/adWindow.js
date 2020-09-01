@@ -79,7 +79,7 @@ Component({
         case 1: {
           // 会员卡广告
           wx.navigateTo({
-            url: '/pages/vip_detail/vip_detail',
+            url: app.getPagePath('vip_detail'),
           })
 
           break

@@ -96,13 +96,6 @@
         },
         {
           "id": -1,
-          "name": "pages/zbcs/zbcs",
-          "pathName": "pages/zbcs/zbcs",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
           "name": "pay",
           "pathName": "packages/student/course/android/pay/pay",
           "query": "",
@@ -124,15 +117,15 @@
         },
         {
           "id": -1,
-          "name": "pages/my_order/my_order",
-          "pathName": "pages/my_order/my_order",
+          "name": "my_order",
+          "pathName": "packages/student/my/android/my_order/my_order",
           "query": "",
           "scene": null
         },
         {
           "id": -1,
-          "name": "pages/order_detail/order_detail",
-          "pathName": "pages/order_detail/order_detail",
+          "name": "order_detail",
+          "pathName": "packages/student/my/android/order_detail/order_detail",
           "query": "",
           "scene": null
         },
@@ -140,13 +133,6 @@
           "id": -1,
           "name": "pages/index/index",
           "pathName": "pages/index/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/cs/cs",
-          "pathName": "pages/cs/cs",
           "query": "",
           "scene": null
         },
@@ -208,13 +194,6 @@
         },
         {
           "id": -1,
-          "name": "cs",
-          "pathName": "pages/cs/cs",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
           "name": "share_analysis",
           "pathName": "packages/student/test/comment/share_analysis/share_analysis",
           "query": "",
@@ -230,7 +209,7 @@
         {
           "id": -1,
           "name": "vip_detail",
-          "pathName": "pages/vip_detail/vip_detail",
+          "pathName": "packages/student/vip/android/vip_detail/vip_detail",
           "scene": null
         }
       ]

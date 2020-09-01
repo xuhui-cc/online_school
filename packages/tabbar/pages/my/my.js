@@ -131,7 +131,7 @@ Page({
   to_vip:function(){
     let that = this
     wx.navigateTo({
-      url: '../../pages/vip_detail/vip_detail',
+      url: app.getPagePath('vip_detail'),
     })
   },
 
@@ -151,7 +151,7 @@ Page({
   // 跳转到关于我们
   gourlabout: function () {
     wx.navigateTo({
-      url: '../my_about/my_about',
+      url: app.getPagePath('my_about'),
     })   
   },
 
@@ -159,7 +159,7 @@ Page({
     studyLog: function () {
       var userinfo = wx.getStorageSync('userinfo')
       wx.navigateTo({
-        url: '../study_record/study_record?sid=' + userinfo.id,
+        url: app.getPagePath('study_record') + '?sid=' + userinfo.id,
       })   
     },
 
@@ -178,7 +178,7 @@ Page({
   // 跳转我的订单
   gourlOrder: function () {
     wx.navigateTo({
-      url: '../my_order/my_order',
+      url: app.getPagePath('my_order'),
     })
   },
 })

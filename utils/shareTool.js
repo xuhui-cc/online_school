@@ -8,8 +8,8 @@ let firstPagePath = pagePath.getPagePath('first_page')
 // 各角色首页路径
 let homePagePath = [
   pagePath.getPagePath('index'),
-  '/pages/teacher_studentList/teacher_studentList',
-  '/pages/parent_childList/parent_childList'
+  pagePath.getPagePath('teacher_studentList'),
+  pagePath.getPagePath('parent_childList')
 ]
 // tabbar各首页路径
 let tabbarPagePath = [

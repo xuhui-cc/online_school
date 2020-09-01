@@ -1,0 +1,67 @@
+<!--pages/teacher_studentList/teacher_studentList.wxml-->
+<view class="container">
+  <!-- 导航栏白色背景，向上滚动可见 -->
+  <view class="naviBgView" style="height:{{naviHeight}}px"></view>
+
+  <!-- 老师信息 -->
+  <view class="teacherInfoView">
+    <image class="teacherInfo_bg" src="./resource/teacher_info_bg.png"></image>
+    <image class="teacherInfo_avatar" src="{{teacherUserinfo.avatar}}"></image>
+    <view class="teacherInfo_name">{{teacherUserinfo.name}}</view>
+    <text class="teacherInfo_role">老师</text>
+  </view>
+
+  <block wx:if="{{studentList && studentList != '' && studentList.length != 0}}">
+    <!-- 学员列表 表头 -->
+    <view class="studentList_Header" style="position:{{headerFixed ? 'fixed' : 'static'}}; top:{{HeaderFixedTop}}px; margin-top:{{headerFixed ? 0 : 24}}rpx;">
+      <image class="studentList_Header_icon" src="./resource/studentList_header.png"></image>
+      <view class="studentList_Header_title">学员</view>
+    </view>
+    <view class="studentList_Header" hidden="{{!headerFixed}}"></view>
+
+    <!-- 学员列表 -->
+    <block wx:for="{{studentList}}" wx:key="index">
+      <view class="student_Cell" style="margin-top:{{index==0 ? 0 : 20}}rpx;" bindtap="studentCellClicked" data-index="{{index}}">
+        <view class="flex_row_alignItemCenter" style="margin-top:29rpx; height:48rpx;">
+          <!-- 姓名 -->
+          <view class="studentList_name">{{item.nick}}</view>
+          <!-- 性别 -->
+          <image class="studentList_gender" src="{{item.sex==0 ? './resource/teacherList_gender_female.png' : './resource/teacherList_gender_male.png'}}"></image>
+          <!-- 年级 -->
+          <view class="studentList_grade" style="border-color:{{gradeStyleDictionary[item.grade_title].borderColor}}; background-color:{{gradeStyleDictionary[item.grade_title].backgroundColor}}; color:{{gradeStyleDictionary[item.grade_title].textColor}};">{{item.grade_title}}</view>
+        </view>
+        <view class="flex_row_alignItemCenter" style="margin-top:11rpx; height:37rpx;">
+          <!-- 电话 -->
+          <view class="studentList_phone">{{item.mobile}}</view>
+          <view style="height:19rpx; width:2rpx; margin-left:20rpx; background-color:#c4ccf3;"></view>
+          <!-- 校区 -->
+          <view class="studentList_school">{{item.school_address ? item.school_address : '暂无校区'}}</view>
+        </view>
+        <view class="flex_row_alignItemCenter" style="margin-top:30rpx; height:33rpx">
+          <block wx:if="{{item.log && item.log!=''}}">
+            <!-- 小蓝点，只有今天有最新日志才展示 -->
+            <view class="studentList_recordPoint" wx:if="{{item.log.isDian == 1}}"></view>
+            <!-- 最新日志时间 -->
+            <view class="studentList_recordTime" style="margin-left:{{item.log.isDian == 1 ? 8 : 31}}rpx;">{{item.log.time}}</view>
+            <!-- 最新日志更新人 -->
+            <view class="studentList_recordDetail">{{item.log.teacher_name}}老师更新了日志</view>
+          </block>
+          <block wx:else>
+            <!-- 无日志 -->
+            <view class="studentList_noRecord">该学生暂无日志！</view>
+          </block>
+        </view>
+        <view class="student_addRecord_bg" catchtap="addRecordButtonClciked" data-index="{{index}}">
+          <image class="student_addRecord" src="./resource/studentList_addRecord.png"></image>
+        </view>
+      </view>
+    </block>
+  </block>
+  <block wx:else>
+    <null_image title="您当前还没有关联的学员~" type="1" z_index="2" top="47.3%"></null_image>
+  </block>
+  
+  <!-- safeArea留空 -->
+  <view style="height:{{safeArea_bottom+10}}px; width:100%;"></view>
+</view>
+

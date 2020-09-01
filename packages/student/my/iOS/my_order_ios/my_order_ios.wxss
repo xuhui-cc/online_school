@@ -1,0 +1,222 @@
+page{
+  background-color: #F5F5F5;
+}
+.record-bar{
+  position: fixed;
+  /* margin-top: 176rpx; */
+  display: flex;
+  width:750rpx;
+  height:80rpx;
+  background:rgba(255,255,255,1);
+}
+.aud{
+  margin-left: 50rpx;
+  margin-right: 30rpx;
+  margin-top: 23rpx;
+  width:100rpx;
+  height:45rpx;
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:45rpx;
+  text-align: center;
+  color:rgba(32,32,32,1);
+  opacity:1;
+}
+.aud.active{
+  position: relative;
+  margin-left: 50rpx;
+  margin-right: 30rpx;
+  margin-top: 20rpx;
+  width:100rpx;
+  height:45rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:45rpx;
+  text-align: center;
+  color:#14CBA2;
+  opacity:1;
+}
+.aud.active::after{
+  content: ""; 
+  display: block; 
+  height: 4rpx; 
+  width: 30%; 
+  background: #14CBA2;
+  position: absolute;  
+  top:57rpx;
+  left: 36rpx; 
+}
+.margin{
+  margin-top: 94rpx;
+  margin-bottom: 100rpx;
+}
+.layout{
+  margin-left: 30rpx;
+  margin-top: 22rpx;
+  width:690rpx;
+  /* height:280rpx; */
+  background:rgba(255,255,255,1);
+  opacity:1;
+  border-radius:14rpx;
+}
+.flex{
+  display: flex;
+}
+.title{
+  margin-left: 34rpx;
+  margin-top: 32rpx;
+  width:530rpx;
+  /* height:50rpx; */
+  font-size:36rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:50rpx;
+  color:rgba(39,39,39,1);
+  opacity:1;
+}
+.state{
+  margin-top: 34rpx;
+  width:90rpx;
+  height:40rpx;
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:40rpx;
+  color:rgba(3,182,131,1);
+  opacity:1;
+}
+.intro{
+  margin-left: 34rpx;
+  margin-top: 18rpx;
+  
+  width:616rpx;
+  height:71rpx;
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:33rpx;
+  color:rgba(130,130,130,1);
+  opacity:1;
+}
+.price{
+  margin-left: 34rpx;
+  margin-top: 42rpx;
+  width:96rpx;
+  height:33rpx;
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:33rpx;
+  color:rgba(39,39,39,1);
+  opacity:1;
+}
+.yuan{
+  margin-top: 42rpx;
+  width:30rpx;
+  height:37rpx;
+  font-size:26rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:37rpx;
+  text-align: center;
+  color:rgba(3,182,131,1);
+  opacity:1;
+}
+.to_pay{
+  position: absolute;
+  margin-left: 520rpx;
+  margin-top: 31rpx;
+  width:142rpx;
+  height:54rpx;
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:54rpx;
+  text-align: center;
+  color:rgba(255,255,255,1);
+  background:rgba(2,220,159,1);
+  opacity:1;
+  z-index: 10;
+  border-radius:29rpx;
+}
+.no_order{
+  margin-left: 267rpx;
+  margin-top: 447rpx;
+  width:200rpx;
+  height:257rpx;
+}
+.tip{
+  margin-left: 315rpx;
+  margin-top: 52rpx;
+  width:120rpx;
+  height:42rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:42rpx;
+  color:rgba(199,197,197,1);
+  opacity:1;
+}
+.group_layout{
+  margin-left: 30rpx;
+  margin-top: 22rpx;
+  width:690rpx;
+  /* height:382rpx; */
+  background:rgba(255,255,255,1);
+  opacity:1;
+  border-radius:14rpx;
+}
+.group_status{
+  margin-left: 30rpx;
+  margin-top: 30rpx;
+  width:112rpx;
+  height:40rpx;
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:40rpx;
+  color:rgba(255,75,32,1);
+  opacity:1;
+}
+.sponsor{
+  /* width:146px; */
+  margin-left: 38rpx;
+  margin-top: 20rpx;
+  height:37rpx;
+  font-size:26rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:37rpx;
+  color:rgba(10,10,10,1);
+  opacity:1;
+}
+.lack{
+  margin-left: 38rpx;
+  margin-top: 20rpx;
+  /* width:94rpx; */
+  height:37rpx;
+  font-size:26rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:37rpx;
+  color:#9E9E9E;
+  opacity:1;
+}
+.btn{
+  margin-left: 270rpx;
+  margin-top: 50rpx;
+  margin-bottom: 30rpx;
+  width:159rpx;
+  height:54rpx;
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:54rpx;
+  text-align: center;
+  color:rgba(255,255,255,1);
+  background:linear-gradient(90deg,rgba(255,71,28,1) 0%,rgba(255,192,143,1) 100%);
+  opacity:1;
+  border-radius:29rpx;
+}

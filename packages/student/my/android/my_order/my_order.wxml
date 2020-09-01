@@ -1,0 +1,90 @@
+<view class="container">
+
+  <view class="record-bar">
+    <text class="aud {{finish == 0 ? 'active': ''}}" bindtap="finish_select" data-finish="{{0}}">全部</text>
+    <text class="aud {{finish == 1 ? 'active': ''}}" bindtap="finish_select" data-finish="{{1}}">待支付</text>
+    <text class="aud {{finish == 2 ? 'active': ''}}" bindtap="finish_select" data-finish="{{2}}">已支付</text>
+    <text class="aud {{finish == 3 ? 'active': ''}}" bindtap="finish_select" data-finish="{{3}}">已关闭</text>
+  </view>
+
+  <view wx:if="{{order == ''}}">
+    <image class="no_order" src="/images/null/order_null.png"></image>
+    <view class="tip">暂无订单</view>
+  
+  </view>
+
+ <view class="margin" wx:if="{{order != ''}}" > 
+  <view wx:for="{{order}}" wx:key="index">
+    <!-- 普通样式 -->
+    <view class="layout" bindtap="to_order_detail" data-id="{{item.id}}" wx:if="{{item.is_buy < 2}}">
+      <view class="flex">
+        <view class="title">{{item.title}}</view>
+        <view wx:if="{{item.is_buy == 1}}" class="state">已支付</view>
+        <view wx:if="{{item.is_buy  == 0 && item.close == 0}}" class="state">待支付</view>
+        <view wx:if="{{(item.is_buy == 0 && item.close == 1) }}" class="state" style="color:rgba(203,203,203,1);">已关闭</view>
+      </view>
+      <view class="intro" style="{{btn_buy?'padding-bottom: 20rpx;':''}}">{{item.intro}}</view>
+      <view class="flex" style="padding-bottom:20rpx;" hidden="{{btn_buy}}">
+        <view class="price" style="{{item.active == 1 && item.close == 0 ?'':'margin-left: 455rpx;'}}">实付款：</view>
+        <view class="yuan" style="{{item.active == 1 && item.close == 0 ?'':'color:rgba(32,32,32,1);'}}">¥</view>
+        <view class="yuan" style="{{item.active == 1 && item.close == 0 ?'font-size:36rpx;margin-top: 39rpx;font-weight:bold;':'font-size:36rpx;margin-top: 39rpx;font-weight:bold;color:rgba(32,32,32,1);'}}">{{item.sum_money}}</view>
+        <view wx:if="{{item.is_buy  == 0 && item.close == 0}}"  class="to_pay" bindtap="to_pay" data-kid="{{item.kid}}">去支付</view>
+      </view>
+    </view>
+    <!-- 普通样式 -->
+
+    <!-- 拼团样式 -->
+    <view class="group_layout"  data-id="{{item.id}}" wx:if="{{item.is_buy > 1}}">
+      <view class="flex">
+        <view class="group_status" wx:if="{{item.is_buy == 2}}">拼团中...</view>
+        <view class="group_status" wx:if="{{item.is_buy == 3}}">拼团成功</view>
+        <view class="group_status" hidden="true">拼团成功</view>
+        <view class="state" style="margin-left:425rpx;">已支付</view>
+      </view>
+      <view class="title" style="width:660rpx;">{{item.title}}</view>
+      <view wx:if="{{item.pt_status == 0}}">
+        <view class="flex">
+          <view class="sponsor"><text style="color:rgba(255,75,32,1);">{{item.nick}}</text>发起的{{item.nums}}人团</view>
+          <view class="lack">还差<text style="color:rgba(255,75,32,1);">{{item.nums - item.has_nums}}人</text></view>
+        </view>
+        <view class="flex" hidden="{{btn_buy}}">
+          <view class="sponsor" style="margin-top: 60rpx;">实付款：<text style="color:rgba(255,75,32,1);font-weight:bold;font-size:36rpx;">¥{{item.sum_money}}</text></view>
+          <view class="btn" bindtap="to_group_detail" data-tid="{{item.pl_id}}" data-kid="{{item.kid}}">邀请好友</view>
+        </view>
+      </view>
+
+      <view wx:if="{{item.pt_status == 1}}" hidden="{{btn_buy}}">
+        <view class="intro">{{item.intro}}</view>
+        <view class="sponsor" style="margin-top: 50rpx;margin-left: 450rpx;padding-bottom: 30rpx;">实付款：<text style="color:rgba(255,75,32,1);">¥ </text><text style="color:rgba(255,75,32,1);font-weight:bold;font-size:36rpx;">{{item.sum_money}}</text></view>
+      </view>
+      <!-- 拼团样式 -->
+
+
+    </view>
+
+  </view>
+ 
+ 
+ </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</view>

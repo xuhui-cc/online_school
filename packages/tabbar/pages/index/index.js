@@ -316,7 +316,7 @@ Page({
   //名师简介
   teacher_inter:function(){
     wx.navigateTo({
-      url: '../../pages/teacherList/teacherList?type=0',
+      url: app.getPagePath('teacherList') + '?type=0',
     })
   },
 

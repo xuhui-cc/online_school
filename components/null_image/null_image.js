@@ -46,14 +46,14 @@ Component({
     srcDic: {
       // 暂无学员
       1: {
-        iconPath: '../../components/null_image/images_null/null_student.png',
+        iconPath: './images_null/null_student.png',
         iconHeight: '280.32rpx',
         defaultTitle: '暂无学员',
         icon_title_space: '30rpx',
       },
       // 暂无日志
       2: {
-        iconPath: '../../components/null_image/images_null/null_record.png',
+        iconPath: './images_null/null_record.png',
         iconHeight: '284.08rpx',
         defaultTitle: '暂无日志',
         icon_title_space: '24rpx',

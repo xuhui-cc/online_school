@@ -250,7 +250,7 @@ Page({
   to_vip:function(){
     let that = this
     wx.navigateTo({
-      url: '../../pages/vip_detail/vip_detail',
+      url: app.getPagePath('vip_detail'),
     })
   },
 
@@ -702,7 +702,7 @@ Page({
       //名师简介
   teacher_inter:function(){
     wx.navigateTo({
-      url: '../../pages/teacherList/teacherList?type=1',
+      url: app.getPagePath('teacherList') + '?type=1',
     })
   },
 

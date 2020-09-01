@@ -84,6 +84,37 @@ let pathDic = {
   my_course: '/packages/student/my/common/my_course/my_course',
   my_wrongbook: '/packages/student/my/common/my_wrongbook/my_wrongbook',
   wrong: '/packages/student/my/common/wrong/wrong',
+  my_about: '/packages/student/my/common/my_about/my_about',
+
+  // 学生-我的-安卓
+  my_order: '/packages/student/my/android/my_order/my_order',
+  order_detail: '/packages/student/my/android/order_detail/order_detail',
+
+  // 学生-我的-iOS
+  my_order_ios: '/packages/student/my/iOS/my_order_ios/my_order_ios',
+  order_detail_ios: '/packages/student/my/iOS/order_detail_ios/order_detail_ios',
+
+  // vip-安卓
+  vip_detail: '/packages/student/vip/android/vip_detail/vip_detail',
+
+  // vip-iOS
+  vip_detail_ios: '/packages/student/vip/iOS/vip_detail_ios/vip_detail_ios',
+
+  // 名师团
+  teacherIntro: '/packages/goodTeacher/teacherIntro/teacherIntro',
+  teacherVideo: '/packages/goodTeacher/teacherVideo/teacherVideo',
+  teacherList: '/packages/goodTeacher/teacherList/teacherList',
+
+  // 老师端
+  teacher_studentList: '/packages/teacher/teacher_studentList/teacher_studentList',
+  teacher_addRecord: '/packages/teacher/teacher_addRecord/teacher_addRecord',
+  uploadVideo: '/packages/teacher/uploadVideo/uploadVideo',
+
+  // 家长端
+  parent_childList: '/packages/parent/parent_childList/parent_childList',
+
+  // 通用页面
+  study_record: '/packages/common/study_record/study_record',
 }
 
 function getPagePath(pageName, notIos) {

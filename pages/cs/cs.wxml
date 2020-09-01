@@ -1,7 +1,0 @@
- <view wx:for="{{wearList}}" wx:key="index">
-  <view class="course_layout" >
-    <view>{{item.difftime}}</view>
-  </view>
- 
- 
- </view>

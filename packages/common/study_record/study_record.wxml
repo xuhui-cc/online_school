@@ -1,0 +1,150 @@
+<!--pages/study_record/study_record.wxml-->
+<!-- 顶部背景图片 -->
+<image class="topBackgroundImage" src="./resource/study_record_pageBg.png"></image>
+
+<!-- 导航栏 -->
+<view class="naviBar" style="top:{{statusBarHeight}}px; height:{{naviContentHeight}}px">
+  <view class="naviBar_back" bindtap="naviBackItemClicked">
+    <image class="naviBar_backImage" src="/images/navi/back.png"></image>
+  </view>
+  <view class="naviBar_title">查看日志</view>
+  <view class="naviBar_back"></view>
+</view>
+
+<view class="container" wx:if="{{showContent}}">
+
+  <scroll-view class="scrollView" scroll-y="true" scroll-top="{{scrollTop}}" style="height:{{screenHeight-naviHeight}}px; margin-top:{{naviHeight}}px" refresher-enabled="true" bindrefresherrefresh="pullRefresh" refresher-triggered="{{recordListPullRefershing}}" bindscrolltolower="recordListScrollReachBottom">
+    <!-- 学生信息 -->
+    <view class="studentInfoView" bindtap="showClearCourseHourList">
+      <view class="flex_row_alignItemCenter" style="height:100%; flex-grow:2;">
+        <!-- 学生头像 -->
+        <image class="studentInfo_avatar" src="{{studentInfo.avatar}}"></image>
+        <view class="flex_column" style="height:100%; flex-grow:2;">
+          <view class="flex_row_alignItemCenter" style="margin-top:40rpx;">
+            <!-- 姓名 -->
+            <view class="studentInfo_name oneLine_ellipsis">{{studentInfo.name}}</view>
+            <!-- 级别 -->
+            <image class="studentInfo_level" src="./resource/level_7v1.png"></image>
+          </view>
+          <view class="flex_row_alignItemCenter" style="margin-top:3rpx;">
+            <!-- 总课时 -->
+            <view class="studentInfo_courseHour" style="margin-left:23rpx;">
+              共
+              <text class="studentInfo_courseHour_count">{{studentInfo.total_coursetime}}</text>
+              课时
+            </view>
+            <!-- 剩余课时 -->
+            <view class="studentInfo_courseHour" style="margin-left:22rpx;">
+              剩余
+              <text class="studentInfo_courseHour_count">{{studentInfo.left_coursetime}}</text>
+              课时
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="flex_row_alignItemCenter">
+        <view class="studentInfo_useListTitle">查看销课记录</view>
+        <image class="studentInfo_enterIcon" src="./resource/arrowRight_gray.png"></image>
+      </view>
+    </view>
+    <!-- 日历 -->
+    <calendar bind:dayClicked="dayClicked" bind:datePeriodChange="datePeriodChange" bind:getHeight="getCalenderHeight" top="0px" dots="{{dots}}"></calendar>
+
+    <view class="recordView" style="min-height:{{minRecordListHeight}}px;">
+      <block wx:if="{{recordList && recordList != '' && recordList.length != 0}}">
+        <!-- 日志列表 -->
+        <block wx:for="{{recordList}}" wx:key="index">
+          <view class="recordCell" style="margin-top:{{index==0 ? 50 : 0}}rpx;">
+            <view class="flex_row_alignItemCenter_spaceBetween" style="height:36rpx;">
+              <!-- 时间 -->
+              <view class="recordCell_time oneLine_ellipsis">{{item.time}}</view>
+              <!-- 老师名字 -->
+              <view class="recordCell_teacherName oneLine_ellipsis">{{item.teacher_name}}老师</view>
+            </view>
+            <!-- 日志内容 -->
+            <view class="recordCell_content">
+              <!-- 日志类型 -->
+              <text class="recordCell_type">{{item.tag_title}}</text>
+              {{item.memo}}
+            </view>
+            <view class="recordCell_files" wx:if="{{item.file && item.file != '' && item.file.length != 0}}">
+              <!-- 附件列表 -->
+              <block wx:for="{{item.file}}" wx:key="fileIndex" wx:for-index="fileIndex" wx:for-item="fileItem">
+                <view class="recordCell_fileCell" style="margin-top:{{fileIndex>2 ? 23 : 0}}rpx; margin-left:{{fileIndex%3==0 ? 0 : 24}}rpx;" bindtap="fileClicked" data-recordindex="{{index}}" data-fileindex="{{fileIndex}}">
+                  <!-- 文件不能展示 -->
+                  <block wx:if="{{fileItem.error}}">
+                    <view class="recordCell_fileCell_error">文件已损坏</view>
+                  </block>
+                  <!-- 视频附件 -->
+                  <block wx:elif="{{fileItem.type == 'video'}}">
+                    <video src="{{fileItem.url}}" controls="{{false}}" show-center-play-btn="{{false}}" show-progress="{{false}}" class="recordCell_fileCell_image" binderror="videoPlayError" data-index="{{fileIndex}}" data-recordindex="{{index}}"></video>
+                    <view class="recordCell_fileCell_videoAlpha">
+                      <image class="recordFile_videoPlay" src="./resource/video_play.png"></image>
+                    </view>
+                  </block>
+                  <!-- 图片附件 -->
+                  <block wx:else>
+                    <image class="recordCell_fileCell_image" src="{{fileItem.url}}" mode="aspectFill"></image>
+                  </block>
+                  
+                  <!-- <view class="recordCell_fileCell_videoView" wx:if="{{fileItem.type == 'video'}}">
+                    <image class="recordCell_fileCell_playIcon" src="../../images/teacher_client/video_play.png"></image>
+                  </view> -->
+                </view>
+              </block>
+            </view>
+            <view wx:if="{{index!=recordList.length-1}}" class="recordCell_dash"></view>
+            <image class="recordCell_lockIcon" src="./resource/record_lock.png"></image>
+          </view>
+        </block>
+        <!-- 底部safearea留空 -->
+        <view style="height:{{safeArea_bottom + 30/750.0*screenWidth}}px; width:100%;"></view>
+      </block>
+      <block wx:else>
+        <!-- 空页面 -->
+        <null_image title="您当前还没有学习日志~" type="2" z_index="-1" position_type="2" top="24.3%"></null_image>
+      </block>
+    </view>
+  </scroll-view>
+
+  <!-- 返回顶部按钮 -->
+  <view class="backToTopView" bindtap="backToTop">
+    <image class="backTopTop_image" src="./resource/backToTop.png"></image>
+  </view>
+</view>
+<!-- 无权限查看 展示7v1介绍h5 -->
+<block wx:else>
+  <block wx:if="{{url7v1 && url7v1 != ''}}">
+    <web-view src="{{url7v1}}"></web-view>
+  </block>
+</block>
+
+<!-- 消课记录弹框 -->
+<view class="clearHourView_bg" wx:if="{{showClearHourView}}">
+  <view class="clearHourView">
+    <image class="clearHourView_titleImage" src="./resource/clearHourImage.png" mode="aspectFit"></image>
+    <view class="clearHourView_titleInfo">
+      <view class="clearHourView_titleInfoPoint"></view>
+      <view class="clearHourView_title oneLine_ellipsis">共{{studentInfo.total_coursetime}}课时 共销{{studentInfo.total_coursetime - studentInfo.left_coursetime}}课时 剩余{{studentInfo.left_coursetime}}课时</view>
+    </view>
+    <view class="clearHourView_sectionHeader">
+      <view class="clearHourView_sectionHeader_title" style="width:74rpx; margin-left:16rpx;">序号</view>
+      <view class="clearHourView_sectionHeader_title" style="width:296rpx; margin-left:0rpx;">销课时间</view>
+      <view class="clearHourView_sectionHeader_title" style="width:156rpx; margin-left:0rpx;">销课老师</view>
+      <view class="clearHourView_sectionHeader_title" style="width:132rpx; margin-left:0rpx;">销课时</view>
+    </view>
+    <scroll-view scroll-y="true" style="height: 533rpx; width:100%;" refresher-enabled="true" bindrefresherrefresh="clearListPullRefresh" refresher-triggered="{{clearListPullRefershing}}" bindscrolltolower="clearListReachBottom">
+      <block wx:for="{{clearList}}" wx:key="index">
+        <view class="clearCell">
+          <view class="clearCell_content oneLine_ellipsis" style="width:74rpx; margin-left:16rpx;">{{index+1}}</view>
+          <view class="clearCell_content oneLine_ellipsis" style="width:296rpx; margin-left:0rpx;">{{item.time}}</view>
+          <view class="clearCell_content oneLine_ellipsis" style="width:156rpx; margin-left:0rpx;">{{item.teacher_name}}</view>
+          <view class="clearCell_content oneLine_ellipsis" style="width:132rpx; margin-left:0rpx;">{{item.num}}</view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <image class="clearHourView_close" src="/images/other/exchange_close.png" bindtap="closeClearHourViewButtonClciked"></image>
+</view>
+
+<canvas canvas-id="shareCanvas" style="width:421px; height:338px;" wx:if="{{showCanvas}}"></canvas>

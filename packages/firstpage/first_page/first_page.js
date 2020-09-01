@@ -41,14 +41,14 @@ Page({
         case 2: {
           // 家长
           wx.reLaunch({
-            url: '/pages/parent_childList/parent_childList',
+            url: app.getPagePath('parent_childList'),
           })
           break
         }
         case 3: {
           // 老师
           wx.reLaunch({
-            url: '/pages/teacher_studentList/teacher_studentList',
+            url: app.getPagePath('teacher_studentList'),
           })
           break
         }

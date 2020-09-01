@@ -1,0 +1,18 @@
+<!--pages/parent_childList/parent_childList.wxml-->
+<view class="container">
+  <image class="bg_image" src="./resource/parentHome_bg.png"></image>
+  <view class="childSelectView">
+    <view class="childView_titleView">
+      <image class="childView_titleBg" src="./resource/childList_title_bg.png"></image>
+      请选择学员
+    </view>
+    <picker-view indicator-style="height: 100rpx;" style="width: 100%; height: 300rpx; margin-top:128rpx;" value="{{childList}}" bindchange="selectChildChange" bindpickstart="selectChildStart" bindpickend="selectChildEnd" value="{{[tempSelectedIndex]}}">
+      <picker-view-column>
+        <block wx:for="{{childList}}" wx:key="index">
+          <view class="childCell oneLine_ellipsis">{{item.nick}}</view>
+        </block>
+      </picker-view-column>
+    </picker-view>
+    <view class="selectView_sureButton" bindtap="sureButtonClciked">确定</view>
+  </view>
+</view>

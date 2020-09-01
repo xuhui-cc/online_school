@@ -1,7 +1,0 @@
-/* pages/cs/cs.wxss */
-.course_layout{
-  width:750rpx;
-  height: 233rpx;
-  margin-bottom: 10rpx;
-  background:rgb(228, 172, 172);
-}

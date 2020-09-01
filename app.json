@@ -3,24 +3,7 @@
     "packages/firstpage/first_page/first_page",
     "packages/tabbar/pages/my/my",
     "packages/tabbar/pages/index/index",
-    "packages/tabbar/pages/logs/logs",
-
-    "pages/my_order/my_order",
-    "pages/order_detail/order_detail",
-    "pages/my_about/my_about",
-
-    
-    "pages/zbcs/zbcs",
-    "pages/cs/cs",
-    "pages/teacher_studentList/teacher_studentList",
-    "pages/teacher_addRecord/teacher_addRecord",
-    "pages/study_record/study_record",
-    "pages/uploadVideo/uploadVideo",
-    "pages/vip_detail/vip_detail",
-    "pages/parent_childList/parent_childList",
-    "pages/teacherIntro/teacherIntro",
-    "pages/teacherVideo/teacherVideo",
-    "pages/teacherList/teacherList"
+    "packages/tabbar/pages/logs/logs"
   ],
   "subPackages":[
     {
@@ -84,9 +67,72 @@
       "pages": [
         "my_course/my_course",
         "my_wrongbook/my_wrongbook",
-        "wrong/wrong"
+        "wrong/wrong",
+        "my_about/my_about"
       ],
       "name": "my_common"
+    },
+    {
+      "root": "packages/student/my/android",
+      "pages": [
+        "my_order/my_order",
+        "order_detail/order_detail"
+      ],
+      "name": "my_android"
+    },
+    {
+      "root": "packages/student/my/iOS",
+      "pages": [
+        "my_order_ios/my_order_ios",
+        "order_detail_ios/order_detail_ios"
+      ],
+      "name": "my_iOS"
+    },
+    {
+      "root": "packages/student/vip/android",
+      "pages": [
+        "vip_detail/vip_detail"
+      ],
+      "name": "vip_android"
+    },
+    {
+      "root": "packages/student/vip/iOS",
+      "pages": [
+        "vip_detail_ios/vip_detail_ios"
+      ],
+      "name": "vip_iOS"
+    },
+    {
+      "root": "packages/goodTeacher",
+      "pages": [
+        "teacherIntro/teacherIntro",
+        "teacherVideo/teacherVideo",
+        "teacherList/teacherList"
+      ],
+      "name": "goodTeacher"
+    },
+    {
+      "root": "packages/teacher",
+      "pages": [
+        "teacher_studentList/teacher_studentList",
+        "teacher_addRecord/teacher_addRecord",
+        "uploadVideo/uploadVideo"
+      ],
+      "name": "teacher"
+    },
+    {
+      "root": "packages/parent",
+      "pages": [
+        "parent_childList/parent_childList"
+      ],
+      "name": "parent"
+    },
+    {
+      "root": "packages/common",
+      "pages": [
+        "study_record/study_record"
+      ],
+      "name": "common"
     }
   ],
   "window": {
