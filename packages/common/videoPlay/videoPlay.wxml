@@ -1,0 +1,4 @@
+<!--packages/common/videoPlay/videoPlay.wxml-->
+<view class="container">
+  <video class="video" show-casting-button="{{true}}" style="height:{{playerHeight}}px;" src="{{url}}" autoplay="true"></video>
+</view>

@@ -5,7 +5,7 @@
     "packages/tabbar/pages/index/index",
     "packages/tabbar/pages/logs/logs"
   ],
-  "subPackages":[
+  "subPackages": [
     {
       "root": "packages/student/test/comment",
       "pages": [
@@ -130,7 +130,8 @@
     {
       "root": "packages/common",
       "pages": [
-        "study_record/study_record"
+        "study_record/study_record",
+        "videoPlay/videoPlay"
       ],
       "name": "common"
     }

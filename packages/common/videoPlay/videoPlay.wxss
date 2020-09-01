@@ -1,0 +1,7 @@
+/* packages/common/videoPlay/videoPlay.wxss */
+page{
+  background:rgba(21,39,48,1);
+}
+.video{
+  width: 100%;
+}

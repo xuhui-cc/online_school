@@ -115,6 +115,7 @@ let pathDic = {
 
   // 通用页面
   study_record: '/packages/common/study_record/study_record',
+  videoPlay: '/packages/common/videoPlay/videoPlay',
 }
 
 function getPagePath(pageName, notIos) {

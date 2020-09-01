@@ -475,22 +475,36 @@ Page({
     // return
     let index = e.currentTarget.dataset.index
     let file = this.data.files[index]
-    let sourse = {
-      url: file.serverPath,
-      type: file.type,
-    }
-    // if (file.type == 'video') {
-    //   sourse.poster = file.thumbTempFilePath
+    // let sourse = {
+    //   url: file.serverPath,
+    //   type: file.type,
     // }
-    wx.previewMedia({
-      sources: [sourse],
-      fail (res) {
-        wx.showToast({
-          title: '打开文件失败\n'+res.errMsg,
-          icon: 'none'
-        })
-      }
-    })
+
+    if (file.type == 'video') {
+      // 视频
+      wx.navigateTo({
+        url: app.getPagePath('videoPlay'),
+        success (res) {
+          res.eventChannel.emit('videoPlay', {url: file.serverPath})
+        }
+      })
+    } else {
+      // 图片
+      wx.previewImage({
+        urls: [file.serverPath],
+        current: file.serverPath
+      })
+    }
+
+    // wx.previewMedia({
+    //   sources: [sourse],
+    //   fail (res) {
+    //     wx.showToast({
+    //       title: '打开文件失败\n'+res.errMsg,
+    //       icon: 'none'
+    //     })
+    //   }
+    // })
   },
 
   /**
