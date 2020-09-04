@@ -116,7 +116,7 @@ function shareTarget () {
       // 分享的页面为 tabbar页面 切换tabbar选中item
       setTimeout(function(){
         wx.switchTab({
-          url: app.getPagePath(shareOption.target),
+          url: pagePath.getPagePath(shareOption.target),
         })
       }, 100)
     }
