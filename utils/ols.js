@@ -1,5 +1,5 @@
-const URI_base = "http://os.lingjun.net/" //测试域名
-// const URI_base = "https://wsg.lingjun.net/" // 正式域名
+// const URI_base = "http://os.lingjun.net/" //测试域名
+const URI_base = "https://wsg.lingjun.net/" // 正式域名
 
 const URI = URI_base + 'api.php/'    //接口地址
 
@@ -453,7 +453,7 @@ function haveRelationWithStudent(params) {
 
 //会员列表
 function v4_viplist(params) {
-  return fetch.olsfetchpost(URI, 'v4/vipcard/getlist', params,"会员卡列表")
+  return fetch.olsfetchpost(URI, 'v4/vipcard/getviplist', params,"会员卡列表")
 }
 
 //vip预支付

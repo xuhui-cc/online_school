@@ -271,7 +271,7 @@
   position: absolute;
   margin-left: 105rpx;
   margin-top: 470rpx;
-  width:356rpx;
+  width:440rpx;
   height:61rpx;
   font-size:22rpx;
   font-family:PingFang SC;

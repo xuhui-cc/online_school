@@ -355,6 +355,8 @@ Page({
             icon: "none",
             duration: 3000
           })
+          that.getsubject()   //获取科目
+          that.hot()  //获取热门
           that.setData({
             grade_select: false
           })

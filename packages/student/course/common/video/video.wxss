@@ -170,7 +170,7 @@
   opacity:1;
 }
 .num_layout{
-  margin-left: 350rpx;
+  margin-left: 450rpx;
   margin-top: 100rpx;
   margin-bottom: 20rpx;
   width:92rpx;

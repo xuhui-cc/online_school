@@ -49,7 +49,7 @@
   <image class="vip_fm" src="{{imgUrls[0]}}"></image>
   <view class="checkinfo_head" style="margin-left: 185rpx;margin-top: 385rpx;">{{vip_list[0].title}}</view>
   <view class="intro">{{vip_list[0].memo}}</view>
-  <view class="price" wx:if="{{vip_list[0].is_buy == 0}}" hidden="{{btn_buy}}"><text style="font-size:32rpx;font-weight:400;" >¥</text>{{vip_list[0].price}}</view>
+  <view class="price" wx:if="{{vip_list[0].is_buy == 0}}" hidden="{{!vip.bar}}"><text style="font-size:32rpx;font-weight:400;" >¥</text>{{vip_list[0].price}}</view>
 
   <button class="login1" style="margin-left: 485rpx;margin-top: 600rpx;width:240rpx;height:40rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="1"></button>
   <view class="layout">

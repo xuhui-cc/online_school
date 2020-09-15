@@ -15,16 +15,15 @@
   <video wx:if="{{isload ==  1}}" class="video" src="{{getvideo.video}}" show-casting-button="{{true}}"  initial-time="{{timeline}}" bindtimeupdate="bindtimeupdate"></video>
 
   <view class="flex">
-    <view class="status" style="margin-left:45rpx;">{{course.annex_num}}份</view>
-    <view class="status" wx:if="{{course.mark_status == 0}}" style="margin-left:400rpx;">未完成</view>
-    <view class="status" wx:if="{{course.mark_status == 1}}" style="margin-left:400rpx;">批改中</view>
-    <view class="status" wx:if="{{course.mark_status == 2}}" style="margin-left:400rpx;">看报告</view>
-    <image class="v_img" src="./resource/v-img1.png" bindtap="to_course_file"></image>
-    <image class="v_img" src="./resource/v_img2.png" wx:if="{{course.mark_status == 0}}" bindtap="to_homework"></image>
-    <image class="v_img" src="./resource/v_img2.png" wx:if="{{course.mark_status == 1}}" ></image>
-    <image class="v_img" src="./resource/v_img2.png" wx:if="{{course.mark_status == 2}}" bindtap="to_homework_report"></image>
+    <view class="status" style="margin-left:45rpx;" wx:if="{{course.annex_num > 0}}">{{course.annex_num}}份</view>
+    <view class="status" wx:if="{{eid > 0 && course.mark_status <= 0}}" style="{{course.annex_num > 0?'margin-left:400rpx;':'margin-left:45rpx;'}}">未完成</view>
+    <view class="status" wx:if="{{eid > 0 && course.mark_status == 1}}" style="{{course.annex_num > 0?'margin-left:400rpx;':'margin-left:45rpx;'}}">批改中</view>
+    <view class="status" wx:if="{{eid > 0 && course.mark_status == 2}}" style="{{course.annex_num > 0?'margin-left:400rpx;':'margin-left:45rpx;'}}">看报告</view>
+    <image class="v_img" src="./resource/v-img1.png" wx:if="{{course.annex_num > 0}}" bindtap="to_course_file"></image>
+    <image class="v_img" src="./resource/v_img2.png" wx:if="{{ eid > 0 && course.mark_status <= 0}}" bindtap="to_homework"></image>
+    <image class="v_img" src="./resource/v_img2.png" wx:if="{{eid > 0 && course.mark_status == 1}}" ></image>
+    <image class="v_img" src="./resource/v_img2.png" wx:if="{{eid > 0 && course.mark_status == 2}}" bindtap="to_homework_report"></image>
   </view>
-
 
   <view class="flex" wx:if="{{course.lists != ''}}">
     <view class="shu"></view>
@@ -45,7 +44,7 @@
          
           </view>
 
-          <view class="buy_num">{{item.order_num}}人已学习</view>
+          <view class="buy_num">{{item.order_num}}人学习</view>
           
           <view class="num_layout">
             <view class="course_num">{{item.class_hour}}课时</view>
@@ -61,8 +60,5 @@
 
     </view>
   </view>
-
-
-
 
 </view>

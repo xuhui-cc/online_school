@@ -21,7 +21,7 @@ page{
 .grade_content{
   margin-top: 105rpx;
   /* margin-left: 30rpx; */
-  width:100rpx;
+  width:120rpx;
   height:65rpx;
   font-size:28rpx;
   font-family:PingFang SC;
@@ -60,7 +60,6 @@ page{
   font-weight:bold;
   line-height:48rpx;
   text-align: center;
- 
   color:rgba(0,0,0,1);
   
 }
@@ -198,7 +197,7 @@ page{
 }
 .course_fm{
   margin-left: 30rpx;
-  padding-top: 30rpx;
+  margin-top: 20rpx;
   width:297rpx;
   height:172rpx;
   border-radius: 8rpx;
@@ -232,7 +231,7 @@ page{
 .course_text{
   
   margin-top: 24rpx;
-  width:118rpx;
+  width:130rpx;
   height:30rpx;
   font-size:22rpx;
   font-family:PingFang SC;

@@ -70,7 +70,7 @@ page{
 .grade_content{
   margin-top: 105rpx;
   /* margin-left: 30rpx; */
-  width:100rpx;
+  width:120rpx;
   height:65rpx;
   font-size:28rpx;
   font-family:PingFang SC;
@@ -89,7 +89,7 @@ page{
   /* background:rgb(189, 48, 48); */
 }
 .head{
-  margin-left: 160rpx;
+  margin-left: 120rpx;
   margin-top: 107rpx;
   width:140rpx;
   height:48rpx;

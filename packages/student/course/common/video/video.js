@@ -34,7 +34,6 @@ Page({
       if(that.data.login){
         that.judge_share()   //分享判断
         console.log("分享已登录")
-        // console.log("分享未登录",that.data.isshare,that.data.gid)
       }
       
     }else{
@@ -50,8 +49,6 @@ Page({
       console.log("非分享打开")
     }
 
-
-    
     
   },
 
