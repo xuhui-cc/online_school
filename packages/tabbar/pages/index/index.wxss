@@ -69,7 +69,7 @@ page{
 }
 .grade_content{
   margin-top: 105rpx;
-  /* margin-left: 30rpx; */
+  margin-left: 30rpx;
   width:120rpx;
   height:65rpx;
   font-size:28rpx;
@@ -89,7 +89,7 @@ page{
   /* background:rgb(189, 48, 48); */
 }
 .head{
-  margin-left: 120rpx;
+  margin-left: 100rpx;
   margin-top: 107rpx;
   width:140rpx;
   height:48rpx;

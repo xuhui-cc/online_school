@@ -118,7 +118,7 @@ function shareTarget () {
         wx.switchTab({
           url: pagePath.getPagePath(shareOption.target),
         })
-      }, 100)
+      }, 250)
     }
   } else {
     shareOption = {}

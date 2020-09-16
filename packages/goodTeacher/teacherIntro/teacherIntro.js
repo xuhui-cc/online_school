@@ -401,6 +401,6 @@ dealAva:function(){
    */
   onShareAppMessage: function () {
     let paramStr = 'isshare=1'+ '&gid=' + wx.getStorageSync('gid') + '&id=' + this.data.tea_id
-    return app.shareTool.getShareReturnInfo('0,1', 'teacherIntro', paramStr, this.shareImagePath ? this.shareImagePath : '', '名师介绍')
+    return app.shareTool.getShareReturnInfo('0,1', 'teacherIntro', paramStr, this.shareImagePath ? this.shareImagePath : '', '领军教育超硬核名师团')
   }
 })
