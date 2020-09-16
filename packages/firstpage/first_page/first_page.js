@@ -21,21 +21,28 @@ Page({
     //   url: '../../pages/teacher_studentList/teacher_studentList',
     // })
     // return
-    app.shareTool.setShareOption
+    // app.shareTool.setShareOption(options)
+    let shareOption = null
     let that = this
     let login = wx.getStorageSync('login')
     if (login) {
       // 已登陆
       let userinfo = wx.getStorageSync('userinfo')
       if (options.share == 1) {
-        app.shareTool.getFirstPageShareParam(options, userinfo.role)
+        shareOption = app.shareTool.getFirstPageShareParam(options, userinfo.role)
       }
       switch(userinfo.role*1) {
         case 1:{
           // 学生
-          wx.switchTab({
-            url: app.getPagePath('index'),
-          })
+          if(shareOption && shareOption.share == 0 && shareOption.targetPageName != 'first_page') {
+            wx.switchTab({
+              url: app.getPagePath(shareOption.targetPageName),
+            })
+          } else {
+            wx.switchTab({
+              url: app.getPagePath('index'),
+            })
+          }
           break
         }
         case 2: {
@@ -57,7 +64,7 @@ Page({
       // 未登录
       let gid = 0
       if (options.share == 1) {
-        app.shareTool.getFirstPageShareParam(options, 0)
+        shareOption = app.shareTool.getFirstPageShareParam(options, 0)
       }
       if (options.gid) {
         gid = options.gid
@@ -67,9 +74,16 @@ Page({
       
       if (gid != null && gid != 0) {
         // 已选择过年级
-        wx.switchTab({
-          url: app.getPagePath('index'),
-        })
+        if (shareOption && shareOption.share == 0 && shareOption.targetPageName != 'first_page') {
+          wx.switchTab({
+            url: app.getPagePath(shareOption.targetPageName),
+          })
+        } else {
+          wx.switchTab({
+            url: app.getPagePath('index'),
+          })
+        }
+        
       } else {
         // 未选择过年级
         that.setData({
