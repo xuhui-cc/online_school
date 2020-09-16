@@ -5,16 +5,13 @@ let shareOption = {}
 // first_page页面路径
 let firstPageName = 'first_page'
 
-// 各角色首页路径
+// 各角色首页 或 tabbar 路径
 let homePageName = [
   'index',
-  'teacher_studentList',
-  'parent_childList'
-]
-// tabbar各首页路径
-let tabbarPageName = [
   'logs',
   'my',
+  'teacher_studentList',
+  'parent_childList'
 ]
 
 /**
@@ -101,10 +98,6 @@ function getFirstPageShareParam(options, role) {
 */
 function shareTarget () {
   if (shareOption.target && shareOption.share) {
-    if (tabbarPageName.indexOf(shareOption.target) != -1) {
-      // 分享页面为tabbar页面
-      shareOption.share = 0
-    }
     if (shareOption.share) {
       // 分享的页面不为tabbar页面，跳转过去
       let sharePath = getShareTargetPath()
@@ -112,14 +105,7 @@ function shareTarget () {
         url: sharePath,
       })
       shareOption = {}
-    } else {
-      // 分享的页面为 tabbar页面 切换tabbar选中item
-      setTimeout(function(){
-        wx.switchTab({
-          url: pagePath.getPagePath(shareOption.target),
-        })
-      }, 250)
-    }
+    } 
   } else {
     shareOption = {}
   }
