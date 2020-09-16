@@ -34,9 +34,9 @@ Page({
       switch(userinfo.role*1) {
         case 1:{
           // 学生
-          if(shareOption && shareOption.share == 0 && shareOption.targetPageName != 'first_page') {
+          if(shareOption && shareOption.share == 0) {
             wx.switchTab({
-              url: app.getPagePath(shareOption.targetPageName),
+              url: app.getPagePath(shareOption.target),
             })
           } else {
             wx.switchTab({
@@ -74,9 +74,9 @@ Page({
       
       if (gid != null && gid != 0) {
         // 已选择过年级
-        if (shareOption && shareOption.share == 0 && shareOption.targetPageName != 'first_page') {
+        if (shareOption && shareOption.share == 0) {
           wx.switchTab({
-            url: app.getPagePath(shareOption.targetPageName),
+            url: app.getPagePath(shareOption.target),
           })
         } else {
           wx.switchTab({
