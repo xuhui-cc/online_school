@@ -111,7 +111,6 @@ function shareTarget () {
   }
 }
 
-
 function setShareOption(options) {
   shareOption = options
 }

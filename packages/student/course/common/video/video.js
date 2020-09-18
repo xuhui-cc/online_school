@@ -389,7 +389,7 @@ Page({
 
           that.openFilePath = filePath
           wx.openDocument({
-            showMenu: true,
+            // showMenu: true,
             filePath: filePath,
             success: function (res) {
               console.log('打开文档成功')
