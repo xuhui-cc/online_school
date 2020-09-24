@@ -72,6 +72,11 @@ function olsfetchpost(api, path, params, log, showToast, loadingMsg) {
             let gid = wx.getStorageSync('gid')
             wx.clearStorageSync()
             wx.setStorageSync('gid', gid)
+            wx.login({
+              success(login_res) {
+                wx.setStorageSync('code', login_res.code)
+              }
+            })
             wx.reLaunch({
               url: pagePath.getPagePath('first_page'),
             })
