@@ -181,7 +181,7 @@ Page({
                 success(login) {
                   console.log("login.code" + login.code)
                   var code = login.code
-
+                  wx.setStorageSync('code', code)
                   var params = {
                     "token": wx.getStorageSync("token"),
                     "nick": nickName,
