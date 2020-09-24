@@ -301,7 +301,7 @@ getPhoneNumber: function (e) {
   var that = this
   var type = e.currentTarget.dataset.type
   console.log(type)
-  app.loginTool.getPhoneNumber(e, that.data.gid, function(success, message){
+  app.loginTool.getPhoneNumber(e, wx.getStorageSync('gid'), function(success, message){
     if (success) {
       that.setData({
         login: true

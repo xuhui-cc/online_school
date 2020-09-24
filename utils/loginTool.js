@@ -12,7 +12,7 @@ function getPhoneNumber(e, gid, callback) {
   })
   // wx.login({
   //   success(res) {
-      // console.log("cccs.code" + res.code)
+  //     console.log("cccs.code" + res.code)
       let iv = encodeURIComponent(e.detail.iv);
       let encryptedData = encodeURIComponent(e.detail.encryptedData);
       // let code = res.code
@@ -24,16 +24,16 @@ function getPhoneNumber(e, gid, callback) {
         "gid": gid
       }
       login(e, gid,params, callback)
-    // },
-    // fail (res) {
-    //   wx.hideLoading({
-    //     success: (r) => {
-    //       wx.showToast({
-    //         title: '登录失败\n'+res.errMsg,
-    //       })
-    //     },
-    //   })
-    // }
+  //   },
+  //   fail (res) {
+  //     wx.hideLoading({
+  //       success: (r) => {
+  //         wx.showToast({
+  //           title: '登录失败\n'+res.errMsg,
+  //         })
+  //       },
+  //     })
+  //   }
   // })
 }
 
