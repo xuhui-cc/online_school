@@ -69,21 +69,19 @@ function olsfetchpost(api, path, params, log, showToast, loadingMsg) {
           }
           case 20: {
             // token过期
-            let gid = wx.getStorageSync('gid')
-            wx.clearStorageSync()
-            wx.setStorageSync('gid', gid)
-            wx.login({
-              success(login_res) {
-                wx.setStorageSync('code', login_res.code)
-              }
-            })
-            wx.reLaunch({
-              url: pagePath.getPagePath('first_page'),
-            })
-            wx.showToast({
-              title: '登录已失效',
-              icon: 'none'
-            })
+            let login = wx.getStorageSync('login')
+            if (login) {
+              let gid = wx.getStorageSync('gid')
+              wx.clearStorageSync()
+              wx.setStorageSync('gid', gid)
+              wx.reLaunch({
+                url: pagePath.getPagePath('first_page'),
+              })
+              wx.showToast({
+                title: '登录已失效，请重新登录',
+                icon: 'none'
+              })
+            }
             break
           }
           default: {
@@ -100,18 +98,18 @@ function olsfetchpost(api, path, params, log, showToast, loadingMsg) {
       fail (res) {
         if (showToast) {
           wx.hideLoading({
-            success: (res) => {},
+            success: (res) => {
+              wx.showToast({
+                title: '请求失败',
+                icon: "none"
+              })
+            },
           })
         }
         if (log) {
           console.log(log, '请求失败：\n', res)
         }
-        if (showToast){
-          wx.showToast({
-            title: '请求失败',
-            icon: "none"
-          })
-        }
+        reject(res)
       }
     })
   })
