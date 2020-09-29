@@ -21,13 +21,8 @@ App({
   notiNameDic: notiNameDic,
   onLaunch: function () {
 
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        wx.setStorageSync('code', res.code)
-      }
-    })
+    // 获取登录用到的口令
+    loginTool.firstLaunch()
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -103,11 +98,6 @@ App({
         console.log('清除本地信息失败', res)
       },
       complete: (res) => {
-        wx.login({
-          success(login_res) {
-            wx.setStorageSync('code', login_res.code)
-          }
-        })
         console.log('清空数据完成，即将跳转至first_page')
         wx.reLaunch({
           url: pagePath.getPagePath('first_page'),

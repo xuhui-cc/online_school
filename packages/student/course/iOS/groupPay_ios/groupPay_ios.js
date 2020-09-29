@@ -227,41 +227,30 @@ Page({
   getuserinfo: function (e) {
     let that = this
     
-          wx.getUserInfo({
-            success: function (res) {
-              console.log(res)
-              var nickName = res.userInfo.nickName
-              var avatarUrl = res.userInfo.avatarUrl
-              wx.login({
-                success(login) {
-                  console.log("login.code" + login.code)
-                  var code = login.code
-                  wx.setStorageSync('code', code)
-                  var params = {
-                    "token": wx.getStorageSync("token"),
-                    "nick": nickName,
-                    "avatar": avatarUrl
-                  }
-                  console.log(params,"获取头像参数")
-                  app.ols.avatar_update(params).then(d => {
-                    console.log(d,"获取头像数据")
-                    if (d.data.code == 0) {
-                      
-                      wx.setStorageSync("nick", true)
-                      that.buy()
-                    } else {
-                      console.log(d.data.code,"d.data.code")
-                      console.log(d.data.msg,"d.data.msg")
-                    }
-                  })
-                  
-                }
-              })
-
-            }
-          })
-       
-
+    wx.getUserInfo({
+      success: function (res) {
+        console.log(res)
+        var nickName = res.userInfo.nickName
+        var avatarUrl = res.userInfo.avatarUrl
+        var params = {
+          "token": wx.getStorageSync("token"),
+          "nick": nickName,
+          "avatar": avatarUrl
+        }
+        console.log(params,"获取头像参数")
+        app.ols.avatar_update(params).then(d => {
+          console.log(d,"获取头像数据")
+          if (d.data.code == 0) {
+            
+            wx.setStorageSync("nick", true)
+            that.buy()
+          } else {
+            console.log(d.data.code,"d.data.code")
+            console.log(d.data.msg,"d.data.msg")
+          }
+        })
+      }
+    })
   },
 
   /**
