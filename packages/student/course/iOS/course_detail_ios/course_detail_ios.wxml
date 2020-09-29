@@ -55,7 +55,10 @@
           <view wx:if="{{item.mt == 2}}" class="study_rate" >正在直播中</view>
           <view wx:elif="{{item.mt == 3}}" class="study_rate" style="color:#A4A4A4;">回放生成中...</view>
           <view wx:elif="{{item.mt == 4}}" class="study_rate" >回放已生成</view>
-          <view wx:elif="{{item.mt == 1}}" class="study_rate" >未开课</view>
+          <view wx:elif="{{item.mt == 1}}">
+            <view class="study_rate" style="width:300rpx;">{{item.livetime}}</view>
+            <view  class="study_rate" >未开课</view>
+          </view>
           <view wx:else="{{item.mt == 0}}" class="study_rate" >直播已删除</view>
           <image class="xu" src="/images/other/xu.png" wx:if="{{item.annex_num > 0 ||  item.eid > 0}}"></image>
           <view class="flex" bindtap="{{click_file?'':'to_course_file'}}"  data-xb="{{index}}" wx:if="{{item.annex_num > 0 }}">
