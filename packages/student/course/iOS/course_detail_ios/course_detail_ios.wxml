@@ -82,8 +82,8 @@
         <view class="flex" wx:if="{{course_info.buy == 0 || buy == 6}}">
           <image class="file_img" src="/images/other/file.png" wx:if="{{item.annex_num >0}}"></image>
           <view class="file" wx:if="{{item.annex_num >0}}">讲义资料</view>
-          <view class="shu" wx:if="{{item.annex_num >0}}"></view>
-          <image class="work_img" src="/images/other/work.png" wx:if="{{item.paper >0}}"></image>
+          <view class="shu" wx:if="{{item.paper > 0 && item.annex_num >0}}"></view>
+          <image class="work_img" src="/images/other/work.png" wx:if="{{item.paper >0}}" style="{{item.annex_num >0?'':'margin-left: 85rpx;'}}" ></image>
           <view class="file" wx:if="{{item.paper >0}}">课后作业</view>
         </view>
         <view class="heng2" wx:if="{{course_info.buy == 0 || buy == 6}}"></view>
@@ -131,8 +131,8 @@
         <view class="flex" wx:if="{{course_info.buy == 0 || course_info.buy == 6 }}">
           <image class="file_img" src="/images/other/file.png" wx:if="{{item.annex_num >0}}"></image>
           <view class="file" wx:if="{{item.annex_num >0}}">讲义资料</view>
-          <view class="shu" wx:if="{{item.annex_num >0}}"></view>
-          <image class="work_img" src="/images/other/work.pngg" wx:if="{{item.paper >0}}"></image>
+          <view class="shu" wx:if="{{item.paper > 0 && item.annex_num >0}}"></view>
+          <image class="work_img" src="/images/other/work.pngg" wx:if="{{item.paper >0}}" style="{{item.annex_num >0?'':'margin-left: 85rpx;'}}"></image>
           <view class="file" wx:if="{{item.paper >0}}">课后作业</view>
         </view>
         <view class="heng2" wx:if="{{course_info.buy == 0 || course_info.buy == 6 }}"></view>

@@ -433,7 +433,7 @@
   height:667rpx;
 }
 .checkinfo_head{
-  position: absolute;
+  position: fixed;
   margin-top: 70rpx ;
   margin-left: 135rpx;
   width:295rpx;

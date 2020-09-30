@@ -594,13 +594,12 @@ Page({
     console.log(that.data.gid,"onshow")
 
     that.hot()  //热门课程
+    that.getsubject()   //获取学科
     if(that.data.current_subject != 1){
       that.getspecial()  //获取专题
     }
-    
     that.getcourse()     //获取课程
     that.v4_viplist()   //获取vip
-   
   },
 
   /**
@@ -675,7 +674,6 @@ Page({
         } 
         // console.log(str); 
         that.data.hot3[i].difftime = str;//在数据中添加difftime参数名，把时间放进去 
-
       } 
       that.setData({ 
         hot3: that.data.hot3 
@@ -686,7 +684,7 @@ Page({
     ms_timer = setInterval(nowTime, 1000); 
   },
 
-    //获取微信绑定手机号登录
+  //获取微信绑定手机号登录
     getPhoneNumber: function (e) {
       var that = this
   
@@ -701,13 +699,12 @@ Page({
       })
     },
 
-      //名师简介
-  teacher_inter:function(){
-    wx.navigateTo({
-      url: app.getPagePath('teacherList') + '?type=1',
-    })
-  },
-
+    //名师简介
+    teacher_inter:function(){
+      wx.navigateTo({
+        url: app.getPagePath('teacherList') + '?type=1',
+      })
+    },
 
    /**
    * 生命周期函数--监听页面隐藏
@@ -716,6 +713,4 @@ Page({
     clearInterval(timer); 
     clearInterval(ms_timer); 
   },
-
-    
 })

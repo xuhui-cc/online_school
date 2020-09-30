@@ -433,10 +433,10 @@
   height:667rpx;
 }
 .checkinfo_head{
-  position: absolute;
-  margin-top: 70rpx ;
+  position: fixed;
+  margin-top: 70rpx;
   margin-left: 135rpx;
-  width:295rpx;
+  width:400rpx;
   height:40rpx;
   font-size:40rpx;
   font-family:PingFang SC;

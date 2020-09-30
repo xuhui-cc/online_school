@@ -48,7 +48,7 @@ page{
 .tea_intro{
   width:492rpx;
   /* height:40px; */
-  font-size:28rpx;
+  font-size:24rpx;
   font-family:PingFang SC;
   font-weight:400;
   line-height:40rpx;
