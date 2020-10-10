@@ -32,7 +32,7 @@
 
   <view wx:if="{{currentData == 1}}" class="course_intro">
     <view wx:for="{{course_cata.lists}}" wx:key="index">
-
+      <button class="login_read2"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
       <!-- 直播课 -->
       <view wx:if="{{item.cateid == 1 || item.cateid == 2}}">
         <view class="flex">

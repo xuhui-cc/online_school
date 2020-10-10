@@ -160,30 +160,44 @@ Page({
           })
          
           var suffix = "handout[0].suffix"
-          if (that.data.handout[0].annex.indexOf(".pdf") != -1) {
-            that.setData({
-              [suffix]: "pdf"
-            })
-          } else if (that.data.handout[0].annex.indexOf(".doc") != -1) {
-            that.setData({
-              [suffix]: "doc"
-            })
-          }
-          else if (that.data.handout[0].annex.indexOf(".ppt") != -1) {
-            that.setData({
-              [suffix]: "ppt"
-            })
-          }
-          else if (that.data.handout[0].annex.indexOf(".xls") != -1) {
-            that.setData({
-              [suffix]: "xls"
-            })
-          }
-          else if (that.data.handout[0].annex.indexOf(".png") != -1 || that.data.handout[0].annex.indexOf(".jpg") != -1) {
-            that.setData({
-              [suffix]: "img"
-            })
-          }
+            if (that.data.handout[0].annex.indexOf(".pdf") != -1) {
+              that.setData({
+                [suffix]: "pdf"
+              })
+            } else if (that.data.handout[0].annex.indexOf(".docx") != -1) {
+              that.setData({
+                [suffix]: "docx"
+              })
+            }
+            else if (that.data.handout[0].annex.indexOf(".doc") != -1) {
+              that.setData({
+                [suffix]: "doc"
+              })
+            }else if (that.data.handout[0].annex.indexOf(".pptx") != -1) {
+              that.setData({
+                [suffix]: "pptx"
+              })
+            }
+            else if (that.data.handout[0].annex.indexOf(".ppt") != -1) {
+              that.setData({
+                [suffix]: "ppt"
+              })
+            }
+            else if (that.data.handout[0].annex.indexOf(".xlsx") != -1) {
+              that.setData({
+                [suffix]: "xlsx"
+              })
+            }
+            else if (that.data.handout[0].annex.indexOf(".xls") != -1) {
+              that.setData({
+                [suffix]: "xls"
+              })
+            }
+            else if (that.data.handout[0].annex.indexOf(".png") != -1 || that.data.handout[0].annex.indexOf(".jpg") != -1) {
+              that.setData({
+                [suffix]: "img"
+              })
+            }
           that.openFile()  //打开单一讲义
 
           console.log("课程讲义接口调取成功")
