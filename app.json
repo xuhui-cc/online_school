@@ -89,6 +89,13 @@
       "name": "my_iOS"
     },
     {
+      "root": "packages/student/vip/comment",
+      "pages": [
+        "exchang_vip/exchang_vip"
+      ],
+      "name": "vip_comment"
+    },
+    {
       "root": "packages/student/vip/android",
       "pages": [
         "vip_detail/vip_detail"

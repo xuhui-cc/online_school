@@ -30,10 +30,18 @@ Page({
     })
   },
 
-  //返回我的主页
-  back:function(){
+//返回我的主页
+back:function(){
+  let that = this
+  if(that.data.ewm_exchange == 1){
+    wx.switchTab({
+      url: app.getPagePath('logs'),
+    })
+  }else{
     wx.navigateBack()
-  },
+  }
+  
+},
  
   /**
    * 生命周期函数--监听页面加载
@@ -52,6 +60,12 @@ Page({
       that.setData({
         login: wx.getStorageSync("login")
       })
+      if(options.ewm_exchange){
+        that.setData({
+          ewm_exchange: options.ewm_exchange
+        })
+        // console.log(options.ewm_exchange,"options.ewm_exchange")
+      }
       that.v4_viplist()
       console.log("非分享打开")
     }

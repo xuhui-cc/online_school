@@ -214,6 +214,14 @@
           "id": -1,
           "name": "vip_detail",
           "pathName": "packages/student/vip/android/vip_detail/vip_detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "exchang_vip",
+          "pathName": "packages/student/vip/comment/exchang_vip/exchang_vip",
+          "query": "",
           "scene": null
         }
       ]

@@ -424,6 +424,28 @@ Page({
     }
   },
 
+  //课程权限提示
+  course_authority:function(e){
+    let that = this
+    // var xb = e.currentTarget.dataset.xb
+    // console.log(xb)
+    var buy = that.data.course_info.buy
+    // var kid = that.data.course_cata.lists[xb].kid
+    // var eid = that.data.course_cata.lists[xb].eid
+    // var mid = that.data.course_cata.lists[xb].mid
+    if (buy == 1|| (buy >= 3 && buy <= 5)) {
+      console.log("有课程权限")
+    } else {
+      wx.showToast({
+        title: '没有观看权限哦',
+        icon:"none",
+        duration:2000
+      })
+      console.log("没有权限")
+    }
+    
+  },
+
   
 
   //查看课后作业报告

@@ -32,7 +32,15 @@ Page({
 
   //返回我的主页
   back:function(){
-    wx.navigateBack()
+    let that = this
+    if(that.data.ewm_exchange == 1){
+      wx.switchTab({
+        url: app.getPagePath('logs'),
+      })
+    }else{
+      wx.navigateBack()
+    }
+    
   },
  
   /**
@@ -52,6 +60,12 @@ Page({
       that.setData({
         login: wx.getStorageSync("login")
       })
+      if(options.ewm_exchange){
+        that.setData({
+          ewm_exchange: options.ewm_exchange
+        })
+        // console.log(options.ewm_exchange,"options.ewm_exchange")
+      }
       that.v4_viplist()
       console.log("非分享打开")
     }
