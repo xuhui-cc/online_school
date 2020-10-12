@@ -207,18 +207,18 @@ page{
   
   margin-top: 30rpx;
   width:370rpx;
-  height:84rpx;
+  height:50rpx;
   font-size:30rpx;
   font-family:PingFang SC;
   font-weight:bold;
-  line-height:42rpx;
+  line-height:50rpx;
   color:rgba(39,39,39,1);
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-all;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
 }
 
 .margin_shu{
@@ -253,9 +253,9 @@ page{
   
 }
 .free{
-  margin-left: 209rpx;
-  margin-top: 48rpx;
-  
+  position:absolute;
+  margin-left: 280rpx;
+  margin-top:45rpx;
   width:84rpx;
   height:40rpx;
   font-size:28rpx;
@@ -564,18 +564,18 @@ page{
   margin-left: 25rpx;
   margin-top: 20rpx;
   width:352rpx;
-  height:80rpx;
+  height:50rpx;
   font-size:30rpx;
   font-family:PingFang SC;
   font-weight:bold;
-  line-height:40rpx;
+  line-height:50rpx;
   color:rgba(39,39,39,1);
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-all;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
 }
 .hot_laber{
   margin-left: 88rpx;
@@ -803,4 +803,39 @@ page{
 }
 .login_read::after {
   border: none;
+}
+
+
+/* 消息推送 */
+.sign{
+  position: absolute;
+  margin-top: -45rpx;
+  margin-left: 350rpx;
+  width: 123rpx;
+  height: 40rpx;
+  background: #FF4B20;
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 40rpx;
+  color: #FFFFFF;
+  text-align: center;
+  border-radius: 26rpx;
+  z-index: 20;
+}
+.sign1{
+  position: absolute;
+  margin-top: -45rpx;
+  margin-left: 350rpx;
+  width: 123rpx;
+  height: 40rpx;
+  background: rgba(255,75,32,0.18);
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 40rpx;
+  color: #FF4B20;
+  text-align: center;
+  border-radius: 26rpx;
+  z-index: 20;
 }

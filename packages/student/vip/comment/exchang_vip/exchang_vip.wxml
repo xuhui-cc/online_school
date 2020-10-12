@@ -16,7 +16,7 @@
   <view class="layout_content"  wx:if="{{exchange_page}}">
     <image class="bg_exchange1" src="./resource/exchange_page.png" ></image>
     <view class="checkinfo_head">{{exchangeVip_info.title}}</view>
-    <!-- <view class="checkinfo_intro">{{exchangeVip_info.remark}}</view> -->
+    <view class="checkinfo_intro">{{exchangeVip_info.remark}}</view>
     <view class="checkinfo_tip1">确认兑换为{{exchangeVip_info.title}}？</view>
     <view class="checkinfo_tip2" wx:if="{{exchangeVip_info.hascard}}">您当前为{{exchangeVip_info.hascard}},确认兑换后将替换掉原有会员卡。</view>
     <view class="btn2" bindtap="yes_exchange">是，立即兑换</view>

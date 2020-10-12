@@ -395,7 +395,7 @@ getPhoneNumber: function (e) {
    */
   onShareAppMessage: function () {
     let that = this;
-    let paramStr = 'isshare=1&gid=' + wx.getStorageSync('gid') 
+    let paramStr = 'isshare=1&gid=' + wx.getStorageSync('gid') + '&exchange=' + that.data.exchange
     return app.shareTool.getShareReturnInfo('0,1', 'vip_detail', paramStr, '/images/other/share1.png', '领军网校')
   }
 })
