@@ -165,7 +165,17 @@
   
 
 
-
+  <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{coupon_use}}"></view>
+  <view style="position: fixed;z-index: 101;" wx:if="{{coupon_use}}">
+    <image class="coupon_bg" src=" /images/other/coupon_bg.png"></image>
+    <image class="tea_ava" src="{{course_cata.avatar}}"></image>
+    <image class="tea_ava" style="margin-top:587rpx;" src="{{course_cata.avatar}}"></image>
+    <view class="cont1">{{course_cata.msg}}</view>
+    <text class="cont2" selectable='true'>{{course_cata.tel}}</text>
+    <view class="cont1" style="margin-top:657rpx;">（微信号同手机号）</view>
+    <image class="del" src="/images/other/del2.png" bindtap="to_ues"></image>
+    <image class="copy" src="/images/other/copy.png" bindtap="copy"></image>
+  </view>
 
 
 

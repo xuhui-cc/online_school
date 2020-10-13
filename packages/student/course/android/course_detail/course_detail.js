@@ -8,7 +8,8 @@ Page({
    */
   data: {
     currentData: 0,
-    btn_buy:app.globalData.btn_buy
+    btn_buy:app.globalData.btn_buy,
+    coupon_use:false
   },
 
   /**
@@ -139,15 +140,48 @@ Page({
     if (buy == 1|| (buy >= 3 && buy <= 5)) {
       console.log("有课程权限")
     } else {
-      wx.showToast({
-        title: '没有观看权限哦',
-        icon:"none",
-        duration:2000
+      that.setData({
+        coupon_use:true
       })
+      // wx.showToast({
+      //   title: '没有观看权限哦',
+      //   icon:"none",
+      //   duration:2000
+      // })
       console.log("没有权限")
     }
     
   },
+
+
+  //关闭联系老师蒙层
+  to_ues:function(){
+    let that = this 
+    that.setData({
+      coupon_use:false
+    })
+  },
+
+  //复制老师联系方式
+  copy:function(){
+    var that = this;
+    var tel = that.data.course_cata.tel.substr(4,11)
+    console.log(tel)
+      wx.setClipboardData({
+      data: tel,
+      success: function(res) {
+        wx.showToast({
+          title: '复制成功',
+          duration:1600
+        })
+        setTimeout(function () {
+          that.to_ues()    //关闭联系老师弹框
+        }, 1800)
+      }
+    });
+
+  },
+
 
   //查看报告
   to_end_report:function(){

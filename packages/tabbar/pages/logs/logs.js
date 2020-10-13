@@ -713,4 +713,39 @@ Page({
     clearInterval(timer); 
     clearInterval(ms_timer); 
   },
+
+  cs:function(){
+    let that = this 
+    wx.requestSubscribeMessage({
+      tmplIds: ['T4tp85vTUVp1BiSBRmlC7CRQHDhOYitDTR0zCfv-3yg'], // 此处可填写多个模板 ID，但低版本微信不兼容只能授权一个
+      success(res) { 
+        console.log(res)
+        var params = {
+          "token":wx.getStorageSync('token'),
+          "course_id":that.data.select_kid
+        }
+        app.ols.subMsg(params).then(d => {
+          if (d.data.code == 0) {
+            that.hot()  //热门课程
+            that.getcourse()     //获取课程
+            that.v4_viplist()   //获取vip
+          }else{
+            
+          }
+        })
+      }
+    })
+  },
+
+  subMsg:function(e){
+    let that = this 
+    // var kid = 
+    that.setData({
+      select_kid:e.currentTarget.dataset.kid
+    })
+    
+    // console.log(kid)
+    that.cs()
+    
+  },
 })

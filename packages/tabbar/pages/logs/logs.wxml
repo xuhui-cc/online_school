@@ -174,7 +174,7 @@
               </view>
             </view>
             <view class="sign" style="margin-left:310rpx;" wx:if="{{item.apply == 0 && item.live == 1 && login && (item.buy == 1 || (item.buy > 3 && item.buy <= 5)) }}" bindtap="subMsg" data-kid="{{item.kid}}">点击报名</view>
-            <view class="sign1" style="margin-left:310rpx;" wx:if="{{item.apply == 1 && login && (item.buy == 1 || (item.buy > 3 && item.buy <= 5)) }}" bindtap="subMsg" data-kid="{{item.kid}}">报名成功</view>
+            <view class="sign1" style="margin-left:310rpx;" wx:if="{{item.apply == 1 && login && (item.buy == 1 || (item.buy > 3 && item.buy <= 5)) }}" >报名成功</view>
           <view class="margin_heng" style="width:630rpx;margin-top:30rpx;"></view>
         </view>
       </view>
@@ -315,7 +315,7 @@
               </view>
             </view>
             <view class="sign" wx:if="{{item.apply == 0 && item.live == 1 && login && (item.buy == 1 || (item.buy > 3 && item.buy <= 5)) }}" bindtap="subMsg" data-kid="{{item.kid}}">点击报名</view>
-            <view class="sign1" wx:if="{{item.apply == 1 && login && (item.buy == 1 || (item.buy > 3 && item.buy <= 5)) }}" bindtap="subMsg" data-kid="{{item.kid}}">报名成功</view>
+            <view class="sign1" wx:if="{{item.apply == 1 && login && (item.buy == 1 || (item.buy > 3 && item.buy <= 5)) }}" >报名成功</view>
           <view class="margin_heng" style="width:630rpx;margin-top:30rpx;"></view>
         </view>
       </view>
@@ -359,7 +359,7 @@
         </view>
       </view>
       <view class="sign" style="margin-top:-90rpx;" wx:if="{{item.apply == 0 && item.live == 1 && login && (item.buy == 1 || (item.buy > 3 && item.buy <= 5)) }}" bindtap="subMsg" data-kid="{{item.kid}}">点击报名</view>
-      <view class="sign1" style="margin-top:-90rpx;" wx:if="{{item.apply == 1 && login && (item.buy == 1 || (item.buy > 3 && item.buy <= 5)) }}" bindtap="subMsg" data-kid="{{item.kid}}">报名成功</view>
+      <view class="sign1" style="margin-top:-90rpx;" wx:if="{{item.apply == 1 && login && (item.buy == 1 || (item.buy > 3 && item.buy <= 5)) }}" >报名成功</view>
       <view class="margin_heng"></view>
 
       <!-- 原样式 -->

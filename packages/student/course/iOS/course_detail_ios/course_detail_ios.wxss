@@ -430,3 +430,81 @@
   width:750rpx;
   height:237rpx;
 }
+
+
+/* 联系老师蒙层 */
+.mask{
+  position: fixed;
+  width: 750rpx;
+  height: 100%;
+  
+background: #000000;
+opacity: 0.55;
+z-index: 100;
+
+}
+.coupon_bg{
+  position: fixed;
+  margin-top: 350rpx;
+  margin-left: 74rpx;
+  width: 589rpx;
+  height: 451rpx;
+  
+
+z-index: 101;
+}
+.cont1{
+  position: fixed;
+  margin-top: 430rpx;
+  margin-left: 254rpx;
+  width: 330rpx;
+  height: 87rpx;
+  font-size: 29rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 35rpx;
+  color: #FFFFFF;
+  z-index: 102;
+
+}
+.cont2{
+  position: fixed;
+  margin-top: 607rpx;
+  margin-left: 254rpx;
+  width: 350rpx;
+  height: 46rpx;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 42rpx;
+  color: #82480D;
+  z-index: 102;
+
+}
+.tea_ava{
+  position: fixed;
+  margin-top: 422rpx;
+  margin-left: 118rpx;
+  width: 85rpx;
+  height: 85rpx;
+  border-radius: 50%;
+  z-index: 102;
+}
+.del{
+  position: fixed;
+  margin-top: 270rpx;
+  margin-left: 646rpx;
+  width: 51rpx;
+  height: 51rpx;
+  
+  z-index: 102;
+}
+.copy{
+  position: fixed;
+  margin-top: 800rpx;
+  margin-left: 212rpx;
+  width: 315rpx;
+  height: 136rpx;
+  
+  z-index: 102;
+}
