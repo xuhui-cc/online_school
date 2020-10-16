@@ -297,8 +297,7 @@
   width:750rpx;
   height:1624rpx;
   background:rgba(0,0,0,0.68);
-  /* opacity:0.54; */
-  /* z-index: 15; */
+  
 }
 .bg_exchange{
   position: fixed;

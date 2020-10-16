@@ -80,19 +80,20 @@
 
   </view>
 
-  <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{exchange && login}}"></view>
-  <view style="margin-top:-120rpx;" wx:if="{{exchange && login}}">
-    <image class="bg_exchange" src="./resource/bg_exchange.png" ></image>
-    <input class="input" placeholder="请输入您的兑换码" placeholder-style=" text-align: center;" bindinput="input_code" value="{{code}}"></input>
-    <view wx:if="{{checkCode == -1}}" class="checkCode_tip">*{{check_msg}}</view>
-    <view class="btn1_2" wx:if="{{code == '' && checkCode != -1}}" >提交</view>
-    <view class="btn1" wx:else="" bindtap="submit_check">提交</view>
-    <image class="exchange_close" src="/images/other/exchange_close.png" bindtap="exchange"></image>
-  </view>
+    <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!code_layout || !login}}"></view>
+    <view style="margin-top:-120rpx;" hidden="{{!code_layout || !login}}">
+      <image class="bg_exchange" src="./resource/bg_exchange.png" ></image>
+      <input class="input" placeholder="请输入您的兑换码" placeholder-style=" text-align: center;" bindinput="input_code" value="{{code}}"></input>
+      <view wx:if="{{checkCode == -1}}" class="checkCode_tip">*{{check_msg}}</view>
+      <view class="btn1_2" wx:if="{{code == '' && checkCode != -1}}" >提交</view>
+      <view class="btn1" wx:else="" bindtap="submit_check">提交</view>
+      <image class="exchange_close" src="/images/other/exchange_close.png" bindtap="close_code"></image>
+    </view>
+  
 
-  <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!exchange_page}}"></view>
+  <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{exchange_page}}"></view>
   <!--  -->
-  <view style="margin-top:-120rpx;" hidden="{{!exchange_page}}">
+  <view style="margin-top:-120rpx;" wx:if="{{exchange_page}}">
     <image class="bg_exchange1" src="./resource/exchange_page.png" ></image>
     <view class="checkinfo_head">{{codeinfo.title}}</view>
     <view class="checkinfo_intro">{{codeinfo.remark}}</view>

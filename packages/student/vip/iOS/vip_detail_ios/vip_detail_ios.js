@@ -14,7 +14,7 @@ Page({
       './resource/vip2.png',
     ],
     pay:false,
-    exchange:false,
+    code_layout:false,
     exchange_page:false,
     interval: 3000, //停留时间间隔
     previousMargin: '35px', //前边距，可用于露出前一项的一小部分，接受 px 和 rpx 值
@@ -52,9 +52,11 @@ back:function(){
       wx.setStorageSync("gid", options.gid)
       that.setData({
         isshare:options.isshare,
+        code_layout:options.code_layout,
         gid:options.gid,
         login: wx.getStorageSync("login")
       })
+      console.log("vip分享打开",that.data.code_layout,"code_layout",that.data.login,"login")
         that.v4_viplist()
     }else{
       that.setData({
@@ -99,7 +101,7 @@ back:function(){
         that.setData({
           codeinfo:d.data.data,
           exchange_page:true,
-          exchange:false,
+          code_layout:false,
           code:''
         })
       } else if(d.data.code == 5){
@@ -308,8 +310,18 @@ back:function(){
     that.setData({
       code:'',
       checkCode:1,
-      exchange:!that.data.exchange
+      code_layout:true
     })
+    console.log("exchange方法",that.data.code_layout)
+  },
+
+  //关闭兑换弹框
+  close_code:function(){
+    let that = this
+    that.setData({
+      code_layout:false
+    })
+    console.log("close_code方法",that.data.code_layout)
   },
 
   //查看会员权益
@@ -335,7 +347,7 @@ getPhoneNumber: function (e) {
         that.setData({
           code:'',
           checkCode:1,
-          exchange:!that.data.exchange
+          code_layout:true
         })
       }
       that.v4_viplist()
@@ -395,7 +407,7 @@ getPhoneNumber: function (e) {
    */
   onShareAppMessage: function () {
     let that = this;
-    let paramStr = 'isshare=1&gid=' + wx.getStorageSync('gid') + '&exchange=' + that.data.exchange
+    let paramStr = 'isshare=1&gid=' + wx.getStorageSync('gid') + '&code_layout=' + that.data.code_layout
     return app.shareTool.getShareReturnInfo('0,1', 'vip_detail', paramStr, '/images/other/share1.png', '领军网校')
   }
 })

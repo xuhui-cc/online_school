@@ -5,3 +5,4 @@
     <image class="adCloseButton" src="./images/adWindow_close.png" bindtap="adWindowCloseButtonClciked"></image>
   </view>
 </view>
+                                                  

@@ -14,7 +14,7 @@ Page({
       './resource/vip2.png',
     ],
     pay:false,
-    exchange:false,
+    code_layout:false,
     exchange_page:false,
     interval: 3000, //停留时间间隔
     previousMargin: '35px', //前边距，可用于露出前一项的一小部分，接受 px 和 rpx 值
@@ -52,10 +52,11 @@ Page({
       wx.setStorageSync("gid", options.gid)
       that.setData({
         isshare:options.isshare,
+        code_layout:options.code_layout,
         gid:options.gid,
-        exchange:options.exchange,
         login: wx.getStorageSync("login")
       })
+      console.log("vip分享打开",that.data.code_layout,"code_layout",that.data.login,"login")
         that.v4_viplist()
     }else{
       that.setData({
@@ -100,7 +101,7 @@ Page({
         that.setData({
           codeinfo:d.data.data,
           exchange_page:true,
-          exchange:false,
+          code_layout:false,
           code:''
         })
       } else if(d.data.code == 5){
@@ -151,8 +152,6 @@ Page({
     })
   },
 
-  
-
   //获取会员卡列表
   v4_viplist:function(type){
     let that = this
@@ -171,8 +170,8 @@ Page({
             vip:d.data.data,
             vip_list:d.data.data.lists,
             exchange_page:false,
-          pay:true,
-          code:''
+            pay:true,
+            code:''
           })
         }else{
           that.setData({
@@ -180,8 +179,6 @@ Page({
             vip_list:d.data.data.lists
           })
         }
-        
-        
         // console.log("会员列表成功")
       } else {
         // console.log("会员列表失败==============" + d.data.msg)
@@ -217,7 +214,6 @@ Page({
       var params = {
         "token": wx.getStorageSync("token"),
         "kid": that.data.vip_list[0].id,
-       
       }
     console.log(params,"会员卡预支付接口")
       app.ols.v4_vipPreorder(params).then(d => {
@@ -238,8 +234,6 @@ Page({
           console.log("预支付接口失败", d)
         }
       })
-    
-    
   },
 
   //拉起微信支付
@@ -293,14 +287,11 @@ Page({
       app.ols.group_del4(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
-          
           console.log("删除接口成功")
         } else {
           console.log("删除接口失败", d)
         }
       })
-    
-    
   },
 
   //打开兑换码弹框
@@ -309,8 +300,18 @@ Page({
     that.setData({
       code:'',
       checkCode:1,
-      exchange:!that.data.exchange
+      code_layout:true
     })
+    console.log("exchange方法",that.data.code_layout)
+  },
+
+  //关闭兑换弹框
+  close_code:function(){
+    let that = this
+    that.setData({
+      code_layout:false
+    })
+    console.log("close_code方法",that.data.code_layout)
   },
 
   //查看会员权益
@@ -326,18 +327,19 @@ Page({
 getPhoneNumber: function (e) {
   var that = this
   var type = e.currentTarget.dataset.type
-  console.log(type)
+  console.log(type,"type")
   app.loginTool.getPhoneNumber(e, wx.getStorageSync('gid'), function(success, message){
     if (success) {
       that.setData({
-        login: true
+        login: true,
       })
       if(type == 1){
         that.setData({
           code:'',
           checkCode:1,
-          exchange:!that.data.exchange
+          code_layout:true
         })
+        console.log("type==1")
       }
       that.v4_viplist()
     }
@@ -355,7 +357,7 @@ getPhoneNumber: function (e) {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
   },
 
   /**
@@ -396,7 +398,7 @@ getPhoneNumber: function (e) {
    */
   onShareAppMessage: function () {
     let that = this;
-    let paramStr = 'isshare=1&gid=' + wx.getStorageSync('gid') + "&exchange=" + that.data.exchange
+    let paramStr = 'isshare=1&gid=' + wx.getStorageSync('gid') + "&code_layout=" + that.data.code_layout
     return app.shareTool.getShareReturnInfo('0,1', 'vip_detail', paramStr, '/images/other/share1.png', '领军网校')
   }
 })
