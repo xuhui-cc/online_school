@@ -42,7 +42,7 @@
           
           <view class="course_title">{{item.name}}</view>
           <view wx:if="{{course_info.buy == 1 || (course_info.buy >= 3 && course_info.buy <= 5)}}">
-            <view wx:if="{{item.mt == 2}}" class="study_button" style="background:rgba(3,182,131,1);" data-xb="{{index}}" bindtap="to_video">
+            <view wx:if="{{item.mt == 2 || item.mt == 1}}" class="study_button" style="background:rgba(3,182,131,1);" data-xb="{{index}}" bindtap="to_video">
             <view class="study">看直播</view>
           </view>
           <view wx:elif="{{item.mt ==4}}" class="study_button" data-xb="{{index}}" bindtap="to_video">看回放</view>

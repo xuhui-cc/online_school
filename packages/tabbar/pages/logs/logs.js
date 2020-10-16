@@ -729,8 +729,14 @@ Page({
             that.hot()  //热门课程
             that.getcourse()     //获取课程
             that.v4_viplist()   //获取vip
-          }else{
-            
+          }
+            else if(d.data.code == 4){
+              wx.showToast({
+                title: '报名成功',
+              })
+              that.hot()  //热门课程
+            that.getcourse()     //获取课程
+            that.v4_viplist()   //获取vip
           }
         })
       }
