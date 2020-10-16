@@ -87,7 +87,7 @@ Page({
         that.getStudentInfo()
       } else {
         // 展示7v1介绍图片
-        let url7v1 = app.ols.get7v1Intro_h5()
+        let url7v1 = app.ols.get7v1Intro_h5() + "?timestamp=" + (new Date()).getTime()
         that.setData({
           url7v1: url7v1
         })
