@@ -14,18 +14,21 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    
     var id = options.id
     console.log(id)
     that.setData({
       id:id,
       kid:options.kid
     })
+    
     var params = {
       "token": wx.getStorageSync("token"),
       "id": that.data.id
     }
     app.ols.get_live(params).then(d => {
       console.log(d)
+      // that.update_start()    //更新直播学习状态
       if (d.data.code == 0) {
         console.log(d.data.data)
         that.setData({
@@ -36,6 +39,7 @@ Page({
         console.log("课程目录==============" + d.data.msg)
       }
     })
+    // that.update_start()    //更新直播学习状态
 
 
   },
@@ -68,29 +72,29 @@ Page({
     })
   },
 
-  // //更新视频结束状态
-  // update_leave:function(){
-  //   let that = this
-  //   var timestamp = (Date.parse(new Date())) / 1000
-  //   console.log(timestamp, "timestamp")
-  //   var answerline = timestamp - that.data.start_time
-  //   console.log(answerline, "answerline")
-  //   var params = {
-  //     "token": wx.getStorageSync("token"),
-  //     "hid": that.data.hid,
-  //     "duration": answerline,
-  //     // "percent": precent
-  //   }
-  //   console.log(params,"视频结束状态更新参数")
-  //   app.ols.video_end(params).then(d => {
-  //     console.log(d,"视频结束状态更新数据")
-  //     if (d.data.code == 0) {
-  //       console.log("视频结束状态更新成功")
-  //     } else {
-  //       console.log("视频结束状态更新失败==============" + d.data.msg)
-  //     }
-  //   })
-  // },
+  //更新视频结束状态
+  update_leave:function(){
+    let that = this
+    var timestamp = (Date.parse(new Date())) / 1000
+    console.log(timestamp, "timestamp")
+    var answerline = timestamp - that.data.start_time
+    console.log(answerline, "answerline")
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "hid": that.data.hid,
+      "duration": answerline,
+      "percent": "0"
+    }
+    console.log(params,"视频结束状态更新参数")
+    app.ols.video_end(params).then(d => {
+      console.log(d,"视频结束状态更新数据")
+      if (d.data.code == 0) {
+        console.log("视频结束状态更新成功")
+      } else {
+        console.log("视频结束状态更新失败==============" + d.data.msg)
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -118,7 +122,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    let that = this 
+    that.update_leave()
   },
 
   /**

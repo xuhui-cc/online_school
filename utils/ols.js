@@ -1,5 +1,5 @@
-// const URI_base = "http://os.lingjun.net/" //测试域名
-const URI_base = "https://wsg.lingjun.net/" // 正式域名
+const URI_base = "http://os.lingjun.net/" //测试域名
+// const URI_base = "https://wsg.lingjun.net/" // 正式域名
 
 const URI = URI_base + 'api.php/'    //接口地址
 

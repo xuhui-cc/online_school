@@ -20,11 +20,11 @@ Page({
   
   onLoad: function (options) {
     let that = this
-    if(wx.getStorageSync('index_xk')){
-      that.setData({
-        current_subject:wx.getStorageSync('index_xk')
-      })
-    }
+    // if(wx.getStorageSync('index_xk')){
+    //   that.setData({
+    //     current_subject:wx.getStorageSync('index_xk')
+    //   })
+    // }
     options = app.shareTool.getShareOption()
 
     if (options.share && options.share == 1) {

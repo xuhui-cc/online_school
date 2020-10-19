@@ -29,7 +29,7 @@ Page({
     
     that.setData({
       id:vip_id,
-      // id:"23",
+      // id:"28",
       gid:"1",
       login:wx.getStorageSync('login')
     })
@@ -108,9 +108,18 @@ check_1Vn:function(){
     else if(d.data.code == 5){
       console.log(d.data.msg.indexOf("重复"),"重复")
       if(d.data.msg.indexOf("重复") >= 0){
-        wx.redirectTo({
-          url: app.getPagePath('vip_detail') + '?ewm_exchange=1',
+        wx.showToast({
+          title: d.data.msg,
+          icon: "none",
+          duration: 950
         })
+        setTimeout(function () {
+          console.log("跳转")
+          wx.redirectTo({
+            url: app.getPagePath('vip_detail') + '?ewm_exchange=1',
+          })
+        }, 1000)
+        
       }else{
         wx.showToast({
           title: d.data.msg,
