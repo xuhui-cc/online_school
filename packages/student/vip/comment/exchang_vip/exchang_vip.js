@@ -17,7 +17,6 @@ Page({
     var vip_id
     if(options.q){
       var csid = decodeURIComponent(options.q).match(/\d+/g)
-    // console.log(decodeURIComponent(options.q).match(/\d+/g))
       console.log(csid[1])
       vip_id = csid[1]
     }
@@ -25,8 +24,6 @@ Page({
       console.log(options.id)
       vip_id = options.id
     }
-    
-    
     that.setData({
       id:vip_id,
       // id:"28",
@@ -37,149 +34,26 @@ Page({
     
   },
 
-  back:function(){
-    wx.switchTab({
-      url: app.getPagePath('logs'),
-    })
-  },
-
-  get_vipinfo:function(){
-    let that = this
-    var params = {
-      "id":that.data.id
-    }
-    app.ols.info_1Vn(params).then(d => {
-      if (d.data.code == 0) {
-        that.setData({
-          vip_info:d.data.data
-        })
-      } 
-      
-    })
-  },
-
-  //获取微信绑定手机号登录
-getPhoneNumber: function (e) {
-  var that = this
-  app.loginTool.getPhoneNumber(e, that.data.gid, function(success, message){
-    if (success) {
-      that.setData({
-        login: true
-      })
-      that.check_1Vn()
-    }
-  })
-},
-
-yes_exchange:function(){
-  let that =this 
-  that.exchange_1Vn(that.data.exchangeVip_info.id)
-},
-
-exchange_page:function(){
-  let that = this
-    that.setData({
-      exchange_page:false,
-      
-    })
-},
-
-  /**阻止页面滚动。模拟器中页面仍然可以滚动，真机上不能滚动。*/
-  preventTouchMove: function (e) {
-  
-  },  
-
-check_1Vn:function(){
-  let that = this
-  var params = {
-    "token": wx.getStorageSync("token"),
-    "id":that.data.id
-  }
-  app.ols.check_1Vn(params).then(d => {
-    
-    if (d.data.code == 0) {
-      that.setData({
-        exchangeVip_info:d.data.data,
-        exchange_page:true
-      })
-      // that.exchange_1Vn(d.data.data.id)
-      
-    } 
-    else if(d.data.code == 5){
-      console.log(d.data.msg.indexOf("重复"),"重复")
-      if(d.data.msg.indexOf("重复") >= 0){
-        wx.showToast({
-          title: d.data.msg,
-          icon: "none",
-          duration: 950
-        })
-        setTimeout(function () {
-          console.log("跳转")
-          wx.redirectTo({
-            url: app.getPagePath('vip_detail') + '?ewm_exchange=1',
-          })
-        }, 1000)
-        
-      }else{
-        wx.showToast({
-          title: d.data.msg,
-          icon: "none",
-          duration: 950
-        })
-        setTimeout(function () {
-          console.log("跳转")
-          wx.switchTab({
-            url: app.getPagePath('logs'),
-          })
-        }, 1000)
-      }
-      
-    }
-  })
-},
-exchange_1Vn:function(ex_id){
-  let that = this
-  var params = {
-    "token": wx.getStorageSync("token"),
-    "id":ex_id
-  }
-  app.ols.exchange_1Vn(params).then(d => {
-    
-    if (d.data.code == 0) {
-      wx.redirectTo({
-        url: app.getPagePath('vip_detail') + '?ewm_exchange=1',
-      })
-     
-    } 
-    else{
-      wx.showToast({
-        title: d.data.msg,
-        icon: "none",
-        duration: 2950
-      })
-      setTimeout(function () {
-        wx.switchTab({
-          url: app.getPagePath('logs'),
-        })
-      }, 3000)
-      // console.log("会员列表失败==============" + d.data.msg)
-    }
-  })
-},
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
     let that = this
     that.get_vipinfo()
+  },
+
+  /**阻止页面滚动。
+   * 模拟器中页面仍然可以滚动
+   * 真机上不能滚动。*/
+  preventTouchMove: function (e) {
+  
+  },  
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
   },
 
   /**
@@ -216,4 +90,145 @@ exchange_1Vn:function(ex_id){
   // onShareAppMessage: function () {
 
   // }
+
+  /*-------------------------------------------------------接口------------------------------------------------- */
+  /**
+   * 获取一对多会员卡展示信息
+   */
+  get_vipinfo:function(){
+    let that = this
+    var params = {
+      "id":that.data.id
+    }
+    app.ols.info_1Vn(params).then(d => {
+      if (d.data.code == 0) {
+        that.setData({
+          vip_info:d.data.data
+        })
+      } 
+    })
+  },
+
+  /**
+   * 一对多兑换前验证
+   */
+  check_1Vn:function(){
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "id":that.data.id
+    }
+    app.ols.check_1Vn(params).then(d => {
+      if (d.data.code == 0) {
+        that.setData({
+          exchangeVip_info:d.data.data,
+          exchange_page:true
+        })
+      } 
+      else if(d.data.code == 5){
+        console.log(d.data.msg.indexOf("重复"),"重复")
+        if(d.data.msg.indexOf("重复") >= 0){
+          wx.showToast({
+            title: d.data.msg,
+            icon: "none",
+            duration: 950
+          })
+          setTimeout(function () {
+            console.log("跳转")
+            wx.redirectTo({
+              url: app.getPagePath('vip_detail') + '?ewm_exchange=1',
+            })
+          }, 1000) 
+        }else{
+          wx.showToast({
+            title: d.data.msg,
+            icon: "none",
+            duration: 950
+          })
+          setTimeout(function () {
+            console.log("跳转")
+            wx.switchTab({
+              url: app.getPagePath('logs'),
+            })
+          }, 1000)
+        }
+      }
+    })
+  },
+
+  /**
+   * 一对多兑换
+   */
+  exchange_1Vn:function(ex_id){
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "id":ex_id
+    }
+    app.ols.exchange_1Vn(params).then(d => {
+      
+      if (d.data.code == 0) {
+        wx.redirectTo({
+          url: app.getPagePath('vip_detail') + '?ewm_exchange=1',
+        })
+       
+      } 
+      else{
+        wx.showToast({
+          title: d.data.msg,
+          icon: "none",
+          duration: 2950
+        })
+        setTimeout(function () {
+          wx.switchTab({
+            url: app.getPagePath('logs'),
+          })
+        }, 3000)
+      }
+    })
+  },
+
+  /*-------------------------------------------------------方法------------------------------------------------- */
+
+  /**
+   * 返回
+   */
+  back:function(){
+    wx.switchTab({
+      url: app.getPagePath('logs'),
+    })
+  },
+
+  /**
+   * 获取微信绑定手机号登录
+   */
+  getPhoneNumber: function (e) {
+    var that = this
+    app.loginTool.getPhoneNumber(e, that.data.gid, function(success, message){
+      if (success) {
+        that.setData({
+          login: true
+        })
+        that.check_1Vn()
+      }
+    })
+  },
+
+  /**
+   * 确定兑换
+  */
+  yes_exchange:function(){
+    let that =this 
+    that.exchange_1Vn(that.data.exchangeVip_info.id)
+  },
+  /**
+   * 暂不兑换
+   */
+  exchange_page:function(){
+    let that = this
+      that.setData({
+        exchange_page:false,
+      })
+  },
+  
 })

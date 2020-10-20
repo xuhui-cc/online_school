@@ -40,7 +40,7 @@ Page({
             })
           } else {
             wx.switchTab({
-              url: app.getPagePath('index'),
+              url: app.getPagePath('logs'),
             })
           }
           break
@@ -80,7 +80,7 @@ Page({
           })
         } else {
           wx.switchTab({
-            url: app.getPagePath('index'),
+            url: app.getPagePath('logs'),
           })
         }
         
@@ -122,7 +122,7 @@ Page({
     
         wx.setStorageSync('gid', that.data.grade[xb].id)
         wx.switchTab({
-          url: app.getPagePath('index'),   //更新年级后跳转测评页
+          url: app.getPagePath('logs'),   //更新年级后跳转测评页
         })
         
     //   }
@@ -145,7 +145,7 @@ Page({
           console.log(d.data.data.gid,"d.data.data.gid")
           wx.setStorageSync("gid", d.data.data.gid)
           wx.switchTab({
-            url: app.getPagePath('index'),   //测评页跳转
+            url: app.getPagePath('logs'),   //课程页跳转
           })
         }else{
           that.setData({

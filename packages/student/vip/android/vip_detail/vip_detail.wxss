@@ -4,8 +4,8 @@
   margin-top: 160rpx;
   width:350rpx;
   height:160rpx;
-  /* background: transparent; */
-  background-color: rgba(216, 87, 87, 0.233);
+  background: transparent;
+  /* background-color: rgba(216, 87, 87, 0.233); */
   z-index: 700;
 }
 .login1::after {
