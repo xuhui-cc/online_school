@@ -3,19 +3,11 @@ const URI_base = "http://os.lingjun.net/" //测试域名
 
 const URI = URI_base + 'api.php/'    //接口地址
 
-// const addImgUrl = "http://os.lingjun.net/api.php/annex/upload"
-// const addImgUrl = "https://wsg.lingjun.net/api.php/annex/upload"
-
 const fetch = require('./fetch')
 
 //登录
 function login(params) {
   return fetch.olsfetchpost(URI, 'v4/login/getphonelogin', params, true, '登录中')
-}
-
-//分享判断
-function judge_share(params) {
-  return fetch.olsfetchpost(URI, 'share/getinterface', params)
 }
 
 //分享判断
@@ -118,24 +110,9 @@ function grade_course4(params) {
   return fetch.olsfetchpost(URI, 'v4/lesson/getlist', params)
 }
 
-// 获取课程页课程(已登录)
-function grade_course1(params) {
-  return fetch.olsfetchpost(URI, 'lesson/getlist', params)
-}
-
-// 获取课程页课程(未登录)
-function grade_course2(params) {
-  return fetch.olsfetchpost(URI, 'v2/lesson/getlist', params)
-}
-
 // 获取课程详情介绍(已登录)
 function course_info1(params) {
   return fetch.olsfetchpost(URI, 'lesson/getinfo', params)
-}
-
-// 获取课程详情介绍(未登录)
-function course_info2(params) {
-  return fetch.olsfetchpost(URI, 'v2/lesson/getinfo', params)
 }
 
 // 获取课程详情v3(拼团)
@@ -153,11 +130,6 @@ function course_cata1(params) {
   return fetch.olsfetchpost(URI, 'lesson/getOption', params)
 }
 
-//获取课程目录(未购买)
-function course_cata2(params) {
-  return fetch.olsfetchpost(URI, 'v2/lesson/getoption', params)
-}
-
 //获取课程目录v3(拼团)
 function course_cata3(params) {
   return fetch.olsfetchpost(URI, 'v3/lesson/getoption', params)
@@ -167,6 +139,7 @@ function course_cata3(params) {
 function course_cata4(params) {
   return fetch.olsfetchpost(URI, 'v4/lesson/getoption', params,"课程详情目录")
 }
+
 //获取课程讲义列表
 function handout(params) {
   return fetch.olsfetchpost(URI, 'lesson/getannex', params)
@@ -181,7 +154,6 @@ function getvideo(params) {
 function getvideo_info(params) {
   return fetch.olsfetchpost(URI, 'study/getvideoline', params,"获取课程视频断点")
 }
-
 
 //课程预支付
 function preorder(params) {
@@ -293,7 +265,6 @@ function get_live(params) {
   return fetch.olsfetchpost(URI, 'lesson/getmtcourseurl', params)
 }
 
-
 //（课后作业、结课考试）报告
 function test_report(params) {
   return fetch.olsfetchpost(URI, 'report/getchart', params)
@@ -329,9 +300,9 @@ function user_number(params) {
   return fetch.olsfetchpost(URI, 'basic/getmembernum', params)
 }
 
-//获取平台人数
+//获取试卷推荐课程数据
 function getpushlist(params) {
-  return fetch.olsfetchpost(URI, 'report/getpushlist', params)
+  return fetch.olsfetchpost(URI, 'report/getpushlist', params,"获取试卷推荐课程数据")
 }
 
 //视频页其他信息
@@ -346,33 +317,27 @@ function avatar_update(params) {
 
 //试卷开始学习记录
 function test_start(params) {
-  return fetch.olsfetchpost(URI, 'study/setbeginstudy', params)
+  return fetch.olsfetchpost(URI, 'study/setbeginstudy', params,"试卷开始学习记录")
 }
 
-//试卷开始学习记录
+//试卷结束学习记录
 function test_end(params) {
-  return fetch.olsfetchpost(URI, 'study/setfinishstudy', params)
+  return fetch.olsfetchpost(URI, 'study/setfinishstudy', params,"试卷结束学习记录")
 }
 
-//获取拼团数据列表v3
+//热门课程
 function hot_list4(params) {
   return fetch.olsfetchpost(URI, 'v4/group/gethotlist', params,"热门课程",false,"课程加载中...")
 }
-
 
 //拼团未支付删除v3
 function group_del3(params) {
   return fetch.olsfetchpost(URI, 'v3/order/deldata', params)
 }
 
-//拼团未支付删除v3
-function group_del4(params) {
-  return fetch.olsfetchpost(URI, 'v4/order/deldata', params)
-}
-
-//团详情v3
+//拼团课程详情_团详情数据
 function group_detail3(params) {
-  return fetch.olsfetchpost(URI, 'v3/group/getgrouplist', params)
+  return fetch.olsfetchpost(URI, 'v3/group/getgrouplist', params,"团详情")
 }
 
 //团分享v3
@@ -380,16 +345,10 @@ function group_share3(params) {
   return fetch.olsfetchpost(URI, 'v3/share/getinterface', params)
 }
 
-// //团分享v3
-// function group_share4(params) {
-//   return fetch.olsfetchpost(URI, 'v4/share/getinterface', params)
-// }
-
-//团分享v3
+//获取全部拼团
 function all_group3(params) {
-  return fetch.olsfetchpost(URI, 'v3/group/getlessongrouplist', params,"团分享")
+  return fetch.olsfetchpost(URI, 'v3/group/getlessongrouplist', params,"获取全部拼团")
 }
-
 
 //轮播图
 function banner3(params) {
@@ -491,7 +450,6 @@ function get7v1Intro_h5() {
   return URI_base+'static/7v1/index.html'
 }
 
-
 // 获取名师列表
 function v5_getTeacherList(params) {
   return fetch.olsfetchpost(URI, 'v5/famousteacher/getlist', params, '获取名师列表', true)
@@ -528,13 +486,48 @@ function subMsg(params) {
   return fetch.olsfetchpost(URI, 'v4/course_apply/addcourseapply', params,"订阅消息")
 }
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all4, test_ques1, test_ques2, grade_course1, grade_course2, course_info1, course_info2, grade_update, course_cata1, course_cata2, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,judge_share,grade_course4,course_info4,course_cata3,hot_list4,group_preorder3,order_all3,group_del3,group_detail3,group_share3,all_group3,banner3,v4_viplist,v4_vipPreorder,v4_myVip,course_cata4,judge_share4,cheek_code4, teacherGetStudentsList, getReocrdTagList, submitReocrd, getStudentRecordListByDay, getPeriodRecordStatusList, getStudentCourseHourInfo, getClearCourseHourList, recordUploadFile, getStudentNewRecord, getRecordUploadPath_h5, haveRelationWithStudent,exchange_code4,addImg,parentGetChildsList,dummy,group_del4, refreshUserInfo, get7v1Intro_h5,v5_getTeacherList,v5_getTeacherIntro, getAdWindow, getLoginUserIdentify,info_1Vn,check_1Vn,exchange_1Vn,subMsg}
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all4, test_ques1, test_ques2, course_info1, grade_update, course_cata1, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,grade_course4,course_info4,course_cata3,hot_list4,group_preorder3,order_all3,group_del3,group_detail3,group_share3,all_group3,banner3,v4_viplist,v4_vipPreorder,v4_myVip,course_cata4,judge_share4,cheek_code4, teacherGetStudentsList, getReocrdTagList, submitReocrd, getStudentRecordListByDay, getPeriodRecordStatusList, getStudentCourseHourInfo, getClearCourseHourList, recordUploadFile, getStudentNewRecord, getRecordUploadPath_h5, haveRelationWithStudent,exchange_code4,addImg,parentGetChildsList,dummy,refreshUserInfo, get7v1Intro_h5,v5_getTeacherList,v5_getTeacherIntro, getAdWindow, getLoginUserIdentify,info_1Vn,check_1Vn,exchange_1Vn,subMsg}
 
 
+// const addImgUrl = "http://os.lingjun.net/api.php/annex/upload"
+// const addImgUrl = "https://wsg.lingjun.net/api.php/annex/upload"
 
+//已更新
+//grade_course1
+// 获取课程页课程(已登录)
+// function grade_course1(params) {
+//   return fetch.olsfetchpost(URI, 'lesson/getlist', params)
+// }
 
+// grade_course2, 
+// 获取课程页课程(未登录)
+// function grade_course2(params) {
+//   return fetch.olsfetchpost(URI, 'v2/lesson/getlist', params)
+// }
 
+//judge_share,
+//分享判断
+// function judge_share(params) {
+//   return fetch.olsfetchpost(URI, 'share/getinterface', params)
+// }
 
+//group_del4, 
+//拼团未支付删除v3
+// function group_del3(params) {
+//   return fetch.olsfetchpost(URI, 'v4/order/deldata', params)
+// }
+
+//course_info2, 
+// 获取课程详情介绍(未登录)
+// function course_info2(params) {
+//   return fetch.olsfetchpost(URI, 'v2/lesson/getinfo', params)
+// }
+
+//course_cata2, 
+//获取课程目录(未购买)
+// function course_cata2(params) {
+//   return fetch.olsfetchpost(URI, 'v2/lesson/getoption', params)
+// }
 
 // //已关闭
 // function order_close(params) {

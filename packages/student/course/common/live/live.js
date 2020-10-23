@@ -83,7 +83,7 @@ Page({
       "token": wx.getStorageSync("token"),
       "hid": that.data.hid,
       "duration": answerline,
-      "percent": "0"
+      "percent": 0
     }
     console.log(params,"视频结束状态更新参数")
     app.ols.video_end(params).then(d => {
@@ -115,7 +115,8 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    let that = this 
+    that.update_leave()
   },
 
   /**

@@ -647,7 +647,7 @@ Page({
     "id": that.data.id,
   }
   console.log(params, "分享判断参数")
-  app.ols.judge_share(params).then(d => {
+  app.ols.judge_share4(params).then(d => {
     console.log(d, "分享判断数据")
     if (d.data.code == 0) {
       console.log(d.data.data,"分享判断接口数据")
@@ -664,7 +664,6 @@ Page({
           that.test_id()     //获取试题ID列表
           that.ques_info()      //试卷基本信息
         }
-      
       
       console.log("分享判断接口调取成功")
     } else {

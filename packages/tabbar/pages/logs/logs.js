@@ -2,8 +2,6 @@ const app = getApp()
 var timer,ms_timer
 Page({
   data: {
-    // subject:[ {'id':-1, 'title': '推荐'},{'id':-2, 'title': 'VIP'}],
-    // subject:[ {'id':-1, 'title': '推荐'}],
     current_special:-1,
     current_subject: 0,
     btn_buy:app.globalData.btn_buy
@@ -12,7 +10,7 @@ Page({
   onLoad: function (options) {
     options = app.shareTool.getShareOption()
     let that = this
-   
+    
     if (options.isshare == 1) {
       wx.setStorageSync("gid", options.gid)
       that.setData({
@@ -134,6 +132,7 @@ Page({
   //专题切换
   swichNav_special: function (e) {
     var that = this
+    that.toTop()   //切换置顶
     var cur = e.target.dataset.current;
     if (cur == that.data.current_special){
       console.log("专题当前选择项")
@@ -154,13 +153,13 @@ Page({
   //科目切换
   swichNav_subject: function (e) {
     var that = this
+    that.toTop()   //切换置顶
     var cur = e.target.dataset.current;
     if(cur == 0){
       that.setData({
         current_subject: cur,
         current_special:-1,
       })
-      
     }else if(cur == 1){
       that.setData({
         current_subject: cur,
@@ -178,7 +177,9 @@ Page({
       that.getspecial()  //获取专题
       that.getcourse()     //获取课程
     }
-
+    
+    
+     
     
   },
 
@@ -322,6 +323,7 @@ Page({
   //年级切换
   subject_sel: function (e) {
     let that = this
+    that.toTop()   //切换置顶
     var xb = e.currentTarget.dataset.xb
     that.setData({
       grade_index: xb,
@@ -684,28 +686,6 @@ Page({
     ms_timer = setInterval(nowTime, 1000); 
   },
 
-  //获取微信绑定手机号登录
-    getPhoneNumber: function (e) {
-      var that = this
-  
-      app.loginTool.getPhoneNumber(e, that.data.gid, function(success, message){
-        if (success) {
-          that.setData({
-            login: true
-          })
-          // that.v4_viplist()
-          that.onShow()
-        }
-      })
-    },
-
-    //名师简介
-    teacher_inter:function(){
-      wx.navigateTo({
-        url: app.getPagePath('teacherList') + '?type=1',
-      })
-    },
-
    /**
    * 生命周期函数--监听页面隐藏
    */
@@ -714,7 +694,11 @@ Page({
     clearInterval(ms_timer); 
   },
 
-  cs:function(){
+  
+  /*----------------------------------------------------------接口---------------------------------------------- */
+
+  //消息推送交互
+  toSubMsg:function(kid){
     let that = this 
     wx.requestSubscribeMessage({
       tmplIds: ['T4tp85vTUVp1BiSBRmlC7CRQHDhOYitDTR0zCfv-3yg'], // 此处可填写多个模板 ID，但低版本微信不兼容只能授权一个
@@ -722,36 +706,61 @@ Page({
         console.log(res)
         var params = {
           "token":wx.getStorageSync('token'),
-          "course_id":that.data.select_kid
+          "course_id":kid
         }
         app.ols.subMsg(params).then(d => {
-          if (d.data.code == 0) {
-            that.hot()  //热门课程
-            that.getcourse()     //获取课程
-            that.v4_viplist()   //获取vip
-          }
-            else if(d.data.code == 4){
-              wx.showToast({
-                title: '报名成功',
-              })
+          if (d.data.code == 0 || d.data.code == 4) {
+            wx.showToast({
+              title: '报名成功',
+            })
+            if(that.data.current_subject == 0){
               that.hot()  //热门课程
-            that.getcourse()     //获取课程
-            that.v4_viplist()   //获取vip
+            }
+            else if(that.data.current_subject == 1){
+              that.v4_viplist()   //获取vip
+            }
+            else{
+              that.getcourse()     //获取课程
+            }
           }
         })
       }
     })
   },
 
+  /*----------------------------------------------------------方法---------------------------------------------- */
+
+  // 消息推送报名
   subMsg:function(e){
     let that = this 
-    // var kid = 
-    that.setData({
-      select_kid:e.currentTarget.dataset.kid
-    })
-    
-    // console.log(kid)
-    that.cs()
-    
+    that.toSubMsg(e.currentTarget.dataset.kid)
   },
+
+  //名师简介跳转
+  teacher_inter:function(){
+    wx.navigateTo({
+      url: app.getPagePath('teacherList') + '?type=1',
+    })
+  },
+
+  //获取微信绑定手机号登录
+  getPhoneNumber: function (e) {
+    var that = this
+    app.loginTool.getPhoneNumber(e, that.data.gid, function(success, message){
+      if (success) {
+        that.setData({
+          login: true
+        })
+        that.onShow()
+      }
+    })
+  },
+
+  //一键置顶
+  toTop:function(){
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
+  },
+  
 })
