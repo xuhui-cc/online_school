@@ -2,7 +2,7 @@
 <!-- 月份显示 -->
 <view class="month_view" style="margin-top:{{top}}">
   <text class="year">{{showYear}}年</text>
-  <text class="month">{{showMonth.length>1 ? showMonth : '0'+showMonth}}月</text>
+  <text class="month">{{showMonth >= 10 ? showMonth : '0'+showMonth}}月</text>
 </view>
 
 <!-- 日显示 -->
