@@ -174,7 +174,7 @@ Page({
         that.setData({
           subject: arr2
         })
-        if(that.data.subject.length >= that.data.current_subject){
+        if(that.data.subject.length > that.data.current_subject){
           that.setData({
           did: that.data.subject[that.data.current_subject].id
         })
