@@ -52,7 +52,7 @@ Page({
       wx.setStorageSync("gid", options.gid)
       that.setData({
         isshare:options.isshare,
-        code_layout:options.code_layout,
+        code_layout:options.code_layout=="true"?true:false,
         gid:options.gid,
         login: wx.getStorageSync("login")
       })

@@ -20,11 +20,11 @@ Page({
   
   onLoad: function (options) {
     let that = this
-    if(wx.getStorageSync('index_xk')){
-      that.setData({
-        current_subject:wx.getStorageSync('index_xk')
-      })
-    }
+    // if(wx.getStorageSync('index_xk')){
+    //   that.setData({
+    //     current_subject:wx.getStorageSync('index_xk')
+    //   })
+    // }
     options = app.shareTool.getShareOption()
 
     if (options.share && options.share == 1) {
@@ -174,9 +174,20 @@ Page({
         that.setData({
           subject: arr2
         })
-        that.setData({
+        if(that.data.subject.length >= that.data.current_subject){
+          that.setData({
           did: that.data.subject[that.data.current_subject].id
         })
+        }else{
+          that.setData({
+            did: 0,
+            current_subject:0
+          })
+        }
+        // that.setData({
+        //   did: that.data.subject[that.data.current_subject].id
+        // })
+        
         console.log("获取学科成功")
         that.test_list()  //获取测评列表
 
