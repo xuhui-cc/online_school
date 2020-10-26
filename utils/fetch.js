@@ -61,7 +61,7 @@ function olsfetchpost(api, path, params, log, showToast, loadingMsg) {
             resolve(res)
             if (showToast) {
               wx.showToast({
-                title: "暂无数据",
+                title: res.data.msg ? res.data.msg : "暂无数据",
                 icon: 'none'
               })
             }
@@ -88,7 +88,7 @@ function olsfetchpost(api, path, params, log, showToast, loadingMsg) {
             resolve(res)
             if (showToast) {
               wx.showToast({
-                title: '数据有误',
+                title: res.data.msg ? res.data.msg : '数据有误',
                 icon: 'none'
               })
             }
