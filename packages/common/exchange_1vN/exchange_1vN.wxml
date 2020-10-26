@@ -1,0 +1,33 @@
+<view class="container">
+  <image class="back" src="/images/navi/w_back2.png" bindtap="back"></image>
+  <image class="bg" src="./resource/bg3.png"></image>
+  <image class="exchange_bg" src="./resource/exchange_bg.png"></image>
+  <view class="content1">{{vip_info.top}}</view>
+  <view class="content2">{{vip_info.butr}}</view>
+  <view class="content2" style="margin-left:295rpx;">{{vip_info.butm}}</view>
+  <view class="content2" style="margin-left:490rpx;">{{vip_info.butl}}</view>
+
+  <button class="login1"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
+  <view wx:else="" class="exchange" bindtap="check_1Vn"></view>
+
+
+  <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{exchange_page}}"></view>
+  <!--  -->
+  <view class="layout_content"  wx:if="{{exchange_page}}">
+    <image class="bg_exchange1" src="./resource/exchange_page.png" ></image>
+    <view class="checkinfo_head">{{exchangeVip_info.title}}</view>
+    <!-- <view class="checkinfo_intro">{{exchangeVip_info.remark}}</view> -->
+    <view class="checkinfo_tip1">确认兑换为{{exchangeVip_info.title}}？</view>
+    <view class="checkinfo_tip2" wx:if="{{exchangeVip_info.hascard}}">您当前为{{exchangeVip_info.hascard}},确认兑换后将替换掉原有会员卡。</view>
+    <view class="btn2" bindtap="yes_exchange">是，立即兑换</view>
+    <view class="btn3" bindtap="exchange_page">否，暂不兑换</view>
+    <image class="exchange_close1" src="/images/other/exchange_close.png" bindtap="exchange_page"></image>
+  </view>
+
+
+
+
+
+
+
+</view>

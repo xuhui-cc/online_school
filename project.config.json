@@ -223,6 +223,12 @@
           "pathName": "packages/student/vip/comment/exchang_vip/exchang_vip",
           "query": "",
           "scene": null
+        },
+        {
+          "id": -1,
+          "name": "exchange_1vN",
+          "pathName": "packages/common/exchange_1vN/exchange_1vN",
+          "scene": null
         }
       ]
     }
