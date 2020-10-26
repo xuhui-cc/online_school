@@ -1,13 +1,13 @@
 <view class="container" wx:if="{{showPageContent}}">
   <image class="firstPage_bg" src="{{bg}}"></image>
-  <view class="tip">已有 <text  style="color:#02DC9F;font-weight:bold;">{{num}}人</text> 参与测评，离高分更近一步！</view>
+  <view class="tip">已有 <text  style="color:#02DC9F;font-weight:bold;">{{num}}人</text> 参与学习，离高分更近一步！</view>
   
   <!-- <picker class="button_start" bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}"> -->
   <view class="button_start">
   <!-- <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button> -->
     <view bindtap="grade_select">
       <image class="start_img" src="/images/other/cp_btn.png"></image>
-      <text class="start_text">开始测评</text>
+      <text class="start_text">开始学习</text>
     </view>
   </view>
   

@@ -138,7 +138,8 @@
       "root": "packages/common",
       "pages": [
         "study_record/study_record",
-        "videoPlay/videoPlay"
+        "videoPlay/videoPlay",
+        "exchange_1vN/exchange_1vN"
       ],
       "name": "common"
     }
