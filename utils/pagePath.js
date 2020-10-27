@@ -85,6 +85,7 @@ let pathDic = {
   my_wrongbook: '/packages/student/my/common/my_wrongbook/my_wrongbook',
   wrong: '/packages/student/my/common/wrong/wrong',
   my_about: '/packages/student/my/common/my_about/my_about',
+  my_coupon: '/packages/student/my/common/my_coupon/my_coupon',
 
   // 学生-我的-安卓
   my_order: '/packages/student/my/android/my_order/my_order',
@@ -119,7 +120,6 @@ let pathDic = {
   // 通用页面
   study_record: '/packages/common/study_record/study_record',
   videoPlay: '/packages/common/videoPlay/videoPlay',
-  exchange_1vN:'/packages/common/exchange_1vN/exchange_1vN'
 }
 
 function getPagePath(pageName, notIos) {

@@ -55,11 +55,19 @@
   </view>
   <!-- 列表 -->
   <view class="list">
-    <!-- <button class="login_read" style="margin-top: 0rpx;height:110rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!testlogin}}"></button> -->
+    <button class="login_read" style="margin-top: 0rpx;height:250rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
     <view class="list-li" wx:if="{{vip.open_log == 1}}">
         <image  src="./resource/log.png" class="item-img" mode="aspectFit"></image>
         <view class="item" bindtap="studyLog">
            <text class="item-text">学习日志</text>
+           <view class="right-img"></view>
+        </view>
+    </view>
+    <view class="heng"></view>
+    <view class="list-li" >
+        <image  src="./resource/yhq_1.png" class="item-img" mode="aspectFit"></image>
+        <view class="item" bindtap="to_myCoupon">
+           <text class="item-text">我的优惠券</text>
            <view class="right-img"></view>
         </view>
     </view>
@@ -71,6 +79,8 @@
            <view class="right-img"></view>
         </view>
     </view>
+
+    
 
   </view>
 </view>

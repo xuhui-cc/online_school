@@ -1,0 +1,72 @@
+<view class="container">
+
+<view class="for" wx:for="{{couponList}}" wx:key="index">
+  <view class="layout">
+    <image class="bg_img" src="/images/other/coupon_use.png" wx:if="{{item.usedtime == 0}}"></image>
+    <image class="bg_img" src="/images/other/coupon_used.png" wx:if="{{item.usedtime > 0 }}"></image>
+    <view class="title" >{{item.title}}</view>
+    <view class="coupon_id" >ID:{{item.code}}</view>
+    <view class="price_icon" >¥</view>
+    <view class="price" >{{item.money}}</view>
+    <view class="coupon_time" >截止时间：{{item.invalid_time}}</view>
+    <view class="coupon_tip" >使用须知：仅限地面班课使用，详情咨询{{couponTea.phone}}</view>
+    <view class="btn1" wx:if="{{item.usedtime == 0}}" bindtap="to_ues">去使用</view>
+    <view class="btn2" wx:if="{{item.usedtime == 1}}">已使用</view>
+    <view class="btn2" wx:if="{{item.usedtime == 2}}">已过期</view>
+    
+  </view>
+
+ 
+
+
+
+</view>
+
+<image class="null_img" src="/images/null/order_null.png" wx:if="{{couponList == ''}}"></image>
+<view class="null_tip" wx:if="{{couponList == ''}}">暂无优惠券</view>
+
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{coupon_use}}"></view>
+<view style="position: fixed;z-index: 101;" wx:if="{{coupon_use}}">
+  <image class="coupon_bg" src=" /images/other/coupon_bg.png"></image>
+  <image class="tea_ava" src="{{couponTea.avatar}}"></image>
+  <image class="tea_ava" style="margin-top:587rpx;" src="{{couponTea.avatar}}"></image>
+  <view class="cont1">点击下方复制按钮，添加微信或电话咨询详情。</view>
+  <text class="cont2" selectable='true'>{{couponTea.name}} {{couponTea.phone}}</text>
+  <view class="cont1" style="margin-top:657rpx;">（微信号同手机号）</view>
+  <image class="del" src="/images/other/del2.png" bindtap="to_ues"></image>
+  <image class="copy" src="/images/other/copy.png" bindtap="copy"></image>
+
+</view>
+
+
+ <!-- 登录蒙层 -->
+ <view class="mask1" wx:if="{{login == false && isshare == 1}}"></view>
+<view class="login_layout" wx:if="{{login == false && isshare == 1}}">
+
+  <!-- <image class="login_del" src="../../images/del.png"></image> -->
+  <image class="unlogin" src="/images/other/unlogin.png" style="margin-top:75rpx;"></image>
+  <view class="login_tip">您当前尚未登录! </view>
+  <view class="login_tip">请点击下方按钮登录</view>
+  <button class="login_read1"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+  <image class="tologin" src="/images/other/tologin.png"></image>
+</view>
+
+<!-- <image class="ewm" src=" /images/other/coupon_used.png"></image> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- container -->
+</view>

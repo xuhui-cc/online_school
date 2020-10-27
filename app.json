@@ -68,6 +68,7 @@
         "my_course/my_course",
         "my_wrongbook/my_wrongbook",
         "wrong/wrong",
+        "my_coupon/my_coupon",
         "my_about/my_about"
       ],
       "name": "my_common"
@@ -138,8 +139,7 @@
       "root": "packages/common",
       "pages": [
         "study_record/study_record",
-        "videoPlay/videoPlay",
-        "exchange_1vN/exchange_1vN"
+        "videoPlay/videoPlay"
       ],
       "name": "common"
     }

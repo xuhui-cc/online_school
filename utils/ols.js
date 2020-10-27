@@ -1,5 +1,5 @@
-// const URI_base = "http://os.lingjun.net/" //测试域名
-const URI_base = "https://wsg.lingjun.net/" // 正式域名
+const URI_base = "http://os.lingjun.net/" //测试域名
+// const URI_base = "https://wsg.lingjun.net/" // 正式域名
 
 const URI = URI_base + 'api.php/'    //接口地址
 
@@ -485,8 +485,20 @@ function exchange_1Vn(params) {
 function subMsg(params) {
   return fetch.olsfetchpost(URI, 'v4/course_apply/addcourseapply', params,"订阅消息")
 }
+//优惠券列表
+function couponList(params) {
+  return fetch.olsfetchpost(URI, 'v5/coupon/getcouponinfolist', params,"优惠券列表")
+}
+//优惠券开启状态
+function couponShow(params) {
+  return fetch.olsfetchpost(URI, 'v5/coupon/getcouponstatus', params,"优惠券开启状态")
+}
+//优惠券老师
+function couponTea(params) {
+  return fetch.olsfetchpost(URI, 'v1/basic/getteacherinfo', params,"优惠券老师")
+}
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all4, test_ques1, test_ques2, course_info1, grade_update, course_cata1, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,grade_course4,course_info4,course_cata3,hot_list4,group_preorder3,order_all3,group_del3,group_detail3,group_share3,all_group3,banner3,v4_viplist,v4_vipPreorder,v4_myVip,course_cata4,judge_share4,cheek_code4, teacherGetStudentsList, getReocrdTagList, submitReocrd, getStudentRecordListByDay, getPeriodRecordStatusList, getStudentCourseHourInfo, getClearCourseHourList, recordUploadFile, getStudentNewRecord, getRecordUploadPath_h5, haveRelationWithStudent,exchange_code4,addImg,parentGetChildsList,dummy,refreshUserInfo, get7v1Intro_h5,v5_getTeacherList,v5_getTeacherIntro, getAdWindow, getLoginUserIdentify,info_1Vn,check_1Vn,exchange_1Vn,subMsg}
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all4, test_ques1, test_ques2, course_info1, grade_update, course_cata1, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,grade_course4,course_info4,course_cata3,hot_list4,group_preorder3,order_all3,group_del3,group_detail3,group_share3,all_group3,banner3,v4_viplist,v4_vipPreorder,v4_myVip,course_cata4,judge_share4,cheek_code4, teacherGetStudentsList, getReocrdTagList, submitReocrd, getStudentRecordListByDay, getPeriodRecordStatusList, getStudentCourseHourInfo, getClearCourseHourList, recordUploadFile, getStudentNewRecord, getRecordUploadPath_h5, haveRelationWithStudent,exchange_code4,addImg,parentGetChildsList,dummy,refreshUserInfo, get7v1Intro_h5,v5_getTeacherList,v5_getTeacherIntro, getAdWindow, getLoginUserIdentify,info_1Vn,check_1Vn,exchange_1Vn,subMsg,couponList,couponShow,couponTea}
 
 
 // const addImgUrl = "http://os.lingjun.net/api.php/annex/upload"

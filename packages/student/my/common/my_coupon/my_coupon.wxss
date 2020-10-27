@@ -1,0 +1,293 @@
+/* packages/student/my/common/my_coupon/my_coupon.wxss */
+page{
+  
+  background: #F5F5F5;
+}
+.layout{
+  margin-top: 16rpx;
+  margin-left: 30rpx;
+  margin-bottom: 380rpx;
+}
+.bg_img{
+  position: absolute;
+  width: 690rpx;
+  height: 361rpx;
+  z-index: -1;
+}
+.title{
+  position: absolute;
+  padding-top: 30rpx;
+  margin-left: 40rpx;
+  width: 432rpx;
+  height: 67rpx;
+  font-size: 48rpx;
+  font-family: PingFang SC;
+  font-weight: 800;
+  line-height: 36rpx;
+  color: #FFFFFF;
+  opacity: 1;
+
+}
+.coupon_id{
+  position: absolute;
+  padding-top: 102rpx;
+  margin-left: 40rpx;
+  width: 235rpx;
+  height: 40rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 36rpx;
+  color: #FFFFFF;
+  opacity: 1;
+
+}
+.price_icon{
+  position: absolute;
+  padding-top: 105rpx;
+  margin-left: 429rpx;
+  width: 24rpx;
+height: 56rpx;
+font-size: 40rpx;
+font-family: PingFang SC;
+font-weight: 800;
+line-height: 36rpx;
+color: rgba(255, 255, 255, 1);
+opacity: 1;
+
+}
+.price{
+  position: absolute;
+  padding-top: 112rpx;
+  margin-left: 461rpx;
+  width: 197rpx;
+height: 115rpx;
+font-size: 82rpx;
+font-family: PingFang SC;
+font-weight: 800;
+line-height: 36rpx;
+color: #FFFFFF;
+opacity: 1;
+
+}
+.coupon_time{
+  position: absolute;
+  padding-top: 228rpx;
+  margin-left: 33rpx;
+  width: 293rpx;
+height: 33rpx;
+font-size: 24rpx;
+font-family: PingFang SC;
+font-weight: 400;
+line-height: 36rpx;
+color: #B1B1B1;
+opacity: 1;
+
+}
+.coupon_tip{
+  position: absolute;
+  padding-top: 267rpx;
+  margin-left: 33rpx;
+  width: 432rpx;
+height: 69rpx;
+font-size: 24rpx;
+font-family: PingFang SC;
+font-weight: 400;
+line-height: 36rpx;
+color: #B1B1B1;
+opacity: 1;
+
+}
+.btn1{
+  position: absolute;
+  margin-top: 248rpx;
+  margin-left: 493rpx;
+  width: 165rpx;
+  height: 60rpx;
+  background: linear-gradient(91deg, #FFCE75 0%, #FF9F21 100%);
+  opacity: 1;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 60rpx;
+  text-align: center;
+  color: #FFFFFF;
+  border-radius: 33rpx;
+
+}
+.btn2{
+  position: absolute;
+  margin-top: 248rpx;
+  margin-left: 493rpx;
+  width: 185rpx;
+  height: 60rpx;
+  background: #E2E2E2;
+  opacity: 1;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 60rpx;
+  text-align: center;
+  color: #FFFFFF;
+  border-radius: 33rpx;
+
+}
+.mask{
+  position: fixed;
+  width: 750rpx;
+  height: 100%;
+  
+background: #000000;
+opacity: 0.55;
+z-index: 100;
+
+}
+.coupon_bg{
+  position: fixed;
+  margin-top: 350rpx;
+  margin-left: 74rpx;
+  width: 589rpx;
+  height: 451rpx;
+  
+
+z-index: 101;
+}
+.cont1{
+  position: fixed;
+  margin-top: 438rpx;
+  margin-left: 254rpx;
+  width: 330rpx;
+  height: 87rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 45rpx;
+  color: #FFFFFF;
+  z-index: 102;
+
+}
+.cont2{
+  position: fixed;
+  margin-top: 607rpx;
+  margin-left: 254rpx;
+  width: 350rpx;
+  height: 46rpx;
+  font-size: 33rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 42rpx;
+  color: #82480D;
+  z-index: 102;
+
+}
+.tea_ava{
+  position: fixed;
+  margin-top: 422rpx;
+  margin-left: 118rpx;
+  width: 85rpx;
+  height: 85rpx;
+  border-radius: 50%;
+  z-index: 102;
+}
+.del{
+  position: fixed;
+  margin-top: 270rpx;
+  margin-left: 646rpx;
+  width: 51rpx;
+  height: 51rpx;
+  
+  z-index: 102;
+}
+.copy{
+  position: fixed;
+  margin-top: 800rpx;
+  margin-left: 212rpx;
+  width: 315rpx;
+  height: 136rpx;
+  
+  z-index: 102;
+}
+.null_img{
+  margin-left: 286rpx;
+  margin-top: 447rpx;
+  width: 178rpx;
+  height: 257rpx;
+}
+.null_tip{
+  margin-left: 315rpx;
+  margin-top: 20rpx;
+  width:200rpx;
+  height:42rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:42rpx;
+ 
+  color:rgba(199,197,197,1);
+  opacity:1;
+}
+
+.mask1{
+  position: fixed;
+  width:750rpx;
+  height:1624rpx;
+  background:rgba(0,0,0,1);
+  opacity:0.8;
+  z-index: 350;
+}
+.login_layout{
+  position: fixed;
+  margin-left: 102rpx;
+  margin-top: 450rpx;
+  width:547rpx;
+  height:538rpx;
+  background:rgba(255,255,255,1);
+  opacity:1;
+  border-radius:20rpx;
+  z-index:353;
+}
+.login_del{
+  /* position: absolute; */
+  margin-left: 465rpx;
+  margin-top: 22rpx;
+  width:44rpx;
+  height:54rpx;
+  /* z-index: 3; */
+}
+.unlogin{
+  margin-left: 215rpx;
+  margin-top: -10rpx;
+  margin-bottom: 30rpx;
+  width:117rpx;
+  height:114rpx;
+}
+.login_tip{
+  margin-left: 121rpx;
+  width:306rpx;
+  font-size:34rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:50rpx;
+  text-align: center;
+  color:rgba(0,0,0,1);
+  opacity:1;
+}
+.tologin{
+  margin-left: 132rpx;
+  margin-top: 50rpx;
+  width:283rpx;
+  height:76rpx;
+}
+.login_read1{
+  position: absolute;
+  margin-left: 132rpx;
+  margin-top: 50rpx;
+  width:283rpx;
+  height:76rpx;
+  background: transparent;
+  /* opacity:0.5;
+  background-color: rgb(161, 228, 240); */
+}
+.login_read1::after {
+  border: none;
+}

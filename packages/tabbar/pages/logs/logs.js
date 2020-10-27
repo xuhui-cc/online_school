@@ -581,6 +581,7 @@ Page({
     let that = this
     that.judge_login()    //登陆判断
     that.get_banner3()  //轮播图
+    that.couponShow()    //优惠券显示状态
     if(that.data.grade){
       for (var i = -0; i < that.data.grade.length; i++) {
         if (that.data.gid == that.data.grade[i].id) {
@@ -728,6 +729,26 @@ Page({
     })
   },
 
+  //优惠券悬浮
+  couponShow:function(){
+    let that = this
+    if(wx.getStorageSync('login')){
+      var params = {
+        "token":wx.getStorageSync('token')
+      }
+      app.ols.couponShow(params).then(d => {
+        if (d.data.code == 0) {
+          that.setData({
+            couponShow:d.data.data.res,
+            copon_price:d.data.data.total
+          })
+        }else{
+          
+        }
+      })
+    }
+  },
+
   /*----------------------------------------------------------方法---------------------------------------------- */
 
   // 消息推送报名
@@ -753,6 +774,15 @@ Page({
         })
         that.onShow()
       }
+    })
+  },
+  
+
+  //优惠券 页跳转
+  to_coupon:function(){
+    let that = this 
+    wx.navigateTo({
+      url: app.getPagePath('my_coupon'),
     })
   },
 

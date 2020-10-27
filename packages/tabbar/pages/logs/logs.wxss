@@ -839,3 +839,31 @@ page{
   border-radius: 26rpx;
   z-index: 20;
 }
+
+/* 优惠券悬浮 */
+.couponShow{
+  position: fixed;
+  right: 5rpx;
+  bottom: 20rpx;
+  width: 167rpx;
+  height: 211rpx;
+}
+.coupon_price{
+  position: fixed;
+  right: 25rpx;
+  bottom: 80rpx;
+  width: 130rpx;
+  height: 59rpx;
+  font-size: 35rpx;
+  font-family: PingFang SC;
+  font-weight: 800;
+  line-height: 59rpx;
+  text-align: center;
+  color: #FD971D;
+  /* background:  #5e4f3e; */
+  z-index: 501;
+}
+.fuhao{
+  /* margin-left: 20rpx; */
+  font-size: 20rpx;
+}

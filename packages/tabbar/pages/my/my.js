@@ -181,4 +181,10 @@ Page({
       url: app.getPagePath('my_order'),
     })
   },
+  //跳转我的优惠券
+  to_myCoupon:function(){
+    wx.navigateTo({
+      url: app.getPagePath('my_coupon'),
+    })
+  },
 })
