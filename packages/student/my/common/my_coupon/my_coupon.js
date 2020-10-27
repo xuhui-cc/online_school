@@ -6,7 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // cs:["hhh","hhh","hhhh"],
     coupon_use:false
   },
 
@@ -40,8 +39,8 @@ Page({
     let that = this 
     
     if(wx.getStorageSync('login')){
-      that.couponList()
-      // that.couponTea()
+      that.couponList()   //获取会员卡列表
+      that.couponTea()   //优惠券相关老师
     }
     
   },
@@ -101,11 +100,8 @@ Page({
       wx.showToast({
         title: '复制成功',
       })
-      
     }
-    
   });
-
   },
 
   //获取微信绑定手机号登录
