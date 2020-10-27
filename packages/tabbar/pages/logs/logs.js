@@ -582,6 +582,7 @@ Page({
     that.judge_login()    //登陆判断
     that.get_banner3()  //轮播图
     that.couponShow()    //优惠券显示状态
+    that.coursePushList()   //后台推荐课程
     if(that.data.grade){
       for (var i = -0; i < that.data.grade.length; i++) {
         if (that.data.gid == that.data.grade[i].id) {
@@ -749,6 +750,22 @@ Page({
     }
   },
 
+  //后台推荐课程
+  coursePushList:function(){
+    let that = this 
+    var params = {}
+    app.ols.coursePushList(params).then(d => {
+      if (d.data.code == 0) {
+        that.setData({
+          coursePushList:d.data.data
+        })
+      }else{
+        
+      }
+    })
+  
+  },
+
   /*----------------------------------------------------------方法---------------------------------------------- */
 
   // 消息推送报名
@@ -792,5 +809,7 @@ Page({
       scrollTop: 0
     })
   },
+
+  
   
 })
