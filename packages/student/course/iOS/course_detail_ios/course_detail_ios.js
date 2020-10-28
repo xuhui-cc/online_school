@@ -110,6 +110,7 @@ Page({
   //看视频
   to_video:function(e){
     let that = this
+    that.to_free()   //免费课
     var xb = e.currentTarget.dataset.xb
     console.log(xb)
     var id = that.data.course_cata.lists[xb].id
@@ -139,6 +140,7 @@ Page({
   //课后作业
   to_homework: function (e) {
     let that = this
+    that.to_free()   //免费课
     var xb = e.currentTarget.dataset.xb
     var eid = that.data.course_cata.lists[xb].eid
     var kid = that.data.course_cata.lists[xb].kid
@@ -174,30 +176,34 @@ Page({
   },
 
   //免费课领取
-  to_free:function(e){
+  to_free:function(){
     let that = this
     // var kid = e.currentTarget.dataset.kid
     // console.log(kid)
-    var params = {
-      "token": wx.getStorageSync("token"),
-      "kid": that.data.kid
-    }
-    app.ols.get_free(params).then(d => {
-      console.log(d)
-      if (d.data.code == 0) {
-        console.log(d.data.data)
-        that.onShow()     //刷新页面
-        console.log("获取免费课程接口调取成功")
-      } else {
-        console.log("获取免费课程==============" + d.data.msg)
+    if(that.data.course_info.price == 0 && (that.data.course_info.buy == 0 || that.data.course_info.buy == 6)){
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "kid": that.data.kid
       }
-    })
+      app.ols.get_free(params).then(d => {
+        console.log(d)
+        if (d.data.code == 0) {
+          // console.log(d.data.data)
+          // that.onShow()     //刷新页面
+          console.log("获取免费课程接口调取成功")
+        } else {
+          console.log("获取免费课程==============" + d.data.msg)
+        }
+      })
+    }
+    
   },
 
 
   //课程讲义跳转
   to_course_file:function(e){
     let that = this
+    that.to_free()   //免费课
     that.clearLocalFile()
     that.setData({
       click_file:true
@@ -493,6 +499,7 @@ Page({
   //结课考试
   to_test:function(e){
     let that = this
+    that.to_free()   //免费课
     wx.navigateTo({
       url: app.getPagePath('test') + '?eid=' + that.data.course_cata.res.eid + "&kid=" + that.data.kid,  //结课考试
     })

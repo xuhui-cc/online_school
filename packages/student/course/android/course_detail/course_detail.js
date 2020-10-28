@@ -96,7 +96,7 @@ Page({
       that.setData({
         [cs]: that.data.course_info.content.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block"')
       })
-      if (that.data.course_info.buy == 1 || (that.data.course_info.buy >= 3 && that.data.course_info.buy <= 5)) {
+      if (that.data.login && (that.data.course_info.buy == 1 || (that.data.course_info.buy >= 3 && that.data.course_info.buy <= 5) || that.data.course_info.price == 0)) {
         that.setData({
           currentData: 1
         })
@@ -116,6 +116,7 @@ Page({
     var kid = that.data.course_cata.lists[xb].kid
     var eid = that.data.course_cata.lists[xb].eid
     var mid = that.data.course_cata.lists[xb].mid
+    that.to_free()   //免费课
     if (that.data.course_cata.lists[xb].cateid == 1|| that.data.course_cata.lists[xb].cateid == 2) {
       wx.navigateTo({
         url: app.getPagePath('live') + '?id=' + id + '&kid=' + kid,    //直播
@@ -199,6 +200,7 @@ Page({
     var kid = that.data.course_cata.lists[xb].kid
     var oid = that.data.course_cata.lists[xb].id
     console.log(eid)
+    that.to_free()   //免费课
     wx.navigateTo({
       url: app.getPagePath('homework') + '?eid=' + eid + "&kid=" + kid + "&oid=" + oid,   //课后作业
     })
@@ -229,30 +231,34 @@ Page({
   },
 
   //免费课领取
-  to_free:function(e){
+  to_free:function(){
     let that = this
     // var kid = e.currentTarget.dataset.kid
     // console.log(kid)
-    var params = {
-      "token": wx.getStorageSync("token"),
-      "kid": that.data.kid
-    }
-    app.ols.get_free(params).then(d => {
-      console.log(d)
-      if (d.data.code == 0) {
-        console.log(d.data.data)
-        that.onShow()     //刷新页面
-        console.log("获取免费课程接口调取成功")
-      } else {
-        console.log("获取免费课程==============" + d.data.msg)
+    if(that.data.course_info.price == 0 && (that.data.course_info.buy == 0 || that.data.course_info.buy == 6)){
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "kid": that.data.kid
       }
-    })
+      app.ols.get_free(params).then(d => {
+        console.log(d)
+        if (d.data.code == 0) {
+          // console.log(d.data.data)
+          // that.onShow()     //刷新页面
+          console.log("获取免费课程接口调取成功")
+        } else {
+          console.log("获取免费课程==============" + d.data.msg)
+        }
+      })
+    }
+    
   },
 
 
   //课程讲义跳转
   to_course_file:function(e){
     let that = this
+    that.to_free()    //获取免费课
     that.clearLocalFile()
     that.setData({
       click_file:true
@@ -485,6 +491,7 @@ Page({
   //查看课后作业报告
   to_homework_report:function(e){
     let that = this
+    
     var mid = e.currentTarget.dataset.mid
     wx.navigateTo({
       url: app.getPagePath('homework_report') + '?mid=' + mid   //课后作业报告
@@ -494,6 +501,7 @@ Page({
   //结课考试
   to_test:function(e){
     let that = this
+    that.to_free()   //免费课
     wx.navigateTo({
       url: app.getPagePath('test') + '?eid=' + that.data.course_cata.res.eid + "&kid=" + that.data.kid,  //结课考试
     })

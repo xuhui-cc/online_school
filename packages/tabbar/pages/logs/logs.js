@@ -347,6 +347,7 @@ Page({
           wx.setStorageSync('gid', that.data.grade[xb].id)
           that.getsubject()   //获取科目
           that.hot()  //获取热门
+          that.coursePushList() //后台推荐课
           that.setData({
             grade_select: false
           })
@@ -753,14 +754,19 @@ Page({
   //后台推荐课程
   coursePushList:function(){
     let that = this 
-    var params = {}
+    var params = {
+      // "gid":wx.getStorageSync('gid'),
+      "token":0
+    }
     app.ols.coursePushList(params).then(d => {
       if (d.data.code == 0) {
         that.setData({
-          coursePushList:d.data.data
+          coursePushList:d.data.data.lists
         })
       }else{
-        
+        that.setData({
+          coursePushList:''
+        })
       }
     })
   
