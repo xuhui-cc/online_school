@@ -601,6 +601,7 @@ Page({
           login: true
         })
         that.onShow()
+        that.to_free()
       }
     })
     // var that = this

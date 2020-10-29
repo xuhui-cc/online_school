@@ -291,3 +291,13 @@ z-index: 101;
 .login_read1::after {
   border: none;
 }
+
+/* 试听课悬浮 */
+.audition_img{
+  position: fixed;
+  bottom: 123rpx;
+  right: 0rpx;
+  width: 237rpx;
+  height: 263rpx;
+  z-index: 100;
+}

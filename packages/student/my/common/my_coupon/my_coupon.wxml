@@ -25,8 +25,8 @@
 <image class="null_img" src="/images/null/order_null.png" wx:if="{{couponList == ''}}"></image>
 <view class="null_tip" wx:if="{{couponList == ''}}">暂无优惠券</view>
 
-<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{coupon_use}}"></view>
-<view style="position: fixed;z-index: 101;" wx:if="{{coupon_use}}">
+<view class="mask" catchtouchmove="preventTouchMove" hidden="true" wx:if="{{coupon_use}}"></view>
+<view style="position: fixed;z-index: 101;" hidden="true" wx:if="{{coupon_use}}">
   <image class="coupon_bg" src=" /images/other/coupon_bg.png"></image>
   <image class="tea_ava" src="{{couponTea.avatar}}"></image>
   <image class="tea_ava" style="margin-top:587rpx;" src="{{couponTea.avatar}}"></image>
@@ -70,3 +70,5 @@
 
 <!-- container -->
 </view>
+
+<!-- <image class="audition_img" src="/images/other/audition_img.png" bindtap="to_auditionVideo"></image> -->

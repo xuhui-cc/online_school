@@ -165,8 +165,8 @@
   
 
 
-  <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{coupon_use}}"></view>
-  <view style="position: fixed;z-index: 101;" wx:if="{{coupon_use}}">
+  <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{course_info.price > 0 && coupon_use}}"></view>
+  <view style="position: fixed;z-index: 101;" wx:if="{{course_info.price > 0 && coupon_use}}">
     <image class="coupon_bg" src=" /images/other/coupon_bg.png"></image>
     <image class="tea_ava" src="{{course_cata.avatar}}"></image>
     <image class="tea_ava" style="margin-top:587rpx;" src="{{course_cata.avatar}}"></image>

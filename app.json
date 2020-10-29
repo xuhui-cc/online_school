@@ -139,7 +139,8 @@
       "root": "packages/common",
       "pages": [
         "study_record/study_record",
-        "videoPlay/videoPlay"
+        "videoPlay/videoPlay",
+        "auditionVideo/auditionVideo"
       ],
       "name": "common"
     }

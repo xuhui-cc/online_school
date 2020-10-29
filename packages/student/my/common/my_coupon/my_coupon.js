@@ -87,8 +87,12 @@ Page({
 
   to_ues:function(){
     let that = this 
-    that.setData({
-      coupon_use:!that.data.coupon_use
+    // that.setData({
+    //   coupon_use:!that.data.coupon_use
+    // })
+    wx.showToast({
+      title: that.data.couponTea.msg,
+      icon:"none"
     })
   },
 
@@ -114,6 +118,14 @@ getPhoneNumber: function (e) {
       })
       that.onShow()
     }
+  })
+},
+
+//试听课详情页
+to_auditionVideo:function(){
+  let that = this 
+  wx.navigateTo({
+    url: app.getPagePath('auditionVideo') 
   })
 },
 

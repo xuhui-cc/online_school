@@ -38,6 +38,7 @@ let pathDic = {
   // tabbar
   index: '/packages/tabbar/pages/index/index',
   logs: '/packages/tabbar/pages/logs/logs',
+
   my: '/packages/tabbar/pages/my/my',
 
   // 学生-测评-common
@@ -120,6 +121,7 @@ let pathDic = {
   // 通用页面
   study_record: '/packages/common/study_record/study_record',
   videoPlay: '/packages/common/videoPlay/videoPlay',
+  auditionVideo:'/packages/common/auditionVideo/auditionVideo',
 }
 
 function getPagePath(pageName, notIos) {

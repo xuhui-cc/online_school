@@ -228,6 +228,13 @@
           "id": -1,
           "name": "exchange_1vN",
           "pathName": "packages/common/exchange_1vN/exchange_1vN",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "packages/common/auditionVideo/auditionVideo",
+          "pathName": "packages/common/auditionVideo/auditionVideo",
           "scene": null
         }
       ]

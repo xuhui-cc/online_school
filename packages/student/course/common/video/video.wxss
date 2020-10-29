@@ -128,11 +128,11 @@
   margin-left: 40rpx;
   padding-top: 30rpx;
   width:610rpx;
-  height:50rpx;
+  height:75rpx;
   font-size:36rpx;
   font-family:PingFang SC;
   font-weight:bold;
-  line-height:50rpx;
+  line-height:36rpx;
   color:rgba(39,39,39,1);
   opacity:1;
 }
