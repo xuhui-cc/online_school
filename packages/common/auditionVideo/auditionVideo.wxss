@@ -1,7 +1,7 @@
 /* packages/common/auditionVideo/auditionVideo.wxss */
 .audition_head{
   width: 750rpx;
-  height: 360rpx;
+  height: 274rpx;
 }
 .shu{
   margin-top: 15rpx;
@@ -15,15 +15,14 @@
 }
 .title{
   margin-left: 14rpx;
-  width: 510rpx;
-height: 48rpx;
-font-size: 34rpx;
-font-family: PingFang SC;
-font-weight: bold;
-line-height: 48rpx;
-color: #272727;
-opacity: 1;
-
+  width: 657rpx;
+  height: 96rpx;
+  font-size: 34rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 48rpx;
+  color: #272727;
+  opacity: 1;
 }
 .video{
   margin-left: 30rpx;

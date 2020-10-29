@@ -1,5 +1,5 @@
 <view class="container">
-
+  <!-- <image class="back" src="/images/navi/back.png"></image> -->
   <image class="audition_head" src="/images/other/audition_head.png"></image>
 
   <view style="margin-top:50rpx;margin-bottom:50rpx;" >
@@ -8,7 +8,7 @@
         <view class="shu"></view>
         <view class="title">{{item.title}}</view>
       </view>
-      <video wx:if="{{auditionVideoList}}" class="video" src="{{item.url}}" show-casting-button="{{true}}" poster="{{item.Background}}"></video>
+      <video wx:if="{{auditionVideoList}}" class="video" src="{{item.url}}" show-casting-button="{{true}}" poster="{{item.Background}}" custom-cache="{{false}}"></video>
     </view>
 
   </view>

@@ -71,4 +71,4 @@
 <!-- container -->
 </view>
 
-<!-- <image class="audition_img" src="/images/other/audition_img.png" bindtap="to_auditionVideo"></image> -->
+<image class="audition_img" src="/images/other/audition_img.png" bindtap="to_auditionVideo"></image>
