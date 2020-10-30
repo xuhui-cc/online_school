@@ -25,7 +25,6 @@ Page({
       that.setData({
         isshare: options.isshare,
         gid: options.gid,
-        
         login: wx.getStorageSync("login")
       })
       // wx.setStorageSync("gid", options.gid)
@@ -33,7 +32,6 @@ Page({
 
     } else {
       that.judge_login()    //登陆判断
-     
       console.log("非分享打开")
     }
 
@@ -68,6 +66,7 @@ Page({
       console.log(params, "课程详情接口参数")
       app.ols.course_info4(params).then(d => {
         that.handle_data1(d)   //课程详情数据处理
+        that.to_free()
       })
     }else{
       var params = {
@@ -76,7 +75,8 @@ Page({
       }
       console.log(params, "课程详情接口参数")
       app.ols.course_info4(params).then(d => {
-        that.handle_data1(d)   //课程详情数据处理
+      that.handle_data1(d)   //课程详情数据处理
+      that.to_free()
       })
     }
     
@@ -86,6 +86,7 @@ Page({
   //课程详情介绍数据处理
   handle_data1:function(d){
     let that = this
+    
     console.log(d, "课程详情接口数据")
     if (d.data.code == 0) {
       console.log(d.data.data)
@@ -100,9 +101,11 @@ Page({
         that.setData({
           currentData: 1
         })
+        // that.to_free()
         that.getcourse_cata()  //获取课程目录
       }
     } else {
+      // that.to_free()
       console.log("课程详情介绍接口==============" + d.data.msg)
     }
   },
@@ -110,7 +113,7 @@ Page({
   //看视频
   to_video:function(e){
     let that = this
-    that.to_free()   //免费课
+    // that.to_free()   //免费课
     var xb = e.currentTarget.dataset.xb
     console.log(xb)
     var id = that.data.course_cata.lists[xb].id
@@ -140,7 +143,7 @@ Page({
   //课后作业
   to_homework: function (e) {
     let that = this
-    that.to_free()   //免费课
+    // that.to_free()   //免费课
     var xb = e.currentTarget.dataset.xb
     var eid = that.data.course_cata.lists[xb].eid
     var kid = that.data.course_cata.lists[xb].kid
@@ -195,6 +198,8 @@ Page({
           console.log("获取免费课程==============" + d.data.msg)
         }
       })
+    }else{
+      console.log("免费课情况不匹配")
     }
     
   },
@@ -203,7 +208,7 @@ Page({
   //课程讲义跳转
   to_course_file:function(e){
     let that = this
-    that.to_free()   //免费课
+    // that.to_free()   //免费课
     that.clearLocalFile()
     that.setData({
       click_file:true
@@ -499,7 +504,7 @@ Page({
   //结课考试
   to_test:function(e){
     let that = this
-    that.to_free()   //免费课
+    // that.to_free()   //免费课
     wx.navigateTo({
       url: app.getPagePath('test') + '?eid=' + that.data.course_cata.res.eid + "&kid=" + that.data.kid,  //结课考试
     })
@@ -533,6 +538,7 @@ Page({
       that.course_detail()   //获取课程简介
       that.getcourse_cata()   //课程目录接口
     }
+    
     
   },
 
@@ -599,7 +605,7 @@ Page({
           login: true
         })
         that.onShow()
-        that.to_free()
+        
       }
     })
     // var that = this
