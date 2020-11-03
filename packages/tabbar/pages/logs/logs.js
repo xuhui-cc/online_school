@@ -360,6 +360,7 @@ Page({
           })
           that.getsubject()   //获取科目
           that.hot()  //获取热门
+          that.coursePushList() //后台推荐课
           that.setData({
             grade_select: false
           })
@@ -370,7 +371,7 @@ Page({
       wx.setStorageSync('gid', that.data.grade[xb].id)
       that.getsubject()   //获取科目
       that.hot()  //获取热门
-
+      that.coursePushList() //后台推荐课
       that.setData({
         grade_select: false
       })

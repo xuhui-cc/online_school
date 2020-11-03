@@ -67,9 +67,7 @@ Page({
     //滚动条监听
     scroll: function (e) {
       console.log(e.detail.scrollTop,"scrollTop")
-      // if(e.detail.scrollTop >300){
-
-      // }
+     
       this.setData({ scrollTop: e.detail.scrollTop })
     },
 
