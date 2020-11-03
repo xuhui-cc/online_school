@@ -112,7 +112,7 @@ function grade_course4(params) {
 
 // 获取课程详情介绍(已登录)
 function course_info1(params) {
-  return fetch.olsfetchpost(URI, 'lesson/getinfo', params)
+  return fetch.olsfetchpost(URI, 'lesson/getinfo', params,"课程详情介绍")
 }
 
 // 获取课程详情v3(拼团)
