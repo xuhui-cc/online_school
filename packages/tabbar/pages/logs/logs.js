@@ -3,7 +3,7 @@ var timer,ms_timer
 Page({
   data: {
     current_special:-1,
-    current_subject: 0,
+    current_subject: 1,
     btn_buy:app.globalData.btn_buy
   },
 

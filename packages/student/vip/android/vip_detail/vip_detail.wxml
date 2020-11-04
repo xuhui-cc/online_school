@@ -3,11 +3,8 @@
   <button class="login1"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="0"></button>
   <image class="back" src="/images/navi/w_back2.png" bindtap="back"></image>
 
-
-
   <image class="bg3" src="./resource/bg3.png"></image>
   
-
   <view class="flex" style="margin-top:176rpx;margin-left: 50rpx;">
     <image wx:if="{{!login}}" src="/images/defaultHead/my_head.png" class="ava"></image>
     <view class="ava" wx:else="">
@@ -46,10 +43,19 @@
   </swiper> -->
 
   <!-- <image class="" src="{{vip_list[0].bgpic}}"></image> -->
-  <image class="vip_fm" src="{{imgUrls[0]}}"></image>
+ 
+  <!-- vip1版 -->
+  <!-- <image class="vip_fm" src="{{imgUrls[0]}}"></image>
   <view class="checkinfo_head" style="margin-left: 185rpx;margin-top: 385rpx; position: absolute;">{{vip_list[0].title}}</view>
   <view class="intro">{{vip_list[0].memo}}</view>
-  <view class="price"  hidden="{{!vip.bar}}"><text style="font-size:32rpx;font-weight:400;" >¥</text>{{vip_list[0].price}}</view>
+  <view class="price"  hidden="{{!vip.bar}}"><text style="font-size:32rpx;font-weight:400;" >¥</text>{{vip_list[0].price}}</view> -->
+  <!-- vip1版 -->
+
+  <!-- vip2版（会员叠加）-->
+  <image class="vip_fm" src="./resource/vip2_card.png"></image>
+  <!-- vip2版（会员叠加）-->
+
+  
 
   <button class="login1" style="margin-left: 485rpx;margin-top: 645rpx;width:240rpx;height:40rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="1"></button>
   <view class="layout">

@@ -652,22 +652,22 @@ page{
 } */
 .vip_img{
   margin-left: 30rpx;
-  margin-top: 290rpx;
+  margin-top: 305rpx;
   width:690rpx;
   height:121rpx;
 }
 .king{
   position: absolute;
   margin-left: 62rpx;
-  margin-top: 317rpx;
-  width:30rpx;
+  margin-top: 328rpx;
+  width:29rpx;
   height:25rpx;
   /* z-index: 2; */
 }
 .open_vip{
   position: absolute;
   margin-left: 101rpx;
-  margin-top: 310rpx;
+  margin-top: 325rpx;
   width:120rpx;
   height:33rpx;
   font-size:24rpx;
@@ -680,7 +680,7 @@ page{
 .open_vip1{
   position: absolute;
   margin-left: 138rpx;
-  margin-top: 318rpx;
+  margin-top: 333rpx;
   width:200rpx;
   height:33rpx;
   font-size:30rpx;
@@ -694,7 +694,7 @@ page{
 .open_vip2{
   position: absolute;
   margin-left: 170rpx;
-  margin-top: 358rpx;
+  margin-top: 373rpx;
   width:200rpx;
   height:33rpx;
   font-size:22rpx;
@@ -708,21 +708,21 @@ page{
 .laber_small{
   position: absolute;
   margin-left: 138rpx;
-  margin-top: 360rpx;
+  margin-top: 375rpx;
   width:24rpx;
   height:28rpx;
 }
 .vip_jt{
   position: absolute;
   margin-left: 660rpx;
-  margin-top: 342rpx;
+  margin-top: 357rpx;
   width:15rpx;
   height:15rpx;
 }
 .open_content{
   position: absolute;
   margin-left: 62rpx;
-  margin-top: 350rpx;
+  margin-top: 365rpx;
   width:420rpx;
   height:40rpx;
   font-size:28rpx;
@@ -736,7 +736,7 @@ page{
 .vip_btn{
   position: absolute;
   margin-left: 525rpx;
-  margin-top: 319rpx;
+  margin-top: 335rpx;
   width:180rpx;
   height:59rpx;
   font-size:26rpx;
@@ -749,13 +749,13 @@ page{
   
   border-radius:30rpx;
 }
-.vip_badge2{
+/* .vip_badge2{
   position: absolute;
   margin-left: 61rpx;
   margin-top: 314rpx;
   width:64rpx;
   height:74rpx;
-}
+} */
 .vip_layout{
   /* margin-left: 30rpx; */
   margin-top: 25rpx;
@@ -867,3 +867,70 @@ page{
   /* margin-left: 20rpx; */
   font-size: 20rpx;
 }
+
+/* vip迭代模式 */
+.vip2_layout{
+  margin-top: 36rpx;
+  width: 750rpx;
+  
+  background: #FFFFFF;
+  opacity: 1;
+  border-radius: 20rpx 20rpx 0rpx 0rpx;
+
+}
+.unsign_vip2_head{
+  margin:
+   30rpx 218rpx;
+  width: 302rpx;
+  height: 111rpx;
+}
+.vip2_shu{
+  margin-top: 25rpx;
+  margin-left: 30rpx;
+  width: 8rpx;
+  height: 19rpx;
+  background: #FF9A02;
+  border-radius: 5rpx;
+}
+.vip2_head{
+  margin: 12rpx 15rpx;
+  width: 650rpx;
+  height: 48rpx;
+  font-size: 34rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 38rpx;
+  color: #0A0A0A;
+}
+.vip2_vs{
+  
+  margin: 10rpx 30rpx;
+  width: 690rpx;
+  height: 212rpx;
+}
+.vip2_badge{
+  position: absolute;
+  margin-left: 665rpx;
+  margin-top: -10rpx;
+  width: 68rpx;
+  height: 78rpx;
+  
+}
+.vip2_vs_content{
+  position: absolute;
+  margin-left: 60rpx;
+  margin-top: 92rpx;
+  width: 263rpx;
+  height: 89rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 38rpx;
+  color: #303030;
+}
+.vip2_signBtn{
+  margin: 34rpx 3rpx;
+  width: 744rpx;
+  height: 152rpx;
+}
+/* vip迭代模式 */

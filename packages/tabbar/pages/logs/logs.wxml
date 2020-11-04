@@ -251,7 +251,8 @@
       </view>
     <!-- </view> -->
 
-    <view class="vip_layout"> 
+    <!-- 单一vip卡模式 -->
+    <view class="vip_layout" hidden="true"> 
       <view wx:for="{{vip_list[0].course}}" wx:key="hot2_index">
           <view class="hot_course">
             <view class="flex" bindtap="vip_course_detail" data-xb="{{index}}">
@@ -329,6 +330,40 @@
         </view>
       </view>
     </view>
+    <!-- 单一vip卡模式 -->
+
+    <!-- vip迭代模式 -->
+    <view class="vip2_layout">
+      <!-- 未开通状态 -->
+      <view class="unsign" hidden="true">
+        <image class="unsign_vip2_head" src="/images/vip2_common/unsign_vip2_hade.png"></image>
+
+        <view class="flex">
+          <view class="vip2_shu"></view>
+          <view class="vip2_head">名师好课免费学</view>
+        </view>
+        <image class="vip2_badge" src="/images/vip2_common/vip2_badge.png"></image>
+        <view class="vip2_vs_content">只能学习<text style="font-size: 32rpx;color: rgba(255, 166, 32, 1);font-weight: Bold;">部分</text>试听课</view>
+        <view class="vip2_vs_content" style="margin-top:92rpx;margin-left:423rpx;"><text style="font-size: 32rpx;color: rgba(255, 166, 32, 1);font-weight: Bold;">畅听</text>大咖经典好课；易错知识点直播课。</view>
+        <image class="vip2_vs" src="/images/vip2_common/vip2_vs.png"></image>
+
+        <view class="flex">
+          <view class="vip2_shu"></view>
+          <view class="vip2_head">精品班课折扣优惠</view>
+        </view>
+        <image class="vip2_badge" src="/images/vip2_common/vip2_badge.png"></image>
+        <view class="vip2_vs_content"><text style="font-size: 32rpx;color: rgba(255, 166, 32, 1);font-weight: Bold;">原价</text>购买领军教育地面班课</view>
+        <view class="vip2_vs_content" style="margin-top:92rpx;margin-left:423rpx;">领军教育地面班课<text style="font-size: 32rpx;color: rgba(255, 166, 32, 1);font-weight: Bold;">超强折扣</text>优惠</view>
+        <image class="vip2_vs" src="/images/vip2_common/vip2_vs.png"></image>
+        
+
+        <image class="vip2_signBtn" src="/images/vip2_common/vip2_signBtn.png"></image>
+
+      </view>
+      <!-- 未开通状态 -->
+
+    </view>
+    <!-- vip迭代模式 -->
   </view>
   <!-- vip结束 -->
 
