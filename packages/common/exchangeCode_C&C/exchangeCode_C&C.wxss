@@ -1,1 +1,24 @@
-/* packages/common/exchangeCode_C&C/exchangeCode_C&C.wxss */
+/* 标题栏 */
+.bg3{
+  position: absolute;
+  width: 750rpx;
+  height: 1624rpx;
+  z-index: -1;
+}
+.back{
+  position: absolute;
+  margin-top: 100rpx;
+  margin-left: 15rpx;
+  width: 56rpx;
+  height: 56rpx;
+}
+/* 标题栏 */
+
+.exchange_bg{
+  position: absolute;
+  margin-left: 32rpx;
+  margin-top: 161rpx;
+  width: 688rpx;
+  height: 1184rpx;
+  z-index: 0;
+}

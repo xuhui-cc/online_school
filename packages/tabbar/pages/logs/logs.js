@@ -54,21 +54,21 @@ Page({
   },
 
   //获取会员卡列表
-  v4_viplist:function(){
+  viplist:function(){
     let that = this
     var params = {
       "token": wx.getStorageSync("token"),
     }
     // console.log(params, "会员列表参数")
-    app.ols.v4_viplist(params).then(d => {
+    app.ols.v5_viplist(params).then(d => {
       console.log(d, "会员列表数据")
       if (d.data.code == 0) {
-        if(d.data.data.lists[0].course){
-          d.data.data.lists[0].course_num = d.data.data.lists[0].course.length
-        }
+        // if(d.data.data.lists[0].course){
+        //   d.data.data.lists[0].course_num = d.data.data.lists[0].course.length
+        // }
         
         that.setData({
-          vip_list:d.data.data.lists,
+          // vip_list:d.data.data.lists,
           vip:d.data.data
         })
         console.log("会员列表成功")
@@ -166,7 +166,7 @@ Page({
         current_special:-1,
         special:''
       })
-      that.v4_viplist()  //获取vip
+      that.viplist()  //获取vip
     }else{
       that.setData({
         current_subject: cur,
@@ -605,7 +605,7 @@ Page({
       that.getspecial()  //获取专题
     }
     that.getcourse()     //获取课程
-    that.v4_viplist()   //获取vip
+    that.viplist()   //获取vip
   },
 
   /**
@@ -721,7 +721,7 @@ Page({
               that.hot()  //热门课程
             }
             else if(that.data.current_subject == 1){
-              that.v4_viplist()   //获取vip
+              that.viplist()   //获取vip
             }
             else{
               that.getcourse()     //获取课程

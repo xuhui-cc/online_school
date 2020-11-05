@@ -1,2 +1,32 @@
-<!--packages/common/exchangeCode_C&C/exchangeCode_C&C.wxml-->
-<text>packages/common/exchangeCode_C&C/exchangeCode_C&C.wxml</text>
+<view class="container">
+  
+  <!-- 标题栏 -->
+  <image class="back" src="/images/navi/w_back2.png" bindtap="back"></image>
+  <image class="bg3" src="./resource/bg.png"></image>
+  <!-- 标题栏 -->
+
+  <image class="exchange_bg" src="./resource/exchange_bg.png"></image>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- container -->
+</view>

@@ -93,13 +93,6 @@
         },
         {
           "id": -1,
-          "name": "pages/finish_test_report/finish_test_report",
-          "pathName": "pages/finish_test_report/finish_test_report",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
           "name": "pay",
           "pathName": "packages/student/course/android/pay/pay",
           "query": "",
@@ -242,6 +235,7 @@
           "id": -1,
           "name": "exchangeCode_C&C",
           "pathName": "packages/common/exchangeCode_C&C/exchangeCode_C&C",
+          "query": "",
           "scene": null
         }
       ]
