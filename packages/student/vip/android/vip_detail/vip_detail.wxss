@@ -180,17 +180,7 @@
   width:237rpx;
   height:37rpx;
 }
-.layout{
-  position: absolute;
-  margin-top: 555rpx;
-  width:750rpx;
-  /* height:1045rpx; */
-  background:rgba(255,255,255,1);
-  box-shadow:0rpx -3rpx 23rpx rgba(0,0,0,0.16);
-  opacity:1;
-  /* border-radius:20rpx 20rpx 0rpx 0rpx; */
-  border-radius: 20rpx;
-}
+
 .h1{
   /* width:242px; */
   margin-top: 38rpx;
@@ -542,3 +532,229 @@ text-align: center;
 color:rgba(28,26,52,1);
 border-radius:44rpx;
 }
+
+/* vip2，会员卡叠加 */
+.vip2_fm{
+  margin-top: 55rpx;
+  margin-left: 59rpx;
+  width: 633rpx;
+  height: 245rpx;
+}
+.vip2_rightLatout{
+  display: flex;
+  position: absolute;
+  margin-left: 95rpx;
+  margin-top: 440rpx;
+  
+}
+.vip2_rightIcon{
+  width: 65rpx;
+  height: 65rpx;
+  margin-left: 21rpx;
+  
+}
+.vip2_rightTitle{
+  width: 110rpx;
+  height: 30rpx;
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 30rpx;
+  text-align: center;
+  color: #C6773C;
+  opacity: 1;
+
+}
+.vip2_exchangeEntry{
+  position: absolute;
+  margin-left: 430rpx;
+  margin-top: 380rpx;
+  width:236rpx;
+  height:37rpx;
+}
+.vip2_signBtn1{
+  position: absolute;
+  margin-left: 480rpx;
+  margin-top: 465rpx;
+  width: 181rpx;
+  height: 59rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 59rpx;
+  text-align: center;
+  color: #C6773C;
+  background: #FFFFFF;
+  border-radius: 30px;
+}
+.vip2_layout{
+  position: absolute;
+  margin-top: 570rpx;
+  width:750rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0rpx -3rpx 23rpx rgba(0,0,0,0.16);
+border-radius: 20px 20px 0px 0px;
+}
+.unsign_vip2_head{
+  margin:
+   30rpx 218rpx;
+  width: 302rpx;
+  height: 111rpx;
+}
+.vip2_shu{
+  margin-top: 25rpx;
+  margin-left: 30rpx;
+  width: 8rpx;
+  height: 19rpx;
+  background: #FF9A02;
+  border-radius: 5rpx;
+}
+.vip2_head{
+  margin: 12rpx 15rpx;
+  width: 650rpx;
+  height: 48rpx;
+  font-size: 34rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 38rpx;
+  color: #0A0A0A;
+}
+.vip2_vs{
+  
+  margin: 10rpx 30rpx;
+  width: 690rpx;
+  height: 212rpx;
+}
+.vip2_badge{
+  position: absolute;
+  margin-left: 665rpx;
+  margin-top: -10rpx;
+  width: 68rpx;
+  height: 78rpx;
+  
+}
+.vip2_vs_content{
+  position: absolute;
+  margin-left: 60rpx;
+  margin-top: 92rpx;
+  width: 263rpx;
+  height: 89rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 38rpx;
+  color: #303030;
+}
+.vip2_signBtn2{
+  margin: 34rpx 3rpx;
+  width: 744rpx;
+  height: 152rpx;
+  margin-bottom: 70rpx;
+}
+.vip2_heng{
+  margin-top: 16rpx;
+  width: 56rpx;
+  height: 0rpx;
+  border: 1rpx solid #707070;
+  opacity: 1;
+
+}
+.vip2_haveHead{
+  margin:0rpx 26rpx;
+
+  width: 210rpx;
+  height: 48rpx;
+  font-size: 34rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 31rpx;
+  color: #303030;
+  opacity: 1;
+
+}
+.vip2_couponHead{
+  margin-left: 30rpx;
+  width: 160rpx;
+  height: 45rpx;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 31rpx;
+  color: #303030;
+}
+.vip2_more{
+  margin-left: 462rpx;
+  margin-top: 6rpx;
+  width: 48rpx;
+  height: 33rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 31rpx;
+  color: #989898;
+}
+.vip2_next{
+  
+  margin-left: -8rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+.vip2_couponFace{
+  width: 387rpx;
+  height: 194rpx;
+}
+.vip2_couponTitle{
+  position: absolute;
+  margin-top: 35rpx;
+  margin-left: 47rpx;
+  width: 274rpx;
+  height: 42rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 38rpx;
+  color: #0A0A0A;
+}
+.vip2_couponPrice{
+  position: absolute;
+  margin-top: 130rpx;
+  margin-left: 28rpx;
+  width: 110rpx;
+  height: 65rpx;
+  font-size: 46rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 31rpx;
+  color: #FF4E20;
+  opacity: 1;
+
+}
+.vip2_couponBtn{
+  width: 121px;
+height: 49px;
+background: #FF4E20;
+
+border-radius: 25px;
+
+}
+.vip2_couponMore{
+  
+  display: inline-block;
+  /* margin-right: 10rpx; */
+  width: 92rpx;
+  height: 194rpx;
+
+}
+.vip2_courseRightIntro{
+  margin: 13rpx 30rpx;
+  width: 182rpx;
+  height: 37rpx;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 31rpx;
+  color: #FF9A02;
+  
+
+}
+/* vip2，会员卡叠加 */

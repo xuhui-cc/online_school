@@ -27,6 +27,8 @@
   opacity:1;
 }
 .button_start{
+  position: fixed;
+  bottom: 120rpx;
   margin-left: 135rpx;
   margin-top: 21rpx;
   display: flex;
@@ -35,6 +37,7 @@
   background:rgba(2,220,159,1);
   opacity:1;
   border-radius:44rpx;
+  z-index: 1;
 }
 .start_img{
   margin-left: 154rpx;
@@ -65,7 +68,7 @@
   background:rgba(255,255,255,1);
   opacity:1;
   border-radius:30rpx 30rpx 0rpx 0rpx;
-  z-index: 2;
+  z-index: 3;
 }
 .del_img{
   margin-left: 220rpx;
@@ -128,5 +131,5 @@
   height:1624rpx;
   background:rgba(0,0,0,1);
   opacity:0.6;
-  z-index: 1;
+  z-index: 2;
 }

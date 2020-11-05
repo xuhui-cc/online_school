@@ -235,6 +235,13 @@
           "id": -1,
           "name": "packages/common/auditionVideo/auditionVideo",
           "pathName": "packages/common/auditionVideo/auditionVideo",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "exchangeCode_C&C",
+          "pathName": "packages/common/exchangeCode_C&C/exchangeCode_C&C",
           "scene": null
         }
       ]

@@ -52,12 +52,90 @@
   <!-- vip1版 -->
 
   <!-- vip2版（会员叠加）-->
-  <image class="vip_fm" src="./resource/vip2_card.png"></image>
+  
+    <view class="vip2_rightLatout">
+      <view wx:for="{{2}}" style="margin-right:30rpx;">
+        <image class="vip2_rightIcon" src="./resource/vip2_right1.png"></image>
+        <view class="vip2_rightTitle">优惠券权益</view>
+      </view>
+    </view>
+    <image  class="vip2_exchangeEntry" src="./resource/exchange_entry.png" bindtap="exchange"></image>
+    <!-- <view class="vip2_signBtn1">开通会员</view> -->
+    <view class="vip2_signBtn1">查看已有会员</view>
+    <image class="vip2_fm" src="./resource/vip2_card.png"></image>
+
+    <!-- 未开通vip -->
+    <view class="vip2_layout" hidden="true">
+      <image class="unsign_vip2_head" src="/images/vip2_common/unsign_vip2_hade.png"></image>
+
+        <view class="flex">
+          <view class="vip2_shu"></view>
+          <view class="vip2_head">名师好课免费学</view>
+        </view>
+        <image class="vip2_badge" src="/images/vip2_common/vip2_badge.png"></image>
+        <view class="vip2_vs_content">只能学习<text style="font-size: 32rpx;color: rgba(255, 166, 32, 1);font-weight: Bold;">部分</text>试听课</view>
+        <view class="vip2_vs_content" style="margin-top:92rpx;margin-left:423rpx;"><text style="font-size: 32rpx;color: rgba(255, 166, 32, 1);font-weight: Bold;">畅听</text>大咖经典好课；易错知识点直播课。</view>
+        <image class="vip2_vs" src="/images/vip2_common/vip2_vs.png"></image>
+
+        <view class="flex">
+          <view class="vip2_shu"></view>
+          <view class="vip2_head">精品班课折扣优惠</view>
+        </view>
+        <image class="vip2_badge" src="/images/vip2_common/vip2_badge.png"></image>
+        <view class="vip2_vs_content"><text style="font-size: 32rpx;color: rgba(255, 166, 32, 1);font-weight: Bold;">原价</text>购买领军教育地面班课</view>
+        <view class="vip2_vs_content" style="margin-top:92rpx;margin-left:423rpx;">领军教育地面班课<text style="font-size: 32rpx;color: rgba(255, 166, 32, 1);font-weight: Bold;">超强折扣</text>优惠</view>
+        <image class="vip2_vs" src="/images/vip2_common/vip2_vs.png"></image>
+        
+
+        <image class="vip2_signBtn2" src="/images/vip2_common/vip2_signBtn.png"></image>
+    </view>
+    <!-- 未开通vip -->
+
+    <!-- 已开通会员 -->
+    <view class="vip2_layout" >
+      <view class="flex" style="margin:36rpx 190rpx;">
+        <view class="vip2_heng"></view>
+        <view class="vip2_haveHead">已拥有的权益</view>
+        <view class="vip2_heng"></view>
+      </view>
+      <view class="flex" >
+        <view class="vip2_couponHead">优惠券权益</view>
+        <view class="vip2_more">更多</view>
+        <image class="vip2_next" src="/images/navi/next.png"></image>
+      </view>
+
+      <scroll-view scroll-x="true" style=" white-space: nowrap;display: flex;margin-bottom:50rpx;margin-left:30rpx;margin-top:32rpx;width:720rpx" >
+        <view wx:for="{{imgUrls}}" wx:key="index" style="width: 387rpx; height: 194rpx; display: inline-block;margin-right:20rpx;">
+          <view >
+            <view class="vip2_couponTitle">课程优惠券名称课程</view>
+            <view class="vip2_couponPrice" wx:if="{{index == 0}}"><text style="font-size:30rpx">¥ </text> 99999</view>
+            <view class="vip2_couponPrice" wx:if="{{index == 1}}" style="color: #1BB059;"><text style="font-size:30rpx">¥ </text> 99999</view>
+            <view class="vip2_couponPrice" wx:if="{{index == 2}}" style="color: #20BAFF;"><text style="font-size:30rpx">¥ </text> 99999</view>
+            <image class="vip2_couponFace" wx:if="{{index == 0}}" src="/images/vip2_common/vip2_coupon1.png"></image>
+            <image class="vip2_couponFace" wx:if="{{index == 1}}" src="/images/vip2_common/vip2_coupon2.png"></image>
+            <image class="vip2_couponFace" wx:if="{{index == 2}}" src="/images/vip2_common/vip2_coupon3.png"></image>
+          </view>
+        </view>
+        
+        <image class="vip2_couponMore" src="/images/vip2_common/vip2_couponMore.png"></image>
+        
+      </scroll-view>
+
+      <view class="vip2_couponHead">课程权益</view>
+      <view class="vip2_courseRightIntro">精选好课免费学</view>
+        
+      
+      
+    </view>
+    <!-- 已开通会员 -->
+
+
   <!-- vip2版（会员叠加）-->
 
   
 
-  <button class="login1" style="margin-left: 485rpx;margin-top: 645rpx;width:240rpx;height:40rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="1"></button>
+  <!-- 原vip1 -->
+  <!-- <button class="login1" style="margin-left: 485rpx;margin-top: 645rpx;width:240rpx;height:40rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="1"></button>
   <view class="layout">
     <image  class="exchange_entry" src="./resource/exchange_entry.png" bindtap="exchange"></image>
     <view class="h1">{{vip_list[0].title}}会员权益</view>
@@ -84,7 +162,8 @@
 
 
 
-  </view>
+  </view> -->
+  <!-- 原vip1 -->
 
     <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!code_layout || !login}}"></view>
     <view style="margin-top:-120rpx;" hidden="{{!code_layout || !login}}">

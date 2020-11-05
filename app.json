@@ -140,7 +140,8 @@
       "pages": [
         "study_record/study_record",
         "videoPlay/videoPlay",
-        "auditionVideo/auditionVideo"
+        "auditionVideo/auditionVideo",
+        "exchangeCode_C&C/exchangeCode_C&C"
       ],
       "name": "common"
     }
