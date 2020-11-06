@@ -3,7 +3,7 @@ var timer,ms_timer
 Page({
   data: {
     current_special:-1,
-    current_subject: 1,
+    current_subject: 0,
     btn_buy:app.globalData.btn_buy
   },
 
@@ -19,15 +19,12 @@ Page({
         login: wx.getStorageSync("login")
       })
       console.log("分享打开", that.data.isshare, that.data.gid)
-
     } else {
       that.judge_login()    //登陆判断
       console.log("非分享打开")
     }
-
-
     that.getgrade()    //获取年级 
-    that.getsubject()   //获取学科
+    // that.getsubject()   //获取学科
 
     // that.hot()  //热门课程
     app.shareTool.shareTarget()
@@ -56,26 +53,34 @@ Page({
   //获取会员卡列表
   viplist:function(){
     let that = this
-    var params = {
-      "token": wx.getStorageSync("token"),
-    }
-    // console.log(params, "会员列表参数")
-    app.ols.v5_viplist(params).then(d => {
-      console.log(d, "会员列表数据")
-      if (d.data.code == 0) {
-        // if(d.data.data.lists[0].course){
-        //   d.data.data.lists[0].course_num = d.data.data.lists[0].course.length
-        // }
-        
-        that.setData({
-          // vip_list:d.data.data.lists,
-          vip:d.data.data
-        })
-        console.log("会员列表成功")
-      } else {
-        console.log("会员列表失败==============" + d.data.msg)
+    if(that.data.login){
+      var params = {
+        "token": wx.getStorageSync("token"),
       }
-    })
+      // console.log(params, "会员列表参数")
+      app.ols.v5_viplist(params).then(d => {
+        console.log(d, "会员列表数据")
+        if (d.data.code == 0) {
+          // if(d.data.data.lists[0].course){
+          //   d.data.data.lists[0].course_num = d.data.data.lists[0].course.length
+          // }
+          
+          that.setData({
+            // vip_list:d.data.data.lists,
+            vip:d.data.data
+          })
+          console.log("会员列表成功")
+        } else {
+          console.log("会员列表失败==============" + d.data.msg)
+        }
+      })
+    }else{
+      console.log("未登录")
+      that.setData({
+        vip:''
+      })
+    }
+    
   },
 
   //广告条跳转
@@ -346,7 +351,7 @@ Page({
           clearInterval(timer);   
           wx.setStorageSync('gid', that.data.grade[xb].id)
           that.getsubject()   //获取科目
-          that.hot()  //获取热门
+          // that.hot()  //获取热门
           that.coursePushList() //后台推荐课
           that.setData({
             grade_select: false
@@ -359,7 +364,7 @@ Page({
             duration: 3000
           })
           that.getsubject()   //获取科目
-          that.hot()  //获取热门
+          // that.hot()  //获取热门
           that.coursePushList() //后台推荐课
           that.setData({
             grade_select: false
@@ -370,7 +375,7 @@ Page({
       clearInterval(timer);   
       wx.setStorageSync('gid', that.data.grade[xb].id)
       that.getsubject()   //获取科目
-      that.hot()  //获取热门
+      // that.hot()  //获取热门
       that.coursePushList() //后台推荐课
       that.setData({
         grade_select: false
@@ -454,17 +459,17 @@ Page({
         that.setData({
           subject: subject
         })
-        if(that.data.current_subject > -1){
-          that.setData({
-            did: that.data.subject[that.data.current_subject].id
-          })
-          that.getspecial()      //获取专题
-          if (that.data.current_special != -1) {
-            that.special_course()  //获取专题课程
-          }else{
-            that.getcourse()    //获取课程
-          }
-        }
+        // if(that.data.current_subject > -1){
+        //   that.setData({
+        //     did: that.data.subject[that.data.current_subject].id
+        //   })
+        //   that.getspecial()      //获取专题
+        //   if (that.data.current_special != -1) {
+        //     that.special_course()  //获取专题课程
+        //   }else{
+        //     that.getcourse()    //获取课程
+        //   }
+        // }
         
       } else {
         console.log(d.data.msg, "获取科目失败")
@@ -599,13 +604,16 @@ Page({
     })
     console.log(that.data.gid,"onshow")
 
-    that.hot()  //热门课程
+    // that.hot()  //热门课程
     that.getsubject()   //获取学科
-    if(that.data.current_subject != 1){
+    if(that.data.current_subject > 1){
       that.getspecial()  //获取专题
+      that.getcourse()     //获取课程
+    }else if(that.data.current_subject == 1){
+      that.viplist()   //获取vip
     }
-    that.getcourse()     //获取课程
-    that.viplist()   //获取vip
+    
+    
   },
 
   /**
@@ -718,7 +726,7 @@ Page({
               title: '报名成功',
             })
             if(that.data.current_subject == 0){
-              that.hot()  //热门课程
+              // that.hot()  //热门课程
             }
             else if(that.data.current_subject == 1){
               that.viplist()   //获取vip

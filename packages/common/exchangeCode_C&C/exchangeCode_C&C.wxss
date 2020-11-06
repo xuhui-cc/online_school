@@ -1,3 +1,6 @@
+.flex{
+  display: flex;
+}
 /* 标题栏 */
 .bg3{
   position: absolute;
@@ -22,3 +25,148 @@
   height: 1184rpx;
   z-index: 0;
 }
+
+/* 课程 */
+.course_head{
+  position: absolute;
+  margin-top: 700rpx;
+  margin-left: 72rpx;
+  width: 550rpx;
+  height: 45rpx;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 38rpx;
+  color: #0A0A0A;
+}
+.course_intro{
+  margin-left: 12rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #FF9A02;
+}
+.course_face{
+  margin-left: 74rpx;
+  width: 234rpx;
+  height: 135rpx;
+}
+.course_title{
+  margin-left: 20rpx;
+  width: 357rpx;
+  height: 84rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 40rpx;
+  color: #272727;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.free_tip{
+  margin-top: 14rpx;
+  margin-left: 20rpx;
+  width: 78rpx;
+  height: 37rpx;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 31rpx;
+  color: #FF9A02;
+}
+.vip_laber{
+  position: absolute;
+  margin-left: 74rpx;
+  width: 52rpx;
+  height: 34rpx;
+  z-index: 2;
+}
+/* 课程 */
+
+/* 优惠券 */
+.coupon_layout{
+  margin-right: 25rpx;
+}
+.coupon_bg{
+  width: 286rpx;
+  height: 144rpx;
+}
+.cooupon_title{
+  position: absolute;
+  margin-top: 20rpx;
+  margin-left: 35rpx;
+  width: 246rpx;
+  height: 37rpx;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 38rpx;
+  color: #0A0A0A;
+}
+.coupon_price{
+  position: absolute;
+  margin-top: 90rpx;
+  margin-left: 21rpx;
+  width: 225rpx;
+  height: 63rpx;
+  font-size: 45rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 22rpx;
+  color: #FF4E20;
+}
+/* 优惠券 */
+
+.sign_btn{
+  position: absolute;
+  margin-top: 1359rpx;
+  margin-left:81rpx;
+  width: 589rpx;
+  height: 157rpx;
+}
+
+/* 开通成功弹框 */
+.mask{
+  position: fixed;
+  width:750rpx;
+  height:1624rpx;
+  background:rgba(0,0,0,1);
+  opacity:0.56;
+  z-index: 3;
+}
+.succeed{
+  position: fixed;
+  margin-top: 282rpx;
+  margin-left:85rpx;
+  width:580rpx;
+  height:752rpx;
+  z-index: 4;
+}
+.succeed_tip{
+  position: fixed;
+  margin-top: 744rpx;
+  margin-left:164rpx;
+  width: 423rpx;
+  height: 84rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 40rpx;
+  text-align: center;
+  color: #7D7D7D;
+  z-index: 5;
+
+}
+.succeed_btn{
+  position: fixed;
+  margin-top: 852rpx;
+  margin-left:187rpx;
+  width: 377rpx;
+  height: 157rpx;
+  z-index: 5;
+}
+/* 开通成功弹框 */

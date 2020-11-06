@@ -475,9 +475,9 @@ page{
 
 .open_time{
   position: absolute;
-  margin-left: 250rpx;
-  margin-top: 345rpx;
-  width:400rpx;
+  margin-left: 450rpx;
+  margin-top: 358rpx;
+  width:200rpx;
   height:33rpx;
   font-size:24rpx;
   font-family:PingFang SC;
@@ -485,7 +485,7 @@ page{
   line-height:11rpx;
   text-align: right;
   color:rgba(255,231,183,1);
-  opacity:1;
+  /* background: rgb(103, 207, 54); */
   
 }
 .open_btn{
@@ -680,7 +680,7 @@ page{
 .open_vip1{
   position: absolute;
   margin-left: 138rpx;
-  margin-top: 333rpx;
+  margin-top: 350rpx;
   width:200rpx;
   height:33rpx;
   font-size:30rpx;
@@ -707,8 +707,8 @@ page{
 }
 .laber_small{
   position: absolute;
-  margin-left: 138rpx;
-  margin-top: 375rpx;
+  margin-left: 430rpx;
+  margin-top: 350rpx;
   width:24rpx;
   height:28rpx;
 }
@@ -722,15 +722,14 @@ page{
 .open_content{
   position: absolute;
   margin-left: 62rpx;
-  margin-top: 365rpx;
-  width:420rpx;
-  height:40rpx;
-  font-size:28rpx;
-  font-family:PingFang SC;
-  font-weight:bold;
-  
-  color:rgba(255,204,165,1);
-  
+  margin-top: 380rpx;
+  width: 457rpx;
+  height: 40rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 11rpx;
+  color: #FFCCA5;
 }
 /*  */
 .vip_btn{
@@ -783,7 +782,7 @@ page{
 .ava{
   position: absolute;
   margin-left: 50rpx;
-  margin-top: 314rpx;
+  margin-top: 320rpx;
   width:77rpx;
   height:77rpx;
   border-radius: 50%;

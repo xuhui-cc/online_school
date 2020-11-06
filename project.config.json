@@ -237,6 +237,13 @@
           "pathName": "packages/common/exchangeCode_C&C/exchangeCode_C&C",
           "query": "",
           "scene": null
+        },
+        {
+          "id": -1,
+          "name": "myVipCard",
+          "pathName": "packages/student/vip/comment/myVipCard/myVipCard",
+          "query": "",
+          "scene": null
         }
       ]
     }

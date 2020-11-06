@@ -54,14 +54,14 @@
   <!-- vip2版（会员叠加）-->
   
     <view class="vip2_rightLatout">
-      <view wx:for="{{2}}" style="margin-right:30rpx;">
-        <image class="vip2_rightIcon" src="./resource/vip2_right1.png"></image>
-        <view class="vip2_rightTitle">优惠券权益</view>
+      <view wx:for="{{vipRight}}" wx:key="index" style="margin-right:30rpx;">
+        <image class="vip2_rightIcon" src="{{item.coupon_image}}"></image>
+        <view class="vip2_rightTitle">{{item.coupon_title}}</view>
       </view>
     </view>
     <image  class="vip2_exchangeEntry" src="./resource/exchange_entry.png" bindtap="exchange"></image>
     <!-- <view class="vip2_signBtn1">开通会员</view> -->
-    <view class="vip2_signBtn1">查看已有会员</view>
+    <view class="vip2_signBtn1" bindtap="to_myVipCard">查看已有会员</view>
     <image class="vip2_fm" src="./resource/vip2_card.png"></image>
 
     <!-- 未开通vip -->

@@ -48,6 +48,7 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    that.vipRight()    //获取会员卡权益
     if (options.isshare == 1){
       wx.setStorageSync("gid", options.gid)
       that.setData({
@@ -358,6 +359,7 @@ getPhoneNumber: function (e) {
    */
   onShow: function () {
     let that = this
+    
   },
 
   /**
@@ -400,5 +402,31 @@ getPhoneNumber: function (e) {
     let that = this;
     let paramStr = 'isshare=1&gid=' + wx.getStorageSync('gid') + "&code_layout=" + that.data.code_layout
     return app.shareTool.getShareReturnInfo('0,1', 'vip_detail', paramStr, '/images/other/share1.png', '领军网校')
-  }
+  },
+
+  /*-------------------------------------------------------接口------------------------------------------------- */
+
+  //获取会员卡权益
+  vipRight:function(){
+    let that = this 
+    var params = ''
+    app.ols.vipRight(params).then(d => {
+      if (d.data.code == 0) {
+        that.setData({
+          vipRight:d.data.data.res
+        })
+      } else {
+        
+      }
+    })
+  },
+
+  /*------------------------------------------------------方法-------------------------------------------------- */
+  to_myVipCard:function(){
+    let that = this
+    console.log(app.getPagePath('myVipCard'))
+    wx.navigateTo({
+      url: app.getPagePath('myVipCard') 
+    })
+  },
 })
