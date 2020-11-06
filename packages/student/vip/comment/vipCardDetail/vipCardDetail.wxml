@@ -1,0 +1,78 @@
+<view class="container">
+  <view class="title">{{vipInfo.lists.title}}</view>
+  <view class="memo">{{vipInfo.lists.memo}}</view>
+  <view class="dot"></view>
+  <view class="time" wx:if="{{vipInfo.lists.memo == '永久有效'}}">永久有效</view>
+  <view class="time" wx:else=''>{{vipInfo.lists.expire_time}}到期</view>
+  <view class="price"><text style="font-size: 34rpx;">¥</text>{{vipInfo.lists.price}}</view>
+  <image class="vipcardbg" src="./resource/vipcardbg.png"></image>
+
+  <view class="right_layout">
+
+    <view class="flex" style="margin-top:37rpx">
+      <view class="vip2_couponHead">优惠券权益</view>
+      
+    </view>
+
+    <scroll-view scroll-x="true" style=" white-space: nowrap;display: flex;margin-bottom:50rpx;margin-left:30rpx;margin-top:32rpx;width:720rpx" >
+      <view wx:for="{{vipInfo.lists.course_coupon}}" wx:key="index" style="width: 387rpx; height: 194rpx; display: inline-block;margin-right:20rpx;">
+        <view>
+          <view class="vip2_couponTitle">{{item.title}}</view>
+          <view class="vip2_couponPrice" wx:if="{{index%3 == 0}}"><text style="font-size:30rpx">¥ </text> {{item.money}}</view>
+          <view class="vip2_couponPrice" wx:if="{{index%3 == 1}}" style="color: #1BB059;"><text style="font-size:30rpx">¥ </text> {{item.money}}</view>
+          <view class="vip2_couponPrice" wx:if="{{index%3 == 2}}" style="color: #20BAFF;"><text style="font-size:30rpx">¥ </text> {{item.money}}</view>
+          <image class="vip2_couponFace" wx:if="{{index%3 == 0}}" src="/images/vip2_common/vip2_coupon1.png"></image>
+          <image class="vip2_couponFace" wx:if="{{index%3 == 1}}" src="/images/vip2_common/vip2_coupon2.png"></image>
+          <image class="vip2_couponFace" wx:if="{{index%3 == 2}}" src="/images/vip2_common/vip2_coupon3.png"></image>
+        </view>
+      </view>
+          
+    </scroll-view>
+
+    <view class="vip2_couponHead">课程权益</view>
+      <view class="vip2_courseRightIntro">{{vipInfo.total}}门精选好课免费学</view>
+
+    <view style="margin-top:32rpx;">
+      <view wx:for="{{courseList}}" wx:key="index" style="margin-left:30rpx;margin-bottom:42rpx;">
+        <view class="flex" bindtap="vip_course_detail" data-xb="{{index}}">
+          <image class="vip_laber" src="/images/other/vip_laber2.png"></image>
+          <image class="fm" src="{{item.face}}"></image>
+          <view>
+            <view class="course_title">{{item.title}}</view>
+            <view class="flex">
+              <view class="course_num">{{item.class_hour}}课时</view>
+              <view class="tip" >免费学</view>
+            </view>
+            
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- container -->
+</view>

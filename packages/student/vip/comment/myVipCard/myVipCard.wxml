@@ -1,2 +1,44 @@
-<!--packages/student/vip/comment/myVipCard/myVipCard.wxml-->
-<text>packages/student/vip/comment/myVipCard/myVipCard.wxml</text>
+<view class="container">
+
+  <view style="margin-top:16rpx">
+    <view wx:for="{{vipList.data}}" wx:key="index" style="margin-bottom: 24rpx;margin-left: 30rpx;">
+      <view class="mask" wx:if="{{item.dayover}}"></view>
+      <view class="title">{{item.title}}</view>
+      <view class="intro">{{item.memo}}</view>
+      <view class="dot"></view>
+      <view class="time" wx:if="{{item.valid_days == '永久有效'}}">永久有效</view>
+      <view class="time" wx:else=''>{{item.valid_days}}到期</view>
+      <view class="to_rightDetail" bindtap="to_rightDetail" data-id="{{item.id}}"></view>
+      <view class="price"><text style="font-size: 34rpx;">¥</text>{{item.price}}</view>
+      <image class="myVipCard_bg" src="./resource/myVipCard_bg.png"></image>
+    </view>
+  </view>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- container -->
+</view>

@@ -7,6 +7,11 @@ Page({
   /**
    * 页面的初始数据
    */
+
+  coursePage:1,
+  pageNum:10,
+
+
   data: {
     imgUrls: [
       './resource/vip2.png',
@@ -49,6 +54,8 @@ Page({
   onLoad: function (options) {
     let that = this
     that.vipRight()    //获取会员卡权益
+    that.allVipCourse()  //获取会员卡课程
+    that.allVipCoupon()
     if (options.isshare == 1){
       wx.setStorageSync("gid", options.gid)
       that.setData({
@@ -58,7 +65,7 @@ Page({
         login: wx.getStorageSync("login")
       })
       console.log("vip分享打开",that.data.code_layout,"code_layout",that.data.login,"login")
-        that.v4_viplist()
+        // that.v4_viplist()
     }else{
       that.setData({
         login: wx.getStorageSync("login")
@@ -69,7 +76,7 @@ Page({
         })
         // console.log(options.ewm_exchange,"options.ewm_exchange")
       }
-      that.v4_viplist()
+      // that.v4_viplist()
       console.log("非分享打开")
     }
     
@@ -127,7 +134,7 @@ Page({
     app.ols.exchange_code4(params).then(d => {
       
       if (d.data.code == 0) {
-        that.v4_viplist(1)
+        // that.v4_viplist(1)
         // that.setData({
         //   exchange_page:false,
         //   pay:true,
@@ -318,7 +325,7 @@ Page({
   //查看会员权益
   success_yes:function(){
     let that = this 
-    that.v4_viplist()
+    // that.v4_viplist()
     that.setData({
       pay:false
     })
@@ -342,7 +349,7 @@ getPhoneNumber: function (e) {
         })
         console.log("type==1")
       }
-      that.v4_viplist()
+      // that.v4_viplist()
     }
   })
 },
@@ -422,11 +429,75 @@ getPhoneNumber: function (e) {
   },
 
   /*------------------------------------------------------方法-------------------------------------------------- */
+  onReachBottom: function() {
+    let that = this 
+    console.log("触底")
+    if(that.data.courseList.length < that.data.total){
+      that.coursePage += 1
+      that.allVipCourse()
+    }
+    else{
+      // wx.showToast({
+      //   title: '没有更多咯',
+      // })
+    }
+  },
+
   to_myVipCard:function(){
     let that = this
     console.log(app.getPagePath('myVipCard'))
     wx.navigateTo({
       url: app.getPagePath('myVipCard') 
+    })
+  },
+  
+  allVipCourse:function(){
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "num":that.pageNum,
+      "page":that.coursePage
+    }
+    app.ols.allVipCourse(params).then(d => {
+      if (d.data.code == 0) {
+        if(that.coursePage == 1){
+          that.setData({
+            total:d.data.data.total,
+            courseList:d.data.data.lists
+          })
+        }else{
+          var finalList = that.data.courseList.concat(d.data.data.lists)
+          that.setData({
+            courseList:finalList
+          })
+        }
+        
+      } 
+      else{
+        
+      }
+    })
+  },
+
+  
+  allVipCoupon:function(){
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+    }
+    app.ols.allVipCoupon(params).then(d => {
+      if (d.data.code == 0) {
+        
+          that.setData({
+            coupon:d.data.data,
+            couponList:d.data.data.lists
+          })
+        
+        
+      } 
+      else{
+        
+      }
     })
   },
 })

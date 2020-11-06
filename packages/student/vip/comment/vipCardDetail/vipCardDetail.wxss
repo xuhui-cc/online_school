@@ -1,0 +1,220 @@
+/* packages/student/vip/comment/vipCardDetail/vipCardDetail.wxss */
+.vipcardbg{
+  margin-left: 30rpx;
+  margin-top: 16rpx;
+  width: 690rpx;
+  height: 328rpx;
+}
+.right_layout{
+  margin-top: -67rpx;
+  width: 750rpx;
+  
+  background: #FFFFFF;
+  box-shadow: 0rpx -3rpx 23px rgba(0, 0, 0, 0.05);
+  z-index: 1;
+
+}
+.title{
+  position: absolute;
+  margin-left: 68rpx;
+  margin-top: 49rpx;
+  width: 500rpx;
+height: 53rpx;
+font-size: 38rpx;
+font-family: PingFang SC;
+font-weight: bold;
+line-height: 31rpx;
+color: #0A0A0A;
+z-index: 1;
+
+}
+.memo{
+  position: absolute;
+  margin-left: 68rpx;
+  margin-top: 116rpx;
+  width: 618rpx;
+height: 70rpx;
+font-size: 24rpx;
+font-family: PingFang SC;
+font-weight: 400;
+line-height: 34rpx;
+color: #959595;
+opacity: 1;
+z-index: 1;
+
+}
+.dot{
+  position: absolute;
+  margin-left: 68rpx;
+  margin-top: 227rpx;
+  width: 8rpx;
+height: 8rpx;
+background: #FF9A02;
+border-radius: 50%;
+z-index: 1;
+
+}
+.time{
+  position: absolute;
+  margin-left: 87rpx;
+  margin-top: 227rpx;
+  width: 200rpx;
+height: 214rpx;
+font-size: 24rpx;
+font-family: PingFang SC;
+font-weight: bold;
+line-height: 31rpx;
+color: #FF9A02;
+
+z-index: 1;
+}
+.price{
+  position: absolute;
+  margin-left: 500rpx;
+  margin-top: 188rpx;
+  height: 84rpx;
+  font-size: 60rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  text-align: right;
+  color: #FF9A02;
+  position: absolute;
+  
+  z-index: 1;
+}
+.flex{
+  display: flex;
+}
+.vip2_couponHead{
+  margin-left: 30rpx;
+  width: 160rpx;
+  height: 45rpx;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 31rpx;
+  color: #303030;
+}
+.vip2_more{
+  margin-left: 462rpx;
+  margin-top: 6rpx;
+  width: 48rpx;
+  height: 33rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 31rpx;
+  color: #989898;
+}
+.vip2_next{
+  
+  margin-left: -8rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+/* 优惠券滑动 */
+.vip2_couponFace{
+  width: 387rpx;
+  height: 194rpx;
+}
+.vip2_couponTitle{
+  position: absolute;
+  margin-top: 35rpx;
+  margin-left: 47rpx;
+  width: 274rpx;
+  height: 42rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 38rpx;
+  color: #0A0A0A;
+}
+.vip2_couponPrice{
+  position: absolute;
+  margin-top: 130rpx;
+  margin-left: 28rpx;
+  width: 110rpx;
+  height: 65rpx;
+  font-size: 46rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 31rpx;
+  color: #FF4E20;
+  opacity: 1;
+
+}
+/* 优惠券滑动 */
+
+/* 课程权益 */
+.vip2_courseRightIntro{
+  margin: 13rpx 30rpx;
+  
+  height: 37rpx;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 31rpx;
+  color: #FF9A02;
+  
+
+}
+.course_face{
+  width: 256rpx;
+  height: 148rpx;
+  border-radius: 8rpx;
+}
+
+.fm{
+  width: 256rpx;
+  height: 148rpx;
+  border-radius: 8rpx;
+}
+.course_title{
+  margin-left: 25rpx;
+  /* margin-top: 20rpx; */
+  width:400rpx;
+  height:84rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:42rpx;
+  color:rgba(39,39,39,1);
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.course_num{
+  margin-left: 25rpx;
+  margin-top: 28rpx;
+  width:80rpx;
+  height:33rpx;
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:41rpx;
+  color:rgba(191,191,191,1);
+  opacity:1;
+}
+.tip{
+  margin-left: 229rpx;
+  margin-top: 25rpx;
+  width:84rpx;
+  height:40rpx;
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:31rpx;
+  color:rgba(255,154,2,1);
+  opacity:1;
+}
+.vip_laber{
+  position: absolute;
+  width: 52rpx;
+  height: 34rpx;
+  z-index: 2;
+}
+/* 课程权益 */

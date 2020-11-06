@@ -122,8 +122,23 @@
       </scroll-view>
 
       <view class="vip2_couponHead">课程权益</view>
-      <view class="vip2_courseRightIntro">精选好课免费学</view>
-        
+      <view class="vip2_courseRightIntro">{{total}}门精选好课免费学</view>
+      
+      <view wx:for="{{courseList}}" wx:key="index" style="margin-left:30rpx;margin-bottom:42rpx;">
+      
+        <view class="flex" bindtap="vip_course_detail" data-xb="{{index}}">
+          <image class="laber" src="/images/other/vip_laber2.png" ></image>
+          <image class="fm" src="{{item.face}}"></image>
+          <view>
+            <view class="title">{{item.title}}</view>
+            <view class="flex">
+              <view class="num">{{item.class_hour}}课时</view>
+              
+              <view class="tip">免费学</view>
+            </view>
+          </view>
+        </view>
+      </view>
       
       
     </view>

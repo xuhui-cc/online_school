@@ -97,8 +97,9 @@ let pathDic = {
   order_detail_ios: '/packages/student/my/iOS/order_detail_ios/order_detail_ios',
 
   //vip-公共
-  exchang_vip:'packages/student/vip/comment/exchang_vip/exchang_vip',
-  myVipCard:'packages/student/vip/comment/myVipCard/myVipCard',
+  exchang_vip:'/packages/student/vip/comment/exchang_vip/exchang_vip',
+  myVipCard:'/packages/student/vip/comment/myVipCard/myVipCard',
+  vipCardDetail:'/packages/student/vip/comment/vipCardDetail/vipCardDetail',
   
   // vip-安卓
   vip_detail: '/packages/student/vip/android/vip_detail/vip_detail',

@@ -1,1 +1,94 @@
-/* packages/student/vip/comment/myVipCard/myVipCard.wxss */
+.myVipCard_bg{
+  
+  
+  width: 690rpx;
+  height: 328rpx;
+  
+}
+.title{
+  position: absolute;
+  margin-left: 38rpx;
+  margin-top: 33rpx;
+  width: 570rpx;
+  height: 53rpx;
+  font-size: 38rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 31rpx;
+  color: #0A0A0A;
+  z-index: 1;
+
+}
+.intro{
+  position: absolute;
+  margin-left: 38rpx;
+  margin-top: 100rpx;
+  width: 618rpx;
+  height: 70rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 34rpx;
+  color: #959595;
+  z-index: 1;
+}
+.dot{
+  width: 8rpx;
+  height: 8rpx;
+  background: #FF9A02;
+  border-radius: 50%;
+  position: absolute;
+  margin-left: 38rpx;
+  margin-top: 200rpx;
+  z-index: 1;
+
+}
+.time{
+  width: 200rpx;
+  height: 33rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 31rpx;
+  color: #FF9A02;
+  position: absolute;
+  margin-left: 57rpx;
+  margin-top: 189rpx;
+  z-index: 1;
+
+}
+.price{
+  /* width: 144rpx; */
+  height: 84rpx;
+  font-size: 60rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  text-align: right;
+  color: #FF9A02;
+  position: absolute;
+  margin-left: 440rpx;
+  margin-top: 222rpx;
+  z-index: 1;
+}
+.mask{
+  position: absolute;
+  z-index: 2;
+  width: 690rpx;
+  height: 328rpx;
+  background: #FFFFFF;
+  opacity: 0.46;
+  border-radius: 15rpx;
+
+}
+.to_rightDetail{
+  position: absolute;
+  margin-left: 38rpx;
+  margin-top: 238rpx;
+  width: 170rpx;
+  height: 54rpx;
+
+/* background: #FF9A02; */
+background: transparent;
+
+
+}

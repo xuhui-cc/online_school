@@ -244,6 +244,13 @@
           "pathName": "packages/student/vip/comment/myVipCard/myVipCard",
           "query": "",
           "scene": null
+        },
+        {
+          "id": -1,
+          "name": "vipCardDetail",
+          "pathName": "packages/student/vip/comment/vipCardDetail/vipCardDetail",
+          "query": "",
+          "scene": null
         }
       ]
     }

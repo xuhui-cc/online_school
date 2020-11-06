@@ -93,7 +93,9 @@
       "root": "packages/student/vip/comment",
       "pages": [
         "exchang_vip/exchang_vip",
-        "myVipCard/myVipCard"
+        "myVipCard/myVipCard",
+        "vipCardDetail/vipCardDetail"
+       
       ],
       "name": "vip_comment"
     },

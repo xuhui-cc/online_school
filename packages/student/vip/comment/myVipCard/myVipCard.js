@@ -1,4 +1,5 @@
 // packages/student/vip/comment/myVipCard/myVipCard.js
+const app = getApp()
 Page({
 
   /**
@@ -12,7 +13,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this
+    that.getVipList()   //会员卡列表
   },
 
   /**
@@ -62,5 +64,31 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  /*--------------------------------------------------------------接口------------------------------------------ */
+  getVipList:function(){
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+    }
+    app.ols.getVipList(params).then(d => {
+      if (d.data.code == 0) {
+        that.setData({
+          vipList:d.data.data
+        })
+        
+      } 
+      else{
+        
+      }
+    })
+  },
+  /*-------------------------------------------------------方法------------------------------------------------ */
+  to_rightDetail:function(e){
+    let that = this
+
+    wx.navigateTo({
+      url: app.getPagePath('vipCardDetail') + '?id=' + e.currentTarget.dataset.id,
+    })
+  },
 })

@@ -1,6 +1,10 @@
 const app = getApp()
 var timer,ms_timer
 Page({
+
+  coursePage:1,
+  pageNum:10,
+
   data: {
     current_special:-1,
     current_subject: 0,
@@ -10,7 +14,7 @@ Page({
   onLoad: function (options) {
     options = app.shareTool.getShareOption()
     let that = this
-    
+    that.allVipCourse()   //获取vip课程
     if (options.isshare == 1) {
       wx.setStorageSync("gid", options.gid)
       that.setData({
@@ -780,8 +784,51 @@ Page({
     })
   
   },
+  allVipCourse:function(){
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "num":that.pageNum,
+      "page":that.coursePage
+    }
+    app.ols.allVipCourse(params).then(d => {
+      if (d.data.code == 0) {
+        if(that.coursePage == 1){
+          that.setData({
+            total:d.data.data.total,
+            courseList:d.data.data.lists
+          })
+        }else{
+          var finalList = that.data.courseList.concat(d.data.data.lists)
+          that.setData({
+            courseList:finalList
+          })
+        }
+        
+      } 
+      else{
+        
+      }
+    })
+  },
 
   /*----------------------------------------------------------方法---------------------------------------------- */
+  onReachBottom: function() {
+    let that = this 
+    console.log("触底")
+    if(that.data.current_subject == 1){
+      if(that.data.courseList.length < that.data.total){
+        that.coursePage += 1
+        that.allVipCourse()
+      }
+      else{
+        // wx.showToast({
+        //   title: '没有更多咯',
+        // })
+      }
+    }
+    
+  },
 
   // 消息推送报名
   subMsg:function(e){
@@ -824,6 +871,8 @@ Page({
       scrollTop: 0
     })
   },
+
+
 
   
   
