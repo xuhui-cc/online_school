@@ -57,7 +57,7 @@ z-index: 1;
 .time{
   position: absolute;
   margin-left: 87rpx;
-  margin-top: 227rpx;
+  margin-top: 215rpx;
   width: 200rpx;
 height: 214rpx;
 font-size: 24rpx;
@@ -142,6 +142,17 @@ z-index: 1;
   line-height: 31rpx;
   color: #FF4E20;
   opacity: 1;
+
+}
+.vip2_couponBtn{
+  position: absolute;
+  margin-top: 119rpx;
+  margin-left: 237rpx;
+  width: 125rpx;
+  height: 50rpx;
+  /* background: #FF4E20; */
+  background: transparent;
+  
 
 }
 /* 优惠券滑动 */

@@ -94,6 +94,7 @@ padding-left: 17rpx;
   align-items: center;
 }
 .r-view{
+  
   width: 137rpx;
 }
 .null_img{
@@ -113,4 +114,26 @@ padding-left: 17rpx;
   line-height:42rpx;
   color:rgba(199,197,197,1);
   opacity:1;
+}
+.dot{
+  margin-left: 450rpx;
+  margin-top: 60rpx;
+  width: 6rpx;
+  height: 6rpx;
+  background: #FF9A02;
+  border-radius: 50%;
+  opacity: 1;
+
+}
+.dueTime{
+  margin-top: 46rpx;
+  /* width: 126rpx; */
+  height: 45rpx;
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 30rpx;
+  color: #FF9A02;
+  opacity: 1;
+
 }

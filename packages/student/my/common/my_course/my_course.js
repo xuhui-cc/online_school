@@ -5,6 +5,10 @@ Page({
   /**
    * 页面的初始数据
    */
+
+  coursePage:1,
+  pageNum:10,
+
   data: {
 
   },
@@ -22,19 +26,33 @@ Page({
     let that = this
     var params = {
       "token": wx.getStorageSync("token"),
+      "num":that.pageNum,
+      "page":that.coursePage
     }
-    app.ols.my_course_all4(params).then(d => {
+    app.ols.my_course_all(params).then(d => {
       console.log(d)
       if (d.data.code == 0) {
-        that.setData({
-          course: d.data.data
-        })
-        for(var i=0;i<that.data.course.length;i++){
+        if(that.coursePage == 1){
+          that.setData({
+            // vipInfo:d.data.data,
+            courseList:d.data.data
+          })
+        }else{
+          var finalList = that.data.courseList.concat(d.data.data)
+          that.setData({
+            courseList:finalList
+          })
         }
+        
+        
       } else if (d.data.code == 5){
-        that.setData({
-          course: ''
-        })
+        if(that.coursePage == 1){
+          that.setData({
+            courseList: ''
+          })
+        }else{
+
+        }
       }else{
         console.log(d.data.code, "code", d.data.msg)
         wx.showToast({
@@ -52,7 +70,7 @@ Page({
     var xb = e.currentTarget.dataset.xb
     console.log(xb)
     wx.navigateTo({
-      url: app.getPagePath('course_detail') + '?kid=' + that.data.course[xb].kid,
+      url: app.getPagePath('course_detail') + '?kid=' + that.data.courseList[xb].kid,
     })
   },
 
@@ -69,7 +87,7 @@ Page({
    */
   onShow: function () {
     let that = this
-    that.get_courselist()
+    // that.get_courselist()
   },
 
   /**
@@ -97,8 +115,14 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
+    let that = this 
+    console.log("触底")
+    
+      that.coursePage += 1
+      that.get_courselist()
+    },
+    
+ 
 
   /**
    * 用户点击右上角分享

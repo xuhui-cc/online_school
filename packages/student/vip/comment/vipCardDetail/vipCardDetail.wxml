@@ -11,7 +11,6 @@
 
     <view class="flex" style="margin-top:37rpx">
       <view class="vip2_couponHead">优惠券权益</view>
-      
     </view>
 
     <scroll-view scroll-x="true" style=" white-space: nowrap;display: flex;margin-bottom:50rpx;margin-left:30rpx;margin-top:32rpx;width:720rpx" >
@@ -21,6 +20,7 @@
           <view class="vip2_couponPrice" wx:if="{{index%3 == 0}}"><text style="font-size:30rpx">¥ </text> {{item.money}}</view>
           <view class="vip2_couponPrice" wx:if="{{index%3 == 1}}" style="color: #1BB059;"><text style="font-size:30rpx">¥ </text> {{item.money}}</view>
           <view class="vip2_couponPrice" wx:if="{{index%3 == 2}}" style="color: #20BAFF;"><text style="font-size:30rpx">¥ </text> {{item.money}}</view>
+          <view class="vip2_couponBtn" bindtap="couponUes"></view>
           <image class="vip2_couponFace" wx:if="{{index%3 == 0}}" src="/images/vip2_common/vip2_coupon1.png"></image>
           <image class="vip2_couponFace" wx:if="{{index%3 == 1}}" src="/images/vip2_common/vip2_coupon2.png"></image>
           <image class="vip2_couponFace" wx:if="{{index%3 == 2}}" src="/images/vip2_common/vip2_coupon3.png"></image>

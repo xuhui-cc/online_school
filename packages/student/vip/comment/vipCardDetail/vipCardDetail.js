@@ -62,16 +62,6 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   onReachBottom: function() {
     let that = this 
     console.log("触底")
@@ -85,6 +75,14 @@ Page({
       // })
     }
   },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
+  
   /*---------------------------------------------------------接口------------------------------------------- */
   //获取会员卡详情
   getVipInfo:function(){
@@ -114,5 +112,37 @@ Page({
         
       }
     })
-  }
+  },
+  /*----------------------------------------------------------方法------------------------------------------------- */
+  couponUes:function(){
+    let that = this 
+    wx.showToast({
+      title: wx.getStorageSync('couponUseTip').msg,
+      icon:"none"
+    })
+  },
+
+  //课程详情页跳转
+  vip_course_detail:function(e){
+    let that = this
+    var xb = e.currentTarget.dataset.xb
+    console.log(xb)
+    var course = that.data.courseList[xb]
+    wx.navigateTo({
+      url: app.getPagePath('course_detail') + '?kid=' + course.kid,
+    })
+    // if(course.type == 0){
+    //     wx.navigateTo({
+    //       url: app.getPagePath('course_detail') + '?kid=' + course.kid,
+    //     })
+    // }else if(course.type == 1){
+    //   wx.navigateTo({
+    //     url: app.getPagePath('groupBuy') + '?kid=' + course.kid,
+    //   })
+    // }else if(course.type == 2){
+    //   wx.navigateTo({
+    //     url: app.getPagePath('course_seckill') + '?kid=' + course.kid,
+    //   })
+    // }
+  },
 })

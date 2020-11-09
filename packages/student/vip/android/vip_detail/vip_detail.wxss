@@ -16,7 +16,7 @@
   width:750rpx;
   height:1624rpx;
   background:rgba(0,0,0,1);
-  opacity:0.8;
+  opacity:0.54;
   z-index: 350;
 }
 .login_layout{
@@ -730,13 +730,17 @@ border-radius: 20px 20px 0px 0px;
 
 }
 .vip2_couponBtn{
-  width: 121px;
-height: 49px;
-background: #FF4E20;
-
-border-radius: 25px;
+  position: absolute;
+  margin-top: 119rpx;
+  margin-left: 237rpx;
+  width: 125rpx;
+  height: 50rpx;
+  /* background: #FF4E20; */
+  background: transparent;
+  
 
 }
+
 .vip2_couponMore{
   
   display: inline-block;
@@ -758,3 +762,92 @@ border-radius: 25px;
 
 }
 /* vip2，会员卡叠加 */
+
+/*开通按钮提示蒙层*/
+.signBtnTipLayout{
+  position: fixed;
+  top: 300rpx;
+  left: 67rpx;
+  width: 616rpx;
+  height: 630rpx;
+  background: #FFFFFF;
+  opacity: 1;
+  border-radius: 22rpx;
+  z-index: 355;
+}
+.mask_shu{
+  margin-top: 85rpx;
+  margin-left: 48rpx;
+  width: 9rpx;
+  height: 20rpx;
+  background: #F3930A;
+  opacity: 1;
+  border-radius: 6rpx;
+
+}
+.mask_head{
+  margin-left: 17rpx;
+  margin-top: 65rpx;
+  width: 280rpx;
+  height: 56rpx;
+  font-size: 40rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 57rpx;
+  color: #272727;
+  opacity: 1;
+
+}
+.mask_content{
+  margin-left: 53rpx;
+  margin-top: 45rpx;
+  width: 524rpx;
+/* height: 162px; */
+font-size: 30rpx;
+font-family: PingFang SC;
+font-weight: 400;
+line-height: 52rpx;
+color: #727272;
+opacity: 1;
+
+}
+.mask_input{
+  margin-top: 27rpx ;
+  margin-left: 53rpx;
+  width:323rpx;
+  height:77rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:77rpx;
+  text-align: left;
+  color:rgba(57,57,57,1);
+  background:rgba(242,242,242,1);
+  border-radius:12rpx;
+}
+.mask_signBtn{
+  margin-top: 36rpx ;
+  margin-left: 29rpx;
+  width: 159rpx;
+  height: 59rpx;
+  background: #F3930A;
+
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 59rpx;
+  text-align: center;
+  color: #FFFFFF;
+  opacity: 1;
+  border-radius: 31rpx;
+
+}
+.mask_closeImg{
+  position: fixed;
+  margin-top: 1000rpx ;
+  margin-left: 338rpx;
+  width: 74rpx;
+  height: 74rpx;
+  z-index: 355;
+}
+/*开通按钮提示蒙层*/

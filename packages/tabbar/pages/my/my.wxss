@@ -133,6 +133,10 @@ transform: rotate(45deg);
   width: 46rpx;
   height: 59rpx;
 }
+
+
+
+/* 会员卡信息 */
 .vip_layout{
   width:750rpx;
   background:#fff;
@@ -173,31 +177,31 @@ transform: rotate(45deg);
   color:rgba(255,204,165,1);
   
 }
-.open_vip1{
+.vip_center{
   position: absolute;
-  margin-left: 138rpx;
+  margin-left: 135rpx;
   margin-top: 68rpx;
-  width:300rpx;
-  height:33rpx;
-  font-size:30rpx;
-  font-weight:bold;
-  font-family:PingFang SC;
-  line-height:33rpx;
-  color:rgba(255,204,165,1);
-  
+  width: 120rpx;
+  height: 37rpx;
+}
+.to_vipCenter{
+  position: absolute;
+  margin-left: 487rpx;
+  margin-top: 70rpx;
+  width: 205rpx;
+  height: 62rpx;
 }
 .open_content{
   position: absolute;
   margin-left: 62rpx;
   margin-top: 100rpx;
-  width:420rpx;
-  height:40rpx;
-  font-size:28rpx;
-  font-family:PingFang SC;
-  font-weight:bold;
-  
-  color:rgba(255,204,165,1);
-  
+  width: 457rpx;
+  height: 40rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 40rpx;
+  color: #FFCCA5;
 }
 .open_time{
   position: absolute;
@@ -234,6 +238,9 @@ transform: rotate(45deg);
   width:64rpx;
   height:74rpx;
 }
+/* 会员卡信息 */
+
+
 .heng{
   margin-left: 104rpx;
   width:646rpx;

@@ -1,8 +1,8 @@
 const app = getApp()
 var timer,ms_timer
 Page({
-
-  coursePage:1,
+  subjectCoursePage:1,
+  vipCoursePage:1,
   pageNum:10,
 
   data: {
@@ -14,7 +14,7 @@ Page({
   onLoad: function (options) {
     options = app.shareTool.getShareOption()
     let that = this
-    that.allVipCourse()   //获取vip课程
+    
     if (options.isshare == 1) {
       wx.setStorageSync("gid", options.gid)
       that.setData({
@@ -75,6 +75,10 @@ Page({
           })
           console.log("会员列表成功")
         } else {
+          that.setData({
+            // vip_list:d.data.data.lists,
+            vip:''
+          })
           console.log("会员列表失败==============" + d.data.msg)
         }
       })
@@ -163,6 +167,8 @@ Page({
   swichNav_subject: function (e) {
     var that = this
     that.toTop()   //切换置顶
+    that.vipCoursePage = 1
+    that.subjectCoursePage = 1
     var cur = e.target.dataset.current;
     if(cur == 0){
       that.setData({
@@ -176,6 +182,7 @@ Page({
         special:''
       })
       that.viplist()  //获取vip
+      that.allVipCourse()   //获取vip课程
     }else{
       that.setData({
         current_subject: cur,
@@ -291,7 +298,7 @@ Page({
     var xb = e.currentTarget.dataset.xb
     // var type = e.currentTarget.dataset.type
     console.log(xb)
-    var course = that.data.vip_list[0].course[xb]
+    var course = that.data.vipCourseList[xb]
     if(course.type == 0){
         wx.navigateTo({
           url: app.getPagePath('course_detail') + '?kid=' + course.kid,
@@ -411,29 +418,34 @@ Page({
         "token": wx.getStorageSync("token"),
         "gid": that.data.gid,
         "did": that.data.did,
-        "num": 30,
-        "page": 1
+        "num": that.pageNum,
+        "page": that.subjectCoursePage
       }
     }else{
       var params = {
         "token": 0,
         "gid": that.data.gid,
         "did": that.data.did,
-        "num": 30,
-        "page": 1
+        "num": that.pageNum,
+        "page": that.subjectCoursePage
       }
     }
-      console.log(params, "params获取课程")
       app.ols.grade_course4(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
-          console.log(d.data.data)
-          that.setData({
-            course: d.data.data
-          })
-          console.log(that.data.course, "获取课程已登录")
+          if(that.subjectCoursePage == 1){
+            that.setData({
+              courseTotal:d.data.data.total,
+              course: d.data.data.lists
+            })
+          }else{
+            var coursefinalList = that.data.course.concat(d.data.data.lists)
+            that.setData({
+              coursvipCourseListeList:coursefinalList
+            })
+          }
         } else {
-          console.log(d.data.msg, "获取课程已登录msg，失败")
+          
           that.setData({
             course: ''
           })
@@ -615,6 +627,7 @@ Page({
       that.getcourse()     //获取课程
     }else if(that.data.current_subject == 1){
       that.viplist()   //获取vip
+      that.allVipCourse()
     }
     
     
@@ -734,6 +747,7 @@ Page({
             }
             else if(that.data.current_subject == 1){
               that.viplist()   //获取vip
+              that.allVipCourse()   //获取vip全部课程
             }
             else{
               that.getcourse()     //获取课程
@@ -789,19 +803,19 @@ Page({
     var params = {
       "token": wx.getStorageSync("token"),
       "num":that.pageNum,
-      "page":that.coursePage
+      "page":that.vipCoursePage
     }
     app.ols.allVipCourse(params).then(d => {
       if (d.data.code == 0) {
-        if(that.coursePage == 1){
+        if(that.vipCoursePage == 1){
           that.setData({
             total:d.data.data.total,
-            courseList:d.data.data.lists
+            vipCourseList:d.data.data.lists
           })
         }else{
-          var finalList = that.data.courseList.concat(d.data.data.lists)
+          var finalList = that.data.vipCourseList.concat(d.data.data.lists)
           that.setData({
-            courseList:finalList
+            coursvipCourseListeList:finalList
           })
         }
         
@@ -817,8 +831,8 @@ Page({
     let that = this 
     console.log("触底")
     if(that.data.current_subject == 1){
-      if(that.data.courseList.length < that.data.total){
-        that.coursePage += 1
+      if(that.data.vipCourseList.length < that.data.total){
+        that.vipCoursePage += 1
         that.allVipCourse()
       }
       else{
@@ -826,8 +840,20 @@ Page({
         //   title: '没有更多咯',
         // })
       }
+    }else if(that.data.current_subject > 1){
+      if(that.data.course.length < that.data.courseTotal){
+        that.subjectCoursePage += 1
+      that.getcourse()
+      }
+      else{
+        // wx.showToast({
+        //   title: '没有更多咯',
+        // })
+      }
+      
+      
     }
-    
+
   },
 
   // 消息推送报名

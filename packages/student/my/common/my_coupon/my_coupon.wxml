@@ -2,17 +2,29 @@
 
 <view class="for" wx:for="{{couponList}}" wx:key="index">
   <view class="layout">
-    <image class="bg_img" src="/images/other/coupon_use.png" wx:if="{{item.usedtime == 0}}"></image>
-    <image class="bg_img" src="/images/other/coupon_used.png" wx:if="{{item.usedtime > 0 }}"></image>
     <view class="title" >{{item.title}}</view>
     <view class="coupon_id" >ID:{{item.code}}</view>
     <view class="price_icon" >¥</view>
     <view class="price" >{{item.money}}</view>
-    <view class="coupon_time" >截止时间：{{item.invalid_time}}</view>
-    <view class="coupon_tip" >使用须知：仅限地面班课使用，详情咨询{{couponTea.phone}}</view>
-    <view class="btn1" wx:if="{{item.usedtime == 0}}" bindtap="to_ues">去使用</view>
-    <view class="btn2" wx:if="{{item.usedtime == 1}}">已使用</view>
-    <view class="btn2" wx:if="{{item.usedtime == 2}}">已过期</view>
+    <image class="bg_img" src="/images/other/coupon_use.png" wx:if="{{item.usedtime == 0}}"></image>
+    <image class="bg_img" src="/images/other/coupon_used.png" wx:if="{{item.usedtime > 0 }}"></image>
+    
+    <view class="coupon_whiteLayout">
+      <view class="btn1" wx:if="{{item.usedtime == 0}}" bindtap="couponUes">去使用</view>
+      <view class="btn2" wx:if="{{item.usedtime == 1}}">已使用</view>
+      <view class="btn2" wx:if="{{item.usedtime == 2}}">已过期</view>
+      <view class="coupon_time" >截止时间：{{item.invalid_time}}</view>
+      <view class="coupon_tipTitle" >使用须知：</view>
+      <view class="{{item.fold?'coupon_tip2':'coupon_tip1'}}" >仅限地面班课使用，详情咨询仅限地面班课使用，详情咨询仅限地面班课使用，详情咨询仅限地面班课使用，详情咨询仅限地面班课使用，详情咨询仅限地面班课使用，详情咨询</view>
+      <view class="flex" style="margin-left:550rpx;" bindtap="fold" data-xb="{{index}}">
+        <image class="fold_img" wx:if="{{item.fold}}" src="/images/other/ssj2.png"></image>
+        <image class="fold_img" wx:else="" src="/images/other/xsj2.png"></image>
+        <view class="fold_btn" wx:if="{{item.fold}}">收起</view>
+        <view class="fold_btn" wx:else="">展开</view>
+      </view>
+      
+    </view>
+    
     
   </view>
 
@@ -33,7 +45,7 @@
   <view class="cont1">点击下方复制按钮，添加微信或电话咨询详情。</view>
   <text class="cont2" selectable='true'>{{couponTea.name}} {{couponTea.phone}}</text>
   <view class="cont1" style="margin-top:657rpx;">（微信号同手机号）</view>
-  <image class="del" src="/images/other/del2.png" bindtap="to_ues"></image>
+  <image class="del" src="/images/other/del2.png" ></image>
   <image class="copy" src="/images/other/copy.png" bindtap="copy"></image>
 
 </view>

@@ -237,7 +237,8 @@
           </view>
           <open-data class="open_vip1" type="userNickName"></open-data>
           <image class="laber_small" style="{{vip.datas.valid_days == '永久有效'?'margin-left: 520rpx;':''}}" src="/images/other/vip_badge2.png"></image>
-          <view class="open_time" bindtap="to_vip" >{{vip.datas.valid_days}}</view>
+          <view class="open_time" bindtap="to_vip" wx:if="{{vip.datas.valid_days == '永久有效'}}">{{vip.datas.valid_days}}</view>
+          <view class="open_time" bindtap="to_vip" wx:else="">{{vip.datas.valid_days}}到期</view>
           
           <image class="vip_jt" src="/images/other/next_bsj.png" bindtap="to_vip"></image>
       
@@ -333,7 +334,7 @@
     <!-- vip迭代模式 -->
     <view class="vip2_layout">
       <!-- 未开通状态 -->
-      <view class="unsign" hidden="true">
+      <view class="unsign" wx:if="{{vip == ''}}">
         <image class="unsign_vip2_head" src="/images/vip2_common/unsign_vip2_hade.png"></image>
 
         <view class="flex">
@@ -362,7 +363,7 @@
 
       <!-- 已开通状态 -->
       <view class="vip_layout" > 
-      <view wx:for="{{courseList}}" wx:key="hot2_index">
+      <view wx:for="{{vipCourseList}}" wx:key="hot2_index">
           <view class="hot_course">
             <view class="flex" bindtap="vip_course_detail" data-xb="{{index}}">
               <image class="vip_fm" src="{{item.face}}"></image>
@@ -447,7 +448,7 @@
   <!-- vip结束 -->
 
   <view style="margin-bottom:100rpx;" wx:if="{{current_subject > 1}}">
-    <view wx:for="{{course.lists}}" wx:key="index">
+    <view wx:for="{{course}}" wx:key="index">
 
       <view class="course_layout" bindtap="to_course_detail" data-xb="{{index}}" >
         <image class="vip_laber" wx:if="{{(item.buy == 0 || item.buy == 2 || item.buy > 4) && item.vip == 1}}" src="/images/other/vip_laber2.png"></image>

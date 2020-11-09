@@ -26,7 +26,8 @@ Page({
     nextMargin: '35px', //后边距，可用于露出后一项的一小部分，接受 px 和 rpx 值
     circular: true, //是否采用衔接滑动
     currentSwiperIndex: 0, //swiper当前索引
-    btn_buy:app.globalData.btn_buy     //购买按钮屏蔽
+    btn_buy:app.globalData.btn_buy,     //购买按钮屏蔽
+    signBtn:false    //开通会员按钮
   },
 
   swiperBindchange(e) {
@@ -55,7 +56,8 @@ Page({
     let that = this
     that.vipRight()    //获取会员卡权益
     that.allVipCourse()  //获取会员卡课程
-    that.allVipCoupon()
+    that.allVipCoupon()   //获取展示优惠券
+    // that.couponUseTip()   //优惠券使用提示
     if (options.isshare == 1){
       wx.setStorageSync("gid", options.gid)
       that.setData({
@@ -106,12 +108,19 @@ Page({
     app.ols.cheek_code4(params).then(d => {
       
       if (d.data.code == 0) {
-        that.setData({
+        if(d.data.data.cate == 2){
+          wx.navigateTo({
+            url: app.getPagePath('exchangeCode_2C') + '?id=' + d.data.data.id,
+          })
+        }else{
+          that.setData({
           codeinfo:d.data.data,
           exchange_page:true,
           code_layout:false,
           code:''
         })
+        }
+        
       } else if(d.data.code == 5){
         that.setData({
           checkCode:-1,
@@ -160,58 +169,61 @@ Page({
     })
   },
 
-  //获取会员卡列表
-  v4_viplist:function(type){
-    let that = this
-    var params = {
-      "token": wx.getStorageSync("token"),
-    }
-    // console.log(params, "会员列表参数")
-    app.ols.v4_viplist(params).then(d => {
-      // console.log(d, "会员列表数据")
-      if (d.data.code == 0) {
-        if(d.data.data.lists[0].course){
-          d.data.data.lists[0].course_num = d.data.data.lists[0].course.length
-        }
-        if(type == 1){
-          that.setData({
-            vip:d.data.data,
-            vip_list:d.data.data.lists,
-            exchange_page:false,
-            pay:true,
-            code:''
-          })
-        }else{
-          that.setData({
-            vip:d.data.data,
-            vip_list:d.data.data.lists
-          })
-        }
-        // console.log("会员列表成功")
-      } else {
-        // console.log("会员列表失败==============" + d.data.msg)
-      }
-    })
-  },
+  // //获取会员卡列表
+  // v4_viplist:function(type){
+  //   let that = this
+  //   var params = {
+  //     "token": wx.getStorageSync("token"),
+  //   }
+  //   // console.log(params, "会员列表参数")
+  //   app.ols.v4_viplist(params).then(d => {
+  //     // console.log(d, "会员列表数据")
+  //     if (d.data.code == 0) {
+  //       if(d.data.data.lists[0].course){
+  //         d.data.data.lists[0].course_num = d.data.data.lists[0].course.length
+  //       }
+  //       if(type == 1){
+  //         that.setData({
+  //           vip:d.data.data,
+  //           vip_list:d.data.data.lists,
+  //           exchange_page:false,
+  //           pay:true,
+  //           code:''
+  //         })
+  //       }else{
+  //         that.setData({
+  //           vip:d.data.data,
+  //           vip_list:d.data.data.lists
+  //         })
+  //       }
+  //       // console.log("会员列表成功")
+  //     } else {
+  //       // console.log("会员列表失败==============" + d.data.msg)
+  //     }
+  //   })
+  // },
 
   vip_course_detail:function(e){
     let that = this
     var xb = e.currentTarget.dataset.xb
     console.log(xb)
-    var course = that.data.vip_list[0].course[xb]
-    if(course.type == 0){
+    var course = that.data.courseList[xb]
         wx.navigateTo({
           url: app.getPagePath('course_detail') + '?kid=' + course.kid,
         })
-    }else if(course.type == 1){
-      wx.navigateTo({
-        url: app.getPagePath('groupBuy') + '?kid=' + course.kid,
-      })
-    }else if(course.type == 2){
-      wx.navigateTo({
-        url: app.getPagePath('course_seckill') + '?kid=' + course.kid,
-      })
-    }
+    // if(course.type == 0){
+    //     wx.navigateTo({
+    //       url: app.getPagePath('course_detail') + '?kid=' + course.kid,
+    //     })
+    // }else if(course.type == 1){
+    //   wx.navigateTo({
+    //     url: app.getPagePath('groupBuy') + '?kid=' + course.kid,
+    //   })
+    // }else if(course.type == 2){
+    //   wx.navigateTo({
+    //     url: app.getPagePath('course_seckill') + '?kid=' + course.kid,
+    //   })
+    // }
   },
 
   vip_buy:function(){
@@ -331,28 +343,7 @@ Page({
     })
   },
 
-   //获取微信绑定手机号登录
-getPhoneNumber: function (e) {
-  var that = this
-  var type = e.currentTarget.dataset.type
-  console.log(type,"type")
-  app.loginTool.getPhoneNumber(e, wx.getStorageSync('gid'), function(success, message){
-    if (success) {
-      that.setData({
-        login: true,
-      })
-      if(type == 1){
-        that.setData({
-          code:'',
-          checkCode:1,
-          code_layout:true
-        })
-        console.log("type==1")
-      }
-      // that.v4_viplist()
-    }
-  })
-},
+ 
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -366,6 +357,7 @@ getPhoneNumber: function (e) {
    */
   onShow: function () {
     let that = this
+    that.viplist()  //获取会员卡信息
     
   },
 
@@ -399,7 +391,20 @@ getPhoneNumber: function (e) {
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    let that = this 
+    console.log("触底")
+    if(that.data.courseList){
+      if(that.data.courseList.length < that.data.total){
+        that.coursePage += 1
+        that.allVipCourse()
+      }
+      else{
+        // wx.showToast({
+        //   title: '没有更多咯',
+        // })
+      }
+    }
+    
   },
 
   /**
@@ -412,6 +417,33 @@ getPhoneNumber: function (e) {
   },
 
   /*-------------------------------------------------------接口------------------------------------------------- */
+
+  //获取会员卡信息
+  viplist:function(){
+    let that = this
+    if(that.data.login){
+      var params = {
+        "token": wx.getStorageSync("token"),
+      }
+      app.ols.v5_viplist(params).then(d => {
+        if (d.data.code == 0) {
+          that.setData({
+            vip:d.data.data
+          })
+        } else{
+          that.setData({
+            vip:''
+          })
+        }
+      })
+    }else{
+      console.log("未登录")
+      that.setData({
+        vip:''
+      })
+    }
+    
+  },
 
   //获取会员卡权益
   vipRight:function(){
@@ -428,29 +460,7 @@ getPhoneNumber: function (e) {
     })
   },
 
-  /*------------------------------------------------------方法-------------------------------------------------- */
-  onReachBottom: function() {
-    let that = this 
-    console.log("触底")
-    if(that.data.courseList.length < that.data.total){
-      that.coursePage += 1
-      that.allVipCourse()
-    }
-    else{
-      // wx.showToast({
-      //   title: '没有更多咯',
-      // })
-    }
-  },
-
-  to_myVipCard:function(){
-    let that = this
-    console.log(app.getPagePath('myVipCard'))
-    wx.navigateTo({
-      url: app.getPagePath('myVipCard') 
-    })
-  },
-  
+  //获取全部权益课程
   allVipCourse:function(){
     let that = this
     var params = {
@@ -479,7 +489,7 @@ getPhoneNumber: function (e) {
     })
   },
 
-  
+  //获取优惠券数据
   allVipCoupon:function(){
     let that = this
     var params = {
@@ -489,8 +499,8 @@ getPhoneNumber: function (e) {
       if (d.data.code == 0) {
         
           that.setData({
-            coupon:d.data.data,
-            couponList:d.data.data.lists
+            coupon_num:d.data.data.lists.course_count,
+            couponList:d.data.data.lists.course_coupon.slice(0,3)
           })
         
         
@@ -500,4 +510,80 @@ getPhoneNumber: function (e) {
       }
     })
   },
+
+  
+
+
+  /*------------------------------------------------------方法-------------------------------------------------- */
+
+   //获取微信绑定手机号登录
+   getPhoneNumber: function (e) {
+    var that = this
+    var type = e.currentTarget.dataset.type
+    console.log(type,"type")
+    app.loginTool.getPhoneNumber(e, wx.getStorageSync('gid'), function(success, message){
+      if (success) {
+        that.setData({
+          login: true,
+        })
+        if(type == 1){
+          that.setData({
+            code:'',
+            checkCode:1,
+            code_layout:true
+          })
+          console.log("type==1")
+        }
+        // that.v4_viplist()
+      }
+    })
+  },
+
+  
+ 
+
+  //跳转我的会员卡
+  to_myVipCard:function(){
+    let that = this
+    
+    wx.navigateTo({
+      url: app.getPagePath('myVipCard') 
+    })
+  },
+
+  //跳转我的优惠券
+  to_myCoupon:function(){
+    let that = this
+    wx.navigateTo({
+      url: app.getPagePath("my_coupon")
+    })
+  },
+
+  // couponUes:function(){
+  //   let that = this 
+  //   // that.setData({
+  //   //   coupon_use:!that.data.coupon_use
+  //   // })
+  //   wx.showToast({
+  //     title: that.data.couponUseTip.msg,
+  //     icon:"none"
+  //   })
+  // },
+
+  couponUes:function(){
+    let that = this 
+    wx.showToast({
+      title: wx.getStorageSync('couponUseTip').msg,
+      icon:"none"
+    })
+  },
+
+  //开通会员按钮
+  signBtn:function(){
+    let that = this 
+    that.setData({
+      signBtn:!that.data.signBtn
+    })
+  },
+
 })

@@ -204,7 +204,7 @@
           "scene": null
         },
         {
-          "id": -1,
+          "id": 20,
           "name": "vip_detail",
           "pathName": "packages/student/vip/android/vip_detail/vip_detail",
           "query": "",

@@ -3,16 +3,25 @@ page{
   
   background: #F5F5F5;
 }
+.flex{
+  display: flex;
+}
 .layout{
   margin-top: 16rpx;
   margin-left: 30rpx;
-  margin-bottom: 380rpx;
+  /* margin-bottom: 380rpx; */
 }
 .bg_img{
-  position: absolute;
+  /* position: absolute; */
   width: 690rpx;
-  height: 361rpx;
+  height: 220rpx;
   z-index: -1;
+}
+.coupon_whiteLayout{
+  margin-top: -8rpx;
+  width: 690rpx;
+  background: #FFFFFF;
+  border-radius: 0rpx 0rpx 15rpx 15rpx;
 }
 .title{
   position: absolute;
@@ -71,36 +80,80 @@ opacity: 1;
 
 }
 .coupon_time{
-  position: absolute;
-  padding-top: 228rpx;
+  
+  padding-top: 28rpx;
   margin-left: 33rpx;
   width: 293rpx;
-height: 33rpx;
-font-size: 24rpx;
-font-family: PingFang SC;
-font-weight: 400;
-line-height: 36rpx;
-color: #B1B1B1;
-opacity: 1;
+  height: 33rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 36rpx;
+  color: #B1B1B1;
+
 
 }
-.coupon_tip{
-  position: absolute;
-  padding-top: 267rpx;
+.coupon_tipTitle{
+  padding-top: 12rpx;
   margin-left: 33rpx;
   width: 432rpx;
-height: 69rpx;
-font-size: 24rpx;
-font-family: PingFang SC;
-font-weight: 400;
-line-height: 36rpx;
-color: #B1B1B1;
-opacity: 1;
+  height: 36rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 36rpx;
+  color: #B1B1B1;
+  
 
+}
+.coupon_tip1{
+  
+  padding-top: 10rpx;
+  margin-left: 33rpx;
+  width: 611rpx;
+  height: 72rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 36rpx;
+  color: #B1B1B1;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.coupon_tip2{
+  
+  padding-top: 10rpx;
+  margin-left: 33rpx;
+  width: 611rpx;
+  /* height: 69rpx; */
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 36rpx;
+  color: #B1B1B1;
+  
+}
+.fold_img{
+  width: 50rpx;
+  height: 50rpx;
+}
+.fold_btn{
+  width: 44rpx;
+  height: 50rpx;
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 50rpx;
+  text-align: center;
+  color: #CBCBCB;
 }
 .btn1{
   position: absolute;
-  margin-top: 248rpx;
+  margin-top: 27rpx;
   margin-left: 493rpx;
   width: 165rpx;
   height: 60rpx;
@@ -117,7 +170,7 @@ opacity: 1;
 }
 .btn2{
   position: absolute;
-  margin-top: 248rpx;
+  margin-top: 27rpx;
   margin-left: 493rpx;
   width: 185rpx;
   height: 60rpx;

@@ -1,10 +1,14 @@
 <!--pages/my_course/my_course.wxml-->
 <view class="container">
 
-  <view wx:for="{{course}}" wx:key="index">
+  <view wx:for="{{courseList}}" wx:key="index">
     <view class="course" data-xb="{{index}}" bindtap="to_course_detail">
       <view class="title">{{item.title}}</view>
       <view class="decribe">{{item.intro}}</view>
+      <view class="flex" style="position: absolute;">
+        <view class="dot" wx:if="{{item.days}}"></view>
+        <view class="dueTime" wx:if="{{item.days}}"><text style="font-size: 32rpx;font-weight: Bold;">{{item.days}}</text>后到期</view>
+      </view>
       <view class="course-content">
           <view class="content-left">
             <view class="flex" style="width:250rpx;">
@@ -22,9 +26,10 @@
             </view>
               <!-- <image src="{{item.avatar}}" class="l-img"></image>
               <text class="l-name">{{item.nick}}</text> -->
-            <text class="l-keshi">{{item.class_hour}}课时</text>
+            <!-- <text class="l-keshi">{{item.class_hour}}课时</text> -->
           </view>
-          <view class="content-right">
+          
+          <view class="content-right" style="margin-top:50rpx;">
               <view class="r-view">
                 <progress percent="{{item.study_percent}}"  border-radius="2.5" stroke-width="5" color="#fff" active="{{true}}" activeColor="#02DC9F" />
               </view>

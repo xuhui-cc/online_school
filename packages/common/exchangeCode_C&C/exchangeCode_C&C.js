@@ -1,18 +1,22 @@
 // packages/common/exchangeCode_C&C/exchangeCode_C&C.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    open_rightBag:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this 
+    that.setData({
+      id:options.id
+    })
   },
 
   /**
@@ -62,5 +66,26 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /*--------------------------------------------------------方法--------------------------------------- */
+  to_vipDetail:function(){
+    let that = this 
+    wx.redirectTo({
+      url: app.getPagePath('vip_detail') ,
+    })
+  },
+
+  sign_rightBag:function(){
+    let that = this 
+    that.setData({
+      open_rightBag:true
+    })
+  },
+
+  back:function(){
+    wx.navigateBack({
+      delta: 0,
+    })
   }
 })

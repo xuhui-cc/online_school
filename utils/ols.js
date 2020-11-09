@@ -90,10 +90,7 @@ function wrong(params) {
   return fetch.olsfetchpost(URI, 'wrong/getlist', params,"全部错题")
 }
 
-// 获取我的全部课程
-function my_course_all4(params) {
-  return fetch.olsfetchpost(URI, 'v4/order/getLessonlist', params,"全部课程")
-}
+
 
 // 获取测评试题（已登录）
 function test_ques1(params) {
@@ -420,10 +417,7 @@ function v4_vipPreorder(params) {
   return fetch.olsfetchpost(URI, 'v4/wepay/precardorder', params,"vip卡预支付",true,"请稍后")
 }
 
-//我的页面vip信息
-function v4_myVip(params) {
-  return fetch.olsfetchpost(URI, 'v4/vipcard/getvipcard', params,"我的vip")
-}
+
 
 //兑换码验证
 function cheek_code4(params) {
@@ -508,9 +502,13 @@ function auditionVideo(params) {
 }
 
 
-//会员列表
+//会员列表（预弃用）
 function v4_viplist(params) {
   return fetch.olsfetchpost(URI, 'v4/vipcard/getviplist', params,"会员卡列表")
+}
+//我的页面vip信息（预弃用）
+function v4_myVip(params) {
+  return fetch.olsfetchpost(URI, 'v4/vipcard/getvipcard', params,"我的vip")
 }
 //会员列表
 function v5_viplist(params) {
@@ -536,9 +534,17 @@ function allVipCourse(params) {
 function allVipCoupon(params) {
   return fetch.olsfetchpost(URI, 'v5/vipcard/getCouponInfo', params,"全部会员卡优惠券")
 }
+// 获取我的全部课程（预弃用）
+function my_course_all4(params) {
+  return fetch.olsfetchpost(URI, 'v4/order/getLessonlist', params,"全部课程")
+}
+// 获取我的全部课程（有到期时间及分页版）
+function my_course_all(params) {
+  return fetch.olsfetchpost(URI, 'v5/vipcard/getLessonlist', params,"全部课程")
+}
 
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all4, test_ques1, test_ques2, course_info1, grade_update, course_cata1, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,grade_course4,course_info4,course_cata3,hot_list4,group_preorder3,order_all3,group_del3,group_detail3,group_share3,all_group3,banner3,v4_viplist,v4_vipPreorder,v4_myVip,course_cata4,judge_share4,cheek_code4, teacherGetStudentsList, getReocrdTagList, submitReocrd, getStudentRecordListByDay, getPeriodRecordStatusList, getStudentCourseHourInfo, getClearCourseHourList, recordUploadFile, getStudentNewRecord, getRecordUploadPath_h5, haveRelationWithStudent,exchange_code4,addImg,parentGetChildsList,dummy,refreshUserInfo, get7v1Intro_h5,v5_getTeacherList,v5_getTeacherIntro, getAdWindow, getLoginUserIdentify,info_1Vn,check_1Vn,exchange_1Vn,subMsg,couponList,couponShow,couponTea,coursePushList,auditionVideo,v5_viplist,vipRight,getVipList,getVipInfo,allVipCourse,allVipCoupon}
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all4, test_ques1, test_ques2, course_info1, grade_update, course_cata1, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,grade_course4,course_info4,course_cata3,hot_list4,group_preorder3,order_all3,group_del3,group_detail3,group_share3,all_group3,banner3,v4_viplist,v4_vipPreorder,v4_myVip,course_cata4,judge_share4,cheek_code4, teacherGetStudentsList, getReocrdTagList, submitReocrd, getStudentRecordListByDay, getPeriodRecordStatusList, getStudentCourseHourInfo, getClearCourseHourList, recordUploadFile, getStudentNewRecord, getRecordUploadPath_h5, haveRelationWithStudent,exchange_code4,addImg,parentGetChildsList,dummy,refreshUserInfo, get7v1Intro_h5,v5_getTeacherList,v5_getTeacherIntro, getAdWindow, getLoginUserIdentify,info_1Vn,check_1Vn,exchange_1Vn,subMsg,couponList,couponShow,couponTea,coursePushList,auditionVideo,v5_viplist,vipRight,getVipList,getVipInfo,allVipCourse,allVipCoupon,my_course_all}
 
 
 // const addImgUrl = "http://os.lingjun.net/api.php/annex/upload"

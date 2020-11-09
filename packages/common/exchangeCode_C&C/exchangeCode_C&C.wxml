@@ -37,13 +37,13 @@
 
   <!-- 优惠券 -->
 
-  <image class="sign_btn" src="./resource/sign_btn.png"></image>
+  <image class="sign_btn" src="./resource/sign_btn.png" bindtap="sign_rightBag"></image>
 
   <!-- 开通成功弹框-->
-  <view class="mask" catchtouchmove="preventTouchMove" ></view>
-  <view class="succeed_tip">请前往“我的课程”、“我的优惠券”中查看</view>
-  <image class="succeed" src="./resource/succeed.png"></image>
-  <image class="succeed_btn" src="./resource/succeed_btn.png"></image>
+  <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{open_rightBag}}"></view>
+  <view class="succeed_tip" wx:if="{{open_rightBag}}">请前往“我的课程”、“我的优惠券”中查看</view>
+  <image class="succeed" src="./resource/succeed.png" wx:if="{{open_rightBag}}"></image>
+  <image class="succeed_btn" src="./resource/succeed_btn.png" wx:if="{{open_rightBag}}" bindtap="to_vipDetail"></image>
   <!-- 开通成功弹框-->
 
 

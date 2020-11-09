@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    coupon_use:false
+    coupon_use:false,
+    
   },
 
   /**
@@ -14,7 +15,10 @@ Page({
    */
   onLoad: function (options) {
     let that = this 
-
+    that.setData({
+      couponUseTip:wx.getStorageSync('couponUseTip')
+    })
+    
     if (options.isshare == 1){
       wx.setStorageSync("gid", options.gid)
       that.setData({
@@ -40,7 +44,7 @@ Page({
     
     if(wx.getStorageSync('login')){
       that.couponList()   //获取会员卡列表
-      that.couponTea()   //优惠券相关老师
+      // that.couponTea()   //优惠券相关老师
     }
     
   },
@@ -85,13 +89,11 @@ Page({
 
   /*------------------------------------------------------交互---------------------------------------------------*/
 
-  to_ues:function(){
+  //优惠券使用提示
+  couponUes:function(){
     let that = this 
-    // that.setData({
-    //   coupon_use:!that.data.coupon_use
-    // })
     wx.showToast({
-      title: that.data.couponTea.msg,
+      title: wx.getStorageSync('couponUseTip').msg,
       icon:"none"
     })
   },
@@ -129,6 +131,16 @@ to_auditionVideo:function(){
   })
 },
 
+  //展开使用须知详情
+  fold:function(e){
+    let that = this
+    console.log(e.currentTarget.dataset.xb)
+    var fold = "couponList[" + e.currentTarget.dataset.xb + "].fold"
+    that.setData({
+      [fold]:!that.data.couponList[e.currentTarget.dataset.xb].fold
+    })
+  },
+
 
   //------------------------------------------------------接口---------------------------------------------------//
   /**
@@ -142,6 +154,9 @@ to_auditionVideo:function(){
     }
     app.ols.couponList(params).then(d => {
       if (d.data.code == 0) {
+        for(var i = 0;i<d.data.data.length;i++ ){
+          d.data.data[i].fold = false
+        }
         that.setData({
           couponList:d.data.data
         })
@@ -153,19 +168,5 @@ to_auditionVideo:function(){
     })
     
   },
-  couponTea:function(){
-    let that = this 
-    
-    var params = {
-      // "token":wx.getStorageSync('token')
-    }
-    app.ols.couponTea(params).then(d => {
-      if (d.data.code == 0) {
-        that.setData({
-          couponTea:d.data.data.res
-        })
-      }
-    })
-    
-  },
+  
 })
