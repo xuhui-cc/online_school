@@ -12,9 +12,9 @@
     </view>
     
     <view wx:if="{{!login}}" class="nick">请登录</view>
-    <view class="flex" wx:if="{{vip ==''}}" >
+    <view class="flex" wx:if="{{login && vip ==''}}" >
       <open-data type="userNickName" class="nick"></open-data>
-      <view class="btn" bindtap="vip_buy" hidden="{{btn_buy}}">立即开通</view>
+      <!-- <view class="btn" bindtap="vip_buy" hidden="{{btn_buy}}">立即开通</view> -->
     </view>
     <view style="margin-top: 15rpx;" wx:if="{{vip}}">
       <open-data type="userNickName" class="nick"></open-data>
@@ -58,7 +58,9 @@
         <view class="vip2_rightTitle">{{item.coupon_title}}</view>
       </view>
     </view>
+    <button class="login1" style="margin-left: 430rpx;margin-top:380rpx;width:240rpx;height:40rpx;"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="1"></button>
     <image  class="vip2_exchangeEntry" src="./resource/exchange_entry.png" bindtap="exchange"></image>
+    <button class="login1" style="margin-left: 480rpx;margin-top:460rpx;width:185rpx;height:70rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="2"></button>
     <view class="vip2_signBtn1" bindtap="signBtn" wx:if="{{vip == ''}}">开通会员</view>
     <view class="vip2_signBtn1" bindtap="to_myVipCard" wx:else="">查看已有会员</view>
     <image class="vip2_fm" src="./resource/vip2_card.png"></image>
@@ -85,8 +87,8 @@
         <view class="vip2_vs_content" style="margin-top:92rpx;margin-left:423rpx;">领军教育地面班课<text style="font-size: 32rpx;color: rgba(255, 166, 32, 1);font-weight: Bold;">超强折扣</text>优惠</view>
         <image class="vip2_vs" src="/images/vip2_common/vip2_vs.png"></image>
         
-
-        <image class="vip2_signBtn2" src="/images/vip2_common/vip2_signBtn.png"></image>
+        <button class="login1" style="margin-left: 30rpx;margin-top:50rpx;width:690rpx;height:100rpx;"   open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="2"></button>
+        <image class="vip2_signBtn2" src="/images/vip2_common/vip2_signBtn.png" bindtap="signBtn"></image>
     </view>
     <!-- 未开通vip -->
 
@@ -198,8 +200,8 @@
     <image class="bg_exchange1" src="./resource/exchange_page.png" ></image>
     <view class="checkinfo_head1">{{codeinfo.title}}</view>
     <view class="checkinfo_intro">{{codeinfo.remark}}</view>
-    <view class="checkinfo_tip1">确认兑换为</view>
-    <view class="checkinfo_tip1" style="margin-top: 366rpx ;">{{codeinfo.title}}？</view>
+    <view class="checkinfo_tip1">确认兑换</view>
+    <view class="checkinfo_tip1" style="margin-top: 395rpx ;">{{codeinfo.title}}？</view>
     <view class="checkinfo_tip2" wx:if="{{vip.expire > 0}}">您当前为{{vip_list[0].title}}</view>
     <view class="checkinfo_tip2" style="margin-top: 455rpx ;" wx:if="{{vip.expire > 0}}">确认兑换后将替换掉原有会员卡</view>
     <view class="btn2" bindtap="yes_exchange">是，立即兑换</view>
@@ -210,10 +212,10 @@
   <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!pay}}"></view>
   <view style="margin-top:-120rpx;" hidden="{{!pay}}">
     <image class="success_img" src="./resource/seuccess_vip1.png" ></image>
-    <view class="checkinfo_head1">{{vip_list[0].title}}</view>
-    <view class="checkinfo_intro">{{vip_list[0].memo}}</view>
+    <view class="checkinfo_head1">{{sign_title}}</view>
+    <view class="checkinfo_intro">{{sign_remark}}</view>
     <view class="cuccess_tip">您已成功开通</view>
-    <view class="cuccess_tip" style="margin-top:390rpx">{{vip_list[0].title}}</view>
+    <view class="cuccess_tip" style="margin-top:390rpx">{{sign_title}}</view>
     <view class="cuccess_tip1">立即开启您的学习成功之旅</view>
     <view class="success_yes" bindtap="success_yes">查看会员权限</view>
     <image class="exchange_close"  style="margin-top:700rpx" src="/images/other/exchange_close.png" bindtap="success_yes"></image>
@@ -234,6 +236,7 @@
 
 
   <view class="mask1" wx:if="{{signBtn}}"></view>
+  <!-- wx:if="{{signBtn}}" -->
   <view class="signBtnTipLayout" wx:if="{{signBtn}}">
     
     <view class="flex">
@@ -243,12 +246,16 @@
     <view class="mask_content" style="margin-top: 27rpx;">1.请联系 栗老师 <text style="font-size:38rpx;font-weight:Bold;color:rgba(243,147,10,1);" selectable='true'> 18192171631 </text> 领取兑换码，免费开通会员。（长按复制手机号）</view>
     <view class="mask_content">2.已有兑换码的同学，在下方输入兑换码一键开通~</view>
     <view class="flex">
-      <input class="mask_input" placeholder="请输入您的兑换码" placeholder-style=" text-align: center;" bindinput="input_code" value="{{code}}"></input>
-      <view class="mask_signBtn">立即开通</view>
+      <input class="mask_input" placeholder="请输入您的兑换码" bindinput="input_code" value="{{code}}" ></input>
+      <view class="mask_signBtn" style="background: #FBDDB3;" wx:if="{{!code}}">立即开通</view>
+      <view class="mask_signBtn" bindtap="submit_check" wx:else="">立即开通</view>
     </view>
-  
+    <view  class="mask_checkCode_tip" wx:if="{{checkCode == -1}}">*{{check_msg}}</view>
+    <!--  -->
   </view>
   <image class="mask_closeImg" src="/images/other/exchange_close.png" bindtap="signBtn" wx:if="{{signBtn}}"></image>
+
+  <!--  -->
   
 
 

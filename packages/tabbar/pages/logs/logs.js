@@ -277,7 +277,7 @@ Page({
     var xb = e.currentTarget.dataset.xb
     // var type = e.currentTarget.dataset.type
     console.log(xb)
-    var course = that.data.course.lists[xb]
+    var course = that.data.course[xb]
     if(course.type == 0){
       wx.navigateTo({
         url: app.getPagePath('course_detail') + '?kid=' + course.kid,
@@ -430,7 +430,7 @@ Page({
         "page": that.subjectCoursePage
       }
     }
-      app.ols.grade_course4(params).then(d => {
+      app.ols.grade_course5(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
           if(that.subjectCoursePage == 1){
@@ -518,7 +518,7 @@ Page({
         "page": 1
       }
     }
-      app.ols.grade_course4(params).then(d => {
+      app.ols.grade_course5(params).then(d => {
       // app.ols.grade_course2(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {

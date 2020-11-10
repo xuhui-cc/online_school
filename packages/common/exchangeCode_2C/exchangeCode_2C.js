@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    open_rightBag:false
+    open_rightBag:false,
+    // exchangeSucceed:false
   },
 
   /**
@@ -15,7 +16,8 @@ Page({
   onLoad: function (options) {
     let that = this 
     that.setData({
-      id:options.id
+      id:options.id,
+      ewm:options.ewm
     })
   },
 
@@ -30,7 +32,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    that.rightBagInfo()   
   },
 
   /**
@@ -69,6 +72,8 @@ Page({
   },
 
   /*--------------------------------------------------------方法--------------------------------------- */
+
+  //会员详情页跳转
   to_vipDetail:function(){
     let that = this 
     wx.redirectTo({
@@ -76,16 +81,52 @@ Page({
     })
   },
 
-  sign_rightBag:function(){
+  //自定义返回
+  back:function(){
+    if(that.data.ewm == 1){
+      wx.switchTab({
+        url: app.getPagePath('logs'),
+      })
+    }else{
+      wx.navigateBack({
+        delta: 0,
+      })
+    }
+    
+  },
+
+  /*-------------------------------------------------------接口---------------------------------------- */
+  //获取权益包信息
+  rightBagInfo:function(){
     let that = this 
-    that.setData({
-      open_rightBag:true
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "id": that.data.id
+    }
+    app.ols.rightBagInfo(params).then(d => {
+      if (d.data.code == 0) {
+        that.setData({
+          rightBagInfo:d.data.data
+        })
+        
+      } 
     })
   },
 
-  back:function(){
-    wx.navigateBack({
-      delta: 0,
+  //兑换权益包
+  exchangeRightBag:function(){
+    let that = this 
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "id": that.data.id
+    }
+    app.ols.exchangeRightBag(params).then(d => {
+      if (d.data.code == 0) {
+        that.setData({
+          open_rightBag:true
+        })
+      } 
     })
-  }
+  },
+
 })

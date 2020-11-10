@@ -102,10 +102,7 @@ function test_ques2(params) {
   return fetch.olsfetchpost(URI, 'v2/paper/gettestlist', params)
 }
 
-//获取课程列表
-function grade_course4(params) {
-  return fetch.olsfetchpost(URI, 'v4/lesson/getlist', params)
-}
+
 
 // 获取课程详情介绍(已登录)
 function course_info1(params) {
@@ -132,10 +129,7 @@ function course_cata3(params) {
   return fetch.olsfetchpost(URI, 'v3/lesson/getoption', params)
 }
 
-//获取课程目录v4(会员)
-function course_cata4(params) {
-  return fetch.olsfetchpost(URI, 'v4/lesson/getoption', params,"课程详情目录")
-}
+
 
 //获取课程讲义列表
 function handout(params) {
@@ -419,15 +413,7 @@ function v4_vipPreorder(params) {
 
 
 
-//兑换码验证
-function cheek_code4(params) {
-  return fetch.olsfetchpost(URI, 'v4/redeem/checkredeemcode', params,"兑换码验证")
-}
 
-//兑换码兑换
-function exchange_code4(params) {
-  return fetch.olsfetchpost(URI, 'v4/redeem/exchangeredeem', params,"兑换码兑换")
-}
 
 // 家长获取自家孩子列表
 function parentGetChildsList(params) {
@@ -542,9 +528,60 @@ function my_course_all4(params) {
 function my_course_all(params) {
   return fetch.olsfetchpost(URI, 'v5/vipcard/getLessonlist', params,"全部课程")
 }
+// 获取课程详情v3(拼团)(预弃用)
+function course_info4(params) {
+  return fetch.olsfetchpost(URI, 'v4/lesson/getinfo', params,"课程详情介绍")
+}
+// 获取课程详情v3(拼团)
+function course_info5(params) {
+  return fetch.olsfetchpost(URI, 'v5/lesson/getinfo', params,"课程详情介绍")
+}
 
+//获取课程目录v4(会员)(预弃用)
+function course_cata4(params) {
+  return fetch.olsfetchpost(URI, 'v4/lesson/getoption', params,"课程详情目录")
+}
+//获取课程目录v5(会员)
+function course_cata5(params) {
+  return fetch.olsfetchpost(URI, 'v5/lesson/getoption', params,"课程详情目录")
+}
+//获取课程列表(预弃用)
+function grade_course4(params) {
+  return fetch.olsfetchpost(URI, 'v4/lesson/getlist', params)
+}
+//获取课程列表
+function grade_course5(params) {
+  return fetch.olsfetchpost(URI, 'v5/lesson/getlist', params)
+}
+// 权益包展示数据
+function rightBagInfo(params) {
+  return fetch.olsfetchpost(URI, 'v5/vipcard/getEquityPackage', params,"权益包展示数据")
+}
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all4, test_ques1, test_ques2, course_info1, grade_update, course_cata1, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,grade_course4,course_info4,course_cata3,hot_list4,group_preorder3,order_all3,group_del3,group_detail3,group_share3,all_group3,banner3,v4_viplist,v4_vipPreorder,v4_myVip,course_cata4,judge_share4,cheek_code4, teacherGetStudentsList, getReocrdTagList, submitReocrd, getStudentRecordListByDay, getPeriodRecordStatusList, getStudentCourseHourInfo, getClearCourseHourList, recordUploadFile, getStudentNewRecord, getRecordUploadPath_h5, haveRelationWithStudent,exchange_code4,addImg,parentGetChildsList,dummy,refreshUserInfo, get7v1Intro_h5,v5_getTeacherList,v5_getTeacherIntro, getAdWindow, getLoginUserIdentify,info_1Vn,check_1Vn,exchange_1Vn,subMsg,couponList,couponShow,couponTea,coursePushList,auditionVideo,v5_viplist,vipRight,getVipList,getVipInfo,allVipCourse,allVipCoupon,my_course_all}
+// 兑换权益包
+function exchangeRightBag(params) {
+  return fetch.olsfetchpost(URI, 'v5/vipcard/addEquityPackage', params,"兑换权益包")
+}
+
+//兑换码验证（预弃用）
+function cheek_code4(params) {
+  return fetch.olsfetchpost(URI, 'v4/redeem/checkredeemcode', params,"兑换码验证")
+}
+//兑换码验证
+function cheek_code5(params) {
+  return fetch.olsfetchpost(URI, 'v5/redeem/checkredeemcode', params,"兑换码验证")
+}
+
+//兑换码兑换(预弃用)
+function exchange_code4(params) {
+  return fetch.olsfetchpost(URI, 'v4/redeem/exchangeredeem', params,"兑换码兑换")
+}
+//兑换码兑换
+function exchange_code5(params) {
+  return fetch.olsfetchpost(URI, 'v5/redeem/exchangeredeem', params,"兑换码兑换")
+}
+
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all4, test_ques1, test_ques2, course_info1, grade_update, course_cata1, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,grade_course4,course_info4,course_cata3,hot_list4,group_preorder3,order_all3,group_del3,group_detail3,group_share3,all_group3,banner3,v4_viplist,v4_vipPreorder,v4_myVip,course_cata4,judge_share4,cheek_code4, teacherGetStudentsList, getReocrdTagList, submitReocrd, getStudentRecordListByDay, getPeriodRecordStatusList, getStudentCourseHourInfo, getClearCourseHourList, recordUploadFile, getStudentNewRecord, getRecordUploadPath_h5, haveRelationWithStudent,exchange_code4,addImg,parentGetChildsList,dummy,refreshUserInfo, get7v1Intro_h5,v5_getTeacherList,v5_getTeacherIntro, getAdWindow, getLoginUserIdentify,info_1Vn,check_1Vn,exchange_1Vn,subMsg,couponList,couponShow,couponTea,coursePushList,auditionVideo,v5_viplist,vipRight,getVipList,getVipInfo,allVipCourse,allVipCoupon,my_course_all,course_info5,rightBagInfo,exchangeRightBag,course_cata5,grade_course5,cheek_code5,exchange_code5}
 
 
 // const addImgUrl = "http://os.lingjun.net/api.php/annex/upload"

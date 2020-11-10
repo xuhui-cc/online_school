@@ -124,7 +124,7 @@ let pathDic = {
   study_record: '/packages/common/study_record/study_record',
   videoPlay: '/packages/common/videoPlay/videoPlay',
   auditionVideo:'/packages/common/auditionVideo/auditionVideo',
-  exchangeCode_2C:'/packages/common/exchangeCode_C&C/exchangeCode_C&C'
+  exchangeCode_2C:'/packages/common/exchangeCode_2C/exchangeCode_2C'
 }
 
 function getPagePath(pageName, notIos) {

@@ -55,8 +55,7 @@ Page({
   onLoad: function (options) {
     let that = this
     that.vipRight()    //获取会员卡权益
-    that.allVipCourse()  //获取会员卡课程
-    that.allVipCoupon()   //获取展示优惠券
+    
     // that.couponUseTip()   //优惠券使用提示
     if (options.isshare == 1){
       wx.setStorageSync("gid", options.gid)
@@ -105,15 +104,21 @@ Page({
       "token": wx.getStorageSync("token"),
       "code":that.data.code
     }
-    app.ols.cheek_code4(params).then(d => {
+    app.ols.cheek_code5(params).then(d => {
       
       if (d.data.code == 0) {
+        that.setData({
+          signBtn:false,
+          code_layout:false,
+          code:''
+        })
         if(d.data.data.cate == 2){
           wx.navigateTo({
             url: app.getPagePath('exchangeCode_2C') + '?id=' + d.data.data.id,
           })
         }else{
           that.setData({
+            signBtn:false,
           codeinfo:d.data.data,
           exchange_page:true,
           code_layout:false,
@@ -140,18 +145,20 @@ Page({
       "token": wx.getStorageSync("token"),
       "id":that.data.codeinfo.id
     }
-    app.ols.exchange_code4(params).then(d => {
+    app.ols.exchange_code5(params).then(d => {
       
       if (d.data.code == 0) {
+        that.allVipCourse()   //获取全部关联课程
+        that.allVipCoupon()    //获取关联会员卡
         // that.v4_viplist(1)
-        // that.setData({
-        //   exchange_page:false,
-        //   pay:true,
-        //   code:''
-        // })
-        // that.setData({
-          
-        // })
+        that.setData({
+          exchange_page:false,
+          pay:true,
+          code:'',
+          sign_title:d.data.data.title,
+          sign_remark:d.data.data.remark,
+        })
+        
       } 
       else{
         // console.log("会员列表失败==============" + d.data.msg)
@@ -358,7 +365,8 @@ Page({
   onShow: function () {
     let that = this
     that.viplist()  //获取会员卡信息
-    
+    that.allVipCourse()  //获取会员卡课程
+    that.allVipCoupon()   //获取展示优惠券
   },
 
   /**
@@ -463,52 +471,57 @@ Page({
   //获取全部权益课程
   allVipCourse:function(){
     let that = this
-    var params = {
-      "token": wx.getStorageSync("token"),
-      "num":that.pageNum,
-      "page":that.coursePage
-    }
-    app.ols.allVipCourse(params).then(d => {
-      if (d.data.code == 0) {
-        if(that.coursePage == 1){
-          that.setData({
-            total:d.data.data.total,
-            courseList:d.data.data.lists
-          })
-        }else{
-          var finalList = that.data.courseList.concat(d.data.data.lists)
-          that.setData({
-            courseList:finalList
-          })
-        }
-        
-      } 
-      else{
-        
+    if(that.data.login){
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "num":that.pageNum,
+        "page":that.coursePage
       }
-    })
+      app.ols.allVipCourse(params).then(d => {
+        if (d.data.code == 0) {
+          if(that.coursePage == 1){
+            that.setData({
+              total:d.data.data.total,
+              courseList:d.data.data.lists
+            })
+          }else{
+            var finalList = that.data.courseList.concat(d.data.data.lists)
+            that.setData({
+              courseList:finalList
+            })
+          }
+          
+        } 
+        else{
+          
+        }
+      })
+    }
+    
   },
 
   //获取优惠券数据
   allVipCoupon:function(){
     let that = this
-    var params = {
-      "token": wx.getStorageSync("token"),
-    }
-    app.ols.allVipCoupon(params).then(d => {
-      if (d.data.code == 0) {
-        
-          that.setData({
-            coupon_num:d.data.data.lists.course_count,
-            couponList:d.data.data.lists.course_coupon.slice(0,3)
-          })
-        
-        
-      } 
-      else{
-        
+    if(that.data.login){
+      var params = {
+        "token": wx.getStorageSync("token"),
       }
-    })
+      app.ols.allVipCoupon(params).then(d => {
+        if (d.data.code == 0) {
+          
+            that.setData({
+              coupon_num:d.data.data.course_count,
+              couponList:d.data.data.lists.slice(0,3)
+            })
+
+        } 
+        else{
+          
+        }
+      })
+    }
+    
   },
 
   
@@ -526,6 +539,7 @@ Page({
         that.setData({
           login: true,
         })
+        that.onShow()
         if(type == 1){
           that.setData({
             code:'',
@@ -533,6 +547,14 @@ Page({
             code_layout:true
           })
           console.log("type==1")
+        }else if(type == 2){
+          that.setData({
+            code:'',
+            checkCode:1,
+            signBtn:true
+          })
+        }else{
+          
         }
         // that.v4_viplist()
       }

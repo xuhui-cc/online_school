@@ -70,8 +70,9 @@ z-index: 1;
 }
 .price{
   position: absolute;
-  margin-left: 500rpx;
+  margin-left: 480rpx;
   margin-top: 188rpx;
+  width: 200rpx;
   height: 84rpx;
   font-size: 60rpx;
   font-family: PingFang SC;

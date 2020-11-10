@@ -155,6 +155,7 @@ to_auditionVideo:function(){
     app.ols.couponList(params).then(d => {
       if (d.data.code == 0) {
         for(var i = 0;i<d.data.data.length;i++ ){
+          d.data.data[i].memoLength = d.data.data[i].memo.length
           d.data.data[i].fold = false
         }
         that.setData({

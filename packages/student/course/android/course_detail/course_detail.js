@@ -386,7 +386,7 @@ Page({
       }
     }
     console.log(params, "课程详情接口参数")
-      app.ols.course_info4(params).then(d => {
+      app.ols.course_info5(params).then(d => {
         that.handle_data1(d)   //课程详情数据处理
       })
   },
@@ -431,7 +431,7 @@ Page({
       }
     }
      
-      app.ols.course_cata4(params).then(d => {
+      app.ols.course_cata5(params).then(d => {
        
         if (d.data.code == 0) {
           for(var i=0;i<d.data.data.lists.length;i++){

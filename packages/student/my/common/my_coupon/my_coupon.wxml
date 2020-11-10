@@ -14,9 +14,9 @@
       <view class="btn2" wx:if="{{item.usedtime == 1}}">已使用</view>
       <view class="btn2" wx:if="{{item.usedtime == 2}}">已过期</view>
       <view class="coupon_time" >截止时间：{{item.invalid_time}}</view>
-      <view class="coupon_tipTitle" >使用须知：</view>
-      <view class="{{item.fold?'coupon_tip2':'coupon_tip1'}}" >仅限地面班课使用，详情咨询仅限地面班课使用，详情咨询仅限地面班课使用，详情咨询仅限地面班课使用，详情咨询仅限地面班课使用，详情咨询仅限地面班课使用，详情咨询</view>
-      <view class="flex" style="margin-left:550rpx;" bindtap="fold" data-xb="{{index}}">
+      <view class="coupon_tipTitle" wx:if="{{item.memoLength > 0}}">使用须知：</view>
+      <view class="{{item.fold?'coupon_tip2':'coupon_tip1'}}" >{{item.memo}}</view>
+      <view class="flex" style="margin-left:550rpx;" bindtap="fold" data-xb="{{index}}" wx:if="{{item.memoLength > 55}}">
         <image class="fold_img" wx:if="{{item.fold}}" src="/images/other/ssj2.png"></image>
         <image class="fold_img" wx:else="" src="/images/other/xsj2.png"></image>
         <view class="fold_btn" wx:if="{{item.fold}}">收起</view>

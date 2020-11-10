@@ -8,14 +8,14 @@
   <image class="exchange_bg" src="./resource/exchange_bg.png"></image>
 
   <!-- 课程 -->
-  <view class="course_head">课程<text class="course_intro">20门精选好课开通会员免费学！</text></view>
+  <view class="course_head">课程<text class="course_intro">{{rightBagInfo.count}}门精选好课开通会员免费学！</text></view>
   <view style="position: absolute;margin-top:764rpx">
-    <view wx:for="{{2}}" wx:key="index">
+    <view wx:for="{{rightBagInfo.kdata}}" wx:key="index">
       <view class="flex" style="margin-bottom:20rpx;">
         <image class="vip_laber" src="/images/other/vip_laber2.png"></image>
-        <image class="course_face" src="./resource/face.png"></image>
+        <image class="course_face" src="{{item.face}}"></image>
         <view>
-          <view class="course_title">高三数学三角函数专题课数专题课专题</view>
+          <view class="course_title">{{item.title}}</view>
           <view class="free_tip">免费学</view>
         </view>
       </view>
@@ -25,11 +25,11 @@
   <!-- 课程 -->
 
   <!-- 优惠券 -->
-  <view class="course_head" style="margin-top:1105rpx;">优惠券<text class="course_intro">价值99999元优惠券开通会员免费赠送！</text></view>
+  <view class="course_head" style="margin-top:1105rpx;" wx:if="{{rightBagInfo.summoney > 0}}">优惠券<text class="course_intro">价值{{rightBagInfo.summoney}}元优惠券开通会员免费赠送！</text></view>
   <view class="flex" style="margin-top: 1155rpx;margin-left: 74rpx;position: absolute;z-index:2">
-    <view wx:for="{{2}}" wx:key="index" class="coupon_layout">
-      <view class="cooupon_title">课程优惠券名称课程</view>
-      <view class="coupon_price"><text style="font-size: 20rpx;">¥ </text> 99999</view>
+    <view wx:for="{{rightBagInfo.coupon}}" wx:key="index" class="coupon_layout">
+      <view class="cooupon_title">{{item.title}}</view>
+      <view class="coupon_price"><text style="font-size: 20rpx;">¥ </text> {{item.money}}</view>
       <image class="coupon_bg" wx:if="{{index == 0}}" src="./resource/coupon_bg1.png"></image>
       <image class="coupon_bg" wx:if="{{index == 1}}" src="./resource/coupon_bg2.png"></image>
     </view>
@@ -37,7 +37,7 @@
 
   <!-- 优惠券 -->
 
-  <image class="sign_btn" src="./resource/sign_btn.png" bindtap="sign_rightBag"></image>
+  <image class="sign_btn" src="./resource/sign_btn.png" bindtap="exchangeRightBag"></image>
 
   <!-- 开通成功弹框-->
   <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{open_rightBag}}"></view>

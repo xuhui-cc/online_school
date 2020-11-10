@@ -50,6 +50,7 @@
   margin-left: 74rpx;
   width: 234rpx;
   height: 135rpx;
+  border-radius: 8rpx;
 }
 .course_title{
   margin-left: 20rpx;

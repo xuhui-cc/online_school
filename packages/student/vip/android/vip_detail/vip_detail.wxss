@@ -472,7 +472,7 @@
 }
 .checkinfo_tip1{
   position: fixed;
-  margin-top: 315rpx ;
+  margin-top: 345rpx ;
   margin-left: 181rpx;
   width: 374rpx;
   height: 47rpx;
@@ -769,7 +769,7 @@ border-radius: 20px 20px 0px 0px;
   top: 300rpx;
   left: 67rpx;
   width: 616rpx;
-  height: 630rpx;
+  height: 667rpx;
   background: #FFFFFF;
   opacity: 1;
   border-radius: 22rpx;
@@ -814,6 +814,7 @@ opacity: 1;
 .mask_input{
   margin-top: 27rpx ;
   margin-left: 53rpx;
+  padding-left: 15rpx;
   width:323rpx;
   height:77rpx;
   font-size:30rpx;
@@ -849,5 +850,18 @@ opacity: 1;
   width: 74rpx;
   height: 74rpx;
   z-index: 355;
+}
+.mask_checkCode_tip{
+  position: fixed;
+  margin-top: 13rpx ;
+  margin-left: 55rpx;
+  width:180rpx;
+  height:33rpx;
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 33rpx;
+  color: #FF2727;
+  
 }
 /*开通按钮提示蒙层*/

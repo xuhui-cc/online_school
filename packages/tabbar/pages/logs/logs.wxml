@@ -381,7 +381,7 @@
                     <view class="flex" style="margin-left:30rpx;margin-top:-20rpx;">
                       <view class="course_text" wx:if="{{item.cate == 1}}" style="width:75rpx;">直播课</view>
                       <view class="margin_shu" wx:if="{{item.cate == 1}}"></view>
-                      <view class="course_text" style="{{item.cate == 1?'margin-left:15rpx;':''}}">{{item.order_num}}人学习</view>
+                      <view class="course_text" style="{{item.cate == 1?'margin-left:15rpx;':''}}">{{item.randnum}}人学习</view>
                       <view class="margin_shu"></view>
                       <view class="course_num">{{item.class_hour}}课时</view>
                     </view>
@@ -395,7 +395,7 @@
                       <view class="old_price" style="margin-top: 35rpx;">¥{{item.price}}</view>
                     </view>
                     <view class="flex">
-                      <view class="join_num">{{item.order_num}}人参与</view>
+                      <view class="join_num">{{item.randnum}}人参与</view>
                       <view class="go_btn" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{1}}" >
                         <image class="lightning" src="./resource/lightning.png"></image>
                         <view class="hot_to">去拼团</view>
@@ -410,7 +410,7 @@
                       <view class="old_price" style="margin-top: 35rpx;">¥{{item.price}}</view>
                     </view>
                     <view class="flex">
-                      <view class="join_num">{{item.order_num}}人参与</view>
+                      <view class="join_num">{{item.randnum}}人参与</view>
                       <view class="go_btn" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{3}}">
                         <image class="lightning" src="./resource/lightning.png"></image>
                         <view class="hot_to">去秒杀</view>
@@ -424,7 +424,7 @@
                   <view class="flex" style="margin-left:30rpx;margin-top:-20rpx;">
                       <view class="course_text" wx:if="{{item.cate == 1}}" style="width:75rpx;">直播课</view>
                       <view class="margin_shu" wx:if="{{item.cate == 1}}"></view>
-                      <view class="course_text" style="{{item.cate == 1?'margin-left:15rpx;':''}}">{{item.order_num}}人学习</view>
+                      <view class="course_text" style="{{item.cate == 1?'margin-left:15rpx;':''}}">{{item.randnum}}人学习</view>
                       <view class="margin_shu"></view>
                       <view class="course_num">{{item.class_hour}}课时</view>
                     </view>
@@ -440,7 +440,7 @@
         </view>
       </view>
     </view>
-      <!-- 已开通状态 -->
+    <!-- 已开通状态 -->
 
     </view>
     <!-- vip迭代模式 -->
