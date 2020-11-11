@@ -15,8 +15,10 @@
   border: none;
 }
 .tip{
+  position: fixed;
+  bottom:220rpx;
   margin-left: 136rpx;
-  margin-top: 73rpx;
+  /* margin-top: 30rpx; */
   /* width:478rpx; */
   height:37rpx;
   font-size:26rpx;
@@ -30,7 +32,7 @@
   position: fixed;
   bottom: 120rpx;
   margin-left: 135rpx;
-  margin-top: 21rpx;
+  /* margin-top: 21rpx; */
   display: flex;
   width:486rpx;
   height:88rpx;

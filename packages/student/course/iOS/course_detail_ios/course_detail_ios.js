@@ -1,7 +1,8 @@
+// pages/course_detail/course_detail.js
 const app = getApp()
 Page({
-  
-  openFilePath: '',     // 打开的文件路径 在onShow中删除文件
+  // 打开的文件路径 在onShow中删除文件
+  openFilePath: '',
   /**
    * 页面的初始数据
    */
@@ -30,7 +31,13 @@ Page({
       console.log("非分享打开")
     }
     // that.course_detail()  //获取课程详情
+    
   },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
@@ -43,12 +50,6 @@ Page({
       that.getcourse_cata()   //课程目录接口
     }
   },
-
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -70,7 +71,44 @@ Page({
    */
   onReachBottom: function () {},
 
-  
+  /**
+   * 清除本地保存的文件
+  */
+  clearLocalFile: function () {
+    let that = this
+
+    if (this.openFilePath == '') {
+      return
+    }
+
+    let fs = wx.getFileSystemManager()
+    let filePath = this.openFilePath
+    fs.unlink({
+      filePath: filePath,
+      success(res) {
+        console.log("文件删除成功" + filePath)
+        that.openFilePath = ''
+      },
+      fail(res) {
+        console.log("文件删除失败" + filePath)
+        console.log(res)
+      }
+    })
+  },
+
+  //获取微信绑定手机号登录
+  getPhoneNumber: function (e) {
+    var that = this
+    app.loginTool.getPhoneNumber(e, that.data.gid, function(success, message){
+      if (success) {
+        that.setData({
+          login: true
+        })
+        that.onShow()
+      }
+    })
+    
+  },
 
   /**
     * 用户点击右上角分享
@@ -313,61 +351,21 @@ Page({
     }
   },
 
-  /**
-  * 清除本地保存的文件
-  */
-  clearLocalFile: function () {
+  //课程权限提示
+  course_authority:function(e){
     let that = this
-
-    if (this.openFilePath == '') {
-      return
+    var xb = e.currentTarget.dataset.xb
+    console.log(xb)
+    var buy = that.data.course_info.buy
+    if (buy == 1|| (buy >= 3 && buy <= 5)) {
+      console.log("有课程权限")
+    } else {
+      that.setData({
+        coupon_use:true
+      })
+      console.log("没有权限")
     }
-
-    let fs = wx.getFileSystemManager()
-    let filePath = this.openFilePath
-    fs.unlink({
-      filePath: filePath,
-      success(res) {
-        console.log("文件删除成功" + filePath)
-        that.openFilePath = ''
-      },
-      fail(res) {
-        console.log("文件删除失败" + filePath)
-        console.log(res)
-      }
-    })
   },
-
-  //获取微信绑定手机号登录
-  getPhoneNumber: function (e) {
-    var that = this
-    app.loginTool.getPhoneNumber(e, that.data.gid, function(success, message){
-      if (success) {
-        that.setData({
-          login: true
-        })
-        that.onShow()
-      }
-    })
-    
-  },
-
-  // //课程权限提示
-  // course_authority:function(e){
-  //   let that = this
-  //   var xb = e.currentTarget.dataset.xb
-  //   console.log(xb)
-  //   var buy = that.data.course_info.buy
-  //   if (buy == 1|| (buy >= 3 && buy <= 5)) {
-  //     console.log("有课程权限")
-  //   } else {
-  //     that.setData({
-  //       coupon_use:true
-  //     })
-  //     console.log("没有权限")
-  //   }
-  // },
-
 
   /*----------------------------------------------------接口-------------------------------------------- */
   
@@ -387,7 +385,7 @@ Page({
       }
     }
     console.log(params, "课程详情接口参数")
-      app.ols.course_info4(params).then(d => {
+      app.ols.course_info5(params).then(d => {
         that.handle_data1(d)   //课程详情数据处理
       })
   },
@@ -432,7 +430,7 @@ Page({
       }
     }
      
-      app.ols.course_cata4(params).then(d => {
+      app.ols.course_cata5(params).then(d => {
        
         if (d.data.code == 0) {
           for(var i=0;i<d.data.data.lists.length;i++){

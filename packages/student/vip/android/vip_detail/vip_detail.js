@@ -27,7 +27,9 @@ Page({
     circular: true, //是否采用衔接滑动
     currentSwiperIndex: 0, //swiper当前索引
     btn_buy:app.globalData.btn_buy,     //购买按钮屏蔽
-    signBtn:false    //开通会员按钮
+    signBtn:false,    //开通会员按钮
+    courseList:'',
+    couponList:'',
   },
 
   swiperBindchange(e) {
@@ -55,7 +57,9 @@ Page({
   onLoad: function (options) {
     let that = this
     that.vipRight()    //获取会员卡权益
-    
+    that.setData({
+      couponUseTip:wx.getStorageSync('couponUseTip')
+    })
     // that.couponUseTip()   //优惠券使用提示
     if (options.isshare == 1){
       wx.setStorageSync("gid", options.gid)
@@ -118,18 +122,18 @@ Page({
           })
         }else{
           that.setData({
-            signBtn:false,
+          signBtn:false,
           codeinfo:d.data.data,
           exchange_page:true,
           code_layout:false,
           code:''
         })
         }
-        
       } else if(d.data.code == 5){
         that.setData({
           checkCode:-1,
           check_msg:d.data.msg
+          
         })
       }
       else{
@@ -150,6 +154,7 @@ Page({
       if (d.data.code == 0) {
         that.allVipCourse()   //获取全部关联课程
         that.allVipCoupon()    //获取关联会员卡
+        that.viplist()  //获取会员卡信息
         // that.v4_viplist(1)
         that.setData({
           exchange_page:false,
@@ -158,9 +163,18 @@ Page({
           sign_title:d.data.data.title,
           sign_remark:d.data.data.remark,
         })
-        
-      } 
-      else{
+      } else if(d.data.code == 5){
+        wx.showToast({
+          title: d.data.msg,
+          icon:"none",
+        })
+        that.setData({
+          exchange_page:false,
+          code:'',
+        })
+        that.viplist()  //获取会员卡信息
+        that.allVipCourse()   //获取全部关联课程
+        that.allVipCoupon()    //获取关联会员卡
         // console.log("会员列表失败==============" + d.data.msg)
       }
     })
@@ -594,6 +608,7 @@ Page({
 
   couponUes:function(){
     let that = this 
+    
     wx.showToast({
       title: wx.getStorageSync('couponUseTip').msg,
       icon:"none"

@@ -7,7 +7,7 @@
       <view class="decribe">{{item.intro}}</view>
       <view class="flex" style="position: absolute;">
         <view class="dot" wx:if="{{item.days}}"></view>
-        <view class="dueTime" wx:if="{{item.days}}"><text style="font-size: 32rpx;font-weight: Bold;">{{item.days}}</text>后到期</view>
+        <view class="dueTime" wx:if="{{item.days}}"><text style="font-size: 32rpx;font-weight: Bold;">{{item.days}}</text>天后到期</view>
       </view>
       <view class="course-content">
           <view class="content-left">
@@ -40,7 +40,7 @@
   </view>
 
 
-  <view wx:if="{{course == ''}}">
+  <view wx:if="{{courseList == ''}}">
     <image class="null_img" src="/images/null/course_null.png"></image>
     <view class="null">暂无课程</view>
   </view>

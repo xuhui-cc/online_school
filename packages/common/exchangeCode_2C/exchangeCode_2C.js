@@ -15,10 +15,15 @@ Page({
    */
   onLoad: function (options) {
     let that = this 
-    that.setData({
-      id:options.id,
-      ewm:options.ewm
-    })
+    
+      that.setData({
+        id:options.id,
+        ewm:options.ewm,
+        // id:'61',
+        // ewm:'1'
+      })
+    
+    
   },
 
   /**
@@ -99,9 +104,16 @@ Page({
   //获取权益包信息
   rightBagInfo:function(){
     let that = this 
-    var params = {
-      "token": wx.getStorageSync("token"),
-      "id": that.data.id
+    if(that.data.ewm  == 1){
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "code_id": that.data.id
+      }
+    }else{
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "id": that.data.id
+      }
     }
     app.ols.rightBagInfo(params).then(d => {
       if (d.data.code == 0) {
@@ -114,19 +126,101 @@ Page({
   },
 
   //兑换权益包
-  exchangeRightBag:function(){
+  exchangeRightBag:function(id){
     let that = this 
+      
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "id": id
+      }
+      app.ols.exchange_code5(params).then(d => {
+        if (d.data.code == 0) {
+          that.setData({
+            open_rightBag:true
+          })
+        } 
+      })
+      
+   
+    
+  },
+
+  exchange_1Vn:function(ex_id){
+    let that = this
     var params = {
       "token": wx.getStorageSync("token"),
-      "id": that.data.id
+      "id":ex_id
     }
-    app.ols.exchangeRightBag(params).then(d => {
+    app.ols.exchange_1Vn_v5(params).then(d => {
+      
       if (d.data.code == 0) {
-        that.setData({
-          open_rightBag:true
+        wx.redirectTo({
+          url: app.getPagePath('vip_detail') + '?ewm_exchange=1',
         })
+       
       } 
+      else{
+        wx.showToast({
+          title: d.data.msg,
+          icon: "none",
+          duration: 2950
+        })
+        setTimeout(function () {
+          wx.switchTab({
+            url: app.getPagePath('logs'),
+          })
+        }, 3000)
+      }
     })
+  },
+
+  /**
+   * 权益包兑换前验证
+   */
+  check_1Vn:function(){
+    let that = this
+    if(that.data.ewm == 1){
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "id":that.data.id
+      }
+      app.ols.check_1Vn_v5(params).then(d => {
+        if (d.data.code == 0) {
+          
+          that.exchange_1Vn(d.data.data.id)   //兑换权益包
+        } 
+        else if(d.data.code == 5){
+          console.log(d.data.msg.indexOf("重复"),"重复")
+          if(d.data.msg.indexOf("重复") >= 0){
+            wx.showToast({
+              title: d.data.msg,
+              icon: "none",
+              duration: 950
+            })
+            setTimeout(function () {
+              console.log("跳转")
+              wx.redirectTo({
+                url: app.getPagePath('vip_detail') + '?ewm_exchange=1',
+              })
+            }, 1000) 
+          }else{
+            wx.showToast({
+              title: d.data.msg,
+              icon: "none",
+              duration: 950
+            })
+            setTimeout(function () {
+              console.log("跳转")
+              wx.switchTab({
+                url: app.getPagePath('logs'),
+              })
+            }, 1000)
+          }
+        }
+      })
+    }else{
+      that.exchangeRightBag(that.data.id)   //兑换权益包
+    }
   },
 
 })

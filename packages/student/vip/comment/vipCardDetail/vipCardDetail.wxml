@@ -9,7 +9,7 @@
 
   <view class="right_layout">
 
-    <view class="flex" style="margin-top:37rpx" wx:if="{{vipInfo.lists.course_coupon != ''}}">
+    <view class="flex" style="margin-top:37rpx" wx:if="{{vipInfo.lists.open_coupon  > 0}}">
       <view class="vip2_couponHead">优惠券权益</view>
     </view>
 
@@ -29,8 +29,8 @@
           
     </scroll-view>
 
-    <view class="vip2_couponHead" style="{{vipInfo.lists.course_coupon != ''?'':'margin-top:30rpx;'}}">课程权益</view>
-      <view class="vip2_courseRightIntro">{{vipInfo.total}}门精选好课免费学</view>
+    <view class="vip2_couponHead" style="{{vipInfo.lists.open_coupon  > 0?'':'margin-top:30rpx;'}}" wx:if="{{vipInfo.count > 0}}">课程权益</view>
+      <view class="vip2_courseRightIntro" wx:if="{{vipInfo.count > 0}}">{{vipInfo.count}}门精选好课免费学</view>
 
     <view style="margin-top:32rpx;">
       <view wx:for="{{courseList}}" wx:key="index" style="margin-left:30rpx;margin-bottom:42rpx;">

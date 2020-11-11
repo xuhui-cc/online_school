@@ -3,11 +3,8 @@
   <button class="login1"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="0"></button>
   <image class="back" src="/images/navi/w_back2.png" bindtap="back"></image>
 
-
-
   <image class="bg3" src="./resource/bg3.png"></image>
   
-
   <view class="flex" style="margin-top:176rpx;margin-left: 50rpx;">
     <image wx:if="{{!login}}" src="/images/defaultHead/my_head.png" class="ava"></image>
     <view class="ava" wx:else="">
@@ -15,17 +12,16 @@
     </view>
     
     <view wx:if="{{!login}}" class="nick">请登录</view>
-    <view class="flex" wx:if="{{vip_list[0].is_buy == 0 && login}}" >
+    <view class="flex" wx:if="{{login && vip ==''}}" >
       <open-data type="userNickName" class="nick"></open-data>
-      <view class="btn" bindtap="vip_buy" hidden="{{btn_buy}}">立即开通</view>
+      <!-- <view class="btn" bindtap="vip_buy" hidden="{{btn_buy}}">立即开通</view> -->
     </view>
-    <view style="margin-top: 15rpx;" wx:if="{{vip_list[0].is_buy >0 && login}}">
+    <view style="margin-top: 15rpx;" wx:if="{{vip}}">
       <open-data type="userNickName" class="nick"></open-data>
-      <!-- <view class="nick" >张东升的假发</view> -->
       <view class="flex">
         <image class="badge_img" src="/images/other/vip_badge2.png"></image>
-        <view wx:if="{{vip_list[0].valid_days == 0}}" class="vip_time">永久</view>
-        <view wx:else="" class="vip_time">{{vip_list[0].valid_days}}到期</view>
+        <view wx:if="{{vip.datas.valid_days == 0}}" class="vip_time">永久</view>
+        <view wx:else="" class="vip_time">{{vip.datas.valid_days}}到期</view>
       </view>
     </view>
   </view>
@@ -46,12 +42,118 @@
   </swiper> -->
 
   <!-- <image class="" src="{{vip_list[0].bgpic}}"></image> -->
-  <image class="vip_fm" src="{{imgUrls[0]}}"></image>
+ 
+  <!-- vip1版 -->
+  <!-- <image class="vip_fm" src="{{imgUrls[0]}}"></image>
   <view class="checkinfo_head" style="margin-left: 185rpx;margin-top: 385rpx; position: absolute;">{{vip_list[0].title}}</view>
   <view class="intro">{{vip_list[0].memo}}</view>
-  <view class="price"  hidden="{{!vip.bar}}"><text style="font-size:32rpx;font-weight:400;" >¥</text>{{vip_list[0].price}}</view>
+  <view class="price"  hidden="{{!vip.bar}}"><text style="font-size:32rpx;font-weight:400;" >¥</text>{{vip_list[0].price}}</view> -->
+  <!-- vip1版 -->
 
-  <button class="login1" style="margin-left: 485rpx;margin-top: 645rpx;width:240rpx;height:40rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="1"></button>
+  <!-- vip2版（会员叠加）-->
+  
+    <view class="vip2_rightLatout">
+      <view wx:for="{{vipRight}}" wx:key="index" style="margin-right:30rpx;">
+        <image class="vip2_rightIcon" src="{{item.coupon_image}}"></image>
+        <view class="vip2_rightTitle">{{item.coupon_title}}</view>
+      </view>
+    </view>
+    <button class="login1" style="margin-left: 430rpx;margin-top:380rpx;width:240rpx;height:40rpx;"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="1"></button>
+    <image  class="vip2_exchangeEntry" src="./resource/exchange_entry.png" bindtap="exchange"></image>
+    <button class="login1" style="margin-left: 480rpx;margin-top:460rpx;width:185rpx;height:70rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="2"></button>
+    <view class="vip2_signBtn1" bindtap="signBtn" wx:if="{{vip == ''}}">开通会员</view>
+    <view class="vip2_signBtn1" bindtap="to_myVipCard" wx:else="">查看已有会员</view>
+    <image class="vip2_fm" src="./resource/vip2_card.png"></image>
+
+    <!-- 未开通vip -->
+    <view class="vip2_layout" wx:if="{{vip == '' && couponList == '' &&   courseList == ''}}">
+      <image class="unsign_vip2_head" src="/images/vip2_common/unsign_vip2_hade.png"></image>
+
+        <view class="flex">
+          <view class="vip2_shu"></view>
+          <view class="vip2_head">名师好课免费学</view>
+        </view>
+        <image class="vip2_badge" src="/images/vip2_common/vip2_badge.png"></image>
+        <view class="vip2_vs_content">只能学习<text style="font-size: 32rpx;color: rgba(255, 166, 32, 1);font-weight: Bold;">部分</text>试听课</view>
+        <view class="vip2_vs_content" style="margin-top:92rpx;margin-left:423rpx;"><text style="font-size: 32rpx;color: rgba(255, 166, 32, 1);font-weight: Bold;">畅听</text>大咖经典好课；易错知识点直播课。</view>
+        <image class="vip2_vs" src="/images/vip2_common/vip2_vs.png"></image>
+
+        <view class="flex">
+          <view class="vip2_shu"></view>
+          <view class="vip2_head">精品班课折扣优惠</view>
+        </view>
+        <image class="vip2_badge" src="/images/vip2_common/vip2_badge.png"></image>
+        <view class="vip2_vs_content"><text style="font-size: 32rpx;color: rgba(255, 166, 32, 1);font-weight: Bold;">原价</text>购买领军教育地面班课</view>
+        <view class="vip2_vs_content" style="margin-top:92rpx;margin-left:423rpx;">领军教育地面班课<text style="font-size: 32rpx;color: rgba(255, 166, 32, 1);font-weight: Bold;">超强折扣</text>优惠</view>
+        <image class="vip2_vs" src="/images/vip2_common/vip2_vs.png"></image>
+        
+        <button class="login1" style="margin-left: 30rpx;margin-top:50rpx;width:690rpx;height:100rpx;"   open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="2"></button>
+        <image class="vip2_signBtn2" src="/images/vip2_common/vip2_signBtn.png" bindtap="signBtn"></image>
+    </view>
+    <!-- 未开通vip -->
+
+    <!-- 已开通会员 -->
+    <view class="vip2_layout" wx:if="{{couponList || courseList}}">
+      <view class="flex" style="margin:36rpx 190rpx;">
+        <view class="vip2_heng"></view>
+        <view class="vip2_haveHead">已拥有的权益</view>
+        <view class="vip2_heng"></view>
+      </view>
+      <view class="flex"  wx:if="{{couponList}}">
+        <view class="vip2_couponHead">优惠券权益</view>
+        <view class="vip2_more" bindtap="to_myCoupon">更多</view>
+        <image class="vip2_next" src="/images/navi/next.png" bindtap="to_myCoupon"></image>
+      </view>
+
+      <scroll-view scroll-x="true" style=" white-space: nowrap;display: flex;margin-bottom:50rpx;margin-left:30rpx;margin-top:32rpx;width:720rpx" >
+        <view wx:for="{{couponList}}" wx:key="index" style="width: 387rpx; height: 194rpx; display: inline-block;margin-right:20rpx;">
+          <view >
+            <view class="vip2_couponTitle">{{item.title}}</view>
+            <view class="vip2_couponPrice" wx:if="{{index == 0}}"><text style="font-size:30rpx">¥ </text> {{item.money}}</view>
+            <view class="vip2_couponPrice" wx:if="{{index == 1}}" style="color: #1BB059;"><text style="font-size:30rpx">¥ </text> {{item.money}}</view>
+            <view class="vip2_couponPrice" wx:if="{{index == 2}}" style="color: #20BAFF;"><text style="font-size:30rpx">¥ </text> {{item.money}}</view>
+            <view class="vip2_couponBtn" bindtap="couponUes"></view>
+            <image class="vip2_couponFace" wx:if="{{index == 0}}" src="/images/vip2_common/vip2_coupon1.png"></image>
+            <image class="vip2_couponFace" wx:if="{{index == 1}}" src="/images/vip2_common/vip2_coupon2.png"></image>
+            <image class="vip2_couponFace" wx:if="{{index == 2}}" src="/images/vip2_common/vip2_coupon3.png"></image>
+          </view>
+          
+        </view>
+        
+        <image class="vip2_couponMore" wx:if="{{coupon_num > 3}}" src="/images/vip2_common/vip2_couponMore.png" bindtap="to_myCoupon"></image>
+        
+      </scroll-view>
+
+      <view class="vip2_couponHead" wx:if="{{courseList}}">课程权益</view>
+      <view class="vip2_courseRightIntro" wx:if="{{courseList}}">{{total}}门精选好课免费学</view>
+      
+      <view wx:for="{{courseList}}" wx:key="index" style="margin-left:30rpx;margin-bottom:42rpx;">
+      
+        <view class="flex" bindtap="vip_course_detail" data-xb="{{index}}">
+          <image class="laber" src="/images/other/vip_laber2.png" ></image>
+          <image class="fm" src="{{item.face}}"></image>
+          <view>
+            <view class="title">{{item.title}}</view>
+            <view class="flex">
+              <view class="num">{{item.class_hour}}课时</view>
+              
+              <view class="tip">免费学</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      
+    </view>
+    <!-- 已开通会员 -->
+
+
+  <!-- vip2版（会员叠加）-->
+
+  
+
+  <!-- 原vip1 -->
+  <!-- <button class="login1" style="margin-left: 485rpx;margin-top: 645rpx;width:240rpx;height:40rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="1"></button>
   <view class="layout">
     <image  class="exchange_entry" src="./resource/exchange_entry.png" bindtap="exchange"></image>
     <view class="h1">{{vip_list[0].title}}会员权益</view>
@@ -76,9 +178,12 @@
       </view>
     </view>
 
-  </view>
 
-  <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!code_layout || !login}}"></view>
+
+  </view> -->
+  <!-- 原vip1 -->
+
+    <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!code_layout || !login}}"></view>
     <view style="margin-top:-120rpx;" hidden="{{!code_layout || !login}}">
       <image class="bg_exchange" src="./resource/bg_exchange.png" ></image>
       <input class="input" placeholder="请输入您的兑换码" placeholder-style=" text-align: center;" bindinput="input_code" value="{{code}}"></input>
@@ -87,15 +192,16 @@
       <view class="btn1" wx:else="" bindtap="submit_check">提交</view>
       <image class="exchange_close" src="/images/other/exchange_close.png" bindtap="close_code"></image>
     </view>
+  
 
-  <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!exchange_page}}"></view>
+  <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{exchange_page}}"></view>
   <!--  -->
-  <view style="margin-top:-120rpx;" hidden="{{!exchange_page}}">
+  <view style="margin-top:-120rpx;" wx:if="{{exchange_page}}">
     <image class="bg_exchange1" src="./resource/exchange_page.png" ></image>
     <view class="checkinfo_head1">{{codeinfo.title}}</view>
     <view class="checkinfo_intro">{{codeinfo.remark}}</view>
-    <view class="checkinfo_tip1">确认兑换为</view>
-    <view class="checkinfo_tip1" style="margin-top: 366rpx ;">{{codeinfo.title}}？</view>
+    <view class="checkinfo_tip1">确认兑换</view>
+    <view class="checkinfo_tip1" style="margin-top: 395rpx ;">{{codeinfo.title}}？</view>
     <view class="checkinfo_tip2" wx:if="{{vip.expire > 0}}">您当前为{{vip_list[0].title}}</view>
     <view class="checkinfo_tip2" style="margin-top: 455rpx ;" wx:if="{{vip.expire > 0}}">确认兑换后将替换掉原有会员卡</view>
     <view class="btn2" bindtap="yes_exchange">是，立即兑换</view>
@@ -106,10 +212,10 @@
   <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!pay}}"></view>
   <view style="margin-top:-120rpx;" hidden="{{!pay}}">
     <image class="success_img" src="./resource/seuccess_vip1.png" ></image>
-    <view class="checkinfo_head1">{{vip_list[0].title}}</view>
-    <view class="checkinfo_intro">{{vip_list[0].memo}}</view>
+    <view class="checkinfo_head1">{{sign_title}}</view>
+    <view class="checkinfo_intro">{{sign_remark}}</view>
     <view class="cuccess_tip">您已成功开通</view>
-    <view class="cuccess_tip" style="margin-top:390rpx">{{vip_list[0].title}}</view>
+    <view class="cuccess_tip" style="margin-top:390rpx">{{sign_title}}</view>
     <view class="cuccess_tip1">立即开启您的学习成功之旅</view>
     <view class="success_yes" bindtap="success_yes">查看会员权限</view>
     <image class="exchange_close"  style="margin-top:700rpx" src="/images/other/exchange_close.png" bindtap="success_yes"></image>
@@ -127,6 +233,34 @@
     <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
     <image class="tologin" src="../../images/tologin.png"></image>
   </view> -->
+
+
+  <view class="mask1" wx:if="{{signBtn}}"></view>
+  <!-- wx:if="{{signBtn}}" -->
+  <view class="signBtnTipLayout" wx:if="{{signBtn}}">
+    
+    <view class="flex">
+      <view class="mask_shu"></view>
+      <view class="mask_head">如何开通会员？</view>
+    </view>
+    <view class="mask_content" style="margin-top: 27rpx;">{{couponUseTip.contact}}<text style="font-size:38rpx;font-weight:Bold;color:rgba(243,147,10,1);" user-select='true'> {{couponUseTip.mobile}} </text> {{couponUseTip.coupon}}</view>
+    <view class="mask_content">{{couponUseTip.student}}</view>
+    <view class="flex">
+      <input class="mask_input" placeholder="请输入您的兑换码" bindinput="input_code" value="{{code}}" ></input>
+      <view class="mask_signBtn" style="background: #FBDDB3;" wx:if="{{!code}}">立即开通</view>
+      <view class="mask_signBtn" bindtap="submit_check" wx:else="">立即开通</view>
+    </view>
+    <view  class="mask_checkCode_tip" wx:if="{{checkCode == -1}}">*{{check_msg}}</view>
+    <!--  -->
+  </view>
+  <image class="mask_closeImg" src="/images/other/exchange_close.png" bindtap="signBtn" wx:if="{{signBtn}}"></image>
+
+  <!--  -->
   
-  
+
+
+
+
+
+<!-- container -->
 </view>
