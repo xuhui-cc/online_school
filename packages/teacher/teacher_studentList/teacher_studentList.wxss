@@ -82,7 +82,7 @@ page{
 .studentList_Header_icon {
   width: 36rpx;
   height: 36rpx;
-  margin-left: 36rpx;
+  /* margin-left: 36rpx; */
 }
 
 .studentList_Header_title {
@@ -92,11 +92,51 @@ page{
   margin-left: 10rpx;
 }
 
+.class_Cell {
+  height: 163rpx;
+  margin-left: 30rpx;
+  width: 690rpx;
+  border-radius: 17rpx;
+  background-color: white;
+  box-shadow: 0rpx 3rpx 41rpx rgba(0,13,77,0.07);
+  -webkit-box-shadow: 0px 3px 41px rgba(0,13,77,0.07);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.class_name {
+  margin-top: 33rpx;
+  margin-left: 26rpx;
+  max-width: 565rpx;
+  font-size: 34rpx;
+  color: #000934;
+  font-weight: bold;
+  height: 48rpx;
+  line-height: 48rpx;
+}
+
+.class_point {
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  margin-left: 26rpx;
+  background-color: #FFE35A;
+}
+
+.class_studentCount {
+  margin-left: 12rpx;
+  color: #8288A7;
+  font-size: 26rpx;
+  max-width: 545rpx;
+}
+
 .student_Cell {
   height: 215rpx;
   margin-left: 30rpx;
   width: 690rpx;
-  border-radius: 17rpx;background-color: white;
+  border-radius: 17rpx;
+  background-color: white;
   box-shadow: 0rpx 3rpx 41rpx rgba(0,13,77,0.07);
   -webkit-box-shadow: 0px 3px 41px rgba(0,13,77,0.07);
   position: relative;

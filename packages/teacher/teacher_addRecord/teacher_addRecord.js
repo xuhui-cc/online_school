@@ -3,7 +3,7 @@ const app = getApp()
 Page({
 
   // 学员id
-  sid: null,
+  id: null,
 
   // 课时选择器 过渡处理数据
   clearCountPickerData: {
@@ -17,10 +17,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 提交类型 1-提交单个学员学习日志 2-提交班级学习日志
+    type: null,
     // 学员名字
-    studentName: '',
+    titleName: '',
     // 今日日期
     date: '',
+    // 班级——学员列表 type为2时有值
+    studentList: null,
     // 日志类型数组
     typeList: [],
 
@@ -58,6 +62,9 @@ Page({
     this.setUpInitialData(options)
     this.getSystemSize()
     this.getRecordTagList()
+    if (this.data.type == 2) {
+      this.getClassStudentList()
+    }
   },
 
   /**
@@ -136,9 +143,10 @@ Page({
   setUpInitialData: function(options) {
     let nowDate = new Date()
     let nowDateStr = app.util.customFormatTimeByDate(nowDate, 'yyyy/MM/dd')
-    this.sid = options.sid,
+    this.id = options.type == 1 ? options.sid : options.classid,
     this.setData({
-      studentName: options.studentname,
+      type: options.type,
+      titleName: options.type == 1 ? options.studentname : options.classname,
       date: nowDateStr
     })
   },
@@ -266,7 +274,7 @@ Page({
     let tag = this.data.typeList[this.data.selectedTypeIndex]
     let param = {
       token: wx.getStorageSync('token'),
-      sid: this.sid,
+      sid: this.id,
       tid: tag.id,
       content: content,
     }
@@ -297,6 +305,48 @@ Page({
     })
   },
 
+  /**
+   * 获取班级学员列表
+  */
+  getClassStudentList: function() {
+    let studentList = [
+      {
+        selected: true,
+        name: '易洋千玺'
+      },
+      {
+        selected: true,
+        name: '刘思源'
+      },
+      {
+        selected: true,
+        name: '乌云其木格'
+      },
+      {
+        selected: true,
+        name: '买买提.伊布拉音'
+      },
+      {
+        selected: true,
+        name: '李明'
+      },
+      {
+        selected: true,
+        name: '李继勇'
+      },
+      {
+        selected: true,
+        name: '晁金金'
+      },
+      {
+        selected: true,
+        name: '陈娇'
+      }
+    ]
+    this.setData({
+      studentList: studentList
+    })
+  },
 
   //-------------------------------------------------------交互事件-------------------------------------------------
   /**
@@ -505,6 +555,18 @@ Page({
     //     })
     //   }
     // })
+  },
+
+  /**
+   * 班级添加日志 学生列表 学生单元格点击事件
+  */
+  studentCellClicked: function(e) {
+    let index = e.currentTarget.dataset.index
+    let student = this.data.studentList[index]
+    let studentStr = 'studentList['+ index + '].selected'
+    this.setData({
+      [studentStr]: !student.selected
+    })
   },
 
   /**
