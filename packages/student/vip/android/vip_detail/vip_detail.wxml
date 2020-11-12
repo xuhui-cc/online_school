@@ -20,8 +20,8 @@
       <open-data type="userNickName" class="nick"></open-data>
       <view class="flex">
         <image class="badge_img" src="/images/other/vip_badge2.png"></image>
-        <view wx:if="{{vip.datas.valid_days == 0}}" class="vip_time">永久</view>
-        <view wx:else="" class="vip_time">{{vip.datas.valid_days}}到期</view>
+        <view wx:if="{{vip.datas.valid_days == '永久有效'}}" class="vip_time">{{vip.datas.valid_days}}</view>
+        <view wx:else="" class="vip_time">{{vip.datas.expire_timecsj}}到期</view>
       </view>
     </view>
   </view>
@@ -66,7 +66,7 @@
     <image class="vip2_fm" src="./resource/vip2_card.png"></image>
 
     <!-- 未开通vip -->
-    <view class="vip2_layout" wx:if="{{vip == '' && couponList == '' && courseList==''}}">
+    <view class="vip2_layout" wx:if="{{(vip == '' || vip.datas.valid_days == '已过期') && couponList == '' && courseList==''}}">
       <image class="unsign_vip2_head" src="/images/vip2_common/unsign_vip2_hade.png"></image>
 
         <view class="flex">

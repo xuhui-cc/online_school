@@ -222,7 +222,7 @@
   <view wx:if="{{current_subject == 1}}">
    
       <view class="vip_layout1">
-        <view wx:if="{{vip == ''}}">
+        <view wx:if="{{vip == '' || vip.datas.valid_days == '已过期'}}">
         <!-- wx:if="{{vip.valid == -1 || !vip.valid}}" -->
           <image class="king" src="/images/other/king.png"></image>
           <view class="open_vip" >开通会员</view>
@@ -231,7 +231,7 @@
           <view class="vip_btn"  bindtap="to_vip">会员中心</view>
         </view>
 
-        <view wx:if="{{vip}}">
+        <view wx:if="{{vip && vip.datas.valid_days != '已过期'}}">
           <view class="ava">
             <open-data  type="userAvatarUrl"></open-data> 
           </view>
@@ -334,7 +334,7 @@
     <!-- vip迭代模式 -->
     <view class="vip2_layout">
       <!-- 未开通状态 -->
-      <view class="unsign" wx:if="{{vip == '' && vipCourseList == ''}}">
+      <view class="unsign" wx:if="{{vip.datas.valid_days == '已过期' || (vip == '' && vipCourseList == '')}}">
         <image class="unsign_vip2_head" src="/images/vip2_common/unsign_vip2_hade.png"></image>
 
         <view class="flex">
@@ -362,7 +362,7 @@
       <!-- 未开通状态 -->
 
       <!-- 已开通状态 -->
-      <view class="vip_layout" > 
+      <view class="vip_layout" wx:if="{{vip != '' && vip.datas.valid_days != '已过期'}}"> 
       <view wx:for="{{vipCourseList}}" wx:key="hot2_index">
           <view class="hot_course">
             <view class="flex" bindtap="vip_course_detail" data-xb="{{index}}">
@@ -439,7 +439,12 @@
           <view class="margin_heng" style="width:630rpx;margin-top:30rpx;"></view>
         </view>
       </view>
+
+      <image wx:if="{{vipCourseList == ''  }}" class="course_null" src="/images/null/course_null.png" style="margin-top: 350rpx;"></image>
+      <view wx:if="{{vipCourseList == ''  }}" class="course_nulltip" style="padding-bottom:500rpx;background:rgba(255,255,255,1);">暂无课程</view>
     </view>
+
+    
     <!-- 已开通状态 -->
 
     </view>
@@ -521,7 +526,7 @@
     </view>
 
     <image wx:if="{{course == '' }}" class="course_null" src="/images/null/course_null.png"></image>
-    <text wx:if="{{course == ''  }}" class="course_nulltip">暂无课程</text>
+    <view wx:if="{{course == ''  }}" class="course_nulltip">暂无课程</view>
   </view>
 
   

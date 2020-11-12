@@ -20,8 +20,9 @@
       <open-data type="userNickName" class="nick"></open-data>
       <view class="flex">
         <image class="badge_img" src="/images/other/vip_badge2.png"></image>
-        <view wx:if="{{vip.datas.valid_days == 0}}" class="vip_time">永久</view>
-        <view wx:else="" class="vip_time">{{vip.datas.valid_days}}到期</view>
+        <view wx:if="{{vip.datas.valid_days == '永久有效'}}" class="vip_time">{{vip.datas.valid_days}}</view>
+        <view wx:else="" class="vip_time">{{vip.datas.expire_timecsj}}到期</view>
+        
       </view>
     </view>
   </view>
@@ -66,7 +67,7 @@
     <image class="vip2_fm" src="./resource/vip2_card.png"></image>
 
     <!-- 未开通vip -->
-    <view class="vip2_layout" wx:if="{{vip == '' && couponList == '' &&   courseList == ''}}">
+    <view class="vip2_layout" wx:if="{{(vip == '' || vip.datas.valid_days == '已过期') && couponList == '' &&   courseList == ''}}">
       <image class="unsign_vip2_head" src="/images/vip2_common/unsign_vip2_hade.png"></image>
 
         <view class="flex">
@@ -212,10 +213,10 @@
   <view class="mask" catchtouchmove="preventTouchMove" hidden="{{!pay}}"></view>
   <view style="margin-top:-120rpx;" hidden="{{!pay}}">
     <image class="success_img" src="./resource/seuccess_vip1.png" ></image>
-    <view class="checkinfo_head1">{{sign_title}}</view>
-    <view class="checkinfo_intro">{{sign_remark}}</view>
+    <view class="checkinfo_head1">{{codeinfo.title}}</view>
+    <view class="checkinfo_intro">{{codeinfo.remark}}</view>
     <view class="cuccess_tip">您已成功开通</view>
-    <view class="cuccess_tip" style="margin-top:390rpx">{{sign_title}}</view>
+    <view class="cuccess_tip" style="margin-top:390rpx">{{codeinfo.title}}</view>
     <view class="cuccess_tip1">立即开启您的学习成功之旅</view>
     <view class="success_yes" bindtap="success_yes">查看会员权限</view>
     <image class="exchange_close"  style="margin-top:700rpx" src="/images/other/exchange_close.png" bindtap="success_yes"></image>

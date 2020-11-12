@@ -118,7 +118,7 @@ Page({
         })
         if(d.data.data.cate == 2){
           wx.navigateTo({
-            url: app.getPagePath('exchangeCode_2C') + '?id=' + d.data.data.id,
+            url: app.getPagePath('exchangeCode_2C') + '?id=' + d.data.data.id + '?ewm=2',
           })
         }else{
           that.setData({
@@ -595,24 +595,17 @@ Page({
     })
   },
 
-  // couponUes:function(){
-  //   let that = this 
-  //   // that.setData({
-  //   //   coupon_use:!that.data.coupon_use
-  //   // })
-  //   wx.showToast({
-  //     title: that.data.couponUseTip.msg,
-  //     icon:"none"
-  //   })
-  // },
+  
 
   couponUes:function(){
     let that = this 
-    
-    wx.showToast({
-      title: wx.getStorageSync('couponUseTip').msg,
-      icon:"none"
+    wx.navigateTo({
+      url: app.getPagePath('my_coupon')
     })
+    // wx.showToast({
+    //   title: wx.getStorageSync('couponUseTip').msg,
+    //   icon:"none"
+    // })
   },
 
   //开通会员按钮

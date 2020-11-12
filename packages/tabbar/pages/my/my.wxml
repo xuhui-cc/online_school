@@ -17,7 +17,7 @@
   <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
   
   <view class="vip_layout">
-    <view wx:if="{{vip == ''}}">
+    <view wx:if="{{vip == '' || vip.datas.valid_days == '已过期'}}">
       <image class="king" src="/images/other/king.png"></image>
       <view class="open_vip" >开通会员</view>
       <view class="open_content" >专享名师好课、报班优惠等会员权益 </view>
