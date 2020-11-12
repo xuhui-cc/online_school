@@ -54,13 +54,14 @@ page{
 .price_icon{
   position: absolute;
   padding-top: 105rpx;
-  margin-left: 429rpx;
+  margin-left: 410rpx;
   width: 24rpx;
 height: 56rpx;
 font-size: 40rpx;
 font-family: PingFang SC;
 font-weight: 800;
 line-height: 36rpx;
+text-align: right;
 color: rgba(255, 255, 255, 1);
 opacity: 1;
 
@@ -68,7 +69,7 @@ opacity: 1;
 .price{
   position: absolute;
   padding-top: 112rpx;
-  margin-left: 461rpx;
+  margin-left: 441rpx;
   width: 197rpx;
 height: 115rpx;
 font-size: 82rpx;

@@ -334,7 +334,7 @@
     <!-- vip迭代模式 -->
     <view class="vip2_layout">
       <!-- 未开通状态 -->
-      <view class="unsign" wx:if="{{vip == ''}}">
+      <view class="unsign" wx:if="{{vip == '' && vipCourseList == ''}}">
         <image class="unsign_vip2_head" src="/images/vip2_common/unsign_vip2_hade.png"></image>
 
         <view class="flex">
@@ -355,8 +355,8 @@
         <view class="vip2_vs_content" style="margin-top:92rpx;margin-left:423rpx;">领军教育地面班课<text style="font-size: 32rpx;color: rgba(255, 166, 32, 1);font-weight: Bold;">超强折扣</text>优惠</view>
         <image class="vip2_vs" src="/images/vip2_common/vip2_vs.png"></image>
         
-
-        <image class="vip2_signBtn" src="/images/vip2_common/vip2_signBtn.png"></image>
+         <button class="login_read_vip"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
+        <image class="vip2_signBtn" src="/images/vip2_common/vip2_signBtn.png" bindtap="signBtn"></image>
 
       </view>
       <!-- 未开通状态 -->
@@ -419,7 +419,7 @@
                   </view>
                 </view>
 
-                <view wx:if="{{item.buy == 5}}" >
+                <view wx:if="{{item.buy == 5 || item.buy == 1}}" >
 
                   <view class="flex" style="margin-left:30rpx;margin-top:-20rpx;">
                       <view class="course_text" wx:if="{{item.cate == 1}}" style="width:75rpx;">直播课</view>
@@ -527,5 +527,43 @@
   
   <image class="couponShow" src="./resource/couponShow.png" wx:if="{{couponShow}}" bindtap="to_coupon"></image>
   <view class="coupon_price"  wx:if="{{couponShow}}" bindtap="to_coupon"><text class="fuhao">¥ </text>{{copon_price}}</view>
+
+  <view class="mask1" wx:if="{{signBtn}}"></view>
+  <!-- wx:if="{{signBtn}}" -->
+  <view class="signBtnTipLayout" wx:if="{{signBtn}}">
+    
+    <view class="flex">
+      <view class="mask_shu"></view>
+      <view class="mask_head">如何开通会员？</view>
+    </view>
+    <view class="mask_content" style="margin-top: 27rpx;">{{couponUseTip.contact}}<text style="font-size:38rpx;font-weight:Bold;color:rgba(243,147,10,1);" user-select='true'> {{couponUseTip.mobile}} </text> {{couponUseTip.coupon}}</view>
+    <view class="mask_content">{{couponUseTip.student}}</view>
+    <view class="flex">
+      <input class="mask_input" placeholder="请输入您的兑换码" bindinput="input_code" value="{{code}}" ></input>
+      <view class="mask_signBtn" style="background: #FBDDB3;" wx:if="{{!code}}">立即开通</view>
+      <view class="mask_signBtn" bindtap="submit_check" wx:else="">立即开通</view>
+    </view>
+    <view  class="mask_checkCode_tip" wx:if="{{checkCode == -1}}">*{{check_msg}}</view>
+    <!--  -->
+  </view>
+  <image class="mask_closeImg" src="/images/other/exchange_close.png" bindtap="signBtn" wx:if="{{signBtn}}"></image>
+
+
+
+  <view class="mask2" catchtouchmove="preventTouchMove" wx:if="{{exchange_page}}"></view>
+  <!--  -->
+  <view  wx:if="{{exchange_page}}" style="position: fixed;z-index:601">
+    <view class="checkinfo_head1">{{codeinfo.title}}</view>
+    <view class="checkinfo_intro">{{codeinfo.remark}}</view>
+    <view class="checkinfo_tip1">确认兑换</view>
+    <view class="checkinfo_tip1" style="margin-top: 600rpx ;">{{codeinfo.title}}？</view>
+    <!-- <view class="checkinfo_tip2" wx:if="{{vip.expire > 0}}">您当前为{{vip_list[0].title}}</view> -->
+    <!-- <view class="checkinfo_tip2" style="margin-top: 455rpx ;" wx:if="{{vip.expire > 0}}">确认兑换后将替换掉原有会员卡</view> -->
+    <view class="btn2" bindtap="yes_exchange">是，立即兑换</view>
+    <view class="btn3" bindtap="exchange_page">否，暂不兑换</view>
+    <image class="bg_exchange1" src="./resource/exchange_page.png" ></image>
+    
+    <image class="exchange_close" style="margin-top:700rpx" src="/images/other/exchange_close.png" bindtap="exchange_page"></image>
+  </view>
 
 </view>

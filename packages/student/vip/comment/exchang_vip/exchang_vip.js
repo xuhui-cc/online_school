@@ -25,8 +25,8 @@ Page({
       vip_id = options.id
     }
     that.setData({
-      id:vip_id,
-      // id:"28",
+      // id:vip_id,
+      id:"60",
       gid:"1",
       login:wx.getStorageSync('login')
     })
@@ -100,7 +100,7 @@ Page({
     var params = {
       "id":that.data.id
     }
-    app.ols.info_1Vn(params).then(d => {
+    app.ols.info_1Vn_v5(params).then(d => {
       if (d.data.code == 0) {
         that.setData({
           vip_info:d.data.data
@@ -118,7 +118,7 @@ Page({
       "token": wx.getStorageSync("token"),
       "id":that.data.id
     }
-    app.ols.check_1Vn(params).then(d => {
+    app.ols.check_1Vn_v5(params).then(d => {
       if (d.data.code == 0) {
         that.setData({
           exchangeVip_info:d.data.data,
@@ -165,7 +165,7 @@ Page({
       "token": wx.getStorageSync("token"),
       "id":ex_id
     }
-    app.ols.exchange_1Vn(params).then(d => {
+    app.ols.exchange_1Vn_v5(params).then(d => {
       
       if (d.data.code == 0) {
         wx.redirectTo({

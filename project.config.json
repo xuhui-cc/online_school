@@ -232,9 +232,9 @@
           "scene": null
         },
         {
-          "id": -1,
-          "name": "exchangeCode_C&C",
-          "pathName": "packages/common/exchangeCode_C&C/exchangeCode_C&C",
+          "id": 24,
+          "name": "exchangeCode_2C",
+          "pathName": "packages/common/exchangeCode_2C/exchangeCode_2C",
           "query": "",
           "scene": null
         },

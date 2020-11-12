@@ -8,13 +8,16 @@ Page({
   data: {
     current_special:-1,
     current_subject: 0,
-    btn_buy:app.globalData.btn_buy
+    btn_buy:app.globalData.btn_buy,
+    vipCourseList:''
   },
 
   onLoad: function (options) {
     options = app.shareTool.getShareOption()
     let that = this
-    
+    that.setData({
+      couponUseTip:wx.getStorageSync('couponUseTip')
+    })
     if (options.isshare == 1) {
       wx.setStorageSync("gid", options.gid)
       that.setData({
@@ -815,7 +818,7 @@ Page({
         }else{
           var finalList = that.data.vipCourseList.concat(d.data.data.lists)
           that.setData({
-            coursvipCourseListeList:finalList
+            vipCourseList:finalList
           })
         }
         
@@ -825,6 +828,90 @@ Page({
       }
     })
   },
+
+  //兑换码验证
+  submit_check:function(){
+    let that =  this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "code":that.data.code
+    }
+    app.ols.cheek_code5(params).then(d => {
+      
+      if (d.data.code == 0) {
+        that.setData({
+          signBtn:false,
+          code_layout:false,
+          code:''
+        })
+        if(d.data.data.cate == 2){
+          wx.navigateTo({
+            url: app.getPagePath('exchangeCode_2C') + '?id=' + d.data.data.id,
+          })
+        }else{
+          that.setData({
+          signBtn:false,
+          codeinfo:d.data.data,
+          exchange_page:true,
+          code_layout:false,
+          code:''
+        })
+        }
+      } else if(d.data.code == 5){
+        that.setData({
+          checkCode:-1,
+          check_msg:d.data.msg
+          
+        })
+      }
+      else{
+        console.log("会员列表失败==============" + d.data.msg)
+      }
+    })
+  },
+
+  //确认兑换
+  yes_exchange:function(){
+    let that = this
+    var params = {
+      "token": wx.getStorageSync("token"),
+      "id":that.data.codeinfo.id
+    }
+    app.ols.exchange_code5(params).then(d => {
+      
+      if (d.data.code == 0) {
+        wx.showToast({
+          title: "兑换成功",
+          icon:"none",
+        })
+        that.allVipCourse()   //获取全部关联课程
+        // that.allVipCoupon()    //获取关联会员卡
+        that.viplist()  //获取会员卡信息
+        // that.v4_viplist(1)
+        that.setData({
+          exchange_page:false,
+          // pay:true,
+          code:'',
+          sign_title:d.data.data.title,
+          sign_remark:d.data.data.remark,
+        })
+      } else if(d.data.code == 5){
+        wx.showToast({
+          title: d.data.msg,
+          icon:"none",
+        })
+        that.setData({
+          exchange_page:false,
+          code:'',
+        })
+        that.viplist()  //获取会员卡信息
+        that.allVipCourse()   //获取全部关联课程
+        // that.allVipCoupon()    //获取关联会员卡
+        // console.log("会员列表失败==============" + d.data.msg)
+      }
+    })
+  },
+
 
   /*----------------------------------------------------------方法---------------------------------------------- */
   onReachBottom: function() {
@@ -877,7 +964,8 @@ Page({
         that.setData({
           login: true
         })
-        that.onShow()
+        that.signBtn()
+        // that.onShow()
       }
     })
   },
@@ -898,8 +986,36 @@ Page({
     })
   },
 
+  //开通会员按钮
+  signBtn:function(){
+    let that = this 
+    that.setData({
+      signBtn:!that.data.signBtn
+    })
+  },
 
+  //兑换码输入
+  input_code: function (e) {
+    let that = this
+    // var code = e.detail.value
+    that.setData({
+      code : e.detail.value
+      })
+      if(that.data.code != e.detail.value){
+        that.setData({
+          checkCode:1,
+        })
+      }
+  },
 
-  
+  //兑换页关闭
+  exchange_page:function(){
+    let that = this
+    that.setData({
+      exchange_page:false,
+      code:'',
+      checkCode:1,
+    })
+  },
   
 })

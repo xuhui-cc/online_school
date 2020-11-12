@@ -18,7 +18,8 @@ Page({
   onLoad: function (options) {
     let that = this
     that.setData({
-      kid: options.kid
+      kid: options.kid,
+      
     })
     if (options.isshare == 1) {
       wx.setStorageSync("gid", options.gid)
@@ -351,21 +352,21 @@ Page({
     }
   },
 
-  // //课程权限提示
-  // course_authority:function(e){
-  //   let that = this
-  //   var xb = e.currentTarget.dataset.xb
-  //   console.log(xb)
-  //   var buy = that.data.course_info.buy
-  //   if (buy == 1|| (buy >= 3 && buy <= 5)) {
-  //     console.log("有课程权限")
-  //   } else {
-  //     that.setData({
-  //       coupon_use:true
-  //     })
-  //     console.log("没有权限")
-  //   }
-  // },
+  //课程权限提示
+  course_authority:function(e){
+    let that = this
+    var xb = e.currentTarget.dataset.xb
+    console.log(xb)
+    var buy = that.data.course_info.buy
+    if (buy == 1|| (buy >= 3 && buy <= 5)) {
+      console.log("有课程权限")
+    } else {
+      that.setData({
+        coupon_use:true
+      })
+      console.log("没有权限")
+    }
+  },
 
 
   /*----------------------------------------------------接口-------------------------------------------- */

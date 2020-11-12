@@ -65,7 +65,7 @@ Page({
   onReachBottom: function() {
     let that = this 
     console.log("触底")
-    if(that.data.courseList.length < that.data.vipInfo.total){
+    if(that.data.courseList.length < that.data.vipInfo.count){
       that.coursePage += 1
       that.getVipInfo()
     }
@@ -98,7 +98,8 @@ Page({
         if(that.coursePage == 1){
           that.setData({
             vipInfo:d.data.data,
-            courseList:d.data.data.lists.course
+            courseList:d.data.data.lists.course,
+            // total:d.data.data.count
           })
         }else{
           var finalList = that.data.courseList.concat(d.data.data.lists.course)
