@@ -13,6 +13,11 @@
         <open-data wx:else="" type="userNickName"></open-data>
       </view>
   </view>
+  <!-- 切换到老师 -->
+  <view class="role_teacher" wx:if="{{true}}" catchtap="changeToTeacherRole">
+    <image style="margin-left:23rpx; width:19.42rpx; height:17.34rpx;" src="./resource/role_change.png"></image>
+    <text style="margin-left:10rpx; color:#03B683; font-size:24rpx; font-weight:bold;">切换到老师</text>
+  </view>
   <!-- 课程 -->
   <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
   

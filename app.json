@@ -95,7 +95,6 @@
         "exchang_vip/exchang_vip",
         "myVipCard/myVipCard",
         "vipCardDetail/vipCardDetail"
-       
       ],
       "name": "vip_comment"
     },
@@ -127,7 +126,8 @@
       "pages": [
         "teacher_studentList/teacher_studentList",
         "teacher_addRecord/teacher_addRecord",
-        "uploadVideo/uploadVideo"
+        "uploadVideo/uploadVideo",
+        "teacher_home/teacher_home"
       ],
       "name": "teacher"
     },

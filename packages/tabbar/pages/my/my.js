@@ -210,4 +210,13 @@ Page({
       url: app.getPagePath('my_coupon'),
     })
   },
+
+  /**
+   * 切换到老师角色
+  */
+  changeToTeacherRole: function() {
+    wx.reLaunch({
+      url: app.getPagePath('teacher_home'),
+    })
+  },
 })
