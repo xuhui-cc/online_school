@@ -15,8 +15,9 @@ Page({
    */
   onLoad: function (options) {
     let that = this 
-    
+    wx.setStorageSync('gid', 1)
       that.setData({
+        login:wx.getStorageSync('login'),
         id:options.id,
         ewm:options.ewm,
         // id:'61',
@@ -72,18 +73,26 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
 
-  },
+  // },
 
   /*--------------------------------------------------------方法--------------------------------------- */
 
   //会员详情页跳转
   to_vipDetail:function(){
     let that = this 
-    wx.redirectTo({
-      url: app.getPagePath('vip_detail') ,
-    })
+    if(that.data.ewm_1vn == 1){
+      wx.redirectTo({
+        url: app.getPagePath('vip_detail') + '?ewm_exchange=1',
+      })
+    }
+    else{
+      wx.redirectTo({
+        url: app.getPagePath('vip_detail') ,
+      })
+    }
+    
   },
 
   //自定义返回
@@ -102,18 +111,32 @@ Page({
     
   },
 
+  //获取微信绑定手机号登录
+  getPhoneNumber: function (e) {
+    var that = this
+
+    app.loginTool.getPhoneNumber(e, that.data.gid, function(success, message){
+      if (success) {
+        that.setData({
+          login: true
+        })
+        that.check_1Vn()
+      }
+    })
+  },
+
   /*-------------------------------------------------------接口---------------------------------------- */
   //获取权益包信息
   rightBagInfo:function(){
     let that = this 
     if(that.data.ewm  == 1){
       var params = {
-        "token": wx.getStorageSync("token"),
+        // "token": wx.getStorageSync("token"),
         "code_id": that.data.id
       }
     }else{
       var params = {
-        "token": wx.getStorageSync("token"),
+        // "token": wx.getStorageSync("token"),
         "id": that.data.id
       }
     }
@@ -156,10 +179,13 @@ Page({
     app.ols.exchange_1Vn_v5(params).then(d => {
       
       if (d.data.code == 0) {
-        wx.redirectTo({
-          url: app.getPagePath('vip_detail') + '?ewm_exchange=1',
+        that.setData({
+          open_rightBag:true,
+          ewm_1vn:1
         })
-       
+        // wx.redirectTo({
+        //   url: app.getPagePath('vip_detail') + '?ewm_exchange=1',
+        // })
       } 
       else{
         wx.showToast({
