@@ -1,2 +1,18 @@
 <!--packages/teacher/teacher_home/teacher_home.wxml-->
-<text>packages/teacher/teacher_home/teacher_home.wxml</text>
+<!-- 导航栏 -->
+<view class="navi" style="height:{{naviHeight}}px;">
+  <view class="navi_content" style="height:{{naviContentHeight}}px;">
+    <text class="navi_title">我的</text>
+  </view>
+</view>
+
+<!-- 老师信息 -->
+<view class="infoView" style="margin-top:{{naviHeight}}px;">
+  <image class="avatar_image" src="{{avatar}}"></image>
+  <text class="teacher_name">{{name}}</text>
+  <!-- 切换到学员 -->
+  <view class="role_student" wx:if="{{true}}" catchtap="changeToStudentRole">
+    <image style="margin-left:23rpx; width:19.42rpx; height:17.34rpx;" src="./resource/role_change.png"></image>
+    <text style="margin-left:10rpx; color:#03B683; font-size:24rpx; font-weight:bold;">切换到学员</text>
+  </view>
+</view>
