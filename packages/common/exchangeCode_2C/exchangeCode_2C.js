@@ -88,6 +88,8 @@ Page({
 
   //自定义返回
   back:function(){
+    let that = this
+    console.log("back")
     if(that.data.ewm == 1){
       wx.switchTab({
         url: app.getPagePath('logs'),

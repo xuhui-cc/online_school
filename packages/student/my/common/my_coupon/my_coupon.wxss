@@ -350,7 +350,7 @@ z-index: 101;
 .audition_img{
   position: fixed;
   bottom: 123rpx;
-  right: 0rpx;
+  left: 0rpx;
   width: 237rpx;
   height: 263rpx;
   z-index: 100;

@@ -7,36 +7,39 @@
 
   <image class="exchange_bg" src="./resource/exchange_bg.png"></image>
 
-  <!-- 课程 -->
-  <view class="course_head">课程<text class="course_intro">{{rightBagInfo.count}}门精选好课免费学！</text></view>
-  <view style="position: absolute;margin-top:764rpx">
-    <view wx:for="{{rightBagInfo.kdata}}" wx:key="index">
-      <view class="flex" style="margin-bottom:20rpx;">
-        <image class="vip_laber" src="/images/other/vip_laber2.png"></image>
-        <image class="course_face" src="{{item.face}}"></image>
-        <view>
-          <view class="course_title">{{item.title}}</view>
-          <view class="free_tip">免费学</view>
+
+  <view style="position: absolute;">
+    <!-- 课程 -->
+    <view class="course_head" wx:if="{{rightBagInfo.count > 0}}">课程<text class="course_intro" >{{rightBagInfo.count}}门精选好课免费学！</text></view>
+    <view style="margin-top:30rpx" wx:if="{{rightBagInfo.count > 0}}">
+      <view wx:for="{{rightBagInfo.kdata}}" wx:key="index">
+        <view class="flex" style="margin-bottom:20rpx;">
+          <image class="vip_laber" src="/images/other/vip_laber2.png"></image>
+          <image class="course_face" src="{{item.face}}"></image>
+          <view>
+            <view class="course_title">{{item.title}}</view>
+            <view class="free_tip">免费学</view>
+          </view>
         </view>
       </view>
     </view>
-  </view>
-  
-  <!-- 课程 -->
+    
+    <!-- 课程 -->
 
-  <!-- 优惠券 -->
-  <view class="course_head" style="margin-top:1105rpx;" wx:if="{{rightBagInfo.summoney > 0}}">优惠券<text class="course_intro">价值{{rightBagInfo.summoney}}元优惠券免费赠送！</text></view>
-  <view class="flex" style="margin-top: 1155rpx;margin-left: 74rpx;position: absolute;z-index:2">
-    <view wx:for="{{rightBagInfo.coupon}}" wx:key="index" class="coupon_layout">
-      <view class="cooupon_title">{{item.title}}</view>
-      <view class="coupon_price"><text style="font-size: 20rpx;">¥ </text> {{item.money}}</view>
-      <image class="coupon_bg" wx:if="{{index == 0}}" src="./resource/coupon_bg1.png"></image>
-      <image class="coupon_bg" wx:if="{{index == 1}}" src="./resource/coupon_bg2.png"></image>
+    <!-- 优惠券 -->
+    <view class="course_head" style="{{rightBagInfo.count == 0?'':'margin-top:40rpx' }}"  wx:if="{{rightBagInfo.summoney > 0}}">优惠券<text class="course_intro">价值{{rightBagInfo.summoney}}元优惠券免费赠送！</text></view>
+    <!-- <view class="course_head" style="{{rightBagInfo.count == 0?'margin-top:700rpx':'margin-top:1105rpx;' }}" wx:if="{{rightBagInfo.summoney > 0}}">优惠券<text class="course_intro">价值{{rightBagInfo.summoney}}元优惠券免费赠送！</text></view> -->
+    <view  class="couponLayout" style="margin-top:30rpx">
+      <view wx:for="{{rightBagInfo.coupon}}" wx:key="index" class="coupon_layout">
+        <view class="cooupon_title">{{item.title}}</view>
+        <view class="coupon_price"><text style="font-size: 20rpx;">¥ </text> {{item.money}}</view>
+        <image class="coupon_bg" wx:if="{{index == 0}}" src="./resource/coupon_bg1.png"></image>
+        <image class="coupon_bg" wx:if="{{index == 1}}" src="./resource/coupon_bg2.png"></image>
+      </view>
     </view>
+
+    <!-- 优惠券 -->
   </view>
-
-  <!-- 优惠券 -->
-
   <image class="sign_btn" src="./resource/sign_btn.png" bindtap="check_1Vn"></image>
 
   <!-- 开通成功弹框-->

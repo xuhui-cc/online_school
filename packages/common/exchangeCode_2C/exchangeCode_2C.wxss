@@ -9,11 +9,12 @@
   z-index: -1;
 }
 .back{
-  position: absolute;
+  position: fixed;
   margin-top: 100rpx;
   margin-left: 15rpx;
   width: 56rpx;
   height: 56rpx;
+  z-index: 100;
 }
 /* 标题栏 */
 
@@ -28,8 +29,8 @@
 
 /* 课程 */
 .course_head{
-  position: absolute;
-  margin-top: 700rpx;
+  
+  margin-top: 680rpx;
   margin-left: 72rpx;
   width: 550rpx;
   height: 45rpx;
@@ -91,6 +92,12 @@
 /* 优惠券 */
 .coupon_layout{
   margin-right: 25rpx;
+}
+.couponLayout{
+  display: flex;
+  margin-left: 74rpx;
+  position: absolute;
+  z-index:2
 }
 .coupon_bg{
   width: 286rpx;

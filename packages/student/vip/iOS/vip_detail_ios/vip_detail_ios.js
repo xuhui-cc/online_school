@@ -154,6 +154,7 @@ Page({
       if (d.data.code == 0) {
         that.allVipCourse()   //获取全部关联课程
         that.allVipCoupon()    //获取关联会员卡
+        that.viplist()  //获取会员卡信息
         // that.v4_viplist(1)
         that.setData({
           exchange_page:false,
@@ -162,9 +163,18 @@ Page({
           sign_title:d.data.data.title,
           sign_remark:d.data.data.remark,
         })
-        
-      } 
-      else{
+      } else if(d.data.code == 5){
+        wx.showToast({
+          title: d.data.msg,
+          icon:"none",
+        })
+        that.setData({
+          exchange_page:false,
+          code:'',
+        })
+        that.viplist()  //获取会员卡信息
+        that.allVipCourse()   //获取全部关联课程
+        that.allVipCoupon()    //获取关联会员卡
         // console.log("会员列表失败==============" + d.data.msg)
       }
     })
@@ -585,23 +595,15 @@ Page({
     })
   },
 
-  // couponUes:function(){
-  //   let that = this 
-  //   // that.setData({
-  //   //   coupon_use:!that.data.coupon_use
-  //   // })
-  //   wx.showToast({
-  //     title: that.data.couponUseTip.msg,
-  //     icon:"none"
-  //   })
-  // },
-
   couponUes:function(){
     let that = this 
-    wx.showToast({
-      title: wx.getStorageSync('couponUseTip').msg,
-      icon:"none"
+    wx.navigateTo({
+      url: app.getPagePath('my_coupon')
     })
+    // wx.showToast({
+    //   title: wx.getStorageSync('couponUseTip').msg,
+    //   icon:"none"
+    // })
   },
 
   //开通会员按钮
