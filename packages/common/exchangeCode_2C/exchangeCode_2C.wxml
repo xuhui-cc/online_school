@@ -40,6 +40,7 @@
 
     <!-- 优惠券 -->
   </view>
+  <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
   <image class="sign_btn" src="./resource/sign_btn.png" bindtap="check_1Vn"></image>
 
   <!-- 开通成功弹框-->

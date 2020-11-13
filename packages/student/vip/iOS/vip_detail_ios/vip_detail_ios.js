@@ -562,11 +562,15 @@ Page({
           })
           console.log("type==1")
         }else if(type == 2){
-          that.setData({
-            code:'',
-            checkCode:1,
-            signBtn:true
-          })
+          if(that.data.isshare == 1){
+            console.log("分享进入点击开通按钮")
+          }else{
+            that.setData({
+              code:'',
+              checkCode:1,
+              signBtn:true
+            })
+          }
         }else{
           
         }
