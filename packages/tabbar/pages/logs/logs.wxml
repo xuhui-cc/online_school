@@ -53,8 +53,8 @@
       </block>
     </swiper>
 
-    <image class="teacher_inter" wx:if="{{banner3}}" src="/images/teacherFile/teacher_inter.png" bindtap="teacher_inter"></image>
-    <image class="teacher_inter" wx:else="" style="{{subject?'margin-top: 300rpx;':'margin-top: 210rpx;'}}" src="/images/teacherFile/teacher_inter.png" bindtap="teacher_inter"></image>
+    <image class="teacher_inter" wx:if="{{banner3}}" src="{{teacherInterImg}}" bindtap="teacher_inter" binderror="teacherInterImg_error"></image>
+    <image class="teacher_inter" wx:else="" style="{{subject?'margin-top: 300rpx;':'margin-top: 210rpx;'}}" src="{{teacherInterImg}}" bindtap="teacher_inter" binderror="teacherInterImg_error"></image>
 
     <!-- 公开课 -->
     <!-- <view style="margin-top:45rpx;margin-left:30rpx;" hidden="true">

@@ -9,7 +9,8 @@ Page({
     current_special:-1,
     current_subject: 0,
     btn_buy:app.globalData.btn_buy,
-    vipCourseList:''
+    vipCourseList:'',
+    teacherInterImg:"/images/teacherFile/teacher_inter.png"
   },
 
   onLoad: function (options) {
@@ -914,6 +915,14 @@ Page({
 
 
   /*----------------------------------------------------------方法---------------------------------------------- */
+  //名师图标加载失败时触发
+  teacherInterImg_error:function(){
+    let that =this 
+    that.setData({
+      teacherInterImg:"/images/teacherFile/teacher_inter.png"
+    })
+  },
+
   onReachBottom: function() {
     let that = this 
     console.log("触底")
@@ -966,6 +975,8 @@ Page({
         })
         that.signBtn()
         // that.onShow()
+        that.viplist()
+        that.allVipCourse()
       }
     })
   },

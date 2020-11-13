@@ -25,8 +25,8 @@ Page({
       vip_id = options.id
     }
     that.setData({
-      // id:vip_id,
-      id:"60",
+      id:vip_id,
+      // id:"60",
       gid:"1",
       login:wx.getStorageSync('login')
     })

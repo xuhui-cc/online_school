@@ -178,3 +178,18 @@
   z-index: 5;
 }
 /* 开通成功弹框 */
+
+.login_read{
+  position: absolute;
+  margin-top: 1359rpx;
+  margin-left:81rpx;
+  width: 589rpx;
+  height: 157rpx;
+  background: transparent;
+  /* background-color: rgba(58,58,58,1);
+  opacity:0.5; */
+  z-index: 5;
+}
+.login_read::after {
+  border: none;
+}
