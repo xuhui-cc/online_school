@@ -236,12 +236,12 @@
             <open-data  type="userAvatarUrl"></open-data> 
           </view>
           <open-data class="open_vip1" type="userNickName"></open-data>
-          <image class="laber_small" style="{{vip.datas.valid_days == '永久有效'?'margin-left: 520rpx;':''}}" src="/images/other/vip_badge2.png"></image>
-          <view class="open_time" bindtap="to_vip" wx:if="{{vip.datas.valid_days == '永久有效'}}">{{vip.datas.valid_days}}</view>
-          <view class="open_time" bindtap="to_vip" wx:else="">{{vip.datas.valid_days}}到期</view>
+          <image class="laber_small" style="{{vip.datas.expire_timecsj == ''?'margin-left: 520rpx;':''}}" src="/images/other/vip_badge2.png"></image>
+          <view class="open_time" bindtap="to_vip" wx:if="{{vip.datas.expire_timecsj == ''}}">{{vip.datas.valid_days}}</view>
+          <view class="open_time" bindtap="to_vip" wx:else="">{{vip.datas.expire_timecsj}}到期</view>
           
           <image class="vip_jt" src="/images/other/next_bsj.png" bindtap="to_vip"></image>
-      
+          
         </view>
 
       

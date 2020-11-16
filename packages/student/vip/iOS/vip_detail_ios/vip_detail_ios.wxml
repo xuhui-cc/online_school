@@ -20,9 +20,8 @@
       <open-data type="userNickName" class="nick"></open-data>
       <view class="flex">
         <image class="badge_img" src="/images/other/vip_badge2.png"></image>
-        <view wx:if="{{vip.datas.valid_days == '永久有效'}}" class="vip_time">{{vip.datas.valid_days}}</view>
+        <view wx:if="{{vip.datas.expire_timecsj == ''}}" class="vip_time">{{vip.datas.valid_days}}</view>
         <view wx:else="" class="vip_time">{{vip.datas.expire_timecsj}}到期</view>
-        
       </view>
     </view>
   </view>

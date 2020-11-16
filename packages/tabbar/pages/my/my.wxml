@@ -27,8 +27,8 @@
     <view wx:else="">
       <image class="vip_badge2" src="/images/other/vip_badge2.png"></image>
       <image class="vip_center" src="./resource/vip_center.png"></image>
-      <view class="open_time" wx:if="{{vip.datas.valid_days == 0}}">永久</view>
-      <view class="open_time" wx:else="">{{vip.datas.valid_days}}到期</view>
+      <view class="open_time" wx:if="{{vip.datas.expire_timecsj == ''}}">{{vip.datas.valid_days}}</view>
+      <view class="open_time" wx:else="">{{vip.datas.expire_timecsj}}到期</view>
       <image class="to_vipCenter" src="./resource/to_vipcenter.png" bindtap="to_vipDetail"></image>
       
     </view>

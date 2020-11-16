@@ -20,7 +20,7 @@
       <open-data type="userNickName" class="nick"></open-data>
       <view class="flex">
         <image class="badge_img" src="/images/other/vip_badge2.png"></image>
-        <view wx:if="{{vip.datas.valid_days == '永久有效'}}" class="vip_time">{{vip.datas.valid_days}}</view>
+        <view wx:if="{{vip.datas.expire_timecsj == ''}}" class="vip_time">{{vip.datas.valid_days}}</view>
         <view wx:else="" class="vip_time">{{vip.datas.expire_timecsj}}到期</view>
       </view>
     </view>
@@ -105,7 +105,7 @@
         <image class="vip2_next" src="/images/navi/next.png" bindtap="to_myCoupon"></image>
       </view>
 
-      <scroll-view scroll-x="true" style=" white-space: nowrap;display: flex;margin-bottom:50rpx;margin-left:30rpx;margin-top:32rpx;width:720rpx" >
+      <scroll-view scroll-x="true" style=" white-space: nowrap;display: flex;margin-bottom:50rpx;margin-left:30rpx;margin-top:32rpx;width:720rpx" wx:if="{{couponList != ''}}">
         <view wx:for="{{couponList}}" wx:key="index" style="width: 387rpx; height: 194rpx; display: inline-block;margin-right:20rpx;">
           <view >
             <view class="vip2_couponTitle">{{item.title}}</view>
