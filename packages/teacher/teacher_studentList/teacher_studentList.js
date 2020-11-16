@@ -18,6 +18,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 顶部菜单选中索引
+    menuSelectedIndex: 0,
+
+    // 班级列表
+    classList: [{},{},{}],
+
     //学员列表
     studentList: [],
 
@@ -121,7 +127,11 @@ Page({
   onShow: function () {
     let that = this
     this.pageData.page = 1
-    this.teacherGetStudentList()
+    if (this.data.menuSelectedIndex == 1) {
+      this.teacherGetStudentList()
+    } else {
+      this.teacherGetClassList()
+    }
   },
 
   /**
@@ -145,14 +155,25 @@ Page({
     let oldPage = this.pageData.page
     this.pageData.page = 1
     let that = this
-    this.teacherGetStudentList(function(success){
-      wx.stopPullDownRefresh({
-        success: (res) => {},
+    if (this.data.menuSelectedIndex == 1) {
+      this.teacherGetStudentList(function(success){
+        wx.stopPullDownRefresh({
+          success: (res) => {},
+        })
+        if (!success) {
+          that.pageData.page = oldPage
+        }
       })
-      if (!success) {
-        that.pageData.page = oldPage
-      }
-    })
+    } else {
+      this.teacherGetClassList(function(success){
+        wx.stopPullDownRefresh({
+          success: (res) => {},
+        })
+        if (!success) {
+          that.pageData.page = oldPage
+        }
+      })
+    }
   },
 
   /**
@@ -165,11 +186,19 @@ Page({
     let oldPage = this.pageData.page
     this.pageData.page += 1
     let that = this
-    this.teacherGetStudentList(function(success){
-      if (!success) {
-        that.pageData.page = oldPage
-      }
-    })
+    if (this.data.menuSelectedIndex == 1) {
+      this.teacherGetStudentList(function(success){
+        if (!success) {
+          that.pageData.page = oldPage
+        }
+      })
+    } else {
+      this.teacherGetClassList(function(success){
+        if (!success) {
+          that.pageData.page = oldPage
+        }
+      })
+    }
   },
 
   /**
@@ -256,6 +285,13 @@ Page({
 
   //--------------------------------------------------接口-------------------------------------
   /**
+   * 老师端获取班级列表
+  */
+  teacherGetClassList: function(callback) {
+    typeof callback == "function" && callback(false)
+  },
+
+  /**
    * 老师端获取学员列表
   */
   teacherGetStudentList: function(callback) {
@@ -306,14 +342,39 @@ Page({
 
   //-------------------------------------------------交互事件-----------------------------------
   /**
+   * header菜单栏点击事件
+  */
+  headerMenuClciekd: function(e) {
+    let index = e.currentTarget.dataset.index
+    this.setData({
+      menuSelectedIndex: index
+    })
+    this.pageData.page = 1
+    if (this.data.menuSelectedIndex == 1) {
+      this.teacherGetStudentList()
+    } else {
+      this.teacherGetClassList()
+    }
+  },
+
+  /**
    * 学员添加日志按钮 点击事件
   */
   addRecordButtonClciked: function(e){
     // console.log(e)
     let index = e.currentTarget.dataset.index
-    let student = this.data.studentList[index]
+    let addRecordUrl = ''
+    if (this.data.menuSelectedIndex == 1) {
+      // 给单个学员添加日志
+      let student = this.data.studentList[index]
+      addRecordUrl = app.getPagePath('teacher_addRecord') + '?type=1&sid='+student.sid+"&studentname="+student.nick
+    } else {
+      // 添加班级学习日志
+      let aclass = this.data.classList[index]
+      addRecordUrl = app.getPagePath('teacher_addRecord') + '?type=2&classid=' + '此处应填班级ID' + '&classname=' + '此处应填班级名称'
+    }
     wx.navigateTo({
-      url: app.getPagePath('teacher_addRecord') + '?sid='+student.sid+"&studentname="+student.nick,
+      url: addRecordUrl,
     })
   },
 

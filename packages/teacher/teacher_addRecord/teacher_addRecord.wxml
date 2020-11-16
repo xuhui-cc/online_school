@@ -17,7 +17,7 @@
   <view style="margin-top:{{naviHeight}}px; width:100%;">
     <scroll-view style="height:{{screenHeight-naviHeight-safeArea_bottom}}px;" scroll-y="true" enable-flex="true">
       <!-- 学员名称 -->
-      <view class="header_studentName oneLine_ellipsis" style="margin-top:{{207/750.0*screenWidth - naviHeight}}px;">学员：{{studentName}}</view>
+      <view class="header_studentName oneLine_ellipsis" style="margin-top:{{207/750.0*screenWidth - naviHeight}}px;">{{type == 1 ? '学员' : '班级'}}：{{titleName}}</view>
       <!-- 当前日期 -->
       <view class="header_time oneLine_ellipsis">时间：{{date}}</view>
       <!-- 内容框 -->
@@ -29,7 +29,7 @@
         <view class="recordContent_edit">
           <image class="record_content_editIcon" src="./resource/teacher_addContent.png"></image>
           <!-- 输入框 -->
-          <textarea class="record_content_textarea" placeholder="请输入该学生的学习内容" placeholder-class="record_content_placehoulder" maxlength="1000"  bindinput="recordContentTextareaInput" value="{{content}}"></textarea>
+          <textarea class="record_content_textarea" placeholder="请输入该{{type == 1 ? '学生' : '班级'}}的学习内容" placeholder-class="record_content_placehoulder" maxlength="1000"  bindinput="recordContentTextareaInput" value="{{content}}"></textarea>
         </view>
         <!-- 字数 -->
         <view class="reocrdContent_length">{{content.length+"/1000"}}</view>
@@ -63,6 +63,18 @@
             </view>
           </block>
         </view>
+      </view>
+      <!-- 本班学员 -->
+      <view wx:if="{{type == 2}}" class="classStudentListView">
+        <text class="classStudentList_title">本班学员({{}}人)：</text>
+        <view class="classStudentList" wx:if="{{studentList && studentList.length != 0}}">
+          <block wx:for="{{studentList}}" wx:key="index">
+            <view class="classStudent_Cell" style="background-color:{{item.selected ? '#FFE35A' : '#F1F3FB'}};" catchtap="studentCellClicked" data-index="{{index}}">
+              <text class="classStudent_name oneLine_ellipsis" style="color:{{item.selected ? '#AF5800' : '#ACB3D5'}};">{{item.name}}</text>
+            </view>
+          </block>
+        </view>
+        <view style="margin-left:30rpx; width:690rpx; height: 59rpx; border-bottom: 1rpx solid #EBEBEB;"></view>
       </view>
       <!-- 日志类型 -->
       <view class="recordTypeView">
