@@ -18,7 +18,7 @@ Page({
     //   title: '加载中',
     // })
     this.setData({
-      url: app.ols.getRecordUploadPath_h5()
+      url: app.ols.getRecordUploadPath_h5() + '?type=' + options.type
     })
     // console.log(this.data.url)
   },
