@@ -16,3 +16,16 @@
     <text style="margin-left:10rpx; color:#03B683; font-size:24rpx; font-weight:bold;">切换到学员</text>
   </view>
 </view>
+
+<!-- 有权限的模块列表 -->
+<view class="itemView">
+  <block wx:for="{{itemList}}">
+    <view class="itemCell">
+      <image style="width:39rpx; height:42rpx; margin-left:46rpx;" mode="aspectFit" src="./resource/role_change.png"></image>
+      <view class="flex_row_alignItemsCenter_spaceBetween" style="width:646rpx;">
+        <text style="margin-left:30rpx; font-size:26rpx; color:#272727;">学习日志</text>
+        <image src="./resource/enter.png" style="margin-right:34rpx; width:20rpx; height:20rpx;"></image>
+      </view>
+    </view>
+  </block>
+</view>

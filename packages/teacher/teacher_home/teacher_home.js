@@ -1,4 +1,5 @@
 // packages/teacher/teacher_home/teacher_home.js
+let app = getApp()
 Page({
 
   /**
@@ -9,6 +10,9 @@ Page({
     avatar: '',
     // 昵称
     name: '',
+
+    // 有权限的模块
+    itemList: [{},{}],
   },
 
   /**
@@ -92,6 +96,16 @@ Page({
     this.setData({
       avatar: userinfo.avatar && userinfo.avatar != '' ? userinfo.avatar : '/images/defaultHead/my_head.png',
       name: userinfo.nick ? userinfo.nick : (userinfo.truename ? userinfo.truename : userinfo.phone)
+    })
+  },
+
+  //--------------------------------------------------交互事件---------------------------------------------------
+  /**
+   * 切换到学员 按钮
+  */
+  changeToStudentRole: function() {
+    wx.switchTab({
+      url: app.getPagePath('my'),
     })
   },
 })
