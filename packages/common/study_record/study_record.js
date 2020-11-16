@@ -599,20 +599,44 @@ Page({
     if (selectedFile.error) {
       return
     }
-    if (selectedFile.type == 'image') {
-      // 图片
-      wx.previewImage({
-        urls: [selectedFile.url],
-        current: selectedFile.url
-      })
-    } else {
-      // 视频
-      wx.navigateTo({
-        url: app.getPagePath('videoPlay'),
-        success (res) {
-          res.eventChannel.emit('videoPlay', {url:selectedFile.url})
+    if(wx.previewMedia) {
+      // 支持previewMidia
+      wx.previewMedia({
+        sources: record.file,
+        current: fileIndex,
+        fail(res) {
+          wx.showToast({
+            title: '预览附件失败',
+            icon: 'none'
+          })
         }
       })
+    } else {
+      // 不支持previewMidia
+      if (selectedFile.type == 'image') {
+        // 图片
+        let image_urls = []
+        for(var i = 0; i < record.file.length; i++) {
+          let file = record.file[i]
+          if (file.type == 'image') {
+            image_urls.push(file.url)
+          }
+        }
+        wx.previewImage({
+          urls: image_urls,
+          current: selectedFile.url
+        })
+      } else {
+        // 视频
+        wx.navigateTo({
+          url: app.getPagePath('videoPlay'),
+          success (res) {
+            res.eventChannel.emit('videoPlay', {url:selectedFile.url})
+          }
+        })
+      }
+    }
+    
       // if (wx.previewMedia) {
       //   wx.previewMedia({
       //     sources: [{url: selectedFile.url, type: 'video'}],
@@ -632,7 +656,6 @@ Page({
       //     }
       //   })
       // }
-    }
   },
 
   /**

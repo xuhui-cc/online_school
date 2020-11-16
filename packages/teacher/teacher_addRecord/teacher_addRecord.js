@@ -182,29 +182,34 @@ Page({
   /**
    * 添加附件
   */
-  appendFile: function(url) {
-    console.log("得到附件：",url)
-    let urlPartArray = url.split('.')
-    if (urlPartArray.length >= 2) {
-      let fileTypeStr = urlPartArray[urlPartArray.length-1]
-      let fileType = 'video'
-      if (fileTypeStr == 'png' || fileTypeStr == 'jpg' || fileTypeStr == 'jpeg') {
-        fileType = 'image'
+  appendFile: function(urls) {
+    console.log("得到附件：",urls)
+    let file_urls = urls.split(',')
+    // console.log(file_url)
+    let newFiles = this.data.files
+    for (var i=0; i < file_urls.length; i++) {
+      let url = file_urls[i]
+      let urlPartArray = url.split('.')
+      if (urlPartArray.length >= 2) {
+        let fileTypeStr = urlPartArray[urlPartArray.length-1]
+        let fileType = 'video'
+        if (fileTypeStr == 'png' || fileTypeStr == 'jpg' || fileTypeStr == 'jpeg') {
+          fileType = 'image'
+        }
+        let file = {
+          type: fileType,
+          serverPath: url
+        }
+        if (file.type == 'image') {
+          newFiles.push(file)
+        } else {
+          newFiles.unshift(file)
+        }
       }
-      let file = {
-        type: fileType,
-        serverPath: url
-      }
-      if (file.type == 'image') {
-        this.data.files.push(file)
-      } else {
-        this.data.files.unshift(file)
-      }
-      
-      this.setData({
-        files: this.data.files
-      })
     }
+    this.setData({
+      files: newFiles
+    })
   },
 
   //--------------------------------------------------------接口---------------------------------------------------
@@ -480,8 +485,26 @@ Page({
    * 添加图片/视频按钮 点击事件
   */
   addFileButtonClicked: function() {
-    wx.navigateTo({
-      url: app.getPagePath('uploadVideo'),
+    wx.showActionSheet({
+      itemList: ['图片', '视频'],
+      success(res) {
+        console.log(res)
+        let index = res.tapIndex
+        if (index == 0) {
+          // 图片
+          wx.navigateTo({
+            url: app.getPagePath('uploadVideo') + '?type=img',
+          })
+        } else {
+          // 视频
+          wx.navigateTo({
+            url: app.getPagePath('uploadVideo') + '?type=video',
+          })
+        }
+      },
+      fail(res) {
+        console.log(res)
+      }
     })
     return
     let that = this
@@ -530,31 +553,51 @@ Page({
     //   type: file.type,
     // }
 
-    if (file.type == 'video') {
-      // 视频
-      wx.navigateTo({
-        url: app.getPagePath('videoPlay'),
-        success (res) {
-          res.eventChannel.emit('videoPlay', {url: file.serverPath})
+    if (wx.previewMedia) {
+      // 支持previewMedia
+      let sources = []
+      for (var i = 0; i < this.data.files.length; i++) {
+        let thisFile = this.data.files[i]
+        sources.push({
+          url: thisFile.serverPath,
+          type: thisFile.type
+        })
+      }
+      wx.previewMedia({
+        sources: sources,
+        current: index,
+        fail(res) {
+          wx.showToast({
+            title: '附件预览失败',
+            icon: 'none'
+          })
         }
       })
     } else {
-      // 图片
-      wx.previewImage({
-        urls: [file.serverPath],
-        current: file.serverPath
-      })
+      // 不支持previewMedia
+      if (file.type == 'video') {
+        // 视频
+        wx.navigateTo({
+          url: app.getPagePath('videoPlay'),
+          success (res) {
+            res.eventChannel.emit('videoPlay', {url: file.serverPath})
+          }
+        })
+      } else {
+        // 图片
+        let iamge_urls = []
+        for (var i = 0; i < this.data.files.length; i++) {
+          let thisFile = this.data.files[i]
+          if (thisFile.type == 'image') {
+            iamge_urls.push(thisFile.serverPath)
+          }
+        }
+        wx.previewImage({
+          urls: iamge_urls,
+          current: file.serverPath
+        })
+      }
     }
-
-    // wx.previewMedia({
-    //   sources: [sourse],
-    //   fail (res) {
-    //     wx.showToast({
-    //       title: '打开文件失败\n'+res.errMsg,
-    //       icon: 'none'
-    //     })
-    //   }
-    // })
   },
 
   /**
