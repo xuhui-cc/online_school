@@ -445,7 +445,7 @@ Page({
           }else{
             var coursefinalList = that.data.course.concat(d.data.data.lists)
             that.setData({
-              coursvipCourseListeList:coursefinalList
+              course:coursefinalList
             })
           }
         } else {

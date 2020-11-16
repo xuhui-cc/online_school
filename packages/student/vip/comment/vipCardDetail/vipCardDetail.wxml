@@ -2,7 +2,7 @@
   <view class="title">{{vipInfo.lists.title}}</view>
   <view class="memo">{{vipInfo.lists.memo}}</view>
   <view class="dot"></view>
-  <view class="time" wx:if="{{vipInfo.lists.memo == '永久有效'}}">永久有效</view>
+  <view class="time" wx:if="{{vipInfo.lists.expire_time == ''}}">永久有效</view>
   <view class="time" wx:else=''>{{vipInfo.lists.expire_time}}到期</view>
   <view class="price"><text style="font-size: 34rpx;">¥</text>{{vipInfo.lists.price}}</view>
   <image class="vipcardbg" src="./resource/vipcardbg.png"></image>
