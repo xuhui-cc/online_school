@@ -108,4 +108,12 @@ Page({
       url: app.getPagePath('my'),
     })
   },
+
+  /**
+   * item单元格 点击事件
+  */
+  itemCellClciked: function(e) {
+    let index = e.currentTarget.dataset.index
+    let item = this.data.itemList[index]
+  }
 })

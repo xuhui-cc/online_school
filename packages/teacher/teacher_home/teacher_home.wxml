@@ -19,11 +19,11 @@
 
 <!-- 有权限的模块列表 -->
 <view class="itemView">
-  <block wx:for="{{itemList}}">
-    <view class="itemCell">
+  <block wx:for="{{itemList}}" wx:key="index">
+    <view class="itemCell" bindtap="itemCellClciked" data-index="{{index}}">
       <image style="width:39rpx; height:42rpx; margin-left:46rpx;" mode="aspectFit" src="./resource/role_change.png"></image>
-      <view class="flex_row_alignItemsCenter_spaceBetween" style="width:646rpx;">
-        <text style="margin-left:30rpx; font-size:26rpx; color:#272727;">学习日志</text>
+      <view class="flex_row_alignItemsCenter_spaceBetween" style="height: 100%; width:646rpx; border-bottom:0.5rpx solid #F1F1F1;">
+        <text style="margin-left:10rpx; font-size:26rpx; color:#272727;">学习日志</text>
         <image src="./resource/enter.png" style="margin-right:34rpx; width:20rpx; height:20rpx;"></image>
       </view>
     </view>
