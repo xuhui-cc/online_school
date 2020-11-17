@@ -1,0 +1,43 @@
+<!--packages/teacher/teacher_couponList/teacher_couponList.wxml-->
+<view class="navi" style="height:{{naviHeight}}px;">
+  <view class="naviContent" style="height:{{naviContentHeight}}px;">
+    <view class="backItem" catchtap="backItemClciked">
+      <image src="/images/navi/back.png" style="margin-left: 7rpx; width: 58rpx; height: 58rpx;"></image>
+    </view>
+    <text class="navi_title">优惠券</text>
+    <view class="backItem"></view>
+  </view>
+</view>
+
+<view class="contentView" style="margin-top:{{naviHeight}}px; padding-bottom:{{safeAreaBottom+10}}px;">
+  <block wx:for="{{list}}" wx:key="index">
+    <view class="couponCell" style="margin-top:{{index == 0 ? 16 : 24}}rpx;">
+      <image src="./resource/coupon_bg.png" class="coupon_bgImage"></image>
+      <!-- 标题 -->
+      <text class="coupon_title">{{item.title}}</text>
+      <!-- ID -->
+      <text class="coupon_id">ID:{{item.id}}</text>
+      <!-- 有效期 -->
+      <view class="flex_row_alignItemsCenter" style="margin-top:80rpx; height:42rpx;">
+        <view style="width:9rpx; height:9rpx; border-radius:4.5rpx; margin-left:33rpx; background-color:#FF9A02;"></view>
+        <text style="margin-left:11rpx; color:#FF9A02; font-size:24rpx;">领取后</text>
+        <text style="color:#FF9A02; font-size:30rpx; font-weight:bold;">{{item.days}}</text>
+        <text style="color:#FF9A02; font-size:24rpx;">天内有效</text>
+      </view>
+      <!-- 使用须知 -->
+      <text class="coupon_notice">使用须知：\n{{item.memo}}</text>
+      <!-- 展开按钮 -->
+      <view class="coupon_openButton flex_row_alignItemsCenter">
+        <image src="./resource/open.png" style="margin-left:590rpx; width:15rpx; height:15rpx;"></image>
+        <text style="margin-left:10rpx; color:#CBCBCB; font-size:22rpx;">展开</text>
+      </view>
+      <!-- 金额 -->
+      <view class="coupon_moneyView">
+        <text style="height:56rpx; line-height:56rpx; margin-top:19rpx; color:white; font-size:40rpx; font-weight:bolder;">¥</text>
+        <text style="height:115rpx; line-height:115rpx; margin-left:8rpx; color:white; font-size:82rpx; font-weight:bolder;">{{item.money}}</text>
+      </view>
+      <!-- 去分享 按钮 -->
+      <view class="coupon_shareButton">去分享</view>
+    </view>
+  </block>
+</view>

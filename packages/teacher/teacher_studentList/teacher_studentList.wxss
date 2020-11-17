@@ -14,10 +14,28 @@ page{
 .naviBgView {
   width: 100%;
   background-color: white;
-  z-index: 97;
+  z-index: 96;
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.naviContentView {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.backItem {
+  width: 80rpx;
+  left: 5rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  z-index: 99;
+  position: fixed;
 }
 
 .teacherInfoView {
@@ -27,7 +45,7 @@ page{
   align-items: center;
   flex-direction: column;
   position: relative;
-  z-index: 99;
+  z-index: 98;
 }
 
 .teacherInfo_bg {
@@ -36,7 +54,7 @@ page{
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 98;
+  z-index: 97;
 }
 
 .teacherInfo_avatar {
@@ -45,7 +63,7 @@ page{
   border-radius: 50%;
   border: 4rpx solid white;
   margin-top: 162rpx;
-  z-index: 99;
+  z-index: 98;
 }
 
 .teacherInfo_name {
@@ -57,7 +75,7 @@ page{
   font-weight: bold;
   display: flex;
   align-items: center;
-  z-index: 99;
+  z-index: 98;
 }
 
 .teacherInfo_role {
@@ -66,7 +84,7 @@ page{
   height: 33rpx;
   color: white;
   font-size: 24rpx;
-  z-index: 99;
+  z-index: 98;
 }
 
 .studentList_Header {

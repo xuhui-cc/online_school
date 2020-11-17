@@ -31,7 +31,16 @@ Page({
       if (options.share == 1) {
         shareOption = app.shareTool.getFirstPageShareParam(options, userinfo.role)
       }
-      switch(userinfo.role*1) {
+      let role = wx.getStorageSync('role')
+      if (userinfo.role == 2) {
+        role = 2
+      }
+      if (!role) {
+        wx.setStorageSync('role', 1)
+        role = 1
+      }
+
+      switch(role*1) {
         case 1:{
           // 学生
           if(shareOption && shareOption.share == 0) {
@@ -55,7 +64,7 @@ Page({
         case 3: {
           // 老师
           wx.reLaunch({
-            url: app.getPagePath('teacher_studentList'),
+            url: app.getPagePath('teacher_home'),
           })
           break
         }

@@ -1,0 +1,36 @@
+<!--packages/teacher/teacher_rightList/teacher_rightList.wxml-->
+<view class="navi" style="height:{{naviHeight}}px;">
+  <view class="naviContent" style="height:{{naviContentHeight}}px;">
+    <view class="backItem" catchtap="backItemClciked">
+      <image src="/images/navi/back.png" style="margin-left: 7rpx; width: 58rpx; height: 58rpx;"></image>
+    </view>
+    <text class="navi_title">权益包</text>
+    <view class="backItem"></view>
+  </view>
+</view>
+
+<view class="contentView" style="margin-top:{{naviHeight}}px; padding-bottom:{{safeAreaBottom+10}}px;">
+  <block wx:for="{{list}}" wx:key="index">
+    <view class="rightCell" style="margin-top:{{index == 0 ? 16 : 24}}rpx;">
+      <image src="./resource/rightCard_bg.png" class="right_bgImage"></image>
+      <!-- 标题 -->
+      <text class="vip_title oneLine">{{item.title}}</text>
+      <!-- 课程权益数量 -->
+      <view class="flex_row_alignItemsCenter" style="height:37rpx; margin-top:24rpx;">
+        <image style="margin-left:38rpx; width:16.49rpx; height:19.57rpx;" src="./resource/vipCard_point.png"></image>
+        <text style="margin-left:12rpx; color:#6A6A6A; font-size:26rpx;">课程权益</text>
+        <text style="margin-left:34rpx; color:#FF9A02; font-size:26rpx; font-weight:bold;">{{2}}门</text>
+      </view>
+      <!-- 优惠券数量 -->
+      <view class="flex_row_alignItemsCenter" style="height:37rpx; margin-top:16rpx;">
+        <image style="margin-left:38rpx; width:16.49rpx; height:19.57rpx;" src="./resource/vipCard_point.png"></image>
+        <text style="margin-left:12rpx; color:#6A6A6A; font-size:26rpx;">优惠券</text>
+        <text style="margin-left:60rpx; color:#FF9A02; font-size:26rpx; font-weight:bold;">{{2}}张</text>
+      </view>
+      <!-- 查看详情 按钮 -->
+      <view class="vipCard_showDetailButton">查看详情</view>
+      <!-- 去分享 按钮 -->
+      <view class="vipCard_share">去分享</view>
+    </view>
+  </block>
+</view>

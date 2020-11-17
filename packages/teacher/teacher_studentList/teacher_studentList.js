@@ -233,10 +233,13 @@ Page({
     let systemInfo = wx.getSystemInfoSync()
     let menuBoundRect = wx.getMenuButtonBoundingClientRect()
     let naviHeight = menuBoundRect.bottom + 10
+    let naviContentHeight = naviHeight - systemInfo.statusBarHeight
     let safeArea_bottom = systemInfo.screenHeight - systemInfo.safeArea.bottom
     this.setData({
       naviHeight: naviHeight,
-      safeArea_bottom: safeArea_bottom
+      safeArea_bottom: safeArea_bottom,
+      statusBarHeight: systemInfo.statusBarHeight,
+      naviContentHeight: naviContentHeight
     })
   },
 
@@ -319,7 +322,7 @@ Page({
           that.pageData.canLoadNextPage = true
         }
         that.setData({
-          studentList: newList
+          studentList: newList.concat(newList).concat(newList).concat(newList)
         })
         // 第一次加载 若有学员 计算表头高度
         if (studentList && studentList.length != 0) {
@@ -341,6 +344,13 @@ Page({
   },
 
   //-------------------------------------------------交互事件-----------------------------------
+  /**
+   * 返回item点击事件
+  */
+  backItemClciked: function() {
+    wx.navigateBack()
+  },
+
   /**
    * header菜单栏点击事件
   */

@@ -117,6 +117,9 @@ let pathDic = {
   teacher_addRecord: '/packages/teacher/teacher_addRecord/teacher_addRecord',
   uploadVideo: '/packages/teacher/uploadVideo/uploadVideo',
   teacher_home: '/packages/teacher/teacher_home/teacher_home',
+  teacher_vipCardList: '/packages/teacher/teacher_vipCardList/teacher_vipCardList',
+  teacher_couponList: '/packages/teacher/teacher_couponList/teacher_couponList',
+  teacher_rightList: '/packages/teacher/teacher_rightList/teacher_rightList',
 
   // 家长端
   parent_childList: '/packages/parent/parent_childList/parent_childList',

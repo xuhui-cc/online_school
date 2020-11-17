@@ -68,11 +68,11 @@ App({
         // 角色更改后清空登录信息
         let info = d.data.data
         if (info) {
-          let newRole = info.role_id
-          // 角色变更 清空登录信息 跳转至first_page重新分发页面
-          if (newRole != oldUserInfo.role) {
-            that.clearLocalInfo()
-          }
+          // let newRole = info.role_id
+          // // 角色变更 清空登录信息 跳转至first_page重新分发页面
+          // if (newRole != oldUserInfo.role) {
+          //   that.clearLocalInfo()
+          // }
 
           let avatar = info.avatar
           let nick = info.nick

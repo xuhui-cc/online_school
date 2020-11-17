@@ -1,0 +1,45 @@
+<!--packages/teacher/teacher_vipCardList/teacher_vipCardList.wxml-->
+<view class="navi" style="height:{{naviHeight}}px;">
+  <view class="naviContent" style="height:{{naviContentHeight}}px;">
+    <view class="backItem" catchtap="backItemClciked">
+      <image src="/images/navi/back.png" style="margin-left: 7rpx; width: 58rpx; height: 58rpx;"></image>
+    </view>
+    <text class="navi_title">会员卡</text>
+    <view class="backItem"></view>
+  </view>
+</view>
+
+<view class="contentView" style="margin-top:{{naviHeight}}px; padding-bottom:{{safeAreaBottom+10}}px;">
+  <block wx:for="{{list}}" wx:key="index">
+    <view class="vipCardCell" style="margin-top:{{index == 0 ? 16 : 24}}rpx;">
+      <image src="./resource/vipCard.png" class="vipCard_bgImage"></image>
+      <!-- 标题 -->
+      <text class="vip_title oneLine">{{item.title}}</text>
+      <!-- 课程权益数量 -->
+      <view class="flex_row_alignItemsCenter" style="height:37rpx; margin-top:24rpx;">
+        <image style="margin-left:38rpx; width:16.49rpx; height:19.57rpx;" src="./resource/vipCard_point.png"></image>
+        <text style="margin-left:12rpx; color:#6A6A6A; font-size:26rpx;">课程权益</text>
+        <text style="margin-left:34rpx; color:#FF9A02; font-size:26rpx; font-weight:bold;">{{item.courses.length}}门</text>
+      </view>
+      <!-- 优惠券数量 -->
+      <view class="flex_row_alignItemsCenter" style="height:37rpx; margin-top:16rpx;">
+        <image style="margin-left:38rpx; width:16.49rpx; height:19.57rpx;" src="./resource/vipCard_point.png"></image>
+        <text style="margin-left:12rpx; color:#6A6A6A; font-size:26rpx;">优惠券</text>
+        <text style="margin-left:60rpx; color:#FF9A02; font-size:26rpx; font-weight:bold;">{{item.coupons.length}}张</text>
+      </view>
+      <!-- 学习日志 -->
+      <view wx:if="{{item.open_log}}" class="flex_row_alignItemsCenter" style="height:37rpx; margin-top:16rpx;">
+        <image style="margin-left:38rpx; width:16.49rpx; height:19.57rpx;" src="./resource/vipCard_point.png"></image>
+        <text style="margin-left:12rpx; color:#6A6A6A; font-size:26rpx;">学习日志</text>
+      </view>
+      <!-- 有效期 -->
+      <view class="vipCard_days">
+        <text class="vipCard_days_text oneLine">{{item.valid_days == 0 ? '永久有效' : '有效期'+item.valid_days+'天'}}</text>
+      </view>
+      <!-- 查看详情 按钮 -->
+      <view class="vipCard_showDetailButton">查看详情</view>
+      <!-- 去分享 按钮 -->
+      <view class="vipCard_share">去分享</view>
+    </view>
+  </block>
+</view>

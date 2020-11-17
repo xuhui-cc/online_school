@@ -1,0 +1,136 @@
+/* packages/teacher/teacher_vipCardList/teacher_vipCardList.wxss */
+.navi {
+  width: 100%;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.oneLine {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.flex_row_alignItemsCenter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.naviContent {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.backItem {
+  margin-left: 5rpx;
+  width: 72rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navi_title {
+  color: #000;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.contentView {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.vipCardCell {
+  margin-left: 30rpx;
+  width: 690rpx;
+  height: 293rpx;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.vip_title {
+  margin-top: 33rpx;
+  margin-left: 38rpx;
+  height: 53rpx;
+  line-height: 53rpx;
+  max-width: 498rpx;
+  color: #0A0A0A;
+  font-size: 38rpx;
+  font-weight: bold;
+}
+
+.vipCard_bgImage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.vipCard_days {
+  width: 144rpx;
+  height: 52rpx;
+  background-color: #FFEBCC;
+  border-radius: 0 15rpx 0 15rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.vipCard_days_text {
+  color: #FF9A02;
+  font-size: 22rpx;
+  font-weight: bold;
+  max-width: 134rpx;
+}
+
+.vipCard_showDetailButton {
+  width: 166rpx;
+  height: 50rpx;
+  border-radius: 27rpx;
+  border: 2rpx solid #FF9A02;
+  background-color: #FFF7EB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FF9A02;
+  font-size: 24rpx;
+  position: absolute;
+  top: 109rpx;
+  right: 34rpx;
+}
+
+.vipCard_share {
+  width: 170rpx;
+  height: 54rpx;
+  border-radius: 27rpx;
+  background-color: #FF9A02;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24rpx;
+  position: absolute;
+  top: 183rpx;
+  right: 34rpx;
+
+  box-shadow: 0 3rpx 11rpx rgba(255, 157, 19, 0.39);
+}

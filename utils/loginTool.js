@@ -40,7 +40,16 @@ function login(e, gid, callback) {
       wx.setStorageSync("token", userinfo.token)
       wx.setStorageSync('userinfo', userinfo)
       wx.setStorageSync('gid', userinfo.gid)
-      switch(userinfo.role * 1) {
+
+      let role = wx.getStorageSync('role')
+      if (userinfo.role == 2) {
+        role = 2
+      }
+      if (!role) {
+        wx.setStorageSync('role', 1)
+        role = 1
+      }
+      switch(role * 1) {
         case 1: {
           // 学生
           typeof callback == "function" && callback(true, "登录成功")
@@ -56,7 +65,7 @@ function login(e, gid, callback) {
         case 3: {
           // 老师
           wx.reLaunch({
-            url: pagePath.getPagePath('teacher_studentList'),
+            url: pagePath.getPagePath('teacher_home'),
           })
           break
         }

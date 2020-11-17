@@ -1,7 +1,13 @@
 <!--pages/teacher_studentList/teacher_studentList.wxml-->
 <view class="container">
   <!-- 导航栏白色背景，向上滚动可见 -->
-  <view class="naviBgView" style="height:{{naviHeight}}px"></view>
+  <view class="naviBgView" style="height:{{naviHeight}}px">
+  </view>
+
+  <!-- 返回按钮 -->
+  <view class="backItem" style="height:{{naviContentHeight}}px; top:{{statusBarHeight}}px;" catchtap="backItemClciked">
+    <image style="margin-left:7rpx; width: 58rpx; height:58rpx;" src="{{headerFixed ? '/images/navi/back.png' : '/images/navi/w_back2.png'}}"></image>
+  </view>
 
   <!-- 老师信息 -->
   <view class="teacherInfoView">
@@ -13,7 +19,7 @@
 
   <!-- 学员列表 表头 -->
   <view class="studentList_Header" style="position:{{headerFixed ? 'fixed' : 'static'}}; top:{{HeaderFixedTop}}px; margin-top:{{headerFixed ? 0 : 24}}rpx;">
-    <view class="flex_row_alignItemCenter" style="height:100%; margin-left:46rpx;" catchtap="headerMenuClciekd" data-index="{{0}}">
+    <view class="flex_row_alignItemCenter" style="height:100%; margin-left:{{headerFixed ? 126 : 46}}rpx;" catchtap="headerMenuClciekd" data-index="{{0}}">
       <image class="studentList_Header_icon" mode="aspectFit" src="{{menuSelectedIndex == 0 ? './resource/classGroup_header.png' : './resource/classGroup_header_unselected.png'}}"></image>
       <view class="studentList_Header_title" style="{{menuSelectedIndex != 0 ? 'color:#C7C9D2; font-weight:regular;' : ''}}">班级</view>
     </view>

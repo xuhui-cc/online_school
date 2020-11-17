@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    // 是否是老师
+    isTeacher: null,
   },
 
   /**
@@ -66,6 +67,7 @@ Page({
     let that = this
     that.judge_login()  //登录判断
     // that.my_vip()
+    this.getUserRoles()
   },
 
   /**
@@ -132,6 +134,33 @@ Page({
       })
     }
     
+  },
+
+  /**
+   * 获取用户角色列表
+  */
+  getUserRoles: function() {
+    if (!this.data.login && this.data.isTeacher != null) {
+      return
+    }
+    let params = {
+      token: wx.getStorageSync('token')
+    }
+    let that = this
+    app.ols.getRoles(params).then(d=>{
+      if (d.data.code == 0) {
+        let roleDic = d.data.data[0]
+        if(roleDic[3]) {
+          that.setData({
+            isTeacher: true
+          })
+        } else {
+          that.setData({
+            isTeacher: false
+          })
+        }
+      }
+    })
   },
 
   //登录判断
@@ -217,6 +246,9 @@ Page({
   changeToTeacherRole: function() {
     wx.reLaunch({
       url: app.getPagePath('teacher_home'),
+      success(res) {
+        wx.setStorageSync('role', 3)
+      }
     })
   },
 })
