@@ -121,7 +121,7 @@ Page({
     let that = this
     app.ols.getTeacherCouponList(params).then(d=>{
       if (d.data.code == 0) {
-        let couponList = d.data.data
+        let couponList = d.data.data.lists
         for (var i = 0; i < couponList.length; i++) {
           let vip = couponList[i]
           // 拆分课程ID
@@ -169,5 +169,16 @@ Page({
   */
   backItemClciked: function() {
     wx.navigateBack()
-  }
+  },
+
+  /**
+   * 优惠券 单元格 点击事件
+  */
+  couponCellClicked: function(e) {
+    let index = e.currentTarget.dataset.index
+    let coupon = this.data.list[index]
+    wx.navigateTo({
+      url: app.getPagePath('couponDetail') + "?id=" + coupon.id,
+    })
+  },
 })

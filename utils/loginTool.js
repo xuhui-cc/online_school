@@ -64,9 +64,10 @@ function login(e, gid, callback) {
         }
         case 3: {
           // 老师
-          wx.reLaunch({
-            url: pagePath.getPagePath('teacher_home'),
-          })
+          // wx.reLaunch({
+          //   url: pagePath.getPagePath('teacher_home'),
+          // })
+          typeof callback == "function" && callback(true, "登录成功")
           break
         }
       }

@@ -604,6 +604,7 @@ Page({
       wx.previewMedia({
         sources: record.file,
         current: fileIndex,
+        // showmenu: true,
         fail(res) {
           wx.showToast({
             title: '预览附件失败',

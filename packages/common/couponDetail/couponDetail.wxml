@@ -1,0 +1,27 @@
+<!--packages/common/couponDetail/couponDetail.wxml-->
+<view class="contentView">
+  <image src="./resource/coupon_bg.png" class="bgImage"></image>
+  <image src="./resource/coupon_bg4.png" class="bg_image4"></image>
+  <image src="./resource/coupen_bg2.png" class="bg_image2"></image>
+  <image src="./resource/coupon_bg3.png" class="bg_image3"></image>
+
+  <view class="flex_row_alignItemsCenter" style="margin-top:452rpx; height:48rpx">
+    <view class="coupon_title_point"></view>
+    <view class="coupon_title_point" style="margin-left:8rpx;"></view>
+    <view class="coupon_title_point" style="margin-left:8rpx;"></view>
+    <text class="coupon_title">课程优惠券</text>
+    <view class="coupon_title_point" style="margin-left:16rpx;"></view>
+    <view class="coupon_title_point" style="margin-left:8rpx;"></view>
+    <view class="coupon_title_point" style="margin-left:8rpx;"></view>
+  </view>
+  <view class="flex_row" style="height:190rpx; margin-top:15rpx;">
+    <text class="coupon_money_type">¥</text>
+    <text class="coupon_money">{{3000}}</text>
+  </view>
+
+  <image class="getButton" src="./resource/bottomButton.png" bindtap="getButtonClciked"></image>
+  <button wx:if="{{!login}}" class="getButton" style="height:157rpx; width:419rpx; z-index:5; opacity: 0.01;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+
+  <text style="margin-top:228rpx; width:610rpx; height:42rpx; line-height:42rpx; color:white; font-size:30rpx; text-align:left;">使用须知：</text>
+  <text class="coupon_notice">这里是使用须知，这里是使用须知，这里是使用须知，这里是使用须知，这里是使用须知，这里是使用须知，这里是使用须知，这里是使用须知，这里是使用须知，这里是使用须知，这里是使用须知，这里是使用须知。</text>
+</view>

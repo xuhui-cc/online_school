@@ -121,21 +121,21 @@ Page({
     let that = this
     app.ols.getTeacherVipList(params).then(d=>{
       if (d.data.code == 0) {
-        let vipList = d.data.data
+        let vipList = d.data.data.lists
         for (var i = 0; i < vipList.length; i++) {
           let vip = vipList[i]
-          // 拆分课程ID
-          if (vip.course_ids) {
-            vip.courses = vip.course_ids.split(',')
-          } else {
-            vip.courses = []
-          }
-          // 拆分优惠券ID
-          if (vip.coupon_id) {
-            vip.coupons = vip.coupon_id.split(',')
-          } else {
-            vip.coupons = []
-          }
+          // // 拆分课程ID
+          // if (vip.course_ids) {
+          //   vip.courses = vip.course_ids.split(',')
+          // } else {
+          //   vip.courses = []
+          // }
+          // // 拆分优惠券ID
+          // if (vip.coupon_id) {
+          //   vip.coupons = vip.coupon_id.split(',')
+          // } else {
+          //   vip.coupons = []
+          // }
         }
         if (vipList.length < that.pageData.perpage) {
           that.pageData.canLoadNextPage = false
@@ -169,5 +169,16 @@ Page({
   */
   backItemClciked: function() {
     wx.navigateBack()
+  },
+
+  /**
+   * 查看详情按钮 点击事件
+  */
+  showVipDetail: function(e) {
+    let index = e.currentTarget.dataset.index
+    let vip = this.data.list[index]
+    wx.navigateTo({
+      url: app.getPagePath('vipCardDetail') + '?id=' + vip.id,
+    })
   }
 })

@@ -22,7 +22,7 @@ Page({
     menuSelectedIndex: 0,
 
     // 班级列表
-    classList: [{},{},{}],
+    classList: [],
 
     //学员列表
     studentList: [],
@@ -152,7 +152,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    let oldPage = this.pageData.page
     this.pageData.page = 1
     let that = this
     if (this.data.menuSelectedIndex == 1) {
@@ -160,18 +159,12 @@ Page({
         wx.stopPullDownRefresh({
           success: (res) => {},
         })
-        if (!success) {
-          that.pageData.page = oldPage
-        }
       })
     } else {
       this.teacherGetClassList(function(success){
         wx.stopPullDownRefresh({
           success: (res) => {},
         })
-        if (!success) {
-          that.pageData.page = oldPage
-        }
       })
     }
   },
@@ -291,7 +284,40 @@ Page({
    * 老师端获取班级列表
   */
   teacherGetClassList: function(callback) {
-    typeof callback == "function" && callback(false)
+    // typeof callback == "function" && callback(false)
+    let params = {
+      token: wx.getStorageSync('token'),
+      num: this.pageData.perpage,
+      page: this.pageData.page
+    }
+    let that = this
+    app.ols.getTeacherClassList(params).then(d=>{
+      if (d.data.code == 0) {
+        let classList = d.data.data
+        if (classList.length < that.pageData.perpage) {
+          that.pageData.canLoadNextPage = false
+        } else {
+          that.pageData.canLoadNextPage = true
+        }
+        let newList = []
+        if (that.pageData.page == 1) {
+          newList = classList
+        } else {
+          newList = that.data.classList.concat(classList)
+        }
+        that.setData({
+          classList: newList
+        })
+        typeof callback == "function" && callback(true)
+      } else {
+        if (that.pageData.page == 1) {
+          that.setData({
+            classList: []
+          })
+        }
+        typeof callback == "function" && callback(false)
+      }
+    })
   },
 
   /**
@@ -322,7 +348,7 @@ Page({
           that.pageData.canLoadNextPage = true
         }
         that.setData({
-          studentList: newList.concat(newList).concat(newList).concat(newList)
+          studentList: newList
         })
         // 第一次加载 若有学员 计算表头高度
         if (studentList && studentList.length != 0) {
@@ -381,7 +407,7 @@ Page({
     } else {
       // 添加班级学习日志
       let aclass = this.data.classList[index]
-      addRecordUrl = app.getPagePath('teacher_addRecord') + '?type=2&classid=' + '此处应填班级ID' + '&classname=' + '此处应填班级名称'
+      addRecordUrl = app.getPagePath('teacher_addRecord') + '?type=2&classid=' + aclass.id + '&classname=' + aclass.name
     }
     wx.navigateTo({
       url: addRecordUrl,
@@ -398,5 +424,5 @@ Page({
     wx.navigateTo({
       url: app.getPagePath('study_record') + '?sid='+student.sid,
     })
-  }
+  },
 })

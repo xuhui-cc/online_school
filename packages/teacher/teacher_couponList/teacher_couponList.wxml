@@ -11,7 +11,7 @@
 
 <view class="contentView" style="margin-top:{{naviHeight}}px; padding-bottom:{{safeAreaBottom+10}}px;">
   <block wx:for="{{list}}" wx:key="index">
-    <view class="couponCell" style="margin-top:{{index == 0 ? 16 : 24}}rpx;">
+    <view class="couponCell" style="margin-top:{{index == 0 ? 16 : 24}}rpx; z-index:10;" bindtap="couponCellClicked" data-index="{{index}}">
       <image src="./resource/coupon_bg.png" class="coupon_bgImage"></image>
       <!-- 标题 -->
       <text class="coupon_title">{{item.title}}</text>

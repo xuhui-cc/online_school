@@ -117,9 +117,9 @@ let pathDic = {
   teacher_addRecord: '/packages/teacher/teacher_addRecord/teacher_addRecord',
   uploadVideo: '/packages/teacher/uploadVideo/uploadVideo',
   teacher_home: '/packages/teacher/teacher_home/teacher_home',
-  teacher_vipCardList: '/packages/teacher/teacher_vipCardList/teacher_vipCardList',
-  teacher_couponList: '/packages/teacher/teacher_couponList/teacher_couponList',
-  teacher_rightList: '/packages/teacher/teacher_rightList/teacher_rightList',
+  teacher_vipCardList: '/packages/teacher/teacher_vipCardList/teacher_vipCardList', // 老师关联的会员卡列表
+  teacher_couponList: '/packages/teacher/teacher_couponList/teacher_couponList', // 老师关联的优惠券列表
+  teacher_rightList: '/packages/teacher/teacher_rightList/teacher_rightList', // 老师关联权益包列表
 
   // 家长端
   parent_childList: '/packages/parent/parent_childList/parent_childList',
@@ -128,7 +128,10 @@ let pathDic = {
   study_record: '/packages/common/study_record/study_record',
   videoPlay: '/packages/common/videoPlay/videoPlay',
   auditionVideo:'/packages/common/auditionVideo/auditionVideo',
-  exchangeCode_2C:'/packages/common/exchangeCode_2C/exchangeCode_2C'
+  exchangeCode_2C:'/packages/common/exchangeCode_2C/exchangeCode_2C',
+  vipCardDetail: '/packages/common/vipCardDetail/vipCardDetail', // 会员卡详情
+  rightCardDetail: '/packages/common/rightCardDetail/rightCardDetail', // 权益详情
+  couponDetail: '/packages/common/couponDetail/couponDetail' // 优惠券详情
 }
 
 function getPagePath(pageName, notIos) {

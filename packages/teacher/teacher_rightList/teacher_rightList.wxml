@@ -17,18 +17,18 @@
       <text class="vip_title oneLine">{{item.title}}</text>
       <!-- 课程权益数量 -->
       <view class="flex_row_alignItemsCenter" style="height:37rpx; margin-top:24rpx;">
-        <image style="margin-left:38rpx; width:16.49rpx; height:19.57rpx;" src="./resource/vipCard_point.png"></image>
+        <image style="margin-left:38rpx; width:14.95rpx; height:14.28rpx;" src="./resource/right_point.png"></image>
         <text style="margin-left:12rpx; color:#6A6A6A; font-size:26rpx;">课程权益</text>
-        <text style="margin-left:34rpx; color:#FF9A02; font-size:26rpx; font-weight:bold;">{{2}}门</text>
+        <text style="margin-left:34rpx; color:#FF9A02; font-size:26rpx; font-weight:bold;">{{item.lesson_num}}门</text>
       </view>
       <!-- 优惠券数量 -->
       <view class="flex_row_alignItemsCenter" style="height:37rpx; margin-top:16rpx;">
-        <image style="margin-left:38rpx; width:16.49rpx; height:19.57rpx;" src="./resource/vipCard_point.png"></image>
+        <image style="margin-left:38rpx; width:14.95rpx; height:14.28rpx;" src="./resource/right_point.png"></image>
         <text style="margin-left:12rpx; color:#6A6A6A; font-size:26rpx;">优惠券</text>
-        <text style="margin-left:60rpx; color:#FF9A02; font-size:26rpx; font-weight:bold;">{{2}}张</text>
+        <text style="margin-left:60rpx; color:#FF9A02; font-size:26rpx; font-weight:bold;">{{item.coupon_num}}张</text>
       </view>
       <!-- 查看详情 按钮 -->
-      <view class="vipCard_showDetailButton">查看详情</view>
+      <view class="vipCard_showDetailButton" catchtap="showDetailButtonClciked" data-index="{{index}}">查看详情</view>
       <!-- 去分享 按钮 -->
       <view class="vipCard_share">去分享</view>
     </view>

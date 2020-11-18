@@ -1,0 +1,56 @@
+<!--packages/common/rightCardDetail/rightCardDetail.wxml-->
+<view class="baseInfo">
+  <image src="./resource/rightCard_bg.png" class="vipCardImage" mode="widthFix"></image>
+  <text class="vipCard_title oneLine">{{baseInfo.title}}</text>
+</view>
+
+<block wx:if="{{couponList && couponList.length != 0}}">
+  <view class="couponView flex_row_alignItemsCenter_spaceBetween">
+    <text style="margin-left:30rpx; color:#303030; font-size:32rpx; font-weight:bold;">优惠券权益</text>
+    <view class="flex_row_alignItemsCenter" style="height:100%;">
+      <text style="color:#989898; font-size:24rpx;">更多</text>
+      <image style="width:20rpx; height:20rpx; margin-left:6rpx; margin-right:30rpx;" src="/images/navi/next.png"></image>
+    </view>
+  </view>
+  <scroll-view style="height:194rpx; width:100%;" scroll-x="true" enable-flex="true">
+    <view class="couponTable" style="width: {{couponList.length * 387 + (couponList.length) * 20 + 30 + (couponTotalCount > couponList.length ? 92 : 0)}}rpx;">
+      <block wx:for="{{couponList}}" wx:key="index">
+        <view class="couponCell" style="margin-left:{{index == 0 ? 30 : 20}}rpx;">
+          <image src="{{couponColorList[index%3].image}}" class="coupon_cardImage"></image>
+          <text class="oneLine" style="margin-left:47rpx; margin-top:31rpx; font-size:30rpx; color:#0A0A0A; font-weight:bold, line-height:42rpx; height:42rpx;">{{item.title}}</text>
+          <view style="display:flex; flex-direction:row; height:65rpx; margin-top:38rpx;">
+            <text style="margin-left:28rpx; margin-top:15rpx; height:42rpx; line-height:42rpx; color:{{couponColorList[index%3].color}}; font-size:30rpx; font-weight:bold;">¥</text>
+            <text style="margin-left:6rpx; height:65rpx; line-height:65rpx; color:{{couponColorList[index%3].color}}; font-size:46rpx; font-weight:bold;">{{item.money}}</text>
+          </view>
+        </view>
+      </block>
+      <image wx:if="{{couponTotalCount > couponList.length}}" src="./resource/moreCoupon.png" style="margin-left:20rpx; width:92rpx; height:194rpx;"></image>
+    </view>
+  </scroll-view>
+</block>
+
+<view wx:if="{{courseList && courseList.length != 0}}" style="margin-top:49rpx;">
+  <text style="margin-left:30rpx; color:#303030; font-size:32rpx; font-weight:bold; height:45rpx; line-height:45rpx;">课程权益</text>
+  <view class="flex_row_alignItemsCenter" style="height:42rpx; margin-top:9rpx;">
+    <text style="margin-left:30rpx; color:#FF9A02; font-size:30rpx; font-weight:bold;">{{courseTotalCount}}门</text>
+    <text style="color:#FF9A02; font-size:26rpx;">精选好课免费学</text>
+  </view>
+  <block wx:for="{{courseList}}" wx:key="index">
+    <view class="courseCell" style="margin-top:{{index== 0 ? 32 : 44}}rpx;">
+      <image class="course_image" src="{{item.face}}"></image>
+      <image class="course_vipFlag" src="./resource/vip_course.png"></image>
+      <view class="course_contentView">
+        <text class="course_title twoLine">{{item.title}}</text>
+        <view class="course_infoView flex_row_alignItemsCenter_spaceBetween">
+          <text style="color:#BFBFBF; font-size:24rpx;">{{item.class_hour}}课时</text>
+          <text style="color:#FF9A02; font-size:28rpx; font-weight:bold; margin-right:21rpx;">{{'免费学'}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+
+<view style="height:185rpx; width:100%;"></view>
+
+<image src="./resource/bottomButton.png" class="bottomButton" bindtap="catchButtonClciked"></image>
+<button wx:if="{{!login}}" class="bottomButton" style="height:157rpx; width:690rpx; z-index:99; opacity: 0.01;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>

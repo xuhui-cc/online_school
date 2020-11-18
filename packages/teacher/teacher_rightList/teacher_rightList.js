@@ -121,7 +121,7 @@ Page({
     let that = this
     app.ols.getTeacherRightList(params).then(d=>{
       if (d.data.code == 0) {
-        let rightList = d.data.data
+        let rightList = d.data.data.lists
         for (var i = 0; i < rightList.length; i++) {
           let right = rightList[i]
           // 拆分课程ID
@@ -169,5 +169,16 @@ Page({
   */
   backItemClciked: function() {
     wx.navigateBack()
+  },
+
+  /**
+   * 查看详情按钮 点击事件
+  */
+  showDetailButtonClciked: function(e) {
+    let index = e.currentTarget.dataset.index
+    let right = this.data.list[index]
+    wx.navigateTo({
+      url: app.getPagePath('rightCardDetail') + '?id='+right.id,
+    })
   }
 })

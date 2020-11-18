@@ -348,7 +348,7 @@ function banner3(params) {
 
 // 老师端获取学员列表
 function teacherGetStudentsList(params) {
-  return fetch.olsfetchpost(URI, 'log/teacher/getStudents', params, "老师端获取学员列表", true)
+  return fetch.olsfetchpost(URI, 'v5/classes/getteacherstudentslist', params, "老师端获取学员列表", true)
 }
 
 // 获取日志标签列表
@@ -620,7 +620,57 @@ function getTeacherRightList(params) {
   return fetch.olsfetchpost(URI, 'v5/teacher/getteacherpackagelist', params, '获取老师关联的权益包列表', true)
 }
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all4, test_ques1, test_ques2, course_info1, grade_update, course_cata1, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,grade_course4,course_info4,course_cata3,hot_list4,group_preorder3,order_all3,group_del3,group_detail3,group_share3,all_group3,banner3,v4_viplist,v4_vipPreorder,v4_myVip,course_cata4,judge_share4,cheek_code4, teacherGetStudentsList, getReocrdTagList, submitReocrd, getStudentRecordListByDay, getPeriodRecordStatusList, getStudentCourseHourInfo, getClearCourseHourList, recordUploadFile, getStudentNewRecord, getRecordUploadPath_h5, haveRelationWithStudent,exchange_code4,addImg,parentGetChildsList,dummy,refreshUserInfo, get7v1Intro_h5,v5_getTeacherList,v5_getTeacherIntro, getAdWindow, getLoginUserIdentify,info_1Vn,check_1Vn,exchange_1Vn,subMsg,couponList,couponShow,couponTea,coursePushList,auditionVideo,v5_viplist,vipRight,getVipList,getVipInfo,allVipCourse,allVipCoupon,my_course_all,course_info5,rightBagInfo,exchangeRightBag,course_cata5,grade_course5,cheek_code5,exchange_code5,info_1Vn_v5,check_1Vn_v5,exchange_1Vn_v5, getRoles, getTeacherAuth, getTeacherVipList, getTeacherCouponList, getTeacherRightList}
+// 获取老师关联班级列表
+function getTeacherClassList(params) {
+  return fetch.olsfetchpost(URI, 'v5/classes/getteacherclasslist', params, '获取老师关联班级列表', true)
+}
+
+// 老师端获取班级学员列表
+function getTeacherClassStudentList(params) {
+  return fetch.olsfetchpost(URI, 'v5/classes/getclassesstudentslist', params, '老师端获取班级学员列表', true)
+}
+
+// 获取会员卡基础信息
+function getVipCardBaseInfo(params) {
+  return fetch.olsfetchpost(URI, 'v5/vipcard/getvipcardinfo', params, '获取会员卡基础信息', true)
+}
+
+// 获取会员卡关联优惠券权益列表
+function getVipCardCouponList(params) {
+  return fetch.olsfetchpost(URI, 'v5/vipcard/getvipcardcoupon', params, '获取会员卡关联优惠券权益列表')
+}
+
+// 获取会员卡关联的课程权益列表
+function getVipCardCourseList(params) {
+  return fetch.olsfetchpost(URI, 'v5/vipcard/getvipcardlesson', params, '获取会员卡关联的课程权益列表')
+}
+
+// 会员卡领取
+function getVipCard(params) {
+  return fetch.olsfetchpost(URI, 'v5/exchange/exchangevipcard', params, '会员卡领取', true)
+}
+
+// 获取权益包详情
+function getRightDetail(params) {
+  return fetch.olsfetchpost(URI, 'v5/package/getinfo', params, '获取权益包详情', true)
+}
+
+// 领取权益包
+function getRightCard(params) {
+  return fetch.olsfetchpost(URI, 'v5/exchange/exchangepackage', params, '领取权益包', true)
+}
+
+// 获取优惠券详情
+function getCouponDetail(params) {
+  return fetch.olsfetchpost(URI, 'v5/coupon/getinfo', params, '获取优惠券详情', true)
+}
+
+// 领取优惠券
+function getCoupon(params) {
+  return fetch.olsfetchpost(URI, 'v5/exchange/exchangecoupon', params, '领取优惠券', true)
+}
+
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all4, test_ques1, test_ques2, course_info1, grade_update, course_cata1, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,grade_course4,course_info4,course_cata3,hot_list4,group_preorder3,order_all3,group_del3,group_detail3,group_share3,all_group3,banner3,v4_viplist,v4_vipPreorder,v4_myVip,course_cata4,judge_share4,cheek_code4, teacherGetStudentsList, getReocrdTagList, submitReocrd, getStudentRecordListByDay, getPeriodRecordStatusList, getStudentCourseHourInfo, getClearCourseHourList, recordUploadFile, getStudentNewRecord, getRecordUploadPath_h5, haveRelationWithStudent,exchange_code4,addImg,parentGetChildsList,dummy,refreshUserInfo, get7v1Intro_h5,v5_getTeacherList,v5_getTeacherIntro, getAdWindow, getLoginUserIdentify,info_1Vn,check_1Vn,exchange_1Vn,subMsg,couponList,couponShow,couponTea,coursePushList,auditionVideo,v5_viplist,vipRight,getVipList,getVipInfo,allVipCourse,allVipCoupon,my_course_all,course_info5,rightBagInfo,exchangeRightBag,course_cata5,grade_course5,cheek_code5,exchange_code5,info_1Vn_v5,check_1Vn_v5,exchange_1Vn_v5, getRoles, getTeacherAuth, getTeacherVipList, getTeacherCouponList, getTeacherRightList, getTeacherClassList, getTeacherClassStudentList, getVipCardBaseInfo, getVipCardCouponList, getVipCardCourseList, getVipCard, getRightDetail, getRightCard, getCouponDetail, getCoupon}
 
 
 // const addImgUrl = "http://os.lingjun.net/api.php/annex/upload"

@@ -314,6 +314,18 @@ Page({
    * 获取班级学员列表
   */
   getClassStudentList: function() {
+    let params ={
+      token: wx.getStorageSync('token'),
+      cid: this.id,
+      page: 1,
+      num: 99999
+    }
+    let that = this
+    app.ols.getTeacherClassStudentList(params).then(d=>{
+      if (d.data.code == 0) {
+        
+      }
+    })
     let studentList = [
       {
         selected: true,

@@ -1,0 +1,112 @@
+/* packages/common/couponDetail/couponDetail.wxss */
+.flex_row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex_row_alignItemsCenter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.contentView {
+  width: 100%;
+  height: 1448rpx;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bgImage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
+}
+
+.bg_image2 {
+  position: absolute;
+  top: 187rpx;
+  left: 111rpx;
+  width: 497.27rpx;
+  height: 227.29rpx;
+  z-index: 2;
+}
+
+.bg_image3 {
+  position: absolute;
+  top: 25rpx;
+  left: 59rpx;
+  width: 653.49rpx;
+  height: 350.13rpx;
+  z-index: 3;
+}
+
+.bg_image4 {
+  position: absolute;
+  top: 283rpx;
+  left: 11rpx;
+  width: 730rpx;
+  height: 670rpx;
+  z-index: -1;
+}
+
+.coupon_title_point {
+  width: 7rpx;
+  height: 7rpx;
+  border-radius: 50%;
+  background-color: #FF5327;
+}
+
+.coupon_title {
+  color: #FF5327;
+  font-size: 34rpx;
+  margin-left: 16rpx;
+}
+
+.coupon_money_type {
+  margin-top: 75rpx;
+  color: #FF5327;
+  font-size: 60rpx;
+  font-weight: bolder;
+  height: 84rpx;
+  line-height: 84rpx;
+}
+
+.coupon_money {
+  height: 190rpx;
+  line-height: 190rpx;
+  color: #FF5327;
+  font-size: 136rpx;
+  font-weight: bolder;
+  margin-left: 18rpx;
+}
+
+.getButton {
+  position: absolute;
+  z-index: 4;
+  top: 708rpx;
+  left: 166rpx;
+  width: 419rpx;
+  height: 157rpx;
+}
+
+.coupon_notice {
+  width: 610rpx;
+  margin-top: 16rpx;
+  line-height: 38rpx;
+  color: white;
+  font-size: 24rpx;
+
+  display: -webkit-box; 
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 10;
+}
+

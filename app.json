@@ -147,7 +147,10 @@
         "study_record/study_record",
         "videoPlay/videoPlay",
         "auditionVideo/auditionVideo",
-        "exchangeCode_2C/exchangeCode_2C"
+        "exchangeCode_2C/exchangeCode_2C",
+        "vipCardDetail/vipCardDetail",
+        "rightCardDetail/rightCardDetail",
+        "couponDetail/couponDetail"
       ],
       "name": "common"
     }
