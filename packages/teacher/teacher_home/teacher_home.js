@@ -19,9 +19,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    options = app.shareTool.getShareOption()
+
     this.getSystemSize()
     this.setUpUserInfo()
     this.getAuthMoudle()
+
+    app.shareTool.shareTarget()
   },
 
   /**
@@ -69,9 +73,9 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
 
-  },
+  // },
 
   //--------------------------------------私有方法-------------------------------------
   /**

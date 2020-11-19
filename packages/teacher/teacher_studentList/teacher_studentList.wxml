@@ -37,11 +37,11 @@
       <block wx:for="{{classList}}" wx:key="index">
         <view class="class_Cell" style="margin-top:{{index==0 ? 0 : 20}}rpx;">
           <!-- 班级名称 -->
-          <text class="class_name">{{item.name}}</text>
+          <text class="class_name oneLine">{{item.name}}</text>
           <view class="flex_row_alignItemCenter" style="margin-top:12rpx; height:37rpx;">
             <view class="class_point"></view>
             <!-- 班级人数 -->
-            <text class="class_studentCount">班级人数：22人</text>
+            <text class="class_studentCount">班级人数：{{item.student_num}}人</text>
           </view>
           <!-- 添加按钮 -->
           <view class="student_addRecord_bg" catchtap="addRecordButtonClciked" data-index="{{index}}">
@@ -92,6 +92,11 @@
           <!-- 添加按钮 -->
           <view class="student_addRecord_bg" catchtap="addRecordButtonClciked" data-index="{{index}}">
             <image class="student_addRecord" src="./resource/studentList_addRecord.png"></image>
+          </view>
+
+          <!-- 所属班级 -->
+          <view class="studeng_className" wx:if="{{item.class_name}}">
+            <text class="student_className_text oneLine">{{item.class_name}}</text>
           </view>
         </view>
       </block>

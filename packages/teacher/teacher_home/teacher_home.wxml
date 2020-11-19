@@ -8,7 +8,7 @@
 
 <!-- 老师信息 -->
 <view class="infoView" style="margin-top:{{naviHeight}}px;">
-  <image class="avatar_image" src="{{avatar}}"></image>
+  <image class="avatar_image" src="{{avatar ? avatar : '/images/defaultHead/teacher_defoultAvatar.png'}}"></image>
   <text class="teacher_name">{{name}}</text>
   <!-- 切换到学员 -->
   <view class="role_student" wx:if="{{true}}" catchtap="changeToStudentRole">

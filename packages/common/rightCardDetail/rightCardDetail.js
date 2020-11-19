@@ -10,7 +10,7 @@ Page({
    */
   data: {
     // 权益包基础信息
-    baseInfo: null,
+    title: '',
 
     // 优惠券权益列表
     couponList: [],
@@ -97,9 +97,9 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
 
-  },
+  // },
 
   //----------------------------------------私有方法--------------------------------------------------
   getSystemSize: function() {
@@ -123,7 +123,15 @@ Page({
     let that = this
     app.ols.getRightDetail(params).then(d=>{
       if (d.data.code ==0) {
-
+        let title = d.data.data.title
+        let option = d.data.data.option
+        let courseList = option.lesson
+        let couponList = option.coupon
+        that.setData({
+          title: title,
+          couponList: couponList,
+          courseList: courseList
+        })
       }
     })
   },
@@ -139,6 +147,13 @@ Page({
     let that = this
     app.ols.getRightCard(params).then(d=>{
       if (d.data.code == 0) {
+        let ids = wx.getStorageSync('rightIDs')
+        if (ids && ids.length != 0) {
+          ids = ids + ',' + that.id
+        } else {
+          ids = that.id
+        }
+        wx.setStorageSync('rightIDs', ids)
         wx.redirectTo({
           url: app.getPagePath('vip_detail'),
         })
@@ -158,6 +173,17 @@ Page({
    * 立即领取 按钮 点击事件
   */
   catchButtonClciked: function() {
+    let getIDs = wx.getStorageSync('rightIDs')
+    if (getIDs && getIDs.length != 0) {
+      let ids = getIDs.split(',')
+      if (ids.indexOf(this.id) != -1) {
+        wx.showToast({
+          title: '您已领取过该优惠券',
+          icon: 'none'
+        })
+        return
+      }
+    }
     this.getRight()
   },
 

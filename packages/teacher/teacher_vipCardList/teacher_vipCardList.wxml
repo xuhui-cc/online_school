@@ -39,7 +39,20 @@
       <!-- 查看详情 按钮 -->
       <view class="vipCard_showDetailButton" bindtap="showVipDetail" data-index="{{index}}">查看详情</view>
       <!-- 去分享 按钮 -->
-      <view class="vipCard_share">去分享</view>
+      <view class="vipCard_share" bindtap="shareButtonClciked" data-index="{{index}}">去分享</view>
+      <!-- <button class="vipCard_share" style="width:170rpx; height: 54rpx; " open-type="share" data-index="{{index}}"></button> -->
     </view>
   </block>
 </view>
+
+<view class="shareSureView" wx:if="{{showSureView}}">
+  <view class="alertView">
+    <text class="alert_title">确定分享该优惠券吗？</text>
+    <view class="alert_bottomView flex_row_alignItemsCenter">
+      <view class="cancelView" bindtap="sureCancelViewClicked">取消</view>
+      <button class="sureView" style="width:290rpx; height:100%" open-type="share">确定</button>
+    </view>
+  </view>
+</view>
+
+<canvas canvas-id="shareCanvas" style="width:421px; height:338px; opacity: 0.01;" hidden="{{!showCanvas}}"></canvas>

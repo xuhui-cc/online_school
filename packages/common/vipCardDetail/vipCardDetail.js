@@ -121,9 +121,9 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
 
-  },
+  // },
 
   //----------------------------------------私有方法--------------------------------------------------
   getSystemSize: function() {

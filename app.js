@@ -19,7 +19,7 @@ App({
   shareTool: shareTool,
   notificationCenter: notificationCenter,
   notiNameDic: notiNameDic,
-  onLaunch: function () {
+  onLaunch: function (options) {
 
     // 获取登录用到的口令
     loginTool.firstLaunch()
@@ -43,12 +43,28 @@ App({
         }
       }
     })
+
   },
 
-  onShow: function() {
+  onShow: function(options) {
     this.refreshUserInfo()
     this.couponUseTip()
+    console.log(options)
+    if (options.scene == 1044) {
+      wx.setStorageSync('shareTicket', options.shareTicket)
+      wx.getShareInfo({
+        shareTicket: options.shareTicket,
+        success(res) {
+          loginTool.setWechatGrounpID(res)
+        },
+        fail(res) {
+          console.log('获取分享群信息失败')
+        }
+      })
+    }
   },
+
+  
 
   /**
    * 刷新用户信息

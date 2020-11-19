@@ -9,7 +9,10 @@ Page({
    */
   data: {
     // 是否已登录
-    login: false
+    login: false,
+
+    // 优惠券详情
+    detailInfo: null,
   },
 
   /**
@@ -68,9 +71,9 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
 
-  },
+  // },
 
   //------------------------------------------接口-----------------------------------------
   /**
@@ -102,7 +105,10 @@ Page({
     let that = this
     app.ols.getCouponDetail(params).then(d=>{
       if (d.data.code == 0) {
-
+        let detailInfo = d.data.data
+        that.setData({
+          detailInfo: detailInfo
+        })
       }
     })
   },

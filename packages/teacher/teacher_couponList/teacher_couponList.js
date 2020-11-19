@@ -2,6 +2,12 @@
 let app = getApp()
 Page({
 
+  // 选中去分享的优惠券
+  selectedCoupon: null,
+
+  // 分享卡片路径
+  shareImagePath: '',
+
   pageData: {
     perpage: 10,
     page: 1,
@@ -25,6 +31,14 @@ Page({
   onLoad: function (options) {
     this.getSystemSize()
     this.getCouponList()
+
+    wx.hideShareMenu({
+      success: (res) => {},
+    })
+    wx.updateShareMenu({
+      withShareTicket: true,
+      isPrivateMessage: true
+    })
   },
 
   /**
@@ -88,7 +102,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    this.setData({
+      showSureView: false
+    })
+    let paramsStr = 'id='+this.selectedCoupon.id
+    return app.shareTool.getShareReturnInfo('all', 'couponDetail', paramsStr, this.shareImagePath, '分享优惠券')
   },
   //----------------------------------------------私有方法----------------------------------------------------
   /**
@@ -108,6 +126,77 @@ Page({
     })
   },
 
+  /**
+   * 绘制分享图片
+  */
+  drawShareImage: function (callback) {
+    this.setData({
+      showCanvas: true
+    })
+    const ctx = wx.createCanvasContext('shareCanvas')
+    // 底图
+    ctx.drawImage('./resource/share_img.png', 0, 0, 421, 338)
+
+    // 名字
+    ctx.setTextAlign('left')
+    ctx.setTextAlign('center')
+    ctx.setFillStyle('#0A0A0A')
+    ctx.setFontSize(32)
+    ctx.fillText(this.selectedCoupon.title, 210.5, 68.5, 361)
+    ctx.stroke()
+
+    // 有效期
+    ctx.setTextAlign('left')
+    ctx.setFillStyle('#AAAAAA')
+    ctx.setTextAlign('center')
+    ctx.setFontSize(24)
+    ctx.fillText('领取后'+this.selectedCoupon.days+'天内有效', 210.5, 110.5, 361)
+    ctx.stroke()
+
+    // 价格
+    ctx.setTextAlign('left')
+    ctx.setFillStyle('#FF5327')
+    ctx.setFontSize(40)
+    ctx.fillText("¥", 105, 191)
+    ctx.stroke()
+
+    ctx.setTextAlign('left')
+    ctx.setFillStyle('#FF5327')
+    ctx.setFontSize(80)
+    ctx.fillText(this.selectedCoupon.money, 137, 221)
+    ctx.stroke()
+
+    // 立即查看
+    ctx.drawImage('./resource/share_getButton.png', 83, 219, 255, 128)
+
+    let that = this
+    ctx.draw(false, function(e) {
+      wx.canvasToTempFilePath({
+        x: 0,
+        y: 0,
+        width: 421,
+        height: 338,
+        canvasId: 'shareCanvas',
+        success(res) {
+          // console.log(res.tempFilePath)
+          // that.shareImagePath = res.tempFilePath
+          that.setData({
+            showCanvas: false
+          })
+          typeof callback == 'function' && callback(true, res.tempFilePath)
+        },
+        fail (res) {
+          that.setData({
+            showCanvas: false
+          })
+          typeof callback == 'function' && callback(false, '')
+        }
+      })
+    })
+
+  },
+
+
   //------------------------------------------------接口------------------------------------------------------
   /**
    * 获取优惠券列表
@@ -123,7 +212,8 @@ Page({
       if (d.data.code == 0) {
         let couponList = d.data.data.lists
         for (var i = 0; i < couponList.length; i++) {
-          let vip = couponList[i]
+          let coupon = couponList[i]
+          coupon.open = false
           // 拆分课程ID
           // if (vip.course_ids) {
           //   vip.courses = vip.course_ids.split(',')
@@ -177,8 +267,46 @@ Page({
   couponCellClicked: function(e) {
     let index = e.currentTarget.dataset.index
     let coupon = this.data.list[index]
-    wx.navigateTo({
-      url: app.getPagePath('couponDetail') + "?id=" + coupon.id,
+    // wx.navigateTo({
+    //   url: app.getPagePath('couponDetail') + "?id=" + coupon.id,
+    // })
+    let openStr = 'list[' + index + '].open'
+    this.setData({
+      [openStr] : !coupon.open
     })
   },
+
+  /**
+   * 去分享 按钮 点击事件
+  */
+  shareButtonClciked: function(e) {
+    let index = e.currentTarget.dataset.index
+    let coupon = this.data.list[index]
+    this.selectedCoupon = coupon
+    let that = this
+    wx.showLoading({
+      title: '分享图片生成中...',
+    })
+    this.drawShareImage(function(success, imagePath){
+      wx.hideLoading({
+        success: (res) => {
+          if (success) {
+            that.shareImagePath = imagePath
+            that.setData({
+              showSureView: true
+            })
+          }
+        },
+      })
+    })
+  },
+
+  /**
+   * 确认弹框 取消按钮 点击事件
+  */
+  sureCancelViewClicked: function() {
+    this.setData({
+      showSureView: false
+    })
+  }
 })

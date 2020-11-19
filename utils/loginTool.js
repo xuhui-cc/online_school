@@ -41,6 +41,16 @@ function login(e, gid, callback) {
       wx.setStorageSync('userinfo', userinfo)
       wx.setStorageSync('gid', userinfo.gid)
 
+      wx.getShareInfo({
+        shareTicket: wx.getStorageSync('shareTicket'),
+        success(res) {
+          setWechatGrounpID(res)
+        },
+        fail(res) {
+          console.log('获取分享群信息失败')
+        }
+      })
+
       let role = wx.getStorageSync('role')
       if (userinfo.role == 2) {
         role = 2
@@ -112,7 +122,31 @@ function getOpenidAndSessionKey(code, callback) {
   })
 }
 
+/**
+ * 解密群ID
+*/
+function setWechatGrounpID(e) {
+  let login = wx.getStorageSync('login')
+  if (!login) {
+    return
+  }
+  let iv = encodeURIComponent(e.iv);
+  let encryptedData = encodeURIComponent(e.encryptedData);
+  let param = {
+    token: wx.getStorageSync('token'),
+    session_key: session_key,
+    iv: iv,
+    encryptedData: encryptedData
+  }
+  ols.updateWechatGroupID(param).then(d=>{
+    if (d.data.code == 0) {
+
+    }
+  })
+}
+
 module.exports = {
   getPhoneNumber,
   firstLaunch,
+  setWechatGrounpID,
 }

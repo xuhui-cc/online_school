@@ -66,11 +66,11 @@
       </view>
       <!-- 本班学员 -->
       <view wx:if="{{type == 2}}" class="classStudentListView">
-        <text class="classStudentList_title">本班学员({{}}人)：</text>
+        <text class="classStudentList_title">本班学员({{studentList.length}}人)：</text>
         <view class="classStudentList" wx:if="{{studentList && studentList.length != 0}}">
           <block wx:for="{{studentList}}" wx:key="index">
             <view class="classStudent_Cell" style="background-color:{{item.selected ? '#FFE35A' : '#F1F3FB'}};" catchtap="studentCellClicked" data-index="{{index}}">
-              <text class="classStudent_name oneLine_ellipsis" style="color:{{item.selected ? '#AF5800' : '#ACB3D5'}};">{{item.name}}</text>
+              <text class="classStudent_name oneLine_ellipsis" style="color:{{item.selected ? '#AF5800' : '#ACB3D5'}};">{{item.nick}}</text>
             </view>
           </block>
         </view>

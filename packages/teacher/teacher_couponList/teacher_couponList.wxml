@@ -25,11 +25,12 @@
         <text style="color:#FF9A02; font-size:24rpx;">天内有效</text>
       </view>
       <!-- 使用须知 -->
-      <text class="coupon_notice">使用须知：\n{{item.memo}}</text>
+      <text class="{{item.open ? 'coupon_notice_open' : 'coupon_notice'}}">使用须知：\n{{item.memo}}</text>
+      <view style="width:100%; height:60rpx;"></view>
       <!-- 展开按钮 -->
       <view class="coupon_openButton flex_row_alignItemsCenter">
-        <image src="./resource/open.png" style="margin-left:590rpx; width:15rpx; height:15rpx;"></image>
-        <text style="margin-left:10rpx; color:#CBCBCB; font-size:22rpx;">展开</text>
+        <image src="{{item.open ? './resource/close.png' : './resource/open.png'}}" style="margin-left:590rpx; width:15rpx; height:15rpx;"></image>
+        <text style="margin-left:10rpx; color:#CBCBCB; font-size:22rpx;">{{item.open ? '收起' : '展开'}}</text>
       </view>
       <!-- 金额 -->
       <view class="coupon_moneyView">
@@ -37,7 +38,19 @@
         <text style="height:115rpx; line-height:115rpx; margin-left:8rpx; color:white; font-size:82rpx; font-weight:bolder;">{{item.money}}</text>
       </view>
       <!-- 去分享 按钮 -->
-      <view class="coupon_shareButton">去分享</view>
+      <view class="coupon_shareButton" catchtap="shareButtonClciked" data-index="{{index}}">去分享</view>
     </view>
   </block>
 </view>
+
+<view class="shareSureView" wx:if="{{showSureView}}">
+  <view class="alertView">
+    <text class="alert_title">确定分享该优惠券吗？</text>
+    <view class="alert_bottomView flex_row_alignItemsCenter">
+      <view class="cancelView" bindtap="sureCancelViewClicked">取消</view>
+      <button class="sureView" style="width:290rpx; height:100%" open-type="share">确定</button>
+    </view>
+  </view>
+</view>
+
+<canvas canvas-id="shareCanvas" style="width:421px; height:338px; opacity: 0.01;" hidden="{{!showCanvas}}"></canvas>

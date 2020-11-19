@@ -16,12 +16,12 @@
   </view>
   <view class="flex_row" style="height:190rpx; margin-top:15rpx;">
     <text class="coupon_money_type">¥</text>
-    <text class="coupon_money">{{3000}}</text>
+    <text class="coupon_money">{{detailInfo.money}}</text>
   </view>
 
   <image class="getButton" src="./resource/bottomButton.png" bindtap="getButtonClciked"></image>
   <button wx:if="{{!login}}" class="getButton" style="height:157rpx; width:419rpx; z-index:5; opacity: 0.01;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
 
   <text style="margin-top:228rpx; width:610rpx; height:42rpx; line-height:42rpx; color:white; font-size:30rpx; text-align:left;">使用须知：</text>
-  <text class="coupon_notice">这里是使用须知，这里是使用须知，这里是使用须知，这里是使用须知，这里是使用须知，这里是使用须知，这里是使用须知，这里是使用须知，这里是使用须知，这里是使用须知，这里是使用须知，这里是使用须知。</text>
+  <text class="coupon_notice">{{detailInfo.memo}}</text>
 </view>

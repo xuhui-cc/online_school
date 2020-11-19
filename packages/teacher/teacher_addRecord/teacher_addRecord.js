@@ -277,9 +277,34 @@ Page({
       return
     }
     let tag = this.data.typeList[this.data.selectedTypeIndex]
+
+    let studentIDStr = ''
+    if (this.data.type == 1) {
+      studentIDStr = this.id
+    } else {
+      for (var i = 0; i < this.data.studentList.length; i++) {
+        let student = this.data.studentList[i]
+        if (student.selected) {
+          if (studentIDStr.length == 0) {
+            studentIDStr = student.sid
+          } else {
+            studentIDStr = studentIDStr + ',' + student.sid
+          }
+        }
+      }
+      if (studentIDStr.length == 0) {
+        wx.showToast({
+          title: '请先选择学生',
+          icon: 'none'
+        })
+        return
+      }
+    }
+
     let param = {
       token: wx.getStorageSync('token'),
-      sid: this.id,
+      cid: this.data.type == 1 ? '0' : this.id,
+      sid: studentIDStr,
       tid: tag.id,
       content: content,
     }
@@ -323,45 +348,15 @@ Page({
     let that = this
     app.ols.getTeacherClassStudentList(params).then(d=>{
       if (d.data.code == 0) {
-        
+        let studentList = d.data.data
+        for (var i = 0; i < studentList.length; i++) {
+          let student = studentList[i]
+          student.selected = true
+        }
+        that.setData({
+          studentList: studentList
+        })
       }
-    })
-    let studentList = [
-      {
-        selected: true,
-        name: '易洋千玺'
-      },
-      {
-        selected: true,
-        name: '刘思源'
-      },
-      {
-        selected: true,
-        name: '乌云其木格'
-      },
-      {
-        selected: true,
-        name: '买买提.伊布拉音'
-      },
-      {
-        selected: true,
-        name: '李明'
-      },
-      {
-        selected: true,
-        name: '李继勇'
-      },
-      {
-        selected: true,
-        name: '晁金金'
-      },
-      {
-        selected: true,
-        name: '陈娇'
-      }
-    ]
-    this.setData({
-      studentList: studentList
     })
   },
 

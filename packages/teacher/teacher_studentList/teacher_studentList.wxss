@@ -5,6 +5,12 @@ page{
   flex-direction: column;
 }
 
+.oneLine {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .flex_row_alignItemCenter {
   display: flex;
   flex-direction: row;
@@ -272,5 +278,24 @@ page{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.studeng_className {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 301rpx;
+  height: 43rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 17rpx 0 17rpx;
+  background-color: #EBEEFF;
+}
+
+.student_className_text {
+  max-width: 291rpx;
+  color: #8288A7;
+  font-size: 22rpx;
 }
 

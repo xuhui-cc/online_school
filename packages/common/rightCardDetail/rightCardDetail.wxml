@@ -1,19 +1,19 @@
 <!--packages/common/rightCardDetail/rightCardDetail.wxml-->
 <view class="baseInfo">
   <image src="./resource/rightCard_bg.png" class="vipCardImage" mode="widthFix"></image>
-  <text class="vipCard_title oneLine">{{baseInfo.title}}</text>
+  <text class="vipCard_title oneLine">{{title}}</text>
 </view>
 
 <block wx:if="{{couponList && couponList.length != 0}}">
   <view class="couponView flex_row_alignItemsCenter_spaceBetween">
     <text style="margin-left:30rpx; color:#303030; font-size:32rpx; font-weight:bold;">优惠券权益</text>
-    <view class="flex_row_alignItemsCenter" style="height:100%;">
+    <view class="flex_row_alignItemsCenter" style="height:100%;" wx:if="{{false}}">
       <text style="color:#989898; font-size:24rpx;">更多</text>
       <image style="width:20rpx; height:20rpx; margin-left:6rpx; margin-right:30rpx;" src="/images/navi/next.png"></image>
     </view>
   </view>
   <scroll-view style="height:194rpx; width:100%;" scroll-x="true" enable-flex="true">
-    <view class="couponTable" style="width: {{couponList.length * 387 + (couponList.length) * 20 + 30 + (couponTotalCount > couponList.length ? 92 : 0)}}rpx;">
+    <view class="couponTable" style="width: {{couponList.length * 387 + (couponList.length) * 20 + 30}}rpx;">
       <block wx:for="{{couponList}}" wx:key="index">
         <view class="couponCell" style="margin-left:{{index == 0 ? 30 : 20}}rpx;">
           <image src="{{couponColorList[index%3].image}}" class="coupon_cardImage"></image>
@@ -24,7 +24,6 @@
           </view>
         </view>
       </block>
-      <image wx:if="{{couponTotalCount > couponList.length}}" src="./resource/moreCoupon.png" style="margin-left:20rpx; width:92rpx; height:194rpx;"></image>
     </view>
   </scroll-view>
 </block>
@@ -32,7 +31,7 @@
 <view wx:if="{{courseList && courseList.length != 0}}" style="margin-top:49rpx;">
   <text style="margin-left:30rpx; color:#303030; font-size:32rpx; font-weight:bold; height:45rpx; line-height:45rpx;">课程权益</text>
   <view class="flex_row_alignItemsCenter" style="height:42rpx; margin-top:9rpx;">
-    <text style="margin-left:30rpx; color:#FF9A02; font-size:30rpx; font-weight:bold;">{{courseTotalCount}}门</text>
+    <text style="margin-left:30rpx; color:#FF9A02; font-size:30rpx; font-weight:bold;">{{courseList.length}}门</text>
     <text style="color:#FF9A02; font-size:26rpx;">精选好课免费学</text>
   </view>
   <block wx:for="{{courseList}}" wx:key="index">

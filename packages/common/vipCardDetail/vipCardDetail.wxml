@@ -16,7 +16,7 @@
 <block wx:if="{{couponList && couponList.length != 0}}">
   <view class="couponView flex_row_alignItemsCenter_spaceBetween">
     <text style="margin-left:30rpx; color:#303030; font-size:32rpx; font-weight:bold;">优惠券权益</text>
-    <view class="flex_row_alignItemsCenter" style="height:100%;">
+    <view class="flex_row_alignItemsCenter" style="height:100%;" wx:if="{{false}}">
       <text style="color:#989898; font-size:24rpx;">更多</text>
       <image style="width:20rpx; height:20rpx; margin-left:6rpx; margin-right:30rpx;" src="/images/navi/next.png"></image>
     </view>

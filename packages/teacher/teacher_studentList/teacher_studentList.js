@@ -105,13 +105,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    options = app.shareTool.getShareOption()
+    // options = app.shareTool.getShareOption()
     
     let that = this
     this.getSystemSize()
     this.setUserInfo()
 
-    app.shareTool.shareTarget()
+    // app.shareTool.shareTarget()
   },
 
   /**
@@ -333,7 +333,14 @@ Page({
     app.ols.teacherGetStudentsList(param).then(d=>{
       let code = d.data.code
       if(code == 0) {
-        let studentList = d.data.data.data
+        let studentList = d.data.data
+        for (var i = 0; i < studentList.length; i++) {
+          let student = studentList[i]
+          if (student.log && student.log.createtime) {
+            let time = app.util.customFormatTimeByTimestamp(student.log.createtime*1000, 'MM/dd hh:mm')
+            student.log.time = time
+          }
+        }
         // 分页处理
         var newList = []
         if (that.pageData.page == 1) {
@@ -403,7 +410,7 @@ Page({
     if (this.data.menuSelectedIndex == 1) {
       // 给单个学员添加日志
       let student = this.data.studentList[index]
-      addRecordUrl = app.getPagePath('teacher_addRecord') + '?type=1&sid='+student.sid+"&studentname="+student.nick
+      addRecordUrl = app.getPagePath('teacher_addRecord') + '?type=1&sid='+student.id+"&studentname="+student.nick
     } else {
       // 添加班级学习日志
       let aclass = this.data.classList[index]
@@ -422,7 +429,7 @@ Page({
     let index = e.currentTarget.dataset.index
     let student = this.data.studentList[index]
     wx.navigateTo({
-      url: app.getPagePath('study_record') + '?sid='+student.sid,
+      url: app.getPagePath('study_record') + '?sid='+student.id,
     })
   },
 })

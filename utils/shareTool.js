@@ -10,7 +10,7 @@ let homePageName = [
   'index',
   'logs',
   'my',
-  'teacher_studentList',
+  'teacher_home',
   'parent_childList'
 ]
 

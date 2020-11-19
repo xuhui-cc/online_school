@@ -59,7 +59,7 @@ page{
 .couponCell {
   margin-left: 30rpx;
   width: 690rpx;
-  height: 443rpx;
+  min-height: 443rpx;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -114,6 +114,15 @@ page{
   -webkit-line-clamp: 3;
 }
 
+.coupon_notice_open {
+  color: #959595;
+  font-size: 24rpx;
+  line-height: 38rpx;
+  margin-top: 10rpx;
+  margin-left: 33rpx;
+  width: 611rpx;
+}
+
 .coupon_openButton {
   height:50rpx; 
   width:100%;
@@ -146,4 +155,65 @@ page{
   position: absolute;
   top: 229rpx;
   right: 32rpx;
+}
+
+.shareSureView {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.56);
+}
+
+.alertView {
+  width: 580rpx;
+  height: 300rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 15rpx;
+  position: relative;
+}
+
+.alert_title {
+  color: #272727;
+  font-size: 34rpx;
+  margin-top: 60rpx;
+}
+
+.alert_bottomView {
+  position: absolute;
+  height: 80rpx;
+  width: 100%;
+  border-top: 0.5rpx solid #eee;
+  bottom: 0;
+  left: 0;
+}
+
+.cancelView {
+  width: 290rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: gray;
+  font-size: 30rpx;
+  border-right: 0.5rpx solid #eee;
+}
+
+.sureView {
+  width: 290rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1BB059;
+  font-size: 30rpx;
+  border-right: 0.5rpx solid #eee;
 }
