@@ -23,7 +23,7 @@
     <view class="itemCell" bindtap="itemCellClciked" data-index="{{index}}">
       <image style="width:39rpx; height:42rpx; margin-left:46rpx;" mode="aspectFit" src="{{item.icon}}"></image>
       <view class="flex_row_alignItemsCenter_spaceBetween" style="height: 100%; width:646rpx; border-bottom:0.5rpx solid #F1F1F1;">
-        <text style="margin-left:10rpx; font-size:26rpx; color:#272727;">{{item.title}}</text>
+        <text style="margin-left:10rpx; font-size:26rpx; color:#272727;">{{item.name}}</text>
         <image src="./resource/enter.png" style="margin-right:34rpx; width:20rpx; height:20rpx;"></image>
       </view>
     </view>

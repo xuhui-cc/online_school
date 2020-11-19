@@ -53,6 +53,9 @@ Page({
 
     // 课程总数
     courseTotalCount: 0,
+
+    // 是否是老师角色
+    isTeacher: false,
   },
 
   /**
@@ -60,8 +63,12 @@ Page({
    */
   onLoad: function (options) {
     this.id = options.id
+    if (options.gid) {
+      wx.setStorageSync('gid', options.gid)
+    }
     this.setData({
-      login: wx.getStorageSync('login')
+      login: wx.getStorageSync('login'),
+      isTeacher: wx.getStorageSync('role') == 3
     })
     this.getSystemSize()
     this.getVipBaseInfo()

@@ -8,6 +8,9 @@ Page({
   // 分享卡片路径
   shareImagePath: '',
 
+  // 分享图片生成中
+  shareImage_creating: false,
+
   pageData: {
     perpage: 10,
     page: 1,
@@ -37,11 +40,12 @@ Page({
     this.getSystemSize()
     this.getVipList()
     wx.hideShareMenu({
-      success: (res) => {},
-    })
-    wx.updateShareMenu({
-      withShareTicket: true,
-      isPrivateMessage: true
+      success: (res) => {
+        wx.updateShareMenu({
+          withShareTicket: true,
+          isPrivateMessage: true
+        })
+      },
     })
   },
 
@@ -110,8 +114,8 @@ Page({
     this.setData({
       showSureView: false
     })
-    let paramsStr = 'id='+this.selectedVip.id
-    return app.shareTool.getShareReturnInfo('all', 'vipCardDetail', paramsStr, this.shareImagePath, '分享会员')
+    let paramsStr = 'id='+this.selectedVip.id + '&gid=' + wx.getStorageSync('gid')
+    return app.shareTool.getShareReturnInfo('all', 'vipCardDetail_share', paramsStr, this.shareImagePath, '分享会员')
     
   },
   //----------------------------------------------私有方法----------------------------------------------------
@@ -135,7 +139,7 @@ Page({
   /**
    * 绘制分享图片
   */
-  drawShareImage: function (callback) {
+  drawShareImage: function (callback, count) {
     this.setData({
       showCanvas: true
     })
@@ -143,60 +147,62 @@ Page({
     // 底图
     ctx.drawImage('./resource/share_img.png', 0, 0, 421, 338)
 
-    // 名字
-    ctx.setTextAlign('left')
-    ctx.setFillStyle('#0A0A0A')
-    ctx.setFontSize(32)
-    ctx.fillText(this.selectedVip.title, 37, 83, 347)
-    ctx.stroke()
-
-    // 有效期
-    this.roundRectColor(ctx, 301, 0, 120, 41, 10, '#FFEBCC')
-    ctx.setTextAlign('left')
-    ctx.setFillStyle('#FF9A02')
-    ctx.setFontSize(20)
-    ctx.fillText(this.selectedVip.valid_days == 0 ? '永久有效' : '有效期'+this.selectedVip.valid_days+'天', 306, 31, 110)
-    ctx.stroke()
-
-    // 课程权益
-    if (this.selectedVip.open_course) {
-
-      // point
-      ctx.drawImage('./resource/vipCard_point.png', 37, 118, 16.49, 19.57)
-
+    if (this.selectedVip) {
       // 名字
       ctx.setTextAlign('left')
-      ctx.setFillStyle('#6A6A6A')
-      ctx.setFontSize(24)
-      ctx.fillText('课程权益', 65, 140)
+      ctx.setFillStyle('#0A0A0A')
+      ctx.setFontSize(32)
+      ctx.fillText(this.selectedVip.title, 37, 83, 347)
       ctx.stroke()
 
-      // 数量
+      // 有效期
+      this.roundRectColor(ctx, 301, 0, 120, 41, 10, '#FFEBCC')
       ctx.setTextAlign('left')
       ctx.setFillStyle('#FF9A02')
-      ctx.setFontSize(28)
-      ctx.fillText(this.selectedVip.lesson_num + '门', 186, 143.5)
-      ctx.stroke()
-    }
-
-    // 优惠券
-    if (this.selectedVip.open_coupon) {
-      // point
-      ctx.drawImage('./resource/vipCard_point.png', 37, 170, 16.49, 19.57)
-
-      // 名字
-      ctx.setTextAlign('left')
-      ctx.setFillStyle('#6A6A6A')
-      ctx.setFontSize(24)
-      ctx.fillText('优惠券', 65, 192)
+      ctx.setFontSize(20)
+      ctx.fillText(this.selectedVip.valid_days == 0 ? '永久有效' : '有效期'+this.selectedVip.valid_days+'天', 306, 31, 110)
       ctx.stroke()
 
-      // 数量
-      ctx.setTextAlign('left')
-      ctx.setFillStyle('#FF9A02')
-      ctx.setFontSize(28)
-      ctx.fillText(this.selectedVip.coupon_num + '张', 186, 194)
-      ctx.stroke()
+      // 课程权益
+      if (this.selectedVip.open_course) {
+
+        // point
+        ctx.drawImage('./resource/vipCard_point.png', 37, 118, 16.49, 19.57)
+
+        // 名字
+        ctx.setTextAlign('left')
+        ctx.setFillStyle('#6A6A6A')
+        ctx.setFontSize(24)
+        ctx.fillText('课程权益', 65, 140)
+        ctx.stroke()
+
+        // 数量
+        ctx.setTextAlign('left')
+        ctx.setFillStyle('#FF9A02')
+        ctx.setFontSize(28)
+        ctx.fillText(this.selectedVip.lesson_num + '门', 186, 143.5)
+        ctx.stroke()
+      }
+
+      // 优惠券
+      if (this.selectedVip.open_coupon) {
+        // point
+        ctx.drawImage('./resource/vipCard_point.png', 37, 170, 16.49, 19.57)
+
+        // 名字
+        ctx.setTextAlign('left')
+        ctx.setFillStyle('#6A6A6A')
+        ctx.setFontSize(24)
+        ctx.fillText('优惠券', 65, 192)
+        ctx.stroke()
+
+        // 数量
+        ctx.setTextAlign('left')
+        ctx.setFillStyle('#FF9A02')
+        ctx.setFontSize(28)
+        ctx.fillText(this.selectedVip.coupon_num + '张', 186, 194)
+        ctx.stroke()
+      }
     }
 
     // 立即查看
@@ -219,10 +225,20 @@ Page({
           typeof callback == 'function' && callback(true, res.tempFilePath)
         },
         fail (res) {
-          that.setData({
-            showCanvas: false
-          })
-          typeof callback == 'function' && callback(false, '')
+          if (!count || count < 5) {
+            that.drawShareImage(callback, count ? count + 1 : 1)
+          } else {
+            that.setData({
+              showCanvas: false
+            })
+            wx.showToast({
+              title: '生成分享图片失败',
+              icon: 'none'
+            })
+            console.log('分享图片生成失败')
+            console.log(res)
+            typeof callback == 'function' && callback(false, '')
+          }
         }
       })
     })
@@ -311,7 +327,7 @@ Page({
     let index = e.currentTarget.dataset.index
     let vip = this.data.list[index]
     wx.navigateTo({
-      url: app.getPagePath('vipCardDetail') + '?id=' + vip.id,
+      url: app.getPagePath('vipCardDetail_share') + '?id=' + vip.id,
     })
   },
 
@@ -319,6 +335,10 @@ Page({
    * 去分享 按钮 点击事件
   */
   shareButtonClciked: function(e) {
+    if(this.shareImage_creating) {
+      return
+    }
+    this.shareImage_creating = true
     let index = e.currentTarget.dataset.index
     let vip = this.data.list[index]
     this.selectedVip = vip
@@ -334,6 +354,7 @@ Page({
             that.setData({
               showSureView: true
             })
+            that.shareImage_creating = false
           }
         },
       })

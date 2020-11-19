@@ -212,13 +212,31 @@ Page({
     })
   },
 
+  // 上传图片顺序控制
+  fixUpdateImageCount: function(index, files, callback) {
+    let that = this
+    if (index >= files.length) {
+      // 上传完成
+      typeof callback == 'function' && callback(true)
+    } else {
+      let file = files[index]
+      this.recordUploadFile(file, function(success){
+        if (success) {
+          that.fixUpdateImageCount(index+1, files, callback)
+        } else {
+          typeof callback == 'function' && callback(false)
+        }
+      })
+    }
+  },
+
   //--------------------------------------------------------接口---------------------------------------------------
   /**
    * 上传图片
   */
-  recordUploadFile: function(file) {
+  recordUploadFile: function(file, callback) {
     let that = this
-    var filePath = file.tempFilePath
+    var filePath = file.path
     app.ols.recordUploadFile(filePath).then(d=>{
       if (d.code == 0) {
         file.serverPath = d.data.file
@@ -230,6 +248,9 @@ Page({
         that.setData({
           files: that.data.files
         })
+        typeof callback == 'function' && callback(true)
+      } else {
+        typeof callback == 'function' && callback(false)
       }
     })
   },
@@ -492,6 +513,7 @@ Page({
    * 添加图片/视频按钮 点击事件
   */
   addFileButtonClicked: function() {
+    let that = this
     wx.showActionSheet({
       itemList: ['图片', '视频'],
       success(res) {
@@ -499,8 +521,35 @@ Page({
         let index = res.tapIndex
         if (index == 0) {
           // 图片
-          wx.navigateTo({
-            url: app.getPagePath('uploadVideo') + '?type=img',
+          // wx.navigateTo({
+          //   url: app.getPagePath('uploadVideo') + '?type=img',
+          // })
+          wx.chooseImage({
+            count: 9,
+            success(res) {
+              console.log(res)
+              let files = res.tempFiles
+              for (var i = 0; i < files.length; i++) {
+                let file = files[i]
+                file.type = 'image'
+              }
+              if (files.length >= 1) {
+                wx.showLoading({
+                  title: '图片上传中...',
+                })
+                that.fixUpdateImageCount(0, files, function(success){
+                  wx.hideLoading({
+                    success: (res) => {},
+                  })
+                })
+              }
+            },
+            fail (res) {
+              wx.showToast({
+                title: '打开相册失败\n'+res.errMsg,
+                icon: 'none'
+              })
+            }
           })
         } else {
           // 视频
@@ -513,27 +562,27 @@ Page({
         console.log(res)
       }
     })
-    return
-    let that = this
-    wx.chooseMedia({
-      count: 1,
-      mediaType: ['image', 'video'],
-      success (res) {
-        // console.log(res)
-        let files = res.tempFiles
-        if (files.length >= 1) {
-          let file = files[0]
-          file.type = res.type // "image", "video"
-          that.recordUploadFile(file)
-        }
-      },
-      fail (res) {
-        wx.showToast({
-          title: '打开相册失败\n'+res.errMsg,
-          icon: 'none'
-        })
-      }
-    })
+    // return
+    // let that = this
+    // wx.chooseMedia({
+    //   count: 1,
+    //   mediaType: ['image', 'video'],
+    //   success (res) {
+    //     // console.log(res)
+    //     let files = res.tempFiles
+    //     if (files.length >= 1) {
+    //       let file = files[0]
+    //       file.type = res.type // "image", "video"
+    //       that.recordUploadFile(file)
+    //     }
+    //   },
+    //   fail (res) {
+    //     wx.showToast({
+    //       title: '打开相册失败\n'+res.errMsg,
+    //       icon: 'none'
+    //     })
+    //   }
+    // })
   },
 
   /**

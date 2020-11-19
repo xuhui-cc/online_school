@@ -20,6 +20,9 @@ Page({
    */
   onLoad: function (options) {
     this.id = options.id
+    if (options.gid) {
+      wx.setStorageSync('gid', options.gid)
+    }
     this.setData({
       login: wx.getStorageSync('login')
     })

@@ -129,7 +129,7 @@ let pathDic = {
   videoPlay: '/packages/common/videoPlay/videoPlay',
   auditionVideo:'/packages/common/auditionVideo/auditionVideo',
   exchangeCode_2C:'/packages/common/exchangeCode_2C/exchangeCode_2C',
-  vipCardDetail: '/packages/common/vipCardDetail/vipCardDetail', // 会员卡详情
+  vipCardDetail_share: '/packages/common/vipCardDetail_share/vipCardDetail_share', // 会员卡详情
   rightCardDetail: '/packages/common/rightCardDetail/rightCardDetail', // 权益详情
   couponDetail: '/packages/common/couponDetail/couponDetail' // 优惠券详情
 }

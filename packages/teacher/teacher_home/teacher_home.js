@@ -122,21 +122,25 @@ Page({
             case 1: {
               // 学习日志
               item.icon = './resource/item_studyRecord.png'
+              item.name = '学习日志'
               break
             }
             case 2: {
               // 会员卡
               item.icon = './resource/item_vipCard.png'
+              item.name = '会员卡'
               break
             }
             case 3: {
               // 优惠券
               item.icon = './resource/item_coupon.png'
+              item.name = '优惠券'
               break
             }
             case 4: {
               // 兑换码-权益包
               item.icon = './resource/item_right.png'
+              item.name = '权益包'
               break
             }
           }

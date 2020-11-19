@@ -47,7 +47,7 @@
 
 <view class="shareSureView" wx:if="{{showSureView}}">
   <view class="alertView">
-    <text class="alert_title">确定分享该优惠券吗？</text>
+    <text class="alert_title">确定分享该会员卡吗？</text>
     <view class="alert_bottomView flex_row_alignItemsCenter">
       <view class="cancelView" bindtap="sureCancelViewClicked">取消</view>
       <button class="sureView" style="width:290rpx; height:100%" open-type="share">确定</button>
@@ -55,4 +55,4 @@
   </view>
 </view>
 
-<canvas canvas-id="shareCanvas" style="width:421px; height:338px; opacity: 0.01;" hidden="{{!showCanvas}}"></canvas>
+<canvas canvas-id="shareCanvas" class="canvas" style="width:421px; height:338px; opacity: 0.01;" hidden="{{!showCanvas}}"></canvas>

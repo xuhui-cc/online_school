@@ -8,6 +8,9 @@ Page({
   // 分享卡片路径
   shareImagePath: '',
 
+  // 分享图片生成中
+  shareImage_creating: false,
+
   pageData: {
     perpage: 10,
     page: 1,
@@ -105,7 +108,7 @@ Page({
     this.setData({
       showSureView: false
     })
-    let paramsStr = 'id='+this.selectedCoupon.id
+    let paramsStr = 'id='+this.selectedCoupon.id + '&gid=' + wx.getStorageSync('gid')
     return app.shareTool.getShareReturnInfo('all', 'couponDetail', paramsStr, this.shareImagePath, '分享优惠券')
   },
   //----------------------------------------------私有方法----------------------------------------------------
@@ -129,7 +132,7 @@ Page({
   /**
    * 绘制分享图片
   */
-  drawShareImage: function (callback) {
+  drawShareImage: function (callback, count) {
     this.setData({
       showCanvas: true
     })
@@ -186,10 +189,19 @@ Page({
           typeof callback == 'function' && callback(true, res.tempFilePath)
         },
         fail (res) {
-          that.setData({
-            showCanvas: false
-          })
-          typeof callback == 'function' && callback(false, '')
+          if (!count || count < 5) {
+            that.drawShareImage(callback, count ? count + 1 : 1)
+          } else {
+            that.setData({
+              showCanvas: false
+            })
+            wx.showToast({
+              title: '生成分享图片失败',
+              icon: 'none'
+            })
+            typeof callback == 'function' && callback(false, '')
+          }
+          
         }
       })
     })
@@ -280,6 +292,10 @@ Page({
    * 去分享 按钮 点击事件
   */
   shareButtonClciked: function(e) {
+    if(this.shareImage_creating) {
+      return
+    }
+    this.shareImage_creating = true
     let index = e.currentTarget.dataset.index
     let coupon = this.data.list[index]
     this.selectedCoupon = coupon
@@ -295,6 +311,7 @@ Page({
             that.setData({
               showSureView: true
             })
+            that.shareImage_creating = false
           }
         },
       })

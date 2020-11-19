@@ -217,3 +217,9 @@ page{
   font-size: 30rpx;
   border-right: 0.5rpx solid #eee;
 }
+
+.canvas {
+  position: fixed;
+  left: 750rpx;
+  top: 0;
+}

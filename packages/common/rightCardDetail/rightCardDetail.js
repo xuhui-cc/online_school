@@ -39,6 +39,9 @@ Page({
 
     // 课程总数
     courseTotalCount: 0,
+
+    // 当前是否是老师角色
+    isTeacher: false,
   },
 
   /**
@@ -46,8 +49,12 @@ Page({
    */
   onLoad: function (options) {
     this.id = options.id
+    if (options.gid) {
+      wx.setStorageSync('gid', options.gid)
+    }
     this.setData({
-      login: wx.getStorageSync('login')
+      login: wx.getStorageSync('login'),
+      isTeacher: wx.getStorageSync('role') == 3
     })
     this.getSystemSize()
     this.getRightDetail()
@@ -178,7 +185,7 @@ Page({
       let ids = getIDs.split(',')
       if (ids.indexOf(this.id) != -1) {
         wx.showToast({
-          title: '您已领取过该优惠券',
+          title: '您已领取过该权益包',
           icon: 'none'
         })
         return

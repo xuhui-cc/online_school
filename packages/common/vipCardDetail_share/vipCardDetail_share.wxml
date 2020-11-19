@@ -61,5 +61,8 @@
 
 <view style="height:185rpx; width:100%;"></view>
 
-<image src="./resource/bottomButton.png" class="bottomButton" bindtap="catchButtonClciked"></image>
-<button wx:if="{{!login}}" class="bottomButton" style="height:157rpx; width:690rpx; z-index:99; opacity: 0.01;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+<block wx:if="{{!isTeacher}}">
+  <image src="./resource/bottomButton.png" class="bottomButton" bindtap="catchButtonClciked"></image>
+  <button wx:if="{{!login}}" class="bottomButton" style="height:157rpx; width:690rpx; z-index:99; opacity: 0.01;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+</block>
+

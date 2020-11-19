@@ -1,5 +1,5 @@
-const URI_base = "http://os.lingjun.net/" //测试域名
-// const URI_base = "https://wsg.lingjun.net/" // 正式域名
+// const URI_base = "http://os.lingjun.net/" //测试域名
+const URI_base = "https://wsg.lingjun.net/" // 正式域名
 
 const URI = URI_base + 'api.php/'    //接口地址
 
@@ -383,7 +383,7 @@ function getClearCourseHourList(params) {
 
 // 上传日志图片/视频
 function recordUploadFile(filePath) {
-  return fetch.olsfetchUpload(URI, 'log/upload/upload', filePath, '上传日志图片/视频', true)
+  return fetch.olsfetchUpload(URI, 'log/upload/upload', filePath, '上传日志图片/视频')
 }
 
 // 获取学生最新日志
