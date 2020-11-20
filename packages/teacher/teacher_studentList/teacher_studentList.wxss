@@ -20,7 +20,7 @@ page{
 .naviBgView {
   width: 100%;
   background-color: white;
-  z-index: 96;
+  z-index: 95;
   position: fixed;
   top: 0;
   left: 0;
@@ -51,7 +51,7 @@ page{
   align-items: center;
   flex-direction: column;
   position: relative;
-  z-index: 98;
+  z-index: 97;
 }
 
 .teacherInfo_bg {
@@ -60,7 +60,7 @@ page{
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 97;
+  z-index: 96;
 }
 
 .teacherInfo_avatar {
@@ -69,7 +69,7 @@ page{
   border-radius: 50%;
   border: 4rpx solid white;
   margin-top: 162rpx;
-  z-index: 98;
+  z-index: 97;
 }
 
 .teacherInfo_name {
@@ -81,7 +81,7 @@ page{
   font-weight: bold;
   display: flex;
   align-items: center;
-  z-index: 98;
+  z-index: 97;
 }
 
 .teacherInfo_role {
@@ -90,7 +90,7 @@ page{
   height: 33rpx;
   color: white;
   font-size: 24rpx;
-  z-index: 98;
+  z-index: 97;
 }
 
 .studentList_Header {
@@ -100,7 +100,7 @@ page{
   display: flex;
   flex-direction: row;
   align-items: center;
-  z-index: 100;
+  z-index: 98;
 }
 
 .studentList_Header_icon {

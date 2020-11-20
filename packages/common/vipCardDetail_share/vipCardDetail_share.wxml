@@ -5,7 +5,7 @@
   <text class="vipCard_notice">{{baseInfo.memo}}</text>
   <view class="timeView flex_row_alignItemsCenter">
     <view style="width:8rpx; height:8rpx; margin-left:38rpx; background-color:#FF9A02"></view>
-    <text style="margin-left:11rpx; color:#FF9A02; font-size:24rpx; font-weight:bold; border-radius:50%">{{baseInfo.valid_days == 0 ? '永久有效' : '领取后' + baseInfo.valid_days + '天内有效'}}</text>
+    <text style="margin-left:11rpx; color:#FF9A02; font-size:24rpx; font-weight:bold; border-radius:50%">{{baseInfo.valid_days == 0 || baseInfo.valid_days >= 3650 ? '永久有效' : '领取后' + baseInfo.valid_days + '天内有效'}}</text>
   </view>
   <view class="moneyView">
     <text style="margin-top:29rpx; line-height:48rpx; height:48rpx; color:#FFA72C; font-size:34rpx; font-weight:bold;">¥</text>

@@ -71,9 +71,9 @@
           <view class="flex_row_alignItemCenter" style="margin-top:11rpx; height:37rpx;">
             <!-- 电话 -->
             <view class="studentList_phone">{{item.mobile}}</view>
-            <view style="height:19rpx; width:2rpx; margin-left:20rpx; background-color:#c4ccf3;"></view>
+            <!-- <view style="height:19rpx; width:2rpx; margin-left:20rpx; background-color:#c4ccf3;"></view> -->
             <!-- 校区 -->
-            <view class="studentList_school">{{item.school_address ? item.school_address : '暂无校区'}}</view>
+            <!-- <view class="studentList_school">{{item.school_address ? item.school_address : '暂无校区'}}</view> -->
           </view>
           <view class="flex_row_alignItemCenter" style="margin-top:30rpx; height:33rpx">
             <block wx:if="{{item.log && item.log!=''}}">

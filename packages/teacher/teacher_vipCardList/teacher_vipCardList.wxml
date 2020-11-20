@@ -34,7 +34,7 @@
       </view>
       <!-- 有效期 -->
       <view class="vipCard_days">
-        <text class="vipCard_days_text oneLine">{{item.valid_days == 0 ? '永久有效' : '有效期'+item.valid_days+'天'}}</text>
+        <text class="vipCard_days_text oneLine">{{item.valid_days == 0 || item.valid_days >= 3650 ? '永久有效' : '有效期'+item.valid_days+'天'}}</text>
       </view>
       <!-- 查看详情 按钮 -->
       <view class="vipCard_showDetailButton" bindtap="showVipDetail" data-index="{{index}}">查看详情</view>
