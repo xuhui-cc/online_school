@@ -52,7 +52,10 @@ Page({
     /**
      * 附件数组
     */
-    files: []
+    files: [],
+
+    // 班级日志 可是不足学员列表
+    noHourStudentList: null,
   },
 
   /**
@@ -301,8 +304,10 @@ Page({
 
     let studentIDStr = ''
     if (this.data.type == 1) {
+      // 单个学员
       studentIDStr = this.id
     } else {
+      // 班级
       for (var i = 0; i < this.data.studentList.length; i++) {
         let student = this.data.studentList[i]
         if (student.selected) {
@@ -345,6 +350,7 @@ Page({
     if (this.data.clearCourseHour) {
       param.num = this.data.clearCourseHourCount_pointLeft + '.' + this.data.clearCourseHourCount_pointRight
     }
+    let that = this
     app.ols.submitReocrd(param).then(d=>{
       if (d.data.code == 0) {
         wx.showToast({
@@ -352,6 +358,12 @@ Page({
           icon: 'none'
         })
         typeof callback == "function" && callback()
+      } else if (d.data.code == 7) {
+        // 课时不足学员列表
+        let noHourStudentList = d.data.data
+        that.setData({
+          noHourStudentList: noHourStudentList
+        })
       }
     })
   },
@@ -676,6 +688,16 @@ Page({
       wx.navigateBack({
         delta: 0,
       })
+    })
+  },
+
+
+  /**
+   * 班级日志 可是不足弹框 关闭按钮 点击事件
+  */
+  noHourStudentViewCloseButtonClciked: function() {
+    this.setData({
+      noHourStudentList: null
     })
   }
 })

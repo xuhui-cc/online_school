@@ -136,3 +136,20 @@
     <view class="clearCountView_sureButton" bindtap="clearCountSelectSureButtonClciked">确定</view>
   </view>
 </view>
+
+<!-- 班级日志 销课课时不足学员 -->
+<view class="noHourStudentsView_bg" wx:if="{{noHourStudentList}}">
+  <view class="noHourStudentsView">
+    <text class="noHourStudentsView_title">以下学员课时数不足，请联系其购买：</text>
+    <scroll-view class="noHourStudentView_scrollView" scroll-y="true" enable-flex="true">
+      <view style="width: 526rpx; display: flex; flex-direction: row; flex-wrap: wrap;">
+        <block wx:for="{{noHourStudentList}}" wx:key="index">
+          <view class="noHourStudentCell" style="margin-top:{{index > 2 ? 20 : 0}}rpx;">
+            <text class="noHourStudentCell_name oneLine_ellipsis">{{item.nick}}</text>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+    <view class="noHourStudentView_CloseButton" catchtap="noHourStudentViewCloseButtonClciked">我知道了</view>
+  </view>
+</view>

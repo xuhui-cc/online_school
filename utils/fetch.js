@@ -50,6 +50,11 @@ function olsfetchpost(api, path, params, log, showToast, loadingMsg) {
             resolve(res)
             break
           }
+          case 7:{
+            // 错误 需要弹自定义窗口
+            resolve(res)
+            break
+          }
           case 1: {
             // 参数不合法
           }

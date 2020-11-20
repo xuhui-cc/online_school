@@ -418,3 +418,77 @@
   justify-content: center;
 }
 
+
+
+.noHourStudentsView_bg {
+  background-color: rgba(0, 0, 0, 0.64);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 102;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.noHourStudentsView {
+  width: 553rpx;
+  height: 584rpx;
+  border-radius: 10rpx;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.noHourStudentsView_title {
+  color: #000000;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-top: 54rpx;
+  width: 448rpx;
+}
+
+.noHourStudentView_scrollView {
+  margin-top: 28rpx;
+  width: 526rpx;
+  margin-left: 27rpx;
+  height: 257rpx;
+}
+
+.noHourStudentCell {
+  width: 137rpx;
+  height: 59rpx;
+  border-radius: 10rpx;
+  background-color: #F6F6F6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 22rpx;
+}
+
+.noHourStudentCell_name {
+  max-width: 127rpx;
+  color: #828282;
+  font-size: 27rpx;
+}
+
+.noHourStudentView_CloseButton {
+  position: absolute;
+  bottom: 47rpx;
+  left: 129rpx;
+  width: 296rpx;
+  height: 72rpx;
+  border-radius: 36rpx;
+  background-color: #4964F6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 28rpx;
+  font-weight: bold;
+}
