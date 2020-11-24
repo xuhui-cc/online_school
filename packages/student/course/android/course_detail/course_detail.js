@@ -9,7 +9,9 @@ Page({
   data: {
     currentData: 0,
     btn_buy:app.globalData.btn_buy,
-    coupon_use:false
+    coupon_use:false,
+    queue:false
+
   },
 
   /**
@@ -142,10 +144,11 @@ Page({
       that.setData({
         course_info: d.data.data
       })
-      if(that.data.login && that.data.course_info.price == 0 && (that.data.course_info.buy == 0 || that.data.course_info.buy == 6)){
+      if(that.data.login && (that.data.course_info.price == 0 || that.data.course_info.price == '0') && (that.data.course_info.buy == 0 || that.data.course_info.buy == 6)){
         that.to_free()   //获取免费课
+        console.log("获取免费课")
       }
-      if (that.data.login && (that.data.course_info.buy == 1 || (that.data.course_info.buy >= 3 && that.data.course_info.buy <= 5) || that.data.course_info.price == 0)) {
+      if (that.data.login && (that.data.course_info.buy == 1 || (that.data.course_info.buy >= 3 && that.data.course_info.buy <= 5) || that.data.course_info.price == 0 || that.data.course_info.price == '0')) {
         that.setData({
           currentData: 1
         })
@@ -369,6 +372,16 @@ Page({
   },
 
 
+  //目录排序
+  sort:function(){
+    let that = this 
+    that.setData({
+      queue:!that.data.queue
+    })
+    that.getcourse_cata()
+  },
+
+
   /*----------------------------------------------------接口-------------------------------------------- */
   
   // 获取课程详情
@@ -420,15 +433,23 @@ Page({
   //获取课程目录接口
   getcourse_cata:function(){
     let that = this
+    var queue
+    if(that.data.queue == true){
+      queue = 1
+    }else{
+      queue = 0
+    }
     if (wx.getStorageSync("login")) {
       var params = {
         "token": wx.getStorageSync("token"),
-        "kid": that.data.kid
+        "kid": that.data.kid,
+        "queue":queue
       }
     }else{
       var params = {
         "token": '',
-        "kid": that.data.kid
+        "kid": that.data.kid,
+        "queue":queue
       }
     }
      

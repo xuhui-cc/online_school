@@ -507,3 +507,28 @@ z-index: 101;
   
   z-index: 102;
 }
+/* 目录顺序 */
+.sort_layout{
+  position: absolute;
+  display: flex;
+  margin-left: 560rpx;
+  margin-top: 45rpx;
+}
+.sort{
+  width: 48rpx;
+  height: 33rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 33rpx;
+  color: #B5B5B5;
+  opacity: 1;
+
+}
+.sortImg{
+  margin-left: 5rpx;
+  margin-top: 7rpx;
+  width: 28rpx;
+  height: 22rpx;
+}
+/* 目录顺序 */
