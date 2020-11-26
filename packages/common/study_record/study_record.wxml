@@ -137,7 +137,7 @@
             </view>
             <!-- 点评 -->
             <block wx:if="{{item.score && item.score.length >= 1}}">
-              <view class="evaluateView">
+              <view class="evaluateView" catchtap="commentButtonClciked" data-index="{{index}}">
                 <!-- 分数 -->
                 <view class="flex_row_alignItemCenter_spaceBetween" style="height:69rpx; width:100%;">
                   <view class="flex_row_alignItemCenter">
