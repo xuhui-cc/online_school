@@ -387,14 +387,22 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    // let that = this
+    // that.coursePage = 1
+    // that.setData({
+    //   courseList:''
+    // })
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    // let that = this
+    // that.coursePage = 1
+    // that.setData({
+    //   courseList:''
+    // })
   },
 
   /**阻止页面滚动。模拟器中页面仍然可以滚动，真机上不能滚动。*/
@@ -486,30 +494,33 @@ Page({
   allVipCourse:function(){
     let that = this
     if(that.data.login){
-      var params = {
-        "token": wx.getStorageSync("token"),
-        "num":that.pageNum,
-        "page":that.coursePage
-      }
-      app.ols.allVipCourse(params).then(d => {
-        if (d.data.code == 0) {
-          if(that.coursePage == 1){
-            that.setData({
-              total:d.data.data.total,
-              courseList:d.data.data.lists
-            })
-          }else{
-            var finalList = that.data.courseList.concat(d.data.data.lists)
-            that.setData({
-              courseList:finalList
-            })
-          }
-          
-        } 
-        else{
-          
+      if(!that.data.total || (that.data.courseList.length < that.data.total)){
+        var params = {
+          "token": wx.getStorageSync("token"),
+          "num":that.pageNum,
+          "page":that.coursePage
         }
-      })
+        app.ols.allVipCourse(params).then(d => {
+          if (d.data.code == 0) {
+            if(that.coursePage == 1){
+              that.setData({
+                total:d.data.data.total,
+                courseList:d.data.data.lists
+              })
+            }else{
+              var finalList = that.data.courseList.concat(d.data.data.lists)
+              that.setData({
+                courseList:finalList
+              })
+            }
+            
+          } 
+          else{
+            
+          }
+        })
+      }
+      
     }
     
   },

@@ -434,6 +434,7 @@ Page({
         "page": that.subjectCoursePage
       }
     }
+    if(!that.data.courseTotal || (that.data.course.length < that.data.courseTotal)){
       app.ols.grade_course5(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
@@ -455,6 +456,8 @@ Page({
           })
         }
       })
+    }
+      
     
   },
 
@@ -785,10 +788,18 @@ Page({
   //后台推荐课程
   coursePushList:function(){
     let that = this 
-    var params = {
-      // "gid":wx.getStorageSync('gid'),
-      "token":0
+    if(that.data.login){
+      var params = {
+        // "gid":wx.getStorageSync('gid'),
+        "token":wx.getStorageSync('token'),
+      }
+    }else{
+      var params = {
+        // "gid":wx.getStorageSync('gid'),
+        "token":0
+      }
     }
+    
     app.ols.coursePushList(params).then(d => {
       if (d.data.code == 0) {
         that.setData({
@@ -804,30 +815,33 @@ Page({
   },
   allVipCourse:function(){
     let that = this
-    var params = {
-      "token": wx.getStorageSync("token"),
-      "num":that.pageNum,
-      "page":that.vipCoursePage
-    }
-    app.ols.allVipCourse(params).then(d => {
-      if (d.data.code == 0) {
-        if(that.vipCoursePage == 1){
-          that.setData({
-            total:d.data.data.total,
-            vipCourseList:d.data.data.lists
-          })
-        }else{
-          var finalList = that.data.vipCourseList.concat(d.data.data.lists)
-          that.setData({
-            vipCourseList:finalList
-          })
-        }
-        
-      } 
-      else{
-        
+    if(!that.data.total || (that.data.vipCourseList.length < that.data.total)){
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "num":that.pageNum,
+        "page":that.vipCoursePage
       }
-    })
+      app.ols.allVipCourse(params).then(d => {
+        if (d.data.code == 0) {
+          if(that.vipCoursePage == 1){
+            that.setData({
+              total:d.data.data.total,
+              vipCourseList:d.data.data.lists
+            })
+          }else{
+            var finalList = that.data.vipCourseList.concat(d.data.data.lists)
+            that.setData({
+              vipCourseList:finalList
+            })
+          }
+          
+        } 
+        else{
+          
+        }
+      })
+    }
+    
   },
 
   //兑换码验证
