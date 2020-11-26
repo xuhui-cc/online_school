@@ -93,6 +93,93 @@
                 </view>
               </block>
             </view>
+            <!-- 点评/批改/评论按钮 -->
+            <view class="replayButtonView">
+              <!-- 老师 -->
+              <block wx:if="{{role == 3}}">
+                <!-- 更多功能按钮 -->
+                <view class="moreActionButtonView" catchtap="moreActionButtonClciked" data-index="{{index}}">
+                  <view class="moreActionButton">
+                    <view style="width:9rpx; height:9rpx; background-color:#8288A7; border-radius: 4.5rpx; margin-left:19rpx;"></view>
+                    <view style="width:9rpx; height:9rpx; background-color:#8288A7; border-radius: 4.5rpx; margin-left:6rpx;"></view>
+                    <view style="width:9rpx; height:9rpx; background-color:#8288A7; border-radius: 4.5rpx; margin-left:6rpx;"></view>
+                  </view>
+                </view>
+                <!-- 更多功能视图 -->
+                <view class="moreActionView" wx:if="{{item.showMoreAction}}">
+                  <!-- 点评按钮 -->
+                  <view class="actionButton" wx:if="{{!item.score || item.score.length == 0}}" catchtap="evaluateButtonClciked" data-index="{{index}}">
+                    <image style="width:31rpx; height:31rpx; margin-left:28rpx;" src="./resource/actionIcon1.png"></image>
+                    <text style="margin-left:5rpx; color:white; font-size:24rpx;">点评</text>
+                  </view>
+                  <!-- 批改按钮 -->
+                  <view class="actionButton" catchtap="checkButtonClciked" data-index="{{index}}">
+                    <image style="width:31rpx; height:31rpx; margin-left:28rpx;" src="./resource/actionIcon2.png"></image>
+                    <text style="margin-left:5rpx; color:white; font-size:24rpx;">批改</text>
+                  </view>
+                  <!-- 评论按钮 -->
+                  <view class="actionButton" catchtap="commentButtonClciked" data-index="{{index}}">
+                    <image style="width:31rpx; height:31rpx; margin-left:28rpx;" src="./resource/actionIcon3.png"></image>
+                    <text style="margin-left:5rpx; color:white; font-size:24rpx;">评论</text>
+                  </view>
+                </view>
+              </block>
+              <!-- 非老师 -->
+              <block wx:else>
+                <!-- 评论按钮 -->
+                <view class="flex_row_alignItemCenter" style="height:100%; position: absolute; right: 60rpx; top: 0;" catchtap="commentButtonClciked" data-index="{{index}}">
+                  <view class="commentButton2 flex_row_alignItemCenter">
+                    <image style="width:31rpx; height:31rpx; margin-left:14rpx;" src="./resource/commentButton.png"></image>
+                    <text style="margin-left:7rpx; color:#8288A7; font-size:24rpx;">评论</text>
+                  </view>
+                </view>
+              </block>
+            </view>
+            <!-- 点评 -->
+            <block wx:if="{{item.score && item.score.length >= 1}}">
+              <view class="evaluateView">
+                <!-- 分数 -->
+                <view class="flex_row_alignItemCenter_spaceBetween" style="height:69rpx; width:100%;">
+                  <view class="flex_row_alignItemCenter">
+                    <text style="margin-left:27rpx; color:#4964F6; font-size:26rpx; font-weight:bold;">课堂评分：</text>
+                    <text style="color:#000934; font-size:26rpx; font-weight:bold;">{{item.score[0].score}}分</text>
+                  </view>
+                  <view class="flex_row_alignItemCenter">
+                    <!-- 修改按钮 -->
+                    <block wx:if="{{role == 3}}">
+                      <view class="evaluate_changeButton" catchtap="evaluateChangeButtonClciked" data-index="{{index}}">修改</view>
+                      <view style="width:1rpx; height:18rpx; background-color:#D1D1D1;"></view>
+                    </block>
+                    <!-- 收回/展开按钮 -->
+                    <view class="flex_row_alignItemCenter" style="width:116rpx; height:100%;" catchtap="evaluateOpenButtonClciked" data-index="{{index}}">
+                      <text style="margin-left:20rpx; color:#9A9A9A; font-size:24rpx;">{{item.score[0].open ? '收回' : '展开'}}</text>
+                      <image style="margin-left:7rpx; width:14.35rpx; height:14.35rpx; margin-top:{{item.score[0].open ? 3.5 : -3.5}}rpx;" src="{{item.score[0].open ? './resource/arrow_up.png' : './resource/arrow_down.png'}}"></image>
+                    </view>
+                  </view>
+                </view>
+                <!-- 点评内容 -->
+                <text class="evaluateContent {{item.score[0].open ? '' : 'twoLine'}}">{{item.score[0].memo}}</text>
+              </view>
+            </block>
+            <!-- 评论/回复 -->
+            <view wx:if="{{item.comment && item.comment.length > 0}}" class="communityView">
+              <block wx:for="{{item.comment}}" wx:key="commentIndex" wx:for-index="commentIndex" wx:for-item="commentItem">
+                <view class="replyCell" style="margin-top: {{commentIndex == 0 ? 10 : 0}}rpx;" catchtap="replyCellClciked" data-index="{{index}}" data-commentindex="{{commentIndex}}">
+                  <!-- 评论 -->
+                  <block wx:if="{{commentItem.touid == 0}}">
+                    <text style="color:#4964F6; font-size:26rpx; font-weight:bold;">{{commentItem.username}}：</text>
+                    {{commentItem.content}}
+                  </block>
+                  <!-- 回复 -->
+                  <block wx:else>
+                    <text style="color:#4964F6; font-size:26rpx; font-weight:bold;">{{commentItem.username}}</text>
+                    回复
+                    <text style="color:#4964F6; font-size:26rpx; font-weight:bold;">{{commentItem.tousername}}：</text>
+                    {{commentItem.content}}
+                  </block>
+                </view>
+              </block>
+            </view>
             <view wx:if="{{index!=recordList.length-1}}" class="recordCell_dash"></view>
             <image class="recordCell_lockIcon" src="./resource/record_lock.png"></image>
           </view>
@@ -148,3 +235,8 @@
 </view>
 
 <canvas canvas-id="shareCanvas" style="width:421px; height:338px;" wx:if="{{showCanvas}}"></canvas>
+
+<!-- 评论输入框 -->
+<view class="commentInputView" hidden="{{!commentFocus}}">
+  <input class="commentInput" placeholder="{{commentType == 2 ? '回复' + recordList[commentRecordIndex].comment[commentReplyIndex].username : '请填写评论'}}" focus="{{commentFocus}}" value="{{commentContent}}" confirm-type="提交" cursor-spacing="{{10 * screenWidth / 750.0}}" bindblur="commentCancelInput" bindinput="commentInputChange" bindconfirm="commentInputConfirmButtonClciked"/>
+</view>

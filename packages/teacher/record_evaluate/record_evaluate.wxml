@@ -1,0 +1,45 @@
+<!--packages/teacher/record_evaluate/record_evaluate.wxml-->
+<!-- 导航栏 -->
+<view class="naviBar" style="top:{{statusBarHeight}}px; height:{{naviContentHeight}}px">
+  <view class="naviBar_back" bindtap="naviBackItemClicked">
+    <image class="naviBar_backImage" src="/images/navi/w_back2.png"></image>
+  </view>
+  <view class="naviBar_title">课堂点评</view>
+  <view class="naviBar_back"></view>
+</view>
+
+<!-- 顶部背景 -->
+<view class="headerBgView">
+  <image class="headerBg_image" src="./resource/teacher_info_bg.png"></image>
+</view>
+
+<view style="margin-top:{{naviHeight}}px; width:100%;">
+  <scroll-view style="height:{{screenHeight-naviHeight-safeArea_bottom}}px;" scroll-y="true" enable-flex="true">
+    <!-- 学员名称 -->
+    <view class="header_studentName oneLine_ellipsis" style="margin-top:{{207/750.0*screenWidth - naviHeight}}px;">学员：{{titleName}}</view>
+    <!-- 当前日期 -->
+    <view class="header_time oneLine_ellipsis">时间：{{date}}</view>
+    <!-- 点评框 -->
+    <view class="recordContentView">
+      <view class="flex_row_alignItemCenter" style="height:48rpx; margin-top:45rpx;">
+        <image style="width:45rpx; height:45rpx; margin-left:39rpx;" src="./resource/star.png"></image>
+        <text style="margin-left:9rpx; color:#AF5800; font-size:34rpx; font-weight:bold; height:48rpx; line-height:48rpx;">课堂评分：</text>
+      </view>
+      <view class="flex_row_alignItemCenter" style="width:100%; height:120rpx;">
+        <input class="scoreInput" type="number" value="{{score}}" bindinput="scoreInputChange" binden/>
+        <text style="margin-left:18rpx; color:#BFBFBF; font-size:24rpx;">范围：1-10分</text>
+      </view>
+      <view style="height:17rpx; width:100%; border-bottom:0.5rpx solid #F2F2F2;"></view>
+      <text style="height:48rpx; line-height:48rpx; font-size:34rpx; color:#AF5800; margin-top:37rpx; margin-left:39rpx;">课堂点评：</text>
+      <view class="textContentView">
+        <image style="width:26.8rpx; height:30.52rpx; margin-left:37rpx; margin-top:6rpx;" src="./resource/teacher_addEvaluateContent.png"></image>
+        <textarea class="contentTextarea" placeholder="请输入该学生的课堂情况" placeholder-class="contentTextarea_placehoulder" value="{{content}}" bindinput="contentTextareaInput"></textarea>
+      </view>
+    </view>
+    <!-- 垫高底部 -->
+    <view style="height:157rpx; width:100%"></view>
+  </scroll-view>
+</view>
+
+<!-- 底部按钮 -->
+<view class="bottomButton" style="bottom:{{safeArea_bottom + 37/750.0*screenWidth}}px" bindtap="submitButtonClciked">提交</view>

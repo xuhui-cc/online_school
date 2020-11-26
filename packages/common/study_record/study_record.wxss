@@ -5,6 +5,15 @@
   white-space: nowrap;
 }
 
+.twoLine {
+  display: -webkit-box; 
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
 .flex_row_alignItemCenter {
   display: flex;
   flex-direction: row;
@@ -381,4 +390,132 @@
   background-color: black;
   color: white;
   font-size: 24rpx;
+}
+
+
+.replayButtonView {
+  height: 87rpx;
+  width: 100%;
+  position: relative;
+}
+
+.moreActionButtonView {
+  position: absolute;
+  right: 60rpx;
+  height: 100%;
+  top: 0;
+  width: 76rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.moreActionButton {
+  width: 76rpx;
+  height: 46rpx;
+  background-color: #EBEEFF;
+  border-radius: 6rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.moreActionView {
+  position: absolute;
+  top: 4rpx;
+  right: 142rpx;
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 6rpx;
+  height: 79rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 26rpx;
+}
+
+.actionButton {
+  height: 100%;
+  width: 116rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.evaluateView {
+  width: 610rpx;
+  margin-left: 80rpx;
+  background-color: #F4F4F6;
+  border-radius: 6rpx;
+  padding-bottom: 2rpx;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 14rpx;
+  margin-bottom: 2rpx;
+}
+
+.evaluate_changeButton {
+  width: 90rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9A9A9A;
+  font-size: 24rpx;
+}
+
+.evaluateContent {
+  margin-left: 27rpx;
+  line-height: 37rpx;
+  color: #000934;
+  font-size: 26rpx;
+  width: 555rpx;
+}
+
+.communityView {
+  width: 610rpx;
+  margin-left: 80rpx;
+  background-color: #F4F4F6;
+  border-radius: 6rpx;
+  display: flex;
+  flex-direction: column;
+  padding-bottom:10rpx;
+}
+
+
+.commentInputView {
+  position: fixed;
+  bottom: 0rpx;
+  left: 0;
+  width: 100%;
+  height: 90rpx;
+  z-index: 110;
+  background-color: rgb(245, 245, 245);
+}
+
+.commentInput {
+  margin-top: 10rpx;
+  margin-left: 30rpx;
+  width: 690rpx;
+  height: 70rpx;
+  background-color: white;
+  border-radius: 10rpx;
+  padding-left: 10rpx;
+  color: #272727;
+}
+
+.commentButton2 {
+  width: 114rpx;
+  height: 46rpx;
+  background-color: #EBEEFF;
+  border-radius: 6rpx;
+}
+
+.replyCell {
+  padding-top: 6rpx;
+  padding-bottom: 6rpx;
+  margin-left: 27rpx;
+  width: 556rpx;
+  color: #000934;
+  font-size: 26rpx;
+  line-height: 37rpx;
 }

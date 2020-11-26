@@ -130,7 +130,8 @@
         "teacher_home/teacher_home",
         "teacher_vipCardList/teacher_vipCardList",
         "teacher_couponList/teacher_couponList",
-        "teacher_rightList/teacher_rightList"
+        "teacher_rightList/teacher_rightList",
+        "record_evaluate/record_evaluate"
       ],
       "name": "teacher"
     },

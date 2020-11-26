@@ -120,6 +120,7 @@ let pathDic = {
   teacher_vipCardList: '/packages/teacher/teacher_vipCardList/teacher_vipCardList', // 老师关联的会员卡列表
   teacher_couponList: '/packages/teacher/teacher_couponList/teacher_couponList', // 老师关联的优惠券列表
   teacher_rightList: '/packages/teacher/teacher_rightList/teacher_rightList', // 老师关联权益包列表
+  record_evaluate: '/packages/teacher/record_evaluate/record_evaluate', // 学习日志点评
 
   // 家长端
   parent_childList: '/packages/parent/parent_childList/parent_childList',

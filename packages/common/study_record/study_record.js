@@ -32,6 +32,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 当前角色 1-学生 2-家长 3-老师
+    role: 1,
     // 是否展示学生日志页面内容
     showContent: false,
 
@@ -72,6 +74,17 @@ Page({
 
     // 7v1介绍 h5地址
     url7v1: null,
+
+    // 评论输入框 获取聚焦
+    commentFocus: false,
+    // 即将评论的
+    commentRecordIndex: null,
+    // 评论类型 1-评论 2-回复
+    commentType: 1,
+    // 评论内容
+    commentContent: '',
+    // 即将回复的评论索引
+    commentReplyIndex: null,
   },
 
   /**
@@ -80,6 +93,9 @@ Page({
   onLoad: function (options) {
     this.sid = options.sid
     this.getSystemSize()
+    this.setData({
+      role: wx.getStorageSync('role')
+    })
     let that = this
     this.relationWithStudent(function(show){
       if (show) {
@@ -298,6 +314,10 @@ Page({
             }
             record.file = fileItemArray
           }
+          // 老师更多功能按钮默认关闭
+          if (that.data.role == 3) {
+            record.showMoreAction = false
+          }
         }
         // 分页数据处理
         let newRecordArray = []
@@ -488,6 +508,30 @@ Page({
         }
       } else {
         typeof callback == 'function' && callback(false)
+      }
+    })
+  },
+
+  /**
+   * 评论/回复 接口
+  */
+  commentOrReplySubmit: function() {
+    let record = this.data.recordList[this.data.commentRecordIndex]
+    let params = {
+      token: wx.getStorageSync('token'),
+      logid: record.id,
+      content: this.data.commentContent,
+      touid: this.data.commentType == 1 ? "0" : record.comment[this.data.commentReplyIndex].uid
+    }
+    let that = this
+    app.ols.commentOrReplyStudyReocrd(params).then(d=>{
+      if (d.data.code == 0) {
+        let comment = d.data.data[0]
+        record.comment.push(comment)
+        let commnetStr = 'recordList[' + that.data.commentRecordIndex + '].comment'
+        that.setData({
+          [commnetStr]: record.comment
+        })
       }
     })
   },
@@ -734,6 +778,140 @@ Page({
     let recordFileStr = "recordList[" + recordIndex + "].file["+fileIndex+"].error"
     this.setData({
       [recordFileStr]: true
+    })
+  },
+
+
+  /**
+   * 日志单元格 展示更多功能按钮（老师） 点击事件
+  */
+  moreActionButtonClciked: function(e) {
+    let index = e.currentTarget.dataset.index
+    let record = this.data.recordList[index]
+    let showMoreActionStr = 'recordList[' + index + '].showMoreAction'
+    this.setData({
+      [showMoreActionStr] : record.showMoreAction ? false : true
+    })
+  },
+
+  /**
+   * 日志单元格 点评按钮 点击事件
+  */
+  evaluateButtonClciked: function(e) {
+    let index = e.currentTarget.dataset.index
+    let record = this.data.recordList[index]
+    wx.navigateTo({
+      url: app.getPagePath('record_evaluate') + "?logid=" + record.id + '&studentname=' + this.data.studentInfo.name + '&type=1',
+    })
+  },
+
+  /**
+   * 日志单元格 批改按钮 点击事件
+  */
+  checkButtonClciked: function(e) {
+    let index = e.currentTarget.dataset.index
+    let record = this.data.recordList[index]
+    wx.showToast({
+      title: '功能开发中, 敬请期待',
+      icon: 'none'
+    })
+  },
+
+  /**
+   * 日志单元格 评论按钮 点击事件
+  */
+  commentButtonClciked: function(e) {
+    let index = e.currentTarget.dataset.index
+    // let record = this.data.recordList[index]
+    this.setData({
+      commentFocus: true,
+      commentRecordIndex: index,
+      commentType: 1,
+      commentContent: '',
+      commentReplyIndex: null,
+    })
+  },
+
+  /**
+   * 日志单元格 点评展开/收回按钮 点击事件
+  */
+  evaluateOpenButtonClciked: function(e) {
+    let index = e.currentTarget.dataset.index
+    let record = this.data.recordList[index]
+    let score = record.score[0]
+    let openStr = 'recordList[' + index + '].score[0].open'
+    this.setData({
+      [openStr]: score.open ? false : true
+    })
+  },
+
+  /**
+   * 日志单元格 点评修改按钮 点击事件
+  */
+  evaluateChangeButtonClciked: function(e) {
+    let index = e.currentTarget.dataset.index
+    let record = this.data.recordList[index]
+    wx.navigateTo({
+      url: app.getPagePath('record_evaluate') + "?logid=" + record.id + '&studentname=' + this.data.studentInfo.name + '&type=2',
+    })
+  },
+
+  /**
+   * 评论输入框 失去聚焦
+  */
+  commentCancelInput: function(){
+    this.setData({
+      commentFocus: false,
+    })
+  },
+
+  /**
+   * 评论输入框 输入
+  */
+  commentInputChange: function(e) {
+    let value = e.detail.value
+    if (value == ' ') {
+      value = ''
+    }
+    this.setData({
+      commentContent: value
+    })
+  },
+
+  /**
+   * 评论输入框 提交按钮
+  */
+  commentInputConfirmButtonClciked: function() {
+    if(this.data.commentContent.length == 0) {
+      wx.showToast({
+        title: '请输入内容',
+        icon: 'none'
+      })
+      return
+    }
+    this.commentOrReplySubmit()
+  },
+
+
+  /**
+   * 评论单元格 点击事件
+  */
+  replyCellClciked: function(e) {
+    let reocrdIndex = e.currentTarget.dataset.index
+    let commentIndex = e.currentTarget.dataset.commentindex
+    let record = this.data.recordList[reocrdIndex]
+    let comment = record.comment[commentIndex]
+    let userinfo = wx.getStorageSync('userinfo')
+    // 自己不能回复自己
+    if (comment.uid == userinfo.id) {
+      return
+    }
+    this.setData({
+      commentFocus: true,
+      commentRecordIndex: reocrdIndex,
+      commentType: 2,
+      commentContent: '',
+      commentReplyIndex: commentIndex
     })
   }
 })

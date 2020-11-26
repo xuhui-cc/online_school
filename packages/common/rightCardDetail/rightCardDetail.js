@@ -55,6 +55,7 @@ Page({
     this.setData({
       login: wx.getStorageSync('login'),
       isTeacher: wx.getStorageSync('role') == 3
+      // isTeacher: false
     })
     this.getSystemSize()
     this.getRightDetail()
