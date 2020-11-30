@@ -3,6 +3,10 @@ const app = getApp()
 Page({
   // 打开的文件路径 在onShow中删除文件
   openFilePath: '',
+
+  // 分享图片的路径
+  shareImagePath: '',
+
   /**
    * 页面的初始数据
    */
@@ -10,7 +14,8 @@ Page({
     currentData: 0,
     btn_buy:app.globalData.btn_buy,
     coupon_use:false,
-    queue:false
+    queue:false,
+    showCanvas:false,
   },
 
   /**
@@ -28,10 +33,8 @@ Page({
       })
       console.log("分享打开", that.data.isshare, that.data.gid)
     } else {
-      // that.judge_login()    //登陆判断
-      console.log("非分享打开")
+      //非分享打开
     }
-    // that.course_detail()  //获取课程详情
     
   },
 
@@ -117,7 +120,7 @@ Page({
   onShareAppMessage: function () {
     let that = this;
     let paramsStr = 'isshare=1&gid=' + that.data.gid + '&kid=' + that.data.kid
-    return app.shareTool.getShareReturnInfo('0,1', 'course_detail', paramsStr, '/images/other/share1.png', '领军网校')
+    return app.shareTool.getShareReturnInfo('0,1', 'course_detail', paramsStr, this.shareImagePath ? this.shareImagePath : '', that.data.course_info.title)
   },
 
   /*-----------------------------------------------------方法-------------------------------------------- */
@@ -137,7 +140,7 @@ Page({
     let that = this
     
     if (d.data.code == 0) {
-      console.log(d.data.data)
+      that.dealAva(d.data.data.face)
       d.data.data.content = d.data.data.content.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block"')
       that.setData({
         course_info: d.data.data
@@ -329,9 +332,8 @@ Page({
 
         
         }
-        console.log("课程讲义接口调取成功")
       } else {
-        console.log("课程讲义==============" + d.data.msg)
+        //课程讲义接口
       }
     })
   },
@@ -376,6 +378,114 @@ Page({
     })
     that.getcourse_cata()
   },
+
+  // 处理图片
+dealAva:function(face){
+  let that = this 
+  
+    wx.getImageInfo({
+      src: face,
+      success: function (res) {
+        console.log(res,"res");
+        var face = res.path
+        that.drawShareImage(face)
+      }
+    })
+  
+},
+
+
+/**
+   * 绘制分享图片
+  */
+ drawShareImage: function (face) {
+  this.setData({
+    showCanvas: true
+  })
+  var title1,title2
+  if(this.data.course_info.title.length > 12){
+    var title1 = this.data.course_info.title.substr(0,12)
+    var title2 = this.data.course_info.title.substr(12,12)
+    console.log(title1)
+    console.log(title2)
+  }else{
+    var title1 = this.data.course_info.title
+  }
+  // var title = "判断推理系统课判断推理系统课判断推理系统课"
+  
+  const ctx = wx.createCanvasContext('shareCanvas')
+  ctx.drawImage(face, 0, 0, 375, 170)
+  ctx.drawImage("/images/other/share_course.png", 0, 131, 375, 170)
+
+  
+
+  //画昵称
+  ctx.restore()
+  ctx.beginPath()
+  ctx.setFontSize(20)
+  ctx.setFillStyle('#272727')
+  ctx.font = "bold 20px sans-serif";
+  ctx.setTextAlign('center')
+  // ctx.setStrokeStyle('white')
+  ctx.fillText(title1, 187, 207,300)
+  if(title2){
+    ctx.fillText(title2 + "...", 187, 235,300)
+  }
+  ctx.stroke()
+  if(title2){
+    ctx.drawImage("/images/other/num_bg.png", 140, 250, 100, 20)
+  }else{
+    ctx.drawImage("/images/other/num_bg.png", 140, 230, 100, 20)
+  }
+  
+
+  ctx.restore()
+  ctx.beginPath()
+  ctx.setFontSize(12)
+  ctx.setFillStyle('#FFFFFF')
+  ctx.setTextAlign('center')
+  if(title2){
+    ctx.fillText(this.data.course_info.order_num + "人学习", 190,265 ,100)
+  }else{
+    ctx.fillText(this.data.course_info.order_num + "人学习", 190,245 ,100)
+  }
+  
+  ctx.stroke()
+
+  console.log("画图完成")
+
+  let that = this
+  ctx.draw(true,function(e) {
+    console.log("开始生成图片地址")
+    wx.canvasToTempFilePath({
+      x: 0,
+      y: 0,
+      width: 375,
+      height: 320,
+      canvasId: 'shareCanvas',
+      success(res) {
+        console.log(res.tempFilePath)
+        that.shareImagePath = res.tempFilePath
+        console.log(that.shareImagePath,"图片地址")
+        // wx.previewImage({
+        //   urls: [that.shareImagePath],
+        // })
+        that.setData({
+          showCanvas: false,
+          teacher_info:true
+        })
+      },
+      fail (res) {
+        console.log("生成图片地址失败")
+        that.setData({
+          showCanvas: false,
+          teacher_info:true
+        })
+      }
+    })
+  })
+
+},
   
   /*----------------------------------------------------接口-------------------------------------------- */
   
@@ -394,7 +504,6 @@ Page({
         "kid": that.data.kid
       }
     }
-    console.log(params, "课程详情接口参数")
       app.ols.course_info5(params).then(d => {
         that.handle_data1(d)   //课程详情数据处理
       })
@@ -412,10 +521,7 @@ Page({
         console.log(d)
         if (d.data.code == 0) {
           that.course_detail()   //获取课程详情
-          // that.getcourse_cata()   //获取课程目录
-          // that.setData({
-          //   currentData:1
-          // })
+         
         } 
       })
     
@@ -428,43 +534,37 @@ Page({
   //获取课程目录接口
   getcourse_cata:function(){
     let that = this
-    var queue
+    var queue,token
     if(that.data.queue == true){
       queue = 1
     }else{
       queue = 0
     }
     if (wx.getStorageSync("login")) {
-      var params = {
-        "token": wx.getStorageSync("token"),
-        "kid": that.data.kid,
-        "queue":queue
-      }
+      token = wx.getStorageSync("token")
     }else{
-      var params = {
-        "token": '',
-        "kid": that.data.kid,
-        "queue":queue
-      }
+      token = ''
     }
-     
-      app.ols.course_cata5(params).then(d => {
-       
-        if (d.data.code == 0) {
-          for(var i=0;i<d.data.data.lists.length;i++){
-            d.data.data.lists[i].livetime = d.data.data.lists[i].startline.substr(5,11) + " - " + d.data.data.lists[i].endline.substr(11,5)
-            
-            console.log(d.data.data.lists[i].livetime)
-          }
-          that.setData({
-            course_cata: d.data.data
-          })
-         
-        } else {
-         
+    var params = {
+      "token": token,
+      "kid": that.data.kid,
+      "queue":queue
+    } 
+    app.ols.course_cata5(params).then(d => {
+      if (d.data.code == 0) {
+        for(var i=0;i<d.data.data.lists.length;i++){
+          d.data.data.lists[i].livetime = d.data.data.lists[i].startline.substr(5,11) + " - " + d.data.data.lists[i].endline.substr(11,5)
+           
+          console.log(d.data.data.lists[i].livetime)
         }
-      })
-    
+        that.setData({
+          course_cata: d.data.data
+        })
+        
+      } else {
+        
+      }
+    })
     
   },
 

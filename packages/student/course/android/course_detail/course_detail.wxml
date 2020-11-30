@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" style="margin-bottom:500rpx;">
 
   <!-- <image class="report_img" src="../../images/report.png" bindtap="to_end_report" wx:if="{{course_info.mark_status == 2 || course_cata.mark_status == 2 }}"></image> -->
 
@@ -195,3 +195,4 @@
 
 <!-- container -->
 </view>
+<canvas canvas-id="shareCanvas" style="width:375px; height:320px;top:500rpx;" wx:if="{{showCanvas}}"></canvas>
