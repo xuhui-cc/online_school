@@ -518,6 +518,9 @@
   color: #000934;
   font-size: 26rpx;
   line-height: 37rpx;
+  display: -webkit-box; 
+  word-break: break-all;
+  -webkit-box-orient: vertical;
 }
 
 .deleteView {

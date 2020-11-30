@@ -966,8 +966,27 @@ Page({
    * 评论单元格 长按事件
   */
   replayCellLongTap: function(e) {
+
     let reocrdIndex = e.currentTarget.dataset.index
     let commentIndex = e.currentTarget.dataset.commentindex
+    let record = this.data.recordList[reocrdIndex]
+    let comment = record.comment[commentIndex]
+
+    let canDelete = false
+    if (this.data.role == 3) {
+      // 老师
+      canDelete = true
+    } else {
+      let userinfo = wx.getStorageSync('userinfo')
+      if (userinfo.id == comment.uid) {
+        // 自己发的评论/回复
+        canDelete = true
+      }
+    }
+    if(!canDelete) {
+      return
+    }
+
     this.willDeleteReocrdIndex = reocrdIndex
     this.willDeleteCommentIndex = commentIndex
 

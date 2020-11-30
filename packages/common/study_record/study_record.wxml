@@ -95,6 +95,11 @@
             </view>
             <!-- 点评/批改/评论按钮 -->
             <view class="replayButtonView">
+              <!-- 个人/班级标签 -->
+              <view class="flex_row_alignItemCenter" style="height:33rpx; margin-top:20rpx;">
+                <view style="width:8rpx; height:8rpx; border-radius:50%; background-color:#4964F6; margin-left:80rpx;"></view>
+                <text class="oneLine_ellipsis" style="color:#C4C7D4; font-size:24rpx; margin-left:11rpx; max-width:470rpx;">{{item.cid == 0 ? '个人日志' : item.classes_name}}</text>
+              </view>
               <!-- 老师 -->
               <block wx:if="{{role == 3}}">
                 <!-- 更多功能按钮 -->
