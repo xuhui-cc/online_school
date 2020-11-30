@@ -133,7 +133,7 @@ function course_cata3(params) {
 
 //获取课程讲义列表
 function handout(params) {
-  return fetch.olsfetchpost(URI, 'lesson/getannex', params)
+  return fetch.olsfetchpost(URI, 'lesson/getannex', params,"课程讲义")
 }
 
 //获取课程视频链接
