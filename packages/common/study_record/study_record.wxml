@@ -242,8 +242,9 @@
 <canvas canvas-id="shareCanvas" style="width:421px; height:338px;" wx:if="{{showCanvas}}"></canvas>
 
 <!-- 评论输入框 -->
-<view class="commentInputView" hidden="{{!commentFocus}}">
-  <input class="commentInput" placeholder="{{commentType == 2 ? '回复' + recordList[commentRecordIndex].comment[commentReplyIndex].username : '请填写评论'}}" focus="{{commentFocus}}" value="{{commentContent}}" confirm-type="send" cursor-spacing="{{10 * screenWidth / 750.0}}" bindblur="commentCancelInput" bindinput="commentInputChange" bindconfirm="commentInputConfirmButtonClciked"/>
+<view class="commentInputView flex_row_alignItemCenter" hidden="{{!commentFocus}}">
+  <input class="commentInput" style="width:{{!commentContent || commentContent == 0 ? 690 : 560}}rpx;" placeholder="{{commentType == 2 ? '回复' + recordList[commentRecordIndex].comment[commentReplyIndex].username : '请填写评论'}}" focus="{{commentFocus}}" value="{{commentContent}}" confirm-type="send" cursor-spacing="{{10 * screenWidth / 750.0}}" bindblur="commentCancelInput" bindinput="commentInputChange" bindconfirm="commentInputConfirmButtonClciked"/>
+  <view class="commentSendButton" wx:if="{{commentContent && commentContent.length != 0}}" bindtap="commentInputConfirmButtonClciked">发送</view>
 </view>
 
 <!-- 删除按钮 -->
