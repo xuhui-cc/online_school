@@ -519,3 +519,11 @@
   font-size: 26rpx;
   line-height: 37rpx;
 }
+
+.deleteView {
+  position: fixed;
+  z-index: 99;
+  width: 107rpx;
+  height: 74rpx;
+  left: 331.5rpx;
+}
