@@ -210,7 +210,7 @@ page{
   position: fixed;
   bottom: 0rpx;
   width:750rpx;
-  height:350rpx;
+  height:500rpx;
   background:rgba(255,255,255,1);
   opacity:1;
   border-radius:30rpx 30rpx 0rpx 0rpx;
@@ -243,7 +243,7 @@ page{
 }
 .selec_layout{
   width:750rpx;
-  height:208rpx;
+  height:400rpx;
   
 }
 .sel_item{
