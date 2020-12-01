@@ -368,6 +368,14 @@ Page({
           recordList: newRecordArray
         })
         typeof callback == "function" && callback(true)
+      } else if (d.data.code == 5) {
+        if (that.pageData.page == 1) {
+          this.setData({
+            recordList: []
+          })
+        }
+        that.pageData.canLoadNextPage = false
+        typeof callback == "function" && callback(false)
       } else {
         if (that.pageData.page == 1) {
           this.setData({

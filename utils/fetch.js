@@ -64,12 +64,12 @@ function olsfetchpost(api, path, params, log, showToast, loadingMsg) {
           case 5: {
             // 数据查询返回空数据组
             resolve(res)
-            if (showToast) {
-              wx.showToast({
-                title: res.data.msg ? res.data.msg : "暂无数据",
-                icon: 'none'
-              })
-            }
+            // if (showToast) {
+            //   wx.showToast({
+            //     title: res.data.msg ? res.data.msg : "暂无数据",
+            //     icon: 'none'
+            //   })
+            // }
             break
           }
           case 20: {
