@@ -105,8 +105,10 @@ Page({
   onLoad: function (options) {
     this.sid = options.sid
     this.getSystemSize()
+    let userinfo = wx.getStorageSync('userinfo')
     this.setData({
-      role: wx.getStorageSync('role')
+      role: wx.getStorageSync('role'),
+      uid: userinfo.id
     })
     let that = this
     this.relationWithStudent(function(show){
@@ -890,6 +892,7 @@ Page({
     this.setData({
       [openStr]: score.open ? false : true
     })
+    this.closeReplayDeleteButton()
   },
 
   /**
@@ -917,8 +920,8 @@ Page({
   */
   commentInputChange: function(e) {
     let value = e.detail.value
-    var regStr = /([\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF][\u200D|\uFE0F]|[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF]|[0-9|*|#]\uFE0F\u20E3|[0-9|#]\u20E3|[\u203C-\u3299]\uFE0F\u200D|[\u203C-\u3299]\uFE0F|[\u2122-\u2B55]|\u303D|[\A9|\AE]\u3030|\uA9|\uAE|[\u3030])[ ]?/gi; 
-    value = value.replace(regStr, "")
+    // var regStr = /([\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF][\u200D|\uFE0F]|[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF]|[0-9|*|#]\uFE0F\u20E3|[0-9|#]\u20E3|[\u203C-\u3299]\uFE0F\u200D|[\u203C-\u3299]\uFE0F|[\u2122-\u2B55]|\u303D|[\A9|\AE]\u3030|\uA9|\uAE|[\u3030])[ ]?/gi; 
+    // value = value.replace(regStr, "")
     if (value == ' ') {
       value = ''
     }

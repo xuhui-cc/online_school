@@ -96,7 +96,7 @@
             <!-- 点评/批改/评论按钮 -->
             <view class="replayButtonView">
               <!-- 个人/班级标签 -->
-              <view class="flex_row_alignItemCenter" style="height:33rpx; margin-top:20rpx;">
+              <view class="flex_row_alignItemCenter" wx:if="{{item.cid && item.cid != 0}}" style="height:33rpx; margin-top:20rpx;">
                 <view style="width:8rpx; height:8rpx; border-radius:50%; background-color:#4964F6; margin-left:80rpx;"></view>
                 <text class="oneLine_ellipsis" style="color:#C4C7D4; font-size:24rpx; margin-left:11rpx; max-width:470rpx;">{{item.cid == 0 ? '个人日志' : item.classes_name}}</text>
               </view>
@@ -151,12 +151,12 @@
                   </view>
                   <view class="flex_row_alignItemCenter">
                     <!-- 修改按钮 -->
-                    <block wx:if="{{role == 3}}">
+                    <block wx:if="{{role == 3 && item.score[0].tid == uid}}">
                       <view class="evaluate_changeButton" bindtap="evaluateChangeButtonClciked" data-index="{{index}}">修改</view>
                       <view style="width:1rpx; height:18rpx; background-color:#D1D1D1;"></view>
                     </block>
                     <!-- 收回/展开按钮 -->
-                    <view class="flex_row_alignItemCenter" style="width:116rpx; height:100%;" bindtap="evaluateOpenButtonClciked" data-index="{{index}}">
+                    <view class="flex_row_alignItemCenter" style="width:116rpx; height:100%;" catchtap="evaluateOpenButtonClciked" data-index="{{index}}">
                       <text style="margin-left:20rpx; color:#9A9A9A; font-size:24rpx;">{{item.score[0].open ? '收回' : '展开'}}</text>
                       <image style="margin-left:7rpx; width:14.35rpx; height:14.35rpx; margin-top:{{item.score[0].open ? 3.5 : -3.5}}rpx;" src="{{item.score[0].open ? './resource/arrow_up.png' : './resource/arrow_down.png'}}"></image>
                     </view>
