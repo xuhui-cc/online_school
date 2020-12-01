@@ -1,5 +1,5 @@
-// const URI_base = "http://os.lingjun.net/" //测试域名
-const URI_base = "https://wsg.lingjun.net/" // 正式域名
+const URI_base = "http://os.lingjun.net/" //测试域名
+// const URI_base = "https://wsg.lingjun.net/" // 正式域名
 
 const URI = URI_base + 'api.php/'    //接口地址
 
@@ -388,7 +388,7 @@ function recordUploadFile(filePath) {
 
 // 获取学生最新日志
 function getStudentNewRecord(params) {
-  return fetch.olsfetchpost(URI, 'log/log/stu_xinLog', params, '获取学生最新日志')
+  return fetch.olsfetchpost(URI, 'v5/studylog/newLog', params, '获取学生最新日志')
 }
 
 // 新建日志 上传附件路径
