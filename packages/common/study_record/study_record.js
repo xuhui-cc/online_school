@@ -4,6 +4,13 @@
 const app = getApp()
 Page({
 
+  // 是否正在执行中
+  Loading: false,
+  // 即将删除评论的日志索引
+  willDeleteReocrdIndex: null,
+  // 即将删除评论的索引
+  willDeleteCommentIndex: null,
+
   // 选中的天 0000-00-00
   selectedDayStr: '',
   // 最新日志
@@ -85,6 +92,11 @@ Page({
     commentContent: '',
     // 即将回复的评论索引
     commentReplyIndex: null,
+
+    // 评论删除按钮 bottom
+    deleteCommentButtonBottom: 0,
+    // 是否展示删除按钮
+    deleteButtonShow: false,
   },
 
   /**
@@ -270,6 +282,23 @@ Page({
       })
     })
 
+  },
+
+  /**
+   * 关闭评论删除按钮
+  */
+  closeReplayDeleteButton: function() {
+    if (this.willDeleteReocrdIndex == null) {
+      return
+    }
+    let commentSelectedStr = 'recordList[' + this.willDeleteReocrdIndex + "].comment[" + this.willDeleteCommentIndex + "].selected"
+    this.setData({
+      deleteButtonShow: false,
+      deleteCommentButtonBottom: 0,
+      [commentSelectedStr]: false,
+    })
+    this.willDeleteCommentIndex = null
+    this.willDeleteReocrdIndex = null
   },
 
   //--------------------------------------------------------接口--------------------------------------------------
@@ -526,12 +555,30 @@ Page({
     let that = this
     app.ols.commentOrReplyStudyReocrd(params).then(d=>{
       if (d.data.code == 0) {
-        let comment = d.data.data[0]
+        let comment = d.data.data
         record.comment.push(comment)
         let commnetStr = 'recordList[' + that.data.commentRecordIndex + '].comment'
         that.setData({
           [commnetStr]: record.comment
         })
+      }
+    })
+  },
+
+  /**
+   * 删除评论/回复 接口
+  */
+  deleteCommnet: function(id, callback) {
+    let params = {
+      token: wx.getStorageSync('token'),
+      id: id
+    }
+    let that = this
+    app.ols.deleteStudyReocrdComment(params).then(d=>{
+      if (d.data.code == 0) {
+        typeof callback == 'function' && callback(true)
+      } else {
+        typeof callback == 'function' && callback(false)
       }
     })
   },
@@ -870,6 +917,8 @@ Page({
   */
   commentInputChange: function(e) {
     let value = e.detail.value
+    var regStr = /([\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF][\u200D|\uFE0F]|[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF]|[0-9|*|#]\uFE0F\u20E3|[0-9|#]\u20E3|[\u203C-\u3299]\uFE0F\u200D|[\u203C-\u3299]\uFE0F|[\u2122-\u2B55]|\u303D|[\A9|\AE]\u3030|\uA9|\uAE|[\u3030])[ ]?/gi; 
+    value = value.replace(regStr, "")
     if (value == ' ') {
       value = ''
     }
@@ -913,5 +962,104 @@ Page({
       commentContent: '',
       commentReplyIndex: commentIndex
     })
+  },
+
+  /**
+   * 评论单元格 长按事件
+  */
+  replayCellLongTap: function(e) {
+
+    let reocrdIndex = e.currentTarget.dataset.index
+    let commentIndex = e.currentTarget.dataset.commentindex
+    let record = this.data.recordList[reocrdIndex]
+    let comment = record.comment[commentIndex]
+
+    let canDelete = false
+    if (this.data.role == 3) {
+      // 老师
+      canDelete = true
+    } else {
+      let userinfo = wx.getStorageSync('userinfo')
+      if (userinfo.id == comment.uid) {
+        // 自己发的评论/回复
+        canDelete = true
+      }
+    }
+    if(!canDelete) {
+      return
+    }
+
+    this.willDeleteReocrdIndex = reocrdIndex
+    this.willDeleteCommentIndex = commentIndex
+
+    let pageItemId = "#record" + reocrdIndex + "_replyCell" + commentIndex
+    let commentSelectedStr = 'recordList[' + reocrdIndex + "].comment[" + commentIndex + "].selected"
+    var query = wx.createSelectorQuery();
+    var that = this;
+    query.select(pageItemId).boundingClientRect(function (rect) {
+      let top = rect.top
+      console.log('top:', top)
+      that.setData({
+        deleteCommentButtonBottom: that.data.screenHeight - top,
+        deleteButtonShow: true,
+        [commentSelectedStr] : true,
+      })
+    }).exec()
+  },
+
+  /**
+   * 评论删除按钮 点击事件
+  */
+  deleteCommentButtonClciked: function() {
+    if(this.Loading) {
+      return
+    }
+    this.Loading = true
+    
+    let that = this
+    let reocrdIndex = this.willDeleteReocrdIndex
+    let commentIndex = this.willDeleteCommentIndex
+    let record = this.data.recordList[reocrdIndex]
+    let comment = record.comment[commentIndex]
+
+    this.closeReplayDeleteButton()
+
+    let canDelete = false
+    if (this.data.role == 3) {
+      // 老师
+      canDelete = true
+    } else {
+      let userinfo = wx.getStorageSync('userinfo')
+      if (userinfo.id == comment.uid) {
+        // 自己发的评论/回复
+        canDelete = true
+      }
+    }
+
+    if (canDelete) {
+      this.deleteCommnet(comment.id, function(success){
+        let commentList = record.comment
+        commentList.splice(commentIndex, 1)
+        let commentStr = 'recordList[' + reocrdIndex + '].comment'
+        that.setData({
+          [commentStr]: commentList
+        })
+        that.Loading = false
+      })
+    }
+  },
+
+  /**
+   * 背景视图 点击事件
+  */
+  backgroundClciked: function() {
+    this.closeReplayDeleteButton()
+  },
+
+  /**
+   * 滚动控件 滚动事件
+  */
+  srcollViewScroll: function() {
+    this.closeReplayDeleteButton()
   }
 })

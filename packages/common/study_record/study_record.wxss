@@ -493,7 +493,6 @@
 }
 
 .commentInput {
-  margin-top: 10rpx;
   margin-left: 30rpx;
   width: 690rpx;
   height: 70rpx;
@@ -501,6 +500,19 @@
   border-radius: 10rpx;
   padding-left: 10rpx;
   color: #272727;
+}
+
+.commentSendButton {
+  width: 100rpx;
+  height: 60rpx;
+  margin-left: 30rpx;
+  background-color: #0CCDA3;
+  border-radius: 8rpx;
+  color: white;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .commentButton2 {
@@ -518,4 +530,15 @@
   color: #000934;
   font-size: 26rpx;
   line-height: 37rpx;
+  display: -webkit-box; 
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+}
+
+.deleteView {
+  position: fixed;
+  z-index: 99;
+  width: 107rpx;
+  height: 74rpx;
+  left: 331.5rpx;
 }

@@ -66,7 +66,7 @@
             <!-- 性别 -->
             <image class="studentList_gender" src="{{item.sex==0 ? './resource/teacherList_gender_female.png' : './resource/teacherList_gender_male.png'}}"></image>
             <!-- 年级 -->
-            <view class="studentList_grade" style="border-color:{{gradeStyleDictionary[item.grade_title].borderColor}}; background-color:{{gradeStyleDictionary[item.grade_title].backgroundColor}}; color:{{gradeStyleDictionary[item.grade_title].textColor}};">{{item.grade_title}}</view>
+            <view wx:if="{{item.grade_title}}" class="studentList_grade" style="border-color:{{gradeStyleDictionary[item.grade_title].borderColor}}; background-color:{{gradeStyleDictionary[item.grade_title].backgroundColor}}; color:{{gradeStyleDictionary[item.grade_title].textColor}};">{{item.grade_title}}</view>
           </view>
           <view class="flex_row_alignItemCenter" style="margin-top:11rpx; height:37rpx;">
             <!-- 电话 -->
