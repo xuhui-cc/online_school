@@ -32,16 +32,12 @@ Page({
       console.log("非分享打开")
     }
     that.getgrade()    //获取年级 
-    // that.getsubject()   //获取学科
-
-    // that.hot()  //热门课程
     app.shareTool.shareTarget()
   },
   //轮播图
   get_banner3:function(){
     let that = this 
     var params = {}
-    // console.log(params, "params")
     app.ols.banner3(params).then(d => {
       console.log(d,"轮播")
 
@@ -153,13 +149,17 @@ Page({
     var cur = e.target.dataset.current;
     if (cur == that.data.current_special){
       console.log("专题当前选择项")
+      that.subjectCoursePage = 1
       that.setData({
-        current_special: -1
+        current_special: -1,
+        courseTotal:''
       })
       that.getcourse()    //获取课程
     }else{
+      that.subjectCoursePage = 1
       that.setData({
-        current_special: cur
+        current_special: cur,
+        courseTotal:''
       })
       that.special_course() //获取专题课程
     }
@@ -191,9 +191,10 @@ Page({
       that.setData({
         current_subject: cur,
         current_special:-1,
-        did: that.data.subject[cur].id
+        did: that.data.subject[cur].id,
+        courseTotal:''
       })
-  
+      that.subjectCoursePage = 1
       that.getspecial()  //获取专题
       that.getcourse()     //获取课程
     }
@@ -529,17 +530,34 @@ Page({
       // app.ols.grade_course2(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
-          console.log(d.data.data)
-          that.setData({
-            course: d.data.data
-          })
-          console.log(that.data.course, "专题获取课程")
+          if(that.subjectCoursePage == 1){
+            that.setData({
+              courseTotal:d.data.data.total,
+              course: d.data.data.lists
+            })
+          }else{
+            var coursefinalList = that.data.course.concat(d.data.data.lists)
+            that.setData({
+              course:coursefinalList
+            })
+          }
         } else {
-          console.log(d.data.msg, "专题获取课程msg，失败")
+          
           that.setData({
             course: ''
           })
         }
+        //   console.log(d.data.data)
+        //   that.setData({
+        //     course: d.data.data
+        //   })
+        //   console.log(that.data.course, "专题获取课程")
+        // } else {
+        //   console.log(d.data.msg, "专题获取课程msg，失败")
+        //   that.setData({
+        //     course: ''
+        //   })
+        // }
       })
     
     

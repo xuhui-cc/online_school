@@ -57,9 +57,6 @@ Page({
 
       // that.judge_share()  //分享判断接口
     }
-
-    
-
   },
 
 
@@ -636,7 +633,6 @@ Page({
       [cs1]: that.data.img,
       [cs2]: that.data.img,
     })
-    
     var ans = that.data.question.myans.join("@@");
     console.log(ans, "img")
     that.work_submit(ans)   //作业答案提交接口
@@ -654,7 +650,6 @@ Page({
         success: (res) => {
           let tempFilePaths = res.tempFilePaths;
           console.log(tempFilePaths)
-          // let imgs = [];
           wx.uploadFile({
             // url: 'http://os.lingjun.net/api.php/annex/upload',
             // url: 'https://wsg.lingjun.net/api.php/annex/upload',
@@ -667,11 +662,9 @@ Page({
               "token": wx.getStorageSync("token"),
             },
             success(r) {
-              
               let hhh = JSON.parse(r.data);
               if (hhh.code == 1) {
                 console.log("成功")
-             
                 that.data.img.unshift(hhh.data.file)
                 var cs1 = "id_list[" + that.data.currentTab + "].ans"
                 var cs2 = "question.myans"
@@ -680,29 +673,16 @@ Page({
                   [cs1]: that.data.img,
                   [cs2]: that.data.img,
                 })
-                // console.log(hhh.data.file)
                 var ans = that.data.question.myans.join("@@");
                 console.log(ans,"img")
                 that.work_submit(ans)   //作业答案提交接口
-                
-
               } else {
-               
                 console.log('失败')
-               
               }
-
-
-
-            
             }
           })
-
         }
-        
       })
-    
-
   },
 
   //上一题
@@ -752,17 +732,13 @@ Page({
       "eid": that.data.eid,
       "type": 4,
     }
-    console.log(params, "课后作业开始记录参数")
     app.ols.test_start(params).then(d => {
-      console.log(d, "课后作业开始记录数据")
       if (d.data.code == 0) {
         console.log(d.data.data)
         that.setData({
           hid: d.data.data.hid
         })
-        console.log("课后作业试卷开始记录接口调取成功")
       } else {
-        console.log("课后作业试卷开始记录接口==============" + d.data.msg)
       }
     })
   },
@@ -775,17 +751,13 @@ Page({
       "hid": that.data.hid,
       "duration": duration,
     }
-    console.log(params, "课后作业结束记录参数")
     app.ols.test_end(params).then(d => {
-      console.log(d, "课后作业结束记录数据")
       if (d.data.code == 0) {
         console.log(d.data.data)
         that.setData({
           hid: d.data.data.hid
         })
-        console.log("课后作业试卷结束记录接口调取成功")
       } else {
-        console.log("课后作业试卷结束记录接口==============" + d.data.msg)
       }
     })
   },
@@ -863,11 +835,11 @@ Page({
       "url": "homepaper",
       "id": that.data.oid,
     }
-    // console.log(params, "分享判断参数")
+    
     app.ols.judge_share4(params).then(d => {
-      // console.log(d, "分享判断数据")
+     
       if (d.data.code == 0) {
-        // console.log(d.data.data,"分享判断接口数据")
+        
         if(d.data.data.buy == 1 || (d.data.data.buy >= 3 && d.data.data.buy <= 5)){
             if(d.data.data.status == 1){
               wx.redirectTo({
@@ -910,25 +882,6 @@ Page({
             })
           }
         }
-        // if(d.data.data.buy == 0){
-        //   wx.redirectTo({
-        //     url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
-        //   })
-        // }else{
-        //   if(d.data.data.status == 1){
-        //     wx.redirectTo({
-        //       url: '../../pages/course_detail/course_detail?kid=' + that.data.kid,
-        //     })
-        //   }else if(d.data.data.status == 2){
-        //     wx.redirectTo({
-        //       url: '../../pages/homework_report/homework_report?mid=' + d.data.data.mid
-        //     })
-        //   }else if(d.data.data.status == 0){
-            
-        //   }
-        // }
-        
-        // console.log("分享判断接口调取成功")
       } else {
         console.log("分享判断接口==============" + d.data.msg)
       }
@@ -955,6 +908,6 @@ Page({
 
     let that = this;
     let prarmsStr = 'isshare=1&eid=' + that.data.eid + '&gid=' + wx.getStorageSync('gid') + '&kid=' + that.data.kid + '&oid=' + that.data.oid
-    return app.shareTool.getShareReturnInfo('0,1', 'homework', prarmsStr,'/images/other/share1.png', '领军网校')
+    return app.shareTool.getShareReturnInfo('0,1', 'homework', prarmsStr,'/images/other/share1.png', that.data.ques_info.title)
   }
 })
