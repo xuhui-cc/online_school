@@ -11,7 +11,7 @@
   <view class="naviBar_back"></view>
 </view>
 
-<view class="container" wx:if="{{showContent}}" bindtouchstart="backgroundClciked" >
+<view class="container" wx:if="{{showContent}}" bindtap="backgroundClciked" >
 
   <scroll-view class="scrollView" scroll-y="true" scroll-top="{{scrollTop}}" style="height:{{screenHeight-naviHeight}}px; margin-top:{{naviHeight}}px" refresher-enabled="true" bindrefresherrefresh="pullRefresh" refresher-triggered="{{recordListPullRefershing}}" bindscrolltolower="recordListScrollReachBottom" bindscroll="srcollViewScroll">
     <!-- 学生信息 -->
@@ -103,7 +103,7 @@
               <!-- 老师 -->
               <block wx:if="{{role == 3}}">
                 <!-- 更多功能按钮 -->
-                <view class="moreActionButtonView" bindtap="moreActionButtonClciked" data-index="{{index}}">
+                <view class="moreActionButtonView" catchtap="moreActionButtonClciked" data-index="{{index}}">
                   <view class="moreActionButton">
                     <view style="width:9rpx; height:9rpx; background-color:#8288A7; border-radius: 4.5rpx; margin-left:19rpx;"></view>
                     <view style="width:9rpx; height:9rpx; background-color:#8288A7; border-radius: 4.5rpx; margin-left:6rpx;"></view>

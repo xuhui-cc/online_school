@@ -11,6 +11,8 @@ Page({
   // 即将删除评论的索引
   willDeleteCommentIndex: null,
 
+  moreActionRecordIndex: null,
+
   // 选中的天 0000-00-00
   selectedDayStr: '',
   // 最新日志
@@ -301,6 +303,20 @@ Page({
     })
     this.willDeleteCommentIndex = null
     this.willDeleteReocrdIndex = null
+  },
+
+  /**
+   * 关闭更多功能视图
+  */
+  closeMoreActionView: function() {
+    if(this.moreActionRecordIndex == null) {
+      return
+    }
+    let showMoreActionStr = "recordList[" + this.moreActionRecordIndex + "].showMoreAction"
+    this.setData({
+      [showMoreActionStr]: false
+    })
+    this.moreActionRecordIndex = null
   },
 
   //--------------------------------------------------------接口--------------------------------------------------
@@ -843,8 +859,14 @@ Page({
    * 日志单元格 展示更多功能按钮（老师） 点击事件
   */
   moreActionButtonClciked: function(e) {
+    
     let index = e.currentTarget.dataset.index
+    if (this.moreActionRecordIndex != null && index != this.moreActionRecordIndex) {
+      this.closeMoreActionView()
+    }
+
     let record = this.data.recordList[index]
+    this.moreActionRecordIndex = record.showMoreAction ? null : index
     let showMoreActionStr = 'recordList[' + index + '].showMoreAction'
     this.setData({
       [showMoreActionStr] : record.showMoreAction ? false : true
@@ -1064,18 +1086,7 @@ Page({
    * 背景视图 点击事件
   */
   backgroundClciked: function() {
-    let that = this
-    if(that.data.recordList){
-      var recordList = that.data.recordList
-      for(var i=0;i<recordList.length;i++){
-        if(recordList[i].showMoreAction){
-          let showMoreAction = 'recordList[' + i + '].showMoreAction'
-          that.setData({
-            [showMoreAction]: false
-          })
-        }
-      }
-    }
+    this.closeMoreActionView()
     
     this.closeReplayDeleteButton()
   },
