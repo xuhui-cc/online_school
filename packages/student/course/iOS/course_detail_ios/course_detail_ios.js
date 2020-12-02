@@ -48,6 +48,7 @@ Page({
    */
   onShow: function () {
     let that = this
+    that.endTestShow() 
     that.judge_login()    //登陆判断
     that.course_detail()   //获取课程简介
     if (that.data.currentData == 1){
@@ -566,6 +567,22 @@ dealAva:function(face){
       }
     })
     
+  },
+
+  //结课考试介绍
+  endTestShow:function(){
+    let that = this
+    var params = {
+      // "token": '',
+      "kid": that.data.kid
+    }
+    app.ols.endTestShow(params).then(d => {
+      if(d.data.code == 0){
+        that.setData({
+          endTestShow:d.data.data.lists
+        })
+      }
+    })
   },
 
 
