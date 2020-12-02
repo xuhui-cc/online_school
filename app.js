@@ -49,6 +49,7 @@ App({
   onShow: function(options) {
     this.refreshUserInfo()
     this.couponUseTip()
+    this.shareHead()
     console.log(options)
     if (options.scene == 1044) {
       wx.setStorageSync('shareTicket', options.shareTicket)
@@ -137,9 +138,17 @@ App({
     ols.couponTea(params).then(d => {
       if (d.data.code == 0) {
         wx.setStorageSync('couponUseTip', d.data.data.res)
-        // that.setData({
-        //   couponUseTip:d.data.data.res
-        // })
+      }
+    })
+    
+  },
+
+  //优惠券使用提示
+  shareHead(){
+    var params = {}
+    ols.shareHead(params).then(d => {
+      if (d.data.code == 0) {
+        wx.setStorageSync('shareHead', d.data.data.res)
       }
     })
     

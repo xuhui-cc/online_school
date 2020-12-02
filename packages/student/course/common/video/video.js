@@ -2,13 +2,17 @@
 const app = getApp()
 Page({
 
+  // 分享图片的路径
+  shareImagePath: '',
+
   /**
    * 页面的初始数据
    */
   data: {
    
     isload: 0,
-    btn_buy:app.globalData.btn_buy
+    btn_buy:app.globalData.btn_buy,
+    showCanvas:false,
   },
  
 
@@ -17,9 +21,10 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    // that.setData({
-    //   isshare:options.isshare
-    // })
+    that.setData({
+      shareHead:wx.getStorageSync('shareHead')
+    })
+    
     if (options.isshare == 1){
       wx.setStorageSync("gid", options.gid)
       that.setData({
@@ -58,11 +63,28 @@ Page({
   onShow: function () {
     let that = this
     if(wx.getStorageSync("token")){
-     
+     that.getVideoCourse()  //获取视频所在课程信息
     that.getvideo_info()  //获取视频断点
     that.getCourse()  //获取视频页附加课程数据
     }
     
+  },
+
+  //获取视频所在课程信息
+  getVideoCourse:function(){
+    let that = this
+    var params = {
+      "token": '',
+      "kid": that.data.kid
+    }
+    app.ols.course_info5(params).then(d => {
+      if (d.data.code == 0) {
+        that.dealAva(d.data.data.face)
+        that.setData({
+          course_info: d.data.data
+        })
+      }
+    })
   },
 
   get_video:function(){
@@ -546,6 +568,110 @@ getPhoneNumber: function (e) {
 
     let that = this;
     let paramStr = 'isshare=1&eid=' + that.data.eid + '&gid=' + wx.getStorageSync('gid') + '&kid=' + that.data.kid + '&id=' + that.data.id + '&mid=' + that.data.mid
-    return app.shareTool.getShareReturnInfo('0,1', 'video', paramStr, '/images/other/share1.png', '领军网校')
+    return app.shareTool.getShareReturnInfo('0,1', 'video', paramStr, this.shareImagePath ? this.shareImagePath : '', wx.getStorageSync('shareHead').video + that.data.getvideo.name)
+  },
+
+  // 处理图片
+dealAva:function(face){
+  let that = this 
+  
+    wx.getImageInfo({
+      src: face,
+      success: function (res) {
+        console.log(res,"res");
+        var face = res.path
+        that.drawShareImage(face)
+      }
+    })
+  
+},
+
+
+/**
+   * 绘制分享图片
+  */
+ drawShareImage: function (face) {
+  this.setData({
+    showCanvas: true
+  })
+  var title1,title2
+  if(this.data.getvideo.name.length > 12){
+    var title1 = this.data.getvideo.name.substr(0,12)
+    var title2 = this.data.getvideo.name.substr(12,12)
+    console.log(title1)
+    console.log(title2)
+  }else{
+    var title1 = this.data.getvideo.name
   }
+  // var title = "判断推理系统课判断推理系统课判断推理系统课"
+  
+  const ctx = wx.createCanvasContext('shareCanvas')
+  ctx.drawImage(face, 0, 0, 375, 170)
+  ctx.drawImage("/images/other/share_course.png", 0, 131, 375, 170)
+
+ 
+
+  //画昵称
+  ctx.restore()
+  ctx.beginPath()
+  ctx.setFontSize(20)
+  ctx.setFillStyle('#272727')
+  ctx.font = "bold 20px sans-serif";
+  ctx.setTextAlign('center')
+  ctx.fillText(title1, 187, 207,300)
+  if(title2){
+    ctx.fillText(title2 + "...", 187, 235,300)
+  }
+  ctx.stroke()
+  if(title2){
+    ctx.drawImage("/images/other/num_bg.png", 140, 250, 100, 20)
+  }else{
+    ctx.drawImage("/images/other/num_bg.png", 140, 230, 100, 20)
+  }
+  
+
+  ctx.restore()
+  ctx.beginPath()
+  ctx.setFontSize(12)
+  ctx.setFillStyle('#FFFFFF')
+  ctx.setTextAlign('center')
+  if(title2){
+    ctx.fillText(this.data.course_info.order_num + "人学习", 190,265 ,100)
+  }else{
+    ctx.fillText(this.data.course_info.order_num + "人学习", 190,245 ,100)
+  }
+  
+  ctx.stroke()
+  console.log("画图完成")
+
+  let that = this
+  ctx.draw(true,function(e) {
+    console.log("开始生成图片地址")
+    wx.canvasToTempFilePath({
+      x: 0,
+      y: 0,
+      width: 375,
+      height: 320,
+      canvasId: 'shareCanvas',
+      success(res) {
+        console.log(res.tempFilePath)
+        that.shareImagePath = res.tempFilePath
+        console.log(that.shareImagePath,"图片地址")
+        that.setData({
+          showCanvas: false,
+          teacher_info:true
+        })
+      },
+      fail (res) {
+        console.log("图片地址生成失败")
+        that.setData({
+          showCanvas: false,
+          teacher_info:true
+        })
+      }
+    })
+  })
+
+},
+  
 })

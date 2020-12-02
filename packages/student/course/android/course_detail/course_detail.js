@@ -118,7 +118,7 @@ Page({
   onShareAppMessage: function () {
     let that = this;
     let paramsStr = 'isshare=1&gid=' + that.data.gid + '&kid=' + that.data.kid
-    return app.shareTool.getShareReturnInfo('0,1', 'course_detail', paramsStr, this.shareImagePath ? this.shareImagePath : '', that.data.course_info.title)
+    return app.shareTool.getShareReturnInfo('0,1', 'course_detail', paramsStr, this.shareImagePath ? this.shareImagePath : '', wx.getStorageSync('shareHead').lesson + that.data.course_info.title)
   },
 
   /*-----------------------------------------------------方法-------------------------------------------- */
