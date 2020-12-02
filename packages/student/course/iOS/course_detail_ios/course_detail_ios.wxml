@@ -160,8 +160,8 @@
     <view class="btn_end_test" wx:if="{{login && (course_info.buy == 1 || (course_info.buy >= 3 && course_info.buy <= 5) || course_info.price == 0) && course_cata.res.mark_status == 0 }}" bindtap="to_test">去考试</view>
     <view class="btn_end_test" wx:if="{{course_cata.res.mark_status == 1 && login && (course_info.buy == 1 || (course_info.buy >= 3 && course_info.buy <= 5) || course_info.price == 0)}}"  style="background:rgba(204,204,204,1);">批改中</view>
     <view class="btn_end_test" wx:if="{{course_cata.res.mark_status == 2 && login && (course_info.buy == 1 || (course_info.buy >= 3 && course_info.buy <= 5) || course_info.price == 0)}}" bindtap="to_test_report" style="background:rgba(77,151,246,1);">查看报告</view>
-    <view class="end_title">结课考试</view>
-    <view class="end_intro">巩固知识点，全面掌握考点学习方法。</view>
+    <view class="end_title">{{endTestShow.title}}</view>
+      <view class="end_intro">{{endTestShow.remark}}</view>
   </view>
   
 </view>
