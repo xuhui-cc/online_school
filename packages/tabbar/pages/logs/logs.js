@@ -483,17 +483,25 @@ Page({
         that.setData({
           subject: subject
         })
-        // if(that.data.current_subject > -1){
-        //   that.setData({
-        //     did: that.data.subject[that.data.current_subject].id
-        //   })
-        //   that.getspecial()      //获取专题
-        //   if (that.data.current_special != -1) {
-        //     that.special_course()  //获取专题课程
-        //   }else{
-        //     that.getcourse()    //获取课程
-        //   }
-        // }
+        if(that.data.current_subject > 1){
+          if(that.data.current_subject < subject.length){
+            that.getspecial()  //获取专题
+            that.subjectCoursePage = 1
+            that.setData({
+              courseTotal:0,
+              course:''
+            })
+          that.getcourse()     //获取课程
+          }else{
+            that.setData({
+              current_subject:0,
+            })
+          }
+          
+        }else if(that.data.current_subject == 1){
+          that.viplist()   //获取vip
+          that.allVipCourse()
+        }
         
       } else {
         console.log(d.data.msg, "获取科目失败")
@@ -632,7 +640,7 @@ Page({
     that.couponShow()    //优惠券显示状态
     that.coursePushList()   //后台推荐课程
     if(that.data.grade){
-      for (var i = -0; i < that.data.grade.length; i++) {
+      for (var i = 0; i < that.data.grade.length; i++) {
         if (that.data.gid == that.data.grade[i].id) {
           that.setData({
             grade_index: i
@@ -644,16 +652,9 @@ Page({
       current_special:-1,
     })
     console.log(that.data.gid,"onshow")
-
     // that.hot()  //热门课程
     that.getsubject()   //获取学科
-    if(that.data.current_subject > 1){
-      that.getspecial()  //获取专题
-      that.getcourse()     //获取课程
-    }else if(that.data.current_subject == 1){
-      that.viplist()   //获取vip
-      that.allVipCourse()
-    }
+    
     
     
   },
@@ -1006,9 +1007,9 @@ Page({
           login: true
         })
         that.signBtn()
-        // that.onShow()
-        that.viplist()
-        that.allVipCourse()
+        that.onShow()
+        // that.viplist()
+        // that.allVipCourse()
       }
     })
   },

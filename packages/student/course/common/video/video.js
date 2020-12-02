@@ -21,9 +21,9 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    that.setData({
-      shareHead:wx.getStorageSync('shareHead')
-    })
+    // that.setData({
+    //   shareHead:wx.getStorageSync('shareHead')
+    // })
     
     if (options.isshare == 1){
       wx.setStorageSync("gid", options.gid)
