@@ -1064,6 +1064,19 @@ Page({
    * 背景视图 点击事件
   */
   backgroundClciked: function() {
+    let that = this
+    if(that.data.recordList){
+      var recordList = that.data.recordList
+      for(var i=0;i<recordList.length;i++){
+        if(recordList[i].showMoreAction){
+          let showMoreAction = 'recordList[' + i + '].showMoreAction'
+          that.setData({
+            [showMoreAction]: false
+          })
+        }
+      }
+    }
+    
     this.closeReplayDeleteButton()
   },
 
@@ -1072,5 +1085,7 @@ Page({
   */
   srcollViewScroll: function() {
     this.closeReplayDeleteButton()
-  }
+  },
+
+  
 })

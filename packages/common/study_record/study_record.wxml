@@ -11,7 +11,7 @@
   <view class="naviBar_back"></view>
 </view>
 
-<view class="container" wx:if="{{showContent}}" bindtouchstart="backgroundClciked">
+<view class="container" wx:if="{{showContent}}" bindtouchstart="backgroundClciked" >
 
   <scroll-view class="scrollView" scroll-y="true" scroll-top="{{scrollTop}}" style="height:{{screenHeight-naviHeight}}px; margin-top:{{naviHeight}}px" refresher-enabled="true" bindrefresherrefresh="pullRefresh" refresher-triggered="{{recordListPullRefershing}}" bindscrolltolower="recordListScrollReachBottom" bindscroll="srcollViewScroll">
     <!-- 学生信息 -->
