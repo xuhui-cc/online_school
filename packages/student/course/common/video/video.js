@@ -504,7 +504,7 @@ Page({
     "url": "study",
     "id": that.data.id,
   }
-  // console.log(params, "分享判断参数")
+  
   app.ols.judge_share4(params).then(d => {
     // console.log(d, "分享判断数据")
     if (d.data.code == 0) {
