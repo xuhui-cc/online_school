@@ -780,7 +780,27 @@ Page({
             }
           }
         })
-      }
+      },
+      fail(res){
+        console.log("报名失败")
+        wx.showModal({
+          title: '提示', //提示的标题,
+          content: '请打开订阅消息权限', //提示的内容,
+          showCancel: true, //是否显示取消按钮,
+          success: res => {
+            if (res.confirm) {
+              wx.openSetting({
+                success(res) {
+                },
+                fail(res) {
+                }
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        });
+    } 
     })
   },
 

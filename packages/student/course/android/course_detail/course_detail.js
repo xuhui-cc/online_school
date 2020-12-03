@@ -502,7 +502,7 @@ dealAva:function(face){
             }
           })
         },
-          fail(res){
+        fail(res){
         console.log("报名失败")
         wx.showModal({
           title: '提示', //提示的标题,
