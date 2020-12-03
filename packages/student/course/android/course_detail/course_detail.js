@@ -490,7 +490,7 @@ dealAva:function(face){
           console.log(res)
           var params = {
             "token":wx.getStorageSync('token'),
-            "course_id":kid
+            "course_id":that.data.kid
           }
           app.ols.subMsg(params).then(d => {
             if (d.data.code == 0 || d.data.code == 4) {
