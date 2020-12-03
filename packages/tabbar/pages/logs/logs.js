@@ -1067,6 +1067,22 @@ Page({
     // that.toSubMsg(e.currentTarget.dataset.kid)
   },
 
+  //免费课领取
+  to_free:function(msgKid){
+    let that = this
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "kid": msgKid
+      }
+      app.ols.get_free(params).then(d => {
+        console.log(d)
+        if (d.data.code == 0) {
+          that.toSubMsg(msgKid)
+          
+        } 
+      })
+  },
+
   //名师简介跳转
   teacher_inter:function(){
     wx.navigateTo({
