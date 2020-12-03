@@ -635,6 +635,8 @@ Page({
     let that = this
     that.judge_login()    //登陆判断
     that.get_banner3()  //轮播图
+    that.getgrade()    //获取年级 
+    that.getsubject()   //获取学科
     that.couponShow()    //优惠券显示状态
     that.coursePushList()   //后台推荐课程
     if(that.data.grade){
@@ -651,7 +653,15 @@ Page({
     })
     console.log(that.data.gid,"onshow")
     // that.hot()  //热门课程
-    that.getsubject()   //获取学科
+    // that.getsubject()   //获取学科
+    // if(!this.toSharePage){
+    //   this.toSharePage = false
+    //   this.getAd()
+    // }else{
+    //   this.setData({
+    //     adWindowModel:null
+    //   })
+    // }
     
     
     
