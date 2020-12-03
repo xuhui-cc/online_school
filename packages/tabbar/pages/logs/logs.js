@@ -776,25 +776,26 @@ Page({
             wx.showToast({
               title: '报名成功',
             })
-            if(that.data.current_subject == 0){
-              that.coursePushList() //后台推荐课
-            }
-            else if(that.data.current_subject == 1){
-              that.vipCoursePage == 1
-              that.setData({
-                allVipCourse:''
-              })
-              that.viplist()   //获取vip
-              that.allVipCourse()   //获取vip全部课程
-            }
-            else{
-              that.subjectCoursePage = 1
-              that.setData({
-                courseTotal:'',
-                course:''
-              })
-              that.getcourse()     //获取课程
-            }
+            that.onShow()
+            // if(that.data.current_subject == 0){
+            //   that.coursePushList() //后台推荐课
+            // }
+            // else if(that.data.current_subject == 1){
+            //   that.vipCoursePage == 1
+            //   that.setData({
+            //     allVipCourse:''
+            //   })
+            //   that.viplist()   //获取vip
+            //   that.allVipCourse()   //获取vip全部课程
+            // }
+            // else{
+            //   that.subjectCoursePage = 1
+            //   that.setData({
+            //     courseTotal:'',
+            //     course:''
+            //   })
+            //   that.getcourse()     //获取课程
+            // }
           }
         })
       },
