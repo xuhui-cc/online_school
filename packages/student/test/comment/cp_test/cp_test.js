@@ -2,6 +2,9 @@
 const app = getApp()
 
 Page({
+  // 分享图片的路径
+  shareImagePath: '',
+
   /**
    * 页面的初始数据
    */
@@ -20,6 +23,7 @@ Page({
     total_micro_second:0,
     t:0,
     clock: 0,//倒计时时间
+    showCanvas:false,
   },
 
   /**
@@ -253,9 +257,11 @@ Page({
       console.log(d)
       if (d.data.code == 0) {
         console.log(d.data.data)
+        
         that.setData({
           ques_info: d.data.data
         })
+        that.drawShareImage(d.data.data)
         console.log("测评试卷基本信息接口调取成功")
       } else {
         console.log("测评试卷基本信息接口==============" + d.data.msg)
@@ -691,8 +697,144 @@ Page({
   onShareAppMessage: function () {
     let that = this;
     let params = 'isshare=1&id=' + that.data.id + '&gid=' + wx.getStorageSync("gid")
-    return app.shareTool.getShareReturnInfo('0,1', 'cp_test', params, '/images/other/share1.png', '领军网校')
+    return app.shareTool.getShareReturnInfo('0,1', 'cp_test', params, this.shareImagePath ? this.shareImagePath : '', wx.getStorageSync('shareHead').paper + that.data.ques_info.title)
+  },
+
+   // // 处理图片
+// dealAva:function(face){
+//   let that = this 
+  
+//     wx.getImageInfo({
+//       src: face,
+//       success: function (res) {
+//         console.log(res,"res");
+//         var face = res.path
+//         that.drawShareImage(face)
+//       }
+//     })
+  
+// },
+
+
+/**
+   * 绘制分享图片
+  */
+ drawShareImage: function (ques_info) {
+  this.setData({
+    showCanvas: true
+  })
+  var title1,title2
+  var title = "判断推理系统课判断推理系统课判断推理系统课"
+  if(ques_info.title.length > 9){
+    var title1 = ques_info.title.substr(0,9)
+    var title2 = ques_info.title.substr(9,9)
+    console.log(title1)
+    console.log(title2)
+  }else{
+    var title1 = ques_info.title
   }
+  // if(title.length > 9){
+  //   var title1 = title.substr(0,9)
+  //   var title2 = title.substr(9,9)
+  //   console.log(title1)
+  //   console.log(title2)
+  // }else{
+  //   var title1 = title
+  // }
+  
+  
+  const ctx = wx.createCanvasContext('shareCanvas')
+
+  
+
+
+  ctx.drawImage("/images/other/test_share.png", 0, 0, 375, 340)
+  // ctx.drawImage("/images/other/share_course.png", 0, 131, 375, 170)
+
+  ctx.drawImage("/images/other/g_d.png", 230, 65, 100, 35)
+  ctx.restore()
+  ctx.beginPath()
+  ctx.setFontSize(18)
+  ctx.setFillStyle('#FFFFFF')
+  ctx.setTextAlign('center')
+  ctx.fillText(ques_info.gdata.title + '•' + ques_info.ddata.title, 280,85,200)
+  ctx.stroke()
+
+  //画昵称
+  ctx.restore()
+  ctx.beginPath()
+  ctx.setFontSize(28)
+  ctx.setFillStyle('#EF653A')
+  ctx.font = "bold 40px sans-serif";
+  ctx.setTextAlign('center')
+  ctx.fillText(title1, 190, 140,300)
+  if(title2 && title2.length == 9){
+    ctx.fillText(title2 + "...", 190, 190,300)
+  }else if(title2 && title2.length < 9){
+    ctx.fillText(title2, 190, 190,300)
+  }
+  ctx.stroke()
+
+
+  // if(title2){
+  //   ctx.drawImage("/images/other/num_bg.png", 140, 250, 100, 20)
+  // }else{
+  //   ctx.drawImage("/images/other/num_bg.png", 140, 230, 100, 20)
+  // }
+  
+  var content = ques_info.remark.substr(0,14)
+  ctx.restore()
+  ctx.beginPath()
+  ctx.setFontSize(18)
+  ctx.setFillStyle('#122C62')
+  ctx.setTextAlign('center')
+  if(title2){
+    if(content.length == 14){
+      ctx.fillText(content + "...", 200,220 ,300)
+    }else{
+      ctx.fillText(content, 200,220 ,300)
+    }
+  }else{
+    if(content.length == 14){
+      ctx.fillText(content + "...", 200,200 ,300)
+    }else{
+      ctx.fillText(content, 200,200 ,300)
+    }
+  }
+  
+  
+  ctx.stroke()
+  console.log("画图完成")
+
+  let that = this
+  ctx.draw(true,function(e) {
+    console.log("开始生成图片地址")
+    wx.canvasToTempFilePath({
+      x: 0,
+      y: 0,
+      width: 375,
+      height: 320,
+      canvasId: 'shareCanvas',
+      success(res) {
+        console.log(res.tempFilePath)
+        that.shareImagePath = res.tempFilePath
+        console.log(that.shareImagePath,"图片地址")
+        that.setData({
+          showCanvas: false,
+          teacher_info:true
+        })
+      },
+      fail (res) {
+        console.log("图片地址生成失败")
+        that.setData({
+          showCanvas: false,
+          teacher_info:true
+        })
+      }
+    })
+  })
+
+},
 
   //手动滑页
   // swiperchange: function (e) {

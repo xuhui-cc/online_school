@@ -542,3 +542,40 @@ z-index: 101;
   height: 22rpx;
 }
 /* 目录顺序 */
+
+/* 消息推送点击报名 */
+.login_read_sign{
+  position: fixed;
+  bottom: 50rpx;
+  left: 30rpx;
+  z-index:101;
+  width: 690rpx;
+  height: 85rpx;
+  background: transparent;
+  /* background-color: rgba(58,58,58,1);
+  opacity:0.5; */
+}
+.login_read_sign::after {
+  border: none;
+}
+.sign{
+  position: fixed;
+  bottom: 50rpx;
+  left: 30rpx;
+  width: 690rpx;
+height: 85rpx;
+
+font-size: 32rpx;
+font-family: PingFang SC;
+font-weight: bold;
+line-height: 85rpx;
+text-align: center;
+color: #FFFFFF;
+opacity: 1;
+
+background: linear-gradient(180deg, #FFBB54 0%, #FF7F46 100%);
+opacity: 1;
+border-radius: 44rpx;
+z-index: 88;
+}
+/* 消息推送点击报名 */

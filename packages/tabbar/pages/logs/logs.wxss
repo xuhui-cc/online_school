@@ -1173,3 +1173,21 @@ z-index: 602;
   z-index: 602;
 }
 /* 立即开通 */
+
+/* 点击报名 */
+.login_read_sign{
+  position: absolute;
+  margin-top: -45rpx;
+  margin-left: 315rpx;
+  width: 123rpx;
+  height: 40rpx;
+  
+  background: transparent;
+  /* background-color: rgba(58,58,58,1);
+  opacity:0.5; */
+  z-index: 21;
+}
+.login_read_sign::after {
+  border: none;
+}
+/* 点击报名 */

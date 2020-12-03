@@ -358,8 +358,8 @@ Page({
   //课程权限提示
   course_authority:function(e){
     let that = this
-    var xb = e.currentTarget.dataset.xb
-    console.log(xb)
+    // var xb = e.currentTarget.dataset.xb
+    // console.log(xb)
     var buy = that.data.course_info.buy
     if (buy == 1|| (buy >= 3 && buy <= 5)) {
       console.log("有课程权限")
@@ -487,6 +487,60 @@ dealAva:function(face){
   })
 
 },
+
+/**
+   * 点击报名
+   */
+  toSubMsg:function(){
+    let that = this 
+    if(that.data.course_info.buy ==1 || (that.data.course_info.buy >= 3 && that.data.course_info.buy <= 5)){
+      console.log("触发报名")
+      wx.requestSubscribeMessage({
+        tmplIds: ['T4tp85vTUVp1BiSBRmlC7CRQHDhOYitDTR0zCfv-3yg'], // 此处可填写多个模板 ID，但低版本微信不兼容只能授权一个
+        success(res) { 
+          console.log(res)
+          var params = {
+            "token":wx.getStorageSync('token'),
+            "course_id":kid
+          }
+          app.ols.subMsg(params).then(d => {
+            if (d.data.code == 0 || d.data.code == 4) {
+              wx.showToast({
+                title: '报名成功',
+              })
+              that.course_detail()
+              that.getcourse_cata()
+            }
+          })
+        },
+          fail(res){
+        console.log("报名失败")
+        wx.showModal({
+          title: '提示', //提示的标题,
+          content: '请打开订阅消息权限', //提示的内容,
+          showCancel: true, //是否显示取消按钮,
+          success: res => {
+            if (res.confirm) {
+              wx.openSetting({
+                success(res) {
+                },
+                fail(res) {
+                }
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        });
+    } 
+    
+      })
+    }else{
+      that.getcourse_cata()
+      that.course_authority()
+    }
+    
+  },
   
   /*----------------------------------------------------接口-------------------------------------------- */
   

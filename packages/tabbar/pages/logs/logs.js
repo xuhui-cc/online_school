@@ -780,7 +780,27 @@ Page({
             }
           }
         })
-      }
+      },
+      fail(res){
+        console.log("报名失败")
+        wx.showModal({
+          title: '提示', //提示的标题,
+          content: '请打开订阅消息权限', //提示的内容,
+          showCancel: true, //是否显示取消按钮,
+          success: res => {
+            if (res.confirm) {
+              wx.openSetting({
+                success(res) {
+                },
+                fail(res) {
+                }
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        });
+    } 
     })
   },
 
@@ -985,10 +1005,66 @@ Page({
 
   },
 
-  // 消息推送报名
+  // // 消息推送报名
+  // subMsg:function(e){
+  //   let that = this 
+  //   that.toSubMsg(e.currentTarget.dataset.kid)
+  // },
+
+  //订阅消息
   subMsg:function(e){
     let that = this 
-    that.toSubMsg(e.currentTarget.dataset.kid)
+    var msgKid = e.currentTarget.dataset.kid
+    if(that.data.current_subject == 0){
+      var coursePushList = that.data.coursePushList
+      for(var i=0;i<coursePushList.length;i++){
+        if(coursePushList[i].kid == msgKid){
+          if(coursePushList[i].buy == 1 || (coursePushList[i].buy >= 3 && coursePushList[i].buy <= 5)){
+            that.toSubMsg(msgKid)
+          }else if(coursePushList[i].buy == 2){
+            wx.showToast({
+              title: '正在拼团中哦~',
+              icon:"none"
+            })
+          }else{
+            if(coursePushList[i].price == 0){
+              that.to_free(msgKid)
+            }else{
+              wx.showToast({
+                title: '暂无课程权限，请联系分校老师',
+                icon:"none"
+              })
+            }
+          }
+        }
+      }
+    }else if(that.data.current_subject == 1){
+      that.toSubMsg(msgKid)
+    }else{
+      var course = that.data.course
+      for(var i=0;i<course.length;i++){
+        if(course[i].kid == msgKid){
+          if(course[i].buy == 1 || (course[i].buy >= 3 && course[i].buy <= 5)){
+            that.toSubMsg(msgKid)
+          }else if(course[i].buy == 2){
+            wx.showToast({
+              title: '正在拼团中哦~',
+              icon:"none"
+            })
+          }else{
+            if(course[i].price == 0){
+              that.to_free(msgKid)
+            }else{
+              wx.showToast({
+                title: '暂无课程权限，请联系分校老师',
+                icon:"none"
+              })
+            }
+          }
+        }
+      }
+    }
+    // that.toSubMsg(e.currentTarget.dataset.kid)
   },
 
   //名师简介跳转
@@ -1006,7 +1082,10 @@ Page({
         that.setData({
           login: true
         })
-        that.signBtn()
+        if(that.data.current_subject == 1){
+          that.signBtn()
+        }
+        
         that.onShow()
         // that.viplist()
         // that.allVipCourse()
