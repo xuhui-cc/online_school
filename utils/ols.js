@@ -10,7 +10,6 @@ function login(params) {
   return fetch.olsfetchpost(URI, 'v4/login/getphonelogin', params, true, '登录中')
 }
 
-
 // 小程序直播接入
 function getclassroom(params) {
   return fetch.olsfetchpost(URI, 'classroom/getclassroom', params)

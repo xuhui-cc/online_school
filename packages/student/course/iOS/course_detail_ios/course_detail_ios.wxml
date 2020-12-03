@@ -17,7 +17,6 @@
   <view class="course_num">{{course_info.class_hour}}课时</view>
 </view>
 
-
 <view class='main_sel'>
   <view class='tab  {{currentData == 0 ? "tabBorer" : ""}}'  data-current = "0" bindtap='checkCurrent'>课程介绍</view>
   <view class='tab  {{currentData == 1 ? "tabBorer" : ""}}'  data-current = "1" bindtap='checkCurrent'>课程目录</view>
@@ -28,7 +27,6 @@
   </view>
 </view>
 <view class="heng1"></view>
-
 
 <view wx:if="{{currentData == 0}}" class="course_intro">
   <!-- <image class="course_intro_img" src="../../images/intro.png" mode="widthFix"></image> -->
@@ -190,6 +188,9 @@
   <image class="del" src="/images/other/del2.png" bindtap="to_ues"></image>
   <image class="copy" src="/images/other/copy.png" bindtap="copy"></image>
 </view>
+
+<button class="login_read_sign"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login && course_info.live == 1 && course_info.apply == 0}}"></button>
+<view class="sign" bindtap="toSubMsg" wx:if="{{course_info.live == 1 && course_info.apply == 0 }}">立即报名</view>
 
 <!-- container -->
 </view>

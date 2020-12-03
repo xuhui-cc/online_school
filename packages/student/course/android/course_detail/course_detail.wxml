@@ -193,6 +193,9 @@
     <image class="copy" src="/images/other/copy.png" bindtap="copy"></image>
   </view>
 
+  <button class="login_read_sign"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login && course_info.live == 1 && course_info.apply == 0}}"></button>
+  <view class="sign" bindtap="toSubMsg" wx:if="{{course_info.live == 1 && course_info.apply == 0 }}">立即报名</view>
+
 <!-- container -->
 </view>
 <canvas canvas-id="shareCanvas" style="width:375px; height:320px;top:500rpx;" wx:if="{{showCanvas}}"></canvas>

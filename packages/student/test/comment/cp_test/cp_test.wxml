@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" style="margin-bottom:500rpx;">
 
  <!-- 标题栏 -->
   <view class="nabigation_bar">
@@ -240,3 +240,5 @@
 
 <!-- container -->
 </view>
+<canvas canvas-id="shareCanvas" style="width:375px; height:320px;top:500rpx;" wx:if="{{showCanvas}}"></canvas>
+<!-- wx:if="{{showCanvas}}" -->
