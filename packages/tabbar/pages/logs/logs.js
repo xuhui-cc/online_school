@@ -65,9 +65,7 @@ Page({
       app.ols.v5_viplist(params).then(d => {
         console.log(d, "会员列表数据")
         if (d.data.code == 0) {
-          // if(d.data.data.lists[0].course){
-          //   d.data.data.lists[0].course_num = d.data.data.lists[0].course.length
-          // }
+          
           
           that.setData({
             // vip_list:d.data.data.lists,
@@ -769,13 +767,22 @@ Page({
               title: '报名成功',
             })
             if(that.data.current_subject == 0){
-              // that.hot()  //热门课程
+              that.coursePushList() //后台推荐课
             }
             else if(that.data.current_subject == 1){
+              that.vipCoursePage == 1
+              that.setData({
+                allVipCourse:''
+              })
               that.viplist()   //获取vip
               that.allVipCourse()   //获取vip全部课程
             }
             else{
+              that.subjectCoursePage = 1
+              that.setData({
+                courseTotal:'',
+                course:''
+              })
               that.getcourse()     //获取课程
             }
           }
