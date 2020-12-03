@@ -5,6 +5,9 @@ Page({
   // 会员卡id
   id: null,
 
+  // 分享的老师ID
+  tid: null,
+
   /**
    * 页面的初始数据
    */
@@ -57,6 +60,7 @@ Page({
       isTeacher: wx.getStorageSync('role') == 3
       // isTeacher: false
     })
+    this.tid = options.tid
     this.getSystemSize()
     this.getRightDetail()
   },
@@ -151,6 +155,9 @@ Page({
     let params = {
       token: wx.getStorageSync('token'),
       id: this.id
+    }
+    if (this.tid) {
+      params.tid = this.tid
     }
     let that = this
     app.ols.getRightCard(params).then(d=>{

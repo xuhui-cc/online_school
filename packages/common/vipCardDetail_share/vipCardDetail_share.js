@@ -17,10 +17,14 @@ Page({
   // 会员卡id
   id: null,
 
+  // 分享的老师ID
+  tid: null,
+
   /**
    * 页面的初始数据
    */
   data: {
+    
     login: false,
 
     // 会员卡基础信息
@@ -68,8 +72,9 @@ Page({
     }
     this.setData({
       login: wx.getStorageSync('login'),
-      isTeacher: wx.getStorageSync('role') == 3
+      isTeacher: wx.getStorageSync('role') == 3,
     })
+    this.tid = options.tid
     this.getSystemSize()
     this.getVipBaseInfo()
     this.getCouponList()
@@ -255,6 +260,9 @@ Page({
     let params = {
       token: wx.getStorageSync('token'),
       id: this.id
+    }
+    if (this.tid) {
+      params.tid = this.tid
     }
     let that = this
     app.ols.getVipCard(params).then(d=>{
