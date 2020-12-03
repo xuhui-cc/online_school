@@ -108,7 +108,8 @@ Page({
     this.setData({
       showSureView: false
     })
-    let paramsStr = 'id='+this.selectedCoupon.id + '&gid=' + wx.getStorageSync('gid')
+    let userinfo = wx.getStorageSync('userinfo')
+    let paramsStr = 'id='+this.selectedCoupon.id + '&gid=' + wx.getStorageSync('gid') + '&tid=' + userinfo.id
     return app.shareTool.getShareReturnInfo('all', 'couponDetail', paramsStr, this.shareImagePath, '分享优惠券')
   },
   //----------------------------------------------私有方法----------------------------------------------------

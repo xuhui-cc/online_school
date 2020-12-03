@@ -4,6 +4,9 @@ Page({
 
   // 优惠券ID
   id: null,
+
+  // 分享的老师ID
+  tid: null,
   /**
    * 页面的初始数据
    */
@@ -23,6 +26,7 @@ Page({
     if (options.gid) {
       wx.setStorageSync('gid', options.gid)
     }
+    this.tid = options.tid
     this.setData({
       login: wx.getStorageSync('login')
     })
@@ -86,6 +90,9 @@ Page({
     let params = {
       token: wx.getStorageSync('token'),
       id: this.id
+    }
+    if (this.tid) {
+      params.tid = this.tid
     }
     let that = this
     app.ols.getCoupon(params).then(d=>{

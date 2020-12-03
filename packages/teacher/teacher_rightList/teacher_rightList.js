@@ -108,7 +108,8 @@ Page({
     this.setData({
       showSureView: false
     })
-    let paramsStr = 'id='+this.selectedRight.id + '&gid=' + wx.getStorageSync('gid')
+    let userinfo = wx.getStorageSync('userinfo')
+    let paramsStr = 'id='+this.selectedRight.id + '&gid=' + wx.getStorageSync('gid') + '&tid=' + userinfo.id
     return app.shareTool.getShareReturnInfo('all', 'rightCardDetail', paramsStr, this.shareImagePath, '分享权益包')
   },
   //----------------------------------------------私有方法----------------------------------------------------
