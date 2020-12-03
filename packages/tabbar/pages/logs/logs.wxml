@@ -438,7 +438,7 @@
                 
               </view>
             </view>
-            <!-- <button class="login_read_sign" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login && item.apply == 0 && item.live == 1  }}" ></button> -->
+            <button class="login_read_sign" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login && item.apply == 0 && item.live == 1  }}" ></button>
             <view class="sign" wx:if="{{item.apply == 0 && item.live == 1  }}" style="margin-left:340rpx;" bindtap="subMsg" data-kid="{{item.kid}}">点击报名</view>
             <!-- <view class="sign" wx:if="{{item.apply == 0 && item.live == 1 && (item.buy == 1 || (item.buy > 3 && item.buy <= 5)) }}" bindtap="subMsg" data-kid="{{item.kid}}" style="margin-left:340rpx;">点击报名</view> -->
             <view class="sign1" wx:if="{{item.apply == 1 && (item.buy == 1 || (item.buy > 3 && item.buy <= 5)) }}" style="margin-left:340rpx;">报名成功</view>
