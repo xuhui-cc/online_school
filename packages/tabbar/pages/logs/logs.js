@@ -178,10 +178,13 @@ Page({
         current_special:-1,
       })
     }else if(cur == 1){
+      that.vipCoursePage == 1
       that.setData({
         current_subject: cur,
         current_special:-1,
-        special:''
+        special:'',
+        total:0,
+        vipCourseList:''
       })
       that.viplist()  //获取vip
       that.allVipCourse()   //获取vip课程
@@ -484,10 +487,10 @@ Page({
         if(that.data.current_subject > 1){
           if(that.data.current_subject < subject.length){
             that.getspecial()  //获取专题
-            that.subjectCoursePage = 1
+            // that.subjectCoursePage = 1
             that.setData({
               courseTotal:0,
-              course:''
+              // course:''
             })
           that.getcourse()     //获取课程
           }else{
@@ -497,6 +500,11 @@ Page({
           }
           
         }else if(that.data.current_subject == 1){
+          // that.vipCoursePage == 1
+          that.setData({
+            total:'',
+            // vipCourseList:''
+          })
           that.viplist()   //获取vip
           that.allVipCourse()
         }
@@ -633,21 +641,24 @@ Page({
 
   onShow: function () {
     let that = this
+    that.vipCoursePage = 1
+    that.subjectCoursePage = 1
+    // that.vipCoursePage == 1
     that.judge_login()    //登陆判断
-    that.get_banner3()  //轮播图
     that.getgrade()    //获取年级 
     that.getsubject()   //获取学科
-    that.couponShow()    //优惠券显示状态
+    that.get_banner3()  //轮播图
     that.coursePushList()   //后台推荐课程
-    if(that.data.grade){
-      for (var i = 0; i < that.data.grade.length; i++) {
-        if (that.data.gid == that.data.grade[i].id) {
-          that.setData({
-            grade_index: i
-          })
-        }
-      }
-    }
+    that.couponShow()    //优惠券显示状态
+    // if(that.data.grade){
+    //   for (var i = 0; i < that.data.grade.length; i++) {
+    //     if (that.data.gid == that.data.grade[i].id) {
+    //       that.setData({
+    //         grade_index: i
+    //       })
+    //     }
+    //   }
+    // }
     that.setData({
       current_special:-1,
     })
@@ -956,6 +967,11 @@ Page({
           title: "兑换成功",
           icon:"none",
         })
+        that.vipCoursePage = 1
+        that.setData({
+          vipCourseList:'',
+          total:''
+        })
         that.allVipCourse()   //获取全部关联课程
         // that.allVipCoupon()    //获取关联会员卡
         that.viplist()  //获取会员卡信息
@@ -972,7 +988,11 @@ Page({
           title: d.data.msg,
           icon:"none",
         })
+        that.vipCoursePage = 1
+        // 
         that.setData({
+          vipCourseList:'',
+          total:'',
           exchange_page:false,
           code:'',
         })
@@ -1022,12 +1042,6 @@ Page({
     }
 
   },
-
-  // // 消息推送报名
-  // subMsg:function(e){
-  //   let that = this 
-  //   that.toSubMsg(e.currentTarget.dataset.kid)
-  // },
 
   //订阅消息
   subMsg:function(e){

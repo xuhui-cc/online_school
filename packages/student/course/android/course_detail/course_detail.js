@@ -145,7 +145,7 @@ Page({
       })
       if(that.data.login && (that.data.course_info.price == 0 || that.data.course_info.price == '0') && (that.data.course_info.buy == 0 || that.data.course_info.buy == 6)){
         that.to_free()   //获取免费课
-        console.log("获取免费课")
+        // console.log("获取免费课")
       }
       if (that.data.login && (that.data.course_info.buy == 1 || (that.data.course_info.buy >= 3 && that.data.course_info.buy <= 5) || that.data.course_info.price == 0 || that.data.course_info.price == '0')) {
         that.setData({
@@ -482,52 +482,57 @@ dealAva:function(face){
    */
   toSubMsg:function(){
     let that = this 
-    if(that.data.course_info.buy ==1 || (that.data.course_info.buy >= 3 && that.data.course_info.buy <= 5)){
-      console.log("触发报名")
-      wx.requestSubscribeMessage({
-        tmplIds: ['T4tp85vTUVp1BiSBRmlC7CRQHDhOYitDTR0zCfv-3yg'], // 此处可填写多个模板 ID，但低版本微信不兼容只能授权一个
-        success(res) { 
-          console.log(res)
-          var params = {
-            "token":wx.getStorageSync('token'),
-            "course_id":that.data.kid
-          }
-          app.ols.subMsg(params).then(d => {
-            if (d.data.code == 0 || d.data.code == 4) {
-              wx.showToast({
-                title: '报名成功',
-              })
-              that.course_detail()
-              that.getcourse_cata()
+    // if((that.data.course_info.buy ==0 || that.data.course_info.buy == 6)&& that.data.course_info.price == 0){
+    //   that.to_free()
+    // }else{
+      if(that.data.course_info.buy ==1 || (that.data.course_info.buy >= 3 && that.data.course_info.buy <= 5)){
+        console.log("触发报名")
+        wx.requestSubscribeMessage({
+          tmplIds: ['T4tp85vTUVp1BiSBRmlC7CRQHDhOYitDTR0zCfv-3yg'], // 此处可填写多个模板 ID，但低版本微信不兼容只能授权一个
+          success(res) { 
+            console.log(res)
+            var params = {
+              "token":wx.getStorageSync('token'),
+              "course_id":that.data.kid
             }
-          })
-        },
-        fail(res){
-        console.log("报名失败")
-        wx.showModal({
-          title: '提示', //提示的标题,
-          content: '请打开订阅消息权限', //提示的内容,
-          showCancel: true, //是否显示取消按钮,
-          success: res => {
-            if (res.confirm) {
-              wx.openSetting({
-                success(res) {
-                },
-                fail(res) {
-                }
-              })
-            } else if (res.cancel) {
-              console.log('用户点击取消')
+            app.ols.subMsg(params).then(d => {
+              if (d.data.code == 0 || d.data.code == 4) {
+                wx.showToast({
+                  title: '报名成功',
+                })
+                that.course_detail()
+                that.getcourse_cata()
+              }
+            })
+          },
+          fail(res){
+          console.log("报名失败")
+          wx.showModal({
+            title: '提示', //提示的标题,
+            content: '请打开订阅消息权限', //提示的内容,
+            showCancel: true, //是否显示取消按钮,
+            success: res => {
+              if (res.confirm) {
+                wx.openSetting({
+                  success(res) {
+                  },
+                  fail(res) {
+                  }
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
             }
-          }
-        });
-    } 
+          });
+      } 
+      
+        })
+      }else{
+        that.getcourse_cata()
+        that.course_authority()
+      }
+    // }
     
-      })
-    }else{
-      that.getcourse_cata()
-      that.course_authority()
-    }
     
   },
   
@@ -564,8 +569,8 @@ dealAva:function(face){
       app.ols.get_free(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
+          // that.toSubMsg()
           that.course_detail()   //获取课程详情
-          
         } 
       })
   },
