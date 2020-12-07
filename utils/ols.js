@@ -652,7 +652,7 @@ function getRightDetail(params) {
 
 // 领取权益包
 function getRightCard(params) {
-  return fetch.olsfetchpost(URI, 'v5/exchange/exchangepackage', params, '领取权益包', true)
+  return fetch.olsfetchpost(URI, 'v5/exchange/exchangepackage', params, '领取权益包')
 }
 
 // 获取优惠券详情
