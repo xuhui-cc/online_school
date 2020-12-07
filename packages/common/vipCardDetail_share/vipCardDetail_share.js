@@ -270,6 +270,17 @@ Page({
         wx.redirectTo({
           url: app.getPagePath('vip_detail'),
         })
+      }else{
+        wx.showToast({
+          title: d.data.msg,
+          icon:"none",
+          duration:1000
+        })
+        setTimeout(function () {
+          wx.redirectTo({
+            url: app.getPagePath('vip_detail'),
+          })
+        }, 1000)
       }
     })
   },

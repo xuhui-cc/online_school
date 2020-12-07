@@ -100,6 +100,17 @@ Page({
         wx.redirectTo({
           url: app.getPagePath('my_coupon'),
         })
+      }else{
+        wx.showToast({
+          title: d.data.msg,
+          icon:"none",
+          duration:1000
+        })
+        setTimeout(function () {
+          wx.redirectTo({
+            url: app.getPagePath('my_coupon'),
+          })
+        }, 1000)
       }
     })
   },

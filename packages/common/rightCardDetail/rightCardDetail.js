@@ -172,6 +172,10 @@ Page({
         wx.redirectTo({
           url: app.getPagePath('vip_detail'),
         })
+      }else{
+        wx.redirectTo({
+          url: app.getPagePath('vip_detail'),
+        })
       }
     })
   },
@@ -194,7 +198,8 @@ Page({
       if (ids.indexOf(this.id) != -1) {
         wx.showToast({
           title: '您已领取过该权益包',
-          icon: 'none'
+          icon: 'none',
+          
         })
         return
       }

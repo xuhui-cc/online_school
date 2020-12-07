@@ -662,7 +662,7 @@ function getCouponDetail(params) {
 
 // 领取优惠券
 function getCoupon(params) {
-  return fetch.olsfetchpost(URI, 'v5/exchange/exchangecoupon', params, '领取优惠券', true)
+  return fetch.olsfetchpost(URI, 'v5/exchange/exchangecoupon', params, '领取优惠券')
 }
 
 // 更新群ID

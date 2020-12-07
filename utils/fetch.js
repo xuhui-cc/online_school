@@ -95,7 +95,7 @@ function olsfetchpost(api, path, params, log, showToast, loadingMsg) {
               wx.showToast({
                 title: res.data.msg ? res.data.msg : '数据有误',
                 icon: 'none',
-                duration:2000
+                duration:3000
               })
             }
           }
