@@ -173,9 +173,16 @@ Page({
           url: app.getPagePath('vip_detail'),
         })
       }else{
-        wx.redirectTo({
-          url: app.getPagePath('vip_detail'),
+        wx.showToast({
+          title: d.data.msg,
+          icon: 'none',
+          duration:1100
         })
+        setTimeout(function () {
+          wx.redirectTo({
+            url: app.getPagePath('vip_detail'),
+          })
+        }, 1000)
       }
     })
   },
@@ -199,7 +206,7 @@ Page({
         wx.showToast({
           title: '您已领取过该权益包',
           icon: 'none',
-          
+          duration:1100
         })
         return
       }
