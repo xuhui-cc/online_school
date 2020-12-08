@@ -240,6 +240,13 @@ Page({
     })
   },
 
+  //跳转我的学情
+  to_learningSituation:function(){
+    wx.navigateTo({
+      url: app.getPagePath('learningSituation'),
+    })
+  },
+
   /**
    * 切换到老师角色
   */

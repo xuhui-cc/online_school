@@ -151,7 +151,8 @@
         "exchangeCode_2C/exchangeCode_2C",
         "vipCardDetail_share/vipCardDetail_share",
         "rightCardDetail/rightCardDetail",
-        "couponDetail/couponDetail"
+        "couponDetail/couponDetail",
+        "learningSituation/learningSituation"
       ],
       "name": "common"
     }

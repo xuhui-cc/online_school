@@ -22,19 +22,11 @@
         <view class="heng"></view>
       </view>
     </scroll-view>
-    <!-- <view class="yes">确定</view> -->
   </view>
-  
-    
-  <!-- </picker> -->
-
-
 
   <scroll-view  scroll-x="true" class="tab-h" wx:if="{{subject}}">
     <view wx:for="{{subject}}" wx:key="index" class="tab-item {{current_subject==index?'active':''}}" data-current="{{index}}"  bindtap="swichNav_subject">{{item.title}}</view> 
   </scroll-view> 
-
-
 
   <view class="flex" wx:if="{{special != '' && current_subject != 0}}" style="margin-bottom:20rpx;">
     <view class="zt">专题：</view>
@@ -56,106 +48,11 @@
     <image class="teacher_inter" wx:if="{{banner3}}" src="{{teacherInterImg}}" bindtap="teacher_inter" binderror="teacherInterImg_error"></image>
     <image class="teacher_inter" wx:else="" style="{{subject?'margin-top: 300rpx;':'margin-top: 210rpx;'}}" src="{{teacherInterImg}}" bindtap="teacher_inter" binderror="teacherInterImg_error"></image>
 
-    <!-- 公开课 -->
-    <!-- <view style="margin-top:45rpx;margin-left:30rpx;" hidden="true">
-      <view class="flex">
-        <view class="head2">免费公开课</view>
-        <view class="more">查看更多</view>
-        <image class="next" src="/images/navi/next.png"></image>
-      </view>
-
-      <scroll-view  scroll-x="true" class="scroll_hotbook" enable-flex="true">
-        <view wx:for="{{ad}}" wx:key="hotbook_index" class='hotbook_project' >
-          <image class="open_fm" src="/images/other/fm.png"></image>
-          <view class="open_title">618冲刺中考引爆高分备战终极指南</view>
-          <view class="flex">
-            <image class="open_clock" src="../../images/clock1.png"></image>
-            <view class="open_time">6月18日 20:00-21:00</view>
-          </view>
-          <view class="open_btn">立即报名</view>
-        </view> 
-      </scroll-view> 
-  
-    
-    </view> -->
-
     <view class="head2"  style="margin-top:30rpx;margin-left:30rpx;">热门课程免费学</view>
 
-    <image wx:if="{{hot1 == '' && hot2 == '' &&  hot3 == '' && coursePushList == '' }}" class="course_null" style="margin-top:200rpx;" src="/images/null/course_null.png"></image>
-    <text wx:if="{{hot1 == '' && hot2 == '' &&  hot3 == '' && coursePushList == '' }}" class="course_nulltip" >暂无课程</text>
+    <image wx:if="{{coursePushList == '' }}" class="course_null" style="margin-top:200rpx;" src="/images/null/course_null.png"></image>
+    <text wx:if="{{coursePushList == '' }}" class="course_nulltip" >暂无课程</text>
 
-    <!-- 拼团 -->
-    <view class="hot_layout222" >
-      <view wx:for="{{hot1}}" wx:key="hot_index">
-        <view class="hot_course" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{1}}">
-          <view class="flex" >
-            <view>
-              <image class="vip_laber" wx:if="{{(item.buy == 0 || item.buy == 2 || item.buy > 4) && item.vip == 1}}" src="/images/other/vip_laber2.png"></image>
-              <image class="hot_group"  style="{{item.vip == 1?'margin-left:82rpx;':''}}" wx:if="{{ item.buy == 0 || item.buy == 2 || item.buy == 6}}" src="./resource/hot_group.png"></image>
-              <!-- <image class="laber"  wx:if="{{ (item.buy == 1 || item.buy == 3)}}" src="./resource/isbuy.png"></image> -->
-              <image class="hot_fm" src="{{item.face}}"></image>
-              <view class="time_tip" >还剩</view>
-              <view class="hot_time">{{item.difftime}}</view>
-            </view>
-            <view>
-              <view class="hot_title">{{item.title}}</view>
-              <view class="flex" hidden="{{btn_buy}}">
-                <image class="hot_laber" src="/images/other/group_laber1.png"></image>
-                <view class="hot_price"><text style="font-size:26rpx;">¥ </text> {{item.pt_price}}</view>
-                <view class="old_price" style="margin-top: 35rpx;">¥{{item.price}}</view>
-              </view>
-              <view class="flex">
-                <view class="join_num">{{item.order_num}}人参与</view>
-                <view class="go_btn" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{1}}" hidden="{{btn_buy}}">
-                  <image class="lightning" src="./resource/lightning.png"></image>
-                  <view class="hot_to">去拼团</view>
-                </view>
-              </view>
-            </view>
-          </view>
-          <view class="margin_heng" style="width:630rpx;margin-top:30rpx;"></view>
-        </view>
-        
-      </view>
-
-      
-    </view>
-
-    <!-- 秒杀  -->
-    <view class="hot_layout222" hidden="true">
-    <!-- hidden="true" -->
-      <view wx:for="{{hot3}}" wx:key="hot_index">
-        <view class="hot_course" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{3}}">
-          <view class="flex">
-            <view>
-              <image class="vip_laber" wx:if="{{(item.buy == 0 || item.buy > 4) && item.vip == 1}}" src="/images/other/vip_laber2.png"></image>
-              <image class="hot_group"  style="{{item.vip == 1?'margin-left:82rpx;':''}}" wx:if="{{ item.buy == 0}}" src="./resource/hot_ms.png"></image>
-              <!-- <image class="laber"  wx:if="{{ (item.buy == 1 || item.buy == 4)}}" src="./resource/isbuy.png"></image> -->
-              <image class="hot_fm" src="{{item.face}}"></image>
-              <view class="time_tip" >还剩</view>
-              <view class="hot_time">{{item.difftime}}</view>
-            </view>
-            <view>
-              <view class="hot_title">{{item.title}}</view>
-              <view class="flex" hidden="{{btn_buy}}">
-                <image class="hot_laber" src="./resource/seckill_laber1.png"></image>
-                <view class="hot_price"><text style="font-size:26rpx;">¥ </text> {{item.ms_price}}</view>
-                <view class="old_price" style="margin-top: 35rpx;">¥{{item.price}}</view>
-              </view>
-              <view class="flex">
-                <view class="join_num">{{item.order_num}}人参与</view>
-                <view class="go_btn" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{3}}" hidden="{{btn_buy}}">
-                  <image class="lightning" src="./resource/lightning.png"></image>
-                  <view class="hot_to">去秒杀</view>
-                </view>
-              </view>
-            </view>
-          </view>
-          <view class="margin_heng" style="width:630rpx;margin-top:30rpx;"></view>
-        </view>
-        
-      </view>
-    </view>
     
     <view class="hot_layout" hidden="true"> 
       <view wx:for="{{hot2}}" wx:key="hot2_index">
@@ -208,7 +105,6 @@
             </view>
             <button class="login_read_sign" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login && (item.apply == 0 && item.live == 1)  }}" style="margin-left:310rpx;margin-top:-30rpx;"></button>
             <view class="sign" wx:if="{{(item.apply == 0 && item.live == 1)  }}" style="margin-left:310rpx;margin-top:-30rpx;" bindtap="subMsg" data-kid="{{item.kid}}">点击报名</view>
-            <!-- <view class="sign" style="margin-left:310rpx;margin-top:-30rpx;" wx:if="{{item.apply == 0 && item.live == 1  && (item.buy == 1 || (item.buy > 3 && item.buy <= 5)) }}" bindtap="subMsg" data-kid="{{item.kid}}">点击报名</view> -->
             <view class="sign1" style="margin-left:310rpx;margin-top:-30rpx;" wx:if="{{item.apply == 1  && (item.buy == 1 || (item.buy > 3 && item.buy <= 5)) }}" >报名成功</view>
           <view class="margin_heng" style="width:630rpx;margin-top:30rpx;"></view>
         </view>
@@ -227,11 +123,9 @@
    
       <view class="vip_layout1">
         <view wx:if="{{vip == '' || vip.datas.valid_days == '已过期'}}">
-        <!-- wx:if="{{vip.valid == -1 || !vip.valid}}" -->
           <image class="king" src="/images/other/king.png"></image>
           <view class="open_vip" >开通会员</view>
           <view class="open_content" >专享名师好课、报班优惠等会员权益 </view>
-          <!-- <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button> -->
           <view class="vip_btn"  bindtap="to_vip">会员中心</view>
         </view>
 
@@ -253,87 +147,6 @@
         
       </view>
     <!-- </view> -->
-
-    <!-- 单一vip卡模式 -->
-    <view class="vip_layout" hidden="true"> 
-      <view wx:for="{{vip_list[0].course}}" wx:key="hot2_index">
-          <view class="hot_course">
-            <view class="flex" bindtap="vip_course_detail" data-xb="{{index}}">
-              <image class="vip_fm" src="{{item.face}}"></image>
-              <image class="vip_laber" wx:if="{{item.buy == 0 || item.buy == 2 || item.buy > 4}}" src="/images/other/vip_laber2.png"></image>
-              <!-- <image class="laber" wx:if="{{item.buy == 1 || item.buy == 3 || item.buy == 4 }}" src="./resource/isbuy.png"></image> -->
-              <image class="hot_group" style="margin-left:83rpx;" wx:if="{{(item.buy == 0 || item.buy == 2 || item.buy == 6) && item.type == 1 }}"  src="./resource/hot_group.png"></image>
-              <image class="laber" style="margin-left:83rpx;" wx:if="{{item.buy == 0  && item.type == 2 }}"  src="./resource/hot_ms.png"></image>
-              
-
-              <view>
-                <view class="hot_title">{{item.title}}</view>
-
-                <view wx:if="{{item.buy != 5}}">
-                  <view wx:if="{{item.type == 0}}">
-                    <view class="flex" style="margin-left:30rpx;margin-top:-20rpx;">
-                      <view class="course_text" wx:if="{{item.cate == 1}}" style="width:75rpx;">直播课</view>
-                      <view class="margin_shu" wx:if="{{item.cate == 1}}"></view>
-                      <view class="course_text" style="{{item.cate == 1?'margin-left:15rpx;':''}}">{{item.order_num}}人学习</view>
-                      <view class="margin_shu"></view>
-                      <view class="course_num">{{item.class_hour}}课时</view>
-                    </view>
-                    <view class="course_price"  style="color:rgba(3,182,131,1);margin-left:30rpx;" hidden="{{btn_buy}}"><text style="font-size:26rpx;font-weight:400;"> ¥ </text>{{item.price}}</view>
-                  </view>
-
-                  <view wx:if="{{item.type == 1}}" hidden="{{btn_buy}}">
-                    <view class="flex">
-                      <image class="hot_laber" src="/images/other/group_laber1.png"></image>
-                      <view class="hot_price"><text style="font-size:26rpx;">¥ </text> {{item.pt_price}}</view>
-                      <view class="old_price" style="margin-top: 35rpx;">¥{{item.price}}</view>
-                    </view>
-                    <view class="flex">
-                      <view class="join_num">{{item.order_num}}人参与</view>
-                      <view class="go_btn" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{1}}" >
-                        <image class="lightning" src="./resource/lightning.png"></image>
-                        <view class="hot_to">去拼团</view>
-                      </view>
-                    </view>
-                  </view>
-
-                  <view wx:if="{{item.type == 2}}" hidden="{{btn_buy}}">
-                    <view class="flex">
-                      <image class="hot_laber" src="./resource/seckill_laber1.png"></image>
-                      <view class="hot_price"><text style="font-size:26rpx;">¥ </text> {{item.ms_price}}</view>
-                      <view class="old_price" style="margin-top: 35rpx;">¥{{item.price}}</view>
-                    </view>
-                    <view class="flex">
-                      <view class="join_num">{{item.order_num}}人参与</view>
-                      <view class="go_btn" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{3}}">
-                        <image class="lightning" src="./resource/lightning.png"></image>
-                        <view class="hot_to">去秒杀</view>
-                      </view>
-                    </view>
-                  </view>
-                </view>
-
-                <view wx:if="{{item.buy == 5}}" >
-
-                  <view class="flex" style="margin-left:30rpx;margin-top:-20rpx;">
-                      <view class="course_text" wx:if="{{item.cate == 1}}" style="width:75rpx;">直播课</view>
-                      <view class="margin_shu" wx:if="{{item.cate == 1}}"></view>
-                      <view class="course_text" style="{{item.cate == 1?'margin-left:15rpx;':''}}">{{item.order_num}}人学习</view>
-                      <view class="margin_shu"></view>
-                      <view class="course_num">{{item.class_hour}}课时</view>
-                    </view>
-                  <view class="free">免费学</view>
-                </view>
-                
-                
-              </view>
-            </view>
-            <view class="sign" wx:if="{{item.apply == 0 && item.live == 1 && (item.buy == 1 || (item.buy > 3 && item.buy <= 5)) }}" bindtap="subMsg" data-kid="{{item.kid}}" style="margin-left:340rpx;">点击报名</view>
-            <view class="sign1" wx:if="{{item.apply == 1 && (item.buy == 1 || (item.buy > 3 && item.buy <= 5)) }}" style="margin-left:340rpx;">报名成功</view>
-          <view class="margin_heng" style="width:630rpx;margin-top:30rpx;"></view>
-        </view>
-      </view>
-    </view>
-    <!-- 单一vip卡模式 -->
 
     <!-- vip迭代模式 -->
     <view class="vip2_layout">
@@ -392,39 +205,9 @@
                     <view class="course_price"  style="color:rgba(3,182,131,1);margin-left:30rpx;" hidden="{{btn_buy}}"><text style="font-size:26rpx;font-weight:400;"> ¥ </text>{{item.price}}</view>
                   </view>
 
-                  <view wx:if="{{item.type == 1}}" hidden="{{btn_buy}}">
-                    <view class="flex">
-                      <image class="hot_laber" src="/images/other/group_laber1.png"></image>
-                      <view class="hot_price"><text style="font-size:26rpx;">¥ </text> {{item.pt_price}}</view>
-                      <view class="old_price" style="margin-top: 35rpx;">¥{{item.price}}</view>
-                    </view>
-                    <view class="flex">
-                      <view class="join_num">{{item.randnum}}人参与</view>
-                      <view class="go_btn" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{1}}" >
-                        <image class="lightning" src="./resource/lightning.png"></image>
-                        <view class="hot_to">去拼团</view>
-                      </view>
-                    </view>
-                  </view>
-
-                  <view wx:if="{{item.type == 2}}" hidden="{{btn_buy}}">
-                    <view class="flex">
-                      <image class="hot_laber" src="./resource/seckill_laber1.png"></image>
-                      <view class="hot_price"><text style="font-size:26rpx;">¥ </text> {{item.ms_price}}</view>
-                      <view class="old_price" style="margin-top: 35rpx;">¥{{item.price}}</view>
-                    </view>
-                    <view class="flex">
-                      <view class="join_num">{{item.randnum}}人参与</view>
-                      <view class="go_btn" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{3}}">
-                        <image class="lightning" src="./resource/lightning.png"></image>
-                        <view class="hot_to">去秒杀</view>
-                      </view>
-                    </view>
-                  </view>
                 </view>
 
                 <view wx:if="{{item.buy == 5 || item.buy == 1}}" >
-
                   <view class="flex" style="margin-left:30rpx;margin-top:-20rpx;">
                       <view class="course_text" wx:if="{{item.cate == 1}}" style="width:75rpx;">直播课</view>
                       <view class="margin_shu" wx:if="{{item.cate == 1}}"></view>
@@ -434,13 +217,10 @@
                     </view>
                   <view class="free">免费学</view>
                 </view>
-                
-                
               </view>
             </view>
             <button class="login_read_sign" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login && (item.apply == 0 && item.live == 1) }}" ></button>
             <view class="sign" wx:if="{{(item.apply == 0 && item.live == 1)}}" style="margin-left:340rpx;" bindtap="subMsg" data-kid="{{item.kid}}">点击报名</view>
-            <!-- <view class="sign" wx:if="{{item.apply == 0 && item.live == 1 && (item.buy == 1 || (item.buy > 3 && item.buy <= 5)) }}" bindtap="subMsg" data-kid="{{item.kid}}" style="margin-left:340rpx;">点击报名</view> -->
             <view class="sign1" wx:if="{{item.apply == 1 && (item.buy == 1 || (item.buy > 3 && item.buy <= 5)) }}" style="margin-left:340rpx;">报名成功</view>
           <view class="margin_heng" style="width:630rpx;margin-top:30rpx;"></view>
         </view>
@@ -499,38 +279,6 @@
       <view class="sign" wx:if="{{(item.apply == 0 && item.live == 1)}}" style="margin-top:-78rpx;margin-left: 350rpx;" bindtap="subMsg" data-kid="{{item.kid}}">点击报名</view>
       <view class="sign1" style="margin-top:-78rpx;margin-left: 350rpx;" wx:if="{{item.apply == 1 && (item.buy == 1 || (item.buy > 3 && item.buy <= 5))}}" >报名成功</view>
       <view class="margin_heng"></view>
-
-      <!-- 原样式 -->
-      <!-- <view class="course_layout" bindtap="to_course_detail" data-xb="{{index}}">
-        <image wx:if="{{item.is_buy == 1 && login}}" class="isbuy" src="../../images/is_buy.png"></image>
-        <view class="course_title">{{item.title}}</view>
-        <view class="course_intor">{{item.intro}}</view>
-        <view class="flex">
-          <view class="flex" style="margin-left:30rpx;width:250rpx;">
-            <view wx:for="{{item.teacher}}" wx:key="tea_index" wx:for-item="tea" wx:for-index="tea_index">
-              <view class="flex">
-                <view class="ava">
-                  <image class="avatar" src="{{tea.avatar}}"></image>
-                  <view class="tea_name">{{tea.nick}}</view>
-                </view>
-            
-              </view>
-          
-            </view>
-          
-          </view>
-          <view class="course_text"><text style="color:#03B683;">{{item.order_num}}人</text>购买</view>
-          <view class="num_layout">
-            <view class="course_num">{{item.class_hour}}课时</view>
-          </view>
-          <view class="course_price">
-            <view style="margin-right:8rpx;margin-top:5rpx;">¥</view>
-            <view style="font-weight:bold;font-size:42rpx;">{{item.price}}</view>
-          </view>
-        </view>
-      </view> -->
-      <!-- 原样式 -->
-
 
     </view>
 

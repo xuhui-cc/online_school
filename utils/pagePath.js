@@ -132,7 +132,8 @@ let pathDic = {
   exchangeCode_2C:'/packages/common/exchangeCode_2C/exchangeCode_2C',
   vipCardDetail_share: '/packages/common/vipCardDetail_share/vipCardDetail_share', // 会员卡详情
   rightCardDetail: '/packages/common/rightCardDetail/rightCardDetail', // 权益详情
-  couponDetail: '/packages/common/couponDetail/couponDetail' // 优惠券详情
+  couponDetail: '/packages/common/couponDetail/couponDetail', // 优惠券详情
+  learningSituation: '/packages/common/learningSituation/learningSituation' // 优惠券详情
 }
 
 function getPagePath(pageName, notIos) {

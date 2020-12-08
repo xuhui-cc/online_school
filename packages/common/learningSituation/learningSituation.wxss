@@ -1,0 +1,172 @@
+
+.learningSituationHead{
+  margin: 10rpx 28rpx;
+  width: 175rpx;
+  height: 45rpx;
+}
+.flex{
+  display: flex;
+}
+.clock_img{
+  
+  width: 36rpx;
+  height: 36rpx;
+}
+.lastDate{
+  margin-left: 10rpx;
+  width: 368rpx;
+  height: 37rpx;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 37rpx;
+  color: #111111;
+}
+.lastLearningSituationBg{
+  margin: 15rpx 19rpx;
+  width: 700rpx;
+  height: 314rpx;
+}
+.lastLearningSituation{
+  position: absolute;
+  margin-left: 465rpx;
+  margin-top: 260rpx;
+  width: 200rpx;
+  height: 65rpx;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  text-align: center;
+  line-height: 65rpx;
+  color: #EE6946;
+  transform-origin:50% 50%;
+  /*设置元素旋转的基本点 */
+  transform: rotate(5deg);
+  /*30是元素旋转的度数 */
+
+}
+.percent{
+  position: absolute;
+  margin-left: 385rpx;
+  margin-top: 420rpx;
+  width: 340rpx;
+  height: 33rpx;
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 43rpx;
+  color: #262A3B;
+  opacity: 0.51;
+
+}
+.shu{
+  margin-left: 30rpx;
+  margin-top: 14rpx;
+  width: 8rpx;
+height: 21rpx;
+background: #02DC9F;
+opacity: 1;
+border-radius: 10rpx;
+
+}
+.subjectTitle{
+  
+  margin-left: 18rpx;
+  width: 68rpx;
+  height: 48rpx;
+  font-size: 34rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 48rpx;
+  
+  color: #0A0A0A;
+  opacity: 1;
+
+}
+.todayLearnTime{
+  margin-left: 77rpx;
+  margin-top: 37rpx;
+  width: 242rpx;
+  height: 84rpx;
+  font-size: 34rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 84rpx;
+  text-align: center;
+  color: #1C2133;
+  opacity: 1;
+
+}
+.todayLearnHead{
+  margin-left: 77rpx;
+  margin-top: 15rpx;
+  margin-bottom: 50rpx;
+  width: 242rpx;
+  height: 37rpx;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 43rpx;
+  text-align: center;
+  color: #0A0A0A;
+  opacity: 0.3;
+
+}
+/* 登录 */
+.mask1{
+  position: fixed;
+  width:750rpx;
+  height:1624rpx;
+  background:rgba(0,0,0,1);
+  opacity:0.8;
+  z-index: 350;
+}
+.login_layout{
+  position: fixed;
+  margin-left: 102rpx;
+  margin-top: 450rpx;
+  width:547rpx;
+  height:538rpx;
+  background:rgba(255,255,255,1);
+  opacity:1;
+  border-radius:20rpx;
+  z-index:353;
+}
+.unlogin{
+  margin-left: 215rpx;
+  margin-top: -10rpx;
+  margin-bottom: 30rpx;
+  width:117rpx;
+  height:114rpx;
+}
+.login_tip{
+  margin-left: 121rpx;
+  width:306rpx;
+  font-size:34rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  line-height:50rpx;
+  text-align: center;
+  color:rgba(0,0,0,1);
+  opacity:1;
+}
+.tologin{
+  margin-left: 132rpx;
+  margin-top: 50rpx;
+  width:283rpx;
+  height:76rpx;
+}
+.login_read1{
+  position: absolute;
+  margin-left: 132rpx;
+  margin-top: 50rpx;
+  width:283rpx;
+  height:76rpx;
+  background: transparent;
+  /* opacity:0.5;
+  background-color: rgb(161, 228, 240); */
+}
+.login_read1::after {
+  border: none;
+}
+/* 登录 */

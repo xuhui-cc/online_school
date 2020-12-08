@@ -3,6 +3,8 @@ var timer,ms_timer
 Page({
   subjectCoursePage:1,
   vipCoursePage:1,
+  vipTotal:0,
+  courseTotal:0,
   pageNum:10,
 
   data: {
@@ -39,18 +41,11 @@ Page({
     let that = this 
     var params = {}
     app.ols.banner3(params).then(d => {
-      console.log(d,"轮播")
-
       if (d.data.code == 0) {
-
-        
         that.setData({
           banner3: d.data.data.lists
         })
-       
-      } else {
-        console.log("轮播图失败")
-      }
+      } 
     })
   },
 
@@ -61,32 +56,22 @@ Page({
       var params = {
         "token": wx.getStorageSync("token"),
       }
-      // console.log(params, "会员列表参数")
       app.ols.v5_viplist(params).then(d => {
-        console.log(d, "会员列表数据")
         if (d.data.code == 0) {
-          
-          
           that.setData({
-            // vip_list:d.data.data.lists,
             vip:d.data.data
           })
-          console.log("会员列表成功")
         } else {
           that.setData({
-            // vip_list:d.data.data.lists,
             vip:''
           })
-          console.log("会员列表失败==============" + d.data.msg)
         }
       })
     }else{
-      console.log("未登录")
       that.setData({
         vip:''
       })
     }
-    
   },
 
   //广告条跳转
@@ -106,17 +91,10 @@ Page({
         })
       }else if(cate == 2){
         console.log("秒杀")
-        // wx.navigateTo({
-        //   url: '../../pages/groupBuy/groupBuy?kid=' + id,
-        // })
       }
     }else if(type == 1){
       console.log("文章")
-      // wx.navigateTo({
-      //   url: '/pages/book_detail/book_detail?bid=' + bid
-      // })
     }
-    
   },
 
   //登录判断
@@ -145,19 +123,21 @@ Page({
     var that = this
     that.toTop()   //切换置顶
     var cur = e.target.dataset.current;
+    that.subjectCoursePage = 1
+    that.courseTotal = 0
     if (cur == that.data.current_special){
       console.log("专题当前选择项")
-      that.subjectCoursePage = 1
+      
       that.setData({
         current_special: -1,
-        courseTotal:''
+        // courseTotal:''
       })
       that.getcourse()    //获取课程
     }else{
-      that.subjectCoursePage = 1
+      // that.subjectCoursePage = 1
       that.setData({
         current_special: cur,
-        courseTotal:''
+        // courseTotal:''
       })
       that.special_course() //获取专题课程
     }
@@ -171,31 +151,35 @@ Page({
     that.toTop()   //切换置顶
     that.vipCoursePage = 1
     that.subjectCoursePage = 1
+    that.vipTotal = 0
+    that.courseTotal = 0
+    // that.vipCoursePage == 1
     var cur = e.target.dataset.current;
+    that.setData({
+      current_subject: cur,
+      current_special:-1,
+    })
     if(cur == 0){
-      that.setData({
-        current_subject: cur,
-        current_special:-1,
-      })
+      
     }else if(cur == 1){
-      that.vipCoursePage == 1
+      
       that.setData({
-        current_subject: cur,
-        current_special:-1,
+        // current_subject: cur,
+        // current_special:-1,
         special:'',
-        total:0,
+        // total:0,
         vipCourseList:''
       })
       that.viplist()  //获取vip
       that.allVipCourse()   //获取vip课程
     }else{
       that.setData({
-        current_subject: cur,
-        current_special:-1,
+        // current_subject: cur,
+        // current_special:-1,
         did: that.data.subject[cur].id,
-        courseTotal:''
+        // courseTotal:''
       })
-      that.subjectCoursePage = 1
+      // that.subjectCoursePage = 1
       that.getspecial()  //获取专题
       that.getcourse()     //获取课程
     }
@@ -436,13 +420,14 @@ Page({
         "page": that.subjectCoursePage
       }
     }
-    if(!that.data.courseTotal || (that.data.course.length < that.data.courseTotal)){
+    if(!that.courseTotal || (that.data.course.length < that.courseTotal)){
       app.ols.grade_course5(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
           if(that.subjectCoursePage == 1){
+            that.courseTotal = d.data.data.total
             that.setData({
-              courseTotal:d.data.data.total,
+              // courseTotal:d.data.data.total,
               course: d.data.data.lists
             })
           }else{
@@ -488,10 +473,11 @@ Page({
           if(that.data.current_subject < subject.length){
             that.getspecial()  //获取专题
             // that.subjectCoursePage = 1
-            that.setData({
-              courseTotal:0,
-              // course:''
-            })
+            that.courseTotal = 0
+            // that.setData({
+            //   courseTotal:0,
+            //   // course:''
+            // })
           that.getcourse()     //获取课程
           }else{
             that.setData({
@@ -501,10 +487,11 @@ Page({
           
         }else if(that.data.current_subject == 1){
           // that.vipCoursePage == 1
-          that.setData({
-            total:'',
-            // vipCourseList:''
-          })
+          that.vipTotal = 0
+          // that.setData({
+          //   total:'',
+          //   // vipCourseList:''
+          // })
           that.viplist()   //获取vip
           that.allVipCourse()
         }
@@ -545,8 +532,9 @@ Page({
         console.log(d)
         if (d.data.code == 0) {
           if(that.subjectCoursePage == 1){
+            that.courseTotal = d.data.data.total
             that.setData({
-              courseTotal:d.data.data.total,
+              // courseTotal:d.data.data.total,
               course: d.data.data.lists
             })
           }else{
@@ -883,7 +871,7 @@ Page({
   },
   allVipCourse:function(){
     let that = this
-    if(!that.data.total || (that.data.vipCourseList.length < that.data.total)){
+    if(!that.vipTotal || (that.data.vipCourseList.length < that.vipTotal)){
       var params = {
         "token": wx.getStorageSync("token"),
         "num":that.pageNum,
@@ -892,8 +880,9 @@ Page({
       app.ols.allVipCourse(params).then(d => {
         if (d.data.code == 0) {
           if(that.vipCoursePage == 1){
+            that.vipTotal = d.data.data.total,
             that.setData({
-              total:d.data.data.total,
+              // total:d.data.data.total,
               vipCourseList:d.data.data.lists
             })
           }else{
@@ -968,10 +957,11 @@ Page({
           icon:"none",
         })
         that.vipCoursePage = 1
-        that.setData({
-          vipCourseList:'',
-          total:''
-        })
+        that.vipTotal = 0
+        // that.setData({
+        //   vipCourseList:'',
+        //   // total:''
+        // })
         that.allVipCourse()   //获取全部关联课程
         // that.allVipCoupon()    //获取关联会员卡
         that.viplist()  //获取会员卡信息
@@ -989,10 +979,11 @@ Page({
           icon:"none",
         })
         that.vipCoursePage = 1
+        that.vipTotal = 0
         // 
         that.setData({
-          vipCourseList:'',
-          total:'',
+          // vipCourseList:'',
+          // total:'',
           exchange_page:false,
           code:'',
         })
@@ -1018,7 +1009,7 @@ Page({
     let that = this 
     console.log("触底")
     if(that.data.current_subject == 1){
-      if(that.data.vipCourseList.length < that.data.total){
+      if(that.data.vipCourseList.length < that.vipTotal){
         that.vipCoursePage += 1
         that.allVipCourse()
       }
@@ -1028,7 +1019,7 @@ Page({
         // })
       }
     }else if(that.data.current_subject > 1){
-      if(that.data.course.length < that.data.courseTotal){
+      if(that.data.course.length < that.courseTotal){
         that.subjectCoursePage += 1
       that.getcourse()
       }

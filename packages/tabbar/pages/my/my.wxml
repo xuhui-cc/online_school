@@ -61,12 +61,20 @@
   <!-- 列表 -->
   <view class="list">
     <button class="login_read" style="margin-top: 0rpx;height:250rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}"></button>
-    <view class="list-li" wx:if="{{vip.open_log == 1}}">
+    <!-- <view class="list-li" wx:if="{{vip.open_log == 1}}">
         <image  src="./resource/log.png" class="item-img" mode="aspectFit"></image>
         <view class="item" bindtap="studyLog">
            <text class="item-text">学习日志</text>
            <view class="right-img"></view>
         </view>
+    </view> -->
+    <!-- <view class="heng"></view> -->
+    <view class="list-li" >
+      <image  src="./resource/learningSituation.png" class="item-img" mode="aspectFit"></image>
+      <view class="item" bindtap="to_learningSituation">
+        <text class="item-text">我的学情</text>
+        <view class="right-img"></view>
+      </view>
     </view>
     <view class="heng"></view>
     <view class="list-li" >

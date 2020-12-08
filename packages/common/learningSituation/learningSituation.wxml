@@ -1,0 +1,72 @@
+<view class="container">
+<!-- 还未学习 -->
+  <image class="learningSituationHead" src="./resource/learningSituationHead.png"></image>
+  <view class="flex" style="margin: 30rpx 28rpx;">
+    <image class="clock_img" src="./resource/clockImg.png"></image>
+    <view class="lastDate">{{lastDateYear}}  {{lastStartDate}} - {{lastEndDate}}</view>
+  </view>
+  <view class="lastLearningSituation" style="font-size: 36rpx;" wx:if="{{learningSituation.weektime == 0}}">还没学习哦</view>
+  <view class="lastLearningSituation" wx:else=""><text style="font-size: 50rpx;font-weight: bold;" wx:if="{{learningSituation.weektime1}}">{{learningSituation.weektime1}}</text><text wx:if="{{learningSituation.weektime1}}">小时</text><text style="font-size: 50rpx;font-weight: bold;">{{learningSituation.weektime2}}</text>分钟</view>
+  <view class="percent"  wx:if="{{learningSituation.percentage > 0}}">已超过{{learningSituation.percentage}}%的同学，继续加油哦！</view>
+  <view class="percent" wx:else="">上周没有学习喔，本周加油鸭！</view>
+  <!-- 50/26 -->
+  <image class="lastLearningSituationBg" src="./resource/bg.png"></image>
+
+  <view>
+    <view wx:for="{{learningSituation.list}}" wx:key='index'>
+      <view class="flex">
+        <view class="shu"></view>
+        <view class="subjectTitle">{{item.title}}</view>
+      </view>
+      <view class="flex">
+        <view>
+          <view class="todayLearnTime"><text style="font-size: 60rpx;font-weight: bold;" wx:if="{{item.todaytime1}}">{{item.todaytime1}}</text><text wx:if="{{item.todaytime1}}">小时</text><text style="font-size: 60rpx;font-weight: bold;">{{item.todaytime2}}</text>分钟</view>
+          <view class="todayLearnHead">今日学习时长</view>
+        </view>
+        <view>
+          <view class="todayLearnTime" style="margin-left: 112rpx;"><text style="font-size: 60rpx;font-weight: bold;" wx:if="{{item.studytime1}}">{{item.studytime1}}</text><text wx:if="{{item.studytime1}}">小时</text><text style="font-size: 60rpx;font-weight: bold;">{{item.studytime2}}</text>分钟</view>
+          <view class="todayLearnHead" style="margin-left: 112rpx;">累计学习时长</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+
+  <!-- 登录蒙层 -->
+ <view class="mask1" wx:if="{{login == false && isshare == 1}}"></view>
+<view class="login_layout" wx:if="{{login == false && isshare == 1}}">
+
+  <!-- <image class="login_del" src="../../images/del.png"></image> -->
+  <image class="unlogin" src="/images/other/unlogin.png" style="margin-top:75rpx;"></image>
+  <view class="login_tip">您当前尚未登录! </view>
+  <view class="login_tip">请点击下方按钮登录</view>
+  <button class="login_read1"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+  <image class="tologin" src="/images/other/tologin.png"></image>
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</view>
+<canvas canvas-id="shareCanvas" style="width:375px; height:320px;top:500rpx;"></canvas>
+<!-- wx:if="{{showCanvas}}" -->
