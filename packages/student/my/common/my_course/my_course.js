@@ -87,7 +87,8 @@ Page({
    */
   onShow: function () {
     let that = this
-    // that.get_courselist()
+    that.coursePage = 1
+    that.get_courselist()
   },
 
   /**

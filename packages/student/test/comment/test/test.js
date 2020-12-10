@@ -58,6 +58,7 @@ Page({
         eid: options.eid,
         kid: options.kid,
         // oid: options.oid
+        free:options.free
       })
       that.test_explain()   //试卷概要
       that.test_id()     //获取试题ID列表
@@ -104,8 +105,12 @@ Page({
       "answerline": answerline
     }
     app.ols.update_testsubmit(params).then(d => {
-      console.log(d)
+      // console.log(d)
       if (d.data.code == 0) {
+        if(that.data.free == 1){
+          that.to_free()
+          console.log("开通免费课")
+        }
         console.log(d.data.data)
         if(that.data.isshare == 1){
           wx.redirectTo({
@@ -122,6 +127,21 @@ Page({
         console.log("更新届课考试接口==============" + d.data.msg)
       }
     })
+  },
+
+  //免费课领取
+  to_free:function(){
+    let that = this
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "kid": that.data.kid
+      }
+      app.ols.get_free(params).then(d => {
+        console.log(d)
+        if (d.data.code == 0) {
+          // that.course_detail()   //获取课程详情
+        } 
+      })
   },
 
   //小程序倒计时功能
@@ -630,7 +650,7 @@ Page({
     that.setData({
       total_micro_second: cs_total_micro_second
     })
-    that.test_start()   //测评开始记录
+    // that.test_start()   //测评开始记录
     this.count_down(this);
   },
 
@@ -874,22 +894,40 @@ Page({
     let that = this
     var params = {
       "token": wx.getStorageSync("token"),
-      "hid": that.data.hid,
+      "kid": that.data.kid,
+      "oid": 0,
+      "eid": that.data.eid,
+      "type": 5,
       "duration": duration,
     }
-    console.log(params, "结课考试结束记录参数")
-    app.ols.test_end(params).then(d => {
-      console.log(d, "结课考试结束记录数据")
+    app.ols.setstudentstudy(params).then(d => {
       if (d.data.code == 0) {
-        console.log(d.data.data)
-        that.setData({
-          hid: d.data.data.hid
-        })
-        console.log("结课考试试卷结束记录接口调取成功")
+        console.log("交卷结束记录")
+        // console.log(d.data.data)
+        // that.setData({
+        //   hid: d.data.data.hid
+        // })
       } else {
-        console.log("结课考试试卷结束记录接口==============" + d.data.msg)
       }
     })
+    // var params = {
+    //   "token": wx.getStorageSync("token"),
+    //   "hid": that.data.hid,
+    //   "duration": duration,
+    // }
+    // console.log(params, "结课考试结束记录参数")
+    // app.ols.test_end(params).then(d => {
+    //   console.log(d, "结课考试结束记录数据")
+    //   if (d.data.code == 0) {
+    //     console.log(d.data.data)
+    //     that.setData({
+    //       hid: d.data.data.hid
+    //     })
+    //     console.log("结课考试试卷结束记录接口调取成功")
+    //   } else {
+    //     console.log("结课考试试卷结束记录接口==============" + d.data.msg)
+    //   }
+    // })
   },
 
   /**

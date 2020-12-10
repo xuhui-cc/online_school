@@ -110,7 +110,7 @@ Page({
     })
     let userinfo = wx.getStorageSync('userinfo')
     let paramsStr = 'id='+this.selectedCoupon.id + '&gid=' + wx.getStorageSync('gid') + '&tid=' + userinfo.id
-    return app.shareTool.getShareReturnInfo('all', 'couponDetail', paramsStr, this.shareImagePath, '分享优惠券')
+    return app.shareTool.getShareReturnInfo('all', 'couponDetail', paramsStr, this.shareImagePath, wx.getStorageSync('shareHead').coupon + this.selectedCoupon.title)
   },
   //----------------------------------------------私有方法----------------------------------------------------
   /**

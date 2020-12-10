@@ -51,7 +51,8 @@ Page({
       that.setData({
         eid: options.eid,
         kid: options.kid,
-        oid: options.oid
+        oid: options.oid,
+        free:options.free
       })
       that.test_explain()   //试卷概要
       that.test_id()     //获取试题ID列表
@@ -365,6 +366,10 @@ Page({
       app.ols.update_testsubmit(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
+          if(that.data.free == 1){
+            that.to_free()
+            console.log("开通免费课")
+          }
           for (var i = 0; i < that.data.id_list.length;i++){
             if (that.data.id_list[i].type != 1){
               that.setData({
@@ -541,7 +546,7 @@ Page({
       start_ans: true,
       start_time: timestamp
     })
-    that.test_start()   //测评开始记录
+    // that.test_start()   //测评开始记录
   },
 
   //返回按钮延伸弹框
@@ -587,7 +592,10 @@ Page({
         console.log(d)
         if (d.data.code == 0) {
           console.log(d.data.data)
-
+          if(that.data.free == 1){
+            that.to_free()
+            console.log("开通免费课")
+          }
           console.log("更新作业状态接口调取成功")
           for (var i = 0; i < that.data.id_list.length; i++) {
             if (that.data.id_list[i].type != 1) {
@@ -624,6 +632,21 @@ Page({
         finish_all: true
       })
     }
+  },
+
+  //免费课领取
+  to_free:function(){
+    let that = this
+      var params = {
+        "token": wx.getStorageSync("token"),
+        "kid": that.data.kid
+      }
+      app.ols.get_free(params).then(d => {
+        console.log(d)
+        if (d.data.code == 0) {
+          // that.course_detail()   //获取课程详情
+        } 
+      })
   },
 
   //删除图片
@@ -754,18 +777,36 @@ Page({
     let that = this
     var params = {
       "token": wx.getStorageSync("token"),
-      "hid": that.data.hid,
+      "kid": that.data.kid,
+      "oid": that.data.oid,
+      "eid": that.data.eid,
+      "type": 4,
       "duration": duration,
     }
-    app.ols.test_end(params).then(d => {
+    app.ols.setstudentstudy(params).then(d => {
       if (d.data.code == 0) {
-        console.log(d.data.data)
-        that.setData({
-          hid: d.data.data.hid
-        })
+        console.log("交卷结束记录")
+        // console.log(d.data.data)
+        // that.setData({
+        //   hid: d.data.data.hid
+        // })
       } else {
       }
     })
+    // var params = {
+    //   "token": wx.getStorageSync("token"),
+    //   "hid": that.data.hid,
+    //   "duration": duration,
+    // }
+    // app.ols.test_end(params).then(d => {
+    //   if (d.data.code == 0) {
+    //     console.log(d.data.data)
+    //     that.setData({
+    //       hid: d.data.data.hid
+    //     })
+    //   } else {
+    //   }
+    // })
   },
 
 

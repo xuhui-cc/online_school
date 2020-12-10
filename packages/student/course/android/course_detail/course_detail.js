@@ -36,21 +36,15 @@ Page({
       //非分享打开
       // console.log("非分享打开")
     }
-    
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
     let that = this
-    that.endTestShow() 
     that.judge_login()    //登陆判断
+    that.endTestShow() 
     that.course_detail()   //获取课程简介
     if (that.data.currentData == 1){
       that.getcourse_cata()   //课程目录接口
@@ -78,6 +72,16 @@ Page({
   onReachBottom: function () {},
 
   /**
+    * 用户点击右上角分享
+    */
+   onShareAppMessage: function () {
+    let that = this;
+    let paramsStr = 'isshare=1&gid=' + that.data.gid + '&kid=' + that.data.kid
+    return app.shareTool.getShareReturnInfo('0,1', 'course_detail', paramsStr, this.shareImagePath ? this.shareImagePath : '', wx.getStorageSync('shareHead').lesson + that.data.course_info.title)
+  },
+
+/*---------------------------------------------------方法--------------------------------------------------- */
+  /**
    * 清除本地保存的文件
   */
   clearLocalFile: function () {
@@ -100,6 +104,16 @@ Page({
     })
   },
 
+  //登录判断
+  judge_login: function () {
+    let that = this
+    that.setData({
+      login: wx.getStorageSync("login"),
+      gid: wx.getStorageSync("gid")
+    })
+    console.log(that.data.login, "that.data.login",that.data.gid, "that.data.gid")
+  },
+
   //获取微信绑定手机号登录
   getPhoneNumber: function (e) {
     var that = this
@@ -113,27 +127,20 @@ Page({
     })
   },
 
-  /**
-    * 用户点击右上角分享
-    */
-  onShareAppMessage: function () {
-    let that = this;
-    let paramsStr = 'isshare=1&gid=' + that.data.gid + '&kid=' + that.data.kid
-    return app.shareTool.getShareReturnInfo('0,1', 'course_detail', paramsStr, this.shareImagePath ? this.shareImagePath : '', wx.getStorageSync('shareHead').lesson + that.data.course_info.title)
-  },
-
-  /*-----------------------------------------------------方法-------------------------------------------- */
-  //登录判断
-  judge_login: function () {
+   //课程权限提示
+   course_authority:function(e){
     let that = this
-    that.setData({
-      login: wx.getStorageSync("login"),
-      gid: wx.getStorageSync("gid")
-    })
-    console.log(that.data.login, "that.data.login")
-    console.log(that.data.gid, "that.data.gid")
+    var buy = that.data.course_info.buy
+    if (buy == 1|| (buy >= 3 && buy <= 5) || that.data.course_info.price == 0) {
+      console.log("有课程权限")
+    } else {
+      that.setData({
+        coupon_use:true
+      })
+      console.log("没有权限")
+    }
   },
-
+  
   //课程详情介绍数据处理
   handle_data1:function(d){
     let that = this
@@ -143,11 +150,7 @@ Page({
       that.setData({
         course_info: d.data.data
       })
-      if(that.data.login && (that.data.course_info.price == 0 || that.data.course_info.price == '0') && (that.data.course_info.buy == 0 || that.data.course_info.buy == 6)){
-        that.to_free()   //获取免费课
-        // console.log("获取免费课")
-      }
-      if (that.data.login && (that.data.course_info.buy == 1 || (that.data.course_info.buy >= 3 && that.data.course_info.buy <= 5) || that.data.course_info.price == 0 || that.data.course_info.price == '0')) {
+      if (that.data.login && (that.data.course_info.buy == 1 || (that.data.course_info.buy >= 3 && that.data.course_info.buy <= 5) || that.data.course_info.price == 0)) {
         that.setData({
           currentData: 1
         })
@@ -348,22 +351,7 @@ Page({
     }
   },
 
-  //课程权限提示
-  course_authority:function(e){
-    let that = this
-    // var xb = e.currentTarget.dataset.xb
-    // console.log(xb)
-    var buy = that.data.course_info.buy
-    if (buy == 1|| (buy >= 3 && buy <= 5)) {
-      console.log("有课程权限")
-    } else {
-      that.setData({
-        coupon_use:true
-      })
-      console.log("没有权限")
-    }
-  },
-
+ 
 
   //目录排序
   sort:function(){
@@ -374,10 +362,9 @@ Page({
     that.getcourse_cata()
   },
 
-  // 处理图片
+// 处理图片
 dealAva:function(face){
   let that = this 
-  
     wx.getImageInfo({
       src: face,
       success: function (res) {
@@ -386,9 +373,7 @@ dealAva:function(face){
         that.drawShareImage(face)
       }
     })
-  
 },
-
 
 /**
    * 绘制分享图片
@@ -412,8 +397,6 @@ dealAva:function(face){
   ctx.drawImage(face, 0, 0, 375, 170)
   ctx.drawImage("/images/other/share_course.png", 0, 131, 375, 170)
 
- 
-
   //画昵称
   ctx.restore()
   ctx.beginPath()
@@ -431,7 +414,6 @@ dealAva:function(face){
   }else{
     ctx.drawImage("/images/other/num_bg.png", 140, 230, 100, 20)
   }
-  
 
   ctx.restore()
   ctx.beginPath()
@@ -443,7 +425,6 @@ dealAva:function(face){
   }else{
     ctx.fillText(this.data.course_info.order_num + "人学习", 190,245 ,100)
   }
-  
   ctx.stroke()
   console.log("画图完成")
 
@@ -482,10 +463,13 @@ dealAva:function(face){
    */
   toSubMsg:function(){
     let that = this 
-    // if((that.data.course_info.buy ==0 || that.data.course_info.buy == 6)&& that.data.course_info.price == 0){
-    //   that.to_free()
-    // }else{
-      if(that.data.course_info.buy ==1 || (that.data.course_info.buy >= 3 && that.data.course_info.buy <= 5)){
+    that.setData({
+      clickApply:1
+    })
+    if((that.data.course_info.buy ==0 || that.data.course_info.buy ==6)&& that.data.course_info.price == 0 ){
+      that.to_free()
+      
+    }else if(that.data.course_info.buy ==1 || (that.data.course_info.buy >= 3 && that.data.course_info.buy <= 5)){
         console.log("触发报名")
         wx.requestSubscribeMessage({
           tmplIds: ['T4tp85vTUVp1BiSBRmlC7CRQHDhOYitDTR0zCfv-3yg'], // 此处可填写多个模板 ID，但低版本微信不兼容只能授权一个
@@ -531,8 +515,6 @@ dealAva:function(face){
         that.getcourse_cata()
         that.course_authority()
       }
-    // }
-    
     
   },
   
@@ -569,8 +551,10 @@ dealAva:function(face){
       app.ols.get_free(params).then(d => {
         console.log(d)
         if (d.data.code == 0) {
-          // that.toSubMsg()
           that.course_detail()   //获取课程详情
+          if(that.data.clickApply == 1){
+            that.toSubMsg()
+          }
         } 
       })
   },
@@ -615,7 +599,6 @@ dealAva:function(face){
   endTestShow:function(){
     let that = this
     var params = {
-      // "token": '',
       "kid": that.data.kid
     }
     app.ols.endTestShow(params).then(d => {
@@ -640,7 +623,10 @@ dealAva:function(face){
     var kid = that.data.course_cata.lists[xb].kid
     var eid = that.data.course_cata.lists[xb].eid
     var mid = that.data.course_cata.lists[xb].mid
-   
+    if((that.data.course_info.buy == 0 || that.data.course_info.buy == 6) && that.data.course_info.price == 0){
+      that.to_free()
+      console.log("开通免费课")
+    }
     if (that.data.course_cata.lists[xb].cateid == 1|| that.data.course_cata.lists[xb].cateid == 2) {
       wx.navigateTo({
         url: app.getPagePath('live') + '?id=' + id + '&kid=' + kid,    //直播
@@ -664,12 +650,16 @@ dealAva:function(face){
   //课后作业
   to_homework: function (e) {
     let that = this
+    var free = 0
     var xb = e.currentTarget.dataset.xb
     var eid = that.data.course_cata.lists[xb].eid
     var kid = that.data.course_cata.lists[xb].kid
     var oid = that.data.course_cata.lists[xb].id
+    if((that.data.course_info.buy == 0 || that.data.course_info.buy == 6) && that.data.course_info.price == 0){
+      free = 1
+    }
     wx.navigateTo({
-      url: app.getPagePath('homework') + '?eid=' + eid + "&kid=" + kid + "&oid=" + oid,   //课后作业
+      url: app.getPagePath('homework') + '?eid=' + eid + "&kid=" + kid + "&oid=" + oid + "&free=" + free,   //课后作业
     })
   },
 
@@ -715,9 +705,12 @@ dealAva:function(face){
   //结课考试
   to_test:function(e){
     let that = this
-    
+    var free = 0
+    if((that.data.course_info.buy == 0 || that.data.course_info.buy == 6) && that.data.course_info.price == 0){
+      free = 1
+    }
     wx.navigateTo({
-      url: app.getPagePath('test') + '?eid=' + that.data.course_cata.res.eid + "&kid=" + that.data.kid,  //结课考试
+      url: app.getPagePath('test') + '?eid=' + that.data.course_cata.res.eid + "&kid=" + that.data.kid + "&free=" + free,  //结课考试
     })
   },
 

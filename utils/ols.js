@@ -5,10 +5,37 @@ const URI = URI_base + 'api.php/'    //接口地址
 
 const fetch = require('./fetch')
 
+/*-------------------------------------------------------公用接口---------------------------------------------- */
 //登录
 function login(params) {
   return fetch.olsfetchpost(URI, 'v4/login/getphonelogin', params, true, '登录中')
 }
+
+//分享判断
+function judge_share4(params) {
+  return fetch.olsfetchpost(URI, 'v6/share/getinterface', params,"分享判断v6",true,"分享加载中")
+}
+
+// 自定义分享标题title
+function shareHead(params) {
+  return fetch.olsfetchpost(URI, 'v6/basic/getPublicData', params, '自定义分享标题title')
+}
+
+//权限对应老师信息
+function couponTea(params) {
+  return fetch.olsfetchpost(URI, 'v5/basic/getteacherinfo', params,"权限对应老师信息")
+}
+
+// 获取广告弹窗数据
+function getAdWindow(params) {
+  return fetch.olsfetchpost(URI, 'v5/ad/getlist', params, '获取广告弹窗数据')
+}
+
+
+
+/*-------------------------------------------------------功能接口---------------------------------------------- */
+
+
 
 // 小程序直播接入
 function getclassroom(params) {
@@ -85,8 +112,6 @@ function wrong(params) {
   return fetch.olsfetchpost(URI, 'wrong/getlist', params,"全部错题")
 }
 
-
-
 // 获取测评试题（已登录）
 function test_ques1(params) {
   return fetch.olsfetchpost(URI, 'paper/gettestlist', params)
@@ -96,8 +121,6 @@ function test_ques1(params) {
 function test_ques2(params) {
   return fetch.olsfetchpost(URI, 'v2/paper/gettestlist', params)
 }
-
-
 
 // 获取课程详情介绍(已登录)
 function course_info1(params) {
@@ -123,8 +146,6 @@ function course_cata1(params) {
 function course_cata3(params) {
   return fetch.olsfetchpost(URI, 'v3/lesson/getoption', params)
 }
-
-
 
 //获取课程讲义列表
 function handout(params) {
@@ -198,22 +219,22 @@ function testques_info(params) {
 
 //测评试卷答案提交
 function cp_ans_submit(params) {
-  return fetch.olsfetchpost(URI, 'mark/submittestquestion', params)
+  return fetch.olsfetchpost(URI, 'mark/submittestquestion', params,"测评试卷答案提交")
 }
 
 //作业答案提交
 function work_submit(params) {
-  return fetch.olsfetchpost(URI, 'mark/submitquestion', params)
+  return fetch.olsfetchpost(URI, 'mark/submitquestion', params,"作业答案提交")
 }
 
 //更新测评试卷状态
 function update_cpsubmit(params) {
-  return fetch.olsfetchpost(URI, 'mark/submittestmark', params)
+  return fetch.olsfetchpost(URI, 'mark/submittestmark', params,"更新测评试卷状态")
 }
 
 //更新试卷状态
 function update_testsubmit(params) {
-  return fetch.olsfetchpost(URI, 'mark/submitmark', params)
+  return fetch.olsfetchpost(URI, 'mark/submitmark', params,"更新试卷状态")
 }
 
 //测评报告
@@ -396,19 +417,10 @@ function haveRelationWithStudent(params) {
   return fetch.olsfetchpost(URI, 'log/teacher/stu_isshow', params, '判断用户和某个学生之间有无关系', true)
 }
 
-// //会员列表
-// function v4_viplist(params) {
-//   return fetch.olsfetchpost(URI, 'v4/vipcard/getviplist', params,"会员卡列表")
-// }
-
 //vip预支付
 function v4_vipPreorder(params) {
   return fetch.olsfetchpost(URI, 'v4/wepay/precardorder', params,"vip卡预支付",true,"请稍后")
 }
-
-
-
-
 
 // 家长获取自家孩子列表
 function parentGetChildsList(params) {
@@ -435,10 +447,7 @@ function v5_getTeacherIntro(params) {
   return fetch.olsfetchpost(URI, 'v5/famousteacher/getinfo', params, '获取名师详情', true)
 }
 
-// 获取广告弹窗数据
-function getAdWindow(params) {
-  return fetch.olsfetchpost(URI, 'v5/ad/getlist', params, '获取广告弹窗数据')
-}
+
 
 // 获取用户openid 与 session_key
 function getLoginUserIdentify(params) {
@@ -457,14 +466,8 @@ function couponList(params) {
 function couponShow(params) {
   return fetch.olsfetchpost(URI, 'v5/coupon/getcouponstatus', params,"优惠券开启状态")
 }
-//优惠券老师
-function couponTea(params) {
-  return fetch.olsfetchpost(URI, 'v5/basic/getteacherinfo', params,"优惠券老师")
-}
-//后台推荐课程（关联后台推荐按钮）
-function coursePushList(params) {
-  return fetch.olsfetchpost(URI, 'v5/coupon/getCodePushList', params,"后台推荐课程")
-}
+
+
 
 //试听课
 function auditionVideo(params) {
@@ -473,13 +476,13 @@ function auditionVideo(params) {
 
 
 //会员列表（预弃用）
-function v4_viplist(params) {
-  return fetch.olsfetchpost(URI, 'v4/vipcard/getviplist', params,"会员卡列表")
-}
+// function v4_viplist(params) {
+//   return fetch.olsfetchpost(URI, 'v4/vipcard/getviplist', params,"会员卡列表")
+// }
 //我的页面vip信息（预弃用）
-function v4_myVip(params) {
-  return fetch.olsfetchpost(URI, 'v4/vipcard/getvipcard', params,"我的vip")
-}
+// function v4_myVip(params) {
+//   return fetch.olsfetchpost(URI, 'v4/vipcard/getvipcard', params,"我的vip")
+// }
 //会员列表
 function v5_viplist(params) {
   return fetch.olsfetchpost(URI, 'v5/vipcard/getviplist', params,"会员卡列表")
@@ -496,47 +499,41 @@ function getVipList(params) {
 function getVipInfo(params) {
   return fetch.olsfetchpost(URI, 'v5/vipcard/getInfo', params,"会员卡详情")
 }
-//全部会员卡课程
-function allVipCourse(params) {
-  return fetch.olsfetchpost(URI, 'v5/vipcard/getLessonCourse', params,"全部会员课程")
-}
+
 //全部会员卡优惠券
 function allVipCoupon(params) {
   return fetch.olsfetchpost(URI, 'v5/vipcard/getCouponInfo', params,"全部会员卡优惠券")
 }
 // 获取我的全部课程（预弃用）
-function my_course_all4(params) {
-  return fetch.olsfetchpost(URI, 'v4/order/getLessonlist', params,"全部课程")
-}
+// function my_course_all4(params) {
+//   return fetch.olsfetchpost(URI, 'v4/order/getLessonlist', params,"全部课程")
+// }
 // 获取我的全部课程（有到期时间及分页版）
 function my_course_all(params) {
   return fetch.olsfetchpost(URI, 'v5/vipcard/getLessonlist', params,"全部课程")
 }
 // 获取课程详情v3(拼团)(预弃用)
-function course_info4(params) {
-  return fetch.olsfetchpost(URI, 'v4/lesson/getinfo', params,"课程详情介绍")
-}
+// function course_info4(params) {
+//   return fetch.olsfetchpost(URI, 'v4/lesson/getinfo', params,"课程详情介绍")
+// }
 // 获取课程详情v3(拼团)
 function course_info5(params) {
   return fetch.olsfetchpost(URI, 'v5/lesson/getinfo', params,"课程详情介绍")
 }
 
 //获取课程目录v4(会员)(预弃用)
-function course_cata4(params) {
-  return fetch.olsfetchpost(URI, 'v4/lesson/getoption', params,"课程详情目录")
-}
+// function course_cata4(params) {
+//   return fetch.olsfetchpost(URI, 'v4/lesson/getoption', params,"课程详情目录")
+// }
 //获取课程目录v5(会员)
 function course_cata5(params) {
   return fetch.olsfetchpost(URI, 'v5/lesson/getoption', params,"课程详情目录")
 }
 //获取课程列表(预弃用)
-function grade_course4(params) {
-  return fetch.olsfetchpost(URI, 'v4/lesson/getlist', params)
-}
-//获取课程列表
-function grade_course5(params) {
-  return fetch.olsfetchpost(URI, 'v5/lesson/getlist', params)
-}
+// function grade_course4(params) {
+//   return fetch.olsfetchpost(URI, 'v4/lesson/getlist', params)
+// }
+
 // 权益包展示数据
 function rightBagInfo(params) {
   return fetch.olsfetchpost(URI, 'v5/vipcard/getEquityPackage', params,"权益包展示数据")
@@ -548,34 +545,34 @@ function exchangeRightBag(params) {
 }
 
 //兑换码验证（预弃用）
-function cheek_code4(params) {
-  return fetch.olsfetchpost(URI, 'v4/redeem/checkredeemcode', params,"兑换码验证")
-}
+// function cheek_code4(params) {
+//   return fetch.olsfetchpost(URI, 'v4/redeem/checkredeemcode', params,"兑换码验证")
+// }
 //兑换码验证
 function cheek_code5(params) {
   return fetch.olsfetchpost(URI, 'v5/redeem/checkredeemcode', params,"兑换码验证")
 }
 
 //兑换码兑换(预弃用)
-function exchange_code4(params) {
-  return fetch.olsfetchpost(URI, 'v4/redeem/exchangeredeem', params,"兑换码兑换")
-}
+// function exchange_code4(params) {
+//   return fetch.olsfetchpost(URI, 'v4/redeem/exchangeredeem', params,"兑换码兑换")
+// }
 //兑换码兑换
 function exchange_code5(params) {
   return fetch.olsfetchpost(URI, 'v5/redeem/exchangeredeem', params,"兑换码兑换")
 }
 //扫码一对多VIP信息(预弃用)
-function info_1Vn(params) {
-  return fetch.olsfetchpost(URI, 'v4/redeem/lookredeemonecode', params,"扫码一对多VIP信息")
-}
+// function info_1Vn(params) {
+//   return fetch.olsfetchpost(URI, 'v4/redeem/lookredeemonecode', params,"扫码一对多VIP信息")
+// }
 //验证一对多VIP有效(预弃用)
-function check_1Vn(params) {
-  return fetch.olsfetchpost(URI, 'v4/redeem/checkredeemonecode', params,"验证一对多VIP有效")
-}
+// function check_1Vn(params) {
+//   return fetch.olsfetchpost(URI, 'v4/redeem/checkredeemonecode', params,"验证一对多VIP有效")
+// }
 //兑换一对多VIP(预弃用)
-function exchange_1Vn(params) {
-  return fetch.olsfetchpost(URI, 'v4/redeem/exchangeredeem2', params,"兑换一对多VIP")
-}
+// function exchange_1Vn(params) {
+//   return fetch.olsfetchpost(URI, 'v4/redeem/exchangeredeem2', params,"兑换一对多VIP")
+// }
 //扫码一对多VIP信息
 function info_1Vn_v5(params) {
   return fetch.olsfetchpost(URI, 'v5/redeem/lookredeemonecode', params,"扫码一对多VIP信息")
@@ -690,27 +687,34 @@ function deleteStudyReocrdComment(params) {
   return fetch.olsfetchpost(URI, 'v5/comment/delstudylogcommemt', params, '删除学习日志评论/回复', true, '删除中')
 }
 
-// 自定义分享标题title
-function shareHead(params) {
-  return fetch.olsfetchpost(URI, 'v6/basic/getPublicData', params, '自定义分享标题title')
-}
-
 // 课程详情页结课考试数据显示样式
 function endTestShow(params) {
   return fetch.olsfetchpost(URI, 'v6/lesson/getPaper', params, '课程详情页结课考试数据显示样式')
-}
-
-//分享判断
-function judge_share4(params) {
-  return fetch.olsfetchpost(URI, 'v6/share/getinterface', params,"分享判断v6",true,"分享加载中")
 }
 
 //我的学情
 function learningSituation(params) {
   return fetch.olsfetchpost(URI, 'v7/lesson/getCourseData', params,"我的学情",true,"学情加载中")
 }
+//后台推荐课程（关联后台推荐按钮）
+function coursePushList(params) {
+  return fetch.olsfetchpost(URI, 'v7/coupon/getCodePushList', params,"后台推荐课程")
+}
+//全部会员卡课程
+function allVipCourse(params) {
+  return fetch.olsfetchpost(URI, 'v5/vipcard/getLessonCourse', params,"全部会员课程")
+}
+//获取课程列表
+function grade_course5(params) {
+  return fetch.olsfetchpost(URI, 'v7/lesson/getlist', params,"课程列表")
+}
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, my_course_all4, test_ques1, test_ques2, course_info1, grade_update, course_cata1, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,grade_course4,course_info4,course_cata3,hot_list4,group_preorder3,order_all3,group_del3,group_detail3,group_share3,all_group3,banner3,v4_viplist,v4_vipPreorder,v4_myVip,course_cata4,judge_share4,cheek_code4, teacherGetStudentsList, getReocrdTagList, submitReocrd, getStudentRecordListByDay, getPeriodRecordStatusList, getStudentCourseHourInfo, getClearCourseHourList, recordUploadFile, getStudentNewRecord, getRecordUploadPath_h5, haveRelationWithStudent,exchange_code4,addImg,parentGetChildsList,dummy,refreshUserInfo, get7v1Intro_h5,v5_getTeacherList,v5_getTeacherIntro, getAdWindow, getLoginUserIdentify,info_1Vn,check_1Vn,exchange_1Vn,subMsg,couponList,couponShow,couponTea,coursePushList,auditionVideo,v5_viplist,vipRight,getVipList,getVipInfo,allVipCourse,allVipCoupon,my_course_all,course_info5,rightBagInfo,exchangeRightBag,course_cata5,grade_course5,cheek_code5,exchange_code5,info_1Vn_v5,check_1Vn_v5,exchange_1Vn_v5, getRoles, getTeacherAuth, getTeacherVipList, getTeacherCouponList, getTeacherRightList, getTeacherClassList, getTeacherClassStudentList, getVipCardBaseInfo, getVipCardCouponList, getVipCardCourseList, getVipCard, getRightDetail, getRightCard, getCouponDetail, getCoupon, updateWechatGroupID, teacherEvaluateRecord, teacherGetEvaluateReocrdDetail, commentOrReplyStudyReocrd, deleteStudyReocrdComment,shareHead,endTestShow,learningSituation}
+//课后作业、结课考试时长统计
+function setstudentstudy(params) {
+  return fetch.olsfetchpost(URI, '/study/setstudentstudy', params,"课后作业、结课考试时长统计")
+}
+
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, test_ques1, test_ques2, course_info1, grade_update, course_cata1, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,course_cata3,hot_list4,group_preorder3,order_all3,group_del3,group_detail3,group_share3,all_group3,banner3,v4_vipPreorder,judge_share4, teacherGetStudentsList, getReocrdTagList, submitReocrd, getStudentRecordListByDay, getPeriodRecordStatusList, getStudentCourseHourInfo, getClearCourseHourList, recordUploadFile, getStudentNewRecord, getRecordUploadPath_h5, haveRelationWithStudent,addImg,parentGetChildsList,dummy,refreshUserInfo, get7v1Intro_h5,v5_getTeacherList,v5_getTeacherIntro, getAdWindow, getLoginUserIdentify,subMsg,couponList,couponShow,couponTea,coursePushList,auditionVideo,v5_viplist,vipRight,getVipList,getVipInfo,allVipCourse,allVipCoupon,my_course_all,course_info5,rightBagInfo,exchangeRightBag,course_cata5,grade_course5,cheek_code5,exchange_code5,info_1Vn_v5,check_1Vn_v5,exchange_1Vn_v5, getRoles, getTeacherAuth, getTeacherVipList, getTeacherCouponList, getTeacherRightList, getTeacherClassList, getTeacherClassStudentList, getVipCardBaseInfo, getVipCardCouponList, getVipCardCourseList, getVipCard, getRightDetail, getRightCard, getCouponDetail, getCoupon, updateWechatGroupID, teacherEvaluateRecord, teacherGetEvaluateReocrdDetail, commentOrReplyStudyReocrd, deleteStudyReocrdComment,shareHead,endTestShow,learningSituation,setstudentstudy}
 
 
 // const addImgUrl = "http://os.lingjun.net/api.php/annex/upload"

@@ -116,7 +116,7 @@ Page({
     })
     let userinfo = wx.getStorageSync('userinfo')
     let paramsStr = 'id='+this.selectedVip.id + '&gid=' + wx.getStorageSync('gid') + '&tid=' + userinfo.id
-    return app.shareTool.getShareReturnInfo('all', 'vipCardDetail_share', paramsStr, this.shareImagePath, '分享会员')
+    return app.shareTool.getShareReturnInfo('all', 'vipCardDetail_share', paramsStr, this.shareImagePath, wx.getStorageSync('shareHead').vipcard + this.selectedVip.title)
     
   },
   //----------------------------------------------私有方法----------------------------------------------------

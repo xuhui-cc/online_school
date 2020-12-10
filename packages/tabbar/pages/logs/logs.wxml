@@ -58,8 +58,8 @@
       <view wx:for="{{hot2}}" wx:key="hot2_index">
           <view class="hot_course">
             <view class="flex" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{2}}">
-              <image class="vip_laber" wx:if="{{(item.buy == 0 || item.buy > 4) && item.vip == 1}}" src="/images/other/vip_laber2.png"></image>
-              <!-- <image class="laber"  wx:if="{{item.buy == 1}}" src="./resource/isbuy.png"></image> -->
+              <image class="vip_laber" wx:if="{{item.buy == 5 && item.vip == 1}}" src="/images/other/vip_laber2.png"></image>
+              <image class="laber"  wx:if="{{item.buy == 1}}" src="./resource/isbuy.png"></image>
               <image class="hot_fm" src="{{item.face}}"></image>
               <view>
                 <view class="hot_title">{{item.title}}</view>
@@ -87,8 +87,10 @@
       <view wx:for="{{coursePushList}}" wx:key="coursePushList_index">
           <view class="hot_course">
             <view class="flex" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{2}}">
-              <image class="vip_laber" wx:if="{{(item.buy == 0 || item.buy > 4) && item.vip == 1}}" src="/images/other/vip_laber2.png"></image>
-              <!-- <image class="laber"  wx:if="{{item.buy == 1}}" src="./resource/isbuy.png"></image> -->
+              <image class="vip_laber" wx:if="{{item.buy == 5 && item.vip == 1}}" src="/images/other/vip_laber2.png"></image>
+              <image class="laber"  wx:if="{{item.buy == 1 || item.buy == 3}}" src="./resource/isbuy.png"></image>
+              <image class="hot_group" style="margin-left:83rpx;" wx:if="{{(item.buy == 0 || item.buy == 2 || item.buy == 6) && item.type == 1 }}"  src="./resource/hot_group.png"></image>
+              <image class="laber" style="margin-left:83rpx;" wx:if="{{item.buy == 0  && item.type == 2 }}"  src="./resource/hot_ms.png"></image>
               <image class="hot_fm" src="{{item.face}}"></image>
               <view>
                 <view class="hot_title">{{item.title}}</view>
@@ -184,8 +186,8 @@
           <view class="hot_course">
             <view class="flex" bindtap="vip_course_detail" data-xb="{{index}}">
               <image class="vip_fm" src="{{item.face}}"></image>
-              <image class="vip_laber" wx:if="{{item.buy == 0 || item.buy == 2 || item.buy > 4}}" src="/images/other/vip_laber2.png"></image>
-              <!-- <image class="laber" wx:if="{{item.buy == 1 || item.buy == 3 || item.buy == 4 }}" src="./resource/isbuy.png"></image> -->
+              <image class="vip_laber" wx:if="{{item.buy == 5}}" src="/images/other/vip_laber2.png"></image>
+              <image class="laber" wx:if="{{item.buy == 1 || item.buy == 3 || item.buy == 4 }}" src="./resource/isbuy.png"></image>
               <image class="hot_group" style="margin-left:83rpx;" wx:if="{{(item.buy == 0 || item.buy == 2 || item.buy == 6) && item.type == 1 }}"  src="./resource/hot_group.png"></image>
               <image class="laber" style="margin-left:83rpx;" wx:if="{{item.buy == 0  && item.type == 2 }}"  src="./resource/hot_ms.png"></image>
               
@@ -242,8 +244,8 @@
     <view wx:for="{{course}}" wx:key="index">
 
       <view class="course_layout" bindtap="to_course_detail" data-xb="{{index}}" >
-        <image class="vip_laber" wx:if="{{(item.buy == 0 || item.buy == 2 || item.buy > 4) && item.vip == 1}}" src="/images/other/vip_laber2.png"></image>
-        <!-- <image class="laber" wx:if="{{item.buy == 1 || item.is_buy == 3 || item.is_buy == 4}}" src="./resource/isbuy.png"></image> -->
+        <image class="vip_laber" wx:if="{{item.buy == 5 && item.vip == 1}}" src="/images/other/vip_laber2.png"></image>
+        <image class="laber" wx:if="{{item.buy == 1 || item.is_buy == 3 || item.is_buy == 4}}" src="./resource/isbuy.png"></image>
         <image class="hot_group"  style="{{item.vip == 1?'margin-left:82rpx;':''}}" wx:if="{{(item.buy == 0 || item.buy == 6) && item.type == 1}}" src="./resource/hot_group.png"></image>
         <image class="hot_group"  style="{{item.vip == 1?'margin-left:82rpx;':''}}" wx:if="{{(item.buy == 0 || item.buy == 6) && item.type == 2}}" src="./resource/hot_ms.png"></image>
         <image class="laber" wx:if="{{item.buy == 2}}" src="./resource/group_laber.png"></image>

@@ -110,7 +110,7 @@ Page({
     })
     let userinfo = wx.getStorageSync('userinfo')
     let paramsStr = 'id='+this.selectedRight.id + '&gid=' + wx.getStorageSync('gid') + '&tid=' + userinfo.id
-    return app.shareTool.getShareReturnInfo('all', 'rightCardDetail', paramsStr, this.shareImagePath, '分享权益包')
+    return app.shareTool.getShareReturnInfo('all', 'rightCardDetail', paramsStr, this.shareImagePath, wx.getStorageSync('shareHead').package + this.selectedRight.title)
   },
   //----------------------------------------------私有方法----------------------------------------------------
   /**
