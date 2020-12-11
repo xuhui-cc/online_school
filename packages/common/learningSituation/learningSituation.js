@@ -17,6 +17,11 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    // that.setData({
+    //   login:'',
+    //   gid:1,
+    //   isshare:1
+    // })
     that.setData({
       login:wx.getStorageSync('login'),
       // gid:wx.getStorageSync('gid'),
@@ -25,8 +30,10 @@ Page({
       wx.setStorageSync('gid', options.gid)
       that.setData({
         // login:wx.getStorageSync('login'),
-        gid:options.gid
+        gid:options.gid,
+        isshare:options.isshare
       })
+      console.log("学情分享打开",that.data.login,that.data.gid)
     }
     that.getLastDate()
     
@@ -84,27 +91,46 @@ Page({
           d.data.data.todaynumtime1 = 0
           d.data.data.todaynumtime2 = m_todat
         }
+        console.log(d.data.data.list)
+        var array = []
+        array= d.data.data.list
+        console.log(array)
+        var todayTimeHour = 0
+        var todayTimeMin = 0
         for(var i = 0;i<d.data.data.list.length;i++){
+          console.log("循环")
           let h1 = Math.floor(d.data.data.list[i].studytime / 3600) < 10 ? '0' + Math.floor(d.data.data.list[i].studytime / 3600) : Math.floor(d.data.data.list[i].studytime / 3600);
           let m1 = Math.ceil((d.data.data.list[i].studytime / 60 % 60)) < 10 ? '0' + Math.ceil((d.data.data.list[i].studytime / 60 % 60)) : Math.ceil((d.data.data.list[i].studytime / 60 % 60));
           if(h1>0){
             d.data.data.list[i].studytime1 = h1
             d.data.data.list[i].studytime2 = m1
+            
           }else{
             d.data.data.list[i].studytime2 = m1
+           
           }
+          
           let h2 = Math.floor(d.data.data.list[i].todaytime / 3600) < 10 ? '0' + Math.floor(d.data.data.list[i].todaytime / 3600) : Math.floor(d.data.data.list[i].todaytime / 3600);
           let m2 = Math.ceil((d.data.data.list[i].todaytime / 60 % 60)) < 10 ? '0' + Math.ceil((d.data.data.list[i].todaytime / 60 % 60)) : Math.ceil((d.data.data.list[i].todaytime / 60 % 60));
           if(h2>0){
             d.data.data.list[i].todaytime1 = h2
             d.data.data.list[i].todaytime2 = m2
+            todayTimeHour += parseInt(h1)
+            todayTimeMin += parseInt(m2)
           }else{
-            
             d.data.data.list[i].todaytime2 = m2
+            todayTimeMin += parseInt(m2)
           }
         }
+        console.log(parseInt(todayTimeHour),parseInt(todayTimeMin))
+        if(todayTimeMin > 60){
+          todayTimeMin = todayTimeMin % 60
+          todayTimeHour += todayTimeMin / 60
+        }
         that.setData({
-          learningSituation:d.data.data
+          learningSituation:d.data.data,
+          todayTimeMin:todayTimeMin < 10 ? "0" + todayTimeMin : todayTimeMin,
+          todayTimeHour:todayTimeHour < 10 ? "0"+todayTimeHour : todayTimeHour
         })
         that.drawShareImage()
       } else{
@@ -157,7 +183,7 @@ Page({
     // ctx.fillText(title1, 190, 140,300)
     ctx.fillText("今天还没学习哦~", 170, 210,300)
     ctx.stroke()
-  }else if(this.data.learningSituation.todaynumtime1 == 0){
+  }else if(this.data.todayTimeHour == 0){
     ctx.translate(0,0);//其实这步是这重要的，定好中心点好，旋转起来就剪刀了
     ctx.rotate( 5* Math.PI/180);//我这步最后操作，等你中心点定好，移动到你自己想要的位置，再调角度
     ctx.restore()
@@ -166,7 +192,7 @@ Page({
     // ctx.font = "bold 60px sans-serif";
     ctx.setFillStyle('#EF653A')
     ctx.setTextAlign('left')
-    ctx.fillText(this.data.learningSituation.todaynumtime2, 190, 220,80)
+    ctx.fillText(this.data.todayTimeMin, 190, 220,80)
     ctx.stroke()
 
     ctx.restore()
@@ -185,8 +211,8 @@ Page({
     // ctx.font = "bold 60px sans-serif";
     ctx.setFillStyle('#EF653A')
     ctx.setTextAlign('center')
-    ctx.fillText(this.data.learningSituation.todaynumtime1, 185, 220,80)
-    ctx.fillText(this.data.learningSituation.todaynumtime2, 295, 220,80)
+    ctx.fillText(this.data.todayTimeHour, 185, 220,80)
+    ctx.fillText(this.data.todayTimeMin, 295, 220,80)
     ctx.stroke()
     ctx.restore()
     ctx.beginPath()

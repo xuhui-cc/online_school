@@ -33,8 +33,6 @@ Page({
       })
       console.log("分享打开", that.data.isshare, that.data.gid)
     } else {
-      //非分享打开
-      // console.log("非分享打开")
     }
   },
 

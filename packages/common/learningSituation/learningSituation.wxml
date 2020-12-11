@@ -8,7 +8,7 @@
   <view class="lastLearningSituation" style="font-size: 36rpx;" wx:if="{{learningSituation.weektime == 0}}">还没学习哦</view>
   <view class="lastLearningSituation" wx:else=""><text style="font-size: 50rpx;font-weight: bold;" wx:if="{{learningSituation.weektime1}}">{{learningSituation.weektime1}}</text><text wx:if="{{learningSituation.weektime1}}">小时</text><text style="font-size: 50rpx;font-weight: bold;">{{learningSituation.weektime2}}</text>分钟</view>
   <view class="percent"  wx:if="{{learningSituation.percentage > 0}}">已超过{{learningSituation.percentage}}%的同学，继续加油哦！</view>
-  <view class="percent" wx:else="">上周没有学习喔，本周加油鸭！</view>
+  <view class="percent" wx:else="">上周没有学习喔，本周要加油鸭！</view>
   <!-- 50/26 -->
   <image class="lastLearningSituationBg" src="./resource/bg.png"></image>
 
@@ -34,8 +34,8 @@
 
 
   <!-- 登录蒙层 -->
- <view class="mask1" wx:if="{{login == false && isshare == 1}}"></view>
-<view class="login_layout" wx:if="{{login == false && isshare == 1}}">
+ <view class="mask1" wx:if="{{!login && isshare == 1}}"></view>
+<view class="login_layout" wx:if="{{!login && isshare == 1}}">
 
   <!-- <image class="login_del" src="../../images/del.png"></image> -->
   <image class="unlogin" src="/images/other/unlogin.png" style="margin-top:75rpx;"></image>
@@ -68,5 +68,5 @@
 
 
 </view>
-<canvas canvas-id="shareCanvas" style="width:375px; height:320px;top:500rpx;"></canvas>
+<canvas canvas-id="shareCanvas" style="width:375px; height:320px;top:500rpx;" wx:if="{{showCanvas}}"></canvas>
 <!-- wx:if="{{showCanvas}}" -->

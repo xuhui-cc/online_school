@@ -67,9 +67,10 @@ function login(e, gid, callback) {
         }
         case 2: {
           // 家长
-          wx.reLaunch({
-            url: pagePath.getPagePath('parent_childList'),
-          })
+          // wx.reLaunch({
+          //   url: pagePath.getPagePath('parent_childList'),
+          // })
+          typeof callback == "function" && callback(true, "登录成功")
           break
         }
         case 3: {
