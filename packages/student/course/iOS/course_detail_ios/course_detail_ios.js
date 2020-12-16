@@ -33,8 +33,6 @@ Page({
       })
       console.log("分享打开", that.data.isshare, that.data.gid)
     } else {
-      //非分享打开
-      // console.log("非分享打开")
     }
   },
 
@@ -144,19 +142,19 @@ Page({
   //课程详情介绍数据处理
   handle_data1:function(d){
     let that = this
-    if (d.data.code == 0) {
-      that.dealAva(d.data.data.face)
-      d.data.data.content = d.data.data.content.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block"')
-      that.setData({
-        course_info: d.data.data
-      })
-      if (that.data.login && (that.data.course_info.buy == 1 || (that.data.course_info.buy >= 3 && that.data.course_info.buy <= 5) || that.data.course_info.price == 0)) {
+    // if (d.data.code == 0) {
+      that.dealAva(d.face)
+      d.content = d.content.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block"')
+      if (that.data.login && (d.buy == 1 || (d.buy >= 3 && d.buy <= 5) || d.price == 0)) {
         that.setData({
           currentData: 1
         })
         that.getcourse_cata()  //获取课程目录
       }
-    }
+      that.setData({
+        course_info: d
+      })
+    // }
   },
 
  //关闭联系老师蒙层
@@ -202,6 +200,7 @@ Page({
 
   //打开单一文件
   open_file:function(id){
+    var that = this
     var params = {
       "token": wx.getStorageSync("token"),
       "id": id
@@ -212,47 +211,48 @@ Page({
         that.setData({
           handout: d.data.data
         })
+          var annex = that.data.handout[0].annex
           var suffix = "handout[0].suffix"
-          if (that.data.handout[0].annex.indexOf(".pdf") != -1) {
+          if (annex.indexOf(".pdf") != -1) {
             that.setData({
               [suffix]: "pdf"
             })
-          } else if (that.data.handout[0].annex.indexOf(".docx") != -1) {
+          } else if (annex.indexOf(".docx") != -1) {
             that.setData({
               [suffix]: "docx"
             })
           }
-          else if (that.data.handout[0].annex.indexOf(".doc") != -1) {
+          else if (annex.indexOf(".doc") != -1) {
             that.setData({
               [suffix]: "doc"
             })
-          }else if (that.data.handout[0].annex.indexOf(".pptx") != -1) {
+          }else if (annex.indexOf(".pptx") != -1) {
             that.setData({
               [suffix]: "pptx"
             })
           }
-          else if (that.data.handout[0].annex.indexOf(".ppt") != -1) {
+          else if (annex.indexOf(".ppt") != -1) {
             that.setData({
               [suffix]: "ppt"
             })
           }
-          else if (that.data.handout[0].annex.indexOf(".xlsx") != -1) {
+          else if (annex.indexOf(".xlsx") != -1) {
             that.setData({
               [suffix]: "xlsx"
             })
           }
-          else if (that.data.handout[0].annex.indexOf(".xls") != -1) {
+          else if (annex.indexOf(".xls") != -1) {
             that.setData({
               [suffix]: "xls"
             })
           }
-          else if (that.data.handout[0].annex.indexOf(".png") != -1 || that.data.handout[0].annex.indexOf(".jpg") != -1) {
+          else if (annex.indexOf(".png") != -1 || annex.indexOf(".jpg") != -1) {
             that.setData({
               [suffix]: "img"
             })
           }
         
-        if (that.data.handout[0].annex.indexOf(".png") != -1 || that.data.handout[0].annex.indexOf(".jpg") != -1) {
+        if (annex.indexOf(".png") != -1 || annex.indexOf(".jpg") != -1) {
           that.previewImage()
           console.log("图")
         } else {
@@ -357,7 +357,8 @@ Page({
   sort:function(){
     let that = this 
     that.setData({
-      queue:!that.data.queue
+      queue:!that.data.queue,
+      course_cata:''
     })
     that.getcourse_cata()
   },
@@ -524,20 +525,19 @@ dealAva:function(face){
   // 获取课程详情
   course_detail:function(){
     let that = this
+    var token = ''
     //课程详情介绍接口
     if (wx.getStorageSync("login")){
-      var params = {
-        "token": wx.getStorageSync("token"),
-        "kid": that.data.kid
-      }
-    }else{
-      var params = {
-        "token": '',
-        "kid": that.data.kid
-      }
+      token = wx.getStorageSync("token")
+    }
+    var params = {
+      "token": token,
+      "kid": that.data.kid
     }
       app.ols.course_info5(params).then(d => {
-        that.handle_data1(d)   //课程详情数据处理
+        if (d.data.code == 0) {
+          that.handle_data1(d.data.data)   //课程详情数据处理
+        } 
       })
   },
 
@@ -562,16 +562,12 @@ dealAva:function(face){
   //获取课程目录接口
   getcourse_cata:function(){
     let that = this
-    var queue,token
+    var queue = 0 ,token = ''
     if(that.data.queue == true){
       queue = 1
-    }else{
-      queue = 0
     }
     if (wx.getStorageSync("login")) {
       token = wx.getStorageSync("token")
-    }else{
-      token = ''
     }
     var params = {
       "token": token,
@@ -581,8 +577,10 @@ dealAva:function(face){
     app.ols.course_cata5(params).then(d => {
       if (d.data.code == 0) {
         for(var i=0;i<d.data.data.lists.length;i++){
-          d.data.data.lists[i].livetime = d.data.data.lists[i].startline.substr(5,11) + " - " + d.data.data.lists[i].endline.substr(11,5)
-          console.log(d.data.data.lists[i].livetime)
+          if(d.data.data.lists[i].cateid > 0){
+            d.data.data.lists[i].livetime = d.data.data.lists[i].startline.substr(5,11) + " - " + d.data.data.lists[i].endline.substr(11,5)
+            // console.log(d.data.data.lists[i].livetime)
+          }
         }
         that.setData({
           course_cata: d.data.data

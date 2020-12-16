@@ -250,11 +250,6 @@
   color:rgba(0,0,0,1);
   opacity:1;
 }
-.flex{
-  display: flex;
-  /* margin-top: 78rpx; */
-}
-
 
 .time{
   margin-left: 15rpx;

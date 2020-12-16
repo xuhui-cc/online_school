@@ -130,9 +130,9 @@ page{
   color:rgba(32,32,32,1);
   
 }
-.flex{
+/* .flex{
   display: flex;
-}
+} */
 .tab-h1{ 
   margin-top: 276rpx;
   height: 80rpx;

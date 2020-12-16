@@ -89,9 +89,7 @@
   width: 56rpx;
   height: 56rpx;
 }
-.flex{
-  display: flex;
-}
+
 .vip_fm{
   margin-top: 50rpx;
   margin-left: 59rpx;

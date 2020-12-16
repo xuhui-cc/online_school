@@ -72,9 +72,7 @@
 .hide{
   display:none;
 }
-.flex{
-  display: flex;
-}
+
 .v_img{
   margin-left: 30rpx;
   margin-top: 40rpx;

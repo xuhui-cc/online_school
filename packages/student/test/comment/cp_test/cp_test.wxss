@@ -250,11 +250,6 @@
   z-index: 500;
 }
 
-.flex{
-  display: flex;
-  /* margin-top: 78rpx; */
-}
-
 .clock{
   margin-left: 35rpx;
   margin-top: 30rpx;

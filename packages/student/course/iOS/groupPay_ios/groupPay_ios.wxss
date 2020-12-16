@@ -88,9 +88,7 @@ page{
   color:rgba(130,130,130,1);
   opacity:1;
 }
-.flex{
-  display: flex;
-}
+
 .ava{
   /* margin-left: 30rpx; */
   margin-top: 40rpx;

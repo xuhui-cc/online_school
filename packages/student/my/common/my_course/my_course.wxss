@@ -29,9 +29,7 @@ line-height:35rpx;
 color:#828282;
 margin-top: 17rpx;
 }
-.flex{
-  display: flex;
-}
+
 .course-content{
   margin-top: 62rpx;
   display: flex;

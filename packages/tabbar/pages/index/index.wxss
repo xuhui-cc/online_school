@@ -280,9 +280,9 @@ page{
   z-index: 1;
 }
 
-.flex{
+/* .flex{
   display: flex;
-}
+} */
 .mask1{
   position: fixed;
   width:750rpx;

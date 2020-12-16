@@ -3,9 +3,7 @@ page{
   
   background: #F5F5F5;
 }
-.flex{
-  display: flex;
-}
+
 .layout{
   margin-top: 16rpx;
   margin-left: 30rpx;

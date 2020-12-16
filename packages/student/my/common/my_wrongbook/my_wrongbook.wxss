@@ -83,9 +83,7 @@ page{
   left: 50%;
   margin-left: -18rpx;
 }
-.flex{
-  display: flex;
-}
+
 .content-li{
   height: 105rpx;
   align-items: center;

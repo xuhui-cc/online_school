@@ -16,9 +16,7 @@
   background:rgba(255,255,255,1);
   opacity:1;
 }
-.flex{
-  display: flex;
-}
+
 .group_num{
   margin-left: 30rpx;
   margin-top: 38rpx;

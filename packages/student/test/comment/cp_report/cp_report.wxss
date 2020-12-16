@@ -37,9 +37,7 @@ page{
   opacity:1;
   border-radius:10rpx;
 }
-.flex{
-  display: flex;
-}
+
 .shu{
   margin-left: 31rpx;
   margin-top: 66rpx;

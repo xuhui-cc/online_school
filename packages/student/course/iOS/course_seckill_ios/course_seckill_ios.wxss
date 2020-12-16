@@ -36,9 +36,7 @@
   color:rgba(39,39,39,1);
   opacity:1;
 }
-.flex{
-  display: flex;
-}
+
 .share{
   margin-left: 50rpx;
   margin-top: 32rpx;

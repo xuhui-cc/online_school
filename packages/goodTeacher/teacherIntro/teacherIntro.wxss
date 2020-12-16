@@ -52,9 +52,7 @@ page{
   color:rgba(19,224,178,1);
   opacity:1;
 }
-.flex{
-  display: flex;
-}
+
 .intro_bottom2{
   position: absolute;
   width: 750rpx;

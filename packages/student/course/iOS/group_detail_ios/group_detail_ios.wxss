@@ -36,9 +36,7 @@
   
   border-radius:16rpx;
 }
-.flex{
-  display: flex;
-}
+
 .ava{
   margin-left: 41rpx;
   margin-top: 44rpx;

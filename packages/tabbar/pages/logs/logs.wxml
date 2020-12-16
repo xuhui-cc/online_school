@@ -1,3 +1,4 @@
+
 <view class="container">
   <!-- 标题栏 -->
   <view class="nabigation_bar">
@@ -28,7 +29,7 @@
     <view wx:for="{{subject}}" wx:key="index" class="tab-item {{current_subject==index?'active':''}}" data-current="{{index}}"  bindtap="swichNav_subject">{{item.title}}</view> 
   </scroll-view> 
 
-  <view class="flex" wx:if="{{special != '' && current_subject != 0}}" style="margin-bottom:20rpx;">
+  <view class="flex" wx:if="{{special != '' && current_subject > 1}}" style="margin-bottom:20rpx;">
     <view class="zt">专题：</view>
     <scroll-view  scroll-x="true" class="tab-h1" >
       <view wx:for="{{special}}" wx:key="index" class="tab-item1 {{current_special==index?'active':''}}"  bindtap="swichNav_special" data-current="{{index}}">{{item.title}}</view> 
@@ -45,13 +46,14 @@
       </block>
     </swiper>
 
-    <image class="teacher_inter" wx:if="{{banner3}}" src="{{teacherInterImg}}" bindtap="teacher_inter" binderror="teacherInterImg_error"></image>
-    <image class="teacher_inter" wx:else="" style="{{subject?'margin-top: 300rpx;':'margin-top: 210rpx;'}}" src="{{teacherInterImg}}" bindtap="teacher_inter" binderror="teacherInterImg_error"></image>
+    <image class="teacher_inter" src="{{teacherInterImg}}" style="{{banner3?'':'margin-top: 300rpx;'}}" bindtap="teacher_inter" binderror="teacherInterImg_error"></image>
+    <!-- <image class="teacher_inter" wx:if="{{banner3}}" src="{{teacherInterImg}}" style="{{banner3?'margin-top: 300rpx;':'margin-top: 210rpx;'}}" bindtap="teacher_inter" binderror="teacherInterImg_error"></image>
+    <image class="teacher_inter" wx:else="" style="{{subject?'margin-top: 300rpx;':'margin-top: 210rpx;'}}" src="{{teacherInterImg}}" bindtap="teacher_inter" binderror="teacherInterImg_error"></image> -->
 
     <view class="head2"  style="margin-top:30rpx;margin-left:30rpx;">热门课程免费学</view>
 
-    <image wx:if="{{coursePushList == '' }}" class="course_null" style="margin-top:200rpx;" src="/images/null/course_null.png"></image>
-    <text wx:if="{{coursePushList == '' }}" class="course_nulltip" >暂无课程</text>
+    <image wx:if="{{coursePushList == ''}}" class="course_null" style="margin-top:200rpx;" src="/images/null/course_null.png"></image>
+    <text wx:if="{{coursePushList == ''}}" class="course_nulltip" >暂无课程</text>
 
     
     <view class="hot_layout" hidden="true"> 
@@ -87,10 +89,10 @@
       <view wx:for="{{coursePushList}}" wx:key="coursePushList_index">
           <view class="hot_course">
             <view class="flex" bindtap="to_course_hot" data-kid="{{item.kid}}" data-hot="{{2}}">
-              <image class="vip_laber" wx:if="{{item.buy == 5 && item.vip == 1}}" src="/images/other/vip_laber2.png"></image>
+              <image class="vip_laber" wx:if="{{item.buy == 5}}" src="/images/other/vip_laber2.png"></image>
               <image class="laber"  wx:if="{{item.buy == 1 || item.buy == 3}}" src="./resource/isbuy.png"></image>
               <image class="hot_group" style="margin-left:83rpx;" wx:if="{{(item.buy == 0 || item.buy == 2 || item.buy == 6) && item.type == 1 }}"  src="./resource/hot_group.png"></image>
-              <image class="laber" style="margin-left:83rpx;" wx:if="{{item.buy == 0  && item.type == 2 }}"  src="./resource/hot_ms.png"></image>
+              <image class="laber" style="margin-left:83rpx;" wx:if="{{(item.buy == 0 || item.buy == 6)  && item.type == 2 }}"  src="./resource/hot_ms.png"></image>
               <image class="hot_fm" src="{{item.face}}"></image>
               <view>
                 <view class="hot_title">{{item.title}}</view>
@@ -139,12 +141,8 @@
           <image class="laber_small" style="{{vip.datas.expire_timecsj == ''?'margin-left: 520rpx;':''}}" src="/images/other/vip_badge2.png"></image>
           <view class="open_time" bindtap="to_vip" wx:if="{{vip.datas.expire_timecsj == ''}}">{{vip.datas.valid_days}}</view>
           <view class="open_time" bindtap="to_vip" wx:else="">{{vip.datas.expire_timecsj}}到期</view>
-          
           <image class="vip_jt" src="/images/other/next_bsj.png" bindtap="to_vip"></image>
-          
         </view>
-
-      
         <image class="vip_img" src="/images/other/vip_all1.png"></image>
         
       </view>
@@ -188,14 +186,14 @@
               <image class="vip_fm" src="{{item.face}}"></image>
               <image class="vip_laber" wx:if="{{item.buy == 5}}" src="/images/other/vip_laber2.png"></image>
               <image class="laber" wx:if="{{item.buy == 1 || item.buy == 3 || item.buy == 4 }}" src="./resource/isbuy.png"></image>
-              <image class="hot_group" style="margin-left:83rpx;" wx:if="{{(item.buy == 0 || item.buy == 2 || item.buy == 6) && item.type == 1 }}"  src="./resource/hot_group.png"></image>
-              <image class="laber" style="margin-left:83rpx;" wx:if="{{item.buy == 0  && item.type == 2 }}"  src="./resource/hot_ms.png"></image>
+              <!-- <image class="hot_group" style="margin-left:83rpx;" wx:if="{{(item.buy == 0 || item.buy == 2 || item.buy == 6) && item.type == 1 }}"  src="./resource/hot_group.png"></image> -->
+              <!-- <image class="laber" style="margin-left:83rpx;" wx:if="{{(item.buy == 0 || item.buy == 6)  && item.type == 2 }}"  src="./resource/hot_ms.png"></image> -->
               
 
               <view>
                 <view class="hot_title">{{item.title}}</view>
 
-                <view wx:if="{{item.buy != 5}}">
+                <!-- <view wx:if="{{item.buy != 5}}">
                   <view wx:if="{{item.type == 0}}">
                     <view class="flex" style="margin-left:30rpx;margin-top:-20rpx;">
                       <view class="course_text" wx:if="{{item.cate == 1}}" style="width:75rpx;">直播课</view>
@@ -207,7 +205,7 @@
                     <view class="course_price"  style="color:rgba(3,182,131,1);margin-left:30rpx;" hidden="{{btn_buy}}"><text style="font-size:26rpx;font-weight:400;"> ¥ </text>{{item.price}}</view>
                   </view>
 
-                </view>
+                </view> -->
 
                 <view wx:if="{{item.buy == 5 || item.buy == 1}}" >
                   <view class="flex" style="margin-left:30rpx;margin-top:-20rpx;">
@@ -272,11 +270,12 @@
             </view>
             <view wx:if="{{item.type == 0}}" class="course_price" style="color:rgba(3,182,131,1);" hidden="{{btn_buy}}"><text style="font-size:26rpx;font-weight:400;"> ¥ </text>{{item.price}}</view>
             <view wx:if="{{item.buy == 5 || item.price == 0}}" class="flex">
-            <view class="free" >免费学</view>
-          </view>
+              <view class="free" >免费学</view>
+            </view>
           </view>
         </view>
       </view>
+
       <button class="login_read_sign" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login && (item.apply == 0 && item.live == 1)}}" style="margin-top:-78rpx;margin-left: 350rpx;"></button>
       <view class="sign" wx:if="{{(item.apply == 0 && item.live == 1)}}" style="margin-top:-78rpx;margin-left: 350rpx;" bindtap="subMsg" data-kid="{{item.kid}}">点击报名</view>
       <view class="sign1" style="margin-top:-78rpx;margin-left: 350rpx;" wx:if="{{item.apply == 1 && (item.buy == 1 || (item.buy > 3 && item.buy <= 5))}}" >报名成功</view>
@@ -292,6 +291,7 @@
   <image class="couponShow" src="./resource/couponShow.png" wx:if="{{couponShow}}" bindtap="to_coupon"></image>
   <view class="coupon_price"  wx:if="{{couponShow}}" bindtap="to_coupon"><text class="fuhao">¥ </text>{{copon_price}}</view>
 
+  <!-- 会员卡点击立即开通 -->
   <view class="mask1" wx:if="{{signBtn}}"></view>
   <!-- wx:if="{{signBtn}}" -->
   <view class="signBtnTipLayout" wx:if="{{signBtn}}">
@@ -311,9 +311,9 @@
     <!--  -->
   </view>
   <image class="mask_closeImg" src="/images/other/exchange_close.png" bindtap="signBtn" wx:if="{{signBtn}}"></image>
+  <!-- 会员卡点击立即开通 -->
 
-
-
+  <!-- 兑换码兑换页面 -->
   <view class="mask2" catchtouchmove="preventTouchMove" wx:if="{{exchange_page}}"></view>
   <!--  -->
   <view  wx:if="{{exchange_page}}" style="position: fixed;z-index:601">
@@ -329,5 +329,8 @@
     
     <image class="exchange_close" style="margin-top:700rpx" src="/images/other/exchange_close.png" bindtap="exchange_page"></image>
   </view>
+  <!-- 兑换码兑换页面 -->
 
+ 
 </view>
+<!-- container结束 -->

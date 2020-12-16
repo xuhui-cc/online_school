@@ -82,9 +82,7 @@ page{
   width:19rpx;
   height:27rpx;
 }
-.flex{
-  display: flex;
-}
+
 .course_title{
   margin-left: 40rpx;
   padding-top: 31rpx;

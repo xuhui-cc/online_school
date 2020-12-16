@@ -4,9 +4,28 @@
   width: 175rpx;
   height: 45rpx;
 }
-.flex{
-  display: flex;
+/* 空页面 */
+.null_img{
+  margin-left: 203rpx;
+  margin-top: 350rpx;
+  width: 344rpx;
+  height: 280rpx;
 }
+.null_tip{
+  margin-top: 10rpx;
+  width: 750rpx;
+height: 42rpx;
+font-size: 30rpx;
+font-family: PingFang SC;
+font-weight: 400;
+line-height: 42rpx;
+text-align: center;
+color: #D3D5E2;
+
+
+}
+/* 空页面 */
+
 .clock_img{
   
   width: 36rpx;
@@ -29,11 +48,11 @@
 }
 .lastLearningSituation{
   position: absolute;
-  margin-left: 465rpx;
-  margin-top: 260rpx;
-  width: 200rpx;
+  margin-left: 455rpx;
+  margin-top: 105rpx;
+  width: 220rpx;
   height: 65rpx;
-  font-size: 26rpx;
+  font-size: 24rpx;
   font-family: PingFang SC;
   font-weight: 400;
   text-align: center;
@@ -48,7 +67,7 @@
 .percent{
   position: absolute;
   margin-left: 385rpx;
-  margin-top: 420rpx;
+  margin-top: 265rpx;
   width: 340rpx;
   height: 33rpx;
   font-size: 22rpx;

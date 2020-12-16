@@ -414,6 +414,7 @@ Page({
 
   //更新选择年级
   updateGrade:function(){
+    let that = this 
     var params = {
       "token": wx.getStorageSync("token"),
       "gid": that.data.grade[xb].id

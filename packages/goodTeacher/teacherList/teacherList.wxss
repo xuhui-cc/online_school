@@ -17,9 +17,7 @@ page{
   margin-top:420rpx;
   margin-bottom: 150rpx;
 }
-.flex{
-  display: flex;
-}
+
 .tea_avatar{
   width: 132rpx;
   height: 163rpx;

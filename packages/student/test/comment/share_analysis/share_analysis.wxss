@@ -66,11 +66,6 @@
   border: none;
 }
 
-
-.flex{
-  display: flex;
-  /* margin-top: 78rpx; */
-}
 .explain_title{
   margin-left: 125rpx;
   margin-bottom: 35rpx;

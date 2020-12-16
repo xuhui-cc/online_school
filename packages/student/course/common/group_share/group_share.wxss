@@ -69,9 +69,7 @@
   width: 750rpx;
   height: 434rpx;
 }
-.flex{
-  display: flex;
-}
+
 .group_num{
   margin-left: 30rpx;
   margin-top: 38rpx;

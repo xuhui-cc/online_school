@@ -17,6 +17,7 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    
     // that.setData({
     //   login:'',
     //   gid:1,
@@ -36,7 +37,7 @@ Page({
       console.log("学情分享打开",that.data.login,that.data.gid)
     }
     that.getLastDate()
-    
+    console.log(wx.getStorageSync('gid'),"本地gid")
     
   },
 

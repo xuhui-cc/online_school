@@ -59,9 +59,7 @@
   color:rgba(255,255,255,1);
   opacity:1;
 }
-.flex{
-  display: flex;
-}
+
 .select{
   position: fixed;
   bottom: 0rpx;

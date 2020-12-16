@@ -61,9 +61,7 @@ page{
   opacity:1;
   border-radius:14rpx;
 }
-.flex{
-  display: flex;
-}
+
 .title{
   margin-left: 34rpx;
   margin-top: 32rpx;
