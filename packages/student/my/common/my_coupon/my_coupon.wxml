@@ -83,4 +83,6 @@
 <!-- container -->
 </view>
 
-<image class="audition_img" src="/images/other/audition_img.png" bindtap="to_auditionVideo"></image>
+<image class="audition_img" catchtouchmove="buttonMove" catchtouchstart="buttonStart" catchtouchend="buttonEnd" src="/images/other/audition_img.png"  style="top:{{buttonTop}}px;left:{{buttonLeft}}px"></image>
+
+<!-- bindtap="to_auditionVideo" -->

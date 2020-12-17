@@ -1,6 +1,10 @@
 // packages/student/my/common/my_coupon/my_coupon.js
 const app = getApp()
+
+var startPoint
 Page({
+
+  
 
   /**
    * 页面的初始数据
@@ -8,6 +12,13 @@ Page({
   data: {
     coupon_use:false,
     
+
+    buttonTop: 490,
+    buttonLeft: 255,
+    windowHeight: '',
+    windowWidth: ''
+
+
   },
 
   /**
@@ -18,7 +29,17 @@ Page({
     that.setData({
       couponUseTip:wx.getStorageSync('couponUseTip')
     })
-    
+
+    // 获取屏幕 高度,宽度 单位为px
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          windowHeight:  res.windowHeight,
+          windowWidth:  res.windowWidth
+        })
+      }
+    })
+
     if (options.isshare == 1){
       wx.setStorageSync("gid", options.gid)
       that.setData({
@@ -126,6 +147,7 @@ getPhoneNumber: function (e) {
 //试听课详情页
 to_auditionVideo:function(){
   let that = this 
+  console.log("试听点击")
   wx.navigateTo({
     url: app.getPagePath('auditionVideo') 
   })
@@ -169,5 +191,55 @@ to_auditionVideo:function(){
     })
     
   },
+
+  /*--------------------------------------------试听课可拖动浮窗位置 ---------------------------------------------*/
+  buttonStart: function (e) {
+    let that = this 
+    startPoint = e.touches[0]
+    that.setData({
+      buttonBeforeTop: that.data.buttonTop,
+      buttonBeforeLeft: that.data.buttonLeft
+    })
+  },
+  buttonMove: function (e) {
+    var endPoint = e.touches[e.touches.length - 1]
+    var translateX = endPoint.clientX - startPoint.clientX
+    var translateY = endPoint.clientY - startPoint.clientY
+    startPoint = endPoint
+    var buttonTop = this.data.buttonTop + translateY
+    var buttonLeft = this.data.buttonLeft + translateX
+    //判断是移动否超出屏幕
+    if (buttonLeft+140 >= this.data.windowWidth){
+      buttonLeft = this.data.windowWidth-140;
+    }
+    if (buttonLeft<=0){
+      buttonLeft=0;
+    }
+    if (buttonTop<=0){
+      buttonTop=0
+    }
+    if (buttonTop + 150 >= this.data.windowHeight){
+      buttonTop = this.data.windowHeight-150;
+    }
+    
+    this.setData({
+      buttonTop: buttonTop,
+      buttonLeft: buttonLeft
+    })
+  },
+  buttonEnd: function (e) {
+    let that = this 
+    console.log("点击结束")
+    console.log(that.data.buttonTop, that.data.buttonLeft,"拖动")
+    if(that.data.buttonTop - that.data.buttonBeforeTop==0 || that.data.buttonLeft - that.data.buttonBeforeLeft == 0){
+      // console.log(that.data.buttonTop - 490, that.data.buttonTop - 265,"拖动")
+      wx.navigateTo({
+        url: app.getPagePath('auditionVideo') 
+      })
+    }
+    
+    
+  }
+  /*--------------------------------------------试听课可拖动浮窗位置结束-------------------------------------------*/
   
 })

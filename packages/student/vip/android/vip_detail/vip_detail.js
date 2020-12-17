@@ -494,6 +494,41 @@ Page({
 
   /*------------------------------------------------------方法-------------------------------------------------- */
 
+
+  // // 获取滚动条当前位置
+  // onPageScroll:function(e){ 
+  //   console.log(e.scrollTop,"hhhhhhhhhhhhhhhhh")
+  //   let that = this 
+  //   // var top = 0
+  //   // if(e.scrollTop > 350){
+  //   //   top = 1
+  //   //   that.setData({
+  //   //     top:top
+  //   //   })
+  //   // }
+  // },
+
+  onPageScroll: function (e) {
+    let that = this
+    var top = 0
+      if(e.scrollTop > 350){
+      top = 1
+      
+    }
+    that.setData({
+      top:top
+    })
+  },
+
+  /**
+   * 返回顶部 按钮 点击事件
+  */
+ backToTop: function() {
+  wx.pageScrollTo({
+    scrollTop: 0
+  })
+},
+
    //获取微信绑定手机号登录
    getPhoneNumber: function (e) {
     var that = this

@@ -243,6 +243,12 @@
         {
           "name": "learningSituation",
           "pathName": "packages/common/learningSituation/learningSituation",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "auditionVideo",
+          "pathName": "packages/common/auditionVideo/auditionVideo",
           "scene": null
         }
       ]

@@ -1,5 +1,5 @@
-const URI_base = "http://os.lingjun.net/" //测试域名
-// const URI_base = "https://wsg.lingjun.net/" // 正式域名
+// const URI_base = "http://os.lingjun.net/" //测试域名
+const URI_base = "https://wsg.lingjun.net/" // 正式域名
 
 const URI = URI_base + 'api.php/'    //接口地址
 
@@ -515,7 +515,7 @@ function my_course_all(params) {
 // 获取课程详情v3(拼团)(预弃用)
 // function course_info4(params) {
 //   return fetch.olsfetchpost(URI, 'v4/lesson/getinfo', params,"课程详情介绍")
-// }
+// } 
 // 获取课程详情v3(拼团)
 function course_info5(params) {
   return fetch.olsfetchpost(URI, 'v5/lesson/getinfo', params,"课程详情介绍")

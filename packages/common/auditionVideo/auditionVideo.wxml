@@ -8,7 +8,7 @@
         <view class="shu"></view>
         <view class="title">{{item.title}}</view>
       </view>
-      <video wx:if="{{auditionVideoList}}" class="video" src="{{item.url}}" show-casting-button="{{true}}" poster="{{item.Background}}" custom-cache="{{false}}"></video>
+      <video wx:if="{{auditionVideoList}}" class="video" src="{{item.url}}" show-casting-button="{{true}}" poster="{{item.Background}}" custom-cache="{{false}}" data-index="{{index}}" id="myVideo{{index}}" bindplay="aboutVideoStrate" id="myVideo{{index}}"></video>
     </view>
 
   </view>

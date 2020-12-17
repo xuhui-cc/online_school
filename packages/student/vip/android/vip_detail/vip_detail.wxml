@@ -61,8 +61,8 @@
     <button class="login1" style="margin-left: 430rpx;margin-top:380rpx;width:240rpx;height:40rpx;"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="1"></button>
     <image  class="vip2_exchangeEntry" src="./resource/exchange_entry.png" bindtap="exchange"></image>
     <button class="login1" style="margin-left: 480rpx;margin-top:460rpx;width:185rpx;height:70rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="2"></button>
-    <view class="vip2_signBtn1" bindtap="signBtn" wx:if="{{vip == ''}}">开通会员</view>
-    <view class="vip2_signBtn1" bindtap="to_myVipCard" wx:else="">查看已有会员</view>
+    <view class="vip2_signBtn1" bindtap="{{vip == ''?'signBtn':'to_myVipCard'}}" >{{vip == ''?'开通会员':'查看已有会员'}}</view>
+    <!-- <view class="vip2_signBtn1" bindtap="to_myVipCard" wx:else="">查看已有会员</view> -->
     <image class="vip2_fm" src="./resource/vip2_card.png"></image>
 
     <!-- 未开通vip -->
@@ -256,6 +256,8 @@
   <image class="mask_closeImg" src="/images/other/exchange_close.png" bindtap="signBtn" wx:if="{{signBtn}}"></image>
 
   <!--  -->
+
+  <image class="backTopTop_image" src="./resource/backToTop.png" bindtap="backToTop" wx:if="{{top}}"></image>
   
 
 

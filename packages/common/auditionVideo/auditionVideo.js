@@ -2,6 +2,8 @@
 const app = getApp()
 Page({
 
+  currentPlay:-1,
+
   /**
    * 页面的初始数据
    */
@@ -16,6 +18,31 @@ Page({
     let that = this 
     that.getAuditionVideo()
   },
+
+
+  aboutVideoStrate:function(e){
+    var that = this;
+    var curIdx = e.currentTarget.dataset.index;
+    var id = e.currentTarget.id
+    that.currentPlay = curIdx
+    
+      for (var i = 0; i < that.data.auditionVideoList.length; i++) {
+        if (id === 'myVideo' + i) {
+        //console.log('播放视频不做处理');
+      } else {
+        
+          var videoContext = wx.createVideoContext("myVideo"+i, that);
+          videoContext.pause();
+        
+        
+        //console.log('暂停其他正在播放的视频');
+        
+      }
+    }
+    
+  
+
+},
 
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -347,8 +347,8 @@ z-index: 101;
 /* 试听课悬浮 */
 .audition_img{
   position: fixed;
-  bottom: 123rpx;
-  left: 0rpx;
+  /* bottom: 123rpx; */
+  /* left: 0rpx; */
   width: 237rpx;
   height: 263rpx;
   z-index: 100;

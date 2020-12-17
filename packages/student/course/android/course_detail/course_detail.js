@@ -358,7 +358,7 @@ Page({
     let that = this 
     that.setData({
       queue:!that.data.queue,
-      course_cata:''
+      // course_cata:''
     })
     that.getcourse_cata()
   },
@@ -469,7 +469,6 @@ dealAva:function(face){
     })
     if((that.data.course_info.buy ==0 || that.data.course_info.buy ==6)&& that.data.course_info.price == 0 ){
       that.to_free()
-      
     }else if(that.data.course_info.buy ==1 || (that.data.course_info.buy >= 3 && that.data.course_info.buy <= 5)){
         console.log("触发报名")
         wx.requestSubscribeMessage({
@@ -563,6 +562,7 @@ dealAva:function(face){
   getcourse_cata:function(){
     let that = this
     var queue = 0 ,token = ''
+    
     if(that.data.queue == true){
       queue = 1
     }
@@ -574,8 +574,12 @@ dealAva:function(face){
       "kid": that.data.kid,
       "queue":queue
     }
+    // that.setData({
+    //   course_cata: ''
+    // })
     app.ols.course_cata5(params).then(d => {
       if (d.data.code == 0) {
+        
         for(var i=0;i<d.data.data.lists.length;i++){
           if(d.data.data.lists[i].cateid > 0){
             d.data.data.lists[i].livetime = d.data.data.lists[i].startline.substr(5,11) + " - " + d.data.data.lists[i].endline.substr(11,5)

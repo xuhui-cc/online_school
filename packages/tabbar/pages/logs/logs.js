@@ -417,12 +417,12 @@ Page({
     let that = this 
     var params = {
       "token": wx.getStorageSync("token"),
-      "gid": that.data.grade[xb].id
+      "gid": that.data.gid
     }
     app.ols.grade_update(params).then(d => {
       if (d.data.code == 0) {
         clearInterval(timer);   
-        wx.setStorageSync('gid', that.data.grade[xb].id)
+        wx.setStorageSync('gid', that.data.gid)
         that.getsubject()   //获取科目
         // that.hot()  //获取热门
         that.coursePushList() //后台推荐课
