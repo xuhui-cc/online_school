@@ -61,12 +61,12 @@
     <button class="login1" style="margin-left: 430rpx;margin-top:380rpx;width:240rpx;height:40rpx;"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="1"></button>
     <image  class="vip2_exchangeEntry" src="./resource/exchange_entry.png" bindtap="exchange"></image>
     <button class="login1" style="margin-left: 480rpx;margin-top:460rpx;width:185rpx;height:70rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!login}}" data-type="2"></button>
-    <view class="vip2_signBtn1" bindtap="signBtn" wx:if="{{vip == ''}}">开通会员</view>
-    <view class="vip2_signBtn1" bindtap="to_myVipCard" wx:else="">查看已有会员</view>
+    <view class="vip2_signBtn1" bindtap="{{vip == ''?'signBtn':'to_myVipCard'}}" >{{vip == ''?'开通会员':'查看已有会员'}}</view>
+    <!-- <view class="vip2_signBtn1" bindtap="to_myVipCard" wx:else="">查看已有会员</view> -->
     <image class="vip2_fm" src="./resource/vip2_card.png"></image>
 
     <!-- 未开通vip -->
-    <view class="vip2_layout" wx:if="{{(vip == '' || vip.datas.valid_days == '已过期') && couponList == '' &&   courseList == ''}}">
+    <view class="vip2_layout" wx:if="{{(vip == '' || vip.datas.valid_days == '已过期') && couponList == '' && courseList==''}}">
       <image class="unsign_vip2_head" src="/images/vip2_common/unsign_vip2_hade.png"></image>
 
         <view class="flex">
@@ -105,7 +105,7 @@
         <image class="vip2_next" src="/images/navi/next.png" bindtap="to_myCoupon"></image>
       </view>
 
-      <scroll-view scroll-x="true" style=" white-space: nowrap;display: flex;margin-bottom:50rpx;margin-left:30rpx;margin-top:32rpx;width:720rpx" >
+      <scroll-view scroll-x="true" style=" white-space: nowrap;display: flex;margin-bottom:50rpx;margin-left:30rpx;margin-top:32rpx;width:720rpx" wx:if="{{couponList != ''}}">
         <view wx:for="{{couponList}}" wx:key="index" style="width: 387rpx; height: 194rpx; display: inline-block;margin-right:20rpx;">
           <view >
             <view class="vip2_couponTitle">{{item.title}}</view>
@@ -256,6 +256,8 @@
   <image class="mask_closeImg" src="/images/other/exchange_close.png" bindtap="signBtn" wx:if="{{signBtn}}"></image>
 
   <!--  -->
+
+  <image class="backTopTop_image" src="./resource/backToTop.png" bindtap="backToTop" wx:if="{{top}}"></image>
   
 
 

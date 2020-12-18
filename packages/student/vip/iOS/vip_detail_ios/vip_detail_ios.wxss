@@ -1,3 +1,11 @@
+.backTopTop_image {
+  position: fixed;
+  bottom: 90rpx;
+  right: 33rpx;
+  width: 83rpx;
+  height: 83rpx;
+  z-index: 500;
+}
 .login1{
   position: absolute;
   margin-left: 30rpx;

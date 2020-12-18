@@ -9,11 +9,11 @@
 
   <view class="right_layout">
 
-    <view class="flex" style="margin-top:37rpx" wx:if="{{vipInfo.lists.open_coupon  > 0}}">
+    <view class="flex" style="margin-top:37rpx" wx:if="{{vipInfo.lists.open_coupon  > 0 && vipInfo.lists.course_coupon != ''}}">
       <view class="vip2_couponHead">优惠券权益</view>
     </view>
 
-    <scroll-view scroll-x="true" style=" white-space: nowrap;display: flex;margin-bottom:50rpx;margin-left:30rpx;margin-top:32rpx;width:720rpx" wx:if="{{vipInfo.lists.course_coupon != ''}}">
+    <scroll-view scroll-x="true" style=" white-space: nowrap;display: flex;margin-bottom:50rpx;margin-left:30rpx;margin-top:32rpx;width:720rpx" wx:if="{{vipInfo.lists.open_coupon  > 0 && vipInfo.lists.course_coupon != ''}}">
       <view wx:for="{{vipInfo.lists.course_coupon}}" wx:key="index" style="width: 387rpx; height: 194rpx; display: inline-block;margin-right:20rpx;">
         <view>
           <view class="vip2_couponTitle">{{item.title}}</view>
@@ -29,7 +29,7 @@
           
     </scroll-view>
 
-    <view class="vip2_couponHead" style="{{vipInfo.lists.open_coupon  > 0?'':'margin-top:30rpx;'}}" wx:if="{{vipInfo.count > 0}}">课程权益</view>
+    <view class="vip2_couponHead" style="{{vipInfo.lists.open_coupon  > 0 && vipInfo.lists.course_coupon != ''?'':'margin-top:30rpx;'}}" wx:if="{{vipInfo.count > 0}}">课程权益</view>
       <view class="vip2_courseRightIntro" wx:if="{{vipInfo.count > 0}}">{{vipInfo.count}}门精选好课免费学</view>
 
     <view style="margin-top:32rpx;">

@@ -780,12 +780,12 @@ Page({
     let that = this 
     if(that.data.login){
       var params = {
-        // "gid":wx.getStorageSync('gid'),
+        "gid":wx.getStorageSync('gid'),
         "token":wx.getStorageSync('token'),
       }
     }else{
       var params = {
-        // "gid":wx.getStorageSync('gid'),
+        "gid":wx.getStorageSync('gid'),
         "token":0
       }
     }

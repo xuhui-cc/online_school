@@ -1,13 +1,10 @@
 // pages/vip_detail/vip_detail.js
 const app = getApp()
-// 9910745D9F
-// 0FED2DE7EB
 Page({
 
   /**
    * 页面的初始数据
    */
-
   coursePage:1,
   pageNum:10,
 
@@ -60,7 +57,6 @@ Page({
     that.setData({
       couponUseTip:wx.getStorageSync('couponUseTip')
     })
-    // that.couponUseTip()   //优惠券使用提示
     if (options.isshare == 1){
       wx.setStorageSync("gid", options.gid)
       that.setData({
@@ -70,7 +66,6 @@ Page({
         login: wx.getStorageSync("login")
       })
       console.log("vip分享打开",that.data.code_layout,"code_layout",that.data.login,"login")
-        // that.v4_viplist()
     }else{
       that.setData({
         login: wx.getStorageSync("login")
@@ -79,9 +74,7 @@ Page({
         that.setData({
           ewm_exchange: options.ewm_exchange
         })
-        // console.log(options.ewm_exchange,"options.ewm_exchange")
       }
-      // that.v4_viplist()
       console.log("非分享打开")
     }
     
@@ -90,7 +83,6 @@ Page({
   //兑换码输入
   input_code: function (e) {
     let that = this
-    // var code = e.detail.value
     that.setData({
       code : e.detail.value
       })
@@ -109,7 +101,6 @@ Page({
       "code":that.data.code
     }
     app.ols.cheek_code5(params).then(d => {
-      
       if (d.data.code == 0) {
         that.setData({
           signBtn:false,
@@ -118,18 +109,17 @@ Page({
         })
         if(d.data.data.cate == 2){
           wx.navigateTo({
-            url: app.getPagePath('exchangeCode_2C') + '?id=' + d.data.data.id,
+            url: app.getPagePath('exchangeCode_2C') + '?id=' + d.data.data.id + '?ewm=2',
           })
         }else{
           that.setData({
-            signBtn:false,
+          signBtn:false,
           codeinfo:d.data.data,
           exchange_page:true,
           code_layout:false,
           code:''
         })
         }
-        
       } else if(d.data.code == 5){
         that.setData({
           checkCode:-1,
@@ -155,7 +145,6 @@ Page({
         that.allVipCourse()   //获取全部关联课程
         that.allVipCoupon()    //获取关联会员卡
         that.viplist()  //获取会员卡信息
-        // that.v4_viplist(1)
         that.setData({
           exchange_page:false,
           pay:true,
@@ -175,7 +164,6 @@ Page({
         that.viplist()  //获取会员卡信息
         that.allVipCourse()   //获取全部关联课程
         that.allVipCoupon()    //获取关联会员卡
-        // console.log("会员列表失败==============" + d.data.msg)
       }
     })
   },
@@ -189,40 +177,6 @@ Page({
       checkCode:1,
     })
   },
-
-  // //获取会员卡列表
-  // v4_viplist:function(type){
-  //   let that = this
-  //   var params = {
-  //     "token": wx.getStorageSync("token"),
-  //   }
-  //   // console.log(params, "会员列表参数")
-  //   app.ols.v4_viplist(params).then(d => {
-  //     // console.log(d, "会员列表数据")
-  //     if (d.data.code == 0) {
-  //       if(d.data.data.lists[0].course){
-  //         d.data.data.lists[0].course_num = d.data.data.lists[0].course.length
-  //       }
-  //       if(type == 1){
-  //         that.setData({
-  //           vip:d.data.data,
-  //           vip_list:d.data.data.lists,
-  //           exchange_page:false,
-  //           pay:true,
-  //           code:''
-  //         })
-  //       }else{
-  //         that.setData({
-  //           vip:d.data.data,
-  //           vip_list:d.data.data.lists
-  //         })
-  //       }
-  //       // console.log("会员列表成功")
-  //     } else {
-  //       // console.log("会员列表失败==============" + d.data.msg)
-  //     }
-  //   })
-  // },
 
   vip_course_detail:function(e){
     let that = this
@@ -296,30 +250,19 @@ Page({
         that.setData({
           pay:true
         })
-        // wx.navigateBack({
-        //   delta: 1  // 返回上一级页面。
-        // })
+        
       },
       fail(res) {
        
         console.log("失败")
         that.group_del4()    //支付失败删除订单
-        // wx.showToast({
-        //   title: '支付失败',
-        //   duration:3000
-        // })
-        // wx.navigateBack({
-        //   delta: 1  // 返回上一级页面。
-        // })
+        
       }
     })
   },
 
   group_del4:function(){
     let that = this
-    // console.log("")
-    // console.log(that.data.have_adr)
-    
       var params = {
         "token": wx.getStorageSync("token"),
         "oid": that.data.orderid,
@@ -358,7 +301,6 @@ Page({
   //查看会员权益
   success_yes:function(){
     let that = this 
-    // that.v4_viplist()
     that.setData({
       pay:false
     })
@@ -387,14 +329,22 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    // let that = this
+    // that.coursePage = 1
+    // that.setData({
+    //   courseList:''
+    // })
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    // let that = this
+    // that.coursePage = 1
+    // that.setData({
+    //   courseList:''
+    // })
   },
 
   /**阻止页面滚动。模拟器中页面仍然可以滚动，真机上不能滚动。*/
@@ -421,9 +371,7 @@ Page({
         that.allVipCourse()
       }
       else{
-        // wx.showToast({
-        //   title: '没有更多咯',
-        // })
+        
       }
     }
     
@@ -486,30 +434,33 @@ Page({
   allVipCourse:function(){
     let that = this
     if(that.data.login){
-      var params = {
-        "token": wx.getStorageSync("token"),
-        "num":that.pageNum,
-        "page":that.coursePage
-      }
-      app.ols.allVipCourse(params).then(d => {
-        if (d.data.code == 0) {
-          if(that.coursePage == 1){
-            that.setData({
-              total:d.data.data.total,
-              courseList:d.data.data.lists
-            })
-          }else{
-            var finalList = that.data.courseList.concat(d.data.data.lists)
-            that.setData({
-              courseList:finalList
-            })
-          }
-          
-        } 
-        else{
-          
+      if(!that.data.total || (that.data.courseList.length < that.data.total)){
+        var params = {
+          "token": wx.getStorageSync("token"),
+          "num":that.pageNum,
+          "page":that.coursePage
         }
-      })
+        app.ols.allVipCourse(params).then(d => {
+          if (d.data.code == 0) {
+            if(that.coursePage == 1){
+              that.setData({
+                total:d.data.data.total,
+                courseList:d.data.data.lists
+              })
+            }else{
+              var finalList = that.data.courseList.concat(d.data.data.lists)
+              that.setData({
+                courseList:finalList
+              })
+            }
+            
+          } 
+          else{
+            
+          }
+        })
+      }
+      
     }
     
   },
@@ -543,6 +494,41 @@ Page({
 
   /*------------------------------------------------------方法-------------------------------------------------- */
 
+
+  // // 获取滚动条当前位置
+  // onPageScroll:function(e){ 
+  //   console.log(e.scrollTop,"hhhhhhhhhhhhhhhhh")
+  //   let that = this 
+  //   // var top = 0
+  //   // if(e.scrollTop > 350){
+  //   //   top = 1
+  //   //   that.setData({
+  //   //     top:top
+  //   //   })
+  //   // }
+  // },
+
+  onPageScroll: function (e) {
+    let that = this
+    var top = 0
+      if(e.scrollTop > 350){
+      top = 1
+      
+    }
+    that.setData({
+      top:top
+    })
+  },
+
+  /**
+   * 返回顶部 按钮 点击事件
+  */
+ backToTop: function() {
+  wx.pageScrollTo({
+    scrollTop: 0
+  })
+},
+
    //获取微信绑定手机号登录
    getPhoneNumber: function (e) {
     var that = this
@@ -571,10 +557,10 @@ Page({
               signBtn:true
             })
           }
+          
         }else{
           
         }
-        // that.v4_viplist()
       }
     })
   },
@@ -599,15 +585,14 @@ Page({
     })
   },
 
+  
+
   couponUes:function(){
     let that = this 
     wx.navigateTo({
       url: app.getPagePath('my_coupon')
     })
-    // wx.showToast({
-    //   title: wx.getStorageSync('couponUseTip').msg,
-    //   icon:"none"
-    // })
+    
   },
 
   //开通会员按钮

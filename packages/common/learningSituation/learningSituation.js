@@ -163,10 +163,10 @@ Page({
   ctx.setFontSize(16)
   ctx.setFillStyle('#B5B7BE')
   ctx.setTextAlign('left')
-  if(this.data.learningSituation.percentage == 0){
+  if(this.data.learningSituation.todaypercentage == 0){
     ctx.fillText("今天还没有学习喔，要加油鸭！",20,80,300)
   }else{
-    ctx.fillText("已超过" + this.data.learningSituation.percentage + "%的同学，继续加油鸭！",20,80,300)
+    ctx.fillText("已超过" + this.data.learningSituation.todaypercentage + "%的同学，继续加油鸭！",20,80,300)
   }
   
   ctx.stroke()

@@ -310,7 +310,7 @@ page{
 }
 .course_nulltip{
   /* margin-left: 311rpx; */
-  margin-top: 50rpx;
+  /* margin-top: 50rpx; */
   width:750rpx;
   /* height:42rpx; */
   font-size:30rpx;

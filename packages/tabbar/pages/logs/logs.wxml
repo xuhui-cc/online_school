@@ -53,7 +53,7 @@
     <view class="head2"  style="margin-top:30rpx;margin-left:30rpx;">热门课程免费学</view>
 
     <image wx:if="{{coursePushList == ''}}" class="course_null" style="margin-top:200rpx;" src="/images/null/course_null.png"></image>
-    <text wx:if="{{coursePushList == ''}}" class="course_nulltip" >暂无课程</text>
+    <view wx:if="{{coursePushList == ''}}" class="course_nulltip" >暂无课程</view>
 
     
     <view class="hot_layout" hidden="true"> 
