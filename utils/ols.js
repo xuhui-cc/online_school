@@ -1,5 +1,5 @@
-// const URI_base = "http://os.lingjun.net/" //测试域名
-const URI_base = "https://wsg.lingjun.net/" // 正式域名
+const URI_base = "http://os.lingjun.net/" //测试域名
+// const URI_base = "https://wsg.lingjun.net/" // 正式域名
 
 const URI = URI_base + 'api.php/'    //接口地址
 
@@ -29,6 +29,11 @@ function couponTea(params) {
 // 获取广告弹窗数据
 function getAdWindow(params) {
   return fetch.olsfetchpost(URI, 'v5/ad/getlist', params, '获取广告弹窗数据')
+}
+
+//获取平台人数
+function user_number(params) {
+  return fetch.olsfetchpost(URI, 'basic/getmembernum', params)
 }
 
 
@@ -122,30 +127,30 @@ function test_ques2(params) {
   return fetch.olsfetchpost(URI, 'v2/paper/gettestlist', params)
 }
 
-// 获取课程详情介绍(已登录)
-function course_info1(params) {
-  return fetch.olsfetchpost(URI, 'lesson/getinfo', params,"课程详情介绍")
-}
+// // 获取课程详情介绍(已登录)
+// function course_info1(params) {
+//   return fetch.olsfetchpost(URI, 'lesson/getinfo', params,"课程详情介绍")
+// }
 
-// 获取课程详情v3(拼团)
-function course_info4(params) {
-  return fetch.olsfetchpost(URI, 'v4/lesson/getinfo', params,"课程详情介绍")
-}
+// // 获取课程详情v3(拼团)
+// function course_info4(params) {
+//   return fetch.olsfetchpost(URI, 'v4/lesson/getinfo', params,"课程详情介绍")
+// }
 
 //传年级
 function grade_update(params) {
   return fetch.olsfetchpost(URI, 'member/update', params)
 }
 
-//获取课程目录(已购买)
-function course_cata1(params) {
-  return fetch.olsfetchpost(URI, 'lesson/getOption', params)
-}
+// //获取课程目录(已购买)
+// function course_cata1(params) {
+//   return fetch.olsfetchpost(URI, 'lesson/getOption', params)
+// }
 
-//获取课程目录v3(拼团)
-function course_cata3(params) {
-  return fetch.olsfetchpost(URI, 'v3/lesson/getoption', params)
-}
+// //获取课程目录v3(拼团)
+// function course_cata3(params) {
+//   return fetch.olsfetchpost(URI, 'v3/lesson/getoption', params)
+// }
 
 //获取课程讲义列表
 function handout(params) {
@@ -302,10 +307,6 @@ function get_free(params) {
   return fetch.olsfetchpost(URI, 'wepay/freeorder', params,"免费课领取")
 }
 
-//获取平台人数
-function user_number(params) {
-  return fetch.olsfetchpost(URI, 'basic/getmembernum', params)
-}
 
 //获取试卷推荐课程数据
 function getpushlist(params) {
@@ -516,7 +517,7 @@ function my_course_all(params) {
 // function course_info4(params) {
 //   return fetch.olsfetchpost(URI, 'v4/lesson/getinfo', params,"课程详情介绍")
 // } 
-// 获取课程详情v3(拼团)
+// 获取课程详情v5
 function course_info5(params) {
   return fetch.olsfetchpost(URI, 'v5/lesson/getinfo', params,"课程详情介绍")
 }
@@ -706,7 +707,7 @@ function allVipCourse(params) {
 }
 //获取课程列表
 function grade_course5(params) {
-  return fetch.olsfetchpost(URI, 'v7/lesson/getlist', params,"课程列表")
+  return fetch.olsfetchpost(URI, 'v7/lesson/getlist', params,"科目下课程列表")
 }
 
 //课后作业、结课考试时长统计
@@ -714,7 +715,9 @@ function setstudentstudy(params) {
   return fetch.olsfetchpost(URI, '/study/setstudentstudy', params,"课后作业、结课考试时长统计")
 }
 
-module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, test_ques1, test_ques2, course_info1, grade_update, course_cata1, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,course_cata3,hot_list4,group_preorder3,order_all3,group_del3,group_detail3,group_share3,all_group3,banner3,v4_vipPreorder,judge_share4, teacherGetStudentsList, getReocrdTagList, submitReocrd, getStudentRecordListByDay, getPeriodRecordStatusList, getStudentCourseHourInfo, getClearCourseHourList, recordUploadFile, getStudentNewRecord, getRecordUploadPath_h5, haveRelationWithStudent,addImg,parentGetChildsList,dummy,refreshUserInfo, get7v1Intro_h5,v5_getTeacherList,v5_getTeacherIntro, getAdWindow, getLoginUserIdentify,subMsg,couponList,couponShow,couponTea,coursePushList,auditionVideo,v5_viplist,vipRight,getVipList,getVipInfo,allVipCourse,allVipCoupon,my_course_all,course_info5,rightBagInfo,exchangeRightBag,course_cata5,grade_course5,cheek_code5,exchange_code5,info_1Vn_v5,check_1Vn_v5,exchange_1Vn_v5, getRoles, getTeacherAuth, getTeacherVipList, getTeacherCouponList, getTeacherRightList, getTeacherClassList, getTeacherClassStudentList, getVipCardBaseInfo, getVipCardCouponList, getVipCardCourseList, getVipCard, getRightDetail, getRightCard, getCouponDetail, getCoupon, updateWechatGroupID, teacherEvaluateRecord, teacherGetEvaluateReocrdDetail, commentOrReplyStudyReocrd, deleteStudyReocrdComment,shareHead,endTestShow,learningSituation,setstudentstudy}
+module.exports = { login, getclassroom, add_adress, getdefault, setinfo, getlist, discipline, gettoplist, order_all, wrong, test_ques1, test_ques2, grade_update, handout, getvideo, getvideo_info, preorder, order_detail, order_wait, order_ed, order_close, test_id, setmark, test_explain, ques_detail, ques_info, cp_ans_submit, update_cpsubmit, cp_report, cp_analysis, cp_ans_id, wrong_id, wrong_detail, get_live, work_submit, cp_comment, update_testsubmit, test_report, end_report1, end_report2, end_report3, end_report4, get_free, user_number, getpushlist, testques_info, getplaypushlist, avatar_update, video_end, video_start, test_start, test_end,hot_list4,group_preorder3,order_all3,group_del3,group_detail3,group_share3,all_group3,banner3,v4_vipPreorder,judge_share4, teacherGetStudentsList, getReocrdTagList, submitReocrd, getStudentRecordListByDay, getPeriodRecordStatusList, getStudentCourseHourInfo, getClearCourseHourList, recordUploadFile, getStudentNewRecord, getRecordUploadPath_h5, haveRelationWithStudent,addImg,parentGetChildsList,dummy,refreshUserInfo, get7v1Intro_h5,v5_getTeacherList,v5_getTeacherIntro, getAdWindow, getLoginUserIdentify,subMsg,couponList,couponShow,couponTea,coursePushList,auditionVideo,v5_viplist,vipRight,getVipList,getVipInfo,allVipCourse,allVipCoupon,my_course_all,course_info5,rightBagInfo,exchangeRightBag,course_cata5,grade_course5,cheek_code5,exchange_code5,info_1Vn_v5,check_1Vn_v5,exchange_1Vn_v5, getRoles, getTeacherAuth, getTeacherVipList, getTeacherCouponList, getTeacherRightList, getTeacherClassList, getTeacherClassStudentList, getVipCardBaseInfo, getVipCardCouponList, getVipCardCourseList, getVipCard, getRightDetail, getRightCard, getCouponDetail, getCoupon, updateWechatGroupID, teacherEvaluateRecord, teacherGetEvaluateReocrdDetail, commentOrReplyStudyReocrd, deleteStudyReocrdComment,shareHead,endTestShow,learningSituation,setstudentstudy}
+
+// course_info1, course_cata1,course_cata3,
 
 
 // const addImgUrl = "http://os.lingjun.net/api.php/annex/upload"

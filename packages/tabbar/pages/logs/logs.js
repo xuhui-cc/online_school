@@ -132,6 +132,26 @@ Page({
     })
   },
 
+  onPageScroll: function (e) {
+    let that = this
+    var top = 0
+      if(e.scrollTop > 350){
+      top = 1
+    }
+    that.setData({
+      top:top
+    })
+  },
+
+//     /**
+//    * 返回顶部 按钮 点击事件
+//   */
+//  backToTop: function() {
+//   wx.pageScrollTo({
+//     scrollTop: 0
+//   })
+// },
+
    //年级弹框
    grade_select: function () {
     let that = this

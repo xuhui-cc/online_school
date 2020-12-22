@@ -2,12 +2,8 @@
 
  <!-- 标题栏 -->
   <view class="nabigation_bar">
-    <!-- <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}"> -->
       <view class="grade_content" bindtap="grade_select">{{grade[grade_index].title}}</view>
-    <!-- </picker> -->
-    <!-- <picker bindchange="grade_picker"  value="{{grade_index}}" range="{{grade}}" range-key="{{'title'}}"> -->
       <image class="grade_img" src="/images/other/xsj2.png" bindtap="grade_select"></image>
-    <!-- </picker> -->
     <view class="head">领军网校</view>
   </view>
 
@@ -26,7 +22,6 @@
         <view class="heng"></view>
       </view>
     </scroll-view>
-    <!-- <view class="yes">确定</view> -->
   </view>
 
   <!-- 标题栏结束 -->
@@ -66,27 +61,6 @@
     <image class="null_img" src="/images/null/cp_null.png"></image>
     <view class="null_tip">暂无测评</view>
   </view>
-
-
-
-
-  <!-- 登录蒙层 -->
-  <!-- <view class="mask1" wx:if="{{isshare == 1 && islogin == false}}"></view>
-  <view class="login_layout" wx:if="{{isshare == 1 && islogin == false}}">
-    <image class="login_del" src="../../images/del.png"></image>
-    <image class="unlogin" src="../../images/unlogin.png"></image>
-    <view class="login_tip">您当前尚未登录! </view>
-    <view class="login_tip">请点击下方按钮登录</view>
-    <button class="login_read"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
-    <image class="tologin" src="../../images/tologin.png"></image>
-  </view>
-   -->
-
-
-
-
-
-
 
 
 </view>
