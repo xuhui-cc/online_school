@@ -1,4 +1,4 @@
-<view class="container" style="margin-bottom:500rpx;">
+<view class="container" style="{{showCanvas?'margin-bottom:500rpx;':''}}">
 
   <!-- 登录蒙层 -->
   <view class="mask1" wx:if="{{isshare == 1 && login == false}}"></view>

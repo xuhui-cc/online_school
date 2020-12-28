@@ -398,6 +398,7 @@ dealAva:function(){
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    let that = this
     let paramStr = 'isshare=1'+ '&gid=' + wx.getStorageSync('gid') + '&id=' + this.data.tea_id
     return app.shareTool.getShareReturnInfo('0,1', 'teacherIntro', paramStr, this.shareImagePath ? this.shareImagePath : '', wx.getStorageSync('shareHead').teacher + that.data.teacherIntro.name)
   }

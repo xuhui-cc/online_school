@@ -126,19 +126,24 @@
   margin-left: 40rpx;
   padding-top: 30rpx;
   width:610rpx;
-  height:75rpx;
+  /* height:75rpx; */
   font-size:36rpx;
   font-family:PingFang SC;
   font-weight:bold;
   line-height:36rpx;
   color:rgba(39,39,39,1);
-  opacity:1;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .intro{
   margin-left: 40rpx;
   margin-top: 17rpx;
   width:609rpx;
-  height:71rpx;
+  /* height:71rpx; */
   font-size:24rpx;
   font-family:PingFang SC;
   font-weight:400;

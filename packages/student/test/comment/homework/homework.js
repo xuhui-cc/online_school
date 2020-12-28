@@ -64,6 +64,23 @@ Page({
     }
   },
 
+  onPageScroll: function (e) {
+    let that = this
+    // var top = 0
+    // console.log(e.scrollTop)
+    // that.setData({
+    //   top:e.scrollTop
+    // })
+    if(e.scrollTop > 0){
+      that.setData({
+        top:e.scrollTop
+      })
+    }
+    
+  },
+
+
+
 
 
   //获取试题
@@ -238,6 +255,13 @@ Page({
   //答题卡显示收起
   dtk: function () {
     let that = this
+    if(that.data.dtk){
+      wx.pageScrollTo({
+        scrollTop: that.data.top,
+        duration: 500
+      });
+      console.log("页面定位")
+    }
     that.setData({
       dtk: !that.data.dtk
     })
