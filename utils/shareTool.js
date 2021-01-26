@@ -76,7 +76,9 @@ function getShareReturnInfo(role, targetPageName ,paramsStr, imageUrl, title) {
  *    处理后的options
 */
 function getFirstPageShareParam(options, role) {
-  
+  if (role == 2) {
+    role = 1
+  }
   if (options.role != 'all' && options.role.indexOf(String(role)) == -1) {
     // 用户角色不能查看分享页面
     console.log("用户没有查看分享页面权限")
