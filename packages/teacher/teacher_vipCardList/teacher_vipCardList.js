@@ -161,7 +161,7 @@ Page({
       ctx.setTextAlign('left')
       ctx.setFillStyle('#FF9A02')
       ctx.setFontSize(20)
-      ctx.fillText(this.selectedVip.valid_days == 0 ? '永久有效' : '有效期'+this.selectedVip.valid_days+'天', 306, 31, 110)
+      ctx.fillText(this.selectedVip.valid_days == 0 || this.selectedVip.valid_days >= 3650 ? '永久有效' : '有效期'+this.selectedVip.valid_days+'天', 306, 31, 110)
       ctx.stroke()
 
       // 课程权益
