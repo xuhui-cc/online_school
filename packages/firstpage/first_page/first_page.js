@@ -56,8 +56,11 @@ Page({
         }
         case 2: {
           // 家长
-          wx.reLaunch({
-            url: app.getPagePath('parent_childList'),
+          // wx.reLaunch({
+          //   url: app.getPagePath('parent_childList'),
+          // })
+          wx.switchTab({
+            url: app.getPagePath('logs'),
           })
           break
         }
