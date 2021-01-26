@@ -205,43 +205,56 @@ Page({
         that.setData({
           id_list: d.data.data
         })
+        // let array = []
         for (var i = 0; i < that.data.id_list.length; i++) {
           if (that.data.id_list[i].type == 1){
             var cs = "id_list[" + i + "].ans"
+            let hh = "ques_type[" + (that.data.id_list[i].type - 1) + "]"
             that.setData({
-              ques_type1:1,
-              [cs]: -1
+              // ques_type1:1,
+              [cs]: -1,
+              [hh]:that.data.id_list[i].type
             })
           } else if (that.data.id_list[i].type == 2) {
             var cs = "id_list[" + i + "].ans"
+            let hh = "ques_type[" + (that.data.id_list[i].type - 1) + "]"
             that.setData({
-              ques_type2: 2,
-              [cs]: ''
+              // ques_type2: 2,
+              [cs]: '',
+              [hh]:that.data.id_list[i].type
             })
           } else if (that.data.id_list[i].type == 3) {
             var cs = "id_list[" + i + "].ans"
+            let hh = "ques_type[" + (that.data.id_list[i].type - 1) + "]"
             that.setData({
-              ques_type3: 3,
-              [cs]: []
+              // ques_type3: 3,
+              [cs]: [],
+              [hh]:that.data.id_list[i].type
             })
           } else if (that.data.id_list[i].type == 4) {
             var cs = "id_list[" + i + "].ans"
+            let hh = "ques_type[" + (that.data.id_list[i].type - 1) + "]"
             that.setData({
-              ques_type4: 4,
-              [cs]: []
+              // ques_type4: 4,
+              [cs]: [],
+              [hh]:that.data.id_list[i].type
             })
           } else if (that.data.id_list[i].type == 5) {
             var cs = "id_list[" + i + "].ans"
+            let hh = "ques_type[" + (that.data.id_list[i].type - 1) + "]"
             that.setData({
-              ques_type5: 5,
-              [cs]: []
+              // ques_type5: 5,
+              [cs]: [],
+              [hh]:that.data.id_list[i].type
             })
           }
           else if (that.data.id_list[i].type == 6) {
             var cs = "id_list[" + i + "].ans"
+            let hh = "ques_type[" + (that.data.id_list[i].type - 1) + "]"
             that.setData({
-              ques_type6: 6,
-              [cs]: []
+              // ques_type6: 6,
+              [cs]: [],
+              [hh]:that.data.id_list[i].type
             })
           }
         }
