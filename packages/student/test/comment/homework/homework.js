@@ -64,6 +64,14 @@ Page({
     }
   },
 
+  //一键置顶
+  toTop:function(){
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
+  },
+
+
   onPageScroll: function (e) {
     let that = this
     // var top = 0
@@ -160,7 +168,11 @@ Page({
         that.setData({
           ques_info: d.data.data
         })
-        that.drawShareImage(d.data.data)
+        setTimeout(() => {
+          that.drawShareImage(d.data.data)
+          // console.log("1秒后开始画图")
+        },1000)
+        
         console.log("作业基本信息接口调取成功")
       } else {
         console.log("作业基本信息接口==============" + d.data.msg)
@@ -299,6 +311,7 @@ Page({
     that.setData({
       dtk: false
     })
+    that.toTop()   //置顶
   },
 
   touchStart: function (e) {
@@ -336,6 +349,7 @@ Page({
   touchEnd: function (e) {
     let that = this
     if (e.changedTouches.length == 1) {
+      that.toTop()   //置顶
       var endX = e.changedTouches[0].clientX;
       var diffX = this.data.startX - endX;
       console.log(diffX, "diffxxx")
@@ -761,6 +775,7 @@ Page({
         duration: 2500
       })
     } else {
+      that.toTop()   //置顶
       that.setData({
         img: [],
         imgs: [],
@@ -778,6 +793,7 @@ Page({
         dtk: true
       })
     } else {
+      that.toTop()   //置顶
       that.setData({
         img: [],
         imgs: [],

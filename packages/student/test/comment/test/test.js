@@ -84,6 +84,13 @@ Page({
 
   },
 
+  //一键置顶
+  toTop:function(){
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
+  },
+
   //更新结课考试状态
   update_testsubmit:function(){
     let that = this
@@ -420,6 +427,7 @@ Page({
     that.setData({
       dtk: false
     })
+    that.toTop()   //置顶
   },
 
   touchStart: function (e) {
@@ -458,6 +466,7 @@ Page({
   touchEnd: function (e) {
     let that = this
     if (e.changedTouches.length == 1) {
+      that.toTop()   //置顶
       var endX = e.changedTouches[0].clientX;
       var diffX = this.data.startX - endX;
       console.log(diffX, "diffxxx")
@@ -613,7 +622,9 @@ Page({
               imgs: [],
               currentTab: that.data.currentTab + 1
             })
+            that.toTop()   //置顶
             that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
+
           }
         }
         console.log("作业答案提交接口调取成功")
@@ -624,17 +635,18 @@ Page({
   },
 
   //手动滑页
-  swiperchange: function (e) {
-    var that = this
-    var current = Number(e.currentTarget.dataset.current)  // 当前的
-    var index = e.detail.current;//当前所在页面的 index
-    console.log(index)
-    console.log(current + 1)
-    that.setData({
-      currentTab: current + 1
-    })
-    that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
-  },
+  // swiperchange: function (e) {
+  //   var that = this
+  //   var current = Number(e.currentTarget.dataset.current)  // 当前的
+  //   var index = e.detail.current;//当前所在页面的 index
+  //   console.log(index)
+  //   console.log(current + 1)
+  //   that.setData({
+  //     currentTab: current + 1
+  //   })
+  //   // that.toTop()   //置顶
+  //   that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
+  // },
 
   //开始答题按钮
   start_ans: function () {
@@ -842,6 +854,7 @@ Page({
         imgs: [],
         currentTab: that.data.currentTab - 1
       })
+      that.toTop()
       that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
     }
   },
@@ -859,6 +872,7 @@ Page({
         imgs: [],
         currentTab: that.data.currentTab + 1
       })
+      that.toTop()
       that.get_cp_test(that.data.id_list[that.data.currentTab].pid)
     }
 
