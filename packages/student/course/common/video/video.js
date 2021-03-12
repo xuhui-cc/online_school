@@ -244,12 +244,16 @@ Page({
   //获取视频播放进度、总时长（初）
   bindtimeupdate(res) {
     let that = this
-    console.log('bindtimeupdate', parseInt(res.detail.currentTime), '时间总时长-->', parseInt(res.detail.duration));
+    // console.log('bindtimeupdate', parseInt(res.detail.currentTime), '时间总时长-->', parseInt(res.detail.duration));
     that.setData({
       currentTime: parseInt(res.detail.currentTime),
       duration: parseInt(res.detail.duration)
     })
     
+  },
+
+  binderror:function(){
+    console.log("视频加载错误")
   },
 
   //更新视频结束状态
@@ -261,13 +265,13 @@ Page({
       "duration": timeline,
       "percent": precent
     }
-    console.log(params,"视频结束状态更新参数")
+    // console.log(params,"视频结束状态更新参数")
     app.ols.video_end(params).then(d => {
-      console.log(d,"视频结束状态更新数据")
+      // console.log(d,"视频结束状态更新数据")
       if (d.data.code == 0) {
-        console.log("视频结束状态更新成功")
+        // console.log("视频结束状态更新成功")
       } else {
-        console.log("视频结束状态更新失败==============" + d.data.msg)
+        // console.log("视频结束状态更新失败==============" + d.data.msg)
       }
     })
   },

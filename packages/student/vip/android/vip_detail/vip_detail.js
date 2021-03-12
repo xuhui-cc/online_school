@@ -304,6 +304,7 @@ Page({
     that.setData({
       pay:false
     })
+    that.onShow()
   },
 
  

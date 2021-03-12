@@ -1,5 +1,5 @@
-const URI_base = "http://os.lingjun.net/" //测试域名
-// const URI_base = "https://wsg.lingjun.net/" // 正式域名
+// const URI_base = "http://os.lingjun.net/" //测试域名
+const URI_base = "https://wsg.lingjun.net/" // 正式域名
 
 const URI = URI_base + 'api.php/'   //无版本V
 const URI_V = URI + 'v8/'    //有版本V
@@ -28,7 +28,6 @@ function get7v1Intro_h5() {
 function addImg() {
   return URI + "/annex/upload"
 }
-
 
 // 获取专题
 function gettoplist(params) {
@@ -85,10 +84,7 @@ function wrong_detail(params) {
   return fetch.olsfetchpost(URI, 'wrong/getquestion', params)
 }
 
-
-
 /*-----------------------------------------------------URL(有版本V)-------------------------------------------- */
-
 //登录（公用）
 function login(params) {
   return fetch.olsfetchpost(URI_V, 'login/getphonelogin', params, true, '登录中')
@@ -226,7 +222,7 @@ function order_detail(params) {
 
 //视频结束更新状态——1.2
 function video_end(params) {
-  return fetch.olsfetchpost(URI_V, 'study/setfinishvideoline', params)
+  return fetch.olsfetchpost(URI_V, 'study/setfinishvideoline', params,'视频结束状态更新')
 }
 
 //视频开始更新状态——1.2
@@ -236,9 +232,8 @@ function video_start(params) {
 
 //测评试题id
 function test_id(params) {
-  return fetch.olsfetchpost(URI_V, 'paper/getidlist', params)
+  return fetch.olsfetchpost(URI, 'paper/getidlist', params)
 }
-
 
 //测评试卷概要
 function test_explain(params) {
@@ -250,7 +245,6 @@ function ques_detail(params) {
   return fetch.olsfetchpost(URI_V, 'paper/getquestion', params)
 }
 
-
 //测评报告
 function cp_report(params) {
   return fetch.olsfetchpost(URI_V, 'report/gettestchart', params)
@@ -258,7 +252,7 @@ function cp_report(params) {
 
 //测评点评
 function cp_comment(params) {
-  return fetch.olsfetchpost(URI_V, 'report/getcommentlist', params)
+  return fetch.olsfetchpost(URI, 'report/getcommentlist', params,'测评试卷名师点评')
 }
 
 //测评某一试题详情
@@ -270,7 +264,6 @@ function cp_analysis(params) {
 function cp_ans_id(params) {
   return fetch.olsfetchpost(URI_V, 'report/getmarkcard', params)
 }
-
 
 //课程直播链接获取
 function get_live(params) {
@@ -310,10 +303,8 @@ function get_free(params) {
 
 //获取试卷推荐课程数据
 function getpushlist(params) {
-  return fetch.olsfetchpost(URI_V, 'report/getpushlist', params,"获取试卷推荐课程数据")
+  return fetch.olsfetchpost(URI, 'report/getpushlist', params,"获取试卷推荐课程数据")
 }
-
-
 
 //授权头像
 function avatar_update(params) {

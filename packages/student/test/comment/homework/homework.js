@@ -349,7 +349,7 @@ Page({
   touchEnd: function (e) {
     let that = this
     if (e.changedTouches.length == 1) {
-      that.toTop()   //置顶
+      // that.toTop()   //置顶
       var endX = e.changedTouches[0].clientX;
       var diffX = this.data.startX - endX;
       console.log(diffX, "diffxxx")
@@ -1082,7 +1082,7 @@ Page({
   ctx.drawImage("/images/other/g_d.png", 230, 65, 100, 35)
   ctx.restore()
   ctx.beginPath()
-  ctx.setFontSize(18)
+  ctx.setFontSize(15)
   ctx.setFillStyle('#FFFFFF')
   ctx.setTextAlign('center')
   ctx.fillText(ques_info.gdata.title + '•' + ques_info.ddata.title, 280,85,200)

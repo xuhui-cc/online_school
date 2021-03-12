@@ -163,7 +163,34 @@ Page({
           that.setData({
             open_rightBag:true
           })
-        } 
+        } else if (d.data.code == 5){
+          console.log(d.data.msg.indexOf("重复"),"重复")
+          if(d.data.msg.indexOf("重复") >= 0){
+            wx.showToast({
+              title: d.data.msg,
+              icon: "none",
+              duration: 950
+            })
+            setTimeout(function () {
+              console.log("跳转")
+              wx.redirectTo({
+                url: app.getPagePath('vip_detail'),
+              })
+            }, 1000) 
+          }else{
+            wx.showToast({
+              title: d.data.msg,
+              icon: "none",
+              duration: 950
+            })
+            setTimeout(function () {
+              console.log("跳转")
+              wx.switchTab({
+                url: app.getPagePath('logs'),
+              })
+            }, 1000)
+          }
+        }
       })
       
    
