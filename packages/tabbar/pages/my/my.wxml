@@ -98,4 +98,6 @@
   </view>
 </view>
 
+<tabBar selected="{{selected}}"></tabBar>
+
 

@@ -8,6 +8,7 @@ Page({
   pageNum:10,
 
   data: {
+    selected: 0,
     current_special:-1,
     current_subject: 0,
     btn_buy:app.globalData.btn_buy,
@@ -958,6 +959,8 @@ Page({
     var id = e.currentTarget.dataset.id
     var type = e.currentTarget.dataset.type
     var cate = e.currentTarget.dataset.cate
+    var jumpurl = e.currentTarget.dataset.jumpurl
+    var appid = e.currentTarget.dataset.appid
     if(type == 2) {
       if(cate == 0){
         wx.navigateTo({
@@ -973,6 +976,18 @@ Page({
       }
     }else if(type == 1){
       console.log("文章")
+    }else if(type == 3){
+      wx.navigateToMiniProgram({
+        appId: appid,
+        path: jumpurl,
+        // extraData: {
+        //   foo: 'bar'
+        // },
+        envVersion: 'trial',
+        success(res) {
+          // 打开成功
+        }
+      })
     }
   },
 

@@ -165,23 +165,23 @@
   },
   "sitemapLocation": "sitemap.json",
   "tabBar": {
-    "custom": false,
+    "custom": true,
     "color": "#999999",
     "selectedColor": "#0CCDA3",
     "borderStyle": "white",
     "backgroundColor": "#FFFFFF",
     "list": [
       {
-        "text": "测评",
-        "pagePath": "packages/tabbar/pages/index/index",
-        "iconPath": "packages/tabbar/resource/test2.png",
-        "selectedIconPath": "packages/tabbar/resource/test1.png"
-      },
-      {
         "text": "课程",
         "pagePath": "packages/tabbar/pages/logs/logs",
         "iconPath": "packages/tabbar/resource/course2.png",
         "selectedIconPath": "packages/tabbar/resource/course1.png"
+      },
+      {
+        "text": "智慧课堂",
+        "pagePath": "packages/tabbar/pages/index/index",
+        "iconPath": "packages/tabbar/resource/test2.png",
+        "selectedIconPath": "packages/tabbar/resource/test1.png"
       },
       {
         "text": "我的",

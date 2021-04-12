@@ -3,7 +3,7 @@ page{
 }
 .backTopTop_image {
   position: fixed;
-  bottom: 90rpx;
+  bottom: 450rpx;
   right: 33rpx;
   width: 83rpx;
   height: 83rpx;
@@ -515,7 +515,7 @@ page{
 .hot_layout{
   margin-left: 30rpx;
   margin-top: 25rpx;
-  margin-bottom: 20rpx;
+  margin-bottom: 250rpx;
   width:690rpx;
   /* height:545rpx; */
   background:rgba(255,255,255,1);
@@ -767,7 +767,7 @@ page{
 .vip_layout{
   /* margin-left: 30rpx; */
   margin-top: 25rpx;
-  margin-bottom: 20rpx;
+  margin-bottom: 220rpx;
   width:750rpx;
   /* height:545rpx; */
   background:rgba(255,255,255,1);
@@ -866,14 +866,14 @@ page{
 .couponShow{
   position: fixed;
   right: 5rpx;
-  bottom: 20rpx;
+  bottom: 220rpx;
   width: 167rpx;
   height: 211rpx;
 }
 .coupon_price{
   position: fixed;
   right: 25rpx;
-  bottom: 80rpx;
+  bottom: 280rpx;
   width: 130rpx;
   height: 59rpx;
   font-size: 35rpx;
@@ -951,11 +951,12 @@ page{
   color: #303030;
 }
 .vip2_signBtn{
-  margin: 34rpx 3rpx;
+  margin: 34rpx 3rpx 300rpx 3rpx;
   width: 744rpx;
   height: 152rpx;
 }
 /* vip迭代模式 */
+
 /* 立即开通 */
 .mask1{
   position: fixed;

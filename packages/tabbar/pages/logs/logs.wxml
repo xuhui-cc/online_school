@@ -40,7 +40,7 @@
     <swiper class="swiper_container" style="{{subject ?'':'margin-top: 200rpx;'}}" wx:if="{{banner3}}" autoplay="true"  interval="2500" circular="true" indicator-dots="true" indicator-color="rgba(255,255,255,1)" indicator-active-color="rgba(12,205,163,1)">
       <block wx:for="{{banner3}}" wx:key='ad_index' >
          <swiper-item>
-          <image  class="ad_img" src="{{item.picurl}}" mode="widthFix" bindtap="ad_detail" data-type="{{item.type}}"  data-id="{{item.attachid}}" data-cate="{{item.cate}}" ></image>
+          <image  class="ad_img" src="{{item.picurl}}" mode="widthFix" bindtap="ad_detail" data-type="{{item.type}}"  data-id="{{item.attachid}}" data-jumpurl="{{item.jumpurl}}" data-appid="{{item.appid}}" data-cate="{{item.cate}}" ></image>
          </swiper-item>
       </block>
     </swiper>
@@ -237,7 +237,7 @@
   </view>
   <!-- vip结束 -->
 
-  <view style="margin-bottom:100rpx;" wx:if="{{current_subject > 1}}">
+  <view style="margin-bottom:200rpx;" wx:if="{{current_subject > 1}}">
     <view wx:for="{{course}}" wx:key="index">
 
       <view class="course_layout" bindtap="to_course_detail" data-xb="{{index}}" >
@@ -336,3 +336,4 @@
  
 </view>
 <!-- container结束 -->
+<tabBar selected="{{selected}}"></tabBar>

@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    selected: 2,
     // 是否是老师
     isTeacher: null,
   },

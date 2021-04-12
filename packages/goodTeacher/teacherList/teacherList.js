@@ -97,15 +97,15 @@ Page({
   //返回
   back:function(){
     let that = this
-    if(that.data.type == 1){
+    // if(that.data.type == 1){
       wx.reLaunch({
         url: app.getPagePath('logs'),
       })
-    }else{
-      wx.reLaunch({
-        url: app.getPagePath('index'),
-      })
-    }
+    // }else{
+    //   wx.reLaunch({
+    //     url: app.getPagePath('index'),
+    //   })
+    // }
     
   },
 
