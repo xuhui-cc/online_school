@@ -47,11 +47,11 @@ Component({
           path: 'pages/first_page/first_page',
           // extraData: {
           //   foo: 'bar'
-          // },
-          envVersion: 'trial',
-          success(res) {
-            // 打开成功
-          }
+          // // },
+          // envVersion: 'trial',
+          // success(res) {
+          //   // 打开成功
+          // }
         })
       }
       

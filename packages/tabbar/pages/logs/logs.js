@@ -983,10 +983,10 @@ Page({
         // extraData: {
         //   foo: 'bar'
         // },
-        envVersion: 'trial',
-        success(res) {
-          // 打开成功
-        }
+        // envVersion: 'trial',
+        // success(res) {
+        //   // 打开成功
+        // }
       })
     }
   },

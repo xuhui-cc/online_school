@@ -1,5 +1,5 @@
-const URI_base = "http://os.lingjun.net/" //测试域名
-// const URI_base = "https://wsg.lingjun.net/" // 正式域名
+// const URI_base = "http://os.lingjun.net/" //测试域名
+const URI_base = "https://wsg.lingjun.net/" // 正式域名
 
 const URI = URI_base + 'api.php/'   //无版本V
 const URI_V = URI + 'v8/'    //有版本V
@@ -348,7 +348,7 @@ function all_group3(params) {
 
 //轮播图
 function banner3(params) {
-  return fetch.olsfetchpost(URI_V, 'banner/getlist', params,"轮播")
+  return fetch.olsfetchpost(URI, 'v9/banner/getlist', params,"轮播")
 }
 
 // 老师端获取学员列表
